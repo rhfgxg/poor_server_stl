@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+
+# VisualStudio config
+.vs
+
+# VisualStudio bliud
+out
+
+# vcpkg out
+# vcpkg_installed
