@@ -1,12 +1,21 @@
-# login/CMakeLists.txt
+# login用户登录服务器模块，管理用户登录登出请求
 # 模块名
 set(MODULE_NAME login)
 
-# 创建库
-add_library(${MODULE_NAME} STATIC GatewayServer.cpp GatewayServer.h)
+# 需要编译的源文件列表
+set(SOURCES
+    src/main.cpp
+)
+
+# 指定编译生成的可执行文件信息：文件名${PROJECT_NAME} ，${SOURCES} 项目所有源文件路径
+add_executable(${MODULE_NAME} ${SOURCES})
 
 # 设置模块的包含目录
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-# 其他依赖，使用变量进行链接
-target_link_libraries(${MODULE_NAME} PRIVATE protobuf)  # 假设需要Protobuf
+# 可选：如果要向其他模块提供接口库，可以使用 target_include_directories
+# 如：将一些公共头文件指定为 PUBLIC，其他模块可以访问
+target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# 安装可执行文件到 bin 目录
+install(TARGETS ${MODULE_NAME} DESTINATION bin)

@@ -1,1 +1,13 @@
-{}
+{
+  "name": "poor-server-stl",
+  "version": "1.0.0",
+  "dependencies": [
+    {
+      "name": "nlohmann-json",
+      "version>=": "3.11.3#1"
+    },
+    {
+      "name": "mysql-connector-cpp"
+    }
+  ]
+}

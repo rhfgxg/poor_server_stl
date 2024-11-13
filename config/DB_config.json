@@ -1,0 +1,9 @@
+{
+  "localDB": {
+    "DBname": "poor",
+    "Host": "127.0.0.1",
+    "Port": "33060",
+    "UserName": "root",
+    "Password": "159357"
+  }
+}

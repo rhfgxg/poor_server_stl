@@ -1,0 +1,39 @@
+syntax = "proto3";	// 指定使用的protobuf版本
+// package myapp; // 导入包名
+// import "other.proto"; // 导入另一个proto文件
+message Person	// 定义消息体
+{
+	int32 id = 1;	// 整型用户id，字段编号1，编号必须唯一，从1开始
+	string name = 2;
+    UserInfo user = 3; // 嵌套的UserInfo消息
+}
+
+message UserInfo {
+    int32 user_id = 1;
+    string email = 2;
+}
+
+// 定义枚举
+enum Status {   // 定义枚举
+    UNKNOWN = 0;    // 枚举值从 0开始
+    ACTIVE = 1;
+    INACTIVE = 2;
+    BANNED = 3;
+}
+
+// gRPC中，定义远程调用的接口
+service AuthService {
+    rpc Login (LoginRequest) returns (LoginResponse); // 登录接口
+    rpc CheckStatus (UserInfo) returns (Status);      // 状态检查接口
+}
+// 这里的AuthService服务包含两个RPC方法：
+// Login：接受一个LoginRequest并返回LoginResponse。
+// CheckStatus：接受一个UserInfo并返回Status。
+
+// 编译指令：protoc -I=. --cpp_out=. login.proto
+// protoc：指令
+// -I：指定proto文件路径
+// --cpp_out：指定生成方式和输出路径：--python_out，--java_out，--go_out
+// --grpc_out（gRPC代码）生成gRPC代码。需要搭配语言参数，如--cpp_out、--python_out等，通常还需要安装grpc_cpp_plugin等插件来支持gRPC代码的生成
+// login.proto：文件名
+// -I：指定文件路径
