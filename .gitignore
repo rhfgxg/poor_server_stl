@@ -38,4 +38,4 @@
 out
 
 # vcpkg out
-# vcpkg_installed
+vcpkg_installed
