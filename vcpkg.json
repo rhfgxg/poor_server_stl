@@ -8,6 +8,9 @@
     },
     {
       "name": "mysql-connector-cpp"
+    },
+    {
+      "name": "boost"
     }
   ]
 }

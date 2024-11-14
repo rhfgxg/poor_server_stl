@@ -32,16 +32,14 @@ target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc
 # 如果需要链接第三方库，可以在这里指定（项目名，库文件权限，库名列表）
 target_link_libraries(${MODULE_NAME} PRIVATE
 # 第三方库
-    "${VCPKG_LIB}/mysqlcppconn8.lib" # mysql库
+    "${VCPKG_LIB}/boost_system-vc143-mt-x64-1_85.lib" # boost 网络库
 )
 
 
 # 创建一个列表，包含所有需要复制的 .dll 文件
 set(DLL_FILES
-# mysql库
-    "${VCPKG_DIR}/debug/bin/mysqlcppconn8-2-vs14.dll"  
-    "${VCPKG_BIN}/zlib1.dll"
-    "${VCPKG_BIN}/lz4.dll"
+# boost 网络库
+    "${VCPKG_BIN}/boost_system-vc143-mt-x64-1_85.dll"  
 )
 
 # 遍历 dll列表，将所有 .dll 文件，逐一复制到可执行文件所在目录
