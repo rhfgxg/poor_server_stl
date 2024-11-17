@@ -24,7 +24,17 @@ c++（无qt库）的服务端版本
 
 ### nlohmann-json：json操作库
 
-### protobuf：protobuf库：客户端与服务器，服务器之间的通信协议
+### protobuf：客户端与服务器，服务器之间的通信协议
+这个需要用到proto编译器，这个文件在 /vcpkg_installed/x64-windows/tools/protobuf/protoc.exe
+生成 rpc服务文件时，需要用到 grpc_cpp_plugin.exe，这个文件需要先安装 grpc库，安装后保存在 /vcpkg_installed/x64-windows/tools/grpc/grpc_cpp_plugin.exe
+我这里使用 which指令寻找grpc_cpp_plugin工具时，一直找不到，所以使用的是相对路径_
+
+#### 安装protobuf编译器
+这里使用的是 protobuf-3.21.12版本，最新版的在cmake文件夹中没有CMakeLists.txt文件，编译时会很麻烦
+【有道云笔记】protobuf安装与使用 https://note.youdao.com/s/C7fckSY5
+
+### grpc：客户端与服务器，服务器之间的通信协议
+实现服务器之间的远程调用
 
 
 # 各服务器模块功能

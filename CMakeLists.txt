@@ -21,11 +21,12 @@ set(SOURCES
 )
 
 # 添加每个模块
+add_subdirectory(protobuf)
 # add_subdirectory(./src/core)
 add_subdirectory(./src/data)
 add_subdirectory(./src/gateway)
 # add_subdirectory(./src/logic)
-# add_subdirectory(./src/login)
+add_subdirectory(./src/login)
 
 # 指定编译生成的可执行文件信息：文件名${PROJECT_NAME} ，${SOURCES} 项目所有源文件路径
 add_executable(${PROJECT_NAME} ${SOURCES})
@@ -46,7 +47,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 set(DLL_FILES
     "${VCPKG_BIN}/libprotobufd.dll"  # proto库
     "${VCPKG_BIN}/libprotocd.dll"          # proto库
-
 )
 
 # 遍历 dll列表，将所有 .dll 文件，逐一复制到可执行文件所在目录
