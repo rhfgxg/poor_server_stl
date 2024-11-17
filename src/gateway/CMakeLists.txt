@@ -19,7 +19,7 @@ include_directories(
 
 # 需要编译的源文件列表
 set(SOURCES
-    ${PROJECT_SOURCE_DIR}/src/gateway/main.cpp
+    ${PROJECT_SOURCE_DIR}/src/gateway/src/main.cpp
     ${PROJECT_SOURCE_DIR}/src/gateway/gateway_service.cpp
     ${PROJECT_SOURCE_DIR}/protobuf/service.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/service.grpc.pb.cc
