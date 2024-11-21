@@ -1,6 +1,6 @@
-# core中心服务器模块，管理所有模块的交互，RPC调用
+# central中心服务器模块，管理所有模块的交互，RPC调用
 # 模块名
-set(MODULE_NAME core)
+set(MODULE_NAME central)
 
 # 需要编译的源文件列表
 set(SOURCES

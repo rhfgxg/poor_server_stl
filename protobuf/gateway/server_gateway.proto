@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package myproject;
+
+service GatewayService {
+    rpc RequestForward (ForwardRequest) returns (ForwardResponse);  // 中文注释：转发请求
+}
+
+// 传入请求
+message ForwardRequest {
+    string target_service = 1;
+    bytes payload = 2;
+}
+// 请求处理响应
+message ForwardResponse {
+    bool success = 1;
+    bytes response = 2;
+}
+
+
+
+

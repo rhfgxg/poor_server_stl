@@ -8,6 +8,7 @@ int main()
 
     try 
     {
+        /*
         boost::asio::io_context io_context;
         boost::asio::ip::tcp::acceptor acceptor(io_context, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), 1234));
 
@@ -33,7 +34,19 @@ int main()
 
             // 发送响应给客户端
             boost::asio::write(socket, boost::asio::buffer(response + "\n"));
-        }
+        */
+
+        // 模拟登录数据
+        std::string username = "user";
+        std::string password = "pass";
+
+        // 调用登录服务器
+        GatewayService gateway_service(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
+        std::string response = gateway_service.Login(username, password);
+
+        // 输出响应
+        std::cout << "登录响应: " << response << std::endl;
+
     }
     catch (std::exception& e) 
     {

@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package myproject;
+
+service DatabaseService {
+    rpc Create (CreateRequest) returns (CreateResponse);    // 增加数据服务
+    rpc Read (ReadRequest) returns (ReadResponse);  // 查询数据服务
+    rpc Update (UpdateRequest) returns (UpdateResponse);    // 更新数据服务
+    rpc Delete (DeleteRequest) returns (DeleteResponse);    // 删除数据服务
+}
+
+// 增加数据服务请求
+message CreateRequest {
+    string database = 1;
+    string table = 2;
+    map<string, string> data = 3;  // 要插入的数据，键值对形式
+}
+// 增加数据服务响应
+message CreateResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// 查询服务请求
+message ReadRequest {
+    string database = 1;
+    string table = 2;
+    map<string, string> query = 3;  // 查询条件，键值对形式
+}
+// 查询服务响应
+message ReadResponse {
+    bool success = 1;
+    string message = 2;
+    map<string, string> results = 3;  // 查询结果，多个键值对
+}
+
+// 更新服务请求
+message UpdateRequest {
+    string database = 1;
+    string table = 2;
+    map<string, string> query = 3;  // 查询条件，键值对形式
+    map<string, string> data = 4;   // 要更新的数据，键值对形式
+}
+// 更新服务响应
+message UpdateResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// 删除服务请求
+message DeleteRequest {
+    string database = 1;
+    string table = 2;
+    map<string, string> query = 3;  // 查询条件，键值对形式
+}
+// 删除服务响应
+message DeleteResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+
+
+

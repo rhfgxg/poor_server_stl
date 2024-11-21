@@ -1,7 +1,7 @@
 #ifndef LOGIN_SERVICE_H
 #define LOGIN_SERVICE_H
 #include <grpcpp/grpcpp.h>
-#include "../../../protobuf/service.grpc.pb.h"
+#include "../../../protobuf/login/server_login.grpc.pb.h"
 
 class LoginServiceImpl final : public myproject::LoginService::Service {
 public:

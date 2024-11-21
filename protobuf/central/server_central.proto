@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package myproject;
+
+service CentralService {
+    rpc GetGlobalState (GlobalStateRequest) returns (GlobalStateResponse);  // 请求全局状态服务
+    rpc UpdateGlobalState (UpdateGlobalStateRequest) returns (UpdateGlobalStateResponse);   // 更新全局状态服务
+}
+
+// 请求全局状态服务请求
+message GlobalStateRequest {
+    // 请求全局状态的参数
+}
+// 请求全局状态服务响应
+message GlobalStateResponse {
+    bool success = 1;
+    string message = 2;
+    // 全局状态信息
+    map<string, string> state = 3;
+}
+
+// 更新全局状态服务请求
+message UpdateGlobalStateRequest {
+    // 更新全局状态的参数
+    map<string, string> state = 1;
+}
+// 更新全局状态服务响应
+message UpdateGlobalStateResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+
+
+
