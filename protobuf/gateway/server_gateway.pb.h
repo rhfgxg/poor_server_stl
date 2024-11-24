@@ -419,7 +419,7 @@ class ForwardRequest final :
   std::string* _internal_mutable_target_service();
 
   public:
-  // bytes payload = 2;
+  // string payload = 2;
   void clear_payload() ;
   const std::string& payload() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -442,7 +442,7 @@ class ForwardRequest final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      47, 2>
+      54, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -536,7 +536,7 @@ inline void ForwardRequest::set_allocated_target_service(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.ForwardRequest.target_service)
 }
 
-// bytes payload = 2;
+// string payload = 2;
 inline void ForwardRequest::clear_payload() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.payload_.ClearToEmpty();
@@ -551,7 +551,7 @@ inline PROTOBUF_ALWAYS_INLINE void ForwardRequest::set_payload(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.payload_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.payload_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.ForwardRequest.payload)
 }
 inline std::string* ForwardRequest::mutable_payload() ABSL_ATTRIBUTE_LIFETIME_BOUND {

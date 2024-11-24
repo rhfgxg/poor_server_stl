@@ -214,7 +214,7 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_server_5fcentral_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\024server_central.proto\022\tmyproject\"\024\n\022Glo"
     "balStateRequest\"\237\001\n\023GlobalStateResponse\022"
-    "\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\0228\n\005sta"
+    "\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\0228\n\005sta"
     "te\030\003 \003(\0132).myproject.GlobalStateResponse"
     ".StateEntry\032,\n\nStateEntry\022\013\n\003key\030\001 \001(\t\022\r"
     "\n\005value\030\002 \001(\t:\0028\001\"\207\001\n\030UpdateGlobalStateR"
@@ -222,7 +222,7 @@ const char descriptor_table_protodef_server_5fcentral_2eproto[] PROTOBUF_SECTION
     "GlobalStateRequest.StateEntry\032,\n\nStateEn"
     "try\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"=\n\031U"
     "pdateGlobalStateResponse\022\017\n\007success\030\001 \001("
-    "\010\022\017\n\007message\030\002 \001(\t2\301\001\n\016CentralService\022O\n"
+    "\010\022\017\n\007message\030\002 \001(\0142\301\001\n\016CentralService\022O\n"
     "\016GetGlobalState\022\035.myproject.GlobalStateR"
     "equest\032\036.myproject.GlobalStateResponse\022^"
     "\n\021UpdateGlobalState\022#.myproject.UpdateGl"
@@ -385,7 +385,7 @@ const char* GlobalStateResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 50, 2> GlobalStateResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 3, 1, 43, 2> GlobalStateResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -399,8 +399,8 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> GlobalStateResponse::_table_ = {
     &_GlobalStateResponse_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string message = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(GlobalStateResponse, _impl_.message_)}},
     // bool success = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GlobalStateResponse, _impl_.success_), 63>(),
@@ -411,9 +411,9 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> GlobalStateResponse::_table_ = {
     // bool success = 1;
     {PROTOBUF_FIELD_OFFSET(GlobalStateResponse, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // string message = 2;
+    // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(GlobalStateResponse, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // map<string, string> state = 3;
     {PROTOBUF_FIELD_OFFSET(GlobalStateResponse, _impl_.state_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
@@ -423,9 +423,8 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> GlobalStateResponse::_table_ = {
         1, 0, 0, 9,
         9)},
   }}, {{
-    "\35\0\7\5\0\0\0\0"
+    "\35\0\0\5\0\0\0\0"
     "myproject.GlobalStateResponse"
-    "message"
     "state"
   }},
 };
@@ -444,12 +443,10 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> GlobalStateResponse::_table_ = {
         1, this->_internal_success(), target);
   }
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GlobalStateResponse.message");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   // map<string, string> state = 3;
@@ -509,9 +506,9 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> GlobalStateResponse::_table_ = {
                                    _pbi::WireFormatLite::TYPE_STRING,
                                    _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
   }
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_message());
   }
 
@@ -871,7 +868,7 @@ const char* UpdateGlobalStateResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 51, 2> UpdateGlobalStateResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UpdateGlobalStateResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -885,8 +882,8 @@ const ::_pbi::TcParseTable<1, 2, 0, 51, 2> UpdateGlobalStateResponse::_table_ = 
     &_UpdateGlobalStateResponse_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string message = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateGlobalStateResponse, _impl_.message_)}},
     // bool success = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdateGlobalStateResponse, _impl_.success_), 63>(),
@@ -897,15 +894,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 51, 2> UpdateGlobalStateResponse::_table_ = 
     // bool success = 1;
     {PROTOBUF_FIELD_OFFSET(UpdateGlobalStateResponse, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // string message = 2;
+    // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(UpdateGlobalStateResponse, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\43\0\7\0\0\0\0\0"
-    "myproject.UpdateGlobalStateResponse"
-    "message"
   }},
 };
 
@@ -923,12 +917,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 51, 2> UpdateGlobalStateResponse::_table_ = 
         1, this->_internal_success(), target);
   }
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateGlobalStateResponse.message");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -948,9 +940,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 51, 2> UpdateGlobalStateResponse::_table_ = 
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_message());
   }
 

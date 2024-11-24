@@ -12,24 +12,24 @@ set(VCPKG_DEBUG_BIN "${VCPKG_DIR}/debug/bin")
 
 # 包含自定义头文件的目录
 include_directories(
-    ${PROJECT_SOURCE_DIR}/protobuf  # proto生成的头文件目录
-    ${VCPKG_INCLUDE}     # 指定第三方库的头文件所在目录
-    ${PROJECT_SOURCE_DIR}/src/login/src/login/login_service.h
+    ${PROJECT_SOURCE_DIR}/src/login/src/login
 )
 
 # 需要编译的源文件列表
 set(SOURCES
+    # 源文件
     ${PROJECT_SOURCE_DIR}/src/login/src/main.cpp
+    ${PROJECT_SOURCE_DIR}/src/login/src/login/login_server.cpp
     ${PROJECT_SOURCE_DIR}/src/login/src/login/login_service.cpp
+    # protobuf 生成的源文件
     ${PROJECT_SOURCE_DIR}/protobuf/login/server_login.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/login/server_login.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.grpc.pb.cc
 )
 
 # 指定编译生成的可执行文件信息：文件名${MODULE_NAME} ，${SOURCES} 项目所有源文件路径
 add_executable(${MODULE_NAME} ${SOURCES})
-
-# 设置模块的包含目录
-target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # 向其他模块提供接口，将一些公共头文件指定为 PUBLIC，其他模块可以访问
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -146,7 +146,6 @@ endif()
 
 # 遍历 dll列表，将所有 .dll 文件，逐一复制到可执行文件所在目录
 foreach(DLL_FILE ${DLL_FILES})
-    message(STATUS "Copying DLL: ${DLL_FILE}")
     add_custom_command(TARGET ${MODULE_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "${DLL_FILE}"

@@ -1,9 +1,17 @@
 #include <iostream>
 #include <grpcpp/grpcpp.h>
-#include "./login/login.service.h"
+#include "./login/login_server.h"
 
 // 运行服务器
-void RunServer() 
+void RunServer();
+
+int main() 
+{
+    RunServer(); // 运行服务器
+    return 0; // 返回0表示程序正常结束
+}
+
+void RunServer()
 {
     LoginServiceImpl service; // 登录服务实现
 
@@ -15,10 +23,4 @@ void RunServer()
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // 构建并启动服务器
     std::cout << "登录服务器正在运行..." << std::endl; // 输出服务器运行信息
     server->Wait(); // 等待服务器终止
-}
-
-int main() 
-{
-    RunServer(); // 运行服务器
-    return 0; // 返回0表示程序正常结束
 }

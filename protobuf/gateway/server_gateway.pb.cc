@@ -110,7 +110,7 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_server_5fgateway_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\024server_gateway.proto\022\tmyproject\"9\n\016For"
     "wardRequest\022\026\n\016target_service\030\001 \001(\t\022\017\n\007p"
-    "ayload\030\002 \001(\014\"4\n\017ForwardResponse\022\017\n\007succe"
+    "ayload\030\002 \001(\t\"4\n\017ForwardResponse\022\017\n\007succe"
     "ss\030\001 \001(\010\022\020\n\010response\030\002 \001(\0142Y\n\016GatewaySer"
     "vice\022G\n\016RequestForward\022\031.myproject.Forwa"
     "rdRequest\032\032.myproject.ForwardResponseb\006p"
@@ -225,7 +225,7 @@ const char* ForwardRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 47, 2> ForwardRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 54, 2> ForwardRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -239,8 +239,8 @@ const ::_pbi::TcParseTable<1, 2, 0, 47, 2> ForwardRequest::_table_ = {
     &_ForwardRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bytes payload = 2;
-    {::_pbi::TcParser::FastBS1,
+    // string payload = 2;
+    {::_pbi::TcParser::FastUS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.payload_)}},
     // string target_service = 1;
     {::_pbi::TcParser::FastUS1,
@@ -251,15 +251,16 @@ const ::_pbi::TcParseTable<1, 2, 0, 47, 2> ForwardRequest::_table_ = {
     // string target_service = 1;
     {PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.target_service_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // bytes payload = 2;
+    // string payload = 2;
     {PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.payload_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\30\16\0\0\0\0\0\0"
+    "\30\16\7\0\0\0\0\0"
     "myproject.ForwardRequest"
     "target_service"
+    "payload"
   }},
 };
 
@@ -278,10 +279,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 47, 2> ForwardRequest::_table_ = {
     target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
-  // bytes payload = 2;
+  // string payload = 2;
   if (!this->_internal_payload().empty()) {
     const std::string& _s = this->_internal_payload();
-    target = stream->WriteBytesMaybeAliased(2, _s, target);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ForwardRequest.payload");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -307,9 +310,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 47, 2> ForwardRequest::_table_ = {
                                     this->_internal_target_service());
   }
 
-  // bytes payload = 2;
+  // string payload = 2;
   if (!this->_internal_payload().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                     this->_internal_payload());
   }
 

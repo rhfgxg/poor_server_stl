@@ -226,7 +226,7 @@ class UpdateGlobalStateResponse final :
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // string message = 2;
+  // bytes message = 2;
   void clear_message() ;
   const std::string& message() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -259,7 +259,7 @@ class UpdateGlobalStateResponse final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      51, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -816,7 +816,7 @@ class GlobalStateResponse final :
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_state();
 
   public:
-  // string message = 2;
+  // bytes message = 2;
   void clear_message() ;
   const std::string& message() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -849,7 +849,7 @@ class GlobalStateResponse final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      50, 2>
+      43, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -923,7 +923,7 @@ inline void GlobalStateResponse::_internal_set_success(bool value) {
   _impl_.success_ = value;
 }
 
-// string message = 2;
+// bytes message = 2;
 inline void GlobalStateResponse::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
@@ -938,7 +938,7 @@ inline PROTOBUF_ALWAYS_INLINE void GlobalStateResponse::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.GlobalStateResponse.message)
 }
 inline std::string* GlobalStateResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1065,7 +1065,7 @@ inline void UpdateGlobalStateResponse::_internal_set_success(bool value) {
   _impl_.success_ = value;
 }
 
-// string message = 2;
+// bytes message = 2;
 inline void UpdateGlobalStateResponse::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
@@ -1080,7 +1080,7 @@ inline PROTOBUF_ALWAYS_INLINE void UpdateGlobalStateResponse::set_message(Arg_&&
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.UpdateGlobalStateResponse.message)
 }
 inline std::string* UpdateGlobalStateResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {

@@ -18,7 +18,7 @@ message CreateRequest {
 // 增加数据服务响应
 message CreateResponse {
     bool success = 1;
-    string message = 2;
+    bytes message = 2;
 }
 
 // 查询服务请求
@@ -30,7 +30,7 @@ message ReadRequest {
 // 查询服务响应
 message ReadResponse {
     bool success = 1;
-    string message = 2;
+    bytes message = 2;
     map<string, string> results = 3;  // 查询结果，多个键值对
 }
 
@@ -44,7 +44,7 @@ message UpdateRequest {
 // 更新服务响应
 message UpdateResponse {
     bool success = 1;
-    string message = 2;
+    bytes message = 2;
 }
 
 // 删除服务请求
@@ -56,9 +56,6 @@ message DeleteRequest {
 // 删除服务响应
 message DeleteResponse {
     bool success = 1;
-    string message = 2;
+    bytes message = 2;
 }
-
-
-
 

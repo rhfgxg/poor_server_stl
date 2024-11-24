@@ -2,7 +2,7 @@
 #define GATEWAY_SERVICE_H
 
 #include <grpcpp/grpcpp.h>
-#include "../../../protobuf/login/server_login.grpc.pb.h"
+#include "server_login.grpc.pb.h"
 
 class GatewayService {
 public:

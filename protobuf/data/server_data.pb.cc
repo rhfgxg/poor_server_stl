@@ -491,12 +491,12 @@ const char descriptor_table_protodef_server_5fdata_2eproto[] PROTOBUF_SECTION_VA
     "\t\0220\n\004data\030\003 \003(\0132\".myproject.CreateReques"
     "t.DataEntry\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n"
     "\005value\030\002 \001(\t:\0028\001\"2\n\016CreateResponse\022\017\n\007su"
-    "ccess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\216\001\n\013ReadReq"
+    "ccess\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"\216\001\n\013ReadReq"
     "uest\022\020\n\010database\030\001 \001(\t\022\r\n\005table\030\002 \001(\t\0220\n"
     "\005query\030\003 \003(\0132!.myproject.ReadRequest.Que"
     "ryEntry\032,\n\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005va"
     "lue\030\002 \001(\t:\0028\001\"\227\001\n\014ReadResponse\022\017\n\007succes"
-    "s\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\0225\n\007results\030\003 \003("
+    "s\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\0225\n\007results\030\003 \003("
     "\0132$.myproject.ReadResponse.ResultsEntry\032"
     ".\n\014ResultsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 "
     "\001(\t:\0028\001\"\361\001\n\rUpdateRequest\022\020\n\010database\030\001 "
@@ -506,12 +506,12 @@ const char descriptor_table_protodef_server_5fdata_2eproto[] PROTOBUF_SECTION_VA
     "\032,\n\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001"
     "(\t:\0028\001\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu"
     "e\030\002 \001(\t:\0028\001\"2\n\016UpdateResponse\022\017\n\007success"
-    "\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"\222\001\n\rDeleteReques"
+    "\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"\222\001\n\rDeleteReques"
     "t\022\020\n\010database\030\001 \001(\t\022\r\n\005table\030\002 \001(\t\0222\n\005qu"
     "ery\030\003 \003(\0132#.myproject.DeleteRequest.Quer"
     "yEntry\032,\n\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005val"
     "ue\030\002 \001(\t:\0028\001\"2\n\016DeleteResponse\022\017\n\007succes"
-    "s\030\001 \001(\010\022\017\n\007message\030\002 \001(\t2\207\002\n\017DatabaseSer"
+    "s\030\001 \001(\010\022\017\n\007message\030\002 \001(\0142\207\002\n\017DatabaseSer"
     "vice\022=\n\006Create\022\030.myproject.CreateRequest"
     "\032\031.myproject.CreateResponse\0227\n\004Read\022\026.my"
     "project.ReadRequest\032\027.myproject.ReadResp"
@@ -909,7 +909,7 @@ const char* CreateResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 40, 2> CreateResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CreateResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -923,8 +923,8 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> CreateResponse::_table_ = {
     &_CreateResponse_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string message = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(CreateResponse, _impl_.message_)}},
     // bool success = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(CreateResponse, _impl_.success_), 63>(),
@@ -935,15 +935,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> CreateResponse::_table_ = {
     // bool success = 1;
     {PROTOBUF_FIELD_OFFSET(CreateResponse, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // string message = 2;
+    // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(CreateResponse, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\30\0\7\0\0\0\0\0"
-    "myproject.CreateResponse"
-    "message"
   }},
 };
 
@@ -961,12 +958,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> CreateResponse::_table_ = {
         1, this->_internal_success(), target);
   }
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.CreateResponse.message");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -986,9 +981,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> CreateResponse::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_message());
   }
 
@@ -1418,7 +1413,7 @@ const char* ReadResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 45, 2> ReadResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 3, 1, 38, 2> ReadResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1432,8 +1427,8 @@ const ::_pbi::TcParseTable<1, 3, 1, 45, 2> ReadResponse::_table_ = {
     &_ReadResponse_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string message = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(ReadResponse, _impl_.message_)}},
     // bool success = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ReadResponse, _impl_.success_), 63>(),
@@ -1444,9 +1439,9 @@ const ::_pbi::TcParseTable<1, 3, 1, 45, 2> ReadResponse::_table_ = {
     // bool success = 1;
     {PROTOBUF_FIELD_OFFSET(ReadResponse, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // string message = 2;
+    // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(ReadResponse, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // map<string, string> results = 3;
     {PROTOBUF_FIELD_OFFSET(ReadResponse, _impl_.results_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
@@ -1456,9 +1451,8 @@ const ::_pbi::TcParseTable<1, 3, 1, 45, 2> ReadResponse::_table_ = {
         1, 0, 0, 9,
         9)},
   }}, {{
-    "\26\0\7\7\0\0\0\0"
+    "\26\0\0\7\0\0\0\0"
     "myproject.ReadResponse"
-    "message"
     "results"
   }},
 };
@@ -1477,12 +1471,10 @@ const ::_pbi::TcParseTable<1, 3, 1, 45, 2> ReadResponse::_table_ = {
         1, this->_internal_success(), target);
   }
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ReadResponse.message");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   // map<string, string> results = 3;
@@ -1542,9 +1534,9 @@ const ::_pbi::TcParseTable<1, 3, 1, 45, 2> ReadResponse::_table_ = {
                                    _pbi::WireFormatLite::TYPE_STRING,
                                    _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
   }
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_message());
   }
 
@@ -2026,7 +2018,7 @@ const char* UpdateResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 40, 2> UpdateResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UpdateResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2040,8 +2032,8 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> UpdateResponse::_table_ = {
     &_UpdateResponse_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string message = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateResponse, _impl_.message_)}},
     // bool success = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdateResponse, _impl_.success_), 63>(),
@@ -2052,15 +2044,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> UpdateResponse::_table_ = {
     // bool success = 1;
     {PROTOBUF_FIELD_OFFSET(UpdateResponse, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // string message = 2;
+    // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(UpdateResponse, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\30\0\7\0\0\0\0\0"
-    "myproject.UpdateResponse"
-    "message"
   }},
 };
 
@@ -2078,12 +2067,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> UpdateResponse::_table_ = {
         1, this->_internal_success(), target);
   }
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateResponse.message");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2103,9 +2090,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> UpdateResponse::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_message());
   }
 
@@ -2522,7 +2509,7 @@ const char* DeleteResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 40, 2> DeleteResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> DeleteResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2536,8 +2523,8 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> DeleteResponse::_table_ = {
     &_DeleteResponse_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string message = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteResponse, _impl_.message_)}},
     // bool success = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(DeleteResponse, _impl_.success_), 63>(),
@@ -2548,15 +2535,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> DeleteResponse::_table_ = {
     // bool success = 1;
     {PROTOBUF_FIELD_OFFSET(DeleteResponse, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // string message = 2;
+    // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(DeleteResponse, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\30\0\7\0\0\0\0\0"
-    "myproject.DeleteResponse"
-    "message"
   }},
 };
 
@@ -2574,12 +2558,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> DeleteResponse::_table_ = {
         1, this->_internal_success(), target);
   }
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.DeleteResponse.message");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2599,9 +2581,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 40, 2> DeleteResponse::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_message());
   }
 

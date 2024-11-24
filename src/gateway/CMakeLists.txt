@@ -12,9 +12,7 @@ set(VCPKG_DEBUG_BIN "${VCPKG_DIR}/debug/bin")
 
 # 包含自定义头文件的目录
 include_directories(
-    ${PROJECT_SOURCE_DIR}/protobuf  # proto生成的头文件目录
-    ${VCPKG_INCLUDE}     # 指定第三方库的头文件所在目录
-    ${PROJECT_SOURCE_DIR}/src/gateway/src/gateway/gateway_service.h
+    ${PROJECT_SOURCE_DIR}/src/gateway/src/gateway
 )
 
 # 需要编译的源文件列表
@@ -27,9 +25,6 @@ set(SOURCES
 
 # 指定编译生成的可执行文件信息：文件名${MODULE_NAME} ，${SOURCES} 项目所有源文件路径
 add_executable(${MODULE_NAME} ${SOURCES})
-
-# 设置模块的包含目录
-target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 # 向其他模块提供接口，将一些公共头文件指定为 PUBLIC，其他模块可以访问
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)

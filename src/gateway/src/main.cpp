@@ -37,8 +37,8 @@ int main()
         */
 
         // 模拟登录数据
-        std::string username = "user";
-        std::string password = "pass";
+        std::string username = "李宏伟";
+        std::string password = "123456";
 
         // 调用登录服务器
         GatewayService gateway_service(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));

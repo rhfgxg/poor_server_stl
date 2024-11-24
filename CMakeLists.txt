@@ -9,10 +9,16 @@ set(VCPKG_INCLUDE "${VCPKG_DIR}/include")
 set(VCPKG_LIB "${VCPKG_DIR}/lib")
 set(VCPKG_BIN "${VCPKG_DIR}/bin")
 
-# 包含自定义头文件的目录
+
+# 包含头文件的目录，在子模块中生效
 include_directories(
-   # ${PROJECT_SOURCE_DIR}/include
-   ${VCPKG_INCLUDE}     # 指定第三方库的头文件所在目录
+    # proto生成的共享头文件目录
+    ${CMAKE_SOURCE_DIR}/protobuf/central
+    ${CMAKE_SOURCE_DIR}/protobuf/data
+    ${CMAKE_SOURCE_DIR}/protobuf/gateway
+    ${CMAKE_SOURCE_DIR}/protobuf/logic
+    ${CMAKE_SOURCE_DIR}/protobuf/login
+    ${VCPKG_INCLUDE}     # 第三方库的头文件所在目录
 )
 
 # 需要编译的源文件列表
@@ -30,9 +36,6 @@ add_subdirectory(./src/login)
 
 # 指定编译生成的可执行文件信息：文件名${PROJECT_NAME} ，${SOURCES} 项目所有源文件路径
 add_executable(${PROJECT_NAME} ${SOURCES})
-
-# proto生成的各模块之间的 RPC通信接口
-include_directories(${CMAKE_SOURCE_DIR}/src/common)
 
 # 如果需要链接第三方库，可以在这里指定（项目名，库文件权限，库名列表）
 target_link_libraries(${PROJECT_NAME} PRIVATE

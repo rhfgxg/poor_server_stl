@@ -249,7 +249,7 @@ class UpdateResponse final :
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // string message = 2;
+  // bytes message = 2;
   void clear_message() ;
   const std::string& message() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -282,7 +282,7 @@ class UpdateResponse final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      40, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -562,7 +562,7 @@ class DeleteResponse final :
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // string message = 2;
+  // bytes message = 2;
   void clear_message() ;
   const std::string& message() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -595,7 +595,7 @@ class DeleteResponse final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      40, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -785,7 +785,7 @@ class CreateResponse final :
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // string message = 2;
+  // bytes message = 2;
   void clear_message() ;
   const std::string& message() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -818,7 +818,7 @@ class CreateResponse final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      40, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1265,7 +1265,7 @@ class ReadResponse final :
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_results();
 
   public:
-  // string message = 2;
+  // bytes message = 2;
   void clear_message() ;
   const std::string& message() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1298,7 +1298,7 @@ class ReadResponse final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      45, 2>
+      38, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -2166,7 +2166,7 @@ inline void CreateResponse::_internal_set_success(bool value) {
   _impl_.success_ = value;
 }
 
-// string message = 2;
+// bytes message = 2;
 inline void CreateResponse::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
@@ -2181,7 +2181,7 @@ inline PROTOBUF_ALWAYS_INLINE void CreateResponse::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.CreateResponse.message)
 }
 inline std::string* CreateResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2388,7 +2388,7 @@ inline void ReadResponse::_internal_set_success(bool value) {
   _impl_.success_ = value;
 }
 
-// string message = 2;
+// bytes message = 2;
 inline void ReadResponse::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
@@ -2403,7 +2403,7 @@ inline PROTOBUF_ALWAYS_INLINE void ReadResponse::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.ReadResponse.message)
 }
 inline std::string* ReadResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2666,7 +2666,7 @@ inline void UpdateResponse::_internal_set_success(bool value) {
   _impl_.success_ = value;
 }
 
-// string message = 2;
+// bytes message = 2;
 inline void UpdateResponse::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
@@ -2681,7 +2681,7 @@ inline PROTOBUF_ALWAYS_INLINE void UpdateResponse::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.UpdateResponse.message)
 }
 inline std::string* UpdateResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2886,7 +2886,7 @@ inline void DeleteResponse::_internal_set_success(bool value) {
   _impl_.success_ = value;
 }
 
-// string message = 2;
+// bytes message = 2;
 inline void DeleteResponse::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
@@ -2901,7 +2901,7 @@ inline PROTOBUF_ALWAYS_INLINE void DeleteResponse::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.DeleteResponse.message)
 }
 inline std::string* DeleteResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {

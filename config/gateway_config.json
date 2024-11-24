@@ -1,3 +1,14 @@
 {
-	"port": 1234
+	"port": 1234,
+  "data_servers": [
+    {
+      "db_name": "users",
+      "host": "localhost",
+      "port": 50052
+    }
+  ]
+  "login_server": {
+    "host": "localhost",
+    "port": 50051
+  }"
 }

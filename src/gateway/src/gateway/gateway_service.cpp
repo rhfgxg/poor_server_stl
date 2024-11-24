@@ -9,11 +9,12 @@ GatewayService::GatewayService(std::shared_ptr<grpc::Channel> channel) : stub_(m
 // Login 方法，处理登录请求
 std::string GatewayService::Login(const std::string& username, const std::string& password) 
 {
-    myproject::LoginRequest request;    // 传入参数
-    request.set_username(username); // 设置用户名
-    request.set_password(password); // 设置密码
+    myproject::LoginRequest request;    // 服务请求
+	// 设置请求参数
+    request.set_username(username);
+    request.set_password(password);
 
-	myproject::LoginResponse response;  // 返回参数
+	myproject::LoginResponse response;  // 服务响应
     grpc::ClientContext context;    // 包含 RPC 调用的元数据和其他信息。
 
     grpc::Status status = stub_->Login(&context, request, &response); // 向登录服务器发送登录请求
