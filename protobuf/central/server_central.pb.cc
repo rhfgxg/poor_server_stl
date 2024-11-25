@@ -217,10 +217,10 @@ const char descriptor_table_protodef_server_5fcentral_2eproto[] PROTOBUF_SECTION
     "\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\0228\n\005sta"
     "te\030\003 \003(\0132).myproject.GlobalStateResponse"
     ".StateEntry\032,\n\nStateEntry\022\013\n\003key\030\001 \001(\t\022\r"
-    "\n\005value\030\002 \001(\t:\0028\001\"\207\001\n\030UpdateGlobalStateR"
+    "\n\005value\030\002 \001(\014:\0028\001\"\207\001\n\030UpdateGlobalStateR"
     "equest\022=\n\005state\030\001 \003(\0132..myproject.Update"
     "GlobalStateRequest.StateEntry\032,\n\nStateEn"
-    "try\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"=\n\031U"
+    "try\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"=\n\031U"
     "pdateGlobalStateResponse\022\017\n\007success\030\001 \001("
     "\010\022\017\n\007message\030\002 \001(\0142\301\001\n\016CentralService\022O\n"
     "\016GetGlobalState\022\035.myproject.GlobalStateR"
@@ -414,14 +414,14 @@ const ::_pbi::TcParseTable<1, 3, 1, 43, 2> GlobalStateResponse::_table_ = {
     // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(GlobalStateResponse, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // map<string, string> state = 3;
+    // map<string, bytes> state = 3;
     {PROTOBUF_FIELD_OFFSET(GlobalStateResponse, _impl_.state_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(GlobalStateResponse()._impl_.state_)>(
         1, 0, 0, 9,
-        9)},
+        12)},
   }}, {{
     "\35\0\0\5\0\0\0\0"
     "myproject.GlobalStateResponse"
@@ -449,12 +449,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 43, 2> GlobalStateResponse::_table_ = {
     target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // map<string, string> state = 3;
+  // map<string, bytes> state = 3;
   if (!_internal_state().empty()) {
     using MapType = ::google::protobuf::Map<std::string, std::string>;
     using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>;
+                                   _pbi::WireFormatLite::TYPE_BYTES>;
     const auto& field = _internal_state();
 
     if (stream->IsSerializationDeterministic() && field.size() > 1) {
@@ -464,9 +464,6 @@ const ::_pbi::TcParseTable<1, 3, 1, 43, 2> GlobalStateResponse::_table_ = {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GlobalStateResponse.state");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GlobalStateResponse.state");
       }
     } else {
       for (const auto& entry : field) {
@@ -474,9 +471,6 @@ const ::_pbi::TcParseTable<1, 3, 1, 43, 2> GlobalStateResponse::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GlobalStateResponse.state");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GlobalStateResponse.state");
       }
     }
@@ -499,12 +493,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 43, 2> GlobalStateResponse::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, string> state = 3;
+  // map<string, bytes> state = 3;
   total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_state_size());
   for (const auto& entry : _internal_state()) {
     total_size += _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+                                   _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
   }
   // bytes message = 2;
   if (!this->_internal_message().empty()) {
@@ -670,14 +664,14 @@ const ::_pbi::TcParseTable<0, 1, 1, 48, 2> UpdateGlobalStateRequest::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // map<string, string> state = 1;
+    // map<string, bytes> state = 1;
     {PROTOBUF_FIELD_OFFSET(UpdateGlobalStateRequest, _impl_.state_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(UpdateGlobalStateRequest()._impl_.state_)>(
         1, 0, 0, 9,
-        9)},
+        12)},
   }}, {{
     "\42\5\0\0\0\0\0\0"
     "myproject.UpdateGlobalStateRequest"
@@ -692,12 +686,12 @@ const ::_pbi::TcParseTable<0, 1, 1, 48, 2> UpdateGlobalStateRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // map<string, string> state = 1;
+  // map<string, bytes> state = 1;
   if (!_internal_state().empty()) {
     using MapType = ::google::protobuf::Map<std::string, std::string>;
     using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>;
+                                   _pbi::WireFormatLite::TYPE_BYTES>;
     const auto& field = _internal_state();
 
     if (stream->IsSerializationDeterministic() && field.size() > 1) {
@@ -707,9 +701,6 @@ const ::_pbi::TcParseTable<0, 1, 1, 48, 2> UpdateGlobalStateRequest::_table_ = {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateGlobalStateRequest.state");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateGlobalStateRequest.state");
       }
     } else {
       for (const auto& entry : field) {
@@ -717,9 +708,6 @@ const ::_pbi::TcParseTable<0, 1, 1, 48, 2> UpdateGlobalStateRequest::_table_ = {
             1, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateGlobalStateRequest.state");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateGlobalStateRequest.state");
       }
     }
@@ -742,12 +730,12 @@ const ::_pbi::TcParseTable<0, 1, 1, 48, 2> UpdateGlobalStateRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, string> state = 1;
+  // map<string, bytes> state = 1;
   total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_state_size());
   for (const auto& entry : _internal_state()) {
     total_size += _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+                                   _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
   }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }

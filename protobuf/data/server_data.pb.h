@@ -311,12 +311,12 @@ class UpdateRequest_QueryEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
           UpdateRequest_QueryEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+          ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
       UpdateRequest_QueryEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
   UpdateRequest_QueryEntry_DoNotUse();
   template <typename = void>
   explicit PROTOBUF_CONSTEXPR UpdateRequest_QueryEntry_DoNotUse(
@@ -329,9 +329,7 @@ class UpdateRequest_QueryEntry_DoNotUse final
   static bool ValidateKey(std::string* s) {
     return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.UpdateRequest.QueryEntry.key");
  }
-  static bool ValidateValue(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.UpdateRequest.QueryEntry.value");
- }
+  static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
   friend struct ::TableStruct_server_5fdata_2eproto;
 };
@@ -341,12 +339,12 @@ class UpdateRequest_DataEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
           UpdateRequest_DataEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+          ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
       UpdateRequest_DataEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
   UpdateRequest_DataEntry_DoNotUse();
   template <typename = void>
   explicit PROTOBUF_CONSTEXPR UpdateRequest_DataEntry_DoNotUse(
@@ -359,9 +357,7 @@ class UpdateRequest_DataEntry_DoNotUse final
   static bool ValidateKey(std::string* s) {
     return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.UpdateRequest.DataEntry.key");
  }
-  static bool ValidateValue(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.UpdateRequest.DataEntry.value");
- }
+  static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
   friend struct ::TableStruct_server_5fdata_2eproto;
 };
@@ -371,12 +367,12 @@ class ReadResponse_ResultsEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
           ReadResponse_ResultsEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+          ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
       ReadResponse_ResultsEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
   ReadResponse_ResultsEntry_DoNotUse();
   template <typename = void>
   explicit PROTOBUF_CONSTEXPR ReadResponse_ResultsEntry_DoNotUse(
@@ -389,9 +385,7 @@ class ReadResponse_ResultsEntry_DoNotUse final
   static bool ValidateKey(std::string* s) {
     return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.ReadResponse.ResultsEntry.key");
  }
-  static bool ValidateValue(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.ReadResponse.ResultsEntry.value");
- }
+  static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
   friend struct ::TableStruct_server_5fdata_2eproto;
 };
@@ -401,12 +395,12 @@ class ReadRequest_QueryEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
           ReadRequest_QueryEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+          ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
       ReadRequest_QueryEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
   ReadRequest_QueryEntry_DoNotUse();
   template <typename = void>
   explicit PROTOBUF_CONSTEXPR ReadRequest_QueryEntry_DoNotUse(
@@ -419,9 +413,7 @@ class ReadRequest_QueryEntry_DoNotUse final
   static bool ValidateKey(std::string* s) {
     return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.ReadRequest.QueryEntry.key");
  }
-  static bool ValidateValue(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.ReadRequest.QueryEntry.value");
- }
+  static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
   friend struct ::TableStruct_server_5fdata_2eproto;
 };
@@ -624,12 +616,12 @@ class DeleteRequest_QueryEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
           DeleteRequest_QueryEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+          ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
       DeleteRequest_QueryEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
   DeleteRequest_QueryEntry_DoNotUse();
   template <typename = void>
   explicit PROTOBUF_CONSTEXPR DeleteRequest_QueryEntry_DoNotUse(
@@ -642,9 +634,7 @@ class DeleteRequest_QueryEntry_DoNotUse final
   static bool ValidateKey(std::string* s) {
     return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.DeleteRequest.QueryEntry.key");
  }
-  static bool ValidateValue(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.DeleteRequest.QueryEntry.value");
- }
+  static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
   friend struct ::TableStruct_server_5fdata_2eproto;
 };
@@ -1011,7 +1001,7 @@ class UpdateRequest final :
     kDatabaseFieldNumber = 1,
     kTableFieldNumber = 2,
   };
-  // map<string, string> query = 3;
+  // map<string, bytes> query = 3;
   int query_size() const;
   private:
   int _internal_query_size() const;
@@ -1026,7 +1016,7 @@ class UpdateRequest final :
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_query();
 
   public:
-  // map<string, string> data = 4;
+  // map<string, bytes> data = 4;
   int data_size() const;
   private:
   int _internal_data_size() const;
@@ -1041,7 +1031,7 @@ class UpdateRequest final :
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_data();
 
   public:
-  // string database = 1;
+  // bytes database = 1;
   void clear_database() ;
   const std::string& database() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1057,7 +1047,7 @@ class UpdateRequest final :
   std::string* _internal_mutable_database();
 
   public:
-  // string table = 2;
+  // bytes table = 2;
   void clear_table() ;
   const std::string& table() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1080,7 +1070,7 @@ class UpdateRequest final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 4, 2,
-      54, 2>
+      41, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1098,11 +1088,11 @@ class UpdateRequest final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::MapField<UpdateRequest_QueryEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+                      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         query_;
     ::google::protobuf::internal::MapField<UpdateRequest_DataEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+                      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         data_;
     ::google::protobuf::internal::ArenaStringPtr database_;
     ::google::protobuf::internal::ArenaStringPtr table_;
@@ -1250,7 +1240,7 @@ class ReadResponse final :
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // map<string, string> results = 3;
+  // map<string, bytes> results = 3;
   int results_size() const;
   private:
   int _internal_results_size() const;
@@ -1316,7 +1306,7 @@ class ReadResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::MapField<ReadResponse_ResultsEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+                      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         results_;
     ::google::protobuf::internal::ArenaStringPtr message_;
     bool success_;
@@ -1464,7 +1454,7 @@ class ReadRequest final :
     kDatabaseFieldNumber = 1,
     kTableFieldNumber = 2,
   };
-  // map<string, string> query = 3;
+  // map<string, bytes> query = 3;
   int query_size() const;
   private:
   int _internal_query_size() const;
@@ -1479,7 +1469,7 @@ class ReadRequest final :
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_query();
 
   public:
-  // string database = 1;
+  // bytes database = 1;
   void clear_database() ;
   const std::string& database() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1495,7 +1485,7 @@ class ReadRequest final :
   std::string* _internal_mutable_database();
 
   public:
-  // string table = 2;
+  // bytes table = 2;
   void clear_table() ;
   const std::string& table() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1518,7 +1508,7 @@ class ReadRequest final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      48, 2>
+      35, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1536,7 +1526,7 @@ class ReadRequest final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::MapField<ReadRequest_QueryEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+                      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         query_;
     ::google::protobuf::internal::ArenaStringPtr database_;
     ::google::protobuf::internal::ArenaStringPtr table_;
@@ -1684,7 +1674,7 @@ class DeleteRequest final :
     kDatabaseFieldNumber = 1,
     kTableFieldNumber = 2,
   };
-  // map<string, string> query = 3;
+  // map<string, bytes> query = 3;
   int query_size() const;
   private:
   int _internal_query_size() const;
@@ -1756,7 +1746,7 @@ class DeleteRequest final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::MapField<DeleteRequest_QueryEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+                      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         query_;
     ::google::protobuf::internal::ArenaStringPtr database_;
     ::google::protobuf::internal::ArenaStringPtr table_;
@@ -1919,7 +1909,7 @@ class CreateRequest final :
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_data();
 
   public:
-  // string database = 1;
+  // bytes database = 1;
   void clear_database() ;
   const std::string& database() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1935,7 +1925,7 @@ class CreateRequest final :
   std::string* _internal_mutable_database();
 
   public:
-  // string table = 2;
+  // bytes table = 2;
   void clear_table() ;
   const std::string& table() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1958,7 +1948,7 @@ class CreateRequest final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      49, 2>
+      36, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -2005,7 +1995,7 @@ class CreateRequest final :
 
 // CreateRequest
 
-// string database = 1;
+// bytes database = 1;
 inline void CreateRequest::clear_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.ClearToEmpty();
@@ -2020,7 +2010,7 @@ inline PROTOBUF_ALWAYS_INLINE void CreateRequest::set_database(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.database_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.CreateRequest.database)
 }
 inline std::string* CreateRequest::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2058,7 +2048,7 @@ inline void CreateRequest::set_allocated_database(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.CreateRequest.database)
 }
 
-// string table = 2;
+// bytes table = 2;
 inline void CreateRequest::clear_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.ClearToEmpty();
@@ -2073,7 +2063,7 @@ inline PROTOBUF_ALWAYS_INLINE void CreateRequest::set_table(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.table_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.CreateRequest.table)
 }
 inline std::string* CreateRequest::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2225,7 +2215,7 @@ inline void CreateResponse::set_allocated_message(std::string* value) {
 
 // ReadRequest
 
-// string database = 1;
+// bytes database = 1;
 inline void ReadRequest::clear_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.ClearToEmpty();
@@ -2240,7 +2230,7 @@ inline PROTOBUF_ALWAYS_INLINE void ReadRequest::set_database(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.database_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.ReadRequest.database)
 }
 inline std::string* ReadRequest::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2278,7 +2268,7 @@ inline void ReadRequest::set_allocated_database(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.ReadRequest.database)
 }
 
-// string table = 2;
+// bytes table = 2;
 inline void ReadRequest::clear_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.ClearToEmpty();
@@ -2293,7 +2283,7 @@ inline PROTOBUF_ALWAYS_INLINE void ReadRequest::set_table(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.table_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.ReadRequest.table)
 }
 inline std::string* ReadRequest::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2331,7 +2321,7 @@ inline void ReadRequest::set_allocated_table(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.ReadRequest.table)
 }
 
-// map<string, string> query = 3;
+// map<string, bytes> query = 3;
 inline int ReadRequest::_internal_query_size() const {
   return _internal_query().size();
 }
@@ -2441,7 +2431,7 @@ inline void ReadResponse::set_allocated_message(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.ReadResponse.message)
 }
 
-// map<string, string> results = 3;
+// map<string, bytes> results = 3;
 inline int ReadResponse::_internal_results_size() const {
   return _internal_results().size();
 }
@@ -2477,7 +2467,7 @@ inline ::google::protobuf::Map<std::string, std::string>* ReadResponse::mutable_
 
 // UpdateRequest
 
-// string database = 1;
+// bytes database = 1;
 inline void UpdateRequest::clear_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.ClearToEmpty();
@@ -2492,7 +2482,7 @@ inline PROTOBUF_ALWAYS_INLINE void UpdateRequest::set_database(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.database_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.UpdateRequest.database)
 }
 inline std::string* UpdateRequest::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2530,7 +2520,7 @@ inline void UpdateRequest::set_allocated_database(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.UpdateRequest.database)
 }
 
-// string table = 2;
+// bytes table = 2;
 inline void UpdateRequest::clear_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.ClearToEmpty();
@@ -2545,7 +2535,7 @@ inline PROTOBUF_ALWAYS_INLINE void UpdateRequest::set_table(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.table_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.UpdateRequest.table)
 }
 inline std::string* UpdateRequest::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2583,7 +2573,7 @@ inline void UpdateRequest::set_allocated_table(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.UpdateRequest.table)
 }
 
-// map<string, string> query = 3;
+// map<string, bytes> query = 3;
 inline int UpdateRequest::_internal_query_size() const {
   return _internal_query().size();
 }
@@ -2611,7 +2601,7 @@ inline ::google::protobuf::Map<std::string, std::string>* UpdateRequest::mutable
   return _internal_mutable_query();
 }
 
-// map<string, string> data = 4;
+// map<string, bytes> data = 4;
 inline int UpdateRequest::_internal_data_size() const {
   return _internal_data().size();
 }
@@ -2831,7 +2821,7 @@ inline void DeleteRequest::set_allocated_table(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.DeleteRequest.table)
 }
 
-// map<string, string> query = 3;
+// map<string, bytes> query = 3;
 inline int DeleteRequest::_internal_query_size() const {
   return _internal_query().size();
 }

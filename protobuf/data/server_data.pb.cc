@@ -487,30 +487,30 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_server_5fdata_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\021server_data.proto\022\tmyproject\"\217\001\n\rCreat"
-    "eRequest\022\020\n\010database\030\001 \001(\t\022\r\n\005table\030\002 \001("
-    "\t\0220\n\004data\030\003 \003(\0132\".myproject.CreateReques"
+    "eRequest\022\020\n\010database\030\001 \001(\014\022\r\n\005table\030\002 \001("
+    "\014\0220\n\004data\030\003 \003(\0132\".myproject.CreateReques"
     "t.DataEntry\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n"
     "\005value\030\002 \001(\t:\0028\001\"2\n\016CreateResponse\022\017\n\007su"
     "ccess\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"\216\001\n\013ReadReq"
-    "uest\022\020\n\010database\030\001 \001(\t\022\r\n\005table\030\002 \001(\t\0220\n"
+    "uest\022\020\n\010database\030\001 \001(\014\022\r\n\005table\030\002 \001(\014\0220\n"
     "\005query\030\003 \003(\0132!.myproject.ReadRequest.Que"
     "ryEntry\032,\n\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005va"
-    "lue\030\002 \001(\t:\0028\001\"\227\001\n\014ReadResponse\022\017\n\007succes"
+    "lue\030\002 \001(\014:\0028\001\"\227\001\n\014ReadResponse\022\017\n\007succes"
     "s\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\0225\n\007results\030\003 \003("
     "\0132$.myproject.ReadResponse.ResultsEntry\032"
     ".\n\014ResultsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 "
-    "\001(\t:\0028\001\"\361\001\n\rUpdateRequest\022\020\n\010database\030\001 "
-    "\001(\t\022\r\n\005table\030\002 \001(\t\0222\n\005query\030\003 \003(\0132#.mypr"
+    "\001(\014:\0028\001\"\361\001\n\rUpdateRequest\022\020\n\010database\030\001 "
+    "\001(\014\022\r\n\005table\030\002 \001(\014\0222\n\005query\030\003 \003(\0132#.mypr"
     "oject.UpdateRequest.QueryEntry\0220\n\004data\030\004"
     " \003(\0132\".myproject.UpdateRequest.DataEntry"
     "\032,\n\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001"
-    "(\t:\0028\001\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu"
-    "e\030\002 \001(\t:\0028\001\"2\n\016UpdateResponse\022\017\n\007success"
+    "(\014:\0028\001\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu"
+    "e\030\002 \001(\014:\0028\001\"2\n\016UpdateResponse\022\017\n\007success"
     "\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"\222\001\n\rDeleteReques"
     "t\022\020\n\010database\030\001 \001(\t\022\r\n\005table\030\002 \001(\t\0222\n\005qu"
     "ery\030\003 \003(\0132#.myproject.DeleteRequest.Quer"
     "yEntry\032,\n\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005val"
-    "ue\030\002 \001(\t:\0028\001\"2\n\016DeleteResponse\022\017\n\007succes"
+    "ue\030\002 \001(\014:\0028\001\"2\n\016DeleteResponse\022\017\n\007succes"
     "s\030\001 \001(\010\022\017\n\007message\030\002 \001(\0142\207\002\n\017DatabaseSer"
     "vice\022=\n\006Create\022\030.myproject.CreateRequest"
     "\032\031.myproject.CreateResponse\0227\n\004Read\022\026.my"
@@ -642,7 +642,7 @@ const char* CreateRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 49, 2> CreateRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 3, 1, 36, 2> CreateRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -656,21 +656,21 @@ const ::_pbi::TcParseTable<1, 3, 1, 49, 2> CreateRequest::_table_ = {
     &_CreateRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string table = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes table = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.table_)}},
-    // string database = 1;
-    {::_pbi::TcParser::FastUS1,
+    // bytes database = 1;
+    {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.database_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string database = 1;
+    // bytes database = 1;
     {PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.database_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string table = 2;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes table = 2;
     {PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.table_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // map<string, string> data = 3;
     {PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.data_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
@@ -680,10 +680,8 @@ const ::_pbi::TcParseTable<1, 3, 1, 49, 2> CreateRequest::_table_ = {
         1, 0, 0, 9,
         9)},
   }}, {{
-    "\27\10\5\4\0\0\0\0"
+    "\27\0\0\4\0\0\0\0"
     "myproject.CreateRequest"
-    "database"
-    "table"
     "data"
   }},
 };
@@ -695,20 +693,16 @@ const ::_pbi::TcParseTable<1, 3, 1, 49, 2> CreateRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string database = 1;
+  // bytes database = 1;
   if (!this->_internal_database().empty()) {
     const std::string& _s = this->_internal_database();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.CreateRequest.database");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
-  // string table = 2;
+  // bytes table = 2;
   if (!this->_internal_table().empty()) {
     const std::string& _s = this->_internal_table();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.CreateRequest.table");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   // map<string, string> data = 3;
@@ -768,15 +762,15 @@ const ::_pbi::TcParseTable<1, 3, 1, 49, 2> CreateRequest::_table_ = {
                                    _pbi::WireFormatLite::TYPE_STRING,
                                    _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
   }
-  // string database = 1;
+  // bytes database = 1;
   if (!this->_internal_database().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_database());
   }
 
-  // string table = 2;
+  // bytes table = 2;
   if (!this->_internal_table().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_table());
   }
 
@@ -1133,7 +1127,7 @@ const char* ReadRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 48, 2> ReadRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 3, 1, 35, 2> ReadRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1147,34 +1141,32 @@ const ::_pbi::TcParseTable<1, 3, 1, 48, 2> ReadRequest::_table_ = {
     &_ReadRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string table = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes table = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(ReadRequest, _impl_.table_)}},
-    // string database = 1;
-    {::_pbi::TcParser::FastUS1,
+    // bytes database = 1;
+    {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(ReadRequest, _impl_.database_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string database = 1;
+    // bytes database = 1;
     {PROTOBUF_FIELD_OFFSET(ReadRequest, _impl_.database_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string table = 2;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes table = 2;
     {PROTOBUF_FIELD_OFFSET(ReadRequest, _impl_.table_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // map<string, string> query = 3;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // map<string, bytes> query = 3;
     {PROTOBUF_FIELD_OFFSET(ReadRequest, _impl_.query_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(ReadRequest()._impl_.query_)>(
         1, 0, 0, 9,
-        9)},
+        12)},
   }}, {{
-    "\25\10\5\5\0\0\0\0"
+    "\25\0\0\5\0\0\0\0"
     "myproject.ReadRequest"
-    "database"
-    "table"
     "query"
   }},
 };
@@ -1186,28 +1178,24 @@ const ::_pbi::TcParseTable<1, 3, 1, 48, 2> ReadRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string database = 1;
+  // bytes database = 1;
   if (!this->_internal_database().empty()) {
     const std::string& _s = this->_internal_database();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ReadRequest.database");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
-  // string table = 2;
+  // bytes table = 2;
   if (!this->_internal_table().empty()) {
     const std::string& _s = this->_internal_table();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ReadRequest.table");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // map<string, string> query = 3;
+  // map<string, bytes> query = 3;
   if (!_internal_query().empty()) {
     using MapType = ::google::protobuf::Map<std::string, std::string>;
     using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>;
+                                   _pbi::WireFormatLite::TYPE_BYTES>;
     const auto& field = _internal_query();
 
     if (stream->IsSerializationDeterministic() && field.size() > 1) {
@@ -1217,9 +1205,6 @@ const ::_pbi::TcParseTable<1, 3, 1, 48, 2> ReadRequest::_table_ = {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ReadRequest.query");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ReadRequest.query");
       }
     } else {
       for (const auto& entry : field) {
@@ -1227,9 +1212,6 @@ const ::_pbi::TcParseTable<1, 3, 1, 48, 2> ReadRequest::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ReadRequest.query");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ReadRequest.query");
       }
     }
@@ -1252,22 +1234,22 @@ const ::_pbi::TcParseTable<1, 3, 1, 48, 2> ReadRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, string> query = 3;
+  // map<string, bytes> query = 3;
   total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_query_size());
   for (const auto& entry : _internal_query()) {
     total_size += _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+                                   _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
   }
-  // string database = 1;
+  // bytes database = 1;
   if (!this->_internal_database().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_database());
   }
 
-  // string table = 2;
+  // bytes table = 2;
   if (!this->_internal_table().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_table());
   }
 
@@ -1442,14 +1424,14 @@ const ::_pbi::TcParseTable<1, 3, 1, 38, 2> ReadResponse::_table_ = {
     // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(ReadResponse, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // map<string, string> results = 3;
+    // map<string, bytes> results = 3;
     {PROTOBUF_FIELD_OFFSET(ReadResponse, _impl_.results_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(ReadResponse()._impl_.results_)>(
         1, 0, 0, 9,
-        9)},
+        12)},
   }}, {{
     "\26\0\0\7\0\0\0\0"
     "myproject.ReadResponse"
@@ -1477,12 +1459,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 38, 2> ReadResponse::_table_ = {
     target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // map<string, string> results = 3;
+  // map<string, bytes> results = 3;
   if (!_internal_results().empty()) {
     using MapType = ::google::protobuf::Map<std::string, std::string>;
     using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>;
+                                   _pbi::WireFormatLite::TYPE_BYTES>;
     const auto& field = _internal_results();
 
     if (stream->IsSerializationDeterministic() && field.size() > 1) {
@@ -1492,9 +1474,6 @@ const ::_pbi::TcParseTable<1, 3, 1, 38, 2> ReadResponse::_table_ = {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ReadResponse.results");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ReadResponse.results");
       }
     } else {
       for (const auto& entry : field) {
@@ -1502,9 +1481,6 @@ const ::_pbi::TcParseTable<1, 3, 1, 38, 2> ReadResponse::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ReadResponse.results");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ReadResponse.results");
       }
     }
@@ -1527,12 +1503,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 38, 2> ReadResponse::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, string> results = 3;
+  // map<string, bytes> results = 3;
   total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_results_size());
   for (const auto& entry : _internal_results()) {
     total_size += _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+                                   _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
   }
   // bytes message = 2;
   if (!this->_internal_message().empty()) {
@@ -1701,7 +1677,7 @@ const char* UpdateRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 4, 2, 54, 2> UpdateRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 4, 2, 41, 2> UpdateRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1715,41 +1691,39 @@ const ::_pbi::TcParseTable<1, 4, 2, 54, 2> UpdateRequest::_table_ = {
     &_UpdateRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string table = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes table = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateRequest, _impl_.table_)}},
-    // string database = 1;
-    {::_pbi::TcParser::FastUS1,
+    // bytes database = 1;
+    {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateRequest, _impl_.database_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string database = 1;
+    // bytes database = 1;
     {PROTOBUF_FIELD_OFFSET(UpdateRequest, _impl_.database_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string table = 2;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes table = 2;
     {PROTOBUF_FIELD_OFFSET(UpdateRequest, _impl_.table_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // map<string, string> query = 3;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // map<string, bytes> query = 3;
     {PROTOBUF_FIELD_OFFSET(UpdateRequest, _impl_.query_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
-    // map<string, string> data = 4;
+    // map<string, bytes> data = 4;
     {PROTOBUF_FIELD_OFFSET(UpdateRequest, _impl_.data_), 0, 1,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(UpdateRequest()._impl_.query_)>(
         1, 0, 0, 9,
-        9)},
+        12)},
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(UpdateRequest()._impl_.data_)>(
         1, 0, 0, 9,
-        9)},
+        12)},
   }}, {{
-    "\27\10\5\5\4\0\0\0"
+    "\27\0\0\5\4\0\0\0"
     "myproject.UpdateRequest"
-    "database"
-    "table"
     "query"
     "data"
   }},
@@ -1762,28 +1736,24 @@ const ::_pbi::TcParseTable<1, 4, 2, 54, 2> UpdateRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string database = 1;
+  // bytes database = 1;
   if (!this->_internal_database().empty()) {
     const std::string& _s = this->_internal_database();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateRequest.database");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
-  // string table = 2;
+  // bytes table = 2;
   if (!this->_internal_table().empty()) {
     const std::string& _s = this->_internal_table();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateRequest.table");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // map<string, string> query = 3;
+  // map<string, bytes> query = 3;
   if (!_internal_query().empty()) {
     using MapType = ::google::protobuf::Map<std::string, std::string>;
     using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>;
+                                   _pbi::WireFormatLite::TYPE_BYTES>;
     const auto& field = _internal_query();
 
     if (stream->IsSerializationDeterministic() && field.size() > 1) {
@@ -1793,9 +1763,6 @@ const ::_pbi::TcParseTable<1, 4, 2, 54, 2> UpdateRequest::_table_ = {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateRequest.query");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateRequest.query");
       }
     } else {
       for (const auto& entry : field) {
@@ -1804,19 +1771,16 @@ const ::_pbi::TcParseTable<1, 4, 2, 54, 2> UpdateRequest::_table_ = {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateRequest.query");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateRequest.query");
       }
     }
   }
 
-  // map<string, string> data = 4;
+  // map<string, bytes> data = 4;
   if (!_internal_data().empty()) {
     using MapType = ::google::protobuf::Map<std::string, std::string>;
     using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>;
+                                   _pbi::WireFormatLite::TYPE_BYTES>;
     const auto& field = _internal_data();
 
     if (stream->IsSerializationDeterministic() && field.size() > 1) {
@@ -1826,9 +1790,6 @@ const ::_pbi::TcParseTable<1, 4, 2, 54, 2> UpdateRequest::_table_ = {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateRequest.data");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateRequest.data");
       }
     } else {
       for (const auto& entry : field) {
@@ -1836,9 +1797,6 @@ const ::_pbi::TcParseTable<1, 4, 2, 54, 2> UpdateRequest::_table_ = {
             4, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateRequest.data");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UpdateRequest.data");
       }
     }
@@ -1861,29 +1819,29 @@ const ::_pbi::TcParseTable<1, 4, 2, 54, 2> UpdateRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, string> query = 3;
+  // map<string, bytes> query = 3;
   total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_query_size());
   for (const auto& entry : _internal_query()) {
     total_size += _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+                                   _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
   }
-  // map<string, string> data = 4;
+  // map<string, bytes> data = 4;
   total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_data_size());
   for (const auto& entry : _internal_data()) {
     total_size += _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+                                   _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
   }
-  // string database = 1;
+  // bytes database = 1;
   if (!this->_internal_database().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_database());
   }
 
-  // string table = 2;
+  // bytes table = 2;
   if (!this->_internal_table().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_table());
   }
 
@@ -2271,14 +2229,14 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> DeleteRequest::_table_ = {
     // string table = 2;
     {PROTOBUF_FIELD_OFFSET(DeleteRequest, _impl_.table_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // map<string, string> query = 3;
+    // map<string, bytes> query = 3;
     {PROTOBUF_FIELD_OFFSET(DeleteRequest, _impl_.query_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(DeleteRequest()._impl_.query_)>(
         1, 0, 0, 9,
-        9)},
+        12)},
   }}, {{
     "\27\10\5\5\0\0\0\0"
     "myproject.DeleteRequest"
@@ -2311,12 +2269,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> DeleteRequest::_table_ = {
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
-  // map<string, string> query = 3;
+  // map<string, bytes> query = 3;
   if (!_internal_query().empty()) {
     using MapType = ::google::protobuf::Map<std::string, std::string>;
     using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>;
+                                   _pbi::WireFormatLite::TYPE_BYTES>;
     const auto& field = _internal_query();
 
     if (stream->IsSerializationDeterministic() && field.size() > 1) {
@@ -2326,9 +2284,6 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> DeleteRequest::_table_ = {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.DeleteRequest.query");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.DeleteRequest.query");
       }
     } else {
       for (const auto& entry : field) {
@@ -2336,9 +2291,6 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> DeleteRequest::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.DeleteRequest.query");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.DeleteRequest.query");
       }
     }
@@ -2361,12 +2313,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> DeleteRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, string> query = 3;
+  // map<string, bytes> query = 3;
   total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_query_size());
   for (const auto& entry : _internal_query()) {
     total_size += _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+                                   _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
   }
   // string database = 1;
   if (!this->_internal_database().empty()) {

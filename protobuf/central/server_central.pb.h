@@ -288,12 +288,12 @@ class UpdateGlobalStateRequest_StateEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
           UpdateGlobalStateRequest_StateEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+          ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
       UpdateGlobalStateRequest_StateEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
   UpdateGlobalStateRequest_StateEntry_DoNotUse();
   template <typename = void>
   explicit PROTOBUF_CONSTEXPR UpdateGlobalStateRequest_StateEntry_DoNotUse(
@@ -306,9 +306,7 @@ class UpdateGlobalStateRequest_StateEntry_DoNotUse final
   static bool ValidateKey(std::string* s) {
     return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.UpdateGlobalStateRequest.StateEntry.key");
  }
-  static bool ValidateValue(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.UpdateGlobalStateRequest.StateEntry.value");
- }
+  static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
   friend struct ::TableStruct_server_5fcentral_2eproto;
 };
@@ -318,12 +316,12 @@ class GlobalStateResponse_StateEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
           GlobalStateResponse_StateEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+          ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
       GlobalStateResponse_StateEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
   GlobalStateResponse_StateEntry_DoNotUse();
   template <typename = void>
   explicit PROTOBUF_CONSTEXPR GlobalStateResponse_StateEntry_DoNotUse(
@@ -336,9 +334,7 @@ class GlobalStateResponse_StateEntry_DoNotUse final
   static bool ValidateKey(std::string* s) {
     return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.GlobalStateResponse.StateEntry.key");
  }
-  static bool ValidateValue(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.GlobalStateResponse.StateEntry.value");
- }
+  static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
   friend struct ::TableStruct_server_5fcentral_2eproto;
 };
@@ -615,7 +611,7 @@ class UpdateGlobalStateRequest final :
   enum : int {
     kStateFieldNumber = 1,
   };
-  // map<string, string> state = 1;
+  // map<string, bytes> state = 1;
   int state_size() const;
   private:
   int _internal_state_size() const;
@@ -655,7 +651,7 @@ class UpdateGlobalStateRequest final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::MapField<UpdateGlobalStateRequest_StateEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+                      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         state_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -801,7 +797,7 @@ class GlobalStateResponse final :
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // map<string, string> state = 3;
+  // map<string, bytes> state = 3;
   int state_size() const;
   private:
   int _internal_state_size() const;
@@ -867,7 +863,7 @@ class GlobalStateResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::MapField<GlobalStateResponse_StateEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+                      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         state_;
     ::google::protobuf::internal::ArenaStringPtr message_;
     bool success_;
@@ -976,7 +972,7 @@ inline void GlobalStateResponse::set_allocated_message(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.GlobalStateResponse.message)
 }
 
-// map<string, string> state = 3;
+// map<string, bytes> state = 3;
 inline int GlobalStateResponse::_internal_state_size() const {
   return _internal_state().size();
 }
@@ -1010,7 +1006,7 @@ inline ::google::protobuf::Map<std::string, std::string>* GlobalStateResponse::m
 
 // UpdateGlobalStateRequest
 
-// map<string, string> state = 1;
+// map<string, bytes> state = 1;
 inline int UpdateGlobalStateRequest::_internal_state_size() const {
   return _internal_state().size();
 }

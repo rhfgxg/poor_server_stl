@@ -9,8 +9,8 @@ service LogicService {
 
 // 游戏操作请求
 message GameActionRequest {
-    string action = 1;
-    map<string, string> parameters = 2;
+    bytes action = 1;
+    map<string, bytes> parameters = 2;
 }
 // 游戏操作响应
 message GameActionResponse {
@@ -20,13 +20,13 @@ message GameActionResponse {
 
 // 游戏状态请求
 message GameStateRequest {
-    string game_id = 1;
+    bytes game_id = 1;
 }
 // 游戏状态响应
 message GameStateResponse {
     bool success = 1;
     bytes message = 2;
-    map<string, string> state = 3;
+    map<string, bytes> state = 3;
 }
 
 

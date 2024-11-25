@@ -227,16 +227,16 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_server_5flogic_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\022server_logic.proto\022\tmyproject\"\230\001\n\021Game"
-    "ActionRequest\022\016\n\006action\030\001 \001(\t\022@\n\nparamet"
+    "ActionRequest\022\016\n\006action\030\001 \001(\014\022@\n\nparamet"
     "ers\030\002 \003(\0132,.myproject.GameActionRequest."
     "ParametersEntry\0321\n\017ParametersEntry\022\013\n\003ke"
-    "y\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"6\n\022GameAction"
+    "y\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"6\n\022GameAction"
     "Response\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001"
-    "(\014\"#\n\020GameStateRequest\022\017\n\007game_id\030\001 \001(\t\""
+    "(\014\"#\n\020GameStateRequest\022\017\n\007game_id\030\001 \001(\014\""
     "\233\001\n\021GameStateResponse\022\017\n\007success\030\001 \001(\010\022\017"
     "\n\007message\030\002 \001(\014\0226\n\005state\030\003 \003(\0132\'.myproje"
     "ct.GameStateResponse.StateEntry\032,\n\nState"
-    "Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\0012\253\001"
+    "Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\0012\253\001"
     "\n\014LogicService\022P\n\021ProcessGameAction\022\034.my"
     "project.GameActionRequest\032\035.myproject.Ga"
     "meActionResponse\022I\n\014GetGameState\022\033.mypro"
@@ -361,7 +361,7 @@ const char* GameActionRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 2, 1, 52, 2> GameActionRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 2, 1, 46, 2> GameActionRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -375,27 +375,26 @@ const ::_pbi::TcParseTable<0, 2, 1, 52, 2> GameActionRequest::_table_ = {
     &_GameActionRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string action = 1;
-    {::_pbi::TcParser::FastUS1,
+    // bytes action = 1;
+    {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(GameActionRequest, _impl_.action_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string action = 1;
+    // bytes action = 1;
     {PROTOBUF_FIELD_OFFSET(GameActionRequest, _impl_.action_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // map<string, string> parameters = 2;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // map<string, bytes> parameters = 2;
     {PROTOBUF_FIELD_OFFSET(GameActionRequest, _impl_.parameters_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(GameActionRequest()._impl_.parameters_)>(
         1, 0, 0, 9,
-        9)},
+        12)},
   }}, {{
-    "\33\6\12\0\0\0\0\0"
+    "\33\0\12\0\0\0\0\0"
     "myproject.GameActionRequest"
-    "action"
     "parameters"
   }},
 };
@@ -407,20 +406,18 @@ const ::_pbi::TcParseTable<0, 2, 1, 52, 2> GameActionRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string action = 1;
+  // bytes action = 1;
   if (!this->_internal_action().empty()) {
     const std::string& _s = this->_internal_action();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameActionRequest.action");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
-  // map<string, string> parameters = 2;
+  // map<string, bytes> parameters = 2;
   if (!_internal_parameters().empty()) {
     using MapType = ::google::protobuf::Map<std::string, std::string>;
     using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>;
+                                   _pbi::WireFormatLite::TYPE_BYTES>;
     const auto& field = _internal_parameters();
 
     if (stream->IsSerializationDeterministic() && field.size() > 1) {
@@ -430,9 +427,6 @@ const ::_pbi::TcParseTable<0, 2, 1, 52, 2> GameActionRequest::_table_ = {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameActionRequest.parameters");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameActionRequest.parameters");
       }
     } else {
       for (const auto& entry : field) {
@@ -440,9 +434,6 @@ const ::_pbi::TcParseTable<0, 2, 1, 52, 2> GameActionRequest::_table_ = {
             2, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameActionRequest.parameters");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameActionRequest.parameters");
       }
     }
@@ -465,16 +456,16 @@ const ::_pbi::TcParseTable<0, 2, 1, 52, 2> GameActionRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, string> parameters = 2;
+  // map<string, bytes> parameters = 2;
   total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_parameters_size());
   for (const auto& entry : _internal_parameters()) {
     total_size += _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+                                   _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
   }
-  // string action = 1;
+  // bytes action = 1;
   if (!this->_internal_action().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_action());
   }
 
@@ -810,7 +801,7 @@ const char* GameStateRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 42, 2> GameStateRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GameStateRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -824,21 +815,18 @@ const ::_pbi::TcParseTable<0, 1, 0, 42, 2> GameStateRequest::_table_ = {
     &_GameStateRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string game_id = 1;
-    {::_pbi::TcParser::FastUS1,
+    // bytes game_id = 1;
+    {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(GameStateRequest, _impl_.game_id_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string game_id = 1;
+    // bytes game_id = 1;
     {PROTOBUF_FIELD_OFFSET(GameStateRequest, _impl_.game_id_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\32\7\0\0\0\0\0\0"
-    "myproject.GameStateRequest"
-    "game_id"
   }},
 };
 
@@ -849,12 +837,10 @@ const ::_pbi::TcParseTable<0, 1, 0, 42, 2> GameStateRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string game_id = 1;
+  // bytes game_id = 1;
   if (!this->_internal_game_id().empty()) {
     const std::string& _s = this->_internal_game_id();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameStateRequest.game_id");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -874,9 +860,9 @@ const ::_pbi::TcParseTable<0, 1, 0, 42, 2> GameStateRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string game_id = 1;
+  // bytes game_id = 1;
   if (!this->_internal_game_id().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_game_id());
   }
 
@@ -1045,14 +1031,14 @@ const ::_pbi::TcParseTable<1, 3, 1, 41, 2> GameStateResponse::_table_ = {
     // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(GameStateResponse, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // map<string, string> state = 3;
+    // map<string, bytes> state = 3;
     {PROTOBUF_FIELD_OFFSET(GameStateResponse, _impl_.state_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(GameStateResponse()._impl_.state_)>(
         1, 0, 0, 9,
-        9)},
+        12)},
   }}, {{
     "\33\0\0\5\0\0\0\0"
     "myproject.GameStateResponse"
@@ -1080,12 +1066,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 41, 2> GameStateResponse::_table_ = {
     target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // map<string, string> state = 3;
+  // map<string, bytes> state = 3;
   if (!_internal_state().empty()) {
     using MapType = ::google::protobuf::Map<std::string, std::string>;
     using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>;
+                                   _pbi::WireFormatLite::TYPE_BYTES>;
     const auto& field = _internal_state();
 
     if (stream->IsSerializationDeterministic() && field.size() > 1) {
@@ -1095,9 +1081,6 @@ const ::_pbi::TcParseTable<1, 3, 1, 41, 2> GameStateResponse::_table_ = {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameStateResponse.state");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameStateResponse.state");
       }
     } else {
       for (const auto& entry : field) {
@@ -1105,9 +1088,6 @@ const ::_pbi::TcParseTable<1, 3, 1, 41, 2> GameStateResponse::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameStateResponse.state");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameStateResponse.state");
       }
     }
@@ -1130,12 +1110,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 41, 2> GameStateResponse::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, string> state = 3;
+  // map<string, bytes> state = 3;
   total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_state_size());
   for (const auto& entry : _internal_state()) {
     total_size += _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+                                   _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
   }
   // bytes message = 2;
   if (!this->_internal_message().empty()) {

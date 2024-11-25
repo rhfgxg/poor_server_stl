@@ -10,21 +10,21 @@ service LoginService {
 
 // 登录服务请求
 message LoginRequest {
-    string username = 1;
-    string password = 2;
+    bytes username = 1;
+    bytes password = 2;
 }
 // 登录服务响应
 message LoginResponse {
     bool success = 1;   // 操作结果
     bytes message = 2; // 响应信息
-    string token = 3;  // 会话或令牌
+    bytes token = 3;  // 会话或令牌
 }
 
 // 注册服务请求
 message RegisterRequest {
-    string username = 1;
-    string password = 2;
-    string email = 3;
+    bytes username = 1;
+    bytes password = 2;
+    bytes email = 3;
 }
 // 注册服务响应
 message RegisterResponse {
@@ -34,7 +34,7 @@ message RegisterResponse {
 
 // 令牌验证服务请求
 message AuthenticateRequest {
-    string token = 1;
+    bytes token = 1;
 }
 // 令牌验证服务响应
 message AuthenticateResponse {

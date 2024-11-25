@@ -27,7 +27,8 @@ c++（无qt库）的服务端版本
 ### protobuf：客户端与服务器，服务器之间的通信协议
 这个需要用到proto编译器，这个文件在 /vcpkg_installed/x64-windows/tools/protobuf/protoc.exe
 生成 rpc服务文件时，需要用到 grpc_cpp_plugin.exe，这个文件需要先安装 grpc库，安装后保存在 /vcpkg_installed/x64-windows/tools/grpc/grpc_cpp_plugin.exe
-我这里使用 which指令寻找grpc_cpp_plugin工具时，一直找不到，所以使用的是相对路径_
+我这里使用 which指令寻找grpc_cpp_plugin工具时，一直找不到，所以使用的是相对路径
+_ grpc使用的通信协议中，string默认是 utf-8格式，与c++冲突，所以在编写 proto文件时，需要使用 bytes代替string
 
 #### 安装protobuf编译器
 这里使用的是 protobuf-3.21.12版本，最新版的在cmake文件夹中没有CMakeLists.txt文件，编译时会很麻烦

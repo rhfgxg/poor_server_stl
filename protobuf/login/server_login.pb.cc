@@ -253,13 +253,13 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_server_5flogin_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\022server_login.proto\022\tmyproject\"2\n\014Login"
-    "Request\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 "
-    "\001(\t\"@\n\rLoginResponse\022\017\n\007success\030\001 \001(\010\022\017\n"
-    "\007message\030\002 \001(\014\022\r\n\005token\030\003 \001(\t\"D\n\017Registe"
-    "rRequest\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002"
-    " \001(\t\022\r\n\005email\030\003 \001(\t\"4\n\020RegisterResponse\022"
+    "Request\022\020\n\010username\030\001 \001(\014\022\020\n\010password\030\002 "
+    "\001(\014\"@\n\rLoginResponse\022\017\n\007success\030\001 \001(\010\022\017\n"
+    "\007message\030\002 \001(\014\022\r\n\005token\030\003 \001(\014\"D\n\017Registe"
+    "rRequest\022\020\n\010username\030\001 \001(\014\022\020\n\010password\030\002"
+    " \001(\014\022\r\n\005email\030\003 \001(\014\"4\n\020RegisterResponse\022"
     "\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"$\n\023Aut"
-    "henticateRequest\022\r\n\005token\030\001 \001(\t\"8\n\024Authe"
+    "henticateRequest\022\r\n\005token\030\001 \001(\014\"8\n\024Authe"
     "nticateResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007mess"
     "age\030\002 \001(\0142\340\001\n\014LoginService\022:\n\005Login\022\027.my"
     "project.LoginRequest\032\030.myproject.LoginRe"
@@ -378,7 +378,7 @@ const char* LoginRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 47, 2> LoginRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> LoginRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -392,28 +392,24 @@ const ::_pbi::TcParseTable<1, 2, 0, 47, 2> LoginRequest::_table_ = {
     &_LoginRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string password = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes password = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(LoginRequest, _impl_.password_)}},
-    // string username = 1;
-    {::_pbi::TcParser::FastUS1,
+    // bytes username = 1;
+    {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(LoginRequest, _impl_.username_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string username = 1;
+    // bytes username = 1;
     {PROTOBUF_FIELD_OFFSET(LoginRequest, _impl_.username_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string password = 2;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes password = 2;
     {PROTOBUF_FIELD_OFFSET(LoginRequest, _impl_.password_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\26\10\10\0\0\0\0\0"
-    "myproject.LoginRequest"
-    "username"
-    "password"
   }},
 };
 
@@ -424,20 +420,16 @@ const ::_pbi::TcParseTable<1, 2, 0, 47, 2> LoginRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string username = 1;
+  // bytes username = 1;
   if (!this->_internal_username().empty()) {
     const std::string& _s = this->_internal_username();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.LoginRequest.username");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
-  // string password = 2;
+  // bytes password = 2;
   if (!this->_internal_password().empty()) {
     const std::string& _s = this->_internal_password();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.LoginRequest.password");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -457,15 +449,15 @@ const ::_pbi::TcParseTable<1, 2, 0, 47, 2> LoginRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string username = 1;
+  // bytes username = 1;
   if (!this->_internal_username().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_username());
   }
 
-  // string password = 2;
+  // bytes password = 2;
   if (!this->_internal_password().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_password());
   }
 
@@ -600,7 +592,7 @@ const char* LoginResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 37, 2> LoginResponse::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> LoginResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -621,8 +613,8 @@ const ::_pbi::TcParseTable<2, 3, 0, 37, 2> LoginResponse::_table_ = {
     // bytes message = 2;
     {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(LoginResponse, _impl_.message_)}},
-    // string token = 3;
-    {::_pbi::TcParser::FastUS1,
+    // bytes token = 3;
+    {::_pbi::TcParser::FastBS1,
      {26, 63, 0, PROTOBUF_FIELD_OFFSET(LoginResponse, _impl_.token_)}},
   }}, {{
     65535, 65535
@@ -633,15 +625,12 @@ const ::_pbi::TcParseTable<2, 3, 0, 37, 2> LoginResponse::_table_ = {
     // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(LoginResponse, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // string token = 3;
+    // bytes token = 3;
     {PROTOBUF_FIELD_OFFSET(LoginResponse, _impl_.token_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\27\0\0\5\0\0\0\0"
-    "myproject.LoginResponse"
-    "token"
   }},
 };
 
@@ -665,12 +654,10 @@ const ::_pbi::TcParseTable<2, 3, 0, 37, 2> LoginResponse::_table_ = {
     target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // string token = 3;
+  // bytes token = 3;
   if (!this->_internal_token().empty()) {
     const std::string& _s = this->_internal_token();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.LoginResponse.token");
-    target = stream->WriteStringMaybeAliased(3, _s, target);
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -696,9 +683,9 @@ const ::_pbi::TcParseTable<2, 3, 0, 37, 2> LoginResponse::_table_ = {
                                     this->_internal_message());
   }
 
-  // string token = 3;
+  // bytes token = 3;
   if (!this->_internal_token().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_token());
   }
 
@@ -843,7 +830,7 @@ const char* RegisterRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 55, 2> RegisterRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RegisterRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -858,35 +845,30 @@ const ::_pbi::TcParseTable<2, 3, 0, 55, 2> RegisterRequest::_table_ = {
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // string username = 1;
-    {::_pbi::TcParser::FastUS1,
+    // bytes username = 1;
+    {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterRequest, _impl_.username_)}},
-    // string password = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes password = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterRequest, _impl_.password_)}},
-    // string email = 3;
-    {::_pbi::TcParser::FastUS1,
+    // bytes email = 3;
+    {::_pbi::TcParser::FastBS1,
      {26, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterRequest, _impl_.email_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string username = 1;
+    // bytes username = 1;
     {PROTOBUF_FIELD_OFFSET(RegisterRequest, _impl_.username_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string password = 2;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes password = 2;
     {PROTOBUF_FIELD_OFFSET(RegisterRequest, _impl_.password_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string email = 3;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes email = 3;
     {PROTOBUF_FIELD_OFFSET(RegisterRequest, _impl_.email_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\31\10\10\5\0\0\0\0"
-    "myproject.RegisterRequest"
-    "username"
-    "password"
-    "email"
   }},
 };
 
@@ -897,28 +879,22 @@ const ::_pbi::TcParseTable<2, 3, 0, 55, 2> RegisterRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string username = 1;
+  // bytes username = 1;
   if (!this->_internal_username().empty()) {
     const std::string& _s = this->_internal_username();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.RegisterRequest.username");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
-  // string password = 2;
+  // bytes password = 2;
   if (!this->_internal_password().empty()) {
     const std::string& _s = this->_internal_password();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.RegisterRequest.password");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // string email = 3;
+  // bytes email = 3;
   if (!this->_internal_email().empty()) {
     const std::string& _s = this->_internal_email();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.RegisterRequest.email");
-    target = stream->WriteStringMaybeAliased(3, _s, target);
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -938,21 +914,21 @@ const ::_pbi::TcParseTable<2, 3, 0, 55, 2> RegisterRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string username = 1;
+  // bytes username = 1;
   if (!this->_internal_username().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_username());
   }
 
-  // string password = 2;
+  // bytes password = 2;
   if (!this->_internal_password().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_password());
   }
 
-  // string email = 3;
+  // bytes email = 3;
   if (!this->_internal_email().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_email());
   }
 
@@ -1294,7 +1270,7 @@ const char* AuthenticateRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 43, 2> AuthenticateRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> AuthenticateRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1308,21 +1284,18 @@ const ::_pbi::TcParseTable<0, 1, 0, 43, 2> AuthenticateRequest::_table_ = {
     &_AuthenticateRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string token = 1;
-    {::_pbi::TcParser::FastUS1,
+    // bytes token = 1;
+    {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(AuthenticateRequest, _impl_.token_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string token = 1;
+    // bytes token = 1;
     {PROTOBUF_FIELD_OFFSET(AuthenticateRequest, _impl_.token_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\35\5\0\0\0\0\0\0"
-    "myproject.AuthenticateRequest"
-    "token"
   }},
 };
 
@@ -1333,12 +1306,10 @@ const ::_pbi::TcParseTable<0, 1, 0, 43, 2> AuthenticateRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string token = 1;
+  // bytes token = 1;
   if (!this->_internal_token().empty()) {
     const std::string& _s = this->_internal_token();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.AuthenticateRequest.token");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1358,9 +1329,9 @@ const ::_pbi::TcParseTable<0, 1, 0, 43, 2> AuthenticateRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string token = 1;
+  // bytes token = 1;
   if (!this->_internal_token().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_token());
   }
 

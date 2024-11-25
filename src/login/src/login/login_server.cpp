@@ -27,3 +27,13 @@ grpc::Status LoginServiceImpl::Login(grpc::ServerContext* context, const myproje
     // ·µ»ØgRPC×´Ì¬
     return grpc::Status::OK;
 }
+
+grpc::Status LoginServiceImpl::Login(grpc::ServerContext* context, const myproject::LoginRequest* request, myproject::LoginResponse* response)
+{
+
+}
+
+grpc::Status LoginServiceImpl::Login(grpc::ServerContext* context, const myproject::LoginRequest* request, myproject::LoginResponse* response)
+{
+
+}

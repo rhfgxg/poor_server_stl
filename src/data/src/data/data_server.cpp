@@ -47,23 +47,10 @@ grpc::Status DatabaseServiceImpl::Read(grpc::ServerContext* context, const mypro
                 condition += " AND ";
             }
             condition += q.first + " = '" + q.second + "'";
+
+            std::cout << condition;
         }
 
-        // 执行查询
-        mysqlx::RowResult result = tbl.select("*").where(condition).execute();
-        mysqlx::Columns columns = tbl.getColumnNames();
-        for (size_t i = 0; i < columns.size(); ++i) 
-        {
-            (*response->mutable_results())[columns[i]] = row[i].get<std::string>();
-        }
-        // 设置响应的 results 参数
-        for (mysqlx::Row row : result) 
-        {
-            for (size_t i = 0; i < row.colCount(); ++i) 
-            {
-                (*response->mutable_results())[tbl.getColumns()[i].getColumnName()] = row[i].get<std::string>();
-            }
-        }
 
         response->set_success(true);
         response->set_message("查询成功");

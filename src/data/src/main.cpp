@@ -6,13 +6,13 @@
 #include <cstdlib> // 使用 std::exit
 
 mysqlx::Session sql_link(); // 链接数据库
-void RunServer();    // 运行服务器
+void RunServer(mysqlx::Session&);    // 运行服务器
 
 int main()
 {
     mysqlx::Session session = sql_link();   // 链接数据库
 
-    RunServer();    // 运行服务器
+    RunServer(session);    // 运行服务器
 
     // 关闭连接
     session.close();
@@ -47,11 +47,10 @@ mysqlx::Session sql_link()
     }
 }
 
-// 运行服务器
-void RunServer()
+void RunServer(mysqlx::Session& session)
 {
-	std::cout << "正在启动登录服务器..." << std::endl; // 输出服务器启动信息
-    DatabaseServiceImpl service; // 数据库rpc服务实现
+    std::cout << "正在启动登录服务器..." << std::endl; // 输出服务器启动信息
+    DatabaseServiceImpl service(session); // 数据库rpc服务实现
 
     grpc::ServerBuilder builder;
     std::string server_address("0.0.0.0:50052");

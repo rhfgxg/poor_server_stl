@@ -8,8 +8,8 @@ service GatewayService {
 
 // 传入请求
 message ForwardRequest {
-    string target_service = 1;
-    string payload = 2;
+    bytes target_service = 1;
+    bytes payload = 2;
 }
 // 请求处理响应
 message ForwardResponse {

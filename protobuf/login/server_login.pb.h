@@ -416,7 +416,7 @@ class RegisterRequest final :
     kPasswordFieldNumber = 2,
     kEmailFieldNumber = 3,
   };
-  // string username = 1;
+  // bytes username = 1;
   void clear_username() ;
   const std::string& username() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -432,7 +432,7 @@ class RegisterRequest final :
   std::string* _internal_mutable_username();
 
   public:
-  // string password = 2;
+  // bytes password = 2;
   void clear_password() ;
   const std::string& password() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -448,7 +448,7 @@ class RegisterRequest final :
   std::string* _internal_mutable_password();
 
   public:
-  // string email = 3;
+  // bytes email = 3;
   void clear_email() ;
   const std::string& email() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -471,7 +471,7 @@ class RegisterRequest final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 0,
-      55, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -649,7 +649,7 @@ class LoginResponse final :
   std::string* _internal_mutable_message();
 
   public:
-  // string token = 3;
+  // bytes token = 3;
   void clear_token() ;
   const std::string& token() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -682,7 +682,7 @@ class LoginResponse final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 0,
-      37, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -843,7 +843,7 @@ class LoginRequest final :
     kUsernameFieldNumber = 1,
     kPasswordFieldNumber = 2,
   };
-  // string username = 1;
+  // bytes username = 1;
   void clear_username() ;
   const std::string& username() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -859,7 +859,7 @@ class LoginRequest final :
   std::string* _internal_mutable_username();
 
   public:
-  // string password = 2;
+  // bytes password = 2;
   void clear_password() ;
   const std::string& password() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -882,7 +882,7 @@ class LoginRequest final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      47, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1234,7 +1234,7 @@ class AuthenticateRequest final :
   enum : int {
     kTokenFieldNumber = 1,
   };
-  // string token = 1;
+  // bytes token = 1;
   void clear_token() ;
   const std::string& token() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1257,7 +1257,7 @@ class AuthenticateRequest final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 1, 0,
-      43, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1297,7 +1297,7 @@ class AuthenticateRequest final :
 
 // LoginRequest
 
-// string username = 1;
+// bytes username = 1;
 inline void LoginRequest::clear_username() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.username_.ClearToEmpty();
@@ -1312,7 +1312,7 @@ inline PROTOBUF_ALWAYS_INLINE void LoginRequest::set_username(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.username_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.username_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.LoginRequest.username)
 }
 inline std::string* LoginRequest::mutable_username() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1350,7 +1350,7 @@ inline void LoginRequest::set_allocated_username(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.LoginRequest.username)
 }
 
-// string password = 2;
+// bytes password = 2;
 inline void LoginRequest::clear_password() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.password_.ClearToEmpty();
@@ -1365,7 +1365,7 @@ inline PROTOBUF_ALWAYS_INLINE void LoginRequest::set_password(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.password_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.LoginRequest.password)
 }
 inline std::string* LoginRequest::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1483,7 +1483,7 @@ inline void LoginResponse::set_allocated_message(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.LoginResponse.message)
 }
 
-// string token = 3;
+// bytes token = 3;
 inline void LoginResponse::clear_token() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.token_.ClearToEmpty();
@@ -1498,7 +1498,7 @@ inline PROTOBUF_ALWAYS_INLINE void LoginResponse::set_token(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.token_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.LoginResponse.token)
 }
 inline std::string* LoginResponse::mutable_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1540,7 +1540,7 @@ inline void LoginResponse::set_allocated_token(std::string* value) {
 
 // RegisterRequest
 
-// string username = 1;
+// bytes username = 1;
 inline void RegisterRequest::clear_username() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.username_.ClearToEmpty();
@@ -1555,7 +1555,7 @@ inline PROTOBUF_ALWAYS_INLINE void RegisterRequest::set_username(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.username_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.username_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.RegisterRequest.username)
 }
 inline std::string* RegisterRequest::mutable_username() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1593,7 +1593,7 @@ inline void RegisterRequest::set_allocated_username(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.RegisterRequest.username)
 }
 
-// string password = 2;
+// bytes password = 2;
 inline void RegisterRequest::clear_password() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.password_.ClearToEmpty();
@@ -1608,7 +1608,7 @@ inline PROTOBUF_ALWAYS_INLINE void RegisterRequest::set_password(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.password_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.RegisterRequest.password)
 }
 inline std::string* RegisterRequest::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1646,7 +1646,7 @@ inline void RegisterRequest::set_allocated_password(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.RegisterRequest.password)
 }
 
-// string email = 3;
+// bytes email = 3;
 inline void RegisterRequest::clear_email() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.email_.ClearToEmpty();
@@ -1661,7 +1661,7 @@ inline PROTOBUF_ALWAYS_INLINE void RegisterRequest::set_email(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.email_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.email_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.RegisterRequest.email)
 }
 inline std::string* RegisterRequest::mutable_email() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1783,7 +1783,7 @@ inline void RegisterResponse::set_allocated_message(std::string* value) {
 
 // AuthenticateRequest
 
-// string token = 1;
+// bytes token = 1;
 inline void AuthenticateRequest::clear_token() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.token_.ClearToEmpty();
@@ -1798,7 +1798,7 @@ inline PROTOBUF_ALWAYS_INLINE void AuthenticateRequest::set_token(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.token_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.AuthenticateRequest.token)
 }
 inline std::string* AuthenticateRequest::mutable_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {

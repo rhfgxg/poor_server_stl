@@ -94,12 +94,12 @@ class GameStateResponse_StateEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
           GameStateResponse_StateEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+          ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
       GameStateResponse_StateEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
   GameStateResponse_StateEntry_DoNotUse();
   template <typename = void>
   explicit PROTOBUF_CONSTEXPR GameStateResponse_StateEntry_DoNotUse(
@@ -112,9 +112,7 @@ class GameStateResponse_StateEntry_DoNotUse final
   static bool ValidateKey(std::string* s) {
     return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.GameStateResponse.StateEntry.key");
  }
-  static bool ValidateValue(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.GameStateResponse.StateEntry.value");
- }
+  static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
   friend struct ::TableStruct_server_5flogic_2eproto;
 };
@@ -254,7 +252,7 @@ class GameStateRequest final :
   enum : int {
     kGameIdFieldNumber = 1,
   };
-  // string game_id = 1;
+  // bytes game_id = 1;
   void clear_game_id() ;
   const std::string& game_id() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -277,7 +275,7 @@ class GameStateRequest final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 1, 0,
-      42, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -498,12 +496,12 @@ class GameActionRequest_ParametersEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
           GameActionRequest_ParametersEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+          ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
       GameActionRequest_ParametersEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
   GameActionRequest_ParametersEntry_DoNotUse();
   template <typename = void>
   explicit PROTOBUF_CONSTEXPR GameActionRequest_ParametersEntry_DoNotUse(
@@ -516,9 +514,7 @@ class GameActionRequest_ParametersEntry_DoNotUse final
   static bool ValidateKey(std::string* s) {
     return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.GameActionRequest.ParametersEntry.key");
  }
-  static bool ValidateValue(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.GameActionRequest.ParametersEntry.value");
- }
+  static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
   friend struct ::TableStruct_server_5flogic_2eproto;
 };
@@ -661,7 +657,7 @@ class GameStateResponse final :
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // map<string, string> state = 3;
+  // map<string, bytes> state = 3;
   int state_size() const;
   private:
   int _internal_state_size() const;
@@ -727,7 +723,7 @@ class GameStateResponse final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::MapField<GameStateResponse_StateEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+                      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         state_;
     ::google::protobuf::internal::ArenaStringPtr message_;
     bool success_;
@@ -874,7 +870,7 @@ class GameActionRequest final :
     kParametersFieldNumber = 2,
     kActionFieldNumber = 1,
   };
-  // map<string, string> parameters = 2;
+  // map<string, bytes> parameters = 2;
   int parameters_size() const;
   private:
   int _internal_parameters_size() const;
@@ -889,7 +885,7 @@ class GameActionRequest final :
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_parameters();
 
   public:
-  // string action = 1;
+  // bytes action = 1;
   void clear_action() ;
   const std::string& action() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -912,7 +908,7 @@ class GameActionRequest final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 2, 1,
-      52, 2>
+      46, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -930,7 +926,7 @@ class GameActionRequest final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::MapField<GameActionRequest_ParametersEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+                      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         parameters_;
     ::google::protobuf::internal::ArenaStringPtr action_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -958,7 +954,7 @@ class GameActionRequest final :
 
 // GameActionRequest
 
-// string action = 1;
+// bytes action = 1;
 inline void GameActionRequest::clear_action() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.action_.ClearToEmpty();
@@ -973,7 +969,7 @@ inline PROTOBUF_ALWAYS_INLINE void GameActionRequest::set_action(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.action_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.action_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.GameActionRequest.action)
 }
 inline std::string* GameActionRequest::mutable_action() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1011,7 +1007,7 @@ inline void GameActionRequest::set_allocated_action(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.GameActionRequest.action)
 }
 
-// map<string, string> parameters = 2;
+// map<string, bytes> parameters = 2;
 inline int GameActionRequest::_internal_parameters_size() const {
   return _internal_parameters().size();
 }
@@ -1123,7 +1119,7 @@ inline void GameActionResponse::set_allocated_message(std::string* value) {
 
 // GameStateRequest
 
-// string game_id = 1;
+// bytes game_id = 1;
 inline void GameStateRequest::clear_game_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.game_id_.ClearToEmpty();
@@ -1138,7 +1134,7 @@ inline PROTOBUF_ALWAYS_INLINE void GameStateRequest::set_game_id(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.game_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.game_id_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.GameStateRequest.game_id)
 }
 inline std::string* GameStateRequest::mutable_game_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1258,7 +1254,7 @@ inline void GameStateResponse::set_allocated_message(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.GameStateResponse.message)
 }
 
-// map<string, string> state = 3;
+// map<string, bytes> state = 3;
 inline int GameStateResponse::_internal_state_size() const {
   return _internal_state().size();
 }
