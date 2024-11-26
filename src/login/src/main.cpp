@@ -13,12 +13,12 @@ int main()
 
 void RunServer()
 {
-    LoginServiceImpl service; // 登录服务实现
+    LoginServerImpl login_server; // 登录服务实现
 
     grpc::ServerBuilder builder; // gRPC服务器构建器
     std::string server_address("0.0.0.0:50051"); // 服务器监听50051端口
     builder.AddListeningPort(server_address, grpc::InsecureServerCredentials()); // 添加监听端口
-    builder.RegisterService(&service); // 注册服务
+    builder.RegisterService(&login_server); // 注册服务
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // 构建并启动服务器
     std::cout << "登录服务器正在运行..." << std::endl; // 输出服务器运行信息

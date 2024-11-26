@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package myproject;
 
-service CentralService {
+service CentralServer {
     rpc GetGlobalState (GlobalStateRequest) returns (GlobalStateResponse);  // 请求全局状态服务
     rpc UpdateGlobalState (UpdateGlobalStateRequest) returns (UpdateGlobalStateResponse);   // 更新全局状态服务
 }

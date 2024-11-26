@@ -27,10 +27,10 @@
 
 namespace myproject {
 
-class DatabaseService final {
+class DatabaseServer final {
  public:
   static constexpr char const* service_full_name() {
-    return "myproject.DatabaseService";
+    return "myproject.DatabaseServer";
   }
   class StubInterface {
    public:

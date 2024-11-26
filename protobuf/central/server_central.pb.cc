@@ -222,18 +222,18 @@ const char descriptor_table_protodef_server_5fcentral_2eproto[] PROTOBUF_SECTION
     "GlobalStateRequest.StateEntry\032,\n\nStateEn"
     "try\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"=\n\031U"
     "pdateGlobalStateResponse\022\017\n\007success\030\001 \001("
-    "\010\022\017\n\007message\030\002 \001(\0142\301\001\n\016CentralService\022O\n"
-    "\016GetGlobalState\022\035.myproject.GlobalStateR"
-    "equest\032\036.myproject.GlobalStateResponse\022^"
-    "\n\021UpdateGlobalState\022#.myproject.UpdateGl"
-    "obalStateRequest\032$.myproject.UpdateGloba"
-    "lStateResponseb\006proto3"
+    "\010\022\017\n\007message\030\002 \001(\0142\300\001\n\rCentralServer\022O\n\016"
+    "GetGlobalState\022\035.myproject.GlobalStateRe"
+    "quest\032\036.myproject.GlobalStateResponse\022^\n"
+    "\021UpdateGlobalState\022#.myproject.UpdateGlo"
+    "balStateRequest\032$.myproject.UpdateGlobal"
+    "StateResponseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fcentral_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fcentral_2eproto = {
     false,
     false,
-    622,
+    621,
     descriptor_table_protodef_server_5fcentral_2eproto,
     "server_central.proto",
     &descriptor_table_server_5fcentral_2eproto_once,

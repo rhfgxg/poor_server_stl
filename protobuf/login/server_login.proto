@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package myproject;
 
-service LoginService {
+service LoginServer {
     rpc Login (LoginRequest) returns (LoginResponse);   // 登录服务
     rpc Register (RegisterRequest) returns (RegisterResponse);  // 注册服务
     rpc Authenticate (AuthenticateRequest) returns (AuthenticateResponse);  // 令牌验证服务

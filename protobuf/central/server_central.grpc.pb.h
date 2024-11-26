@@ -27,10 +27,10 @@
 
 namespace myproject {
 
-class CentralService final {
+class CentralServer final {
  public:
   static constexpr char const* service_full_name() {
-    return "myproject.CentralService";
+    return "myproject.CentralServer";
   }
   class StubInterface {
    public:

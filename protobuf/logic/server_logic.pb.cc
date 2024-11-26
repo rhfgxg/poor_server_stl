@@ -236,18 +236,18 @@ const char descriptor_table_protodef_server_5flogic_2eproto[] PROTOBUF_SECTION_V
     "\233\001\n\021GameStateResponse\022\017\n\007success\030\001 \001(\010\022\017"
     "\n\007message\030\002 \001(\014\0226\n\005state\030\003 \003(\0132\'.myproje"
     "ct.GameStateResponse.StateEntry\032,\n\nState"
-    "Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\0012\253\001"
-    "\n\014LogicService\022P\n\021ProcessGameAction\022\034.my"
-    "project.GameActionRequest\032\035.myproject.Ga"
-    "meActionResponse\022I\n\014GetGameState\022\033.mypro"
-    "ject.GameStateRequest\032\034.myproject.GameSt"
-    "ateResponseb\006proto3"
+    "Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\0012\252\001"
+    "\n\013LogicServer\022P\n\021ProcessGameAction\022\034.myp"
+    "roject.GameActionRequest\032\035.myproject.Gam"
+    "eActionResponse\022I\n\014GetGameState\022\033.myproj"
+    "ect.GameStateRequest\032\034.myproject.GameSta"
+    "teResponseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5flogic_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5flogic_2eproto = {
     false,
     false,
-    619,
+    618,
     descriptor_table_protodef_server_5flogic_2eproto,
     "server_logic.proto",
     &descriptor_table_server_5flogic_2eproto_once,

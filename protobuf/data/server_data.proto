@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package myproject;
 
-service DatabaseService {
+service DatabaseServer{
     rpc Create (CreateRequest) returns (CreateResponse);    // 增加数据服务
     rpc Read (ReadRequest) returns (ReadResponse);  // 查询数据服务
     rpc Update (UpdateRequest) returns (UpdateResponse);    // 更新数据服务
@@ -13,7 +13,7 @@ service DatabaseService {
 message CreateRequest {
     bytes database = 1;
     bytes table = 2;
-    map<string, string> data = 3;  // 要插入的数据，键值对形式
+    map<string, bytes> data = 3;  // 要插入的数据，键值对形式
 }
 // 增加数据服务响应
 message CreateResponse {
@@ -49,8 +49,8 @@ message UpdateResponse {
 
 // 删除服务请求
 message DeleteRequest {
-    string database = 1;
-    string table = 2;
+    bytes database = 1;
+    bytes table = 2;
     map<string, bytes> query = 3;  // 查询条件，键值对形式
 }
 // 删除服务响应

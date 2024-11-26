@@ -490,7 +490,7 @@ const char descriptor_table_protodef_server_5fdata_2eproto[] PROTOBUF_SECTION_VA
     "eRequest\022\020\n\010database\030\001 \001(\014\022\r\n\005table\030\002 \001("
     "\014\0220\n\004data\030\003 \003(\0132\".myproject.CreateReques"
     "t.DataEntry\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n"
-    "\005value\030\002 \001(\t:\0028\001\"2\n\016CreateResponse\022\017\n\007su"
+    "\005value\030\002 \001(\014:\0028\001\"2\n\016CreateResponse\022\017\n\007su"
     "ccess\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"\216\001\n\013ReadReq"
     "uest\022\020\n\010database\030\001 \001(\014\022\r\n\005table\030\002 \001(\014\0220\n"
     "\005query\030\003 \003(\0132!.myproject.ReadRequest.Que"
@@ -507,24 +507,24 @@ const char descriptor_table_protodef_server_5fdata_2eproto[] PROTOBUF_SECTION_VA
     "(\014:\0028\001\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu"
     "e\030\002 \001(\014:\0028\001\"2\n\016UpdateResponse\022\017\n\007success"
     "\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"\222\001\n\rDeleteReques"
-    "t\022\020\n\010database\030\001 \001(\t\022\r\n\005table\030\002 \001(\t\0222\n\005qu"
+    "t\022\020\n\010database\030\001 \001(\014\022\r\n\005table\030\002 \001(\014\0222\n\005qu"
     "ery\030\003 \003(\0132#.myproject.DeleteRequest.Quer"
     "yEntry\032,\n\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005val"
     "ue\030\002 \001(\014:\0028\001\"2\n\016DeleteResponse\022\017\n\007succes"
-    "s\030\001 \001(\010\022\017\n\007message\030\002 \001(\0142\207\002\n\017DatabaseSer"
-    "vice\022=\n\006Create\022\030.myproject.CreateRequest"
-    "\032\031.myproject.CreateResponse\0227\n\004Read\022\026.my"
-    "project.ReadRequest\032\027.myproject.ReadResp"
-    "onse\022=\n\006Update\022\030.myproject.UpdateRequest"
-    "\032\031.myproject.UpdateResponse\022=\n\006Delete\022\030."
-    "myproject.DeleteRequest\032\031.myproject.Dele"
-    "teResponseb\006proto3"
+    "s\030\001 \001(\010\022\017\n\007message\030\002 \001(\0142\206\002\n\016DatabaseSer"
+    "ver\022=\n\006Create\022\030.myproject.CreateRequest\032"
+    "\031.myproject.CreateResponse\0227\n\004Read\022\026.myp"
+    "roject.ReadRequest\032\027.myproject.ReadRespo"
+    "nse\022=\n\006Update\022\030.myproject.UpdateRequest\032"
+    "\031.myproject.UpdateResponse\022=\n\006Delete\022\030.m"
+    "yproject.DeleteRequest\032\031.myproject.Delet"
+    "eResponseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fdata_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fdata_2eproto = {
     false,
     false,
-    1298,
+    1297,
     descriptor_table_protodef_server_5fdata_2eproto,
     "server_data.proto",
     &descriptor_table_server_5fdata_2eproto_once,
@@ -671,14 +671,14 @@ const ::_pbi::TcParseTable<1, 3, 1, 36, 2> CreateRequest::_table_ = {
     // bytes table = 2;
     {PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.table_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // map<string, string> data = 3;
+    // map<string, bytes> data = 3;
     {PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.data_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
         decltype(CreateRequest()._impl_.data_)>(
         1, 0, 0, 9,
-        9)},
+        12)},
   }}, {{
     "\27\0\0\4\0\0\0\0"
     "myproject.CreateRequest"
@@ -705,12 +705,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 36, 2> CreateRequest::_table_ = {
     target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // map<string, string> data = 3;
+  // map<string, bytes> data = 3;
   if (!_internal_data().empty()) {
     using MapType = ::google::protobuf::Map<std::string, std::string>;
     using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>;
+                                   _pbi::WireFormatLite::TYPE_BYTES>;
     const auto& field = _internal_data();
 
     if (stream->IsSerializationDeterministic() && field.size() > 1) {
@@ -720,9 +720,6 @@ const ::_pbi::TcParseTable<1, 3, 1, 36, 2> CreateRequest::_table_ = {
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.CreateRequest.data");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.CreateRequest.data");
       }
     } else {
       for (const auto& entry : field) {
@@ -730,9 +727,6 @@ const ::_pbi::TcParseTable<1, 3, 1, 36, 2> CreateRequest::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.CreateRequest.data");
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.second.data(), static_cast<int>(entry.second.length()),
  ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.CreateRequest.data");
       }
     }
@@ -755,12 +749,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 36, 2> CreateRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, string> data = 3;
+  // map<string, bytes> data = 3;
   total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_data_size());
   for (const auto& entry : _internal_data()) {
     total_size += _pbi::MapEntryFuncs<std::string, std::string,
                                    _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_STRING>::ByteSizeLong(entry.first, entry.second);
+                                   _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
   }
   // bytes database = 1;
   if (!this->_internal_database().empty()) {
@@ -2200,7 +2194,7 @@ const char* DeleteRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 50, 2> DeleteRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 3, 1, 37, 2> DeleteRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2214,21 +2208,21 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> DeleteRequest::_table_ = {
     &_DeleteRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string table = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes table = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteRequest, _impl_.table_)}},
-    // string database = 1;
-    {::_pbi::TcParser::FastUS1,
+    // bytes database = 1;
+    {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteRequest, _impl_.database_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string database = 1;
+    // bytes database = 1;
     {PROTOBUF_FIELD_OFFSET(DeleteRequest, _impl_.database_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string table = 2;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes table = 2;
     {PROTOBUF_FIELD_OFFSET(DeleteRequest, _impl_.table_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // map<string, bytes> query = 3;
     {PROTOBUF_FIELD_OFFSET(DeleteRequest, _impl_.query_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
@@ -2238,10 +2232,8 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> DeleteRequest::_table_ = {
         1, 0, 0, 9,
         12)},
   }}, {{
-    "\27\10\5\5\0\0\0\0"
+    "\27\0\0\5\0\0\0\0"
     "myproject.DeleteRequest"
-    "database"
-    "table"
     "query"
   }},
 };
@@ -2253,20 +2245,16 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> DeleteRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string database = 1;
+  // bytes database = 1;
   if (!this->_internal_database().empty()) {
     const std::string& _s = this->_internal_database();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.DeleteRequest.database");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
-  // string table = 2;
+  // bytes table = 2;
   if (!this->_internal_table().empty()) {
     const std::string& _s = this->_internal_table();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.DeleteRequest.table");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   // map<string, bytes> query = 3;
@@ -2320,15 +2308,15 @@ const ::_pbi::TcParseTable<1, 3, 1, 50, 2> DeleteRequest::_table_ = {
                                    _pbi::WireFormatLite::TYPE_STRING,
                                    _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
   }
-  // string database = 1;
+  // bytes database = 1;
   if (!this->_internal_database().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_database());
   }
 
-  // string table = 2;
+  // bytes table = 2;
   if (!this->_internal_table().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_table());
   }
 

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package myproject;
 
-service GatewayService {
+service GatewayServer {
     rpc RequestForward (ForwardRequest) returns (ForwardResponse);  // 中文注释：转发请求
 }
 

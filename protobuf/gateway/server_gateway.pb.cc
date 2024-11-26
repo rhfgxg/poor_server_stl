@@ -111,16 +111,16 @@ const char descriptor_table_protodef_server_5fgateway_2eproto[] PROTOBUF_SECTION
     "\n\024server_gateway.proto\022\tmyproject\"9\n\016For"
     "wardRequest\022\026\n\016target_service\030\001 \001(\014\022\017\n\007p"
     "ayload\030\002 \001(\014\"4\n\017ForwardResponse\022\017\n\007succe"
-    "ss\030\001 \001(\010\022\020\n\010response\030\002 \001(\0142Y\n\016GatewaySer"
-    "vice\022G\n\016RequestForward\022\031.myproject.Forwa"
-    "rdRequest\032\032.myproject.ForwardResponseb\006p"
-    "roto3"
+    "ss\030\001 \001(\010\022\020\n\010response\030\002 \001(\0142X\n\rGatewaySer"
+    "ver\022G\n\016RequestForward\022\031.myproject.Forwar"
+    "dRequest\032\032.myproject.ForwardResponseb\006pr"
+    "oto3"
 };
 static ::absl::once_flag descriptor_table_server_5fgateway_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fgateway_2eproto = {
     false,
     false,
-    245,
+    244,
     descriptor_table_protodef_server_5fgateway_2eproto,
     "server_gateway.proto",
     &descriptor_table_server_5fgateway_2eproto_once,

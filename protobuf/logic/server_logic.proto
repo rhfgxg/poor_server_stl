@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package myproject;
 
-service LogicService {
+service LogicServer {
     rpc ProcessGameAction (GameActionRequest) returns (GameActionResponse); // 处理游戏操作
     rpc GetGameState (GameStateRequest) returns (GameStateResponse);    // 获取游戏状态
 }

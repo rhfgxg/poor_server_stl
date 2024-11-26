@@ -21,84 +21,84 @@
 #include <grpcpp/support/sync_stream.h>
 namespace myproject {
 
-static const char* CentralService_method_names[] = {
-  "/myproject.CentralService/GetGlobalState",
-  "/myproject.CentralService/UpdateGlobalState",
+static const char* CentralServer_method_names[] = {
+  "/myproject.CentralServer/GetGlobalState",
+  "/myproject.CentralServer/UpdateGlobalState",
 };
 
-std::unique_ptr< CentralService::Stub> CentralService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+std::unique_ptr< CentralServer::Stub> CentralServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< CentralService::Stub> stub(new CentralService::Stub(channel, options));
+  std::unique_ptr< CentralServer::Stub> stub(new CentralServer::Stub(channel, options));
   return stub;
 }
 
-CentralService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_GetGlobalState_(CentralService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateGlobalState_(CentralService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+CentralServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_GetGlobalState_(CentralServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateGlobalState_(CentralServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status CentralService::Stub::GetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::myproject::GlobalStateResponse* response) {
+::grpc::Status CentralServer::Stub::GetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::myproject::GlobalStateResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::myproject::GlobalStateRequest, ::myproject::GlobalStateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetGlobalState_, context, request, response);
 }
 
-void CentralService::Stub::async::GetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest* request, ::myproject::GlobalStateResponse* response, std::function<void(::grpc::Status)> f) {
+void CentralServer::Stub::async::GetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest* request, ::myproject::GlobalStateResponse* response, std::function<void(::grpc::Status)> f) {
   ::grpc::internal::CallbackUnaryCall< ::myproject::GlobalStateRequest, ::myproject::GlobalStateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGlobalState_, context, request, response, std::move(f));
 }
 
-void CentralService::Stub::async::GetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest* request, ::myproject::GlobalStateResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void CentralServer::Stub::async::GetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest* request, ::myproject::GlobalStateResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetGlobalState_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::GlobalStateResponse>* CentralService::Stub::PrepareAsyncGetGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::myproject::GlobalStateResponse>* CentralServer::Stub::PrepareAsyncGetGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::myproject::GlobalStateResponse, ::myproject::GlobalStateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetGlobalState_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::GlobalStateResponse>* CentralService::Stub::AsyncGetGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::myproject::GlobalStateResponse>* CentralServer::Stub::AsyncGetGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGetGlobalStateRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status CentralService::Stub::UpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::myproject::UpdateGlobalStateResponse* response) {
+::grpc::Status CentralServer::Stub::UpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::myproject::UpdateGlobalStateResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::myproject::UpdateGlobalStateRequest, ::myproject::UpdateGlobalStateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UpdateGlobalState_, context, request, response);
 }
 
-void CentralService::Stub::async::UpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest* request, ::myproject::UpdateGlobalStateResponse* response, std::function<void(::grpc::Status)> f) {
+void CentralServer::Stub::async::UpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest* request, ::myproject::UpdateGlobalStateResponse* response, std::function<void(::grpc::Status)> f) {
   ::grpc::internal::CallbackUnaryCall< ::myproject::UpdateGlobalStateRequest, ::myproject::UpdateGlobalStateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateGlobalState_, context, request, response, std::move(f));
 }
 
-void CentralService::Stub::async::UpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest* request, ::myproject::UpdateGlobalStateResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void CentralServer::Stub::async::UpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest* request, ::myproject::UpdateGlobalStateResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UpdateGlobalState_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::UpdateGlobalStateResponse>* CentralService::Stub::PrepareAsyncUpdateGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::myproject::UpdateGlobalStateResponse>* CentralServer::Stub::PrepareAsyncUpdateGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::myproject::UpdateGlobalStateResponse, ::myproject::UpdateGlobalStateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UpdateGlobalState_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::UpdateGlobalStateResponse>* CentralService::Stub::AsyncUpdateGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::myproject::UpdateGlobalStateResponse>* CentralServer::Stub::AsyncUpdateGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncUpdateGlobalStateRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-CentralService::Service::Service() {
+CentralServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CentralService_method_names[0],
+      CentralServer_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CentralService::Service, ::myproject::GlobalStateRequest, ::myproject::GlobalStateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](CentralService::Service* service,
+      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::myproject::GlobalStateRequest, ::myproject::GlobalStateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](CentralServer::Service* service,
              ::grpc::ServerContext* ctx,
              const ::myproject::GlobalStateRequest* req,
              ::myproject::GlobalStateResponse* resp) {
                return service->GetGlobalState(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      CentralService_method_names[1],
+      CentralServer_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CentralService::Service, ::myproject::UpdateGlobalStateRequest, ::myproject::UpdateGlobalStateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](CentralService::Service* service,
+      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::myproject::UpdateGlobalStateRequest, ::myproject::UpdateGlobalStateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](CentralServer::Service* service,
              ::grpc::ServerContext* ctx,
              const ::myproject::UpdateGlobalStateRequest* req,
              ::myproject::UpdateGlobalStateResponse* resp) {
@@ -106,17 +106,17 @@ CentralService::Service::Service() {
              }, this)));
 }
 
-CentralService::Service::~Service() {
+CentralServer::Service::~Service() {
 }
 
-::grpc::Status CentralService::Service::GetGlobalState(::grpc::ServerContext* context, const ::myproject::GlobalStateRequest* request, ::myproject::GlobalStateResponse* response) {
+::grpc::Status CentralServer::Service::GetGlobalState(::grpc::ServerContext* context, const ::myproject::GlobalStateRequest* request, ::myproject::GlobalStateResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status CentralService::Service::UpdateGlobalState(::grpc::ServerContext* context, const ::myproject::UpdateGlobalStateRequest* request, ::myproject::UpdateGlobalStateResponse* response) {
+::grpc::Status CentralServer::Service::UpdateGlobalState(::grpc::ServerContext* context, const ::myproject::UpdateGlobalStateRequest* request, ::myproject::UpdateGlobalStateResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -11,7 +11,7 @@ public:
     std::string Login(const std::string& username, const std::string& password);
 
 private:
-    std::unique_ptr<myproject::LoginService::Stub> stub_;
+    std::unique_ptr<myproject::LoginServer::Stub> stub_;
 };
 
 #endif // !GATEWAY_SERVICE_H

@@ -6,10 +6,10 @@
 #include <mysqlx/xdevapi.h> // mysql
 
 // 数据库服务实现类
-class DatabaseServiceImpl final : public myproject::DatabaseService::Service {
+class DatabaseServerImpl final : public myproject::DatabaseServer::Service {
 public:
-	explicit DatabaseServiceImpl(mysqlx::Session& DBlink_); // 构造函数：传入数据库链接
-    ~DatabaseServiceImpl() override; // 添加析构函数声明
+	explicit DatabaseServerImpl(mysqlx::Session& DBlink_); // 构造函数：传入数据库链接
+    ~DatabaseServerImpl() override; // 添加析构函数声明
 
 	// 服务实现
     grpc::Status Create(grpc::ServerContext* context, const myproject::CreateRequest* request, myproject::CreateResponse* response) override;

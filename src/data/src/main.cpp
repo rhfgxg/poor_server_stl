@@ -50,7 +50,7 @@ mysqlx::Session sql_link()
 void RunServer(mysqlx::Session& session)
 {
     std::cout << "正在启动登录服务器..." << std::endl; // 输出服务器启动信息
-    DatabaseServiceImpl service(session); // 数据库rpc服务实现
+    DatabaseServerImpl service(session); // 数据库rpc服务实现
 
     grpc::ServerBuilder builder;
     std::string server_address("0.0.0.0:50052");

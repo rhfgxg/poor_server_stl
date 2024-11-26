@@ -261,19 +261,19 @@ const char descriptor_table_protodef_server_5flogin_2eproto[] PROTOBUF_SECTION_V
     "\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"$\n\023Aut"
     "henticateRequest\022\r\n\005token\030\001 \001(\014\"8\n\024Authe"
     "nticateResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007mess"
-    "age\030\002 \001(\0142\340\001\n\014LoginService\022:\n\005Login\022\027.my"
-    "project.LoginRequest\032\030.myproject.LoginRe"
-    "sponse\022C\n\010Register\022\032.myproject.RegisterR"
-    "equest\032\033.myproject.RegisterResponse\022O\n\014A"
-    "uthenticate\022\036.myproject.AuthenticateRequ"
-    "est\032\037.myproject.AuthenticateResponseb\006pr"
-    "oto3"
+    "age\030\002 \001(\0142\337\001\n\013LoginServer\022:\n\005Login\022\027.myp"
+    "roject.LoginRequest\032\030.myproject.LoginRes"
+    "ponse\022C\n\010Register\022\032.myproject.RegisterRe"
+    "quest\032\033.myproject.RegisterResponse\022O\n\014Au"
+    "thenticate\022\036.myproject.AuthenticateReque"
+    "st\032\037.myproject.AuthenticateResponseb\006pro"
+    "to3"
 };
 static ::absl::once_flag descriptor_table_server_5flogin_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5flogin_2eproto = {
     false,
     false,
-    604,
+    603,
     descriptor_table_protodef_server_5flogin_2eproto,
     "server_login.proto",
     &descriptor_table_server_5flogin_2eproto_once,

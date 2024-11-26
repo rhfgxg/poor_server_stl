@@ -1,7 +1,8 @@
 #include "./gateway_service.h"
 
 // GatewayService 构造函数，初始化 stub_
-GatewayService::GatewayService(std::shared_ptr<grpc::Channel> channel) : stub_(myproject::LoginService::NewStub(channel)) 
+GatewayService::GatewayService(std::shared_ptr<grpc::Channel> channel) : 
+    stub_(myproject::LoginServer::NewStub(channel)) 
 {
 
 }

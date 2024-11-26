@@ -837,12 +837,12 @@ class CreateRequest_DataEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
           CreateRequest_DataEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-          ::google::protobuf::internal::WireFormatLite::TYPE_STRING> {
+          ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
       CreateRequest_DataEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>;
+      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
   CreateRequest_DataEntry_DoNotUse();
   template <typename = void>
   explicit PROTOBUF_CONSTEXPR CreateRequest_DataEntry_DoNotUse(
@@ -855,9 +855,7 @@ class CreateRequest_DataEntry_DoNotUse final
   static bool ValidateKey(std::string* s) {
     return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.CreateRequest.DataEntry.key");
  }
-  static bool ValidateValue(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.CreateRequest.DataEntry.value");
- }
+  static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
   friend struct ::TableStruct_server_5fdata_2eproto;
 };
@@ -1689,7 +1687,7 @@ class DeleteRequest final :
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_query();
 
   public:
-  // string database = 1;
+  // bytes database = 1;
   void clear_database() ;
   const std::string& database() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1705,7 +1703,7 @@ class DeleteRequest final :
   std::string* _internal_mutable_database();
 
   public:
-  // string table = 2;
+  // bytes table = 2;
   void clear_table() ;
   const std::string& table() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1728,7 +1726,7 @@ class DeleteRequest final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      50, 2>
+      37, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1894,7 +1892,7 @@ class CreateRequest final :
     kDatabaseFieldNumber = 1,
     kTableFieldNumber = 2,
   };
-  // map<string, string> data = 3;
+  // map<string, bytes> data = 3;
   int data_size() const;
   private:
   int _internal_data_size() const;
@@ -1966,7 +1964,7 @@ class CreateRequest final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::MapField<CreateRequest_DataEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-                      ::google::protobuf::internal::WireFormatLite::TYPE_STRING>
+                      ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         data_;
     ::google::protobuf::internal::ArenaStringPtr database_;
     ::google::protobuf::internal::ArenaStringPtr table_;
@@ -2101,7 +2099,7 @@ inline void CreateRequest::set_allocated_table(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.CreateRequest.table)
 }
 
-// map<string, string> data = 3;
+// map<string, bytes> data = 3;
 inline int CreateRequest::_internal_data_size() const {
   return _internal_data().size();
 }
@@ -2715,7 +2713,7 @@ inline void UpdateResponse::set_allocated_message(std::string* value) {
 
 // DeleteRequest
 
-// string database = 1;
+// bytes database = 1;
 inline void DeleteRequest::clear_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.ClearToEmpty();
@@ -2730,7 +2728,7 @@ inline PROTOBUF_ALWAYS_INLINE void DeleteRequest::set_database(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.database_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.DeleteRequest.database)
 }
 inline std::string* DeleteRequest::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2768,7 +2766,7 @@ inline void DeleteRequest::set_allocated_database(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.DeleteRequest.database)
 }
 
-// string table = 2;
+// bytes table = 2;
 inline void DeleteRequest::clear_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.ClearToEmpty();
@@ -2783,7 +2781,7 @@ inline PROTOBUF_ALWAYS_INLINE void DeleteRequest::set_table(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.table_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.DeleteRequest.table)
 }
 inline std::string* DeleteRequest::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {

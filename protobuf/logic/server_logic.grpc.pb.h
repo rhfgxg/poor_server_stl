@@ -27,10 +27,10 @@
 
 namespace myproject {
 
-class LogicService final {
+class LogicServer final {
  public:
   static constexpr char const* service_full_name() {
-    return "myproject.LogicService";
+    return "myproject.LogicServer";
   }
   class StubInterface {
    public:

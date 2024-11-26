@@ -1,17 +1,17 @@
 #include "data_server.h"
 
-DatabaseServiceImpl::DatabaseServiceImpl(mysqlx::Session& DBlink_) :
+DatabaseServerImpl::DatabaseServerImpl(mysqlx::Session& DBlink_) :
 	DBlink(DBlink_)
 {
 
 }
 
-DatabaseServiceImpl::~DatabaseServiceImpl()
+DatabaseServerImpl::~DatabaseServerImpl()
 {
 
 }
 
-grpc::Status DatabaseServiceImpl::Create(grpc::ServerContext* context, const myproject::CreateRequest* request, myproject::CreateResponse* response)
+grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const myproject::CreateRequest* request, myproject::CreateResponse* response)
 {
 	// 获取请求参数
 	std::string db_name = request->database();
@@ -26,7 +26,7 @@ grpc::Status DatabaseServiceImpl::Create(grpc::ServerContext* context, const myp
 	return grpc::Status::OK;
 }
 
-grpc::Status DatabaseServiceImpl::Read(grpc::ServerContext* context, const myproject::ReadRequest* request, myproject::ReadResponse* response)
+grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const myproject::ReadRequest* request, myproject::ReadResponse* response)
 {
     try 
     {
@@ -79,7 +79,7 @@ grpc::Status DatabaseServiceImpl::Read(grpc::ServerContext* context, const mypro
     }
 }
 
-grpc::Status DatabaseServiceImpl::Update(grpc::ServerContext* context, const myproject::UpdateRequest* request, myproject::UpdateResponse* response)
+grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const myproject::UpdateRequest* request, myproject::UpdateResponse* response)
 {
 	// 获取请求参数
 	std::string db_name = request->database();
@@ -94,7 +94,7 @@ grpc::Status DatabaseServiceImpl::Update(grpc::ServerContext* context, const myp
 	return grpc::Status::OK;
 }
 
-grpc::Status DatabaseServiceImpl::Delete(grpc::ServerContext* context, const myproject::DeleteRequest* request, myproject::DeleteResponse* response)
+grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const myproject::DeleteRequest* request, myproject::DeleteResponse* response)
 {
 	// 获取请求参数
 	std::string db_name = request->database();

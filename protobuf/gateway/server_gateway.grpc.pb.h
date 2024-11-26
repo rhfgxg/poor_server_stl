@@ -27,10 +27,10 @@
 
 namespace myproject {
 
-class GatewayService final {
+class GatewayServer final {
  public:
   static constexpr char const* service_full_name() {
-    return "myproject.GatewayService";
+    return "myproject.GatewayServer";
   }
   class StubInterface {
    public:
