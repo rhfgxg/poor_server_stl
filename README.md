@@ -11,8 +11,16 @@ c++（无qt库）的服务端版本
 5. 使用对象池管理项目中需要频繁创建删除的对象
 6. 结合lua语言实现配置文件等的热更新
 
+# 文件树
+tree.txt：文件树（包含其他文件的详细介绍）
+config/：系统配置文件
+protobuf/：各模块 grpc通信 proto协议文件
+src/：各模块源码文件
+tools/：工具文件
+
 # 项目中使用的第三方库
 所有第三方库文件都放在 vcpkg_installed/x64-windwos 文件夹下（需要使用vcpkg安装后，自动生成）
+第三方库的 debug模式的文件，放在 vcpkg_installed/x64-windwos/debug 文件夹下
 
 ## 第三方库列表
 仅包含直接使用的库列表
@@ -27,12 +35,13 @@ c++（无qt库）的服务端版本
 ### protobuf：客户端与服务器，服务器之间的通信协议
 这个需要用到proto编译器，这个文件在 /vcpkg_installed/x64-windows/tools/protobuf/protoc.exe
 生成 rpc服务文件时，需要用到 grpc_cpp_plugin.exe，这个文件需要先安装 grpc库，安装后保存在 /vcpkg_installed/x64-windows/tools/grpc/grpc_cpp_plugin.exe
-我这里使用 which指令寻找grpc_cpp_plugin工具时，一直找不到，所以使用的是相对路径
+我这里使用 which指令寻找 grpc_cpp_plugin工具时，一直找不到，所以使用的是相对路径
 _ grpc使用的通信协议中，string默认是 utf-8格式，与c++冲突，所以在编写 proto文件时，需要使用 bytes代替string
 
 #### 安装protobuf编译器
 这里使用的是 protobuf-3.21.12版本，最新版的在cmake文件夹中没有CMakeLists.txt文件，编译时会很麻烦
 【有道云笔记】protobuf安装与使用 https://note.youdao.com/s/C7fckSY5
+
 
 ### grpc：客户端与服务器，服务器之间的通信协议
 实现服务器之间的远程调用
