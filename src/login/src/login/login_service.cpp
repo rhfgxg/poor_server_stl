@@ -26,7 +26,17 @@ std::string LoginService::login_(const std::string& database, const std::string&
 
     if (status.ok())
     {
-        // 处理查询结果
+        // 打印查询结果
+        for (const auto& result : response.results())
+        {
+            std::cout << "查询结果: ";
+            for (const auto& field : result.fields())
+            {
+                std::cout << field.first << ": " << field.second << ", ";
+            }
+            std::cout << std::endl;
+        }
+
 		std::cout << "登录成功" << std::endl;
         return "登录成功"; // 返回响应消息
     }
@@ -46,7 +56,7 @@ RegisterService::RegisterService(std::shared_ptr<grpc::Channel> channel) :
 
 std::string RegisterService::register_(const std::string& database, const std::string& table, std::map<std::string, std::string> data)
 {
-    myproject::ReadRequest request;    // 传入参数
+    myproject::CreateRequest request;    // 传入参数
     request.set_database(database); // 设置查询数据库
     request.set_table(table); // 设置查询表
     // 设置添加的数据
@@ -55,10 +65,10 @@ std::string RegisterService::register_(const std::string& database, const std::s
         //(*request.mutable_data())[it.first] = it.second; // 设置添加的数据
     }
 
-    myproject::ReadResponse response;  // 返回参数
+    myproject::CreateResponse response;  // 返回参数
     grpc::ClientContext context;    // 包含 RPC 调用的元数据和其他信息。
 
-    grpc::Status status = stub_->Read(&context, request, &response); // 向数据库服务器发送查询请求
+    grpc::Status status = stub_->Create(&context, request, &response); // 向数据库服务器发送查询请求
 
     if (status.ok())
     {

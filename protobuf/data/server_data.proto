@@ -31,7 +31,12 @@ message ReadRequest {
 message ReadResponse {
     bool success = 1;
     bytes message = 2;
-    map<string, bytes> results = 3;  // 查询结果，多个键值对
+
+    repeated Result results = 3;  // 查询结果，多个匹配值
+
+    message Result {
+        map<string, bytes> fields = 1;  // 每个匹配值的多个字段
+    }
 }
 
 // 更新服务请求

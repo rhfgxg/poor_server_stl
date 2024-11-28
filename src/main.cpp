@@ -2,6 +2,6 @@
 
 int main()
 {
-	std::cout << "Ö÷Ä£¿é";
+	std::cout << "main module";
 	return 0;
 }

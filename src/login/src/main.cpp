@@ -21,6 +21,6 @@ void RunServer()
     builder.RegisterService(&login_server); // 注册服务
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // 构建并启动服务器
-    std::cout << "登录服务器正在运行..." << std::endl; // 输出服务器运行信息
+    std::cout << "LoginServer start..." << std::endl; // 输出服务器运行信息
     server->Wait(); // 等待服务器终止
 }

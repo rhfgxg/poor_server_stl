@@ -1,4 +1,6 @@
 #include "data_server.h"
+#include <codecvt>
+#include <locale>
 
 DatabaseServerImpl::DatabaseServerImpl(mysqlx::Session& DBlink_) :
 	DBlink(DBlink_)
@@ -11,6 +13,7 @@ DatabaseServerImpl::~DatabaseServerImpl()
 
 }
 
+// 添加
 grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const myproject::CreateRequest* request, myproject::CreateResponse* response)
 {
 	// 获取请求参数
@@ -26,6 +29,7 @@ grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const mypr
 	return grpc::Status::OK;
 }
 
+// 查询
 grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const myproject::ReadRequest* request, myproject::ReadResponse* response)
 {
     try 
@@ -47,10 +51,64 @@ grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const myproj
                 condition += " AND ";
             }
             condition += q.first + " = '" + q.second + "'";
-
-            std::cout << condition;
         }
 
+        // 执行查询
+        mysqlx::RowResult result = tbl.select("*").where(condition).execute();;
+
+        //// 设置响应：查询结果
+        //for (mysqlx::Row row : result)
+        //{
+        //    myproject::ReadResponse::Result* response_result = response->add_results();
+        //    for (size_t i = 0; i < row.colCount(); ++i)
+        //    {
+        //        std::string column_name = result.getColumn(i).getColumnName();
+        //        std::string column_value;
+        //        if (row[i].isNull())
+        //        {
+        //            column_value = "NULL";
+        //        }
+        //        else if (row[i].getType() == mysqlx::Value::Type::STRING) {
+        //            column_value = row[i].get<std::string>();
+        //        }
+        //        else if (row[i].getType() == mysqlx::Value::Type::VNULL) {
+        //            column_value = "VNULL";
+        //        }
+        //        else if (row[i].getType() == mysqlx::Value::Type::INT64) {
+        //            column_value = std::to_string(row[i].get<int64_t>());
+        //        }
+        //        else if (row[i].getType() == mysqlx::Value::Type::UINT64) {
+        //            column_value = std::to_string(row[i].get<uint64_t>());
+        //        }
+        //        else if (row[i].getType() == mysqlx::Value::Type::FLOAT) {
+        //            column_value = std::to_string(row[i].get<float>());
+        //        }
+        //        else if (row[i].getType() == mysqlx::Value::Type::DOUBLE) {
+        //            column_value = std::to_string(row[i].get<double>());
+        //        }
+        //        else if (row[i].getType() == mysqlx::Value::Type::BOOL) {
+        //            column_value = row[i].get<bool>() ? "true" : "false";
+        //        }
+        //        else if (row[i].getType() == mysqlx::Value::Type::RAW) {
+        //            column_value = "Raw Data"; // 需要进一步处理原始数据
+        //        }
+        //        else {
+        //            column_value = "Unsupported Type";
+        //        }
+        //        response_result->mutable_fields()->insert({ column_name, column_value });
+        //    }
+        //}
+
+        // 打印查询结果
+        std::cout << "查询结果: " << std::endl;
+        for (mysqlx::Row row : result)
+        {
+            for (size_t i = 0; i < row.colCount(); ++i)
+            {
+                std::cout << result.getColumn(i).getColumnName() << ": " << row[i].get<std::string>() << " ";
+            }
+            std::cout << std::endl;
+        }
 
         response->set_success(true);
         response->set_message("查询成功");
@@ -79,6 +137,7 @@ grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const myproj
     }
 }
 
+// 更新
 grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const myproject::UpdateRequest* request, myproject::UpdateResponse* response)
 {
 	// 获取请求参数
@@ -94,6 +153,7 @@ grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const mypr
 	return grpc::Status::OK;
 }
 
+// 删除
 grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const myproject::DeleteRequest* request, myproject::DeleteResponse* response)
 {
 	// 获取请求参数

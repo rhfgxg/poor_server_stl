@@ -49,7 +49,6 @@ mysqlx::Session sql_link()
 
 void RunServer(mysqlx::Session& session)
 {
-    std::cout << "正在启动登录服务器..." << std::endl; // 输出服务器启动信息
     DatabaseServerImpl service(session); // 数据库rpc服务实现
 
     grpc::ServerBuilder builder;
@@ -58,6 +57,6 @@ void RunServer(mysqlx::Session& session)
     builder.RegisterService(&service);
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-    std::cout << "登录服务器正在运行..." << std::endl;
+    std::cout << "DataServer start..." << std::endl; // 输出服务器启动信息
     server->Wait();
 }
