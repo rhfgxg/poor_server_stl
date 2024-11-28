@@ -37,12 +37,12 @@ int main()
         */
 
         // 模拟登录数据
-        std::string username = "李宏伟";
-        std::string password = "123456";
+        std::string user_name = "lhw";
+        std::string password = "159357";
 
         // 调用登录服务器
         GatewayService gateway_service(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
-        std::string response = gateway_service.Login(username, password);
+        std::string response = gateway_service.Login(user_name, password);
 
         // 输出响应
         std::cout << "登录响应: " << response << std::endl;
