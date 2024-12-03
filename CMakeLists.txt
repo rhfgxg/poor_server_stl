@@ -28,7 +28,7 @@ set(SOURCES
 
 # 添加每个模块
 add_subdirectory(protobuf)
-# add_subdirectory(./src/central)
+add_subdirectory(./src/central)
 add_subdirectory(./src/data)
 add_subdirectory(./src/gateway)
 # add_subdirectory(./src/logic)

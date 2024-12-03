@@ -12,10 +12,14 @@ public:
     ~DatabaseServerImpl() override; // 添加析构函数声明
 
 	// 服务实现
+	// 添加数据库记录
     grpc::Status Create(grpc::ServerContext* context, const myproject::CreateRequest* request, myproject::CreateResponse* response) override;
+	// 读取数据库记录
     grpc::Status Read(grpc::ServerContext* context, const myproject::ReadRequest* request, myproject::ReadResponse* response) override;
-    grpc::Status Update(grpc::ServerContext* context, const myproject::UpdateRequest* request, myproject::UpdateResponse* response) override;
-    grpc::Status Delete(grpc::ServerContext* context, const myproject::DeleteRequest* request, myproject::DeleteResponse* response) override;
+	// 更新数据库记录
+	grpc::Status Update(grpc::ServerContext* context, const myproject::UpdateRequest* request, myproject::UpdateResponse* response) override;
+	// 删除数据库记录
+	grpc::Status Delete(grpc::ServerContext* context, const myproject::DeleteRequest* request, myproject::DeleteResponse* response) override;
 
 private:
 	mysqlx::Session& DBlink; // 数据库链接

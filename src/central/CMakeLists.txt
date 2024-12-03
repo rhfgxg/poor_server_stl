@@ -111,6 +111,11 @@ target_link_libraries(${MODULE_NAME} PRIVATE
     # address_sorting 库
     debug "${VCPKG_DEBUG_LIB}/address_sorting.lib"
     optimized "${VCPKG_LIB}/address_sorting.lib"
+    # cpp_redis 和 tacopie 库
+    debug "${VCPKG_DEBUG_LIB}/cpp_redis.lib"
+    optimized "${VCPKG_LIB}/cpp_redis.lib"
+    debug "${VCPKG_DEBUG_LIB}/tacopie.lib"
+    optimized "${VCPKG_LIB}/tacopie.lib"
 )
 
 # 创建一个列表，包含所有需要复制的 .dll 文件
@@ -139,7 +144,6 @@ else()
         "${VCPKG_BIN}/cares.dll"
     )
 endif()
-
 # 遍历 dll列表，将所有 .dll 文件，逐一复制到可执行文件所在目录
 foreach(DLL_FILE ${DLL_FILES})
     add_custom_command(TARGET ${MODULE_NAME} POST_BUILD

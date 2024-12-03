@@ -6,6 +6,13 @@
       "UserName": "root",
       "Password": "159357"
     }
-    
+
+  },
+
+  "redis": {
+    "central_server": {
+      "Host": "127.0.0.1",
+      "Port": "6379"
+    }
   }
 }
