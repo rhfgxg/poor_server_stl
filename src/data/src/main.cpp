@@ -1,4 +1,5 @@
 #include "./data/data_server.h"
+#include "../../central/src/central/central_server.h"
 
 #include <iostream>
 #include <grpcpp/grpcpp.h>
@@ -6,7 +7,7 @@
 #include <cstdlib> // 使用 std::exit
 
 mysqlx::Session sql_link(); // 链接数据库
-void RunServer(mysqlx::Session&);    // 运行服务器
+void RunServer(mysqlx::Session& sql_link);    // 运行服务器
 
 int main()
 {
@@ -47,9 +48,9 @@ mysqlx::Session sql_link()
     }
 }
 
-void RunServer(mysqlx::Session& session)
+void RunServer(mysqlx::Session& sql_link)
 {
-    DatabaseServerImpl service(session); // 数据库rpc服务实现
+    DatabaseServerImpl service(sql_link); // 数据库rpc服务实现，传入数据库链接
 
     grpc::ServerBuilder builder;
     std::string server_address("0.0.0.0:50052");

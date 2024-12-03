@@ -20,7 +20,6 @@ set(SOURCES
     # 源文件
     ${PROJECT_SOURCE_DIR}/src/login/src/main.cpp
     ${PROJECT_SOURCE_DIR}/src/login/src/login/login_server.cpp
-    ${PROJECT_SOURCE_DIR}/src/login/src/login/login_service.cpp
     # protobuf 生成的源文件
     ${PROJECT_SOURCE_DIR}/protobuf/login/server_login.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/login/server_login.grpc.pb.cc

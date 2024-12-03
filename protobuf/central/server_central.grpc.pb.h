@@ -35,65 +35,65 @@ class CentralServer final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status GetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::myproject::GlobalStateResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::GlobalStateResponse>> AsyncGetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::GlobalStateResponse>>(AsyncGetGlobalStateRaw(context, request, cq));
+    virtual ::grpc::Status RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::myproject::RegisterServerResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>> AsyncRegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>>(AsyncRegisterServerRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::GlobalStateResponse>> PrepareAsyncGetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::GlobalStateResponse>>(PrepareAsyncGetGlobalStateRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>> PrepareAsyncRegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>>(PrepareAsyncRegisterServerRaw(context, request, cq));
     }
-    // 请求全局状态服务
-    virtual ::grpc::Status UpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::myproject::UpdateGlobalStateResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateGlobalStateResponse>> AsyncUpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateGlobalStateResponse>>(AsyncUpdateGlobalStateRaw(context, request, cq));
+    // 注册服务器
+    virtual ::grpc::Status GetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::myproject::ServerInfoResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ServerInfoResponse>> AsyncGetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ServerInfoResponse>>(AsyncGetServerInfoRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateGlobalStateResponse>> PrepareAsyncUpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateGlobalStateResponse>>(PrepareAsyncUpdateGlobalStateRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ServerInfoResponse>> PrepareAsyncGetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ServerInfoResponse>>(PrepareAsyncGetServerInfoRaw(context, request, cq));
     }
-    // 更新全局状态服务
+    // 获取目标服务器信息
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void GetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest* request, ::myproject::GlobalStateResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest* request, ::myproject::GlobalStateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 请求全局状态服务
-      virtual void UpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest* request, ::myproject::UpdateGlobalStateResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void UpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest* request, ::myproject::UpdateGlobalStateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 更新全局状态服务
+      virtual void RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 注册服务器
+      virtual void GetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest* request, ::myproject::ServerInfoResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest* request, ::myproject::ServerInfoResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 获取目标服务器信息
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::GlobalStateResponse>* AsyncGetGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::GlobalStateResponse>* PrepareAsyncGetGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateGlobalStateResponse>* AsyncUpdateGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateGlobalStateResponse>* PrepareAsyncUpdateGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>* AsyncRegisterServerRaw(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>* PrepareAsyncRegisterServerRaw(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ServerInfoResponse>* AsyncGetServerInfoRaw(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ServerInfoResponse>* PrepareAsyncGetServerInfoRaw(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status GetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::myproject::GlobalStateResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::GlobalStateResponse>> AsyncGetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::GlobalStateResponse>>(AsyncGetGlobalStateRaw(context, request, cq));
+    ::grpc::Status RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::myproject::RegisterServerResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>> AsyncRegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>>(AsyncRegisterServerRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::GlobalStateResponse>> PrepareAsyncGetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::GlobalStateResponse>>(PrepareAsyncGetGlobalStateRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>> PrepareAsyncRegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>>(PrepareAsyncRegisterServerRaw(context, request, cq));
     }
-    ::grpc::Status UpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::myproject::UpdateGlobalStateResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::UpdateGlobalStateResponse>> AsyncUpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::UpdateGlobalStateResponse>>(AsyncUpdateGlobalStateRaw(context, request, cq));
+    ::grpc::Status GetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::myproject::ServerInfoResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ServerInfoResponse>> AsyncGetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ServerInfoResponse>>(AsyncGetServerInfoRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::UpdateGlobalStateResponse>> PrepareAsyncUpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::UpdateGlobalStateResponse>>(PrepareAsyncUpdateGlobalStateRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ServerInfoResponse>> PrepareAsyncGetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ServerInfoResponse>>(PrepareAsyncGetServerInfoRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void GetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest* request, ::myproject::GlobalStateResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetGlobalState(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest* request, ::myproject::GlobalStateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void UpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest* request, ::myproject::UpdateGlobalStateResponse* response, std::function<void(::grpc::Status)>) override;
-      void UpdateGlobalState(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest* request, ::myproject::UpdateGlobalStateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response, std::function<void(::grpc::Status)>) override;
+      void RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest* request, ::myproject::ServerInfoResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest* request, ::myproject::ServerInfoResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -105,12 +105,12 @@ class CentralServer final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::myproject::GlobalStateResponse>* AsyncGetGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::GlobalStateResponse>* PrepareAsyncGetGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::GlobalStateRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::UpdateGlobalStateResponse>* AsyncUpdateGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::UpdateGlobalStateResponse>* PrepareAsyncUpdateGlobalStateRaw(::grpc::ClientContext* context, const ::myproject::UpdateGlobalStateRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_GetGlobalState_;
-    const ::grpc::internal::RpcMethod rpcmethod_UpdateGlobalState_;
+    ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>* AsyncRegisterServerRaw(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>* PrepareAsyncRegisterServerRaw(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::myproject::ServerInfoResponse>* AsyncGetServerInfoRaw(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::myproject::ServerInfoResponse>* PrepareAsyncGetServerInfoRaw(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_RegisterServer_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetServerInfo_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -118,283 +118,283 @@ class CentralServer final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status GetGlobalState(::grpc::ServerContext* context, const ::myproject::GlobalStateRequest* request, ::myproject::GlobalStateResponse* response);
-    // 请求全局状态服务
-    virtual ::grpc::Status UpdateGlobalState(::grpc::ServerContext* context, const ::myproject::UpdateGlobalStateRequest* request, ::myproject::UpdateGlobalStateResponse* response);
-    // 更新全局状态服务
+    virtual ::grpc::Status RegisterServer(::grpc::ServerContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response);
+    // 注册服务器
+    virtual ::grpc::Status GetServerInfo(::grpc::ServerContext* context, const ::myproject::ServerInfoRequest* request, ::myproject::ServerInfoResponse* response);
+    // 获取目标服务器信息
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetGlobalState : public BaseClass {
+  class WithAsyncMethod_RegisterServer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_GetGlobalState() {
+    WithAsyncMethod_RegisterServer() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_GetGlobalState() override {
+    ~WithAsyncMethod_RegisterServer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetGlobalState(::grpc::ServerContext* /*context*/, const ::myproject::GlobalStateRequest* /*request*/, ::myproject::GlobalStateResponse* /*response*/) override {
+    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetGlobalState(::grpc::ServerContext* context, ::myproject::GlobalStateRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::GlobalStateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestRegisterServer(::grpc::ServerContext* context, ::myproject::RegisterServerRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::RegisterServerResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_UpdateGlobalState : public BaseClass {
+  class WithAsyncMethod_GetServerInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_UpdateGlobalState() {
+    WithAsyncMethod_GetServerInfo() {
       ::grpc::Service::MarkMethodAsync(1);
     }
-    ~WithAsyncMethod_UpdateGlobalState() override {
+    ~WithAsyncMethod_GetServerInfo() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateGlobalState(::grpc::ServerContext* /*context*/, const ::myproject::UpdateGlobalStateRequest* /*request*/, ::myproject::UpdateGlobalStateResponse* /*response*/) override {
+    ::grpc::Status GetServerInfo(::grpc::ServerContext* /*context*/, const ::myproject::ServerInfoRequest* /*request*/, ::myproject::ServerInfoResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpdateGlobalState(::grpc::ServerContext* context, ::myproject::UpdateGlobalStateRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::UpdateGlobalStateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetServerInfo(::grpc::ServerContext* context, ::myproject::ServerInfoRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::ServerInfoResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetGlobalState<WithAsyncMethod_UpdateGlobalState<Service > > AsyncService;
+  typedef WithAsyncMethod_RegisterServer<WithAsyncMethod_GetServerInfo<Service > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_GetGlobalState : public BaseClass {
+  class WithCallbackMethod_RegisterServer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetGlobalState() {
+    WithCallbackMethod_RegisterServer() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::myproject::GlobalStateRequest, ::myproject::GlobalStateResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::myproject::RegisterServerRequest, ::myproject::RegisterServerResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::myproject::GlobalStateRequest* request, ::myproject::GlobalStateResponse* response) { return this->GetGlobalState(context, request, response); }));}
-    void SetMessageAllocatorFor_GetGlobalState(
-        ::grpc::MessageAllocator< ::myproject::GlobalStateRequest, ::myproject::GlobalStateResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response) { return this->RegisterServer(context, request, response); }));}
+    void SetMessageAllocatorFor_RegisterServer(
+        ::grpc::MessageAllocator< ::myproject::RegisterServerRequest, ::myproject::RegisterServerResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::GlobalStateRequest, ::myproject::GlobalStateResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::RegisterServerRequest, ::myproject::RegisterServerResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetGlobalState() override {
+    ~WithCallbackMethod_RegisterServer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetGlobalState(::grpc::ServerContext* /*context*/, const ::myproject::GlobalStateRequest* /*request*/, ::myproject::GlobalStateResponse* /*response*/) override {
+    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetGlobalState(
-      ::grpc::CallbackServerContext* /*context*/, const ::myproject::GlobalStateRequest* /*request*/, ::myproject::GlobalStateResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* RegisterServer(
+      ::grpc::CallbackServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_UpdateGlobalState : public BaseClass {
+  class WithCallbackMethod_GetServerInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_UpdateGlobalState() {
+    WithCallbackMethod_GetServerInfo() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::myproject::UpdateGlobalStateRequest, ::myproject::UpdateGlobalStateResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::myproject::ServerInfoRequest, ::myproject::ServerInfoResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::myproject::UpdateGlobalStateRequest* request, ::myproject::UpdateGlobalStateResponse* response) { return this->UpdateGlobalState(context, request, response); }));}
-    void SetMessageAllocatorFor_UpdateGlobalState(
-        ::grpc::MessageAllocator< ::myproject::UpdateGlobalStateRequest, ::myproject::UpdateGlobalStateResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::myproject::ServerInfoRequest* request, ::myproject::ServerInfoResponse* response) { return this->GetServerInfo(context, request, response); }));}
+    void SetMessageAllocatorFor_GetServerInfo(
+        ::grpc::MessageAllocator< ::myproject::ServerInfoRequest, ::myproject::ServerInfoResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::UpdateGlobalStateRequest, ::myproject::UpdateGlobalStateResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::ServerInfoRequest, ::myproject::ServerInfoResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_UpdateGlobalState() override {
+    ~WithCallbackMethod_GetServerInfo() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateGlobalState(::grpc::ServerContext* /*context*/, const ::myproject::UpdateGlobalStateRequest* /*request*/, ::myproject::UpdateGlobalStateResponse* /*response*/) override {
+    ::grpc::Status GetServerInfo(::grpc::ServerContext* /*context*/, const ::myproject::ServerInfoRequest* /*request*/, ::myproject::ServerInfoResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* UpdateGlobalState(
-      ::grpc::CallbackServerContext* /*context*/, const ::myproject::UpdateGlobalStateRequest* /*request*/, ::myproject::UpdateGlobalStateResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* GetServerInfo(
+      ::grpc::CallbackServerContext* /*context*/, const ::myproject::ServerInfoRequest* /*request*/, ::myproject::ServerInfoResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_GetGlobalState<WithCallbackMethod_UpdateGlobalState<Service > > CallbackService;
+  typedef WithCallbackMethod_RegisterServer<WithCallbackMethod_GetServerInfo<Service > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_GetGlobalState : public BaseClass {
+  class WithGenericMethod_RegisterServer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_GetGlobalState() {
+    WithGenericMethod_RegisterServer() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_GetGlobalState() override {
+    ~WithGenericMethod_RegisterServer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetGlobalState(::grpc::ServerContext* /*context*/, const ::myproject::GlobalStateRequest* /*request*/, ::myproject::GlobalStateResponse* /*response*/) override {
+    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_UpdateGlobalState : public BaseClass {
+  class WithGenericMethod_GetServerInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_UpdateGlobalState() {
+    WithGenericMethod_GetServerInfo() {
       ::grpc::Service::MarkMethodGeneric(1);
     }
-    ~WithGenericMethod_UpdateGlobalState() override {
+    ~WithGenericMethod_GetServerInfo() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateGlobalState(::grpc::ServerContext* /*context*/, const ::myproject::UpdateGlobalStateRequest* /*request*/, ::myproject::UpdateGlobalStateResponse* /*response*/) override {
+    ::grpc::Status GetServerInfo(::grpc::ServerContext* /*context*/, const ::myproject::ServerInfoRequest* /*request*/, ::myproject::ServerInfoResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetGlobalState : public BaseClass {
+  class WithRawMethod_RegisterServer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_GetGlobalState() {
+    WithRawMethod_RegisterServer() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_GetGlobalState() override {
+    ~WithRawMethod_RegisterServer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetGlobalState(::grpc::ServerContext* /*context*/, const ::myproject::GlobalStateRequest* /*request*/, ::myproject::GlobalStateResponse* /*response*/) override {
+    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetGlobalState(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestRegisterServer(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_UpdateGlobalState : public BaseClass {
+  class WithRawMethod_GetServerInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_UpdateGlobalState() {
+    WithRawMethod_GetServerInfo() {
       ::grpc::Service::MarkMethodRaw(1);
     }
-    ~WithRawMethod_UpdateGlobalState() override {
+    ~WithRawMethod_GetServerInfo() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateGlobalState(::grpc::ServerContext* /*context*/, const ::myproject::UpdateGlobalStateRequest* /*request*/, ::myproject::UpdateGlobalStateResponse* /*response*/) override {
+    ::grpc::Status GetServerInfo(::grpc::ServerContext* /*context*/, const ::myproject::ServerInfoRequest* /*request*/, ::myproject::ServerInfoResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpdateGlobalState(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetServerInfo(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetGlobalState : public BaseClass {
+  class WithRawCallbackMethod_RegisterServer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetGlobalState() {
+    WithRawCallbackMethod_RegisterServer() {
       ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGlobalState(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->RegisterServer(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetGlobalState() override {
+    ~WithRawCallbackMethod_RegisterServer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetGlobalState(::grpc::ServerContext* /*context*/, const ::myproject::GlobalStateRequest* /*request*/, ::myproject::GlobalStateResponse* /*response*/) override {
+    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetGlobalState(
+    virtual ::grpc::ServerUnaryReactor* RegisterServer(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_UpdateGlobalState : public BaseClass {
+  class WithRawCallbackMethod_GetServerInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_UpdateGlobalState() {
+    WithRawCallbackMethod_GetServerInfo() {
       ::grpc::Service::MarkMethodRawCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->UpdateGlobalState(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetServerInfo(context, request, response); }));
     }
-    ~WithRawCallbackMethod_UpdateGlobalState() override {
+    ~WithRawCallbackMethod_GetServerInfo() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UpdateGlobalState(::grpc::ServerContext* /*context*/, const ::myproject::UpdateGlobalStateRequest* /*request*/, ::myproject::UpdateGlobalStateResponse* /*response*/) override {
+    ::grpc::Status GetServerInfo(::grpc::ServerContext* /*context*/, const ::myproject::ServerInfoRequest* /*request*/, ::myproject::ServerInfoResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* UpdateGlobalState(
+    virtual ::grpc::ServerUnaryReactor* GetServerInfo(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetGlobalState : public BaseClass {
+  class WithStreamedUnaryMethod_RegisterServer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_GetGlobalState() {
+    WithStreamedUnaryMethod_RegisterServer() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::myproject::GlobalStateRequest, ::myproject::GlobalStateResponse>(
+          ::myproject::RegisterServerRequest, ::myproject::RegisterServerResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::myproject::GlobalStateRequest, ::myproject::GlobalStateResponse>* streamer) {
-                       return this->StreamedGetGlobalState(context,
+                     ::myproject::RegisterServerRequest, ::myproject::RegisterServerResponse>* streamer) {
+                       return this->StreamedRegisterServer(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_GetGlobalState() override {
+    ~WithStreamedUnaryMethod_RegisterServer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetGlobalState(::grpc::ServerContext* /*context*/, const ::myproject::GlobalStateRequest* /*request*/, ::myproject::GlobalStateResponse* /*response*/) override {
+    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetGlobalState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::GlobalStateRequest,::myproject::GlobalStateResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedRegisterServer(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::RegisterServerRequest,::myproject::RegisterServerResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_UpdateGlobalState : public BaseClass {
+  class WithStreamedUnaryMethod_GetServerInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_UpdateGlobalState() {
+    WithStreamedUnaryMethod_GetServerInfo() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::myproject::UpdateGlobalStateRequest, ::myproject::UpdateGlobalStateResponse>(
+          ::myproject::ServerInfoRequest, ::myproject::ServerInfoResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::myproject::UpdateGlobalStateRequest, ::myproject::UpdateGlobalStateResponse>* streamer) {
-                       return this->StreamedUpdateGlobalState(context,
+                     ::myproject::ServerInfoRequest, ::myproject::ServerInfoResponse>* streamer) {
+                       return this->StreamedGetServerInfo(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_UpdateGlobalState() override {
+    ~WithStreamedUnaryMethod_GetServerInfo() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status UpdateGlobalState(::grpc::ServerContext* /*context*/, const ::myproject::UpdateGlobalStateRequest* /*request*/, ::myproject::UpdateGlobalStateResponse* /*response*/) override {
+    ::grpc::Status GetServerInfo(::grpc::ServerContext* /*context*/, const ::myproject::ServerInfoRequest* /*request*/, ::myproject::ServerInfoResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUpdateGlobalState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::UpdateGlobalStateRequest,::myproject::UpdateGlobalStateResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetServerInfo(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::ServerInfoRequest,::myproject::ServerInfoResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_GetGlobalState<WithStreamedUnaryMethod_UpdateGlobalState<Service > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_GetServerInfo<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetGlobalState<WithStreamedUnaryMethod_UpdateGlobalState<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_GetServerInfo<Service > > StreamedService;
 };
 
 }  // namespace myproject

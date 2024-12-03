@@ -1,14 +1,16 @@
 {
-	"port": 1234,
-  "data_servers": [
-    {
+  "port": 1234,
+  "central_server": {
+    "host": "localhost",
+    "port": 50050
+  },
+  "data_server": {
       "db_name": "users",
       "host": "localhost",
       "port": 50052
-    }
-  ]
+  },
   "login_server": {
     "host": "localhost",
     "port": 50051
-  }"
+  }
 }
