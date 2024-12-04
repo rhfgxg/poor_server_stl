@@ -13,6 +13,7 @@ set(VCPKG_DEBUG_BIN "${VCPKG_DIR}/debug/bin")
 # 包含自定义头文件的目录
 include_directories(
     ${PROJECT_SOURCE_DIR}/src/central/src/central
+    # 其他在顶级目录包含的头文件目录
 )
 
 # 需要编译的源文件列表

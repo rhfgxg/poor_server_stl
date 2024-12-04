@@ -23,6 +23,7 @@ namespace myproject {
 
 static const char* CentralServer_method_names[] = {
   "/myproject.CentralServer/RegisterServer",
+  "/myproject.CentralServer/UnregisterServer",
   "/myproject.CentralServer/GetServerInfo",
 };
 
@@ -34,7 +35,8 @@ std::unique_ptr< CentralServer::Stub> CentralServer::NewStub(const std::shared_p
 
 CentralServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_RegisterServer_(CentralServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetServerInfo_(CentralServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UnregisterServer_(CentralServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetServerInfo_(CentralServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status CentralServer::Stub::RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::myproject::RegisterServerResponse* response) {
@@ -56,6 +58,29 @@ void CentralServer::Stub::async::RegisterServer(::grpc::ClientContext* context, 
 ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>* CentralServer::Stub::AsyncRegisterServerRaw(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncRegisterServerRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status CentralServer::Stub::UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::myproject::UnregisterServerResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::myproject::UnregisterServerRequest, ::myproject::UnregisterServerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UnregisterServer_, context, request, response);
+}
+
+void CentralServer::Stub::async::UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::myproject::UnregisterServerRequest, ::myproject::UnregisterServerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnregisterServer_, context, request, response, std::move(f));
+}
+
+void CentralServer::Stub::async::UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnregisterServer_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::myproject::UnregisterServerResponse>* CentralServer::Stub::PrepareAsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::myproject::UnregisterServerResponse, ::myproject::UnregisterServerRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UnregisterServer_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::myproject::UnregisterServerResponse>* CentralServer::Stub::AsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUnregisterServerRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -97,6 +122,16 @@ CentralServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CentralServer_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::myproject::UnregisterServerRequest, ::myproject::UnregisterServerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](CentralServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::myproject::UnregisterServerRequest* req,
+             ::myproject::UnregisterServerResponse* resp) {
+               return service->UnregisterServer(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      CentralServer_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::myproject::ServerInfoRequest, ::myproject::ServerInfoResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CentralServer::Service* service,
              ::grpc::ServerContext* ctx,
@@ -110,6 +145,13 @@ CentralServer::Service::~Service() {
 }
 
 ::grpc::Status CentralServer::Service::RegisterServer(::grpc::ServerContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status CentralServer::Service::UnregisterServer(::grpc::ServerContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response) {
   (void) context;
   (void) request;
   (void) response;

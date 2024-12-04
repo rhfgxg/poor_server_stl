@@ -25,26 +25,35 @@ tools/：工具文件
 ## 第三方库列表
 仅包含直接使用的库列表
 
-### boost：网络库
-
-### mysql-connector-cpp：mysql库
-使用mysqlx协议，所以链接数据库的端口是33060
-
-### nlohmann-json：json操作库
-
-### protobuf：客户端与服务器，服务器之间的通信协议
-这个需要用到proto编译器，这个文件在 /vcpkg_installed/x64-windows/tools/protobuf/protoc.exe
-生成 rpc服务文件时，需要用到 grpc_cpp_plugin.exe，这个文件需要先安装 grpc库，安装后保存在 /vcpkg_installed/x64-windows/tools/grpc/grpc_cpp_plugin.exe
-我这里使用 which指令寻找 grpc_cpp_plugin工具时，一直找不到，所以使用的是相对路径
-_ grpc使用的通信协议中，string默认是 utf-8格式，与c++冲突，所以在编写 proto文件时，需要使用 bytes代替string
-
-#### 安装protobuf编译器
-这里使用的是 protobuf-3.21.12版本，最新版的在cmake文件夹中没有CMakeLists.txt文件，编译时会很麻烦
-【有道云笔记】protobuf安装与使用 https://note.youdao.com/s/C7fckSY5
-
+### 网络库
+boost库
 
 ### grpc：客户端与服务器，服务器之间的通信协议
+grpc库
 实现服务器之间的远程调用
+
+### mysql库
+mysql-connector-cpp库
+使用mysqlx协议，所以链接数据库的端口是33060
+
+### redis：缓存库
+cpp-redis库
+tacopie库
+redis在windows下构建时，会导致一些异常，所以需要使用类进行包装，然后使用类的方法来操作redis（详见 central_server.h）
+
+### json操作
+nlohmann-json库
+
+### protobuf：客户端与服务器，服务器之间的数据序列化
+protobuf库：包含在 grpc库中
+
+生成文件用到 protoc编译器，这个文件在 /vcpkg_installed/x64-windows/tools/protobuf/protoc.exe
+生成 rpc服务文件时，需要用到 grpc_cpp_plugin.exe，这个文件需要先安装 grpc库，安装后保存在 /vcpkg_installed/x64-windows/tools/grpc/grpc_cpp_plugin.exe
+
+我这里使用 which指令寻找 grpc_cpp_plugin工具时，一直找不到，所以使用的是相对路径
+proto 中，string默认是 utf-8格式，与c++冲突，所以在编写 proto文件时，需要使用 bytes代替string
+
+
 
 
 # 各服务器模块功能

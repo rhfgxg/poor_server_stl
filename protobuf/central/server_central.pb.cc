@@ -22,6 +22,49 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace myproject {
 
+inline constexpr UnregisterServerResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UnregisterServerResponse::UnregisterServerResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct UnregisterServerResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UnregisterServerResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UnregisterServerResponseDefaultTypeInternal() {}
+  union {
+    UnregisterServerResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UnregisterServerResponseDefaultTypeInternal _UnregisterServerResponse_default_instance_;
+
+inline constexpr UnregisterServerRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : server_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UnregisterServerRequest::UnregisterServerRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct UnregisterServerRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UnregisterServerRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UnregisterServerRequestDefaultTypeInternal() {}
+  union {
+    UnregisterServerRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UnregisterServerRequestDefaultTypeInternal _UnregisterServerRequest_default_instance_;
+
 inline constexpr ServerInfoResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : address_(
@@ -116,7 +159,7 @@ struct RegisterServerRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RegisterServerRequestDefaultTypeInternal _RegisterServerRequest_default_instance_;
 }  // namespace myproject
-static ::_pb::Metadata file_level_metadata_server_5fcentral_2eproto[4];
+static ::_pb::Metadata file_level_metadata_server_5fcentral_2eproto[6];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_server_5fcentral_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
@@ -145,6 +188,25 @@ const ::uint32_t TableStruct_server_5fcentral_2eproto::offsets[] PROTOBUF_SECTIO
     PROTOBUF_FIELD_OFFSET(::myproject::RegisterServerResponse, _impl_.success_),
     PROTOBUF_FIELD_OFFSET(::myproject::RegisterServerResponse, _impl_.message_),
     ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::myproject::UnregisterServerRequest, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::myproject::UnregisterServerRequest, _impl_.server_name_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::myproject::UnregisterServerResponse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::myproject::UnregisterServerResponse, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::myproject::UnregisterServerResponse, _impl_.message_),
+    ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::myproject::ServerInfoRequest, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
@@ -171,13 +233,17 @@ static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::myproject::RegisterServerRequest)},
         {11, -1, -1, sizeof(::myproject::RegisterServerResponse)},
-        {21, -1, -1, sizeof(::myproject::ServerInfoRequest)},
-        {30, -1, -1, sizeof(::myproject::ServerInfoResponse)},
+        {21, -1, -1, sizeof(::myproject::UnregisterServerRequest)},
+        {30, -1, -1, sizeof(::myproject::UnregisterServerResponse)},
+        {40, -1, -1, sizeof(::myproject::ServerInfoRequest)},
+        {49, -1, -1, sizeof(::myproject::ServerInfoResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::myproject::_RegisterServerRequest_default_instance_._instance,
     &::myproject::_RegisterServerResponse_default_instance_._instance,
+    &::myproject::_UnregisterServerRequest_default_instance_._instance,
+    &::myproject::_UnregisterServerResponse_default_instance_._instance,
     &::myproject::_ServerInfoRequest_default_instance_._instance,
     &::myproject::_ServerInfoResponse_default_instance_._instance,
 };
@@ -186,27 +252,32 @@ const char descriptor_table_protodef_server_5fcentral_2eproto[] PROTOBUF_SECTION
     "isterServerRequest\022\023\n\013server_name\030\001 \001(\t\022"
     "\017\n\007address\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\":\n\026Regist"
     "erServerResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007mes"
-    "sage\030\002 \001(\014\"(\n\021ServerInfoRequest\022\023\n\013serve"
-    "r_name\030\001 \001(\t\"U\n\022ServerInfoResponse\022\017\n\007su"
-    "ccess\030\001 \001(\010\022\017\n\007address\030\002 \001(\t\022\014\n\004port\030\003 \001"
-    "(\005\022\017\n\007message\030\004 \001(\0142\264\001\n\rCentralServer\022U\n"
-    "\016RegisterServer\022 .myproject.RegisterServ"
-    "erRequest\032!.myproject.RegisterServerResp"
-    "onse\022L\n\rGetServerInfo\022\034.myproject.Server"
-    "InfoRequest\032\035.myproject.ServerInfoRespon"
-    "seb\006proto3"
+    "sage\030\002 \001(\014\".\n\027UnregisterServerRequest\022\023\n"
+    "\013server_name\030\001 \001(\t\"<\n\030UnregisterServerRe"
+    "sponse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014"
+    "\"(\n\021ServerInfoRequest\022\023\n\013server_name\030\001 \001"
+    "(\t\"U\n\022ServerInfoResponse\022\017\n\007success\030\001 \001("
+    "\010\022\017\n\007address\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\022\017\n\007mess"
+    "age\030\004 \001(\0142\221\002\n\rCentralServer\022U\n\016RegisterS"
+    "erver\022 .myproject.RegisterServerRequest\032"
+    "!.myproject.RegisterServerResponse\022[\n\020Un"
+    "registerServer\022\".myproject.UnregisterSer"
+    "verRequest\032#.myproject.UnregisterServerR"
+    "esponse\022L\n\rGetServerInfo\022\034.myproject.Ser"
+    "verInfoRequest\032\035.myproject.ServerInfoRes"
+    "ponseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fcentral_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fcentral_2eproto = {
     false,
     false,
-    490,
+    693,
     descriptor_table_protodef_server_5fcentral_2eproto,
     "server_central.proto",
     &descriptor_table_server_5fcentral_2eproto_once,
     nullptr,
     0,
-    4,
+    6,
     schemas,
     file_default_instances,
     TableStruct_server_5fcentral_2eproto::offsets,
@@ -691,6 +762,406 @@ void RegisterServerResponse::InternalSwap(RegisterServerResponse* PROTOBUF_RESTR
 }
 // ===================================================================
 
+class UnregisterServerRequest::_Internal {
+ public:
+};
+
+UnregisterServerRequest::UnregisterServerRequest(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:myproject.UnregisterServerRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE UnregisterServerRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : server_name_(arena, from.server_name_),
+        _cached_size_{0} {}
+
+UnregisterServerRequest::UnregisterServerRequest(
+    ::google::protobuf::Arena* arena,
+    const UnregisterServerRequest& from)
+    : ::google::protobuf::Message(arena) {
+  UnregisterServerRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:myproject.UnregisterServerRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE UnregisterServerRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : server_name_(arena),
+        _cached_size_{0} {}
+
+inline void UnregisterServerRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+UnregisterServerRequest::~UnregisterServerRequest() {
+  // @@protoc_insertion_point(destructor:myproject.UnregisterServerRequest)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UnregisterServerRequest::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.server_name_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UnregisterServerRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:myproject.UnregisterServerRequest)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.server_name_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UnregisterServerRequest::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 53, 2> UnregisterServerRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UnregisterServerRequest_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string server_name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.server_name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string server_name = 1;
+    {PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.server_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\41\13\0\0\0\0\0\0"
+    "myproject.UnregisterServerRequest"
+    "server_name"
+  }},
+};
+
+::uint8_t* UnregisterServerRequest::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:myproject.UnregisterServerRequest)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string server_name = 1;
+  if (!this->_internal_server_name().empty()) {
+    const std::string& _s = this->_internal_server_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UnregisterServerRequest.server_name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:myproject.UnregisterServerRequest)
+  return target;
+}
+
+::size_t UnregisterServerRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:myproject.UnregisterServerRequest)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string server_name = 1;
+  if (!this->_internal_server_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_server_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UnregisterServerRequest::_class_data_ = {
+    UnregisterServerRequest::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* UnregisterServerRequest::GetClassData() const {
+  return &_class_data_;
+}
+
+void UnregisterServerRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UnregisterServerRequest*>(&to_msg);
+  auto& from = static_cast<const UnregisterServerRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.UnregisterServerRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_server_name().empty()) {
+    _this->_internal_set_server_name(from._internal_server_name());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UnregisterServerRequest::CopyFrom(const UnregisterServerRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:myproject.UnregisterServerRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UnregisterServerRequest::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* UnregisterServerRequest::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UnregisterServerRequest::InternalSwap(UnregisterServerRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.server_name_, &other->_impl_.server_name_, arena);
+}
+
+::google::protobuf::Metadata UnregisterServerRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
+      file_level_metadata_server_5fcentral_2eproto[2]);
+}
+// ===================================================================
+
+class UnregisterServerResponse::_Internal {
+ public:
+};
+
+UnregisterServerResponse::UnregisterServerResponse(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:myproject.UnregisterServerResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE UnregisterServerResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+UnregisterServerResponse::UnregisterServerResponse(
+    ::google::protobuf::Arena* arena,
+    const UnregisterServerResponse& from)
+    : ::google::protobuf::Message(arena) {
+  UnregisterServerResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:myproject.UnregisterServerResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE UnregisterServerResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void UnregisterServerResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+UnregisterServerResponse::~UnregisterServerResponse() {
+  // @@protoc_insertion_point(destructor:myproject.UnregisterServerResponse)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UnregisterServerResponse::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UnregisterServerResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:myproject.UnregisterServerResponse)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UnregisterServerResponse::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UnregisterServerResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UnregisterServerResponse_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerResponse, _impl_.message_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UnregisterServerResponse, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerResponse, _impl_.success_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(UnregisterServerResponse, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bytes message = 2;
+    {PROTOBUF_FIELD_OFFSET(UnregisterServerResponse, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* UnregisterServerResponse::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:myproject.UnregisterServerResponse)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // bytes message = 2;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:myproject.UnregisterServerResponse)
+  return target;
+}
+
+::size_t UnregisterServerResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:myproject.UnregisterServerResponse)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes message = 2;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_message());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UnregisterServerResponse::_class_data_ = {
+    UnregisterServerResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* UnregisterServerResponse::GetClassData() const {
+  return &_class_data_;
+}
+
+void UnregisterServerResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UnregisterServerResponse*>(&to_msg);
+  auto& from = static_cast<const UnregisterServerResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.UnregisterServerResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UnregisterServerResponse::CopyFrom(const UnregisterServerResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:myproject.UnregisterServerResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UnregisterServerResponse::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* UnregisterServerResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UnregisterServerResponse::InternalSwap(UnregisterServerResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata UnregisterServerResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
+      file_level_metadata_server_5fcentral_2eproto[3]);
+}
+// ===================================================================
+
 class ServerInfoRequest::_Internal {
  public:
 };
@@ -877,7 +1348,7 @@ void ServerInfoRequest::InternalSwap(ServerInfoRequest* PROTOBUF_RESTRICT other)
 ::google::protobuf::Metadata ServerInfoRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
-      file_level_metadata_server_5fcentral_2eproto[2]);
+      file_level_metadata_server_5fcentral_2eproto[4]);
 }
 // ===================================================================
 
@@ -1158,7 +1629,7 @@ void ServerInfoResponse::InternalSwap(ServerInfoResponse* PROTOBUF_RESTRICT othe
 ::google::protobuf::Metadata ServerInfoResponse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
-      file_level_metadata_server_5fcentral_2eproto[3]);
+      file_level_metadata_server_5fcentral_2eproto[5]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace myproject
