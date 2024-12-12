@@ -2,21 +2,31 @@ syntax = "proto3";
 
 package myproject;
 
+enum ServiceType {
+    LOGIN = 0;            // 登录服务
+    LOGIC = 1;            // 逻辑服务
+    CENTRAL = 2;          // 中心服务
+    GATEWAY = 3;          // 网关服务
+    DATA = 4;             // 数据服务
+    AUTH = 5;             // 认证服务
+    CHAT = 6;             // 聊天服务
+    MATCHMAKING = 7;      // 匹配服务
+    PAYMENT = 8;          // 支付服务
+    NOTIFICATION = 9;     // 通知服务
+}
+
 service GatewayServer {
-    rpc RequestForward (ForwardRequest) returns (ForwardResponse);  // 中文注释：转发请求
+    rpc RequestForward (ForwardRequest) returns (ForwardResponse);  // 转发请求
 }
 
 // 传入请求
 message ForwardRequest {
-    bytes target_service = 1;
-    bytes payload = 2;
+    ServiceType service_type = 1;   // 目标服务枚举
+    bytes payload = 2;  // 负载
 }
+
 // 请求处理响应
 message ForwardResponse {
     bool success = 1;
     bytes response = 2;
 }
-
-
-
-

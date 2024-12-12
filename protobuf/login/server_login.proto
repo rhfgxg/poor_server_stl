@@ -41,5 +41,3 @@ message AuthenticateResponse {
     bool success = 1;
     bytes message = 2;
 }
-
-

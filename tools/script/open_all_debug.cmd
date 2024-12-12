@@ -10,6 +10,8 @@ rem 数据库服务器
 start "DataServer" cmd /k "%DEBUG_DIR%\src\data\data.exe"
 rem 登录服务器
 start "LoginServer" cmd /k "%DEBUG_DIR%\src\login\login.exe"
+rem 逻辑服务器
+rem start "LogicServer" cmd /k "%DEBUG_DIR%\src\logic\logic.exe"
 rem 网关服务器
 start "GatewayServer" cmd /k "%DEBUG_DIR%\src\gateway\gateway.exe"
 

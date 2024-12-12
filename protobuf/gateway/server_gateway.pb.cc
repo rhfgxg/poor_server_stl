@@ -46,12 +46,10 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr ForwardRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : target_service_(
+      : payload_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        payload_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
+        service_type_{static_cast< ::myproject::ServiceType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -69,8 +67,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ForwardRequestDefaultTypeInternal _ForwardRequest_default_instance_;
 }  // namespace myproject
 static ::_pb::Metadata file_level_metadata_server_5fgateway_2eproto[2];
-static constexpr const ::_pb::EnumDescriptor**
-    file_level_enum_descriptors_server_5fgateway_2eproto = nullptr;
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_server_5fgateway_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_server_5fgateway_2eproto = nullptr;
 const ::uint32_t TableStruct_server_5fgateway_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
@@ -83,7 +80,7 @@ const ::uint32_t TableStruct_server_5fgateway_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::ForwardRequest, _impl_.target_service_),
+    PROTOBUF_FIELD_OFFSET(::myproject::ForwardRequest, _impl_.service_type_),
     PROTOBUF_FIELD_OFFSET(::myproject::ForwardRequest, _impl_.payload_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::myproject::ForwardResponse, _internal_metadata_),
@@ -108,19 +105,23 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::myproject::_ForwardResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fgateway_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\024server_gateway.proto\022\tmyproject\"9\n\016For"
-    "wardRequest\022\026\n\016target_service\030\001 \001(\014\022\017\n\007p"
-    "ayload\030\002 \001(\014\"4\n\017ForwardResponse\022\017\n\007succe"
-    "ss\030\001 \001(\010\022\020\n\010response\030\002 \001(\0142X\n\rGatewaySer"
-    "ver\022G\n\016RequestForward\022\031.myproject.Forwar"
-    "dRequest\032\032.myproject.ForwardResponseb\006pr"
-    "oto3"
+    "\n\024server_gateway.proto\022\tmyproject\"O\n\016For"
+    "wardRequest\022,\n\014service_type\030\001 \001(\0162\026.mypr"
+    "oject.ServiceType\022\017\n\007payload\030\002 \001(\014\"4\n\017Fo"
+    "rwardResponse\022\017\n\007success\030\001 \001(\010\022\020\n\010respon"
+    "se\030\002 \001(\014*\213\001\n\013ServiceType\022\t\n\005LOGIN\020\000\022\t\n\005L"
+    "OGIC\020\001\022\013\n\007CENTRAL\020\002\022\013\n\007GATEWAY\020\003\022\010\n\004DATA"
+    "\020\004\022\010\n\004AUTH\020\005\022\010\n\004CHAT\020\006\022\017\n\013MATCHMAKING\020\007\022"
+    "\013\n\007PAYMENT\020\010\022\020\n\014NOTIFICATION\020\t2X\n\rGatewa"
+    "yServer\022G\n\016RequestForward\022\031.myproject.Fo"
+    "rwardRequest\032\032.myproject.ForwardResponse"
+    "b\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fgateway_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fgateway_2eproto = {
     false,
     false,
-    244,
+    408,
     descriptor_table_protodef_server_5fgateway_2eproto,
     "server_gateway.proto",
     &descriptor_table_server_5fgateway_2eproto_once,
@@ -153,6 +154,15 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_server_5
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_server_5fgateway_2eproto(&descriptor_table_server_5fgateway_2eproto);
 namespace myproject {
+const ::google::protobuf::EnumDescriptor* ServiceType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_server_5fgateway_2eproto);
+  return file_level_enum_descriptors_server_5fgateway_2eproto[0];
+}
+PROTOBUF_CONSTINIT const uint32_t ServiceType_internal_data_[] = {
+    655360u, 0u, };
+bool ServiceType_IsValid(int value) {
+  return 0 <= value && value <= 9;
+}
 // ===================================================================
 
 class ForwardRequest::_Internal {
@@ -167,8 +177,7 @@ ForwardRequest::ForwardRequest(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE ForwardRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : target_service_(arena, from.target_service_),
-        payload_(arena, from.payload_),
+      : payload_(arena, from.payload_),
         _cached_size_{0} {}
 
 ForwardRequest::ForwardRequest(
@@ -180,18 +189,19 @@ ForwardRequest::ForwardRequest(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.service_type_ = from._impl_.service_type_;
 
   // @@protoc_insertion_point(copy_constructor:myproject.ForwardRequest)
 }
 inline PROTOBUF_NDEBUG_INLINE ForwardRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : target_service_(arena),
-        payload_(arena),
+      : payload_(arena),
         _cached_size_{0} {}
 
 inline void ForwardRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.service_type_ = {};
 }
 ForwardRequest::~ForwardRequest() {
   // @@protoc_insertion_point(destructor:myproject.ForwardRequest)
@@ -200,7 +210,6 @@ ForwardRequest::~ForwardRequest() {
 }
 inline void ForwardRequest::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.target_service_.Destroy();
   _impl_.payload_.Destroy();
   _impl_.~Impl_();
 }
@@ -212,8 +221,8 @@ PROTOBUF_NOINLINE void ForwardRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.target_service_.ClearToEmpty();
   _impl_.payload_.ClearToEmpty();
+  _impl_.service_type_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -242,15 +251,15 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRequest::_table_ = {
     // bytes payload = 2;
     {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.payload_)}},
-    // bytes target_service = 1;
-    {::_pbi::TcParser::FastBS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.target_service_)}},
+    // .myproject.ServiceType service_type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ForwardRequest, _impl_.service_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.service_type_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // bytes target_service = 1;
-    {PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.target_service_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // .myproject.ServiceType service_type = 1;
+    {PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.service_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // bytes payload = 2;
     {PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.payload_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
@@ -267,10 +276,11 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // bytes target_service = 1;
-  if (!this->_internal_target_service().empty()) {
-    const std::string& _s = this->_internal_target_service();
-    target = stream->WriteBytesMaybeAliased(1, _s, target);
+  // .myproject.ServiceType service_type = 1;
+  if (this->_internal_service_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_service_type(), target);
   }
 
   // bytes payload = 2;
@@ -296,16 +306,16 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes target_service = 1;
-  if (!this->_internal_target_service().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
-                                    this->_internal_target_service());
-  }
-
   // bytes payload = 2;
   if (!this->_internal_payload().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_payload());
+  }
+
+  // .myproject.ServiceType service_type = 1;
+  if (this->_internal_service_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_service_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -327,11 +337,11 @@ void ForwardRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_target_service().empty()) {
-    _this->_internal_set_target_service(from._internal_target_service());
-  }
   if (!from._internal_payload().empty()) {
     _this->_internal_set_payload(from._internal_payload());
+  }
+  if (from._internal_service_type() != 0) {
+    _this->_internal_set_service_type(from._internal_service_type());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -355,8 +365,8 @@ void ForwardRequest::InternalSwap(ForwardRequest* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.target_service_, &other->_impl_.target_service_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.payload_, &other->_impl_.payload_, arena);
+  swap(_impl_.service_type_, other->_impl_.service_type_);
 }
 
 ::google::protobuf::Metadata ForwardRequest::GetMetadata() const {

@@ -42,13 +42,13 @@ class GatewayServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ForwardResponse>> PrepareAsyncRequestForward(::grpc::ClientContext* context, const ::myproject::ForwardRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ForwardResponse>>(PrepareAsyncRequestForwardRaw(context, request, cq));
     }
-    // 中文注释：转发请求
+    // 转发请求
     class async_interface {
      public:
       virtual ~async_interface() {}
       virtual void RequestForward(::grpc::ClientContext* context, const ::myproject::ForwardRequest* request, ::myproject::ForwardResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void RequestForward(::grpc::ClientContext* context, const ::myproject::ForwardRequest* request, ::myproject::ForwardResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 中文注释：转发请求
+      // 转发请求
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -94,7 +94,7 @@ class GatewayServer final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status RequestForward(::grpc::ServerContext* context, const ::myproject::ForwardRequest* request, ::myproject::ForwardResponse* response);
-    // 中文注释：转发请求
+    // 转发请求
   };
   template <class BaseClass>
   class WithAsyncMethod_RequestForward : public BaseClass {

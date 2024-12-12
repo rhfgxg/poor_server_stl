@@ -8,6 +8,7 @@
 ├─config	项目配置文件
 │      DB_config.json	数据库配置文件：数据库名，表名，端口
 │      gateway_config.json	各服务器配置文件：地址，端口
+│	   service_type.h	客户端与服务器通信的服务接口类型
 │      
 ├─out
 │  └─build

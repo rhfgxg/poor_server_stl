@@ -2,7 +2,7 @@
 #define LOGIN_SERVER_H
 
 #include "server_data.grpc.pb.h"    // 数据库服务
-#include "server_login.grpc.pb.h"
+#include "server_login.grpc.pb.h"	// 登录服务
 #include <grpcpp/grpcpp.h>
 #include <map>
 #include <string>

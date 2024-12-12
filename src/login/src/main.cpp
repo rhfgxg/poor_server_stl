@@ -1,4 +1,6 @@
-#include "./login/login_server.h"
+#include "login/login_server.h"
+#include "server_login.grpc.pb.h"	// 登录服务
+
 #include "../../central/src/central/central_server.h"
 
 #include <iostream>
@@ -10,7 +12,7 @@ void UnregisterServer(); // 注销服务器
 
 int main() 
 {
-	// 启动服务器
+    // 启动服务器
     RunServer(); // 运行服务器
 
     // 关闭服务器
@@ -23,7 +25,7 @@ void RunServer()
     LoginServerImpl login_server; // 登录服务实现
 
     grpc::ServerBuilder builder; // gRPC服务器构建器
-    std::string server_address("0.0.0.0:50051"); // 登录服务器监听50051端口
+    std::string server_address("0.0.0.0:50053"); // 登录服务器监听50053端口
     builder.AddListeningPort(server_address, grpc::InsecureServerCredentials()); // 添加监听端口
     builder.RegisterService(&login_server); // 注册服务
 

@@ -20,7 +20,7 @@ include_directories(
 set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/central/src/main.cpp
     ${PROJECT_SOURCE_DIR}/src/central/src/central/central_server.cpp
-    # protobuf 生成的源文件
+    # protobuf 生成的源文件：调用其他服务器
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.grpc.pb.cc
 )

@@ -42,7 +42,7 @@ class CentralServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>> PrepareAsyncRegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>>(PrepareAsyncRegisterServerRaw(context, request, cq));
     }
-    // 注册服务器
+    // 服务器注册
     virtual ::grpc::Status UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::myproject::UnregisterServerResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>> AsyncUnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>>(AsyncUnregisterServerRaw(context, request, cq));
@@ -50,7 +50,7 @@ class CentralServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>> PrepareAsyncUnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>>(PrepareAsyncUnregisterServerRaw(context, request, cq));
     }
-    // 断开服务器连接
+    // 服务器断开
     virtual ::grpc::Status GetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::myproject::ServerInfoResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ServerInfoResponse>> AsyncGetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ServerInfoResponse>>(AsyncGetServerInfoRaw(context, request, cq));
@@ -64,10 +64,10 @@ class CentralServer final {
       virtual ~async_interface() {}
       virtual void RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 注册服务器
+      // 服务器注册
       virtual void UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 断开服务器连接
+      // 服务器断开
       virtual void GetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest* request, ::myproject::ServerInfoResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest* request, ::myproject::ServerInfoResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 获取目标服务器信息
@@ -144,9 +144,9 @@ class CentralServer final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status RegisterServer(::grpc::ServerContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response);
-    // 注册服务器
+    // 服务器注册
     virtual ::grpc::Status UnregisterServer(::grpc::ServerContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response);
-    // 断开服务器连接
+    // 服务器断开
     virtual ::grpc::Status GetServerInfo(::grpc::ServerContext* context, const ::myproject::ServerInfoRequest* request, ::myproject::ServerInfoResponse* response);
     // 获取目标服务器信息
   };
