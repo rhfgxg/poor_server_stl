@@ -4,7 +4,8 @@
 #include "server_gateway.grpc.pb.h"
 #include "server_central.grpc.pb.h"
 #include "server_login.grpc.pb.h"
-#include "../../../common/connection_pool.h"    // 连接池
+
+#include "connection_pool.h"    // 连接池
 
 #include <grpcpp/grpcpp.h>
 

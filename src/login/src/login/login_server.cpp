@@ -1,8 +1,8 @@
 #include "login_server.h"
 
-LoginServerImpl::LoginServerImpl() : 
+LoginServerImpl::LoginServerImpl() :
     central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 链接中心服务器
-	db_stub(myproject::DatabaseServer::NewStub(grpc::CreateChannel("localhost:50052", grpc::InsecureChannelCredentials())))   // 链接数据库服务器
+	db_connection_pool(10) // 初始化数据库服务器连接池，设置连接池大小为10
 {
 
 }
@@ -24,10 +24,14 @@ void LoginServerImpl::register_server()
 
     grpc::Status status = central_stub->RegisterServer(&context, request, &response);
 
-    if (status.ok() && response.success()) {
+    if (status.ok() && response.success())
+    {
         std::cout << "服务器注册成功: " << response.message() << std::endl;
+
+		init_connection_pool(); // 初始化连接池
     }
-    else {
+    else 
+    {
         std::cerr << "服务器注册失败: " << response.message() << std::endl;
     }
 }
@@ -56,6 +60,34 @@ void LoginServerImpl::unregister_server()
         std::cerr << "服务器注销失败: " << response.message() << std::endl;
     }
 }
+
+// 初始化连接池
+void LoginServerImpl::init_connection_pool()
+{
+    // 客户端
+    grpc::ClientContext context;
+    // 请求
+    myproject::ConnectPoorRequest request;
+    request.set_server_type(myproject::ServerType::DATA);
+    // 响应
+    myproject::ConnectPoorResponse response;
+
+    grpc::Status status = central_stub->GetConnectPoor(&context, request, &response);
+
+    if (status.ok())
+    {
+        // 更新登录服务器连接池
+        for (const auto& server_info : response.connect_info())
+        {
+            db_connection_pool.add_server(myproject::ServerType::DATA, server_info.address(), std::to_string(server_info.port()));
+        }
+    }
+    else
+    {
+        std::cerr << "无法获取登录服务器连接池信息: " << status.error_message() << std::endl;
+    }
+}
+
 
 // 登录服务接口
 grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const myproject::LoginRequest* request, myproject::LoginResponse* response)
@@ -114,6 +146,10 @@ std::string LoginServerImpl::login_(const std::string& database, const std::stri
     // 构造响应
     myproject::ReadResponse read_response;
     grpc::ClientContext client_context; // 包含 RPC 调用的元数据和其他信息
+
+    // 获取连接池中的连接
+    auto channel = db_connection_pool.get_connection(myproject::ServerType::DATA);
+    auto db_stub = myproject::DatabaseServer::NewStub(channel);
 
     // 向数据库服务器发送查询请求
     grpc::Status status = db_stub->Read(&client_context, read_request, &read_response);

@@ -5,7 +5,7 @@
 #include "server_data.grpc.pb.h"    // 数据库服务器
 #include "server_gateway.grpc.pb.h" // 网关服务器
 #include "server_login.grpc.pb.h"   // 登录服务器
-#include "../../../common/connection_pool.h"    // 连接池
+#include "connection_pool.h"    // 连接池
 
 #include <grpcpp/grpcpp.h>
 #include <cpp_redis/cpp_redis>

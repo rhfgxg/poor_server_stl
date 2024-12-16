@@ -3,9 +3,9 @@
 #include <chrono>
 
 // GatewayServerImpl 构造函数
-GatewayServerImpl::GatewayServerImpl() :                                                         
-    login_connection_pool(10), // 初始化登录服务器连接池，设置连接池大小为10
-    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))) // 中心服务器存根
+GatewayServerImpl::GatewayServerImpl() :   
+    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 中心服务器存根
+    login_connection_pool(10) // 初始化登录服务器连接池，设置连接池大小为10
 {
     // 启动定时任务，定时向中心服务器获取最新的连接池状态
 }
@@ -114,13 +114,14 @@ grpc::Status GatewayServerImpl::forward_to_login_service(const std::string& payl
         return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse LoginRequest");
     }
 
+    // 构造响应
+    myproject::LoginResponse login_response;
+    grpc::ClientContext context;
+
     // 获取连接池中的连接
     auto channel = login_connection_pool.get_connection(myproject::ServerType::LOGIN);
     auto login_stub = myproject::LoginServer::NewStub(channel);
 
-    // 调用登录服务并获取响应
-    myproject::LoginResponse login_response;
-    grpc::ClientContext context;
     grpc::Status status = login_stub->Login(&context, login_request, &login_response);
 
     if (!status.ok()) // 如果调用失败
