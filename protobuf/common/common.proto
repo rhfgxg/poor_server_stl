@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package myproject;
+
+// 所有公共的枚举类型和消息类型
+
+// 服务器类型
+enum ServerType {
+    CENTRAL = 0;          // 中心服务
+    DATA = 1;             // 数据服务
+    GATEWAY = 2;          // 网关服务
+    LOGIN = 3;            // 登录服务
+    LOGIC = 4;            // 逻辑服务
+}
+
+// 服务类型：客户端与服务器通信的服务类型
+enum ServiceType {
+    // REQ_ 请求
+    // RES_ 响应
+    REQ_LOGIN = 0;      // 登录请求
+    RES_LOGIN = 0;      // 登录响应
+}

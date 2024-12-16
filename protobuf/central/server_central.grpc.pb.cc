@@ -24,7 +24,7 @@ namespace myproject {
 static const char* CentralServer_method_names[] = {
   "/myproject.CentralServer/RegisterServer",
   "/myproject.CentralServer/UnregisterServer",
-  "/myproject.CentralServer/GetServerInfo",
+  "/myproject.CentralServer/GetConnectPoor",
 };
 
 std::unique_ptr< CentralServer::Stub> CentralServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -36,7 +36,7 @@ std::unique_ptr< CentralServer::Stub> CentralServer::NewStub(const std::shared_p
 CentralServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_RegisterServer_(CentralServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_UnregisterServer_(CentralServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetServerInfo_(CentralServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetConnectPoor_(CentralServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status CentralServer::Stub::RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::myproject::RegisterServerResponse* response) {
@@ -85,25 +85,25 @@ void CentralServer::Stub::async::UnregisterServer(::grpc::ClientContext* context
   return result;
 }
 
-::grpc::Status CentralServer::Stub::GetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::myproject::ServerInfoResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::myproject::ServerInfoRequest, ::myproject::ServerInfoResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetServerInfo_, context, request, response);
+::grpc::Status CentralServer::Stub::GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::myproject::ConnectPoorResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::myproject::ConnectPoorRequest, ::myproject::ConnectPoorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetConnectPoor_, context, request, response);
 }
 
-void CentralServer::Stub::async::GetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest* request, ::myproject::ServerInfoResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::myproject::ServerInfoRequest, ::myproject::ServerInfoResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServerInfo_, context, request, response, std::move(f));
+void CentralServer::Stub::async::GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::myproject::ConnectPoorRequest, ::myproject::ConnectPoorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetConnectPoor_, context, request, response, std::move(f));
 }
 
-void CentralServer::Stub::async::GetServerInfo(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest* request, ::myproject::ServerInfoResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetServerInfo_, context, request, response, reactor);
+void CentralServer::Stub::async::GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetConnectPoor_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::ServerInfoResponse>* CentralServer::Stub::PrepareAsyncGetServerInfoRaw(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::myproject::ServerInfoResponse, ::myproject::ServerInfoRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetServerInfo_, context, request);
+::grpc::ClientAsyncResponseReader< ::myproject::ConnectPoorResponse>* CentralServer::Stub::PrepareAsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::myproject::ConnectPoorResponse, ::myproject::ConnectPoorRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetConnectPoor_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::ServerInfoResponse>* CentralServer::Stub::AsyncGetServerInfoRaw(::grpc::ClientContext* context, const ::myproject::ServerInfoRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::myproject::ConnectPoorResponse>* CentralServer::Stub::AsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncGetServerInfoRaw(context, request, cq);
+    this->PrepareAsyncGetConnectPoorRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -132,12 +132,12 @@ CentralServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CentralServer_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::myproject::ServerInfoRequest, ::myproject::ServerInfoResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::myproject::ConnectPoorRequest, ::myproject::ConnectPoorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CentralServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::myproject::ServerInfoRequest* req,
-             ::myproject::ServerInfoResponse* resp) {
-               return service->GetServerInfo(ctx, req, resp);
+             const ::myproject::ConnectPoorRequest* req,
+             ::myproject::ConnectPoorResponse* resp) {
+               return service->GetConnectPoor(ctx, req, resp);
              }, this)));
 }
 
@@ -158,7 +158,7 @@ CentralServer::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status CentralServer::Service::GetServerInfo(::grpc::ServerContext* context, const ::myproject::ServerInfoRequest* request, ::myproject::ServerInfoResponse* response) {
+::grpc::Status CentralServer::Service::GetConnectPoor(::grpc::ServerContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -2,17 +2,12 @@ syntax = "proto3";
 
 package myproject;
 
+// 服务类型：客户端与服务器通信的服务类型
 enum ServiceType {
-    LOGIN = 0;            // 登录服务
-    LOGIC = 1;            // 逻辑服务
-    CENTRAL = 2;          // 中心服务
-    GATEWAY = 3;          // 网关服务
-    DATA = 4;             // 数据服务
-    AUTH = 5;             // 认证服务
-    CHAT = 6;             // 聊天服务
-    MATCHMAKING = 7;      // 匹配服务
-    PAYMENT = 8;          // 支付服务
-    NOTIFICATION = 9;     // 通知服务
+    // REQ_ 请求
+    // RES_ 响应
+    REQ_LOGIN = 0;      // 登录请求
+    RES_LOGIN = 1;      // 登录响应
 }
 
 service GatewayServer {

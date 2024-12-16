@@ -3,7 +3,8 @@
 #include <locale>
 
 DatabaseServerImpl::DatabaseServerImpl(mysqlx::Session& DBlink_) :
-	DBlink(DBlink_)
+	DBlink(DBlink_),    // 数据库链接
+    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))) // 中心服务器存根
 {
 
 }
@@ -11,6 +12,59 @@ DatabaseServerImpl::DatabaseServerImpl(mysqlx::Session& DBlink_) :
 DatabaseServerImpl::~DatabaseServerImpl()
 {
 
+}
+
+// 注册服务器
+void DatabaseServerImpl::register_server()
+{
+    // 请求
+    myproject::RegisterServerRequest request;
+    request.set_server_type(myproject::ServerType::DATA);
+    request.set_address("127.0.0.1");
+    request.set_port("50052");
+    // 响应
+    myproject::RegisterServerResponse response;
+
+    // 客户端
+    grpc::ClientContext context;
+
+    grpc::Status status = central_stub->RegisterServer(&context, request, &response);
+
+    if (status.ok() && response.success())
+    {
+        std::cout << "服务器注册成功: " << response.message() << std::endl;
+    }
+    else
+    {
+        std::cerr << "服务器注册失败: " << response.message() << std::endl;
+    }
+}
+
+// 注销服务器
+void DatabaseServerImpl::unregister_server()
+{
+    // 请求
+    myproject::UnregisterServerRequest request;
+    request.set_server_type(myproject::ServerType::DATA);
+    request.set_address("localhost");
+    request.set_port("50052");
+
+    // 响应
+    myproject::UnregisterServerResponse response;
+
+    // 客户端
+    grpc::ClientContext context;
+
+    grpc::Status status = central_stub->UnregisterServer(&context, request, &response);
+
+    if (status.ok() && response.success()) 
+    {
+        std::cout << "服务器注销成功: " << response.message() << std::endl;
+    }
+    else
+    {
+        std::cerr << "服务器注销失败: " << response.message() << std::endl;
+    }
 }
 
 // 添加

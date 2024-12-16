@@ -1,54 +1,65 @@
 #include "central_server.h"
 
-CentralServerImpl::CentralServerImpl()
+CentralServerImpl::CentralServerImpl() :
+    central_connection_pool(10),
+	data_connection_pool(10),   // 数据库连接池大小为 10
+	gateway_connection_pool(10),    // 网关连接池大小为 10
+	login_connection_pool(10)   // 登录连接池大小为 10
 {
-    try {
-        std::cerr << "尝试连接到 Redis 服务器..." << std::endl;
-        redis_client.get_client()->connect("127.0.0.1", 6379);
-        std::cerr << "成功连接到 Redis 服务器" << std::endl;
-    }
-    catch (const cpp_redis::redis_error& e) {
-        std::cerr << "Redis 连接错误: " << e.what() << std::endl;
-        std::abort();
-    }
-    catch (const std::exception& e) {
-        std::cerr << "其他异常: " << e.what() << std::endl;
-        std::abort();
-    }
-    catch (...) {
-        std::cerr << "未知异常" << std::endl;
-        std::abort();
-    }
-}
+    // 在中心服务器连接池中加入本服务器
+    central_connection_pool.add_server(myproject::ServerType::CENTRAL, "localhost", "50050");
+    std::cout << "中心服务器注册成功: " << " " << "localhost" << " " << "50050" << std::endl;
 
+    //// 启动定时任务，定时检测服务器运行状态
+    //std::thread([this]() {
+    //    while (true) {
+    //        // 检测服务器运行状态
+    //        // 更新连接池
+    //        std::this_thread::sleep_for(std::chrono::seconds(60));
+    //    }
+    //    }).detach();
+}
 
 CentralServerImpl::~CentralServerImpl()
 {
-	redis_client.get_client()->disconnect(); // 断开 redis连接
 }
 
 // 服务器注册
 grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, const myproject::RegisterServerRequest* request, myproject::RegisterServerResponse* response)
 {
-    std::string server_name = request->server_name();
-    std::string address = request->address();
-    int port = request->port();
+	myproject::ServerType server_type = request->server_type(); // 服务器类型
+	std::string address = request->address();   // 服务器地址
+	std::string port = request->port(); // 服务器端口
 
-    try 
+    // 根据服务器类型，将服务器加入连接池
+    switch (server_type)
     {
-		// 数据以 server_name 为 key，address:port 为 value 存入 Redis
-        redis_client.get_client()->hset("servers", server_name, address + ":" + std::to_string(port));
-        redis_client.get_client()->sync_commit();
+    case myproject::ServerType::CENTRAL:
+    {
+        // todo：中心服务器
+        std::cout << "暂未实现" << std::endl;
+        break;
     }
-    catch (const cpp_redis::redis_error& e) 
+	case myproject::ServerType::DATA:   // 数据库服务器
     {
-        std::cerr << "Redis hset error: " << e.what() << std::endl;
-        response->set_success(false);
-        response->set_message("服务器注册失败");
-        return grpc::Status::OK;
+		data_connection_pool.add_server(myproject::ServerType::DATA, address, port);    // 加入连接池
+        std::cout << "数据库服务器注册成功: " << " " << address << " " << port << std::endl;
+        break;
+    }
+	case myproject::ServerType::GATEWAY:    // 网关服务器
+    {
+        gateway_connection_pool.add_server(myproject::ServerType::GATEWAY, address, port);
+        std::cout << "网关服务器注册成功: " << " " << address << " " << port << std::endl;
+        break;
+    }
+	case myproject::ServerType::LOGIN:      // 登录服务器
+    {
+        login_connection_pool.add_server(myproject::ServerType::LOGIN, address, port);
+        std::cout << "登录服务器注册成功: " << " " << address << " " << port << std::endl;
+        break;
+    }
     }
 
-	std::cout << "服务器注册成功: " << server_name << " " << address << " " << port << std::endl;
     response->set_success(true);
     response->set_message("服务器注册成功");
     return grpc::Status::OK;
@@ -57,50 +68,105 @@ grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, con
 // 断开服务器连接
 grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, const myproject::UnregisterServerRequest* request, myproject::UnregisterServerResponse* response)
 {
-    std::string server_name = request->server_name();
+    myproject::ServerType server_type = request->server_type(); // 服务器类型  
+    std::string address = request->address();   // 服务器地址
+    std::string port = request->port(); // 服务器端口
 
-    try {
-        redis_client.get_client()->hdel("servers", { server_name });
-        redis_client.get_client()->sync_commit();
+    // 根据服务器类型，从连接池中删除服务器
+    switch (server_type)
+    {
+    case myproject::ServerType::CENTRAL:
+    {
+        // todo：中心服务器
+        std::cout << "暂未实现" << std::endl;
+        break;
     }
-    catch (const cpp_redis::redis_error& e) {
-        std::cerr << "Redis hdel error: " << e.what() << std::endl;
+    case myproject::ServerType::DATA:   // 数据库服务器
+    {
+        data_connection_pool.remove_server(myproject::ServerType::DATA, address, port);    // 从连接池中删除
+        std::cout << "数据库服务器断开连接成功: " << " " << address << " " << port << std::endl;
+        break;
+    }
+    case myproject::ServerType::GATEWAY:    // 网关服务器
+    {
+        gateway_connection_pool.remove_server(myproject::ServerType::GATEWAY, address, port);
+        std::cout << "网关服务器断开连接成功: " << " " << address << " " << port << std::endl;
+        break;
+    }
+    case myproject::ServerType::LOGIN:      // 登录服务器
+    {
+        login_connection_pool.remove_server(myproject::ServerType::LOGIN, address, port);
+        std::cout << "登录服务器断开连接成功: " << " " << address << " " << port << std::endl;
+        break;
+    }
+    default:
         response->set_success(false);
-        response->set_message("服务器断开连接失败");
+        response->set_message("无效的服务器类型");
         return grpc::Status::OK;
     }
 
-	std::cout << "服务器断开连接成功: " << server_name << std::endl;
+    std::cout << "服务器断开连接成功: " << std::endl;
     response->set_success(true);
     response->set_message("服务器断开连接成功");
+
     return grpc::Status::OK;
 }
 
-// 请求目标服务器信息
-grpc::Status CentralServerImpl::GetServerInfo(grpc::ServerContext* context, const myproject::ServerInfoRequest* request, myproject::ServerInfoResponse* response)
+// 获取连接池中所有链接
+grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, const myproject::ConnectPoorRequest* request, myproject::ConnectPoorResponse* response)
 {
-    std::string server_name = request->server_name();
+	std::cout << "获取连接池信息" << std::endl;
+    myproject::ServerType server_type = request->server_type(); // 服务器类型  
 
-    // 从 Redis 获取服务器信息
-	auto reply = redis_client.get_client()->hget("servers", server_name);   // 异步获取数据
-	redis_client.get_client()->sync_commit();   // 提交请求
-	auto future = reply.get();  // 获取异步结果
+    std::unordered_map<myproject::ServerType, std::vector<std::pair<std::string, std::string>>> connections;
 
-    if (future.is_null()) {
+    switch (server_type)
+    {
+    case myproject::CENTRAL:
+    {
+        // 获取中央服务器连接池信息
+        connections = central_connection_pool.get_all_connections();
+        break;
+    }
+    case myproject::DATA:
+    {
+        // 获取数据库服务器连接池信息
+        connections = data_connection_pool.get_all_connections();
+        break;
+    }
+    case myproject::GATEWAY:
+    {
+        // 获取网关服务器连接池信息
+        connections = gateway_connection_pool.get_all_connections();
+        break;
+    }
+    //case myproject::LOGIC: 
+    //{
+    //    // 获取逻辑服务器连接池信息
+    //    connections = logic_connection_pool.get_all_connections();
+    //    break;
+    //}
+    case myproject::LOGIN:
+    {
+        // 获取登录服务器连接池信息
+        connections = login_connection_pool.get_all_connections();
+        break;
+    }
+    default:
         response->set_success(false);
-        response->set_message("服务器未注册");
+        response->set_message("无效的服务器类型");
+        return grpc::Status::OK;
     }
-    else {
-        std::string server_info = future.as_string();
-        size_t pos = server_info.find(':');
-        std::string address = server_info.substr(0, pos);
-        int port = std::stoi(server_info.substr(pos + 1));
 
-        response->set_success(true);
-        response->set_address(address);
-        response->set_port(port);
-        response->set_message("服务器信息获取成功");
+    for (const auto& connection : connections[server_type])
+    {
+        auto* conn_info = response->add_connect_info();
+        conn_info->set_address(connection.first);
+        conn_info->set_port(std::stoi(connection.second)); // 将端口从字符串转换为整数
     }
+
+    response->set_success(true);
+    response->set_message("获取连接池信息成功");
     return grpc::Status::OK;
 }
 

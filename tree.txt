@@ -1,15 +1,14 @@
+D:.
 │  CMakeLists.txt	项目顶级 CMakeLists
 │  README.md	项目描述文件
+│  tree.txt	文件树
 │  vcpkg-configuration.json	vcpkg包管理器配置文件
 │  vcpkg.json	vcpkg包管理器配置文件
-│  
-├─.vs
-│    
+│                         
 ├─config	项目配置文件
 │      DB_config.json	数据库配置文件：数据库名，表名，端口
 │      gateway_config.json	各服务器配置文件：地址，端口
-│	   service_type.h	客户端与服务器通信的服务接口类型
-│      
+│        
 ├─out
 │  └─build
 │      └─x64-Debug
@@ -17,6 +16,9 @@
 │          │  libprotocd.dll
 │          │  poor_server_stl.exe	顶级模块的执行文件
 │          └─src
+│              ├─central	中心服务器
+│              │      central.exe		数据库服务器模块的执行文件
+│              │  
 │              ├─data
 │              │      data.exe		数据库服务器模块的执行文件
 │              │                              
@@ -35,6 +37,9 @@
 │  │      server_central.pb.cc
 │  │      server_central.pb.h	生成类文件
 │  │      server_central.proto	中心服务器的 gRPC 定义文件
+│  │      
+│  ├─common
+│  │      common.proto
 │  │      
 │  ├─data
 │  │      server_data.proto		数据库服务器的 gRPC 定义文件
@@ -55,10 +60,23 @@
 │  │  │  CMakeLists.txt
 │  │  │  
 │  │  └─src
-│  │          main.cpp
+│  │      │  main.cpp
+│  │      │  
+│  │      └─central
+│  │              central_server.cpp
+│  │              central_server.h\
+│  │              
+│  ├─common
+│  │      connection_poor.cpp
+│  │      connection_poor.h
 │  │          
 │  ├─data		数据库服务器模块
 │  │  │  CMakeLists.txt
+│  │  │  
+│  │  ├─sql
+│  │  │  │  users.sql
+│  │  │  │  
+│  │  │  └─新建文件夹
 │  │  │  
 │  │  └─src
 │  │      │  main.cpp
@@ -92,10 +110,31 @@
 │          └─login
 │                  login_server.cpp		服务器对外 grpc 服务接口
 │                  login_server.h
-│                  login_service.cpp	服务器服务具体实现
-│                  login_service.h
 │                  
 ├─tools		工具
 │  └─script	脚本
 │          opan_all_debug.cmd		启动所有 debug版本服务器
 │          protoc_make.cmd			生成所有 proto 文件与 gRPC服务
+│ 
+└─vcpkg_installed
+   ├─vcpkg
+   └─x64-windows
+        ├─bin
+        │      abseil_dll.dll
+        ├─debug
+        │  ├─bin
+        │  │      abseil_dll.dll
+        │  └─lib
+        │      │  abseil_dll.lib
+        ├─include
+        │  │  ares.h
+        ├─lib
+        │  │  abseil_dll.lib
+
+
+
+
+
+
+
+

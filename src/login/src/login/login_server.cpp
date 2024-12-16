@@ -1,10 +1,60 @@
 #include "login_server.h"
 
 LoginServerImpl::LoginServerImpl() : 
-	channel_(grpc::CreateChannel("localhost:50052", grpc::InsecureChannelCredentials())),   // 链接数据库服务器
-    stub_(myproject::DatabaseServer::NewStub(channel_))
+    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 链接中心服务器
+	db_stub(myproject::DatabaseServer::NewStub(grpc::CreateChannel("localhost:50052", grpc::InsecureChannelCredentials())))   // 链接数据库服务器
 {
 
+}
+
+// 注册服务器
+void LoginServerImpl::register_server() 
+{
+    // 请求
+    myproject::RegisterServerRequest request;
+    request.set_server_type(myproject::ServerType::LOGIN);
+    request.set_address("127.0.0.1");
+    request.set_port("50053");
+
+    // 响应
+    myproject::RegisterServerResponse response;
+
+    // 客户端
+    grpc::ClientContext context;
+
+    grpc::Status status = central_stub->RegisterServer(&context, request, &response);
+
+    if (status.ok() && response.success()) {
+        std::cout << "服务器注册成功: " << response.message() << std::endl;
+    }
+    else {
+        std::cerr << "服务器注册失败: " << response.message() << std::endl;
+    }
+}
+
+// 注销服务器
+void LoginServerImpl::unregister_server() 
+{
+    // 请求
+    myproject::UnregisterServerRequest request;
+    request.set_server_type(myproject::ServerType::LOGIN);
+    request.set_address("localhost");
+    request.set_port("50053");
+
+    // 响应
+    myproject::UnregisterServerResponse response;
+
+    // 客户端
+    grpc::ClientContext context;
+
+    grpc::Status status = central_stub->UnregisterServer(&context, request, &response);
+
+    if (status.ok() && response.success()) {
+        std::cout << "服务器注销成功: " << response.message() << std::endl;
+    }
+    else {
+        std::cerr << "服务器注销失败: " << response.message() << std::endl;
+    }
 }
 
 // 登录服务接口
@@ -66,7 +116,7 @@ std::string LoginServerImpl::login_(const std::string& database, const std::stri
     grpc::ClientContext client_context; // 包含 RPC 调用的元数据和其他信息
 
     // 向数据库服务器发送查询请求
-    grpc::Status status = stub_->Read(&client_context, read_request, &read_response);
+    grpc::Status status = db_stub->Read(&client_context, read_request, &read_response);
 
     if (status.ok())
     {

@@ -71,16 +71,8 @@ namespace protobuf {
 
 namespace myproject {
 enum ServiceType : int {
-  LOGIN = 0,
-  LOGIC = 1,
-  CENTRAL = 2,
-  GATEWAY = 3,
-  DATA = 4,
-  AUTH = 5,
-  CHAT = 6,
-  MATCHMAKING = 7,
-  PAYMENT = 8,
-  NOTIFICATION = 9,
+  REQ_LOGIN = 0,
+  RES_LOGIN = 1,
   ServiceType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ServiceType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -90,8 +82,8 @@ enum ServiceType : int {
 bool ServiceType_IsValid(int value);
 extern const uint32_t ServiceType_internal_data_[];
 constexpr ServiceType ServiceType_MIN = static_cast<ServiceType>(0);
-constexpr ServiceType ServiceType_MAX = static_cast<ServiceType>(9);
-constexpr int ServiceType_ARRAYSIZE = 9 + 1;
+constexpr ServiceType ServiceType_MAX = static_cast<ServiceType>(1);
+constexpr int ServiceType_ARRAYSIZE = 1 + 1;
 const ::google::protobuf::EnumDescriptor*
 ServiceType_descriptor();
 template <typename T>
@@ -104,7 +96,7 @@ const std::string& ServiceType_Name(T value) {
 template <>
 inline const std::string& ServiceType_Name(ServiceType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<ServiceType_descriptor,
-                                                 0, 9>(
+                                                 0, 1>(
       static_cast<int>(value));
 }
 inline bool ServiceType_Parse(absl::string_view name, ServiceType* value) {

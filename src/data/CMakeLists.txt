@@ -21,10 +21,10 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/data/src/main.cpp
     ${PROJECT_SOURCE_DIR}/src/data/src/data/data_server.cpp
     # protobuf 生成的源文件
-    ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.grpc.pb.cc
 )
 
 # 指定编译生成的可执行文件信息：文件名${PROJECT_NAME} ，${SOURCES} 项目所有源文件路径

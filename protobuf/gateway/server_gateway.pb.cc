@@ -109,19 +109,16 @@ const char descriptor_table_protodef_server_5fgateway_2eproto[] PROTOBUF_SECTION
     "wardRequest\022,\n\014service_type\030\001 \001(\0162\026.mypr"
     "oject.ServiceType\022\017\n\007payload\030\002 \001(\014\"4\n\017Fo"
     "rwardResponse\022\017\n\007success\030\001 \001(\010\022\020\n\010respon"
-    "se\030\002 \001(\014*\213\001\n\013ServiceType\022\t\n\005LOGIN\020\000\022\t\n\005L"
-    "OGIC\020\001\022\013\n\007CENTRAL\020\002\022\013\n\007GATEWAY\020\003\022\010\n\004DATA"
-    "\020\004\022\010\n\004AUTH\020\005\022\010\n\004CHAT\020\006\022\017\n\013MATCHMAKING\020\007\022"
-    "\013\n\007PAYMENT\020\010\022\020\n\014NOTIFICATION\020\t2X\n\rGatewa"
-    "yServer\022G\n\016RequestForward\022\031.myproject.Fo"
-    "rwardRequest\032\032.myproject.ForwardResponse"
-    "b\006proto3"
+    "se\030\002 \001(\014*+\n\013ServiceType\022\r\n\tREQ_LOGIN\020\000\022\r"
+    "\n\tRES_LOGIN\020\0012X\n\rGatewayServer\022G\n\016Reques"
+    "tForward\022\031.myproject.ForwardRequest\032\032.my"
+    "project.ForwardResponseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fgateway_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fgateway_2eproto = {
     false,
     false,
-    408,
+    311,
     descriptor_table_protodef_server_5fgateway_2eproto,
     "server_gateway.proto",
     &descriptor_table_server_5fgateway_2eproto_once,
@@ -159,9 +156,9 @@ const ::google::protobuf::EnumDescriptor* ServiceType_descriptor() {
   return file_level_enum_descriptors_server_5fgateway_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t ServiceType_internal_data_[] = {
-    655360u, 0u, };
+    131072u, 0u, };
 bool ServiceType_IsValid(int value) {
-  return 0 <= value && value <= 9;
+  return 0 <= value && value <= 1;
 }
 // ===================================================================
 

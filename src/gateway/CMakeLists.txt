@@ -20,11 +20,13 @@ include_directories(
 set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/gateway/src/main.cpp
     ${PROJECT_SOURCE_DIR}/src/gateway/src/gateway/gateway_server.cpp
+    # 共享工具类
+    ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     # proto生成的源文件
-    ${PROJECT_SOURCE_DIR}/protobuf/gateway/server_gateway.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/gateway/server_gateway.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/gateway/server_gateway.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/gateway/server_gateway.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/logic/server_logic.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/logic/server_logic.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/login/server_login.pb.cc

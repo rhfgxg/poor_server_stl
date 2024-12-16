@@ -13,6 +13,7 @@ set(VCPKG_DEBUG_BIN "${VCPKG_DIR}/debug/bin")
 # 包含自定义头文件的目录
 include_directories(
     ${PROJECT_SOURCE_DIR}/src/central/src/central
+    ${PROJECT_SOURCE_DIR}/src/common
     # 其他在顶级目录包含的头文件目录
 )
 
@@ -20,9 +21,19 @@ include_directories(
 set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/central/src/main.cpp
     ${PROJECT_SOURCE_DIR}/src/central/src/central/central_server.cpp
+    # 共享工具类
+    ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     # protobuf 生成的源文件：调用其他服务器
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/gateway/server_gateway.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/gateway/server_gateway.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/logic/server_logic.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/logic/server_logic.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/login/server_login.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/login/server_login.grpc.pb.cc
 )
 
 # 指定编译生成的可执行文件信息：文件名${MODULE_NAME} ，${SOURCES} 项目所有源文件路径

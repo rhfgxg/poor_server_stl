@@ -46,9 +46,13 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr UnregisterServerRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : server_name_(
+      : address_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        port_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        server_type_{static_cast< ::myproject::ServerType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -64,53 +68,6 @@ struct UnregisterServerRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UnregisterServerRequestDefaultTypeInternal _UnregisterServerRequest_default_instance_;
-
-inline constexpr ServerInfoResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : address_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        message_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        success_{false},
-        port_{0},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR ServerInfoResponse::ServerInfoResponse(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct ServerInfoResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ServerInfoResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ServerInfoResponseDefaultTypeInternal() {}
-  union {
-    ServerInfoResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServerInfoResponseDefaultTypeInternal _ServerInfoResponse_default_instance_;
-
-inline constexpr ServerInfoRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : server_name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR ServerInfoRequest::ServerInfoRequest(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct ServerInfoRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ServerInfoRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ServerInfoRequestDefaultTypeInternal() {}
-  union {
-    ServerInfoRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ServerInfoRequestDefaultTypeInternal _ServerInfoRequest_default_instance_;
 
 inline constexpr RegisterServerResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -136,13 +93,13 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr RegisterServerRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : server_name_(
+      : address_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        address_(
+        port_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        port_{0},
+        server_type_{static_cast< ::myproject::ServerType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -158,10 +115,73 @@ struct RegisterServerRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RegisterServerRequestDefaultTypeInternal _RegisterServerRequest_default_instance_;
+
+inline constexpr ConnectPoorRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : server_type_{static_cast< ::myproject::ServerType >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ConnectPoorRequest::ConnectPoorRequest(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ConnectPoorRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ConnectPoorRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ConnectPoorRequestDefaultTypeInternal() {}
+  union {
+    ConnectPoorRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectPoorRequestDefaultTypeInternal _ConnectPoorRequest_default_instance_;
+
+inline constexpr ConnectInfo::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : address_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        port_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ConnectInfo::ConnectInfo(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ConnectInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ConnectInfoDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ConnectInfoDefaultTypeInternal() {}
+  union {
+    ConnectInfo _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectInfoDefaultTypeInternal _ConnectInfo_default_instance_;
+
+inline constexpr ConnectPoorResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : connect_info_{},
+        message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ConnectPoorResponse::ConnectPoorResponse(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ConnectPoorResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ConnectPoorResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ConnectPoorResponseDefaultTypeInternal() {}
+  union {
+    ConnectPoorResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectPoorResponseDefaultTypeInternal _ConnectPoorResponse_default_instance_;
 }  // namespace myproject
-static ::_pb::Metadata file_level_metadata_server_5fcentral_2eproto[6];
-static constexpr const ::_pb::EnumDescriptor**
-    file_level_enum_descriptors_server_5fcentral_2eproto = nullptr;
+static ::_pb::Metadata file_level_metadata_server_5fcentral_2eproto[7];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_server_5fcentral_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_server_5fcentral_2eproto = nullptr;
 const ::uint32_t TableStruct_server_5fcentral_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
@@ -174,7 +194,7 @@ const ::uint32_t TableStruct_server_5fcentral_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::RegisterServerRequest, _impl_.server_name_),
+    PROTOBUF_FIELD_OFFSET(::myproject::RegisterServerRequest, _impl_.server_type_),
     PROTOBUF_FIELD_OFFSET(::myproject::RegisterServerRequest, _impl_.address_),
     PROTOBUF_FIELD_OFFSET(::myproject::RegisterServerRequest, _impl_.port_),
     ~0u,  // no _has_bits_
@@ -195,7 +215,9 @@ const ::uint32_t TableStruct_server_5fcentral_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::UnregisterServerRequest, _impl_.server_name_),
+    PROTOBUF_FIELD_OFFSET(::myproject::UnregisterServerRequest, _impl_.server_type_),
+    PROTOBUF_FIELD_OFFSET(::myproject::UnregisterServerRequest, _impl_.address_),
+    PROTOBUF_FIELD_OFFSET(::myproject::UnregisterServerRequest, _impl_.port_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::myproject::UnregisterServerResponse, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -207,26 +229,35 @@ const ::uint32_t TableStruct_server_5fcentral_2eproto::offsets[] PROTOBUF_SECTIO
     PROTOBUF_FIELD_OFFSET(::myproject::UnregisterServerResponse, _impl_.success_),
     PROTOBUF_FIELD_OFFSET(::myproject::UnregisterServerResponse, _impl_.message_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::myproject::ServerInfoRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::myproject::ConnectPoorRequest, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::ServerInfoRequest, _impl_.server_name_),
+    PROTOBUF_FIELD_OFFSET(::myproject::ConnectPoorRequest, _impl_.server_type_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::myproject::ServerInfoResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::myproject::ConnectPoorResponse, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::ServerInfoResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::myproject::ServerInfoResponse, _impl_.address_),
-    PROTOBUF_FIELD_OFFSET(::myproject::ServerInfoResponse, _impl_.port_),
-    PROTOBUF_FIELD_OFFSET(::myproject::ServerInfoResponse, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::myproject::ConnectPoorResponse, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::myproject::ConnectPoorResponse, _impl_.connect_info_),
+    PROTOBUF_FIELD_OFFSET(::myproject::ConnectPoorResponse, _impl_.message_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::myproject::ConnectInfo, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::myproject::ConnectInfo, _impl_.address_),
+    PROTOBUF_FIELD_OFFSET(::myproject::ConnectInfo, _impl_.port_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -234,9 +265,10 @@ static const ::_pbi::MigrationSchema
         {0, -1, -1, sizeof(::myproject::RegisterServerRequest)},
         {11, -1, -1, sizeof(::myproject::RegisterServerResponse)},
         {21, -1, -1, sizeof(::myproject::UnregisterServerRequest)},
-        {30, -1, -1, sizeof(::myproject::UnregisterServerResponse)},
-        {40, -1, -1, sizeof(::myproject::ServerInfoRequest)},
-        {49, -1, -1, sizeof(::myproject::ServerInfoResponse)},
+        {32, -1, -1, sizeof(::myproject::UnregisterServerResponse)},
+        {42, -1, -1, sizeof(::myproject::ConnectPoorRequest)},
+        {51, -1, -1, sizeof(::myproject::ConnectPoorResponse)},
+        {62, -1, -1, sizeof(::myproject::ConnectInfo)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -244,40 +276,47 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::myproject::_RegisterServerResponse_default_instance_._instance,
     &::myproject::_UnregisterServerRequest_default_instance_._instance,
     &::myproject::_UnregisterServerResponse_default_instance_._instance,
-    &::myproject::_ServerInfoRequest_default_instance_._instance,
-    &::myproject::_ServerInfoResponse_default_instance_._instance,
+    &::myproject::_ConnectPoorRequest_default_instance_._instance,
+    &::myproject::_ConnectPoorResponse_default_instance_._instance,
+    &::myproject::_ConnectInfo_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fcentral_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\024server_central.proto\022\tmyproject\"K\n\025Reg"
-    "isterServerRequest\022\023\n\013server_name\030\001 \001(\t\022"
-    "\017\n\007address\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\":\n\026Regist"
-    "erServerResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007mes"
-    "sage\030\002 \001(\014\".\n\027UnregisterServerRequest\022\023\n"
-    "\013server_name\030\001 \001(\t\"<\n\030UnregisterServerRe"
-    "sponse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014"
-    "\"(\n\021ServerInfoRequest\022\023\n\013server_name\030\001 \001"
-    "(\t\"U\n\022ServerInfoResponse\022\017\n\007success\030\001 \001("
-    "\010\022\017\n\007address\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\022\017\n\007mess"
-    "age\030\004 \001(\0142\221\002\n\rCentralServer\022U\n\016RegisterS"
-    "erver\022 .myproject.RegisterServerRequest\032"
-    "!.myproject.RegisterServerResponse\022[\n\020Un"
-    "registerServer\022\".myproject.UnregisterSer"
-    "verRequest\032#.myproject.UnregisterServerR"
-    "esponse\022L\n\rGetServerInfo\022\034.myproject.Ser"
-    "verInfoRequest\032\035.myproject.ServerInfoRes"
-    "ponseb\006proto3"
+    "\n\024server_central.proto\022\tmyproject\"b\n\025Reg"
+    "isterServerRequest\022*\n\013server_type\030\001 \001(\0162"
+    "\025.myproject.ServerType\022\017\n\007address\030\002 \001(\014\022"
+    "\014\n\004port\030\003 \001(\014\":\n\026RegisterServerResponse\022"
+    "\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"d\n\027Unr"
+    "egisterServerRequest\022*\n\013server_type\030\001 \001("
+    "\0162\025.myproject.ServerType\022\017\n\007address\030\002 \001("
+    "\014\022\014\n\004port\030\003 \001(\014\"<\n\030UnregisterServerRespo"
+    "nse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"@\n"
+    "\022ConnectPoorRequest\022*\n\013server_type\030\001 \001(\016"
+    "2\025.myproject.ServerType\"e\n\023ConnectPoorRe"
+    "sponse\022\017\n\007success\030\001 \001(\010\022,\n\014connect_info\030"
+    "\002 \003(\0132\026.myproject.ConnectInfo\022\017\n\007message"
+    "\030\003 \001(\014\",\n\013ConnectInfo\022\017\n\007address\030\001 \001(\014\022\014"
+    "\n\004port\030\002 \001(\005*F\n\nServerType\022\013\n\007CENTRAL\020\000\022"
+    "\010\n\004DATA\020\001\022\013\n\007GATEWAY\020\002\022\t\n\005LOGIN\020\003\022\t\n\005LOG"
+    "IC\020\0042\224\002\n\rCentralServer\022U\n\016RegisterServer"
+    "\022 .myproject.RegisterServerRequest\032!.myp"
+    "roject.RegisterServerResponse\022[\n\020Unregis"
+    "terServer\022\".myproject.UnregisterServerRe"
+    "quest\032#.myproject.UnregisterServerRespon"
+    "se\022O\n\016GetConnectPoor\022\035.myproject.Connect"
+    "PoorRequest\032\036.myproject.ConnectPoorRespo"
+    "nseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fcentral_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fcentral_2eproto = {
     false,
     false,
-    693,
+    931,
     descriptor_table_protodef_server_5fcentral_2eproto,
     "server_central.proto",
     &descriptor_table_server_5fcentral_2eproto_once,
     nullptr,
     0,
-    6,
+    7,
     schemas,
     file_default_instances,
     TableStruct_server_5fcentral_2eproto::offsets,
@@ -304,6 +343,15 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_server_5
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_server_5fcentral_2eproto(&descriptor_table_server_5fcentral_2eproto);
 namespace myproject {
+const ::google::protobuf::EnumDescriptor* ServerType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_server_5fcentral_2eproto);
+  return file_level_enum_descriptors_server_5fcentral_2eproto[0];
+}
+PROTOBUF_CONSTINIT const uint32_t ServerType_internal_data_[] = {
+    327680u, 0u, };
+bool ServerType_IsValid(int value) {
+  return 0 <= value && value <= 4;
+}
 // ===================================================================
 
 class RegisterServerRequest::_Internal {
@@ -318,8 +366,8 @@ RegisterServerRequest::RegisterServerRequest(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE RegisterServerRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : server_name_(arena, from.server_name_),
-        address_(arena, from.address_),
+      : address_(arena, from.address_),
+        port_(arena, from.port_),
         _cached_size_{0} {}
 
 RegisterServerRequest::RegisterServerRequest(
@@ -331,20 +379,20 @@ RegisterServerRequest::RegisterServerRequest(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  _impl_.port_ = from._impl_.port_;
+  _impl_.server_type_ = from._impl_.server_type_;
 
   // @@protoc_insertion_point(copy_constructor:myproject.RegisterServerRequest)
 }
 inline PROTOBUF_NDEBUG_INLINE RegisterServerRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : server_name_(arena),
-        address_(arena),
+      : address_(arena),
+        port_(arena),
         _cached_size_{0} {}
 
 inline void RegisterServerRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.port_ = {};
+  _impl_.server_type_ = {};
 }
 RegisterServerRequest::~RegisterServerRequest() {
   // @@protoc_insertion_point(destructor:myproject.RegisterServerRequest)
@@ -353,8 +401,8 @@ RegisterServerRequest::~RegisterServerRequest() {
 }
 inline void RegisterServerRequest::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.server_name_.Destroy();
   _impl_.address_.Destroy();
+  _impl_.port_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -365,9 +413,9 @@ PROTOBUF_NOINLINE void RegisterServerRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.server_name_.ClearToEmpty();
   _impl_.address_.ClearToEmpty();
-  _impl_.port_ = 0;
+  _impl_.port_.ClearToEmpty();
+  _impl_.server_type_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -379,7 +427,7 @@ const char* RegisterServerRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 58, 2> RegisterServerRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RegisterServerRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -394,34 +442,30 @@ const ::_pbi::TcParseTable<2, 3, 0, 58, 2> RegisterServerRequest::_table_ = {
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // string server_name = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.server_name_)}},
-    // string address = 2;
-    {::_pbi::TcParser::FastUS1,
+    // .myproject.ServerType server_type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RegisterServerRequest, _impl_.server_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.server_type_)}},
+    // bytes address = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.address_)}},
-    // int32 port = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RegisterServerRequest, _impl_.port_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.port_)}},
+    // bytes port = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.port_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string server_name = 1;
-    {PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.server_name_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string address = 2;
+    // .myproject.ServerType server_type = 1;
+    {PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.server_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // bytes address = 2;
     {PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.address_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // int32 port = 3;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes port = 3;
     {PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.port_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\37\13\7\0\0\0\0\0"
-    "myproject.RegisterServerRequest"
-    "server_name"
-    "address"
   }},
 };
 
@@ -432,27 +476,23 @@ const ::_pbi::TcParseTable<2, 3, 0, 58, 2> RegisterServerRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string server_name = 1;
-  if (!this->_internal_server_name().empty()) {
-    const std::string& _s = this->_internal_server_name();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.RegisterServerRequest.server_name");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+  // .myproject.ServerType server_type = 1;
+  if (this->_internal_server_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_server_type(), target);
   }
 
-  // string address = 2;
+  // bytes address = 2;
   if (!this->_internal_address().empty()) {
     const std::string& _s = this->_internal_address();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.RegisterServerRequest.address");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // int32 port = 3;
-  if (this->_internal_port() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<3>(
-            stream, this->_internal_port(), target);
+  // bytes port = 3;
+  if (!this->_internal_port().empty()) {
+    const std::string& _s = this->_internal_port();
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -472,22 +512,22 @@ const ::_pbi::TcParseTable<2, 3, 0, 58, 2> RegisterServerRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string server_name = 1;
-  if (!this->_internal_server_name().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_server_name());
-  }
-
-  // string address = 2;
+  // bytes address = 2;
   if (!this->_internal_address().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_address());
   }
 
-  // int32 port = 3;
-  if (this->_internal_port() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_port());
+  // bytes port = 3;
+  if (!this->_internal_port().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_port());
+  }
+
+  // .myproject.ServerType server_type = 1;
+  if (this->_internal_server_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_server_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -509,14 +549,14 @@ void RegisterServerRequest::MergeImpl(::google::protobuf::Message& to_msg, const
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_server_name().empty()) {
-    _this->_internal_set_server_name(from._internal_server_name());
-  }
   if (!from._internal_address().empty()) {
     _this->_internal_set_address(from._internal_address());
   }
-  if (from._internal_port() != 0) {
+  if (!from._internal_port().empty()) {
     _this->_internal_set_port(from._internal_port());
+  }
+  if (from._internal_server_type() != 0) {
+    _this->_internal_set_server_type(from._internal_server_type());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -540,9 +580,9 @@ void RegisterServerRequest::InternalSwap(RegisterServerRequest* PROTOBUF_RESTRIC
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.server_name_, &other->_impl_.server_name_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.address_, &other->_impl_.address_, arena);
-        swap(_impl_.port_, other->_impl_.port_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.port_, &other->_impl_.port_, arena);
+  swap(_impl_.server_type_, other->_impl_.server_type_);
 }
 
 ::google::protobuf::Metadata RegisterServerRequest::GetMetadata() const {
@@ -774,7 +814,8 @@ UnregisterServerRequest::UnregisterServerRequest(::google::protobuf::Arena* aren
 inline PROTOBUF_NDEBUG_INLINE UnregisterServerRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : server_name_(arena, from.server_name_),
+      : address_(arena, from.address_),
+        port_(arena, from.port_),
         _cached_size_{0} {}
 
 UnregisterServerRequest::UnregisterServerRequest(
@@ -786,17 +827,20 @@ UnregisterServerRequest::UnregisterServerRequest(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.server_type_ = from._impl_.server_type_;
 
   // @@protoc_insertion_point(copy_constructor:myproject.UnregisterServerRequest)
 }
 inline PROTOBUF_NDEBUG_INLINE UnregisterServerRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : server_name_(arena),
+      : address_(arena),
+        port_(arena),
         _cached_size_{0} {}
 
 inline void UnregisterServerRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.server_type_ = {};
 }
 UnregisterServerRequest::~UnregisterServerRequest() {
   // @@protoc_insertion_point(destructor:myproject.UnregisterServerRequest)
@@ -805,7 +849,8 @@ UnregisterServerRequest::~UnregisterServerRequest() {
 }
 inline void UnregisterServerRequest::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.server_name_.Destroy();
+  _impl_.address_.Destroy();
+  _impl_.port_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -816,7 +861,9 @@ PROTOBUF_NOINLINE void UnregisterServerRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.server_name_.ClearToEmpty();
+  _impl_.address_.ClearToEmpty();
+  _impl_.port_.ClearToEmpty();
+  _impl_.server_type_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -828,35 +875,45 @@ const char* UnregisterServerRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 53, 2> UnregisterServerRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> UnregisterServerRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_UnregisterServerRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string server_name = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.server_name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .myproject.ServerType server_type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UnregisterServerRequest, _impl_.server_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.server_type_)}},
+    // bytes address = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.address_)}},
+    // bytes port = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.port_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string server_name = 1;
-    {PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.server_name_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .myproject.ServerType server_type = 1;
+    {PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.server_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // bytes address = 2;
+    {PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.address_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes port = 3;
+    {PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.port_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\41\13\0\0\0\0\0\0"
-    "myproject.UnregisterServerRequest"
-    "server_name"
   }},
 };
 
@@ -867,12 +924,23 @@ const ::_pbi::TcParseTable<0, 1, 0, 53, 2> UnregisterServerRequest::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string server_name = 1;
-  if (!this->_internal_server_name().empty()) {
-    const std::string& _s = this->_internal_server_name();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.UnregisterServerRequest.server_name");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+  // .myproject.ServerType server_type = 1;
+  if (this->_internal_server_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_server_type(), target);
+  }
+
+  // bytes address = 2;
+  if (!this->_internal_address().empty()) {
+    const std::string& _s = this->_internal_address();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  // bytes port = 3;
+  if (!this->_internal_port().empty()) {
+    const std::string& _s = this->_internal_port();
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -892,10 +960,22 @@ const ::_pbi::TcParseTable<0, 1, 0, 53, 2> UnregisterServerRequest::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string server_name = 1;
-  if (!this->_internal_server_name().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_server_name());
+  // bytes address = 2;
+  if (!this->_internal_address().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_address());
+  }
+
+  // bytes port = 3;
+  if (!this->_internal_port().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_port());
+  }
+
+  // .myproject.ServerType server_type = 1;
+  if (this->_internal_server_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_server_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -917,8 +997,14 @@ void UnregisterServerRequest::MergeImpl(::google::protobuf::Message& to_msg, con
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_server_name().empty()) {
-    _this->_internal_set_server_name(from._internal_server_name());
+  if (!from._internal_address().empty()) {
+    _this->_internal_set_address(from._internal_address());
+  }
+  if (!from._internal_port().empty()) {
+    _this->_internal_set_port(from._internal_port());
+  }
+  if (from._internal_server_type() != 0) {
+    _this->_internal_set_server_type(from._internal_server_type());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -942,7 +1028,9 @@ void UnregisterServerRequest::InternalSwap(UnregisterServerRequest* PROTOBUF_RES
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.server_name_, &other->_impl_.server_name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.address_, &other->_impl_.address_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.port_, &other->_impl_.port_, arena);
+  swap(_impl_.server_type_, other->_impl_.server_type_);
 }
 
 ::google::protobuf::Metadata UnregisterServerRequest::GetMetadata() const {
@@ -1162,65 +1250,51 @@ void UnregisterServerResponse::InternalSwap(UnregisterServerResponse* PROTOBUF_R
 }
 // ===================================================================
 
-class ServerInfoRequest::_Internal {
+class ConnectPoorRequest::_Internal {
  public:
 };
 
-ServerInfoRequest::ServerInfoRequest(::google::protobuf::Arena* arena)
+ConnectPoorRequest::ConnectPoorRequest(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:myproject.ServerInfoRequest)
+  // @@protoc_insertion_point(arena_constructor:myproject.ConnectPoorRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE ServerInfoRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : server_name_(arena, from.server_name_),
-        _cached_size_{0} {}
-
-ServerInfoRequest::ServerInfoRequest(
-    ::google::protobuf::Arena* arena,
-    const ServerInfoRequest& from)
-    : ::google::protobuf::Message(arena) {
-  ServerInfoRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-
-  // @@protoc_insertion_point(copy_constructor:myproject.ServerInfoRequest)
+ConnectPoorRequest::ConnectPoorRequest(
+    ::google::protobuf::Arena* arena, const ConnectPoorRequest& from)
+    : ConnectPoorRequest(arena) {
+  MergeFrom(from);
 }
-inline PROTOBUF_NDEBUG_INLINE ServerInfoRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ConnectPoorRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : server_name_(arena),
-        _cached_size_{0} {}
+      : _cached_size_{0} {}
 
-inline void ServerInfoRequest::SharedCtor(::_pb::Arena* arena) {
+inline void ConnectPoorRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.server_type_ = {};
 }
-ServerInfoRequest::~ServerInfoRequest() {
-  // @@protoc_insertion_point(destructor:myproject.ServerInfoRequest)
+ConnectPoorRequest::~ConnectPoorRequest() {
+  // @@protoc_insertion_point(destructor:myproject.ConnectPoorRequest)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ServerInfoRequest::SharedDtor() {
+inline void ConnectPoorRequest::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.server_name_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void ServerInfoRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:myproject.ServerInfoRequest)
+PROTOBUF_NOINLINE void ConnectPoorRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:myproject.ConnectPoorRequest)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.server_name_.ClearToEmpty();
+  _impl_.server_type_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ServerInfoRequest::_InternalParse(
+const char* ConnectPoorRequest::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -1228,7 +1302,7 @@ const char* ServerInfoRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 47, 2> ServerInfoRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ConnectPoorRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1239,40 +1313,36 @@ const ::_pbi::TcParseTable<0, 1, 0, 47, 2> ServerInfoRequest::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_ServerInfoRequest_default_instance_._instance,
+    &_ConnectPoorRequest_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string server_name = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ServerInfoRequest, _impl_.server_name_)}},
+    // .myproject.ServerType server_type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ConnectPoorRequest, _impl_.server_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorRequest, _impl_.server_type_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string server_name = 1;
-    {PROTOBUF_FIELD_OFFSET(ServerInfoRequest, _impl_.server_name_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .myproject.ServerType server_type = 1;
+    {PROTOBUF_FIELD_OFFSET(ConnectPoorRequest, _impl_.server_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
   }},
   // no aux_entries
   {{
-    "\33\13\0\0\0\0\0\0"
-    "myproject.ServerInfoRequest"
-    "server_name"
   }},
 };
 
-::uint8_t* ServerInfoRequest::_InternalSerialize(
+::uint8_t* ConnectPoorRequest::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:myproject.ServerInfoRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:myproject.ConnectPoorRequest)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string server_name = 1;
-  if (!this->_internal_server_name().empty()) {
-    const std::string& _s = this->_internal_server_name();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ServerInfoRequest.server_name");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+  // .myproject.ServerType server_type = 1;
+  if (this->_internal_server_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_server_type(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1280,157 +1350,141 @@ const ::_pbi::TcParseTable<0, 1, 0, 47, 2> ServerInfoRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:myproject.ServerInfoRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:myproject.ConnectPoorRequest)
   return target;
 }
 
-::size_t ServerInfoRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:myproject.ServerInfoRequest)
+::size_t ConnectPoorRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:myproject.ConnectPoorRequest)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string server_name = 1;
-  if (!this->_internal_server_name().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_server_name());
+  // .myproject.ServerType server_type = 1;
+  if (this->_internal_server_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_server_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData ServerInfoRequest::_class_data_ = {
-    ServerInfoRequest::MergeImpl,
+const ::google::protobuf::Message::ClassData ConnectPoorRequest::_class_data_ = {
+    ConnectPoorRequest::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* ServerInfoRequest::GetClassData() const {
+const ::google::protobuf::Message::ClassData* ConnectPoorRequest::GetClassData() const {
   return &_class_data_;
 }
 
-void ServerInfoRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ServerInfoRequest*>(&to_msg);
-  auto& from = static_cast<const ServerInfoRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.ServerInfoRequest)
+void ConnectPoorRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ConnectPoorRequest*>(&to_msg);
+  auto& from = static_cast<const ConnectPoorRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.ConnectPoorRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_server_name().empty()) {
-    _this->_internal_set_server_name(from._internal_server_name());
+  if (from._internal_server_type() != 0) {
+    _this->_internal_set_server_type(from._internal_server_type());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ServerInfoRequest::CopyFrom(const ServerInfoRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:myproject.ServerInfoRequest)
+void ConnectPoorRequest::CopyFrom(const ConnectPoorRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:myproject.ConnectPoorRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ServerInfoRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool ConnectPoorRequest::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* ServerInfoRequest::AccessCachedSize() const {
+::_pbi::CachedSize* ConnectPoorRequest::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void ServerInfoRequest::InternalSwap(ServerInfoRequest* PROTOBUF_RESTRICT other) {
+void ConnectPoorRequest::InternalSwap(ConnectPoorRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.server_name_, &other->_impl_.server_name_, arena);
+  swap(_impl_.server_type_, other->_impl_.server_type_);
 }
 
-::google::protobuf::Metadata ServerInfoRequest::GetMetadata() const {
+::google::protobuf::Metadata ConnectPoorRequest::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
       file_level_metadata_server_5fcentral_2eproto[4]);
 }
 // ===================================================================
 
-class ServerInfoResponse::_Internal {
+class ConnectPoorResponse::_Internal {
  public:
 };
 
-ServerInfoResponse::ServerInfoResponse(::google::protobuf::Arena* arena)
+ConnectPoorResponse::ConnectPoorResponse(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:myproject.ServerInfoResponse)
+  // @@protoc_insertion_point(arena_constructor:myproject.ConnectPoorResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE ServerInfoResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ConnectPoorResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : address_(arena, from.address_),
+      : connect_info_{visibility, arena, from.connect_info_},
         message_(arena, from.message_),
         _cached_size_{0} {}
 
-ServerInfoResponse::ServerInfoResponse(
+ConnectPoorResponse::ConnectPoorResponse(
     ::google::protobuf::Arena* arena,
-    const ServerInfoResponse& from)
+    const ConnectPoorResponse& from)
     : ::google::protobuf::Message(arena) {
-  ServerInfoResponse* const _this = this;
+  ConnectPoorResponse* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, success_),
-           reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, success_),
-           offsetof(Impl_, port_) -
-               offsetof(Impl_, success_) +
-               sizeof(Impl_::port_));
+  _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:myproject.ServerInfoResponse)
+  // @@protoc_insertion_point(copy_constructor:myproject.ConnectPoorResponse)
 }
-inline PROTOBUF_NDEBUG_INLINE ServerInfoResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ConnectPoorResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : address_(arena),
+      : connect_info_{visibility, arena},
         message_(arena),
         _cached_size_{0} {}
 
-inline void ServerInfoResponse::SharedCtor(::_pb::Arena* arena) {
+inline void ConnectPoorResponse::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, success_),
-           0,
-           offsetof(Impl_, port_) -
-               offsetof(Impl_, success_) +
-               sizeof(Impl_::port_));
+  _impl_.success_ = {};
 }
-ServerInfoResponse::~ServerInfoResponse() {
-  // @@protoc_insertion_point(destructor:myproject.ServerInfoResponse)
+ConnectPoorResponse::~ConnectPoorResponse() {
+  // @@protoc_insertion_point(destructor:myproject.ConnectPoorResponse)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ServerInfoResponse::SharedDtor() {
+inline void ConnectPoorResponse::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.address_.Destroy();
   _impl_.message_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void ServerInfoResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:myproject.ServerInfoResponse)
+PROTOBUF_NOINLINE void ConnectPoorResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:myproject.ConnectPoorResponse)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.address_.ClearToEmpty();
+  _impl_.connect_info_.Clear();
   _impl_.message_.ClearToEmpty();
-  ::memset(&_impl_.success_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.port_) -
-      reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.port_));
+  _impl_.success_ = false;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ServerInfoResponse::_InternalParse(
+const char* ConnectPoorResponse::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -1438,60 +1492,52 @@ const char* ServerInfoResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 0, 44, 2> ServerInfoResponse::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 1, 0, 2> ConnectPoorResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_ServerInfoResponse_default_instance_._instance,
+    3,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ConnectPoorResponse_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bytes message = 4;
-    {::_pbi::TcParser::FastBS1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ServerInfoResponse, _impl_.message_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ServerInfoResponse, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ServerInfoResponse, _impl_.success_)}},
-    // string address = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ServerInfoResponse, _impl_.address_)}},
-    // int32 port = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ServerInfoResponse, _impl_.port_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(ServerInfoResponse, _impl_.port_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ConnectPoorResponse, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorResponse, _impl_.success_)}},
+    // repeated .myproject.ConnectInfo connect_info = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorResponse, _impl_.connect_info_)}},
+    // bytes message = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorResponse, _impl_.message_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(ServerInfoResponse, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ConnectPoorResponse, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // string address = 2;
-    {PROTOBUF_FIELD_OFFSET(ServerInfoResponse, _impl_.address_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // int32 port = 3;
-    {PROTOBUF_FIELD_OFFSET(ServerInfoResponse, _impl_.port_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // bytes message = 4;
-    {PROTOBUF_FIELD_OFFSET(ServerInfoResponse, _impl_.message_), 0, 0,
+    // repeated .myproject.ConnectInfo connect_info = 2;
+    {PROTOBUF_FIELD_OFFSET(ConnectPoorResponse, _impl_.connect_info_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // bytes message = 3;
+    {PROTOBUF_FIELD_OFFSET(ConnectPoorResponse, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\34\0\7\0\0\0\0\0"
-    "myproject.ServerInfoResponse"
-    "address"
+  }}, {{
+    {::_pbi::TcParser::GetTable<::myproject::ConnectInfo>()},
+  }}, {{
   }},
 };
 
-::uint8_t* ServerInfoResponse::_InternalSerialize(
+::uint8_t* ConnectPoorResponse::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:myproject.ServerInfoResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:myproject.ConnectPoorResponse)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1502,25 +1548,18 @@ const ::_pbi::TcParseTable<2, 4, 0, 44, 2> ServerInfoResponse::_table_ = {
         1, this->_internal_success(), target);
   }
 
-  // string address = 2;
-  if (!this->_internal_address().empty()) {
-    const std::string& _s = this->_internal_address();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.ServerInfoResponse.address");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
-  }
-
-  // int32 port = 3;
-  if (this->_internal_port() != 0) {
+  // repeated .myproject.ConnectInfo connect_info = 2;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_connect_info_size()); i < n; i++) {
+    const auto& repfield = this->_internal_connect_info().Get(i);
     target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<3>(
-            stream, this->_internal_port(), target);
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  // bytes message = 4;
+  // bytes message = 3;
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
-    target = stream->WriteBytesMaybeAliased(4, _s, target);
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1528,25 +1567,25 @@ const ::_pbi::TcParseTable<2, 4, 0, 44, 2> ServerInfoResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:myproject.ServerInfoResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:myproject.ConnectPoorResponse)
   return target;
 }
 
-::size_t ServerInfoResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:myproject.ServerInfoResponse)
+::size_t ConnectPoorResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:myproject.ConnectPoorResponse)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string address = 2;
-  if (!this->_internal_address().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                    this->_internal_address());
+  // repeated .myproject.ConnectInfo connect_info = 2;
+  total_size += 1UL * this->_internal_connect_info_size();
+  for (const auto& msg : this->_internal_connect_info()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-
-  // bytes message = 4;
+  // bytes message = 3;
   if (!this->_internal_message().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_message());
@@ -1557,7 +1596,215 @@ const ::_pbi::TcParseTable<2, 4, 0, 44, 2> ServerInfoResponse::_table_ = {
     total_size += 2;
   }
 
-  // int32 port = 3;
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ConnectPoorResponse::_class_data_ = {
+    ConnectPoorResponse::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ConnectPoorResponse::GetClassData() const {
+  return &_class_data_;
+}
+
+void ConnectPoorResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ConnectPoorResponse*>(&to_msg);
+  auto& from = static_cast<const ConnectPoorResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.ConnectPoorResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_connect_info()->MergeFrom(
+      from._internal_connect_info());
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ConnectPoorResponse::CopyFrom(const ConnectPoorResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:myproject.ConnectPoorResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ConnectPoorResponse::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ConnectPoorResponse::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ConnectPoorResponse::InternalSwap(ConnectPoorResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.connect_info_.InternalSwap(&other->_impl_.connect_info_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata ConnectPoorResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
+      file_level_metadata_server_5fcentral_2eproto[5]);
+}
+// ===================================================================
+
+class ConnectInfo::_Internal {
+ public:
+};
+
+ConnectInfo::ConnectInfo(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:myproject.ConnectInfo)
+}
+inline PROTOBUF_NDEBUG_INLINE ConnectInfo::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : address_(arena, from.address_),
+        _cached_size_{0} {}
+
+ConnectInfo::ConnectInfo(
+    ::google::protobuf::Arena* arena,
+    const ConnectInfo& from)
+    : ::google::protobuf::Message(arena) {
+  ConnectInfo* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.port_ = from._impl_.port_;
+
+  // @@protoc_insertion_point(copy_constructor:myproject.ConnectInfo)
+}
+inline PROTOBUF_NDEBUG_INLINE ConnectInfo::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : address_(arena),
+        _cached_size_{0} {}
+
+inline void ConnectInfo::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.port_ = {};
+}
+ConnectInfo::~ConnectInfo() {
+  // @@protoc_insertion_point(destructor:myproject.ConnectInfo)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ConnectInfo::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.address_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ConnectInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:myproject.ConnectInfo)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.address_.ClearToEmpty();
+  _impl_.port_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ConnectInfo::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ConnectInfo::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ConnectInfo_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // int32 port = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ConnectInfo, _impl_.port_), 63>(),
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectInfo, _impl_.port_)}},
+    // bytes address = 1;
+    {::_pbi::TcParser::FastBS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectInfo, _impl_.address_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bytes address = 1;
+    {PROTOBUF_FIELD_OFFSET(ConnectInfo, _impl_.address_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // int32 port = 2;
+    {PROTOBUF_FIELD_OFFSET(ConnectInfo, _impl_.port_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ConnectInfo::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:myproject.ConnectInfo)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bytes address = 1;
+  if (!this->_internal_address().empty()) {
+    const std::string& _s = this->_internal_address();
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
+  }
+
+  // int32 port = 2;
+  if (this->_internal_port() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<2>(
+            stream, this->_internal_port(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:myproject.ConnectInfo)
+  return target;
+}
+
+::size_t ConnectInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:myproject.ConnectInfo)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes address = 1;
+  if (!this->_internal_address().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_address());
+  }
+
+  // int32 port = 2;
   if (this->_internal_port() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
         this->_internal_port());
@@ -1566,18 +1813,18 @@ const ::_pbi::TcParseTable<2, 4, 0, 44, 2> ServerInfoResponse::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData ServerInfoResponse::_class_data_ = {
-    ServerInfoResponse::MergeImpl,
+const ::google::protobuf::Message::ClassData ConnectInfo::_class_data_ = {
+    ConnectInfo::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* ServerInfoResponse::GetClassData() const {
+const ::google::protobuf::Message::ClassData* ConnectInfo::GetClassData() const {
   return &_class_data_;
 }
 
-void ServerInfoResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ServerInfoResponse*>(&to_msg);
-  auto& from = static_cast<const ServerInfoResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.ServerInfoResponse)
+void ConnectInfo::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ConnectInfo*>(&to_msg);
+  auto& from = static_cast<const ConnectInfo&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.ConnectInfo)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1585,51 +1832,39 @@ void ServerInfoResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::
   if (!from._internal_address().empty()) {
     _this->_internal_set_address(from._internal_address());
   }
-  if (!from._internal_message().empty()) {
-    _this->_internal_set_message(from._internal_message());
-  }
-  if (from._internal_success() != 0) {
-    _this->_internal_set_success(from._internal_success());
-  }
   if (from._internal_port() != 0) {
     _this->_internal_set_port(from._internal_port());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ServerInfoResponse::CopyFrom(const ServerInfoResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:myproject.ServerInfoResponse)
+void ConnectInfo::CopyFrom(const ConnectInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:myproject.ConnectInfo)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ServerInfoResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool ConnectInfo::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* ServerInfoResponse::AccessCachedSize() const {
+::_pbi::CachedSize* ConnectInfo::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void ServerInfoResponse::InternalSwap(ServerInfoResponse* PROTOBUF_RESTRICT other) {
+void ConnectInfo::InternalSwap(ConnectInfo* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.address_, &other->_impl_.address_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(ServerInfoResponse, _impl_.port_)
-      + sizeof(ServerInfoResponse::_impl_.port_)
-      - PROTOBUF_FIELD_OFFSET(ServerInfoResponse, _impl_.success_)>(
-          reinterpret_cast<char*>(&_impl_.success_),
-          reinterpret_cast<char*>(&other->_impl_.success_));
+        swap(_impl_.port_, other->_impl_.port_);
 }
 
-::google::protobuf::Metadata ServerInfoResponse::GetMetadata() const {
+::google::protobuf::Metadata ConnectInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
-      file_level_metadata_server_5fcentral_2eproto[5]);
+      file_level_metadata_server_5fcentral_2eproto[6]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace myproject

@@ -33,6 +33,7 @@
 #include "google/protobuf/message.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
+#include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
 // @@protoc_insertion_point(includes)
 
@@ -56,18 +57,21 @@ struct TableStruct_server_5fcentral_2eproto {
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_server_5fcentral_2eproto;
 namespace myproject {
+class ConnectInfo;
+struct ConnectInfoDefaultTypeInternal;
+extern ConnectInfoDefaultTypeInternal _ConnectInfo_default_instance_;
+class ConnectPoorRequest;
+struct ConnectPoorRequestDefaultTypeInternal;
+extern ConnectPoorRequestDefaultTypeInternal _ConnectPoorRequest_default_instance_;
+class ConnectPoorResponse;
+struct ConnectPoorResponseDefaultTypeInternal;
+extern ConnectPoorResponseDefaultTypeInternal _ConnectPoorResponse_default_instance_;
 class RegisterServerRequest;
 struct RegisterServerRequestDefaultTypeInternal;
 extern RegisterServerRequestDefaultTypeInternal _RegisterServerRequest_default_instance_;
 class RegisterServerResponse;
 struct RegisterServerResponseDefaultTypeInternal;
 extern RegisterServerResponseDefaultTypeInternal _RegisterServerResponse_default_instance_;
-class ServerInfoRequest;
-struct ServerInfoRequestDefaultTypeInternal;
-extern ServerInfoRequestDefaultTypeInternal _ServerInfoRequest_default_instance_;
-class ServerInfoResponse;
-struct ServerInfoResponseDefaultTypeInternal;
-extern ServerInfoResponseDefaultTypeInternal _ServerInfoResponse_default_instance_;
 class UnregisterServerRequest;
 struct UnregisterServerRequestDefaultTypeInternal;
 extern UnregisterServerRequestDefaultTypeInternal _UnregisterServerRequest_default_instance_;
@@ -81,6 +85,42 @@ namespace protobuf {
 }  // namespace google
 
 namespace myproject {
+enum ServerType : int {
+  CENTRAL = 0,
+  DATA = 1,
+  GATEWAY = 2,
+  LOGIN = 3,
+  LOGIC = 4,
+  ServerType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  ServerType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool ServerType_IsValid(int value);
+extern const uint32_t ServerType_internal_data_[];
+constexpr ServerType ServerType_MIN = static_cast<ServerType>(0);
+constexpr ServerType ServerType_MAX = static_cast<ServerType>(4);
+constexpr int ServerType_ARRAYSIZE = 4 + 1;
+const ::google::protobuf::EnumDescriptor*
+ServerType_descriptor();
+template <typename T>
+const std::string& ServerType_Name(T value) {
+  static_assert(std::is_same<T, ServerType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to ServerType_Name().");
+  return ServerType_Name(static_cast<ServerType>(value));
+}
+template <>
+inline const std::string& ServerType_Name(ServerType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<ServerType_descriptor,
+                                                 0, 4>(
+      static_cast<int>(value));
+}
+inline bool ServerType_Parse(absl::string_view name, ServerType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<ServerType>(
+      ServerType_descriptor(), name, value);
+}
 
 // ===================================================================
 
@@ -412,193 +452,11 @@ class UnregisterServerRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kServerNameFieldNumber = 1,
-  };
-  // string server_name = 1;
-  void clear_server_name() ;
-  const std::string& server_name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_server_name(Arg_&& arg, Args_... args);
-  std::string* mutable_server_name();
-  PROTOBUF_NODISCARD std::string* release_server_name();
-  void set_allocated_server_name(std::string* value);
-
-  private:
-  const std::string& _internal_server_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_server_name(
-      const std::string& value);
-  std::string* _internal_mutable_server_name();
-
-  public:
-  // @@protoc_insertion_point(class_scope:myproject.UnregisterServerRequest)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      53, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr server_name_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_server_5fcentral_2eproto;
-};// -------------------------------------------------------------------
-
-class ServerInfoResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.ServerInfoResponse) */ {
- public:
-  inline ServerInfoResponse() : ServerInfoResponse(nullptr) {}
-  ~ServerInfoResponse() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ServerInfoResponse(::google::protobuf::internal::ConstantInitialized);
-
-  inline ServerInfoResponse(const ServerInfoResponse& from)
-      : ServerInfoResponse(nullptr, from) {}
-  ServerInfoResponse(ServerInfoResponse&& from) noexcept
-    : ServerInfoResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline ServerInfoResponse& operator=(const ServerInfoResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ServerInfoResponse& operator=(ServerInfoResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ServerInfoResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ServerInfoResponse* internal_default_instance() {
-    return reinterpret_cast<const ServerInfoResponse*>(
-               &_ServerInfoResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    5;
-
-  friend void swap(ServerInfoResponse& a, ServerInfoResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ServerInfoResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ServerInfoResponse* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ServerInfoResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ServerInfoResponse>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ServerInfoResponse& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ServerInfoResponse& from) {
-    ServerInfoResponse::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(ServerInfoResponse* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "myproject.ServerInfoResponse";
-  }
-  protected:
-  explicit ServerInfoResponse(::google::protobuf::Arena* arena);
-  ServerInfoResponse(::google::protobuf::Arena* arena, const ServerInfoResponse& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
     kAddressFieldNumber = 2,
-    kMessageFieldNumber = 4,
-    kSuccessFieldNumber = 1,
     kPortFieldNumber = 3,
+    kServerTypeFieldNumber = 1,
   };
-  // string address = 2;
+  // bytes address = 2;
   void clear_address() ;
   const std::string& address() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -614,50 +472,40 @@ class ServerInfoResponse final :
   std::string* _internal_mutable_address();
 
   public:
-  // bytes message = 4;
-  void clear_message() ;
-  const std::string& message() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_message(Arg_&& arg, Args_... args);
-  std::string* mutable_message();
-  PROTOBUF_NODISCARD std::string* release_message();
-  void set_allocated_message(std::string* value);
-
-  private:
-  const std::string& _internal_message() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
-      const std::string& value);
-  std::string* _internal_mutable_message();
-
-  public:
-  // bool success = 1;
-  void clear_success() ;
-  bool success() const;
-  void set_success(bool value);
-
-  private:
-  bool _internal_success() const;
-  void _internal_set_success(bool value);
-
-  public:
-  // int32 port = 3;
+  // bytes port = 3;
   void clear_port() ;
-  ::int32_t port() const;
-  void set_port(::int32_t value);
+  const std::string& port() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_port(Arg_&& arg, Args_... args);
+  std::string* mutable_port();
+  PROTOBUF_NODISCARD std::string* release_port();
+  void set_allocated_port(std::string* value);
 
   private:
-  ::int32_t _internal_port() const;
-  void _internal_set_port(::int32_t value);
+  const std::string& _internal_port() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_port(
+      const std::string& value);
+  std::string* _internal_mutable_port();
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.ServerInfoResponse)
+  // .myproject.ServerType server_type = 1;
+  void clear_server_type() ;
+  ::myproject::ServerType server_type() const;
+  void set_server_type(::myproject::ServerType value);
+
+  private:
+  ::myproject::ServerType _internal_server_type() const;
+  void _internal_set_server_type(::myproject::ServerType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:myproject.UnregisterServerRequest)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 0,
-      44, 2>
+      2, 3, 0,
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -674,190 +522,8 @@ class ServerInfoResponse final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr address_;
-    ::google::protobuf::internal::ArenaStringPtr message_;
-    bool success_;
-    ::int32_t port_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_server_5fcentral_2eproto;
-};// -------------------------------------------------------------------
-
-class ServerInfoRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.ServerInfoRequest) */ {
- public:
-  inline ServerInfoRequest() : ServerInfoRequest(nullptr) {}
-  ~ServerInfoRequest() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ServerInfoRequest(::google::protobuf::internal::ConstantInitialized);
-
-  inline ServerInfoRequest(const ServerInfoRequest& from)
-      : ServerInfoRequest(nullptr, from) {}
-  ServerInfoRequest(ServerInfoRequest&& from) noexcept
-    : ServerInfoRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline ServerInfoRequest& operator=(const ServerInfoRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ServerInfoRequest& operator=(ServerInfoRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ServerInfoRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ServerInfoRequest* internal_default_instance() {
-    return reinterpret_cast<const ServerInfoRequest*>(
-               &_ServerInfoRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    4;
-
-  friend void swap(ServerInfoRequest& a, ServerInfoRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ServerInfoRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ServerInfoRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ServerInfoRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ServerInfoRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ServerInfoRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ServerInfoRequest& from) {
-    ServerInfoRequest::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(ServerInfoRequest* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "myproject.ServerInfoRequest";
-  }
-  protected:
-  explicit ServerInfoRequest(::google::protobuf::Arena* arena);
-  ServerInfoRequest(::google::protobuf::Arena* arena, const ServerInfoRequest& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kServerNameFieldNumber = 1,
-  };
-  // string server_name = 1;
-  void clear_server_name() ;
-  const std::string& server_name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_server_name(Arg_&& arg, Args_... args);
-  std::string* mutable_server_name();
-  PROTOBUF_NODISCARD std::string* release_server_name();
-  void set_allocated_server_name(std::string* value);
-
-  private:
-  const std::string& _internal_server_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_server_name(
-      const std::string& value);
-  std::string* _internal_mutable_server_name();
-
-  public:
-  // @@protoc_insertion_point(class_scope:myproject.ServerInfoRequest)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      47, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr server_name_;
+    ::google::protobuf::internal::ArenaStringPtr port_;
+    int server_type_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1190,27 +856,11 @@ class RegisterServerRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kServerNameFieldNumber = 1,
     kAddressFieldNumber = 2,
     kPortFieldNumber = 3,
+    kServerTypeFieldNumber = 1,
   };
-  // string server_name = 1;
-  void clear_server_name() ;
-  const std::string& server_name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_server_name(Arg_&& arg, Args_... args);
-  std::string* mutable_server_name();
-  PROTOBUF_NODISCARD std::string* release_server_name();
-  void set_allocated_server_name(std::string* value);
-
-  private:
-  const std::string& _internal_server_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_server_name(
-      const std::string& value);
-  std::string* _internal_mutable_server_name();
-
-  public:
-  // string address = 2;
+  // bytes address = 2;
   void clear_address() ;
   const std::string& address() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1226,14 +876,30 @@ class RegisterServerRequest final :
   std::string* _internal_mutable_address();
 
   public:
-  // int32 port = 3;
+  // bytes port = 3;
   void clear_port() ;
-  ::int32_t port() const;
-  void set_port(::int32_t value);
+  const std::string& port() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_port(Arg_&& arg, Args_... args);
+  std::string* mutable_port();
+  PROTOBUF_NODISCARD std::string* release_port();
+  void set_allocated_port(std::string* value);
 
   private:
-  ::int32_t _internal_port() const;
-  void _internal_set_port(::int32_t value);
+  const std::string& _internal_port() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_port(
+      const std::string& value);
+  std::string* _internal_mutable_port();
+
+  public:
+  // .myproject.ServerType server_type = 1;
+  void clear_server_type() ;
+  ::myproject::ServerType server_type() const;
+  void set_server_type(::myproject::ServerType value);
+
+  private:
+  ::myproject::ServerType _internal_server_type() const;
+  void _internal_set_server_type(::myproject::ServerType value);
 
   public:
   // @@protoc_insertion_point(class_scope:myproject.RegisterServerRequest)
@@ -1243,7 +909,7 @@ class RegisterServerRequest final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 0,
-      58, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1259,9 +925,590 @@ class RegisterServerRequest final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr server_name_;
+    ::google::protobuf::internal::ArenaStringPtr address_;
+    ::google::protobuf::internal::ArenaStringPtr port_;
+    int server_type_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5fcentral_2eproto;
+};// -------------------------------------------------------------------
+
+class ConnectPoorRequest final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.ConnectPoorRequest) */ {
+ public:
+  inline ConnectPoorRequest() : ConnectPoorRequest(nullptr) {}
+  ~ConnectPoorRequest() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ConnectPoorRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline ConnectPoorRequest(const ConnectPoorRequest& from)
+      : ConnectPoorRequest(nullptr, from) {}
+  ConnectPoorRequest(ConnectPoorRequest&& from) noexcept
+    : ConnectPoorRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline ConnectPoorRequest& operator=(const ConnectPoorRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ConnectPoorRequest& operator=(ConnectPoorRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ConnectPoorRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ConnectPoorRequest* internal_default_instance() {
+    return reinterpret_cast<const ConnectPoorRequest*>(
+               &_ConnectPoorRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(ConnectPoorRequest& a, ConnectPoorRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ConnectPoorRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ConnectPoorRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ConnectPoorRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ConnectPoorRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ConnectPoorRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ConnectPoorRequest& from) {
+    ConnectPoorRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ConnectPoorRequest* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "myproject.ConnectPoorRequest";
+  }
+  protected:
+  explicit ConnectPoorRequest(::google::protobuf::Arena* arena);
+  ConnectPoorRequest(::google::protobuf::Arena* arena, const ConnectPoorRequest& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kServerTypeFieldNumber = 1,
+  };
+  // .myproject.ServerType server_type = 1;
+  void clear_server_type() ;
+  ::myproject::ServerType server_type() const;
+  void set_server_type(::myproject::ServerType value);
+
+  private:
+  ::myproject::ServerType _internal_server_type() const;
+  void _internal_set_server_type(::myproject::ServerType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:myproject.ConnectPoorRequest)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    int server_type_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5fcentral_2eproto;
+};// -------------------------------------------------------------------
+
+class ConnectInfo final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.ConnectInfo) */ {
+ public:
+  inline ConnectInfo() : ConnectInfo(nullptr) {}
+  ~ConnectInfo() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ConnectInfo(::google::protobuf::internal::ConstantInitialized);
+
+  inline ConnectInfo(const ConnectInfo& from)
+      : ConnectInfo(nullptr, from) {}
+  ConnectInfo(ConnectInfo&& from) noexcept
+    : ConnectInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline ConnectInfo& operator=(const ConnectInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ConnectInfo& operator=(ConnectInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ConnectInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ConnectInfo* internal_default_instance() {
+    return reinterpret_cast<const ConnectInfo*>(
+               &_ConnectInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(ConnectInfo& a, ConnectInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ConnectInfo* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ConnectInfo* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ConnectInfo* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ConnectInfo>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ConnectInfo& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ConnectInfo& from) {
+    ConnectInfo::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ConnectInfo* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "myproject.ConnectInfo";
+  }
+  protected:
+  explicit ConnectInfo(::google::protobuf::Arena* arena);
+  ConnectInfo(::google::protobuf::Arena* arena, const ConnectInfo& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAddressFieldNumber = 1,
+    kPortFieldNumber = 2,
+  };
+  // bytes address = 1;
+  void clear_address() ;
+  const std::string& address() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_address(Arg_&& arg, Args_... args);
+  std::string* mutable_address();
+  PROTOBUF_NODISCARD std::string* release_address();
+  void set_allocated_address(std::string* value);
+
+  private:
+  const std::string& _internal_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_address(
+      const std::string& value);
+  std::string* _internal_mutable_address();
+
+  public:
+  // int32 port = 2;
+  void clear_port() ;
+  ::int32_t port() const;
+  void set_port(::int32_t value);
+
+  private:
+  ::int32_t _internal_port() const;
+  void _internal_set_port(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:myproject.ConnectInfo)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr address_;
     ::int32_t port_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5fcentral_2eproto;
+};// -------------------------------------------------------------------
+
+class ConnectPoorResponse final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.ConnectPoorResponse) */ {
+ public:
+  inline ConnectPoorResponse() : ConnectPoorResponse(nullptr) {}
+  ~ConnectPoorResponse() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ConnectPoorResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline ConnectPoorResponse(const ConnectPoorResponse& from)
+      : ConnectPoorResponse(nullptr, from) {}
+  ConnectPoorResponse(ConnectPoorResponse&& from) noexcept
+    : ConnectPoorResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline ConnectPoorResponse& operator=(const ConnectPoorResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ConnectPoorResponse& operator=(ConnectPoorResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ConnectPoorResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ConnectPoorResponse* internal_default_instance() {
+    return reinterpret_cast<const ConnectPoorResponse*>(
+               &_ConnectPoorResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(ConnectPoorResponse& a, ConnectPoorResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ConnectPoorResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ConnectPoorResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ConnectPoorResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ConnectPoorResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ConnectPoorResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ConnectPoorResponse& from) {
+    ConnectPoorResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ConnectPoorResponse* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "myproject.ConnectPoorResponse";
+  }
+  protected:
+  explicit ConnectPoorResponse(::google::protobuf::Arena* arena);
+  ConnectPoorResponse(::google::protobuf::Arena* arena, const ConnectPoorResponse& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kConnectInfoFieldNumber = 2,
+    kMessageFieldNumber = 3,
+    kSuccessFieldNumber = 1,
+  };
+  // repeated .myproject.ConnectInfo connect_info = 2;
+  int connect_info_size() const;
+  private:
+  int _internal_connect_info_size() const;
+
+  public:
+  void clear_connect_info() ;
+  ::myproject::ConnectInfo* mutable_connect_info(int index);
+  ::google::protobuf::RepeatedPtrField< ::myproject::ConnectInfo >*
+      mutable_connect_info();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::myproject::ConnectInfo>& _internal_connect_info() const;
+  ::google::protobuf::RepeatedPtrField<::myproject::ConnectInfo>* _internal_mutable_connect_info();
+  public:
+  const ::myproject::ConnectInfo& connect_info(int index) const;
+  ::myproject::ConnectInfo* add_connect_info();
+  const ::google::protobuf::RepeatedPtrField< ::myproject::ConnectInfo >&
+      connect_info() const;
+  // bytes message = 3;
+  void clear_message() ;
+  const std::string& message() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_message(Arg_&& arg, Args_... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* value);
+
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
+      const std::string& value);
+  std::string* _internal_mutable_message();
+
+  public:
+  // bool success = 1;
+  void clear_success() ;
+  bool success() const;
+  void set_success(bool value);
+
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:myproject.ConnectPoorResponse)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField< ::myproject::ConnectInfo > connect_info_;
+    ::google::protobuf::internal::ArenaStringPtr message_;
+    bool success_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1285,60 +1532,30 @@ class RegisterServerRequest final :
 
 // RegisterServerRequest
 
-// string server_name = 1;
-inline void RegisterServerRequest::clear_server_name() {
+// .myproject.ServerType server_type = 1;
+inline void RegisterServerRequest::clear_server_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.server_name_.ClearToEmpty();
+  _impl_.server_type_ = 0;
 }
-inline const std::string& RegisterServerRequest::server_name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.RegisterServerRequest.server_name)
-  return _internal_server_name();
+inline ::myproject::ServerType RegisterServerRequest::server_type() const {
+  // @@protoc_insertion_point(field_get:myproject.RegisterServerRequest.server_type)
+  return _internal_server_type();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void RegisterServerRequest::set_server_name(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.server_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.RegisterServerRequest.server_name)
+inline void RegisterServerRequest::set_server_type(::myproject::ServerType value) {
+  _internal_set_server_type(value);
+  // @@protoc_insertion_point(field_set:myproject.RegisterServerRequest.server_type)
 }
-inline std::string* RegisterServerRequest::mutable_server_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_server_name();
-  // @@protoc_insertion_point(field_mutable:myproject.RegisterServerRequest.server_name)
-  return _s;
-}
-inline const std::string& RegisterServerRequest::_internal_server_name() const {
+inline ::myproject::ServerType RegisterServerRequest::_internal_server_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.server_name_.Get();
+  return static_cast<::myproject::ServerType>(_impl_.server_type_);
 }
-inline void RegisterServerRequest::_internal_set_server_name(const std::string& value) {
+inline void RegisterServerRequest::_internal_set_server_type(::myproject::ServerType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.server_name_.Set(value, GetArena());
-}
-inline std::string* RegisterServerRequest::_internal_mutable_server_name() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.server_name_.Mutable( GetArena());
-}
-inline std::string* RegisterServerRequest::release_server_name() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.RegisterServerRequest.server_name)
-  return _impl_.server_name_.Release();
-}
-inline void RegisterServerRequest::set_allocated_server_name(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.server_name_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.server_name_.IsDefault()) {
-          _impl_.server_name_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.RegisterServerRequest.server_name)
+  _impl_.server_type_ = value;
 }
 
-// string address = 2;
+// bytes address = 2;
 inline void RegisterServerRequest::clear_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.address_.ClearToEmpty();
@@ -1353,7 +1570,7 @@ inline PROTOBUF_ALWAYS_INLINE void RegisterServerRequest::set_address(Arg_&& arg
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.address_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:myproject.RegisterServerRequest.address)
 }
 inline std::string* RegisterServerRequest::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -1391,27 +1608,57 @@ inline void RegisterServerRequest::set_allocated_address(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.RegisterServerRequest.address)
 }
 
-// int32 port = 3;
+// bytes port = 3;
 inline void RegisterServerRequest::clear_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.port_ = 0;
+  _impl_.port_.ClearToEmpty();
 }
-inline ::int32_t RegisterServerRequest::port() const {
+inline const std::string& RegisterServerRequest::port() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:myproject.RegisterServerRequest.port)
   return _internal_port();
 }
-inline void RegisterServerRequest::set_port(::int32_t value) {
-  _internal_set_port(value);
-  // @@protoc_insertion_point(field_set:myproject.RegisterServerRequest.port)
-}
-inline ::int32_t RegisterServerRequest::_internal_port() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.port_;
-}
-inline void RegisterServerRequest::_internal_set_port(::int32_t value) {
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RegisterServerRequest::set_port(Arg_&& arg,
+                                                     Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.port_ = value;
+  _impl_.port_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:myproject.RegisterServerRequest.port)
+}
+inline std::string* RegisterServerRequest::mutable_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_port();
+  // @@protoc_insertion_point(field_mutable:myproject.RegisterServerRequest.port)
+  return _s;
+}
+inline const std::string& RegisterServerRequest::_internal_port() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.port_.Get();
+}
+inline void RegisterServerRequest::_internal_set_port(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.port_.Set(value, GetArena());
+}
+inline std::string* RegisterServerRequest::_internal_mutable_port() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.port_.Mutable( GetArena());
+}
+inline std::string* RegisterServerRequest::release_port() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:myproject.RegisterServerRequest.port)
+  return _impl_.port_.Release();
+}
+inline void RegisterServerRequest::set_allocated_port(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.port_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.port_.IsDefault()) {
+          _impl_.port_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:myproject.RegisterServerRequest.port)
 }
 
 // -------------------------------------------------------------------
@@ -1498,57 +1745,133 @@ inline void RegisterServerResponse::set_allocated_message(std::string* value) {
 
 // UnregisterServerRequest
 
-// string server_name = 1;
-inline void UnregisterServerRequest::clear_server_name() {
+// .myproject.ServerType server_type = 1;
+inline void UnregisterServerRequest::clear_server_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.server_name_.ClearToEmpty();
+  _impl_.server_type_ = 0;
 }
-inline const std::string& UnregisterServerRequest::server_name() const
+inline ::myproject::ServerType UnregisterServerRequest::server_type() const {
+  // @@protoc_insertion_point(field_get:myproject.UnregisterServerRequest.server_type)
+  return _internal_server_type();
+}
+inline void UnregisterServerRequest::set_server_type(::myproject::ServerType value) {
+  _internal_set_server_type(value);
+  // @@protoc_insertion_point(field_set:myproject.UnregisterServerRequest.server_type)
+}
+inline ::myproject::ServerType UnregisterServerRequest::_internal_server_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::myproject::ServerType>(_impl_.server_type_);
+}
+inline void UnregisterServerRequest::_internal_set_server_type(::myproject::ServerType value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.server_type_ = value;
+}
+
+// bytes address = 2;
+inline void UnregisterServerRequest::clear_address() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.address_.ClearToEmpty();
+}
+inline const std::string& UnregisterServerRequest::address() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.UnregisterServerRequest.server_name)
-  return _internal_server_name();
+  // @@protoc_insertion_point(field_get:myproject.UnregisterServerRequest.address)
+  return _internal_address();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UnregisterServerRequest::set_server_name(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void UnregisterServerRequest::set_address(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.server_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.UnregisterServerRequest.server_name)
+  _impl_.address_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:myproject.UnregisterServerRequest.address)
 }
-inline std::string* UnregisterServerRequest::mutable_server_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_server_name();
-  // @@protoc_insertion_point(field_mutable:myproject.UnregisterServerRequest.server_name)
+inline std::string* UnregisterServerRequest::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_address();
+  // @@protoc_insertion_point(field_mutable:myproject.UnregisterServerRequest.address)
   return _s;
 }
-inline const std::string& UnregisterServerRequest::_internal_server_name() const {
+inline const std::string& UnregisterServerRequest::_internal_address() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.server_name_.Get();
+  return _impl_.address_.Get();
 }
-inline void UnregisterServerRequest::_internal_set_server_name(const std::string& value) {
+inline void UnregisterServerRequest::_internal_set_address(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.server_name_.Set(value, GetArena());
+  _impl_.address_.Set(value, GetArena());
 }
-inline std::string* UnregisterServerRequest::_internal_mutable_server_name() {
+inline std::string* UnregisterServerRequest::_internal_mutable_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  return _impl_.server_name_.Mutable( GetArena());
+  return _impl_.address_.Mutable( GetArena());
 }
-inline std::string* UnregisterServerRequest::release_server_name() {
+inline std::string* UnregisterServerRequest::release_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.UnregisterServerRequest.server_name)
-  return _impl_.server_name_.Release();
+  // @@protoc_insertion_point(field_release:myproject.UnregisterServerRequest.address)
+  return _impl_.address_.Release();
 }
-inline void UnregisterServerRequest::set_allocated_server_name(std::string* value) {
+inline void UnregisterServerRequest::set_allocated_address(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.server_name_.SetAllocated(value, GetArena());
+  _impl_.address_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.server_name_.IsDefault()) {
-          _impl_.server_name_.Set("", GetArena());
+        if (_impl_.address_.IsDefault()) {
+          _impl_.address_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.UnregisterServerRequest.server_name)
+  // @@protoc_insertion_point(field_set_allocated:myproject.UnregisterServerRequest.address)
+}
+
+// bytes port = 3;
+inline void UnregisterServerRequest::clear_port() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.port_.ClearToEmpty();
+}
+inline const std::string& UnregisterServerRequest::port() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:myproject.UnregisterServerRequest.port)
+  return _internal_port();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UnregisterServerRequest::set_port(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.port_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:myproject.UnregisterServerRequest.port)
+}
+inline std::string* UnregisterServerRequest::mutable_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_port();
+  // @@protoc_insertion_point(field_mutable:myproject.UnregisterServerRequest.port)
+  return _s;
+}
+inline const std::string& UnregisterServerRequest::_internal_port() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.port_.Get();
+}
+inline void UnregisterServerRequest::_internal_set_port(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.port_.Set(value, GetArena());
+}
+inline std::string* UnregisterServerRequest::_internal_mutable_port() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.port_.Mutable( GetArena());
+}
+inline std::string* UnregisterServerRequest::release_port() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:myproject.UnregisterServerRequest.port)
+  return _impl_.port_.Release();
+}
+inline void UnregisterServerRequest::set_allocated_port(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.port_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.port_.IsDefault()) {
+          _impl_.port_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:myproject.UnregisterServerRequest.port)
 }
 
 // -------------------------------------------------------------------
@@ -1633,207 +1956,150 @@ inline void UnregisterServerResponse::set_allocated_message(std::string* value) 
 
 // -------------------------------------------------------------------
 
-// ServerInfoRequest
+// ConnectPoorRequest
 
-// string server_name = 1;
-inline void ServerInfoRequest::clear_server_name() {
+// .myproject.ServerType server_type = 1;
+inline void ConnectPoorRequest::clear_server_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.server_name_.ClearToEmpty();
+  _impl_.server_type_ = 0;
 }
-inline const std::string& ServerInfoRequest::server_name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.ServerInfoRequest.server_name)
-  return _internal_server_name();
+inline ::myproject::ServerType ConnectPoorRequest::server_type() const {
+  // @@protoc_insertion_point(field_get:myproject.ConnectPoorRequest.server_type)
+  return _internal_server_type();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ServerInfoRequest::set_server_name(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.server_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.ServerInfoRequest.server_name)
+inline void ConnectPoorRequest::set_server_type(::myproject::ServerType value) {
+  _internal_set_server_type(value);
+  // @@protoc_insertion_point(field_set:myproject.ConnectPoorRequest.server_type)
 }
-inline std::string* ServerInfoRequest::mutable_server_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_server_name();
-  // @@protoc_insertion_point(field_mutable:myproject.ServerInfoRequest.server_name)
-  return _s;
-}
-inline const std::string& ServerInfoRequest::_internal_server_name() const {
+inline ::myproject::ServerType ConnectPoorRequest::_internal_server_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.server_name_.Get();
+  return static_cast<::myproject::ServerType>(_impl_.server_type_);
 }
-inline void ServerInfoRequest::_internal_set_server_name(const std::string& value) {
+inline void ConnectPoorRequest::_internal_set_server_type(::myproject::ServerType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.server_name_.Set(value, GetArena());
-}
-inline std::string* ServerInfoRequest::_internal_mutable_server_name() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.server_name_.Mutable( GetArena());
-}
-inline std::string* ServerInfoRequest::release_server_name() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.ServerInfoRequest.server_name)
-  return _impl_.server_name_.Release();
-}
-inline void ServerInfoRequest::set_allocated_server_name(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.server_name_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.server_name_.IsDefault()) {
-          _impl_.server_name_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.ServerInfoRequest.server_name)
+  _impl_.server_type_ = value;
 }
 
 // -------------------------------------------------------------------
 
-// ServerInfoResponse
+// ConnectPoorResponse
 
 // bool success = 1;
-inline void ServerInfoResponse::clear_success() {
+inline void ConnectPoorResponse::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool ServerInfoResponse::success() const {
-  // @@protoc_insertion_point(field_get:myproject.ServerInfoResponse.success)
+inline bool ConnectPoorResponse::success() const {
+  // @@protoc_insertion_point(field_get:myproject.ConnectPoorResponse.success)
   return _internal_success();
 }
-inline void ServerInfoResponse::set_success(bool value) {
+inline void ConnectPoorResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:myproject.ServerInfoResponse.success)
+  // @@protoc_insertion_point(field_set:myproject.ConnectPoorResponse.success)
 }
-inline bool ServerInfoResponse::_internal_success() const {
+inline bool ConnectPoorResponse::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void ServerInfoResponse::_internal_set_success(bool value) {
+inline void ConnectPoorResponse::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
-// string address = 2;
-inline void ServerInfoResponse::clear_address() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.address_.ClearToEmpty();
+// repeated .myproject.ConnectInfo connect_info = 2;
+inline int ConnectPoorResponse::_internal_connect_info_size() const {
+  return _internal_connect_info().size();
 }
-inline const std::string& ServerInfoResponse::address() const
+inline int ConnectPoorResponse::connect_info_size() const {
+  return _internal_connect_info_size();
+}
+inline void ConnectPoorResponse::clear_connect_info() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.connect_info_.Clear();
+}
+inline ::myproject::ConnectInfo* ConnectPoorResponse::mutable_connect_info(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.ServerInfoResponse.address)
-  return _internal_address();
+  // @@protoc_insertion_point(field_mutable:myproject.ConnectPoorResponse.connect_info)
+  return _internal_mutable_connect_info()->Mutable(index);
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ServerInfoResponse::set_address(Arg_&& arg,
-                                                     Args_... args) {
+inline ::google::protobuf::RepeatedPtrField<::myproject::ConnectInfo>* ConnectPoorResponse::mutable_connect_info()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:myproject.ConnectPoorResponse.connect_info)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.ServerInfoResponse.address)
+  return _internal_mutable_connect_info();
 }
-inline std::string* ServerInfoResponse::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_address();
-  // @@protoc_insertion_point(field_mutable:myproject.ServerInfoResponse.address)
-  return _s;
+inline const ::myproject::ConnectInfo& ConnectPoorResponse::connect_info(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:myproject.ConnectPoorResponse.connect_info)
+  return _internal_connect_info().Get(index);
 }
-inline const std::string& ServerInfoResponse::_internal_address() const {
+inline ::myproject::ConnectInfo* ConnectPoorResponse::add_connect_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::myproject::ConnectInfo* _add = _internal_mutable_connect_info()->Add();
+  // @@protoc_insertion_point(field_add:myproject.ConnectPoorResponse.connect_info)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::myproject::ConnectInfo>& ConnectPoorResponse::connect_info() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:myproject.ConnectPoorResponse.connect_info)
+  return _internal_connect_info();
+}
+inline const ::google::protobuf::RepeatedPtrField<::myproject::ConnectInfo>&
+ConnectPoorResponse::_internal_connect_info() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.address_.Get();
+  return _impl_.connect_info_;
 }
-inline void ServerInfoResponse::_internal_set_address(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.address_.Set(value, GetArena());
-}
-inline std::string* ServerInfoResponse::_internal_mutable_address() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.address_.Mutable( GetArena());
-}
-inline std::string* ServerInfoResponse::release_address() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.ServerInfoResponse.address)
-  return _impl_.address_.Release();
-}
-inline void ServerInfoResponse::set_allocated_address(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.address_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.address_.IsDefault()) {
-          _impl_.address_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.ServerInfoResponse.address)
+inline ::google::protobuf::RepeatedPtrField<::myproject::ConnectInfo>*
+ConnectPoorResponse::_internal_mutable_connect_info() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.connect_info_;
 }
 
-// int32 port = 3;
-inline void ServerInfoResponse::clear_port() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.port_ = 0;
-}
-inline ::int32_t ServerInfoResponse::port() const {
-  // @@protoc_insertion_point(field_get:myproject.ServerInfoResponse.port)
-  return _internal_port();
-}
-inline void ServerInfoResponse::set_port(::int32_t value) {
-  _internal_set_port(value);
-  // @@protoc_insertion_point(field_set:myproject.ServerInfoResponse.port)
-}
-inline ::int32_t ServerInfoResponse::_internal_port() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.port_;
-}
-inline void ServerInfoResponse::_internal_set_port(::int32_t value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.port_ = value;
-}
-
-// bytes message = 4;
-inline void ServerInfoResponse::clear_message() {
+// bytes message = 3;
+inline void ConnectPoorResponse::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& ServerInfoResponse::message() const
+inline const std::string& ConnectPoorResponse::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.ServerInfoResponse.message)
+  // @@protoc_insertion_point(field_get:myproject.ConnectPoorResponse.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ServerInfoResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void ConnectPoorResponse::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.ServerInfoResponse.message)
+  // @@protoc_insertion_point(field_set:myproject.ConnectPoorResponse.message)
 }
-inline std::string* ServerInfoResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* ConnectPoorResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:myproject.ServerInfoResponse.message)
+  // @@protoc_insertion_point(field_mutable:myproject.ConnectPoorResponse.message)
   return _s;
 }
-inline const std::string& ServerInfoResponse::_internal_message() const {
+inline const std::string& ConnectPoorResponse::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void ServerInfoResponse::_internal_set_message(const std::string& value) {
+inline void ConnectPoorResponse::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* ServerInfoResponse::_internal_mutable_message() {
+inline std::string* ConnectPoorResponse::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* ServerInfoResponse::release_message() {
+inline std::string* ConnectPoorResponse::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.ServerInfoResponse.message)
+  // @@protoc_insertion_point(field_release:myproject.ConnectPoorResponse.message)
   return _impl_.message_.Release();
 }
-inline void ServerInfoResponse::set_allocated_message(std::string* value) {
+inline void ConnectPoorResponse::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1841,7 +2107,87 @@ inline void ServerInfoResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.ServerInfoResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:myproject.ConnectPoorResponse.message)
+}
+
+// -------------------------------------------------------------------
+
+// ConnectInfo
+
+// bytes address = 1;
+inline void ConnectInfo::clear_address() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.address_.ClearToEmpty();
+}
+inline const std::string& ConnectInfo::address() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:myproject.ConnectInfo.address)
+  return _internal_address();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ConnectInfo::set_address(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.address_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:myproject.ConnectInfo.address)
+}
+inline std::string* ConnectInfo::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_address();
+  // @@protoc_insertion_point(field_mutable:myproject.ConnectInfo.address)
+  return _s;
+}
+inline const std::string& ConnectInfo::_internal_address() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.address_.Get();
+}
+inline void ConnectInfo::_internal_set_address(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.address_.Set(value, GetArena());
+}
+inline std::string* ConnectInfo::_internal_mutable_address() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.address_.Mutable( GetArena());
+}
+inline std::string* ConnectInfo::release_address() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:myproject.ConnectInfo.address)
+  return _impl_.address_.Release();
+}
+inline void ConnectInfo::set_allocated_address(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.address_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.address_.IsDefault()) {
+          _impl_.address_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:myproject.ConnectInfo.address)
+}
+
+// int32 port = 2;
+inline void ConnectInfo::clear_port() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.port_ = 0;
+}
+inline ::int32_t ConnectInfo::port() const {
+  // @@protoc_insertion_point(field_get:myproject.ConnectInfo.port)
+  return _internal_port();
+}
+inline void ConnectInfo::set_port(::int32_t value) {
+  _internal_set_port(value);
+  // @@protoc_insertion_point(field_set:myproject.ConnectInfo.port)
+}
+inline ::int32_t ConnectInfo::_internal_port() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.port_;
+}
+inline void ConnectInfo::_internal_set_port(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.port_ = value;
 }
 
 #ifdef __GNUC__
@@ -1851,6 +2197,19 @@ inline void ServerInfoResponse::set_allocated_message(std::string* value) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace myproject
 
+
+namespace google {
+namespace protobuf {
+
+template <>
+struct is_proto_enum<::myproject::ServerType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::myproject::ServerType>() {
+  return ::myproject::ServerType_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 
