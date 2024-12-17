@@ -1,7 +1,6 @@
 #include "./data/data_server.h"
 
 #include <iostream>
-#include <grpcpp/grpcpp.h>
 #include <mysqlx/xdevapi.h> // mysql
 #include <cstdlib> // สนำร std::exit
 

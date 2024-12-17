@@ -43,7 +43,7 @@ add_subdirectory(./src/logic)
 add_subdirectory(./src/login)
 
 # 指定编译生成的可执行文件信息：文件名${PROJECT_NAME} ，${SOURCES} 项目所有源文件路径
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES} "tools/test/test_login.cpp")
 
 # 如果需要链接第三方库，可以在这里指定（项目名，库文件权限，库名列表）
 target_link_libraries(${PROJECT_NAME} PRIVATE

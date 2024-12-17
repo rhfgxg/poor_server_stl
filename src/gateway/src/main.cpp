@@ -1,7 +1,6 @@
-#include "./gateway/gateway_server.h"
+#include "gateway_server.h"
 
 #include <iostream>
-#include <grpcpp/grpcpp.h>
 
 void RunServer();   // 运行服务器
 
@@ -11,7 +10,8 @@ int main()
 {
     std::cout << "网关模块" << std::endl;
     // 启动服务器
-    RunServer(); // 运行服务器
+    RunServer();
+    // 关闭服务器
 
     return 0; // 返回0表示程序正常结束
 }
@@ -30,7 +30,11 @@ void RunServer()
 
 	gateway_server.register_server(); // 注册服务器
 
-    test_client();  // 模拟客户端登录
+    /*for (int i = 0; i < 1000; i++)
+    {
+		std::cout << "第" << i + 1 << "次登录" << std::endl;*/
+        test_client();  // 模拟客户端登录
+    //}
 
     server->Wait(); // 等待服务器终止
 	gateway_server.unregister_server(); // 注销服务器
