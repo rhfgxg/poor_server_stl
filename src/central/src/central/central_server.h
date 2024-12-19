@@ -1,33 +1,34 @@
 #ifndef CENTRAL_SERVER_H
 #define CENTRAL_SERVER_H
 
-#include "server_central.grpc.pb.h" // ÖĞĞÄ·şÎñÆ÷
-#include "server_data.grpc.pb.h"    // Êı¾İ¿â·şÎñÆ÷
-#include "server_gateway.grpc.pb.h" // Íø¹Ø·şÎñÆ÷
-#include "server_login.grpc.pb.h"   // µÇÂ¼·şÎñÆ÷
-#include "connection_pool.h"    // Á¬½Ó³Ø
+#include "server_central.grpc.pb.h" // ä¸­å¿ƒæœåŠ¡å™¨
+#include "server_data.grpc.pb.h"    // æ•°æ®åº“æœåŠ¡å™¨
+#include "server_gateway.grpc.pb.h" // ç½‘å…³æœåŠ¡å™¨
+#include "server_login.grpc.pb.h"   // ç™»å½•æœåŠ¡å™¨
+#include "connection_pool.h"    // è¿æ¥æ± 
+#include "logger_manager.h"     // æ—¥å¿—ç®¡ç†å™¨
 
 #include <grpcpp/grpcpp.h>
-#include <cpp_redis/cpp_redis>
 #include <thread>
 #include <chrono>
 
-// ÔİÊ±²»Ê¹ÓÃ redis±£´æ·şÎñÆ÷ĞÅÏ¢
+// æš‚æ—¶ä¸ä½¿ç”¨ redisä¿å­˜æœåŠ¡å™¨ä¿¡æ¯
+//#include <cpp_redis/cpp_redis>
 //#include <WinSock2.h>
 //#include <WS2tcpip.h>
-//// ¹¤¾ßÀà£¬·â×°redisÁ´½Ó£¬·ÀÖ¹ windows ÏÂµÄÒ»¸öÒì³£
+//// å·¥å…·ç±»ï¼Œå°è£…redisé“¾æ¥ï¼Œé˜²æ­¢ windows ä¸‹çš„ä¸€ä¸ªå¼‚å¸¸
 //class RedisClient
 //{
-///* redis Óë WINsock ³åÍ»ÎÊÌâ
-// * redis Ä¬ÈÏÈ«¾Ö³õÊ¼»¯ÁË WINsock£¬µ¼ÖÂ grpc ÎŞ·¨Õı³£¹¤×÷
-// * Ê¹ÓÃ¸ÃÀà·â×° redis ¿Í»§¶Ë£¬±ÜÃâ redis ³õÊ¼»¯ WINsock
-// * ÓÉÓÚ redis ¿Í»§¶ËÊÇÒì²½µÄ£¬ËùÒÔÊ¹ÓÃ shared_ptr ¹ÜÀí redis ¿Í»§¶Ë
-// * ÓÉÓÚÕâÊÇwindowsÏÂµÄÎÊÌâ£¬ËùÒÔÖ»ÔÚwindowsÏÂÊ¹ÓÃ¸ÃÀà
+///* redis ä¸ WINsock å†²çªé—®é¢˜
+// * redis é»˜è®¤å…¨å±€åˆå§‹åŒ–äº† WINsockï¼Œå¯¼è‡´ grpc æ— æ³•æ­£å¸¸å·¥ä½œ
+// * ä½¿ç”¨è¯¥ç±»å°è£… redis å®¢æˆ·ç«¯ï¼Œé¿å… redis åˆå§‹åŒ– WINsock
+// * ç”±äº redis å®¢æˆ·ç«¯æ˜¯å¼‚æ­¥çš„ï¼Œæ‰€ä»¥ä½¿ç”¨ shared_ptr ç®¡ç† redis å®¢æˆ·ç«¯
+// * ç”±äºè¿™æ˜¯windowsä¸‹çš„é—®é¢˜ï¼Œæ‰€ä»¥åªåœ¨windowsä¸‹ä½¿ç”¨è¯¥ç±»
 // */
 //public:
 //    RedisClient()
 //    {
-//    #ifdef _WIN32   // ÏÂÃæ´úÂëÊ¹ÓÃÁË Windows API£ºWSAStartup
+//    #ifdef _WIN32   // ä¸‹é¢ä»£ç ä½¿ç”¨äº† Windows APIï¼šWSAStartup
 //        WORD version = MAKEWORD(2, 2);
 //        WSADATA data;
 //        if (WSAStartup(version, &data) != 0) {
@@ -52,28 +53,32 @@
 //    std::shared_ptr<cpp_redis::client> m_client;
 //};
    
-// ÖĞĞÄ·şÎñÆ÷¶ÔÍâ½Ó¿Ú
+// ä¸­å¿ƒæœåŠ¡å™¨å¯¹å¤–æ¥å£
 class CentralServerImpl final : public myproject::CentralServer::Service
 {
 public:
-    explicit CentralServerImpl();
+    CentralServerImpl(LoggerManager& logger_manager_);
 	~CentralServerImpl();  
 
-    // ·şÎñÆ÷×¢²á
+    // æœåŠ¡å™¨æ³¨å†Œ
     grpc::Status RegisterServer(grpc::ServerContext* context, const myproject::RegisterServerRequest* request, myproject::RegisterServerResponse* response);
-    // ·şÎñÆ÷¶Ï¿ª
+    // æœåŠ¡å™¨æ–­å¼€
     grpc::Status UnregisterServer(grpc::ServerContext* context, const myproject::UnregisterServerRequest* request, myproject::UnregisterServerResponse* response);
     
-    // »ñÈ¡Á¬½Ó³ØÖĞËùÓĞÁ´½Ó
+    // è·å–è¿æ¥æ± ä¸­æ‰€æœ‰é“¾æ¥
     grpc::Status GetConnectPoor(grpc::ServerContext* context, const myproject::ConnectPoorRequest* request, myproject::ConnectPoorResponse* response);
 
 private:
-    //RedisClient redis_client; // Redis ¿Í»§¶Ë
+    //RedisClient redis_client; // Redis å®¢æˆ·ç«¯
 
-    // Á¬½Ó³Ø
-	ConnectionPool central_connection_pool; // ¿¼ÂÇµ½¶àÖĞĞÄ·şÎñÆ÷£¬Ã¿¸öÖĞĞÄ·şÎñÆ÷¶¼ÓĞÒ»¸öÁ¬½Ó³Ø
+	// æ—¥å¿—ç®¡ç†å™¨
+	LoggerManager& logger_manager;  // ç®¡ç†æ‰€æœ‰æ—¥å¿—
+
+    // è¿æ¥æ± 
+	ConnectionPool central_connection_pool; // å¤šä¸­å¿ƒæœåŠ¡å™¨ï¼Œæ‰€æœ‰ä¸­å¿ƒæœåŠ¡å™¨éƒ½ç»´æŠ¤åŒä¸€ä¸ªè¿æ¥æ± 
     ConnectionPool data_connection_pool;
     ConnectionPool gateway_connection_pool;
+    ConnectionPool logic_connection_pool;
     ConnectionPool login_connection_pool;
 };
 

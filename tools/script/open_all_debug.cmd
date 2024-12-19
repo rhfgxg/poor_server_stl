@@ -1,18 +1,18 @@
 @echo off
-rem Æô¶¯ËùÓĞ·şÎñÆ÷
+rem å¯åŠ¨æ‰€æœ‰æœåŠ¡å™¨
 
-rem ÉèÖÃµ÷ÊÔÄ¿Â¼
+rem è®¾ç½®è°ƒè¯•ç›®å½•
 set DEBUG_DIR=D:\Project\cpp\APP\poor\poor_server_stl\out\build\x64-Debug
 
-rem ÖĞĞÄ·şÎñÆ÷
+rem ä¸­å¿ƒæœåŠ¡å™¨
 start "CentralServer" cmd /k "%DEBUG_DIR%\src\central\central.exe"
-rem Êı¾İ¿â·şÎñÆ÷
+rem æ•°æ®åº“æœåŠ¡å™¨
 start "DataServer" cmd /k "%DEBUG_DIR%\src\data\data.exe"
-rem µÇÂ¼·şÎñÆ÷
+rem ç™»å½•æœåŠ¡å™¨
 start "LoginServer" cmd /k "%DEBUG_DIR%\src\login\login.exe"
-rem Âß¼­·şÎñÆ÷
+rem é€»è¾‘æœåŠ¡å™¨
 rem start "LogicServer" cmd /k "%DEBUG_DIR%\src\logic\logic.exe"
-rem Íø¹Ø·şÎñÆ÷
+rem ç½‘å…³æœåŠ¡å™¨
 start "GatewayServer" cmd /k "%DEBUG_DIR%\src\gateway\gateway.exe"
 
 pause

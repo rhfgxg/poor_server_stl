@@ -2,81 +2,81 @@
 #include <thread>
 #include <chrono>
 
-// GatewayServerImpl ¹¹Ôìº¯Êı
+// GatewayServerImpl æ„é€ å‡½æ•°
 GatewayServerImpl::GatewayServerImpl() :   
-    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // ÖĞĞÄ·şÎñÆ÷´æ¸ù
-    login_connection_pool(10) // ³õÊ¼»¯µÇÂ¼·şÎñÆ÷Á¬½Ó³Ø£¬ÉèÖÃÁ¬½Ó³Ø´óĞ¡Îª10
+    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // ä¸­å¿ƒæœåŠ¡å™¨å­˜æ ¹
+    login_connection_pool(10) // åˆå§‹åŒ–ç™»å½•æœåŠ¡å™¨è¿æ¥æ± ï¼Œè®¾ç½®è¿æ¥æ± å¤§å°ä¸º10
 {
-    // Æô¶¯¶¨Ê±ÈÎÎñ£¬¶¨Ê±ÏòÖĞĞÄ·şÎñÆ÷»ñÈ¡×îĞÂµÄÁ¬½Ó³Ø×´Ì¬
+    // å¯åŠ¨å®šæ—¶ä»»åŠ¡ï¼Œå®šæ—¶å‘ä¸­å¿ƒæœåŠ¡å™¨è·å–æœ€æ–°çš„è¿æ¥æ± çŠ¶æ€
 }
 
-// ×¢²á·şÎñÆ÷
+// æ³¨å†ŒæœåŠ¡å™¨
 void GatewayServerImpl::register_server()
 {
-    // ÇëÇó
+    // è¯·æ±‚
     myproject::RegisterServerRequest request;
     request.set_server_type(myproject::ServerType::GATEWAY);
     request.set_address("127.0.0.1");
     request.set_port("50051");
-    // ÏìÓ¦
+    // å“åº”
     myproject::RegisterServerResponse response;
 
-    // ¿Í»§¶Ë
+    // å®¢æˆ·ç«¯
     grpc::ClientContext context;
 
     grpc::Status status = central_stub->RegisterServer(&context, request, &response);
 
     if (status.ok() && response.success())
     {
-        std::cout << "·şÎñÆ÷×¢²á³É¹¦: " << response.message() << std::endl;
-		init_connection_pool(); // ³õÊ¼»¯Á¬½Ó³Ø
+        std::cout << "æœåŠ¡å™¨æ³¨å†ŒæˆåŠŸ: " << response.message() << std::endl;
+		init_connection_pool(); // åˆå§‹åŒ–è¿æ¥æ± 
     }
     else
     {
-        std::cerr << "·şÎñÆ÷×¢²áÊ§°Ü: " << response.message() << std::endl;
+        std::cerr << "æœåŠ¡å™¨æ³¨å†Œå¤±è´¥: " << response.message() << std::endl;
     }
 }
 
-// ×¢Ïú·şÎñÆ÷
+// æ³¨é”€æœåŠ¡å™¨
 void GatewayServerImpl::unregister_server()
 {
-    // ¿Í»§¶Ë
+    // å®¢æˆ·ç«¯
     grpc::ClientContext context;
-    // ÇëÇó
+    // è¯·æ±‚
     myproject::UnregisterServerRequest request;
     request.set_server_type(myproject::ServerType::GATEWAY);
     request.set_address("localhost");
     request.set_port("50051");
 
-    // ÏìÓ¦
+    // å“åº”
     myproject::UnregisterServerResponse response;
 
     grpc::Status status = central_stub->UnregisterServer(&context, request, &response);
 
     if (status.ok() && response.success()) {
-        std::cout << "·şÎñÆ÷×¢Ïú³É¹¦: " << response.message() << std::endl;
+        std::cout << "æœåŠ¡å™¨æ³¨é”€æˆåŠŸ: " << response.message() << std::endl;
     }
     else {
-        std::cerr << "·şÎñÆ÷×¢ÏúÊ§°Ü: " << response.message() << std::endl;
+        std::cerr << "æœåŠ¡å™¨æ³¨é”€å¤±è´¥: " << response.message() << std::endl;
     }
 }
 
-// ³õÊ¼»¯Á¬½Ó³Ø
+// åˆå§‹åŒ–è¿æ¥æ± 
 void GatewayServerImpl::init_connection_pool()
 {
-    // ¿Í»§¶Ë
+    // å®¢æˆ·ç«¯
     grpc::ClientContext context;
-    // ÇëÇó
+    // è¯·æ±‚
     myproject::ConnectPoorRequest request;
     request.set_server_type(myproject::ServerType::LOGIN);
-    // ÏìÓ¦
+    // å“åº”
     myproject::ConnectPoorResponse response;
 
     grpc::Status status = central_stub->GetConnectPoor(&context, request, &response);
 
     if (status.ok())
     {
-        // ¸üĞÂµÇÂ¼·şÎñÆ÷Á¬½Ó³Ø
+        // æ›´æ–°ç™»å½•æœåŠ¡å™¨è¿æ¥æ± 
         for (const auto& server_info : response.connect_info())
         {
             login_connection_pool.add_server(myproject::ServerType::LOGIN, server_info.address(), std::to_string(server_info.port()));
@@ -84,53 +84,53 @@ void GatewayServerImpl::init_connection_pool()
     }
     else
     {
-        std::cerr << "ÎŞ·¨»ñÈ¡µÇÂ¼·şÎñÆ÷Á¬½Ó³ØĞÅÏ¢: " << status.error_message() << std::endl;
+        std::cerr << "æ— æ³•è·å–ç™»å½•æœåŠ¡å™¨è¿æ¥æ± ä¿¡æ¯: " << status.error_message() << std::endl;
     }
 }
 
-// ·şÎñ×ª·¢½Ó¿Ú
+// æœåŠ¡è½¬å‘æ¥å£
 grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context, const myproject::ForwardRequest* request, myproject::ForwardResponse* response)
 {
 
-    switch (request->service_type()) // ¸ù¾İÇëÇóµÄ·şÎñÀàĞÍ½øĞĞ×ª·¢
+    switch (request->service_type()) // æ ¹æ®è¯·æ±‚çš„æœåŠ¡ç±»å‹è¿›è¡Œè½¬å‘
     {
-    case myproject::ServiceType::REQ_LOGIN: // ÓÃ»§µÇÂ¼ÇëÇó
+    case myproject::ServiceType::REQ_LOGIN: // ç”¨æˆ·ç™»å½•è¯·æ±‚
     {
         return forward_to_login_service(request->payload(), response);  
     }
-    default:    // Î´Öª·şÎñÀàĞÍ
+    default:    // æœªçŸ¥æœåŠ¡ç±»å‹
         response->set_success(false);
         return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Unknown service type");
     }
 }
 
-// Login ·½·¨£¬´¦ÀíµÇÂ¼ÇëÇó
+// Login æ–¹æ³•ï¼Œå¤„ç†ç™»å½•è¯·æ±‚
 grpc::Status GatewayServerImpl::forward_to_login_service(const std::string& payload, myproject::ForwardResponse* response)
 {
-    myproject::LoginRequest login_request;  // ´´½¨µÇÂ¼ÇëÇó¶ÔÏó
-    bool request_out = login_request.ParseFromString(payload); // ½«¸ºÔØ½âÎöÎªµÇÂ¼ÇëÇó¶ÔÏó
-    if (!request_out) // Èç¹û½âÎöÊ§°Ü
+    myproject::LoginRequest login_request;  // åˆ›å»ºç™»å½•è¯·æ±‚å¯¹è±¡
+    bool request_out = login_request.ParseFromString(payload); // å°†è´Ÿè½½è§£æä¸ºç™»å½•è¯·æ±‚å¯¹è±¡
+    if (!request_out) // å¦‚æœè§£æå¤±è´¥
     {
         return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse LoginRequest");
     }
 
-    // ¹¹ÔìÏìÓ¦
+    // æ„é€ å“åº”
     myproject::LoginResponse login_response;
     grpc::ClientContext context;
 
-    // »ñÈ¡Á¬½Ó³ØÖĞµÄÁ¬½Ó
+    // è·å–è¿æ¥æ± ä¸­çš„è¿æ¥
     auto channel = login_connection_pool.get_connection(myproject::ServerType::LOGIN);
     auto login_stub = myproject::LoginServer::NewStub(channel);
 
     grpc::Status status = login_stub->Login(&context, login_request, &login_response);
 
-    if (!status.ok()) // Èç¹ûµ÷ÓÃÊ§°Ü
+    if (!status.ok()) // å¦‚æœè°ƒç”¨å¤±è´¥
     {
         return status;
     }
 
-    bool response_out = login_response.SerializeToString(response->mutable_response()); // ½«µÇÂ¼ÏìÓ¦ĞòÁĞ»¯Îª×ª·¢ÏìÓ¦
-    if (!response_out) // Èç¹ûĞòÁĞ»¯Ê§°Ü
+    bool response_out = login_response.SerializeToString(response->mutable_response()); // å°†ç™»å½•å“åº”åºåˆ—åŒ–ä¸ºè½¬å‘å“åº”
+    if (!response_out) // å¦‚æœåºåˆ—åŒ–å¤±è´¥
     {
         return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize LoginResponse");
     }

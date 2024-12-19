@@ -2,6 +2,6 @@
 
 int main()
 {
-	std::cout << "Âß¼­·şÎñÆ÷" << std::endl;
+	std::cout << "é€»è¾‘æœåŠ¡å™¨" << std::endl;
 	return 0;
 }

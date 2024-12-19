@@ -42,7 +42,7 @@ class DatabaseServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::CreateResponse>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::CreateResponse>>(PrepareAsyncCreateRaw(context, request, cq));
     }
-    // 增加数据服务
+    // 澧炲姞鏁版嵁鏈嶅姟
     virtual ::grpc::Status Read(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::myproject::ReadResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ReadResponse>> AsyncRead(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ReadResponse>>(AsyncReadRaw(context, request, cq));
@@ -50,7 +50,7 @@ class DatabaseServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ReadResponse>> PrepareAsyncRead(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ReadResponse>>(PrepareAsyncReadRaw(context, request, cq));
     }
-    // 查询数据服务
+    // 鏌ヨ鏁版嵁鏈嶅姟
     virtual ::grpc::Status Update(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::myproject::UpdateResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateResponse>> AsyncUpdate(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateResponse>>(AsyncUpdateRaw(context, request, cq));
@@ -58,7 +58,7 @@ class DatabaseServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateResponse>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateResponse>>(PrepareAsyncUpdateRaw(context, request, cq));
     }
-    // 更新数据服务
+    // 鏇存柊鏁版嵁鏈嶅姟
     virtual ::grpc::Status Delete(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::myproject::DeleteResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::DeleteResponse>> AsyncDelete(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::DeleteResponse>>(AsyncDeleteRaw(context, request, cq));
@@ -66,22 +66,22 @@ class DatabaseServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::DeleteResponse>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::DeleteResponse>>(PrepareAsyncDeleteRaw(context, request, cq));
     }
-    // 删除数据服务
+    // 鍒犻櫎鏁版嵁鏈嶅姟
     class async_interface {
      public:
       virtual ~async_interface() {}
       virtual void Create(::grpc::ClientContext* context, const ::myproject::CreateRequest* request, ::myproject::CreateResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Create(::grpc::ClientContext* context, const ::myproject::CreateRequest* request, ::myproject::CreateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 增加数据服务
+      // 澧炲姞鏁版嵁鏈嶅姟
       virtual void Read(::grpc::ClientContext* context, const ::myproject::ReadRequest* request, ::myproject::ReadResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Read(::grpc::ClientContext* context, const ::myproject::ReadRequest* request, ::myproject::ReadResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 查询数据服务
+      // 鏌ヨ鏁版嵁鏈嶅姟
       virtual void Update(::grpc::ClientContext* context, const ::myproject::UpdateRequest* request, ::myproject::UpdateResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Update(::grpc::ClientContext* context, const ::myproject::UpdateRequest* request, ::myproject::UpdateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 更新数据服务
+      // 鏇存柊鏁版嵁鏈嶅姟
       virtual void Delete(::grpc::ClientContext* context, const ::myproject::DeleteRequest* request, ::myproject::DeleteResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Delete(::grpc::ClientContext* context, const ::myproject::DeleteRequest* request, ::myproject::DeleteResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 删除数据服务
+      // 鍒犻櫎鏁版嵁鏈嶅姟
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -169,13 +169,13 @@ class DatabaseServer final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::myproject::CreateRequest* request, ::myproject::CreateResponse* response);
-    // 增加数据服务
+    // 澧炲姞鏁版嵁鏈嶅姟
     virtual ::grpc::Status Read(::grpc::ServerContext* context, const ::myproject::ReadRequest* request, ::myproject::ReadResponse* response);
-    // 查询数据服务
+    // 鏌ヨ鏁版嵁鏈嶅姟
     virtual ::grpc::Status Update(::grpc::ServerContext* context, const ::myproject::UpdateRequest* request, ::myproject::UpdateResponse* response);
-    // 更新数据服务
+    // 鏇存柊鏁版嵁鏈嶅姟
     virtual ::grpc::Status Delete(::grpc::ServerContext* context, const ::myproject::DeleteRequest* request, ::myproject::DeleteResponse* response);
-    // 删除数据服务
+    // 鍒犻櫎鏁版嵁鏈嶅姟
   };
   template <class BaseClass>
   class WithAsyncMethod_Create : public BaseClass {

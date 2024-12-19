@@ -3,62 +3,62 @@ syntax = "proto3";
 package myproject;
 
 service DatabaseServer{
-    rpc Create (CreateRequest) returns (CreateResponse);    // Ôö¼ÓÊı¾İ·şÎñ
-    rpc Read (ReadRequest) returns (ReadResponse);  // ²éÑ¯Êı¾İ·şÎñ
-    rpc Update (UpdateRequest) returns (UpdateResponse);    // ¸üĞÂÊı¾İ·şÎñ
-    rpc Delete (DeleteRequest) returns (DeleteResponse);    // É¾³ıÊı¾İ·şÎñ
+    rpc Create (CreateRequest) returns (CreateResponse);    // å¢åŠ æ•°æ®æœåŠ¡
+    rpc Read (ReadRequest) returns (ReadResponse);  // æŸ¥è¯¢æ•°æ®æœåŠ¡
+    rpc Update (UpdateRequest) returns (UpdateResponse);    // æ›´æ–°æ•°æ®æœåŠ¡
+    rpc Delete (DeleteRequest) returns (DeleteResponse);    // åˆ é™¤æ•°æ®æœåŠ¡
 }
 
-// Ôö¼ÓÊı¾İ·şÎñÇëÇó
+// å¢åŠ æ•°æ®æœåŠ¡è¯·æ±‚
 message CreateRequest {
     bytes database = 1;
     bytes table = 2;
-    map<string, bytes> data = 3;  // Òª²åÈëµÄÊı¾İ£¬¼üÖµ¶ÔĞÎÊ½
+    map<string, bytes> data = 3;  // è¦æ’å…¥çš„æ•°æ®ï¼Œé”®å€¼å¯¹å½¢å¼
 }
-// Ôö¼ÓÊı¾İ·şÎñÏìÓ¦
+// å¢åŠ æ•°æ®æœåŠ¡å“åº”
 message CreateResponse {
     bool success = 1;
     bytes message = 2;
 }
 
-// ²éÑ¯·şÎñÇëÇó
+// æŸ¥è¯¢æœåŠ¡è¯·æ±‚
 message ReadRequest {
     bytes database = 1;
     bytes table = 2;
-    map<string, bytes> query = 3;  // ²éÑ¯Ìõ¼ş£¬¼üÖµ¶ÔĞÎÊ½
+    map<string, bytes> query = 3;  // æŸ¥è¯¢æ¡ä»¶ï¼Œé”®å€¼å¯¹å½¢å¼
 }
-// ²éÑ¯·şÎñÏìÓ¦
+// æŸ¥è¯¢æœåŠ¡å“åº”
 message ReadResponse {
     bool success = 1;
     bytes message = 2;
 
-    repeated Result results = 3;  // ²éÑ¯½á¹û£¬¶à¸öÆ¥ÅäÖµ
+    repeated Result results = 3;  // æŸ¥è¯¢ç»“æœï¼Œå¤šä¸ªåŒ¹é…å€¼
 
     message Result {
-        map<string, bytes> fields = 1;  // Ã¿¸öÆ¥ÅäÖµµÄ¶à¸ö×Ö¶Î
+        map<string, bytes> fields = 1;  // æ¯ä¸ªåŒ¹é…å€¼çš„å¤šä¸ªå­—æ®µ
     }
 }
 
-// ¸üĞÂ·şÎñÇëÇó
+// æ›´æ–°æœåŠ¡è¯·æ±‚
 message UpdateRequest {
     bytes database = 1;
     bytes table = 2;
-    map<string, bytes> query = 3;  // ²éÑ¯Ìõ¼ş£¬¼üÖµ¶ÔĞÎÊ½
-    map<string, bytes> data = 4;   // Òª¸üĞÂµÄÊı¾İ£¬¼üÖµ¶ÔĞÎÊ½
+    map<string, bytes> query = 3;  // æŸ¥è¯¢æ¡ä»¶ï¼Œé”®å€¼å¯¹å½¢å¼
+    map<string, bytes> data = 4;   // è¦æ›´æ–°çš„æ•°æ®ï¼Œé”®å€¼å¯¹å½¢å¼
 }
-// ¸üĞÂ·şÎñÏìÓ¦
+// æ›´æ–°æœåŠ¡å“åº”
 message UpdateResponse {
     bool success = 1;
     bytes message = 2;
 }
 
-// É¾³ı·şÎñÇëÇó
+// åˆ é™¤æœåŠ¡è¯·æ±‚
 message DeleteRequest {
     bytes database = 1;
     bytes table = 2;
-    map<string, bytes> query = 3;  // ²éÑ¯Ìõ¼ş£¬¼üÖµ¶ÔĞÎÊ½
+    map<string, bytes> query = 3;  // æŸ¥è¯¢æ¡ä»¶ï¼Œé”®å€¼å¯¹å½¢å¼
 }
-// É¾³ı·şÎñÏìÓ¦
+// åˆ é™¤æœåŠ¡å“åº”
 message DeleteResponse {
     bool success = 1;
     bytes message = 2;

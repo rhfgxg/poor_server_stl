@@ -8,97 +8,97 @@ ConnectionPool::ConnectionPool(size_t pool_size) :
 
 ConnectionPool::~ConnectionPool() 
 {
-    std::lock_guard<std::mutex> lock(pool_mutex);   // ¼ÓËø
-    for (auto& pair : pool_map) // ±éÀúÁ¬½Ó³Ø
+    std::lock_guard<std::mutex> lock(pool_mutex);   // åŠ é”
+    for (auto& pair : pool_map) // éå†è¿æ¥æ± 
     {
-		while (!pair.second.empty())    // Èç¹ûÁ¬½Ó³Ø²»Îª¿Õ
+		while (!pair.second.empty())    // å¦‚æœè¿æ¥æ± ä¸ä¸ºç©º
         {
-			pair.second.pop();  // µ¯³öÁ¬½Ó
+			pair.second.pop();  // å¼¹å‡ºè¿æ¥
         }
     }
 }
 
-// Ìí¼ÓÁ´½Ó
+// æ·»åŠ é“¾æ¥
 void ConnectionPool::add_server(myproject::ServerType server_type, const std::string& server_address, const std::string& server_port)
 {
-	std::lock_guard<std::mutex> lock(pool_mutex);   // ¼ÓËø
-	server_info_map[server_type] = { server_address, server_port }; // ±£´æ·şÎñÆ÷ĞÅÏ¢
-	for (size_t i = 0; i < pool_size; ++i)  // ±éÀúÁ¬½Ó³Ø£¬Ìí¼ÓÁ¬½Ó
+	std::lock_guard<std::mutex> lock(pool_mutex);   // åŠ é”
+	server_info_map[server_type] = { server_address, server_port }; // ä¿å­˜æœåŠ¡å™¨ä¿¡æ¯
+	for (size_t i = 0; i < pool_size; ++i)  // éå†è¿æ¥æ± ï¼Œæ·»åŠ è¿æ¥
     {
-		auto channel = new_connection(server_address, server_port); // ´´½¨Á¬½Ó
-		pool_map[server_type].push(channel);    // ¼ÓÈëÁ¬½Ó³Ø
+		auto channel = new_connection(server_address, server_port); // åˆ›å»ºè¿æ¥
+		pool_map[server_type].push(channel);    // åŠ å…¥è¿æ¥æ± 
     }
 }
 
-// É¾³ıÖ¸¶¨·şÎñÆ÷µÄÁ´½Ó
+// åˆ é™¤æŒ‡å®šæœåŠ¡å™¨çš„é“¾æ¥
 void ConnectionPool::remove_server(myproject::ServerType server_type, const std::string& server_address, const std::string& server_port)
 {
-	std::lock_guard<std::mutex> lock(pool_mutex);   // ¼ÓËø
-	server_info_map.erase(server_type); // É¾³ı·şÎñÆ÷ĞÅÏ¢
-	while (!pool_map[server_type].empty())    // Èç¹ûÁ¬½Ó³Ø²»Îª¿Õ
+	std::lock_guard<std::mutex> lock(pool_mutex);   // åŠ é”
+	server_info_map.erase(server_type); // åˆ é™¤æœåŠ¡å™¨ä¿¡æ¯
+	while (!pool_map[server_type].empty())    // å¦‚æœè¿æ¥æ± ä¸ä¸ºç©º
 	{
-		pool_map[server_type].pop();    // µ¯³öÁ¬½Ó
+		pool_map[server_type].pop();    // å¼¹å‡ºè¿æ¥
 	}
 }
 
-// »ñÈ¡Á´½Ó
+// è·å–é“¾æ¥
 std::shared_ptr<grpc::Channel> ConnectionPool::get_connection(myproject::ServerType server_type)
 {
-	std::lock_guard<std::mutex> lock(pool_mutex);   // ¼ÓËø
-	if (pool_map[server_type].empty())  // Èç¹ûÁ¬½Ó³ØÎª¿Õ
+	std::lock_guard<std::mutex> lock(pool_mutex);   // åŠ é”
+	if (pool_map[server_type].empty())  // å¦‚æœè¿æ¥æ± ä¸ºç©º
     {
-		auto& server_info = server_info_map[server_type];   // »ñÈ¡·şÎñÆ÷ĞÅÏ¢
-		return new_connection(server_info.first, server_info.second);   // ´´½¨ĞÂÁ¬½Ó
+		auto& server_info = server_info_map[server_type];   // è·å–æœåŠ¡å™¨ä¿¡æ¯
+		return new_connection(server_info.first, server_info.second);   // åˆ›å»ºæ–°è¿æ¥
     }
-	auto connection = pool_map[server_type].front();    // »ñÈ¡Á¬½Ó
-	pool_map[server_type].pop();    // µ¯³öÁ¬½Ó
+	auto connection = pool_map[server_type].front();    // è·å–è¿æ¥
+	pool_map[server_type].pop();    // å¼¹å‡ºè¿æ¥
     return connection;
 }
 
-// ÊÍ·ÅÁ´½Ó
+// é‡Šæ”¾é“¾æ¥
 void ConnectionPool::release_connection(myproject::ServerType server_type, std::shared_ptr<grpc::Channel> connection)
 {
-	std::lock_guard<std::mutex> lock(pool_mutex);   // ¼ÓËø
-	pool_map[server_type].push(connection);  // ¼ÓÈëÁ¬½Ó³Ø
+	std::lock_guard<std::mutex> lock(pool_mutex);   // åŠ é”
+	pool_map[server_type].push(connection);  // åŠ å…¥è¿æ¥æ± 
 }
 
-// ÏòÖĞĞÄ·şÎñÆ÷»ñÈ¡×îĞÂÁ¬½Ó
+// å‘ä¸­å¿ƒæœåŠ¡å™¨è·å–æœ€æ–°è¿æ¥
 std::shared_ptr<grpc::Channel> ConnectionPool::new_connection(const std::string& server_address, const std::string& server_port)
 {
     return grpc::CreateChannel(server_address + ":" + server_port, grpc::InsecureChannelCredentials());
 }
 
-// ¸üĞÂÁ¬½Ó³ØÖĞµÄÁ¬½Ó
+// æ›´æ–°è¿æ¥æ± ä¸­çš„è¿æ¥
 void ConnectionPool::update_connections(myproject::ServerType server_type, const std::string& server_address, const std::string& server_port)
 {
-    std::lock_guard<std::mutex> lock(pool_mutex);   // ¼ÓËø
+    std::lock_guard<std::mutex> lock(pool_mutex);   // åŠ é”
 
-    // ¸üĞÂ·şÎñÆ÷ĞÅÏ¢
+    // æ›´æ–°æœåŠ¡å™¨ä¿¡æ¯
     server_info_map[server_type] = { server_address, server_port };
 
-    // Çå¿Õµ±Ç°Á¬½Ó³Ø
+    // æ¸…ç©ºå½“å‰è¿æ¥æ± 
     while (!pool_map[server_type].empty()) {
         pool_map[server_type].pop();
     }
 
-    // Ìí¼ÓĞÂÁ¬½Óµ½Á¬½Ó³Ø
+    // æ·»åŠ æ–°è¿æ¥åˆ°è¿æ¥æ± 
     for (size_t i = 0; i < pool_size; ++i) {
         auto channel = new_connection(server_address, server_port);
         pool_map[server_type].push(channel);
     }
 }
 
-// »ñÈ¡ËùÓĞÁ¬½Ó³ØµÄ×´Ì¬
+// è·å–æ‰€æœ‰è¿æ¥æ± çš„çŠ¶æ€
 std::unordered_map<myproject::ServerType, std::vector<std::pair<std::string, std::string>>> ConnectionPool::get_all_connections()
 {
-	std::lock_guard<std::mutex> lock(pool_mutex);   // ¼ÓËø
+	std::lock_guard<std::mutex> lock(pool_mutex);   // åŠ é”
 	
-	// ±£´æËùÓĞÁ¬½Ó
+	// ä¿å­˜æ‰€æœ‰è¿æ¥
 	std::unordered_map<myproject::ServerType, std::vector<std::pair<std::string, std::string>>> all_connections;  
 	
-	for (const auto& pair : server_info_map)   // ±éÀú·şÎñÆ÷ĞÅÏ¢
+	for (const auto& pair : server_info_map)   // éå†æœåŠ¡å™¨ä¿¡æ¯
 	{
-		all_connections[pair.first].push_back(pair.second);    // ½«·şÎñÆ÷ĞÅÏ¢ ¼ÓÈëÈİÆ÷
+		all_connections[pair.first].push_back(pair.second);    // å°†æœåŠ¡å™¨ä¿¡æ¯ åŠ å…¥å®¹å™¨
 	}
 
     return all_connections;

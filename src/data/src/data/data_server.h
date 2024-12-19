@@ -7,29 +7,29 @@
 #include <grpcpp/grpcpp.h>
 #include <mysqlx/xdevapi.h> // mysql
 
-// Êı¾İ¿â·şÎñÊµÏÖÀà
+// æ•°æ®åº“æœåŠ¡å®ç°ç±»
 class DatabaseServerImpl final : public myproject::DatabaseServer::Service {
 public:
-	explicit DatabaseServerImpl(mysqlx::Session& DBlink_); // ¹¹Ôìº¯Êı£º´«ÈëÊı¾İ¿âÁ´½Ó
-    ~DatabaseServerImpl() override; // Ìí¼ÓÎö¹¹º¯ÊıÉùÃ÷
+	explicit DatabaseServerImpl(mysqlx::Session& DBlink_); // æ„é€ å‡½æ•°ï¼šä¼ å…¥æ•°æ®åº“é“¾æ¥
+    ~DatabaseServerImpl() override; // æ·»åŠ ææ„å‡½æ•°å£°æ˜
 
-	void register_server(); // ×¢²á·şÎñÆ÷
-	void unregister_server(); // ×¢Ïú·şÎñÆ÷
+	void register_server(); // æ³¨å†ŒæœåŠ¡å™¨
+	void unregister_server(); // æ³¨é”€æœåŠ¡å™¨
 
-	// ·şÎñÊµÏÖ
-	// Ìí¼ÓÊı¾İ¿â¼ÇÂ¼
+	// æœåŠ¡å®ç°
+	// æ·»åŠ æ•°æ®åº“è®°å½•
     grpc::Status Create(grpc::ServerContext* context, const myproject::CreateRequest* request, myproject::CreateResponse* response) override;
-	// ¶ÁÈ¡Êı¾İ¿â¼ÇÂ¼
+	// è¯»å–æ•°æ®åº“è®°å½•
     grpc::Status Read(grpc::ServerContext* context, const myproject::ReadRequest* request, myproject::ReadResponse* response) override;
-	// ¸üĞÂÊı¾İ¿â¼ÇÂ¼
+	// æ›´æ–°æ•°æ®åº“è®°å½•
 	grpc::Status Update(grpc::ServerContext* context, const myproject::UpdateRequest* request, myproject::UpdateResponse* response) override;
-	// É¾³ıÊı¾İ¿â¼ÇÂ¼
+	// åˆ é™¤æ•°æ®åº“è®°å½•
 	grpc::Status Delete(grpc::ServerContext* context, const myproject::DeleteRequest* request, myproject::DeleteResponse* response) override;
 
 private:
-	mysqlx::Session& DBlink; // Êı¾İ¿âÁ´½Ó
+	mysqlx::Session& DBlink; // æ•°æ®åº“é“¾æ¥
 
-	std::unique_ptr<myproject::CentralServer::Stub> central_stub;	// ÖĞĞÄ·şÎñ´æ¸ù
+	std::unique_ptr<myproject::CentralServer::Stub> central_stub;	// ä¸­å¿ƒæœåŠ¡å­˜æ ¹
 };
 
 #endif // DATA_SERVICE_H

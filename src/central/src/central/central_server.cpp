@@ -1,20 +1,22 @@
 #include "central_server.h"
 
-CentralServerImpl::CentralServerImpl() :
+CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_) :
+    logger_manager(logger_manager_),
     central_connection_pool(10),
-	data_connection_pool(10),   // Êı¾İ¿âÁ¬½Ó³Ø´óĞ¡Îª 10
-	gateway_connection_pool(10),    // Íø¹ØÁ¬½Ó³Ø´óĞ¡Îª 10
-	login_connection_pool(10)   // µÇÂ¼Á¬½Ó³Ø´óĞ¡Îª 10
+    data_connection_pool(10),   // æ•°æ®åº“è¿æ¥æ± å¤§å°ä¸º 10
+    gateway_connection_pool(10),    // ç½‘å…³è¿æ¥æ± å¤§å°ä¸º 10
+	logic_connection_pool(10),  // é€»è¾‘æœåŠ¡å™¨è¿æ¥æ± å¤§å°ä¸º 10
+    login_connection_pool(10)   // ç™»å½•è¿æ¥æ± å¤§å°ä¸º 10
 {
-    // ÔÚÖĞĞÄ·şÎñÆ÷Á¬½Ó³ØÖĞ¼ÓÈë±¾·şÎñÆ÷
+    // åœ¨ä¸­å¿ƒæœåŠ¡å™¨è¿æ¥æ± ä¸­åŠ å…¥æœ¬æœåŠ¡å™¨
     central_connection_pool.add_server(myproject::ServerType::CENTRAL, "localhost", "50050");
-    std::cout << "ÖĞĞÄ·şÎñÆ÷×¢²á³É¹¦: " << " " << "localhost" << " " << "50050" << std::endl;
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ä¸­å¿ƒæœåŠ¡å™¨æ³¨å†ŒæˆåŠŸ: {} {}", "localhost", "50050");
 
-    //// Æô¶¯¶¨Ê±ÈÎÎñ£¬¶¨Ê±¼ì²â·şÎñÆ÷ÔËĞĞ×´Ì¬
+    //// å¯åŠ¨å®šæ—¶ä»»åŠ¡ï¼Œå®šæ—¶æ£€æµ‹æœåŠ¡å™¨è¿è¡ŒçŠ¶æ€
     //std::thread([this]() {
     //    while (true) {
-    //        // ¼ì²â·şÎñÆ÷ÔËĞĞ×´Ì¬
-    //        // ¸üĞÂÁ¬½Ó³Ø
+    //        // æ£€æµ‹æœåŠ¡å™¨è¿è¡ŒçŠ¶æ€
+    //        // æ›´æ–°è¿æ¥æ± 
     //        std::this_thread::sleep_for(std::chrono::seconds(60));
     //    }
     //    }).detach();
@@ -24,99 +26,94 @@ CentralServerImpl::~CentralServerImpl()
 {
 }
 
-// ·şÎñÆ÷×¢²á
+// æœåŠ¡å™¨æ³¨å†Œ
 grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, const myproject::RegisterServerRequest* request, myproject::RegisterServerResponse* response)
 {
-	myproject::ServerType server_type = request->server_type(); // ·şÎñÆ÷ÀàĞÍ
-	std::string address = request->address();   // ·şÎñÆ÷µØÖ·
-	std::string port = request->port(); // ·şÎñÆ÷¶Ë¿Ú
+    myproject::ServerType server_type = request->server_type(); // æœåŠ¡å™¨ç±»å‹
+    std::string address = request->address();   // æœåŠ¡å™¨åœ°å€
+    std::string port = request->port(); // æœåŠ¡å™¨ç«¯å£
 
-    // ¸ù¾İ·şÎñÆ÷ÀàĞÍ£¬½«·şÎñÆ÷¼ÓÈëÁ¬½Ó³Ø
+    // æ ¹æ®æœåŠ¡å™¨ç±»å‹ï¼Œå°†æœåŠ¡å™¨åŠ å…¥è¿æ¥æ± 
     switch (server_type)
     {
     case myproject::ServerType::CENTRAL:
     {
-        // todo£ºÖĞĞÄ·şÎñÆ÷
-        std::cout << "ÔİÎ´ÊµÏÖ" << std::endl;
+        // todoï¼šä¸­å¿ƒæœåŠ¡å™¨
+        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("ä¸­å¿ƒæœåŠ¡å™¨æ³¨å†ŒæˆåŠŸ: {} {}æš‚æœªå®ç°", address, port);
         break;
     }
-	case myproject::ServerType::DATA:   // Êı¾İ¿â·şÎñÆ÷
+    case myproject::ServerType::DATA:   // æ•°æ®åº“æœåŠ¡å™¨
     {
-		data_connection_pool.add_server(myproject::ServerType::DATA, address, port);    // ¼ÓÈëÁ¬½Ó³Ø
-        std::cout << "Êı¾İ¿â·şÎñÆ÷×¢²á³É¹¦: " << " " << address << " " << port << std::endl;
+        data_connection_pool.add_server(myproject::ServerType::DATA, address, port);    // åŠ å…¥è¿æ¥æ± 
+        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("æ•°æ®åº“æœåŠ¡å™¨æ³¨å†ŒæˆåŠŸ: {} {}", address, port);
         break;
     }
-	case myproject::ServerType::GATEWAY:    // Íø¹Ø·şÎñÆ÷
+    case myproject::ServerType::GATEWAY:    // ç½‘å…³æœåŠ¡å™¨
     {
         gateway_connection_pool.add_server(myproject::ServerType::GATEWAY, address, port);
-        std::cout << "Íø¹Ø·şÎñÆ÷×¢²á³É¹¦: " << " " << address << " " << port << std::endl;
+        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("ç½‘å…³æœåŠ¡å™¨æ³¨å†ŒæˆåŠŸ: {} {}", address, port);
         break;
     }
-	case myproject::ServerType::LOGIN:      // µÇÂ¼·şÎñÆ÷
+    case myproject::ServerType::LOGIN:      // ç™»å½•æœåŠ¡å™¨
     {
         login_connection_pool.add_server(myproject::ServerType::LOGIN, address, port);
-        std::cout << "µÇÂ¼·şÎñÆ÷×¢²á³É¹¦: " << " " << address << " " << port << std::endl;
+        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("ç™»å½•æœåŠ¡å™¨æ³¨å†ŒæˆåŠŸ: {} {}", address, port);
         break;
     }
     }
 
     response->set_success(true);
-    response->set_message("·şÎñÆ÷×¢²á³É¹¦");
+    response->set_message("æœåŠ¡å™¨æ³¨å†ŒæˆåŠŸ");
     return grpc::Status::OK;
 }
 
-// ¶Ï¿ª·şÎñÆ÷Á¬½Ó
+// æ–­å¼€æœåŠ¡å™¨è¿æ¥
 grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, const myproject::UnregisterServerRequest* request, myproject::UnregisterServerResponse* response)
 {
-    myproject::ServerType server_type = request->server_type(); // ·şÎñÆ÷ÀàĞÍ  
-    std::string address = request->address();   // ·şÎñÆ÷µØÖ·
-    std::string port = request->port(); // ·şÎñÆ÷¶Ë¿Ú
+    myproject::ServerType server_type = request->server_type(); // æœåŠ¡å™¨ç±»å‹  
+    std::string address = request->address();   // æœåŠ¡å™¨åœ°å€
+    std::string port = request->port(); // æœåŠ¡å™¨ç«¯å£
 
-    // ¸ù¾İ·şÎñÆ÷ÀàĞÍ£¬´ÓÁ¬½Ó³ØÖĞÉ¾³ı·şÎñÆ÷
+    // æ ¹æ®æœåŠ¡å™¨ç±»å‹ï¼Œä»è¿æ¥æ± ä¸­åˆ é™¤æœåŠ¡å™¨
     switch (server_type)
     {
     case myproject::ServerType::CENTRAL:
     {
-        // todo£ºÖĞĞÄ·şÎñÆ÷
-        std::cout << "ÔİÎ´ÊµÏÖ" << std::endl;
+        // todoï¼šä¸­å¿ƒæœåŠ¡å™¨
+        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("æ•°æ®åº“æœåŠ¡å™¨æ–­å¼€è¿æ¥æˆåŠŸ: {} {}æš‚æœªå®ç°", address, port);
         break;
     }
-    case myproject::ServerType::DATA:   // Êı¾İ¿â·şÎñÆ÷
+    case myproject::ServerType::DATA:   // æ•°æ®åº“æœåŠ¡å™¨
     {
-        data_connection_pool.remove_server(myproject::ServerType::DATA, address, port);    // ´ÓÁ¬½Ó³ØÖĞÉ¾³ı
-        std::cout << "Êı¾İ¿â·şÎñÆ÷¶Ï¿ªÁ¬½Ó³É¹¦: " << " " << address << " " << port << std::endl;
+        data_connection_pool.remove_server(myproject::ServerType::DATA, address, port);    // ä»è¿æ¥æ± ä¸­åˆ é™¤
+        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("æ•°æ®åº“æœåŠ¡å™¨æ–­å¼€è¿æ¥æˆåŠŸ: {} {}", address, port);
         break;
     }
-    case myproject::ServerType::GATEWAY:    // Íø¹Ø·şÎñÆ÷
+    case myproject::ServerType::GATEWAY:    // ç½‘å…³æœåŠ¡å™¨
     {
         gateway_connection_pool.remove_server(myproject::ServerType::GATEWAY, address, port);
-        std::cout << "Íø¹Ø·şÎñÆ÷¶Ï¿ªÁ¬½Ó³É¹¦: " << " " << address << " " << port << std::endl;
+        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("ç½‘å…³æœåŠ¡å™¨æ–­å¼€è¿æ¥æˆåŠŸ: {} {}", address, port);
         break;
     }
-    case myproject::ServerType::LOGIN:      // µÇÂ¼·şÎñÆ÷
+    case myproject::ServerType::LOGIN:      // ç™»å½•æœåŠ¡å™¨
     {
         login_connection_pool.remove_server(myproject::ServerType::LOGIN, address, port);
-        std::cout << "µÇÂ¼·şÎñÆ÷¶Ï¿ªÁ¬½Ó³É¹¦: " << " " << address << " " << port << std::endl;
+        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("ç™»å½•æœåŠ¡å™¨æ–­å¼€è¿æ¥æˆåŠŸ: {} {}", address, port);
         break;
     }
     default:
+        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("å°è¯•æ–­å¼€æœªçŸ¥æœåŠ¡å™¨: {} {}", address, port);
         response->set_success(false);
-        response->set_message("ÎŞĞ§µÄ·şÎñÆ÷ÀàĞÍ");
+        response->set_message("æ— æ•ˆçš„æœåŠ¡å™¨ç±»å‹");
         return grpc::Status::OK;
     }
-
-    std::cout << "·şÎñÆ÷¶Ï¿ªÁ¬½Ó³É¹¦: " << std::endl;
-    response->set_success(true);
-    response->set_message("·şÎñÆ÷¶Ï¿ªÁ¬½Ó³É¹¦");
-
-    return grpc::Status::OK;
 }
 
-// »ñÈ¡Á¬½Ó³ØÖĞËùÓĞÁ´½Ó
+// è·å–è¿æ¥æ± ä¸­æ‰€æœ‰é“¾æ¥
 grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, const myproject::ConnectPoorRequest* request, myproject::ConnectPoorResponse* response)
 {
-	std::cout << "»ñÈ¡Á¬½Ó³ØĞÅÏ¢" << std::endl;
-    myproject::ServerType server_type = request->server_type(); // ·şÎñÆ÷ÀàĞÍ  
+    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("è·å–è¿æ¥æ± ä¿¡æ¯");
+    myproject::ServerType server_type = request->server_type(); // æœåŠ¡å™¨ç±»å‹  
 
     std::unordered_map<myproject::ServerType, std::vector<std::pair<std::string, std::string>>> connections;
 
@@ -124,37 +121,31 @@ grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, con
     {
     case myproject::CENTRAL:
     {
-        // »ñÈ¡ÖĞÑë·şÎñÆ÷Á¬½Ó³ØĞÅÏ¢
+        // è·å–ä¸­å¤®æœåŠ¡å™¨è¿æ¥æ± ä¿¡æ¯
         connections = central_connection_pool.get_all_connections();
         break;
     }
     case myproject::DATA:
     {
-        // »ñÈ¡Êı¾İ¿â·şÎñÆ÷Á¬½Ó³ØĞÅÏ¢
+        // è·å–æ•°æ®åº“æœåŠ¡å™¨è¿æ¥æ± ä¿¡æ¯
         connections = data_connection_pool.get_all_connections();
         break;
     }
     case myproject::GATEWAY:
     {
-        // »ñÈ¡Íø¹Ø·şÎñÆ÷Á¬½Ó³ØĞÅÏ¢
+        // è·å–ç½‘å…³æœåŠ¡å™¨è¿æ¥æ± ä¿¡æ¯
         connections = gateway_connection_pool.get_all_connections();
         break;
     }
-    //case myproject::LOGIC: 
-    //{
-    //    // »ñÈ¡Âß¼­·şÎñÆ÷Á¬½Ó³ØĞÅÏ¢
-    //    connections = logic_connection_pool.get_all_connections();
-    //    break;
-    //}
     case myproject::LOGIN:
     {
-        // »ñÈ¡µÇÂ¼·şÎñÆ÷Á¬½Ó³ØĞÅÏ¢
+        // è·å–ç™»å½•æœåŠ¡å™¨è¿æ¥æ± ä¿¡æ¯
         connections = login_connection_pool.get_all_connections();
         break;
     }
     default:
         response->set_success(false);
-        response->set_message("ÎŞĞ§µÄ·şÎñÆ÷ÀàĞÍ");
+        response->set_message("æ— æ•ˆçš„æœåŠ¡å™¨ç±»å‹");
         return grpc::Status::OK;
     }
 
@@ -162,11 +153,10 @@ grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, con
     {
         auto* conn_info = response->add_connect_info();
         conn_info->set_address(connection.first);
-        conn_info->set_port(std::stoi(connection.second)); // ½«¶Ë¿Ú´Ó×Ö·û´®×ª»»ÎªÕûÊı
+        conn_info->set_port(std::stoi(connection.second)); // å°†ç«¯å£ä»å­—ç¬¦ä¸²è½¬æ¢ä¸ºæ•´æ•°
     }
 
     response->set_success(true);
-    response->set_message("»ñÈ¡Á¬½Ó³ØĞÅÏ¢³É¹¦");
+    response->set_message("è·å–è¿æ¥æ± ä¿¡æ¯æˆåŠŸ");
     return grpc::Status::OK;
 }
-

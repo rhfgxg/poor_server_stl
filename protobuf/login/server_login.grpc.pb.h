@@ -42,7 +42,7 @@ class LoginServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::LoginResponse>> PrepareAsyncLogin(::grpc::ClientContext* context, const ::myproject::LoginRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::LoginResponse>>(PrepareAsyncLoginRaw(context, request, cq));
     }
-    // 登录服务
+    // 鐧诲綍鏈嶅姟
     virtual ::grpc::Status Register(::grpc::ClientContext* context, const ::myproject::RegisterRequest& request, ::myproject::RegisterResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterResponse>> AsyncRegister(::grpc::ClientContext* context, const ::myproject::RegisterRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterResponse>>(AsyncRegisterRaw(context, request, cq));
@@ -50,7 +50,7 @@ class LoginServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterResponse>> PrepareAsyncRegister(::grpc::ClientContext* context, const ::myproject::RegisterRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterResponse>>(PrepareAsyncRegisterRaw(context, request, cq));
     }
-    // 注册服务
+    // 娉ㄥ唽鏈嶅姟
     virtual ::grpc::Status Authenticate(::grpc::ClientContext* context, const ::myproject::AuthenticateRequest& request, ::myproject::AuthenticateResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::AuthenticateResponse>> AsyncAuthenticate(::grpc::ClientContext* context, const ::myproject::AuthenticateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::AuthenticateResponse>>(AsyncAuthenticateRaw(context, request, cq));
@@ -58,19 +58,19 @@ class LoginServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::AuthenticateResponse>> PrepareAsyncAuthenticate(::grpc::ClientContext* context, const ::myproject::AuthenticateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::AuthenticateResponse>>(PrepareAsyncAuthenticateRaw(context, request, cq));
     }
-    // 令牌验证服务
+    // 浠ょ墝楠岃瘉鏈嶅姟
     class async_interface {
      public:
       virtual ~async_interface() {}
       virtual void Login(::grpc::ClientContext* context, const ::myproject::LoginRequest* request, ::myproject::LoginResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Login(::grpc::ClientContext* context, const ::myproject::LoginRequest* request, ::myproject::LoginResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 登录服务
+      // 鐧诲綍鏈嶅姟
       virtual void Register(::grpc::ClientContext* context, const ::myproject::RegisterRequest* request, ::myproject::RegisterResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Register(::grpc::ClientContext* context, const ::myproject::RegisterRequest* request, ::myproject::RegisterResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 注册服务
+      // 娉ㄥ唽鏈嶅姟
       virtual void Authenticate(::grpc::ClientContext* context, const ::myproject::AuthenticateRequest* request, ::myproject::AuthenticateResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Authenticate(::grpc::ClientContext* context, const ::myproject::AuthenticateRequest* request, ::myproject::AuthenticateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 令牌验证服务
+      // 浠ょ墝楠岃瘉鏈嶅姟
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -144,11 +144,11 @@ class LoginServer final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status Login(::grpc::ServerContext* context, const ::myproject::LoginRequest* request, ::myproject::LoginResponse* response);
-    // 登录服务
+    // 鐧诲綍鏈嶅姟
     virtual ::grpc::Status Register(::grpc::ServerContext* context, const ::myproject::RegisterRequest* request, ::myproject::RegisterResponse* response);
-    // 注册服务
+    // 娉ㄥ唽鏈嶅姟
     virtual ::grpc::Status Authenticate(::grpc::ServerContext* context, const ::myproject::AuthenticateRequest* request, ::myproject::AuthenticateResponse* response);
-    // 令牌验证服务
+    // 浠ょ墝楠岃瘉鏈嶅姟
   };
   template <class BaseClass>
   class WithAsyncMethod_Login : public BaseClass {

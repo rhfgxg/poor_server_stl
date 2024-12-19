@@ -1,19 +1,19 @@
-# Èí¼þ¿ª·¢ÎÄµµ
+# è½¯ä»¶å¼€å‘æ–‡æ¡£
 
-# Ä£¿éÃèÊö
-|×ÓÏµÍ³±àºÅ|English_name|ÖÐÎÄÃû|Ö°ÄÜ|Ô´ÂëÄ¿Â¼|±¸×¢|   
+# æ¨¡å—æè¿°
+|å­ç³»ç»Ÿç¼–å·|English_name|ä¸­æ–‡å|èŒèƒ½|æºç ç›®å½•|å¤‡æ³¨|   
 |:---|:---|:---|:---|:---|:---|:---|
-|1|central|ÖÐÐÄ|¹ÜÀíÆäËû·þÎñÆ÷/È«·þ¹ã²¥|/src/central|   |   
-|2|gateway|Íø¹Ø|Óë¿Í»§¶ËÍ¨ÐÅ|/src/gateway|   |   |
-|3|data/database|Êý¾Ý¿â|¹ÜÀíÊý¾Ý¿â²Ù×÷|/src/data|   |   
-|4|login|µÇÂ¼|´¦ÀíµÇÂ¼·þÎñ|/src/login|   |   
-|5|logic|Âß¼­|´¦ÀíÓÎÏ·Ä£¿éµÄÐÅÏ¢|/src/logic|   |   
-|6|files|ÎÄ¼þ|¹ÜÀíÓÎÏ·×ÊÔ´/ÍøÅÌ|ÓÎÏ·×ÊÔ´ÏÂÔØ/ÍøÅÌ|/src/files|todo|
+|1|central|ä¸­å¿ƒ|ç®¡ç†å…¶ä»–æœåŠ¡å™¨/å…¨æœå¹¿æ’­|/src/central|   |   
+|2|gateway|ç½‘å…³|ä¸Žå®¢æˆ·ç«¯é€šä¿¡|/src/gateway|   |   |
+|3|data/database|æ•°æ®åº“|ç®¡ç†æ•°æ®åº“æ“ä½œ|/src/data|   |   
+|4|login|ç™»å½•|å¤„ç†ç™»å½•æœåŠ¡|/src/login|   |   
+|5|logic|é€»è¾‘|å¤„ç†æ¸¸æˆæ¨¡å—çš„ä¿¡æ¯|/src/logic|   |   
+|6|files|æ–‡ä»¶|ç®¡ç†æ¸¸æˆèµ„æº/ç½‘ç›˜|æ¸¸æˆèµ„æºä¸‹è½½/ç½‘ç›˜|/src/files|todo|
 
-# ½Ó¿ÚÃèÊö
-## ¿Í»§¶ËÓë·þÎñÆ÷Í¨ÐÅ½Ó¿Ú
-|½Ó¿ÚÃû|½Ó¿ÚÃèÊö|ÇëÇó²ÎÊýÁÐ±í|·µ»Ø²ÎÊýÁÐ±í|±¸×¢|
+# æŽ¥å£æè¿°
+## å®¢æˆ·ç«¯ä¸ŽæœåŠ¡å™¨é€šä¿¡æŽ¥å£
+|æŽ¥å£å|æŽ¥å£æè¿°|è¯·æ±‚å‚æ•°åˆ—è¡¨|è¿”å›žå‚æ•°åˆ—è¡¨|å¤‡æ³¨|
 |:---|:---|:---|:---|:---|
-|/login|µÇÂ¼|£¬ÃÜÂë|µÇÂ¼½á¹û|   |
+|/login|ç™»å½•|ï¼Œå¯†ç |ç™»å½•ç»“æžœ|   |
 
-## ·þÎñÆ÷Ö®¼äÍ¨ÐÅ½Ó¿Ú
+## æœåŠ¡å™¨ä¹‹é—´é€šä¿¡æŽ¥å£

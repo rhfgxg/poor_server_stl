@@ -1,82 +1,82 @@
 #include "login_server.h"
 
 LoginServerImpl::LoginServerImpl() :
-    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // Á´½ÓÖĞĞÄ·şÎñÆ÷
-	db_connection_pool(10) // ³õÊ¼»¯Êı¾İ¿â·şÎñÆ÷Á¬½Ó³Ø£¬ÉèÖÃÁ¬½Ó³Ø´óĞ¡Îª10
+    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // é“¾æ¥ä¸­å¿ƒæœåŠ¡å™¨
+	db_connection_pool(10) // åˆå§‹åŒ–æ•°æ®åº“æœåŠ¡å™¨è¿æ¥æ± ï¼Œè®¾ç½®è¿æ¥æ± å¤§å°ä¸º10
 {
 
 }
 
-// ×¢²á·şÎñÆ÷
+// æ³¨å†ŒæœåŠ¡å™¨
 void LoginServerImpl::register_server() 
 {
-    // ÇëÇó
+    // è¯·æ±‚
     myproject::RegisterServerRequest request;
     request.set_server_type(myproject::ServerType::LOGIN);
     request.set_address("127.0.0.1");
     request.set_port("50053");
 
-    // ÏìÓ¦
+    // å“åº”
     myproject::RegisterServerResponse response;
 
-    // ¿Í»§¶Ë
+    // å®¢æˆ·ç«¯
     grpc::ClientContext context;
 
     grpc::Status status = central_stub->RegisterServer(&context, request, &response);
 
     if (status.ok() && response.success())
     {
-        std::cout << "·şÎñÆ÷×¢²á³É¹¦: " << response.message() << std::endl;
+        std::cout << "æœåŠ¡å™¨æ³¨å†ŒæˆåŠŸ: " << response.message() << std::endl;
 
-		init_connection_pool(); // ³õÊ¼»¯Á¬½Ó³Ø
+		init_connection_pool(); // åˆå§‹åŒ–è¿æ¥æ± 
     }
     else 
     {
-        std::cerr << "·şÎñÆ÷×¢²áÊ§°Ü: " << response.message() << std::endl;
+        std::cerr << "æœåŠ¡å™¨æ³¨å†Œå¤±è´¥: " << response.message() << std::endl;
     }
 }
 
-// ×¢Ïú·şÎñÆ÷
+// æ³¨é”€æœåŠ¡å™¨
 void LoginServerImpl::unregister_server() 
 {
-    // ÇëÇó
+    // è¯·æ±‚
     myproject::UnregisterServerRequest request;
     request.set_server_type(myproject::ServerType::LOGIN);
     request.set_address("localhost");
     request.set_port("50053");
 
-    // ÏìÓ¦
+    // å“åº”
     myproject::UnregisterServerResponse response;
 
-    // ¿Í»§¶Ë
+    // å®¢æˆ·ç«¯
     grpc::ClientContext context;
 
     grpc::Status status = central_stub->UnregisterServer(&context, request, &response);
 
     if (status.ok() && response.success()) {
-        std::cout << "·şÎñÆ÷×¢Ïú³É¹¦: " << response.message() << std::endl;
+        std::cout << "æœåŠ¡å™¨æ³¨é”€æˆåŠŸ: " << response.message() << std::endl;
     }
     else {
-        std::cerr << "·şÎñÆ÷×¢ÏúÊ§°Ü: " << response.message() << std::endl;
+        std::cerr << "æœåŠ¡å™¨æ³¨é”€å¤±è´¥: " << response.message() << std::endl;
     }
 }
 
-// ³õÊ¼»¯Á¬½Ó³Ø
+// åˆå§‹åŒ–è¿æ¥æ± 
 void LoginServerImpl::init_connection_pool()
 {
-    // ¿Í»§¶Ë
+    // å®¢æˆ·ç«¯
     grpc::ClientContext context;
-    // ÇëÇó
+    // è¯·æ±‚
     myproject::ConnectPoorRequest request;
     request.set_server_type(myproject::ServerType::DATA);
-    // ÏìÓ¦
+    // å“åº”
     myproject::ConnectPoorResponse response;
 
     grpc::Status status = central_stub->GetConnectPoor(&context, request, &response);
 
     if (status.ok())
     {
-        // ¸üĞÂµÇÂ¼·şÎñÆ÷Á¬½Ó³Ø
+        // æ›´æ–°ç™»å½•æœåŠ¡å™¨è¿æ¥æ± 
         for (const auto& server_info : response.connect_info())
         {
             db_connection_pool.add_server(myproject::ServerType::DATA, server_info.address(), std::to_string(server_info.port()));
@@ -84,46 +84,46 @@ void LoginServerImpl::init_connection_pool()
     }
     else
     {
-        std::cerr << "ÎŞ·¨»ñÈ¡µÇÂ¼·şÎñÆ÷Á¬½Ó³ØĞÅÏ¢: " << status.error_message() << std::endl;
+        std::cerr << "æ— æ³•è·å–ç™»å½•æœåŠ¡å™¨è¿æ¥æ± ä¿¡æ¯: " << status.error_message() << std::endl;
     }
 }
 
 
-// µÇÂ¼·şÎñ½Ó¿Ú
+// ç™»å½•æœåŠ¡æ¥å£
 grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const myproject::LoginRequest* request, myproject::LoginResponse* response)
 {
-    // »ñÈ¡ÓÃ»§ÃûºÍÃÜÂë
-    std::string username = request->username(); // ´Ó request ¶ÔÏóÖĞÌáÈ¡ÓÃ»§ÃûºÍÃÜÂë
+    // è·å–ç”¨æˆ·åå’Œå¯†ç 
+    std::string username = request->username(); // ä» request å¯¹è±¡ä¸­æå–ç”¨æˆ·åå’Œå¯†ç 
     std::string password = request->password();
-	// ¹¹Ôì²éÑ¯Ìõ¼ş
+	// æ„é€ æŸ¥è¯¢æ¡ä»¶
     std::map<std::string, std::string> query = { {"user_name", username}, {"user_password", password} }; 
 
-	std::string responses = login_("poor_users", "users", query); // ²éÑ¯µÄÊı¾İ¿âÃû£¬±íÃû£¬²éÑ¯Ìõ¼ş
+	std::string responses = login_("poor_users", "users", query); // æŸ¥è¯¢çš„æ•°æ®åº“åï¼Œè¡¨åï¼ŒæŸ¥è¯¢æ¡ä»¶
 
-    if (responses == "µÇÂ¼³É¹¦")
+    if (responses == "ç™»å½•æˆåŠŸ")
     {
-		response->set_success(true);    // ÉèÖÃÏìÓ¦¶ÔÏó response µÄ success ×Ö¶ÎÎª true
-        response->set_message("µÇÂ¼³É¹¦");
+		response->set_success(true);    // è®¾ç½®å“åº”å¯¹è±¡ response çš„ success å­—æ®µä¸º true
+        response->set_message("ç™»å½•æˆåŠŸ");
     }
     else 
     {
         response->set_success(false);
-        response->set_message("µÇÂ¼Ê§°Ü");
+        response->set_message("ç™»å½•å¤±è´¥");
     }
 
-    // ·µ»ØgRPC×´Ì¬
+    // è¿”å›gRPCçŠ¶æ€
     return grpc::Status::OK;
 }
 
-// ×¢²á·şÎñ½Ó¿Ú
+// æ³¨å†ŒæœåŠ¡æ¥å£
 grpc::Status LoginServerImpl::Register(grpc::ServerContext* context, const myproject::RegisterRequest* request, myproject::RegisterResponse* response)
 {
 
-    // ·µ»ØgRPC×´Ì¬
+    // è¿”å›gRPCçŠ¶æ€
     return grpc::Status::OK;
 }
 
-// ÁîÅÆÑéÖ¤·şÎñ½Ó¿Ú
+// ä»¤ç‰ŒéªŒè¯æœåŠ¡æ¥å£
 grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const myproject::AuthenticateRequest* request, myproject::AuthenticateResponse* response)
 {
 
@@ -131,35 +131,35 @@ grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const m
 }
 
 
-// µÇÂ¼·şÎñ
+// ç™»å½•æœåŠ¡
 std::string LoginServerImpl::login_(const std::string& database, const std::string& table, std::map<std::string, std::string> query)
 {
-    // ¹¹ÔìÇëÇó
+    // æ„é€ è¯·æ±‚
     myproject::ReadRequest read_request;
-    read_request.set_database(database); // ÉèÖÃ²éÑ¯Êı¾İ¿â
-    read_request.set_table(table); // ÉèÖÃ²éÑ¯±í
+    read_request.set_database(database); // è®¾ç½®æŸ¥è¯¢æ•°æ®åº“
+    read_request.set_table(table); // è®¾ç½®æŸ¥è¯¢è¡¨
     for (auto& it : query)
     {
-        (*read_request.mutable_query())[it.first] = it.second; // ÉèÖÃ²éÑ¯Ìõ¼ş
+        (*read_request.mutable_query())[it.first] = it.second; // è®¾ç½®æŸ¥è¯¢æ¡ä»¶
     }
 
-    // ¹¹ÔìÏìÓ¦
+    // æ„é€ å“åº”
     myproject::ReadResponse read_response;
-    grpc::ClientContext client_context; // °üº¬ RPC µ÷ÓÃµÄÔªÊı¾İºÍÆäËûĞÅÏ¢
+    grpc::ClientContext client_context; // åŒ…å« RPC è°ƒç”¨çš„å…ƒæ•°æ®å’Œå…¶ä»–ä¿¡æ¯
 
-    // »ñÈ¡Á¬½Ó³ØÖĞµÄÁ¬½Ó
+    // è·å–è¿æ¥æ± ä¸­çš„è¿æ¥
     auto channel = db_connection_pool.get_connection(myproject::ServerType::DATA);
     auto db_stub = myproject::DatabaseServer::NewStub(channel);
 
-    // ÏòÊı¾İ¿â·şÎñÆ÷·¢ËÍ²éÑ¯ÇëÇó
+    // å‘æ•°æ®åº“æœåŠ¡å™¨å‘é€æŸ¥è¯¢è¯·æ±‚
     grpc::Status status = db_stub->Read(&client_context, read_request, &read_response);
 
     if (status.ok())
     {
-        // ´òÓ¡²éÑ¯½á¹û
+        // æ‰“å°æŸ¥è¯¢ç»“æœ
         for (const auto& result : read_response.results())
         {
-            std::cout << "²éÑ¯½á¹û: ";
+            std::cout << "æŸ¥è¯¢ç»“æœ: ";
             for (const auto& field : result.fields())
             {
                 std::cout << field.first << ": " << field.second << ", ";
@@ -167,24 +167,24 @@ std::string LoginServerImpl::login_(const std::string& database, const std::stri
             std::cout << std::endl;
         }
 
-        std::cout << "µÇÂ¼³É¹¦" << std::endl;
-        return "µÇÂ¼³É¹¦";
+        std::cout << "ç™»å½•æˆåŠŸ" << std::endl;
+        return "ç™»å½•æˆåŠŸ";
     }
     else
     {
-        std::cout << "µÇÂ¼Ê§°Ü" << std::endl;
-        return "µÇÂ¼Ê§°Ü";
+        std::cout << "ç™»å½•å¤±è´¥" << std::endl;
+        return "ç™»å½•å¤±è´¥";
     }
 }
 
-// ×¢²á·şÎñ
+// æ³¨å†ŒæœåŠ¡
 std::string LoginServerImpl::register_(const std::string& database, const std::string& table, std::map<std::string, std::string> data)
 {
-	return "×¢²á³É¹¦";
+	return "æ³¨å†ŒæˆåŠŸ";
 }
 
-// ÁîÅÆÑéÖ¤·şÎñ
+// ä»¤ç‰ŒéªŒè¯æœåŠ¡
 std::string LoginServerImpl::authenticate_(const std::string& token)
 {
-	return "ÑéÖ¤³É¹¦";
+	return "éªŒè¯æˆåŠŸ";
 }

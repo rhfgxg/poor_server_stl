@@ -1,7 +1,7 @@
 #ifndef CONNECTION_POOL_H
 #define CONNECTION_POOL_H
 
-#include "server_central.grpc.pb.h" // Ê¹ÓÃ·şÎñÆ÷ÀàĞÍÃ¶¾Ù
+#include "server_central.grpc.pb.h" // ä½¿ç”¨æœåŠ¡å™¨ç±»å‹æšä¸¾
 
 #include <grpcpp/grpcpp.h>
 #include <vector>
@@ -15,30 +15,30 @@ public:
     ConnectionPool(size_t pool_size);
     ~ConnectionPool();
 
-    // ÏòÁ´½Ó³ØÖĞÌí¼ÓÁ´½Ó
+    // å‘é“¾æ¥æ± ä¸­æ·»åŠ é“¾æ¥
     void add_server(myproject::ServerType server_type, const std::string& server_address, const std::string& server_port);
-	// É¾³ıÖ¸¶¨·şÎñÆ÷µÄÁ´½Ó
+	// åˆ é™¤æŒ‡å®šæœåŠ¡å™¨çš„é“¾æ¥
     void remove_server(myproject::ServerType server_type, const std::string& server_address, const std::string& server_port);
 
-    // »ñÈ¡Á¬½Ó
+    // è·å–è¿æ¥
     std::shared_ptr<grpc::Channel> get_connection(myproject::ServerType server_type);
-    // ÊÍ·ÅÁ¬½Ó
+    // é‡Šæ”¾è¿æ¥
     void release_connection(myproject::ServerType server_type, std::shared_ptr<grpc::Channel> connection);
 
-    // ¸üĞÂÁ¬½Ó³ØÖĞµÄÁ¬½Ó
+    // æ›´æ–°è¿æ¥æ± ä¸­çš„è¿æ¥
     void update_connections(myproject::ServerType server_type, const std::string& server_address, const std::string& server_port);
 
-    // »ñÈ¡ËùÓĞÁ¬½Ó³ØµÄ×´Ì¬
+    // è·å–æ‰€æœ‰è¿æ¥æ± çš„çŠ¶æ€
     std::unordered_map<myproject::ServerType, std::vector<std::pair<std::string, std::string>>> get_all_connections();
 
 private:
-    // ÏòÖĞĞÄ·şÎñÆ÷»ñÈ¡×îĞÂÁ¬½Ó
+    // å‘ä¸­å¿ƒæœåŠ¡å™¨è·å–æœ€æ–°è¿æ¥
     std::shared_ptr<grpc::Channel> new_connection(const std::string& server_address, const std::string& server_port);
 
-    size_t pool_size;  // Á¬½Ó³Ø´óĞ¡
-    std::unordered_map<myproject::ServerType, std::queue<std::shared_ptr<grpc::Channel>>> pool_map; // Á¬½Ó³ØÓ³Éä
-    std::unordered_map<myproject::ServerType, std::pair<std::string, std::string>> server_info_map; // ·şÎñÆ÷ĞÅÏ¢Ó³Éä
-    std::mutex pool_mutex; // Á¬½Ó³Ø»¥³âËø
+    size_t pool_size;  // è¿æ¥æ± å¤§å°
+    std::unordered_map<myproject::ServerType, std::queue<std::shared_ptr<grpc::Channel>>> pool_map; // è¿æ¥æ± æ˜ å°„
+    std::unordered_map<myproject::ServerType, std::pair<std::string, std::string>> server_info_map; // æœåŠ¡å™¨ä¿¡æ¯æ˜ å°„
+    std::mutex pool_mutex; // è¿æ¥æ± äº’æ–¥é”
 };
 
 #endif // CONNECTION_POOL_H

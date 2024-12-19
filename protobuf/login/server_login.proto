@@ -3,40 +3,40 @@ syntax = "proto3";
 package myproject;
 
 service LoginServer {
-    rpc Login (LoginRequest) returns (LoginResponse);   // µÇÂ¼·şÎñ
-    rpc Register (RegisterRequest) returns (RegisterResponse);  // ×¢²á·şÎñ
-    rpc Authenticate (AuthenticateRequest) returns (AuthenticateResponse);  // ÁîÅÆÑéÖ¤·şÎñ
+    rpc Login (LoginRequest) returns (LoginResponse);   // ç™»å½•æœåŠ¡
+    rpc Register (RegisterRequest) returns (RegisterResponse);  // æ³¨å†ŒæœåŠ¡
+    rpc Authenticate (AuthenticateRequest) returns (AuthenticateResponse);  // ä»¤ç‰ŒéªŒè¯æœåŠ¡
 }
 
-// µÇÂ¼·şÎñÇëÇó
+// ç™»å½•æœåŠ¡è¯·æ±‚
 message LoginRequest {
     bytes username = 1;
     bytes password = 2;
 }
-// µÇÂ¼·şÎñÏìÓ¦
+// ç™»å½•æœåŠ¡å“åº”
 message LoginResponse {
-    bool success = 1;   // ²Ù×÷½á¹û
-    bytes message = 2; // ÏìÓ¦ĞÅÏ¢
-    bytes token = 3;  // »á»°»òÁîÅÆ
+    bool success = 1;   // æ“ä½œç»“æœ
+    bytes message = 2; // å“åº”ä¿¡æ¯
+    bytes token = 3;  // ä¼šè¯æˆ–ä»¤ç‰Œ
 }
 
-// ×¢²á·şÎñÇëÇó
+// æ³¨å†ŒæœåŠ¡è¯·æ±‚
 message RegisterRequest {
     bytes username = 1;
     bytes password = 2;
     bytes email = 3;
 }
-// ×¢²á·şÎñÏìÓ¦
+// æ³¨å†ŒæœåŠ¡å“åº”
 message RegisterResponse {
     bool success = 1;
     bytes message = 2;
 }
 
-// ÁîÅÆÑéÖ¤·şÎñÇëÇó
+// ä»¤ç‰ŒéªŒè¯æœåŠ¡è¯·æ±‚
 message AuthenticateRequest {
     bytes token = 1;
 }
-// ÁîÅÆÑéÖ¤·şÎñÏìÓ¦
+// ä»¤ç‰ŒéªŒè¯æœåŠ¡å“åº”
 message AuthenticateResponse {
     bool success = 1;
     bytes message = 2;

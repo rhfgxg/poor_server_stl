@@ -2,19 +2,19 @@
 
 #include <iostream>
 #include <mysqlx/xdevapi.h> // mysql
-#include <cstdlib> // Ê¹ÓÃ std::exit
+#include <cstdlib> // ä½¿ç”¨ std::exit
 
-mysqlx::Session sql_link(); // Á´½ÓÊı¾İ¿â
-void RunServer(mysqlx::Session& sql_link); // ÔËĞĞ·şÎñÆ÷
+mysqlx::Session sql_link(); // é“¾æ¥æ•°æ®åº“
+void RunServer(mysqlx::Session& sql_link); // è¿è¡ŒæœåŠ¡å™¨
 
 int main()
 {
-	// Æô¶¯·şÎñÆ÷
-    mysqlx::Session session = sql_link(); // Á´½ÓÊı¾İ¿â
-    RunServer(session); // ÔËĞĞ·şÎñÆ÷
+	// å¯åŠ¨æœåŠ¡å™¨
+    mysqlx::Session session = sql_link(); // é“¾æ¥æ•°æ®åº“
+    RunServer(session); // è¿è¡ŒæœåŠ¡å™¨
 
-    // ¹Ø±Õ·şÎñÆ÷
-    session.close();    // ¹Ø±ÕÊı¾İ¿âÁ¬½Ó
+    // å…³é—­æœåŠ¡å™¨
+    session.close();    // å…³é—­æ•°æ®åº“è¿æ¥
     return 0;
 }
 
@@ -26,41 +26,41 @@ mysqlx::Session sql_link()
         mysqlx::Session session(option);
         std::cout << "database link over..." << std::endl;
 
-        // Á´½ÓÊı¾İ¿â
+        // é“¾æ¥æ•°æ®åº“
         mysqlx::Schema schema = session.getSchema("poor_users");
         std::cout << "poor_users link over..." << std::endl;
         return session;
     }
     catch (const mysqlx::Error& err) {
         std::cerr << "database link Error: " << err.what() << std::endl;
-        std::exit(EXIT_FAILURE); // ½áÊøÔËĞĞ£¬ÌáÊ¾Êı¾İ¿â´íÎó
+        std::exit(EXIT_FAILURE); // ç»“æŸè¿è¡Œï¼Œæç¤ºæ•°æ®åº“é”™è¯¯
     }
     catch (std::exception& ex) {
         std::cerr << "Exception: " << ex.what() << std::endl;
-        std::exit(EXIT_FAILURE); // ½áÊøÔËĞĞ£¬ÌáÊ¾Êı¾İ¿â´íÎó
+        std::exit(EXIT_FAILURE); // ç»“æŸè¿è¡Œï¼Œæç¤ºæ•°æ®åº“é”™è¯¯
     }
     catch (...) {
         std::cerr << "Unknown error occurred!" << std::endl;
-        std::exit(EXIT_FAILURE); // ½áÊøÔËĞĞ£¬ÌáÊ¾Êı¾İ¿â´íÎó
+        std::exit(EXIT_FAILURE); // ç»“æŸè¿è¡Œï¼Œæç¤ºæ•°æ®åº“é”™è¯¯
     }
 }
 
 void RunServer(mysqlx::Session& sql_link)
 {
-    DatabaseServerImpl service(sql_link); // Êı¾İ¿ârpc·şÎñÊµÏÖ£¬´«ÈëÊı¾İ¿âÁ´½Ó
+    DatabaseServerImpl service(sql_link); // æ•°æ®åº“rpcæœåŠ¡å®ç°ï¼Œä¼ å…¥æ•°æ®åº“é“¾æ¥
 
     grpc::ServerBuilder builder;
-	std::string server_address("0.0.0.0:50052");    // Êı¾İ¿â·şÎñÆ÷¼àÌı50052¶Ë¿Ú
+	std::string server_address("0.0.0.0:50052");    // æ•°æ®åº“æœåŠ¡å™¨ç›‘å¬50052ç«¯å£
     builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
     builder.RegisterService(&service);
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-    std::cout << "DataServer start..." << std::endl; // Êä³ö·şÎñÆ÷Æô¶¯ĞÅÏ¢
+    std::cout << "DataServer start..." << std::endl; // è¾“å‡ºæœåŠ¡å™¨å¯åŠ¨ä¿¡æ¯
 
-    // ×¢²á·şÎñÆ÷
+    // æ³¨å†ŒæœåŠ¡å™¨
 	service.register_server();
 
     server->Wait();
-    // ×¢Ïú·şÎñÆ÷
+    // æ³¨é”€æœåŠ¡å™¨
 	service.unregister_server();
 }

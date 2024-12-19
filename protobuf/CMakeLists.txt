@@ -1,7 +1,7 @@
-# ���峣��
+# 定义常量
 set(PROTOBUF_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
-# ��Ҫ�����Դ�ļ��б�
+# 需要编译的源文件列表
 set(PROTO_SOURCES
     # ${PROTOBUF_DIR}/common/server_common.pb.cc
     # ${PROTOBUF_DIR}/common/server_common.grpc.pb.cc
@@ -17,20 +17,20 @@ set(PROTO_SOURCES
     ${PROTOBUF_DIR}/login/server_login.grpc.pb.cc
 )
 
-# ���ӿ�
+# 添加库
 add_library(protobuf_files ${PROTO_SOURCES})
 
-# �����Զ���ͷ�ļ���Ŀ¼
+# 包含自定义头文件的目录
 target_include_directories(protobuf_files PUBLIC ${PROTOBUF_DIR})
 
 
-# ���ӵ������⣬����������ָ������Ŀ�������ļ�Ȩ�ޣ������б���
+# 链接第三方库，可以在这里指定（项目名，库文件权限，库名列表）
 target_link_libraries(protobuf_files PUBLIC
-    # grpc ��
+    # grpc 库
     "${VCPKG_LIB}/grpc++.lib"
-    # protobuf ��
+    # protobuf 库
     "${VCPKG_LIB}/libprotobuf.lib"
 )
 
-# ������ģ���ṩ�ӿڣ���һЩ����ͷ�ļ�ָ��Ϊ PUBLIC������ģ����Է���
+# 向其他模块提供接口，将一些公共头文件指定为 PUBLIC，其他模块可以访问
 target_include_directories(protobuf_files PUBLIC ${PROTOBUF_DIR})

@@ -1,27 +1,34 @@
-#include "central/central_server.h"
+#include "central_server.h"
+#include "logger_manager.h" // å¼•å…¥æ—¥å¿—ç®¡ç†å™¨
 #include <iostream>
 
-// ÔËĞĞ·şÎñÆ÷
-void RunServer();
+// è¿è¡ŒæœåŠ¡å™¨
+void RunServer(LoggerManager& logger_manager);
 
 int main()
 {
-	std::cout << "Ö÷Ä£¿é\n";
-    RunServer(); // ÔËĞĞ·şÎñÆ÷
+    // åˆå§‹åŒ–æ—¥å¿—ç®¡ç†å™¨
+    LoggerManager logger_manager;
+    logger_manager.initialize("central_server");
 
-	return 0;
+    // è®°å½•å¯åŠ¨æ—¥å¿—
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ä¸»æ¨¡å—å¯åŠ¨");
+
+    RunServer(logger_manager); // è¿è¡ŒæœåŠ¡å™¨
+
+    return 0;
 }
 
-void RunServer()
+void RunServer(LoggerManager& logger_manager)
 {
-    CentralServerImpl central_server;
+    CentralServerImpl central_server(logger_manager);   // ä¼ å…¥æ—¥å¿—ç®¡ç†å™¨
 
     grpc::ServerBuilder builder;
-	std::string server_address("0.0.0.0:50050");// ÖĞĞÄ·şÎñÆ÷¼àÌı50050¶Ë¿Ú
-    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials()); // Ìí¼Ó¼àÌı¶Ë¿Ú
-    builder.RegisterService(&central_server); // ×¢²á·şÎñ
+    std::string server_address("0.0.0.0:50050"); // ä¸­å¿ƒæœåŠ¡å™¨ç›‘å¬50050ç«¯å£
+    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials()); // æ·»åŠ ç›‘å¬ç«¯å£
+    builder.RegisterService(&central_server); // æ³¨å†ŒæœåŠ¡
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-    std::cout << "CentealServer start..." << std::endl;
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("CentralServer å¯åŠ¨ï¼Œç›‘å¬åœ°å€: {}", server_address);
     server->Wait();
 }

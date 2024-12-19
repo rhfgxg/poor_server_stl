@@ -1,8 +1,8 @@
-# centralÖĞĞÄ·şÎñÆ÷Ä£¿é£¬¹ÜÀíËùÓĞÄ£¿éµÄ½»»¥£¬RPCµ÷ÓÃ
-# Ä£¿éÃû
+# centralä¸­å¿ƒæœåŠ¡å™¨æ¨¡å—ï¼Œç®¡ç†æ‰€æœ‰æ¨¡å—çš„äº¤äº’ï¼ŒRPCè°ƒç”¨
+# æ¨¡å—å
 set(MODULE_NAME central)
 
-# ¶¨Òå³£Á¿
+# å®šä¹‰å¸¸é‡
 set(VCPKG_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows")
 set(VCPKG_INCLUDE "${VCPKG_DIR}/include")
 set(VCPKG_LIB "${VCPKG_DIR}/lib")
@@ -10,20 +10,20 @@ set(VCPKG_BIN "${VCPKG_DIR}/bin")
 set(VCPKG_DEBUG_LIB "${VCPKG_DIR}/debug/lib")
 set(VCPKG_DEBUG_BIN "${VCPKG_DIR}/debug/bin")
 
-# °üº¬×Ô¶¨ÒåÍ·ÎÄ¼şµÄÄ¿Â¼
+# åŒ…å«è‡ªå®šä¹‰å¤´æ–‡ä»¶çš„ç›®å½•
 include_directories(
     ${PROJECT_SOURCE_DIR}/src/central/src/central
     ${PROJECT_SOURCE_DIR}/src/common
-    # ÆäËûÔÚ¶¥¼¶Ä¿Â¼°üº¬µÄÍ·ÎÄ¼şÄ¿Â¼
+    # å…¶ä»–åœ¨é¡¶çº§ç›®å½•åŒ…å«çš„å¤´æ–‡ä»¶ç›®å½•
 )
 
-# ĞèÒª±àÒëµÄÔ´ÎÄ¼şÁĞ±í
+# éœ€è¦ç¼–è¯‘çš„æºæ–‡ä»¶åˆ—è¡¨
 set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/central/src/main.cpp
     ${PROJECT_SOURCE_DIR}/src/central/src/central/central_server.cpp
-    # ¹²Ïí¹¤¾ßÀà
+    # å…±äº«å·¥å…·ç±»
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
-    # protobuf Éú³ÉµÄÔ´ÎÄ¼ş£ºµ÷ÓÃÆäËû·şÎñÆ÷
+    # protobuf ç”Ÿæˆçš„æºæ–‡ä»¶ï¼šè°ƒç”¨å…¶ä»–æœåŠ¡å™¨
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.pb.cc
@@ -36,23 +36,23 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/protobuf/login/server_login.grpc.pb.cc
 )
 
-# Ö¸¶¨±àÒëÉú³ÉµÄ¿ÉÖ´ĞĞÎÄ¼şĞÅÏ¢£ºÎÄ¼şÃû${MODULE_NAME} £¬${SOURCES} ÏîÄ¿ËùÓĞÔ´ÎÄ¼şÂ·¾¶
+# æŒ‡å®šç¼–è¯‘ç”Ÿæˆçš„å¯æ‰§è¡Œæ–‡ä»¶ä¿¡æ¯ï¼šæ–‡ä»¶å${MODULE_NAME} ï¼Œ${SOURCES} é¡¹ç›®æ‰€æœ‰æºæ–‡ä»¶è·¯å¾„
 add_executable(${MODULE_NAME} ${SOURCES})
 
-# ÏòÆäËûÄ£¿éÌá¹©½Ó¿Ú£¬½«Ò»Ğ©¹«¹²Í·ÎÄ¼şÖ¸¶¨Îª PUBLIC£¬ÆäËûÄ£¿é¿ÉÒÔ·ÃÎÊ
+# å‘å…¶ä»–æ¨¡å—æä¾›æ¥å£ï¼Œå°†ä¸€äº›å…¬å…±å¤´æ–‡ä»¶æŒ‡å®šä¸º PUBLICï¼Œå…¶ä»–æ¨¡å—å¯ä»¥è®¿é—®
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# ÉèÖÃ±àÒëÑ¡Ïî
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4251 /wd4244")   # ºöÂÔ¾¯¸æ
+# è®¾ç½®ç¼–è¯‘é€‰é¡¹
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4251 /wd4244")   # å¿½ç•¥è­¦å‘Š
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd /D_ITERATOR_DEBUG_LEVEL=2")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD /D_ITERATOR_DEBUG_LEVEL=0")
 
-# Èç¹ûĞèÒªÁ´½ÓµÚÈı·½¿â£¬¿ÉÒÔÔÚÕâÀïÖ¸¶¨£¨ÏîÄ¿Ãû£¬¿âÎÄ¼şÈ¨ÏŞ£¬¿âÃûÁĞ±í£©
+# å¦‚æœéœ€è¦é“¾æ¥ç¬¬ä¸‰æ–¹åº“ï¼Œå¯ä»¥åœ¨è¿™é‡ŒæŒ‡å®šï¼ˆé¡¹ç›®åï¼Œåº“æ–‡ä»¶æƒé™ï¼Œåº“ååˆ—è¡¨ï¼‰
 target_link_libraries(${MODULE_NAME} PRIVATE
-    # boost ¿â
+    # boost åº“
     debug "${VCPKG_DEBUG_LIB}/boost_system-vc143-mt-gd-x64-1_85.lib"
     optimized "${VCPKG_LIB}/boost_system-vc143-mt-x64-1_85.lib"
-    # grpc ¿â
+    # grpc åº“
     debug "${VCPKG_DEBUG_LIB}/gpr.lib"
     optimized "${VCPKG_LIB}/gpr.lib"
     debug "${VCPKG_DEBUG_LIB}/grpc.lib"
@@ -63,17 +63,17 @@ target_link_libraries(${MODULE_NAME} PRIVATE
     optimized "${VCPKG_LIB}/grpc++.lib"
     debug "${VCPKG_DEBUG_LIB}/grpc++_unsecure.lib"
     optimized "${VCPKG_LIB}/grpc++_unsecure.lib"
-    # protobuf ¿â
+    # protobuf åº“
     debug "${VCPKG_DEBUG_LIB}/libprotobufd.lib"
     optimized "${VCPKG_LIB}/libprotobuf.lib"
     debug "${VCPKG_DEBUG_LIB}/libprotocd.lib"
     optimized "${VCPKG_LIB}/libprotoc.lib"
-    # openssl ¿â
+    # openssl åº“
     debug "${VCPKG_DEBUG_LIB}/libssl.lib"
     optimized "${VCPKG_LIB}/libssl.lib"
     debug "${VCPKG_DEBUG_LIB}/libcrypto.lib"
     optimized "${VCPKG_LIB}/libcrypto.lib"
-    # absl ¿â
+    # absl åº“
     debug "${VCPKG_DEBUG_LIB}/abseil_dll.lib"
     optimized "${VCPKG_LIB}/abseil_dll.lib"
     debug "${VCPKG_DEBUG_LIB}/absl_flags_commandlineflag.lib"
@@ -104,33 +104,33 @@ target_link_libraries(${MODULE_NAME} PRIVATE
     optimized "${VCPKG_LIB}/absl_poison.lib"
     debug "${VCPKG_DEBUG_LIB}/absl_utf8_for_code_point.lib"
     optimized "${VCPKG_LIB}/absl_utf8_for_code_point.lib"
-    # zlib ¿â
+    # zlib åº“
     debug "${VCPKG_DEBUG_LIB}/zlibd.lib"
     optimized "${VCPKG_LIB}/zlib.lib"
-    # re2 ¿â
+    # re2 åº“
     debug "${VCPKG_DEBUG_LIB}/re2.lib"
     optimized "${VCPKG_LIB}/re2.lib"
-    # upb ¿â
+    # upb åº“
     debug "${VCPKG_DEBUG_LIB}/upb.lib"
     optimized "${VCPKG_LIB}/upb.lib"
     debug "${VCPKG_DEBUG_LIB}/utf8_range.lib"
     optimized "${VCPKG_LIB}/utf8_range.lib"
     debug "${VCPKG_DEBUG_LIB}/utf8_validity.lib"
     optimized "${VCPKG_LIB}/utf8_validity.lib"
-    # c-ares ¿â
+    # c-ares åº“
     debug "${VCPKG_DEBUG_LIB}/cares.lib"
     optimized "${VCPKG_LIB}/cares.lib"
-    # address_sorting ¿â
+    # address_sorting åº“
     debug "${VCPKG_DEBUG_LIB}/address_sorting.lib"
     optimized "${VCPKG_LIB}/address_sorting.lib"
-    # cpp_redis ºÍ tacopie ¿â
+    # cpp_redis å’Œ tacopie åº“
     debug "${VCPKG_DEBUG_LIB}/cpp_redis.lib"
     optimized "${VCPKG_LIB}/cpp_redis.lib"
     debug "${VCPKG_DEBUG_LIB}/tacopie.lib"
     optimized "${VCPKG_LIB}/tacopie.lib"
 )
 
-# ´´½¨Ò»¸öÁĞ±í£¬°üº¬ËùÓĞĞèÒª¸´ÖÆµÄ .dll ÎÄ¼ş
+# åˆ›å»ºä¸€ä¸ªåˆ—è¡¨ï¼ŒåŒ…å«æ‰€æœ‰éœ€è¦å¤åˆ¶çš„ .dll æ–‡ä»¶
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(DLL_FILES
         "${VCPKG_DEBUG_BIN}/boost_system-vc143-mt-gd-x64-1_85.dll"
@@ -156,15 +156,15 @@ else()
         "${VCPKG_BIN}/cares.dll"
     )
 endif()
-# ±éÀú dllÁĞ±í£¬½«ËùÓĞ .dll ÎÄ¼ş£¬ÖğÒ»¸´ÖÆµ½¿ÉÖ´ĞĞÎÄ¼şËùÔÚÄ¿Â¼
+# éå† dllåˆ—è¡¨ï¼Œå°†æ‰€æœ‰ .dll æ–‡ä»¶ï¼Œé€ä¸€å¤åˆ¶åˆ°å¯æ‰§è¡Œæ–‡ä»¶æ‰€åœ¨ç›®å½•
 foreach(DLL_FILE ${DLL_FILES})
     add_custom_command(TARGET ${MODULE_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "${DLL_FILE}"
-        $<TARGET_FILE_DIR:${MODULE_NAME}>  # ¸´ÖÆµ½¿ÉÖ´ĞĞÎÄ¼şÉú³ÉÄ¿Â¼
+        $<TARGET_FILE_DIR:${MODULE_NAME}>  # å¤åˆ¶åˆ°å¯æ‰§è¡Œæ–‡ä»¶ç”Ÿæˆç›®å½•
     )
 endforeach()
 
-# °²×°¿ÉÖ´ĞĞÎÄ¼şµ½ bin Ä¿Â¼
+# å®‰è£…å¯æ‰§è¡Œæ–‡ä»¶åˆ° bin ç›®å½•
 install(TARGETS ${MODULE_NAME} DESTINATION bin)
 

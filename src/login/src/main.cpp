@@ -2,33 +2,33 @@
 
 #include <iostream>
 
-void RunServer();   // ÔËĞĞ·şÎñÆ÷
+void RunServer();   // è¿è¡ŒæœåŠ¡å™¨
 
 int main() 
 {
-    // Æô¶¯·şÎñÆ÷
-    RunServer(); // ÔËĞĞ·şÎñÆ÷
+    // å¯åŠ¨æœåŠ¡å™¨
+    RunServer(); // è¿è¡ŒæœåŠ¡å™¨
 
-    // ¹Ø±Õ·şÎñÆ÷
-    return 0; // ·µ»Ø0±íÊ¾³ÌĞòÕı³£½áÊø
+    // å…³é—­æœåŠ¡å™¨
+    return 0; // è¿”å›0è¡¨ç¤ºç¨‹åºæ­£å¸¸ç»“æŸ
 }
 
 void RunServer()
 {
-    LoginServerImpl login_server; // µÇÂ¼·şÎñÊµÏÖ
+    LoginServerImpl login_server; // ç™»å½•æœåŠ¡å®ç°
 
-    grpc::ServerBuilder builder; // gRPC·şÎñÆ÷¹¹½¨Æ÷
-    std::string server_address("0.0.0.0:50053"); // µÇÂ¼·şÎñÆ÷¼àÌı50053¶Ë¿Ú
-    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials()); // Ìí¼Ó¼àÌı¶Ë¿Ú
-    builder.RegisterService(&login_server); // ×¢²á·şÎñ
+    grpc::ServerBuilder builder; // gRPCæœåŠ¡å™¨æ„å»ºå™¨
+    std::string server_address("0.0.0.0:50053"); // ç™»å½•æœåŠ¡å™¨ç›‘å¬50053ç«¯å£
+    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials()); // æ·»åŠ ç›‘å¬ç«¯å£
+    builder.RegisterService(&login_server); // æ³¨å†ŒæœåŠ¡
 
-    std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // ¹¹½¨²¢Æô¶¯·şÎñÆ÷
-    std::cout << "LoginServer start..." << std::endl; // Êä³ö·şÎñÆ÷ÔËĞĞĞÅÏ¢
+    std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // æ„å»ºå¹¶å¯åŠ¨æœåŠ¡å™¨
+    std::cout << "LoginServer start..." << std::endl; // è¾“å‡ºæœåŠ¡å™¨è¿è¡Œä¿¡æ¯
 
-    // ×¢²á·şÎñÆ÷
-	login_server.register_server(); // ×¢²á·şÎñÆ÷
+    // æ³¨å†ŒæœåŠ¡å™¨
+	login_server.register_server(); // æ³¨å†ŒæœåŠ¡å™¨
 
-    server->Wait(); // µÈ´ı·şÎñÆ÷ÖÕÖ¹
-	// ×¢Ïú·şÎñÆ÷
-	login_server.unregister_server(); // ×¢Ïú·şÎñÆ÷
+    server->Wait(); // ç­‰å¾…æœåŠ¡å™¨ç»ˆæ­¢
+	// æ³¨é”€æœåŠ¡å™¨
+	login_server.unregister_server(); // æ³¨é”€æœåŠ¡å™¨
 }

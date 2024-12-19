@@ -3,26 +3,26 @@ syntax = "proto3";
 package myproject;
 
 service LogicServer {
-    rpc ProcessGameAction (GameActionRequest) returns (GameActionResponse); // ´¦ÀíÓÎÏ·²Ù×÷
-    rpc GetGameState (GameStateRequest) returns (GameStateResponse);    // »ñÈ¡ÓÎÏ·×´Ì¬
+    rpc ProcessGameAction (GameActionRequest) returns (GameActionResponse); // å¤„ç†æ¸¸æˆæ“ä½œ
+    rpc GetGameState (GameStateRequest) returns (GameStateResponse);    // è·å–æ¸¸æˆçŠ¶æ€
 }
 
-// ÓÎÏ·²Ù×÷ÇëÇó
+// æ¸¸æˆæ“ä½œè¯·æ±‚
 message GameActionRequest {
     bytes action = 1;
     map<string, bytes> parameters = 2;
 }
-// ÓÎÏ·²Ù×÷ÏìÓ¦
+// æ¸¸æˆæ“ä½œå“åº”
 message GameActionResponse {
     bool success = 1;
     bytes message = 2;
 }
 
-// ÓÎÏ·×´Ì¬ÇëÇó
+// æ¸¸æˆçŠ¶æ€è¯·æ±‚
 message GameStateRequest {
     bytes game_id = 1;
 }
-// ÓÎÏ·×´Ì¬ÏìÓ¦
+// æ¸¸æˆçŠ¶æ€å“åº”
 message GameStateResponse {
     bool success = 1;
     bytes message = 2;

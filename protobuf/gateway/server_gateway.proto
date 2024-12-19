@@ -2,25 +2,25 @@ syntax = "proto3";
 
 package myproject;
 
-// ·şÎñÀàĞÍ£º¿Í»§¶ËÓë·şÎñÆ÷Í¨ĞÅµÄ·şÎñÀàĞÍ
+// æœåŠ¡ç±»å‹ï¼šå®¢æˆ·ç«¯ä¸æœåŠ¡å™¨é€šä¿¡çš„æœåŠ¡ç±»å‹
 enum ServiceType {
-    // REQ_ ÇëÇó
-    // RES_ ÏìÓ¦
-    REQ_LOGIN = 0;      // µÇÂ¼ÇëÇó
-    RES_LOGIN = 1;      // µÇÂ¼ÏìÓ¦
+    // REQ_ è¯·æ±‚
+    // RES_ å“åº”
+    REQ_LOGIN = 0;      // ç™»å½•è¯·æ±‚
+    RES_LOGIN = 1;      // ç™»å½•å“åº”
 }
 
 service GatewayServer {
-    rpc RequestForward (ForwardRequest) returns (ForwardResponse);  // ×ª·¢ÇëÇó
+    rpc RequestForward (ForwardRequest) returns (ForwardResponse);  // è½¬å‘è¯·æ±‚
 }
 
-// ´«ÈëÇëÇó
+// ä¼ å…¥è¯·æ±‚
 message ForwardRequest {
-    ServiceType service_type = 1;   // Ä¿±ê·şÎñÃ¶¾Ù
-    bytes payload = 2;  // ¸ºÔØ
+    ServiceType service_type = 1;   // ç›®æ ‡æœåŠ¡æšä¸¾
+    bytes payload = 2;  // è´Ÿè½½
 }
 
-// ÇëÇó´¦ÀíÏìÓ¦
+// è¯·æ±‚å¤„ç†å“åº”
 message ForwardResponse {
     bool success = 1;
     bytes response = 2;

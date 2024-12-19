@@ -19,6 +19,9 @@
     },
     {
       "name": "tacopie"
+    },
+    {
+      "name": "spdlog"
     }
   ]
 }

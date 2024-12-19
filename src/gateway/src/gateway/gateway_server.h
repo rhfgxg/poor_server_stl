@@ -5,31 +5,31 @@
 #include "server_central.grpc.pb.h"
 #include "server_login.grpc.pb.h"
 
-#include "connection_pool.h"    // Á¬½Ó³Ø
+#include "connection_pool.h"    // è¿æ¥æ± 
 
 #include <grpcpp/grpcpp.h>
 
-// Íø¹Ø·şÎñÆ÷¶ÔÍâ½Ó¿Ú
+// ç½‘å…³æœåŠ¡å™¨å¯¹å¤–æ¥å£
 class GatewayServerImpl final : public myproject::GatewayServer::Service
 {
 public:
-	GatewayServerImpl();	// ¹¹Ôìº¯Êı
+	GatewayServerImpl();	// æ„é€ å‡½æ•°
 
-	void register_server(); // ×¢²á·şÎñÆ÷
-	void unregister_server(); // ×¢Ïú·şÎñÆ÷
+	void register_server(); // æ³¨å†ŒæœåŠ¡å™¨
+	void unregister_server(); // æ³¨é”€æœåŠ¡å™¨
 
-    // ×ª·¢·şÎñÇëÇó
+    // è½¬å‘æœåŠ¡è¯·æ±‚
     grpc::Status RequestForward(grpc::ServerContext* context, const myproject::ForwardRequest* request, myproject::ForwardResponse* response);
 
 private:
-    // ³õÊ¼»¯Á´½Ó³Ø
+    // åˆå§‹åŒ–é“¾æ¥æ± 
 	void init_connection_pool();
 
-	// µÇÂ¼·şÎñÆ÷£ºµÇÂ¼·şÎñ
+	// ç™»å½•æœåŠ¡å™¨ï¼šç™»å½•æœåŠ¡
     grpc::Status forward_to_login_service(const std::string& payload, myproject::ForwardResponse* response);
 
-	ConnectionPool login_connection_pool;   // µÇÂ¼·şÎñÆ÷Á¬½Ó³Ø
-	std::unique_ptr<myproject::CentralServer::Stub> central_stub;	// ÖĞĞÄ·şÎñÆ÷µÄ·şÎñ´æ¸ù
+	ConnectionPool login_connection_pool;   // ç™»å½•æœåŠ¡å™¨è¿æ¥æ± 
+	std::unique_ptr<myproject::CentralServer::Stub> central_stub;	// ä¸­å¿ƒæœåŠ¡å™¨çš„æœåŠ¡å­˜æ ¹
 };
 
 #endif // GATEWAY_SERVER_H

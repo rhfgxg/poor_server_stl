@@ -2,57 +2,57 @@ syntax = "proto3";
 
 package myproject;
 
-// ·şÎñÆ÷ÀàĞÍ
+// æœåŠ¡å™¨ç±»å‹
 enum ServerType {
-    CENTRAL = 0;          // ÖĞĞÄ·şÎñÆ÷
-    DATA = 1;             // Êı¾İ·şÎñ
-    GATEWAY = 2;          // Íø¹Ø·şÎñ
-    LOGIN = 3;            // µÇÂ¼·şÎñ
-    LOGIC = 4;            // Âß¼­·şÎñ
+    CENTRAL = 0;          // ä¸­å¿ƒæœåŠ¡å™¨
+    DATA = 1;             // æ•°æ®æœåŠ¡
+    GATEWAY = 2;          // ç½‘å…³æœåŠ¡
+    LOGIN = 3;            // ç™»å½•æœåŠ¡
+    LOGIC = 4;            // é€»è¾‘æœåŠ¡
 }
 
 service CentralServer{
-	rpc RegisterServer (RegisterServerRequest) returns (RegisterServerResponse);    // ·şÎñÆ÷×¢²á
-	rpc UnregisterServer (UnregisterServerRequest) returns (UnregisterServerResponse);    // ·şÎñÆ÷¶Ï¿ª
-	rpc GetConnectPoor (ConnectPoorRequest) returns (ConnectPoorResponse);    // »ñÈ¡Á¬½Ó³ØĞÅÏ¢
+	rpc RegisterServer (RegisterServerRequest) returns (RegisterServerResponse);    // æœåŠ¡å™¨æ³¨å†Œ
+	rpc UnregisterServer (UnregisterServerRequest) returns (UnregisterServerResponse);    // æœåŠ¡å™¨æ–­å¼€
+	rpc GetConnectPoor (ConnectPoorRequest) returns (ConnectPoorResponse);    // è·å–è¿æ¥æ± ä¿¡æ¯
 }
 
-// ×¢²á·şÎñÆ÷ÇëÇó
+// æ³¨å†ŒæœåŠ¡å™¨è¯·æ±‚
 message RegisterServerRequest {
-    ServerType server_type = 1;  // ·şÎñÆ÷ÀàĞÍ
-    bytes address = 2;  // ·şÎñÆ÷µØÖ·
-    bytes port = 3;  // ·şÎñÆ÷¶Ë¿Ú
+    ServerType server_type = 1;  // æœåŠ¡å™¨ç±»å‹
+    bytes address = 2;  // æœåŠ¡å™¨åœ°å€
+    bytes port = 3;  // æœåŠ¡å™¨ç«¯å£
 }
-// ×¢²á·şÎñÆ÷ÏìÓ¦
+// æ³¨å†ŒæœåŠ¡å™¨å“åº”
 message RegisterServerResponse {
     bool success = 1;
     bytes message = 2;
 }
 
-// ¶Ï¿ª·şÎñÆ÷Á¬½ÓÇëÇó
+// æ–­å¼€æœåŠ¡å™¨è¿æ¥è¯·æ±‚
 message UnregisterServerRequest {
-    ServerType server_type = 1;  // ·şÎñÆ÷ÀàĞÍ
-    bytes address = 2;  // ·şÎñÆ÷µØÖ·
-    bytes port = 3;  // ·şÎñÆ÷¶Ë¿Ú
+    ServerType server_type = 1;  // æœåŠ¡å™¨ç±»å‹
+    bytes address = 2;  // æœåŠ¡å™¨åœ°å€
+    bytes port = 3;  // æœåŠ¡å™¨ç«¯å£
 }
-// ¶Ï¿ª·şÎñÆ÷Á¬½ÓÏìÓ¦
+// æ–­å¼€æœåŠ¡å™¨è¿æ¥å“åº”
 message UnregisterServerResponse {
     bool success = 1;
     bytes message = 2;
 }
 
-// »ñÈ¡Á¬½Ó³ØĞÅÏ¢
+// è·å–è¿æ¥æ± ä¿¡æ¯
 message ConnectPoorRequest {
-    ServerType server_type = 1;  // Ä¿±ê·şÎñÆ÷ÀàĞÍ
+    ServerType server_type = 1;  // ç›®æ ‡æœåŠ¡å™¨ç±»å‹
 }
-// »ñÈ¡Á¬½Ó³ØĞÅÏ¢
+// è·å–è¿æ¥æ± ä¿¡æ¯
 message ConnectPoorResponse {
     bool success = 1;
-    repeated ConnectInfo connect_info = 2;  // Á¬½Ó³ØĞÅÏ¢
+    repeated ConnectInfo connect_info = 2;  // è¿æ¥æ± ä¿¡æ¯
     bytes message = 3;
 }
-// Á¬½ÓĞÅÏ¢
+// è¿æ¥ä¿¡æ¯
 message ConnectInfo {
-    bytes address = 1;  // Ä¿±ê·şÎñÆ÷µØÖ·
-    int32 port = 2;  // Ä¿±ê·şÎñÆ÷¶Ë¿Ú
+    bytes address = 1;  // ç›®æ ‡æœåŠ¡å™¨åœ°å€
+    int32 port = 2;  // ç›®æ ‡æœåŠ¡å™¨ç«¯å£
 }

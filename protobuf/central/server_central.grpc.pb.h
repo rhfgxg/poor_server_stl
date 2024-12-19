@@ -42,7 +42,7 @@ class CentralServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>> PrepareAsyncRegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>>(PrepareAsyncRegisterServerRaw(context, request, cq));
     }
-    // ·şÎñÆ÷×¢²á
+    // æœåŠ¡å™¨æ³¨å†Œ
     virtual ::grpc::Status UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::myproject::UnregisterServerResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>> AsyncUnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>>(AsyncUnregisterServerRaw(context, request, cq));
@@ -50,7 +50,7 @@ class CentralServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>> PrepareAsyncUnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>>(PrepareAsyncUnregisterServerRaw(context, request, cq));
     }
-    // ·şÎñÆ÷¶Ï¿ª
+    // æœåŠ¡å™¨æ–­å¼€
     virtual ::grpc::Status GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::myproject::ConnectPoorResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>> AsyncGetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>>(AsyncGetConnectPoorRaw(context, request, cq));
@@ -58,19 +58,19 @@ class CentralServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>> PrepareAsyncGetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>>(PrepareAsyncGetConnectPoorRaw(context, request, cq));
     }
-    // »ñÈ¡Á¬½Ó³ØĞÅÏ¢
+    // è·å–è¿æ¥æ± ä¿¡æ¯
     class async_interface {
      public:
       virtual ~async_interface() {}
       virtual void RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // ·şÎñÆ÷×¢²á
+      // æœåŠ¡å™¨æ³¨å†Œ
       virtual void UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // ·şÎñÆ÷¶Ï¿ª
+      // æœåŠ¡å™¨æ–­å¼€
       virtual void GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // »ñÈ¡Á¬½Ó³ØĞÅÏ¢
+      // è·å–è¿æ¥æ± ä¿¡æ¯
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -144,11 +144,11 @@ class CentralServer final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status RegisterServer(::grpc::ServerContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response);
-    // ·şÎñÆ÷×¢²á
+    // æœåŠ¡å™¨æ³¨å†Œ
     virtual ::grpc::Status UnregisterServer(::grpc::ServerContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response);
-    // ·şÎñÆ÷¶Ï¿ª
+    // æœåŠ¡å™¨æ–­å¼€
     virtual ::grpc::Status GetConnectPoor(::grpc::ServerContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response);
-    // »ñÈ¡Á¬½Ó³ØĞÅÏ¢
+    // è·å–è¿æ¥æ± ä¿¡æ¯
   };
   template <class BaseClass>
   class WithAsyncMethod_RegisterServer : public BaseClass {

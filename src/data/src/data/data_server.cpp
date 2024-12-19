@@ -3,8 +3,8 @@
 #include <locale>
 
 DatabaseServerImpl::DatabaseServerImpl(mysqlx::Session& DBlink_) :
-	DBlink(DBlink_),    // Êı¾İ¿âÁ´½Ó
-    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))) // ÖĞĞÄ·şÎñÆ÷´æ¸ù
+	DBlink(DBlink_),    // æ•°æ®åº“é“¾æ¥
+    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))) // ä¸­å¿ƒæœåŠ¡å™¨å­˜æ ¹
 {
 
 }
@@ -14,89 +14,89 @@ DatabaseServerImpl::~DatabaseServerImpl()
 
 }
 
-// ×¢²á·şÎñÆ÷
+// æ³¨å†ŒæœåŠ¡å™¨
 void DatabaseServerImpl::register_server()
 {
-    // ÇëÇó
+    // è¯·æ±‚
     myproject::RegisterServerRequest request;
     request.set_server_type(myproject::ServerType::DATA);
     request.set_address("127.0.0.1");
     request.set_port("50052");
-    // ÏìÓ¦
+    // å“åº”
     myproject::RegisterServerResponse response;
 
-    // ¿Í»§¶Ë
+    // å®¢æˆ·ç«¯
     grpc::ClientContext context;
 
     grpc::Status status = central_stub->RegisterServer(&context, request, &response);
 
     if (status.ok() && response.success())
     {
-        std::cout << "·şÎñÆ÷×¢²á³É¹¦: " << response.message() << std::endl;
+        std::cout << "æœåŠ¡å™¨æ³¨å†ŒæˆåŠŸ: " << response.message() << std::endl;
     }
     else
     {
-        std::cerr << "·şÎñÆ÷×¢²áÊ§°Ü: " << response.message() << std::endl;
+        std::cerr << "æœåŠ¡å™¨æ³¨å†Œå¤±è´¥: " << response.message() << std::endl;
     }
 }
 
-// ×¢Ïú·şÎñÆ÷
+// æ³¨é”€æœåŠ¡å™¨
 void DatabaseServerImpl::unregister_server()
 {
-    // ÇëÇó
+    // è¯·æ±‚
     myproject::UnregisterServerRequest request;
     request.set_server_type(myproject::ServerType::DATA);
     request.set_address("localhost");
     request.set_port("50052");
 
-    // ÏìÓ¦
+    // å“åº”
     myproject::UnregisterServerResponse response;
 
-    // ¿Í»§¶Ë
+    // å®¢æˆ·ç«¯
     grpc::ClientContext context;
 
     grpc::Status status = central_stub->UnregisterServer(&context, request, &response);
 
     if (status.ok() && response.success()) 
     {
-        std::cout << "·şÎñÆ÷×¢Ïú³É¹¦: " << response.message() << std::endl;
+        std::cout << "æœåŠ¡å™¨æ³¨é”€æˆåŠŸ: " << response.message() << std::endl;
     }
     else
     {
-        std::cerr << "·şÎñÆ÷×¢ÏúÊ§°Ü: " << response.message() << std::endl;
+        std::cerr << "æœåŠ¡å™¨æ³¨é”€å¤±è´¥: " << response.message() << std::endl;
     }
 }
 
-// Ìí¼Ó
+// æ·»åŠ 
 grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const myproject::CreateRequest* request, myproject::CreateResponse* response)
 {
-	// »ñÈ¡ÇëÇó²ÎÊı
+	// è·å–è¯·æ±‚å‚æ•°
 	std::string db_name = request->database();
 	std::string tab_name = request->table();
-	// ¼ÙÉèÊı¾İ¿â²Ù×÷
+	// å‡è®¾æ•°æ®åº“æ“ä½œ
 	// ...
-	// ÉèÖÃÏìÓ¦²ÎÊı
+	// è®¾ç½®å“åº”å‚æ•°
 	response->set_success(true);
-	response->set_message("´´½¨³É¹¦");
-	std::cout << "Êı¾İ¿â´´½¨³É¹¦" << std::endl;
+	response->set_message("åˆ›å»ºæˆåŠŸ");
+	std::cout << "æ•°æ®åº“åˆ›å»ºæˆåŠŸ" << std::endl;
 
 	return grpc::Status::OK;
 }
 
-// ²éÑ¯
+// æŸ¥è¯¢
 grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const myproject::ReadRequest* request, myproject::ReadResponse* response)
 {
     try 
     {
-        // »ñÈ¡ÇëÇóµÄ query ²ÎÊı
+        // è·å–è¯·æ±‚çš„ query å‚æ•°
         const std::string& database = request->database();
         const std::string& table = request->table();
         const auto& query = request->query();
 
-        // Ñ¡ÔñÊı¾İ¿â
+        // é€‰æ‹©æ•°æ®åº“
         mysqlx::Table tbl = this->DBlink.getSchema(database).getTable(table);
 
-        // ¹¹½¨²éÑ¯Ìõ¼ş
+        // æ„å»ºæŸ¥è¯¢æ¡ä»¶
         std::string condition;
         for (const auto& q : query) 
         {
@@ -107,10 +107,10 @@ grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const myproj
             condition += q.first + " = '" + q.second + "'";
         }
 
-        // Ö´ĞĞ²éÑ¯
+        // æ‰§è¡ŒæŸ¥è¯¢
         mysqlx::RowResult result = tbl.select("*").where(condition).execute();;
 
-        // ÉèÖÃÏìÓ¦£º²éÑ¯½á¹û
+        // è®¾ç½®å“åº”ï¼šæŸ¥è¯¢ç»“æœ
         for (mysqlx::Row row : result)
         {
             myproject::ReadResponse::Result* response_result = response->add_results();
@@ -144,7 +144,7 @@ grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const myproj
                     column_value = row[i].get<bool>() ? "true" : "false";
                 }
                 else if (row[i].getType() == mysqlx::Value::Type::RAW) {
-                    column_value = "Raw Data"; // ĞèÒª½øÒ»²½´¦ÀíÔ­Ê¼Êı¾İ
+                    column_value = "Raw Data"; // éœ€è¦è¿›ä¸€æ­¥å¤„ç†åŸå§‹æ•°æ®
                 }
                 else {
                     column_value = "Unsupported Type";
@@ -154,60 +154,60 @@ grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const myproj
         }
 
         response->set_success(true);
-        response->set_message("²éÑ¯³É¹¦");
+        response->set_message("æŸ¥è¯¢æˆåŠŸ");
         return grpc::Status::OK;
     }
     catch (const mysqlx::Error& err) 
     {
-        std::cerr << "Êı¾İ¿â²éÑ¯´íÎó: " << err.what() << std::endl;
+        std::cerr << "æ•°æ®åº“æŸ¥è¯¢é”™è¯¯: " << err.what() << std::endl;
         response->set_success(false);
-        response->set_message("Êı¾İ¿â²éÑ¯´íÎó");
+        response->set_message("æ•°æ®åº“æŸ¥è¯¢é”™è¯¯");
         return grpc::Status::CANCELLED;
     }
     catch (std::exception& ex) 
     {
-        std::cerr << "Òì³£: " << ex.what() << std::endl;
+        std::cerr << "å¼‚å¸¸: " << ex.what() << std::endl;
         response->set_success(false);
-        response->set_message("Òì³£");
+        response->set_message("å¼‚å¸¸");
         return grpc::Status::CANCELLED;
     }
     catch (...) 
     {
-        std::cerr << "Î´Öª´íÎó!" << std::endl;
+        std::cerr << "æœªçŸ¥é”™è¯¯!" << std::endl;
         response->set_success(false);
-        response->set_message("Î´Öª´íÎó");
+        response->set_message("æœªçŸ¥é”™è¯¯");
         return grpc::Status::CANCELLED;
     }
 }
 
-// ¸üĞÂ
+// æ›´æ–°
 grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const myproject::UpdateRequest* request, myproject::UpdateResponse* response)
 {
-	// »ñÈ¡ÇëÇó²ÎÊı
+	// è·å–è¯·æ±‚å‚æ•°
 	std::string db_name = request->database();
 	std::string tab_name = request->table();
-	// ¼ÙÉèÊı¾İ¿â²Ù×÷
+	// å‡è®¾æ•°æ®åº“æ“ä½œ
 	// ...
-	// ÉèÖÃÏìÓ¦²ÎÊı
+	// è®¾ç½®å“åº”å‚æ•°
 	response->set_success(true);
-	response->set_message("¸üĞÂ³É¹¦");
-	std::cout << "Êı¾İ¿â¸üĞÂ³É¹¦" << std::endl;
+	response->set_message("æ›´æ–°æˆåŠŸ");
+	std::cout << "æ•°æ®åº“æ›´æ–°æˆåŠŸ" << std::endl;
 
 	return grpc::Status::OK;
 }
 
-// É¾³ı
+// åˆ é™¤
 grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const myproject::DeleteRequest* request, myproject::DeleteResponse* response)
 {
-	// »ñÈ¡ÇëÇó²ÎÊı
+	// è·å–è¯·æ±‚å‚æ•°
 	std::string db_name = request->database();
 	std::string tab_name = request->table();
-	// ¼ÙÉèÊı¾İ¿â²Ù×÷
+	// å‡è®¾æ•°æ®åº“æ“ä½œ
 	// ...
-	// ÉèÖÃÏìÓ¦²ÎÊı
+	// è®¾ç½®å“åº”å‚æ•°
 	response->set_success(true);
-	response->set_message("É¾³ı³É¹¦");
-	std::cout << "Êı¾İ¿âÉ¾³ı³É¹¦" << std::endl;
+	response->set_message("åˆ é™¤æˆåŠŸ");
+	std::cout << "æ•°æ®åº“åˆ é™¤æˆåŠŸ" << std::endl;
 
 	return grpc::Status::OK;
 }

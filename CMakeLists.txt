@@ -2,25 +2,25 @@ cmake_minimum_required (VERSION 3.8)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# ¶¨Òå³£Á¿
+# å®šä¹‰å¸¸é‡
 project("poor_server_stl" VERSION 1.0)
 set(VCPKG_DIR "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows")
 set(VCPKG_INCLUDE "${VCPKG_DIR}/include")
 set(VCPKG_LIB "${VCPKG_DIR}/lib")
 set(VCPKG_BIN "${VCPKG_DIR}/bin")
 
-# °üº¬Í·ÎÄ¼þµÄÄ¿Â¼£¬ÔÚ×ÓÄ£¿éÖÐÉúÐ§
+# åŒ…å«å¤´æ–‡ä»¶çš„ç›®å½•ï¼Œåœ¨å­æ¨¡å—ä¸­ç”Ÿæ•ˆ
 include_directories(
-    ${VCPKG_INCLUDE}     # µÚÈý·½¿âµÄÍ·ÎÄ¼þËùÔÚÄ¿Â¼
-    # ¹²Ïí¹¤¾ßÀà
+    ${VCPKG_INCLUDE}     # ç¬¬ä¸‰æ–¹åº“çš„å¤´æ–‡ä»¶æ‰€åœ¨ç›®å½•
+    # å…±äº«å·¥å…·ç±»
     ${CMAKE_SOURCE_DIR}/src/common
-    # ¸÷·þÎñÆ÷ÊµÏÖÀà
+    # å„æœåŠ¡å™¨å®žçŽ°ç±»
     ${CMAKE_SOURCE_DIR}/src/central
     ${CMAKE_SOURCE_DIR}/src/data
     ${CMAKE_SOURCE_DIR}/src/gateway
     ${CMAKE_SOURCE_DIR}/src/logic
     ${CMAKE_SOURCE_DIR}/src/login
-    # protoÉú³ÉµÄ¹²ÏíÍ·ÎÄ¼þÄ¿Â¼
+    # protoç”Ÿæˆçš„å…±äº«å¤´æ–‡ä»¶ç›®å½•
     ${CMAKE_SOURCE_DIR}/protobuf/common
     ${CMAKE_SOURCE_DIR}/protobuf/central
     ${CMAKE_SOURCE_DIR}/protobuf/data
@@ -29,12 +29,12 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/protobuf/login
 )
 
-# ÐèÒª±àÒëµÄÔ´ÎÄ¼þÁÐ±í
+# éœ€è¦ç¼–è¯‘çš„æºæ–‡ä»¶åˆ—è¡¨
 set(SOURCES
     src/main.cpp
 )
 
-# Ìí¼ÓÃ¿¸öÄ£¿é
+# æ·»åŠ æ¯ä¸ªæ¨¡å—
 add_subdirectory(protobuf)
 add_subdirectory(./src/central)
 add_subdirectory(./src/data)
@@ -42,33 +42,33 @@ add_subdirectory(./src/gateway)
 add_subdirectory(./src/logic)
 add_subdirectory(./src/login)
 
-# Ö¸¶¨±àÒëÉú³ÉµÄ¿ÉÖ´ÐÐÎÄ¼þÐÅÏ¢£ºÎÄ¼þÃû${PROJECT_NAME} £¬${SOURCES} ÏîÄ¿ËùÓÐÔ´ÎÄ¼þÂ·¾¶
-add_executable(${PROJECT_NAME} ${SOURCES} "tools/test/test_login.cpp")
+# æŒ‡å®šç¼–è¯‘ç”Ÿæˆçš„å¯æ‰§è¡Œæ–‡ä»¶ä¿¡æ¯ï¼šæ–‡ä»¶å${PROJECT_NAME} ï¼Œ${SOURCES} é¡¹ç›®æ‰€æœ‰æºæ–‡ä»¶è·¯å¾„
+add_executable(${PROJECT_NAME} ${SOURCES})
 
-# Èç¹ûÐèÒªÁ´½ÓµÚÈý·½¿â£¬¿ÉÒÔÔÚÕâÀïÖ¸¶¨£¨ÏîÄ¿Ãû£¬¿âÎÄ¼þÈ¨ÏÞ£¬¿âÃûÁÐ±í£©
+# å¦‚æžœéœ€è¦é“¾æŽ¥ç¬¬ä¸‰æ–¹åº“ï¼Œå¯ä»¥åœ¨è¿™é‡ŒæŒ‡å®šï¼ˆé¡¹ç›®åï¼Œåº“æ–‡ä»¶æƒé™ï¼Œåº“ååˆ—è¡¨ï¼‰
 target_link_libraries(${PROJECT_NAME} PRIVATE
-# µÚÈý·½¿â
-    "${VCPKG_LIB}/libprotobufd.lib" # proto¿â
-    "${VCPKG_LIB}/libprotocd.lib" # proto¿â
-    # nlohmann£ºjson¿âÊÇÒ»¸öÍ·ÎÄ¼þ¿â£¬²»´æÔÚlibÎÄ¼þ£¬²»ÐèÒªÁ´½Ó
+# ç¬¬ä¸‰æ–¹åº“
+    "${VCPKG_LIB}/libprotobufd.lib" # protoåº“
+    "${VCPKG_LIB}/libprotocd.lib" # protoåº“
+    # nlohmannï¼šjsonåº“æ˜¯ä¸€ä¸ªå¤´æ–‡ä»¶åº“ï¼Œä¸å­˜åœ¨libæ–‡ä»¶ï¼Œä¸éœ€è¦é“¾æŽ¥
 )
 
 
-# ´´½¨Ò»¸öÁÐ±í£¬°üº¬ËùÓÐÐèÒª¸´ÖÆµÄ .dll ÎÄ¼þ
+# åˆ›å»ºä¸€ä¸ªåˆ—è¡¨ï¼ŒåŒ…å«æ‰€æœ‰éœ€è¦å¤åˆ¶çš„ .dll æ–‡ä»¶
 set(DLL_FILES
-    "${VCPKG_BIN}/libprotobufd.dll"  # proto¿â
-    "${VCPKG_BIN}/libprotocd.dll"          # proto¿â
+    "${VCPKG_BIN}/libprotobufd.dll"  # protoåº“
+    "${VCPKG_BIN}/libprotocd.dll"          # protoåº“
 )
 
-# ±éÀú dllÁÐ±í£¬½«ËùÓÐ .dll ÎÄ¼þ£¬ÖðÒ»¸´ÖÆµ½¿ÉÖ´ÐÐÎÄ¼þËùÔÚÄ¿Â¼
+# éåŽ† dllåˆ—è¡¨ï¼Œå°†æ‰€æœ‰ .dll æ–‡ä»¶ï¼Œé€ä¸€å¤åˆ¶åˆ°å¯æ‰§è¡Œæ–‡ä»¶æ‰€åœ¨ç›®å½•
 foreach(DLL_FILE ${DLL_FILES})
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "${DLL_FILE}"
-        $<TARGET_FILE_DIR:${PROJECT_NAME}>  # ¸´ÖÆµ½¿ÉÖ´ÐÐÎÄ¼þÉú³ÉÄ¿Â¼
+        $<TARGET_FILE_DIR:${PROJECT_NAME}>  # å¤åˆ¶åˆ°å¯æ‰§è¡Œæ–‡ä»¶ç”Ÿæˆç›®å½•
     )
 endforeach()
 
 
-# °²×°¿ÉÖ´ÐÐÎÄ¼þµ½ bin Ä¿Â¼
+# å®‰è£…å¯æ‰§è¡Œæ–‡ä»¶åˆ° bin ç›®å½•
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)

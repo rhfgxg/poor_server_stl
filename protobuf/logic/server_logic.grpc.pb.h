@@ -42,7 +42,7 @@ class LogicServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::GameActionResponse>> PrepareAsyncProcessGameAction(::grpc::ClientContext* context, const ::myproject::GameActionRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::GameActionResponse>>(PrepareAsyncProcessGameActionRaw(context, request, cq));
     }
-    // ´¦ÀíÓÎÏ·²Ù×÷
+    // å¤„ç†æ¸¸æˆæ“ä½œ
     virtual ::grpc::Status GetGameState(::grpc::ClientContext* context, const ::myproject::GameStateRequest& request, ::myproject::GameStateResponse* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::GameStateResponse>> AsyncGetGameState(::grpc::ClientContext* context, const ::myproject::GameStateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::GameStateResponse>>(AsyncGetGameStateRaw(context, request, cq));
@@ -50,16 +50,16 @@ class LogicServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::GameStateResponse>> PrepareAsyncGetGameState(::grpc::ClientContext* context, const ::myproject::GameStateRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::GameStateResponse>>(PrepareAsyncGetGameStateRaw(context, request, cq));
     }
-    // »ñÈ¡ÓÎÏ·×´Ì¬
+    // è·å–æ¸¸æˆçŠ¶æ€
     class async_interface {
      public:
       virtual ~async_interface() {}
       virtual void ProcessGameAction(::grpc::ClientContext* context, const ::myproject::GameActionRequest* request, ::myproject::GameActionResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void ProcessGameAction(::grpc::ClientContext* context, const ::myproject::GameActionRequest* request, ::myproject::GameActionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // ´¦ÀíÓÎÏ·²Ù×÷
+      // å¤„ç†æ¸¸æˆæ“ä½œ
       virtual void GetGameState(::grpc::ClientContext* context, const ::myproject::GameStateRequest* request, ::myproject::GameStateResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetGameState(::grpc::ClientContext* context, const ::myproject::GameStateRequest* request, ::myproject::GameStateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // »ñÈ¡ÓÎÏ·×´Ì¬
+      // è·å–æ¸¸æˆçŠ¶æ€
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -119,9 +119,9 @@ class LogicServer final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status ProcessGameAction(::grpc::ServerContext* context, const ::myproject::GameActionRequest* request, ::myproject::GameActionResponse* response);
-    // ´¦ÀíÓÎÏ·²Ù×÷
+    // å¤„ç†æ¸¸æˆæ“ä½œ
     virtual ::grpc::Status GetGameState(::grpc::ServerContext* context, const ::myproject::GameStateRequest* request, ::myproject::GameStateResponse* response);
-    // »ñÈ¡ÓÎÏ·×´Ì¬
+    // è·å–æ¸¸æˆçŠ¶æ€
   };
   template <class BaseClass>
   class WithAsyncMethod_ProcessGameAction : public BaseClass {

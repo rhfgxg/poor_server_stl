@@ -2,76 +2,73 @@
 
 #include <iostream>
 
-void RunServer();   // ÔËĞĞ·şÎñÆ÷
+void RunServer();   // è¿è¡ŒæœåŠ¡å™¨
 
-void test_client(); // Ä£Äâ¿Í»§¶ËµÇÂ¼
+void test_client(); // æ¨¡æ‹Ÿå®¢æˆ·ç«¯ç™»å½•
 
 int main() 
 {
-    std::cout << "Íø¹ØÄ£¿é" << std::endl;
-    // Æô¶¯·şÎñÆ÷
+    std::cout << "ç½‘å…³æ¨¡å—" << std::endl;
+    // å¯åŠ¨æœåŠ¡å™¨
     RunServer();
-    // ¹Ø±Õ·şÎñÆ÷
+    // å…³é—­æœåŠ¡å™¨
 
-    return 0; // ·µ»Ø0±íÊ¾³ÌĞòÕı³£½áÊø
+    return 0; // è¿”å›0è¡¨ç¤ºç¨‹åºæ­£å¸¸ç»“æŸ
 }
 
 void RunServer()
 {
-    GatewayServerImpl gateway_server; // Íø¹Ø·şÎñÆ÷ÊµÏÖ
+    GatewayServerImpl gateway_server; // ç½‘å…³æœåŠ¡å™¨å®ç°
 
-    grpc::ServerBuilder builder; // gRPC·şÎñÆ÷¹¹½¨Æ÷
-    std::string server_address("0.0.0.0:50051"); // Íø¹Ø·şÎñÆ÷¼àÌı50051¶Ë¿Ú
-    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials()); // Ìí¼Ó¼àÌı¶Ë¿Ú
-    builder.RegisterService(&gateway_server); // ×¢²á·şÎñ
+    grpc::ServerBuilder builder; // gRPCæœåŠ¡å™¨æ„å»ºå™¨
+    std::string server_address("0.0.0.0:50051"); // ç½‘å…³æœåŠ¡å™¨ç›‘å¬50051ç«¯å£
+    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials()); // æ·»åŠ ç›‘å¬ç«¯å£
+    builder.RegisterService(&gateway_server); // æ³¨å†ŒæœåŠ¡
 
-    std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // ¹¹½¨²¢Æô¶¯·şÎñÆ÷
-    std::cout << "GatewayServer start..." << std::endl; // Êä³ö·şÎñÆ÷ÔËĞĞĞÅÏ¢
+    std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // æ„å»ºå¹¶å¯åŠ¨æœåŠ¡å™¨
+    std::cout << "GatewayServer start..." << std::endl; // è¾“å‡ºæœåŠ¡å™¨è¿è¡Œä¿¡æ¯
 
-	gateway_server.register_server(); // ×¢²á·şÎñÆ÷
+	gateway_server.register_server(); // æ³¨å†ŒæœåŠ¡å™¨
 
-    /*for (int i = 0; i < 1000; i++)
-    {
-		std::cout << "µÚ" << i + 1 << "´ÎµÇÂ¼" << std::endl;*/
-        test_client();  // Ä£Äâ¿Í»§¶ËµÇÂ¼
-    //}
 
-    server->Wait(); // µÈ´ı·şÎñÆ÷ÖÕÖ¹
-	gateway_server.unregister_server(); // ×¢Ïú·şÎñÆ÷
+    test_client();  // æ¨¡æ‹Ÿå®¢æˆ·ç«¯ç™»å½•
+
+    server->Wait(); // ç­‰å¾…æœåŠ¡å™¨ç»ˆæ­¢
+	gateway_server.unregister_server(); // æ³¨é”€æœåŠ¡å™¨
 }
 
 void test_client()
 {
-    auto channel = grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()); // Á´½ÓÍø¹Ø·şÎñÆ÷
-    auto stub = myproject::GatewayServer::NewStub(channel); // ·şÎñ´æ¸ù
+    auto channel = grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()); // é“¾æ¥ç½‘å…³æœåŠ¡å™¨
+    auto stub = myproject::GatewayServer::NewStub(channel); // æœåŠ¡å­˜æ ¹
 
-	// Ä£ÄâµÇÂ¼Êı¾İ
+	// æ¨¡æ‹Ÿç™»å½•æ•°æ®
 	std::string user_name = "lhw";
 	std::string password = "159357";
 
-    // ¹¹ÔìµÇÂ¼ÇëÇó
+    // æ„é€ ç™»å½•è¯·æ±‚
     myproject::LoginRequest login_request;
-    login_request.set_username(user_name); // ÉèÖÃÓÃ»§Ãû
-    login_request.set_password(password); // ÉèÖÃÃÜÂë
+    login_request.set_username(user_name); // è®¾ç½®ç”¨æˆ·å
+    login_request.set_password(password); // è®¾ç½®å¯†ç 
 
-	// °ü×°Îª×ª·¢ÇëÇó
+	// åŒ…è£…ä¸ºè½¬å‘è¯·æ±‚
 	myproject::ForwardRequest forward_request;
-	forward_request.set_service_type(myproject::ServiceType::REQ_LOGIN); // ÉèÖÃ·şÎñÀàĞÍ
-	login_request.SerializeToString(forward_request.mutable_payload()); // ĞòÁĞ»¯µÇÂ¼ÇëÇó
+	forward_request.set_service_type(myproject::ServiceType::REQ_LOGIN); // è®¾ç½®æœåŠ¡ç±»å‹
+	login_request.SerializeToString(forward_request.mutable_payload()); // åºåˆ—åŒ–ç™»å½•è¯·æ±‚
 
-    // ¹¹ÔìÏìÓ¦
+    // æ„é€ å“åº”
     myproject::ForwardResponse forward_response;
-    grpc::ClientContext client_context; // °üº¬ RPC µ÷ÓÃµÄÔªÊı¾İºÍÆäËûĞÅÏ¢
+    grpc::ClientContext client_context; // åŒ…å« RPC è°ƒç”¨çš„å…ƒæ•°æ®å’Œå…¶ä»–ä¿¡æ¯
 
-    // ÏòÍø¹Ø·şÎñÆ÷·¢ËÍÇëÇó
+    // å‘ç½‘å…³æœåŠ¡å™¨å‘é€è¯·æ±‚
     grpc::Status status = stub->RequestForward(&client_context, forward_request, &forward_response);
 
     if (status.ok() && forward_response.success())
     {
-        std::cout << "µÇÂ¼³É¹¦" << std::endl;
+        std::cout << "ç™»å½•æˆåŠŸ" << std::endl;
     }
     else
     {
-        std::cout << "µÇÂ¼Ê§°Ü" << std::endl;
+        std::cout << "ç™»å½•å¤±è´¥" << std::endl;
     }
 }

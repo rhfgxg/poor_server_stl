@@ -1,38 +1,38 @@
 #ifndef LOGIN_SERVER_H
 #define LOGIN_SERVER_H
 
-#include "server_login.grpc.pb.h"	// µÇÂ¼·şÎñ
-#include "server_data.grpc.pb.h"    // Êı¾İ¿â·şÎñ
-#include "server_central.grpc.pb.h"	// ÖĞĞÄ·şÎñ
+#include "server_login.grpc.pb.h"	// ç™»å½•æœåŠ¡
+#include "server_data.grpc.pb.h"    // æ•°æ®åº“æœåŠ¡
+#include "server_central.grpc.pb.h"	// ä¸­å¿ƒæœåŠ¡
 
-#include "connection_pool.h"    // Á¬½Ó³Ø
+#include "connection_pool.h"    // è¿æ¥æ± 
 
 #include <grpcpp/grpcpp.h>
 #include <map>
 #include <string>
 
-// µÇÂ¼·şÎñÊµÏÖÀà
+// ç™»å½•æœåŠ¡å®ç°ç±»
 class LoginServerImpl final : public myproject::LoginServer::Service {
 public:
-	LoginServerImpl();	// ¹¹Ôìº¯Êı
+	LoginServerImpl();	// æ„é€ å‡½æ•°
 
-	void register_server(); // ×¢²á·şÎñÆ÷
-	void unregister_server(); // ×¢Ïú·şÎñÆ÷
+	void register_server(); // æ³¨å†ŒæœåŠ¡å™¨
+	void unregister_server(); // æ³¨é”€æœåŠ¡å™¨
 
-    grpc::Status Login(grpc::ServerContext* context, const myproject::LoginRequest* request, myproject::LoginResponse* response) override;  // µÇÂ¼
-    grpc::Status Register(grpc::ServerContext* context, const myproject::RegisterRequest* request, myproject::RegisterResponse* response) override;   // ×¢²á
-    grpc::Status Authenticate(grpc::ServerContext* context, const myproject::AuthenticateRequest* request, myproject::AuthenticateResponse* response) override;   // ÁîÅÆÑéÖ¤
+    grpc::Status Login(grpc::ServerContext* context, const myproject::LoginRequest* request, myproject::LoginResponse* response) override;  // ç™»å½•
+    grpc::Status Register(grpc::ServerContext* context, const myproject::RegisterRequest* request, myproject::RegisterResponse* response) override;   // æ³¨å†Œ
+    grpc::Status Authenticate(grpc::ServerContext* context, const myproject::AuthenticateRequest* request, myproject::AuthenticateResponse* response) override;   // ä»¤ç‰ŒéªŒè¯
 
 private:
-	// ³õÊ¼»¯Á´½Ó³Ø
+	// åˆå§‹åŒ–é“¾æ¥æ± 
 	void init_connection_pool();
 
-	std::string login_(const std::string& database, const std::string& table, std::map<std::string, std::string> query);    // µÇÂ¼
-	std::string register_(const std::string& database, const std::string& table, std::map<std::string, std::string> data);    // ×¢²á
-	std::string authenticate_(const std::string& token);    // ÁîÅÆÑéÖ¤
+	std::string login_(const std::string& database, const std::string& table, std::map<std::string, std::string> query);    // ç™»å½•
+	std::string register_(const std::string& database, const std::string& table, std::map<std::string, std::string> data);    // æ³¨å†Œ
+	std::string authenticate_(const std::string& token);    // ä»¤ç‰ŒéªŒè¯
 	
-	std::unique_ptr<myproject::CentralServer::Stub> central_stub;	// ÖĞĞÄ·şÎñ´æ¸ù
-	ConnectionPool db_connection_pool;   // µÇÂ¼·şÎñÆ÷Á¬½Ó³Ø
+	std::unique_ptr<myproject::CentralServer::Stub> central_stub;	// ä¸­å¿ƒæœåŠ¡å­˜æ ¹
+	ConnectionPool db_connection_pool;   // ç™»å½•æœåŠ¡å™¨è¿æ¥æ± 
 };
 
 #endif // LOGIN_SERVER_H
