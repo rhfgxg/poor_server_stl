@@ -1,24 +1,30 @@
 #include "gateway_server.h"
+#include "logger_manager.h" // 引入日志管理器
 
-#include <iostream>
 
-void RunServer();   // 运行服务器
+// 运行服务器
+void RunServer(LoggerManager& logger_manager);
+// 模拟客户端登录
+void test_client();
 
-void test_client(); // 模拟客户端登录
-
+// 网关服务器main函数
 int main() 
 {
-    std::cout << "网关模块" << std::endl;
-    // 启动服务器
-    RunServer();
-    // 关闭服务器
+    // 初始化日志管理器，通过引用传递实现单例模式
+    LoggerManager logger_manager;
+    logger_manager.initialize(myproject::ServerType::GATEWAY);    // 传入服务器类型，创建日志文件夹
+
+    // 记录启动日志
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器启动"); // 记录启动日志：日志分类, 日志内容
+
+    RunServer(logger_manager); // 运行服务器
 
     return 0; // 返回0表示程序正常结束
 }
 
-void RunServer()
+void RunServer(LoggerManager& logger_manager)
 {
-    GatewayServerImpl gateway_server; // 网关服务器实现
+    GatewayServerImpl gateway_server(logger_manager); // 网关服务器实现
 
     grpc::ServerBuilder builder; // gRPC服务器构建器
     std::string server_address("0.0.0.0:50051"); // 网关服务器监听50051端口
@@ -26,7 +32,7 @@ void RunServer()
     builder.RegisterService(&gateway_server); // 注册服务
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // 构建并启动服务器
-    std::cout << "GatewayServer start..." << std::endl; // 输出服务器运行信息
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("GatewayServer 启动，监听地址: {}",server_address);
 
 	gateway_server.register_server(); // 注册服务器
 

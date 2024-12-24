@@ -1,8 +1,8 @@
 #include "central_server.h"
 
 CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_) :
-    logger_manager(logger_manager_),
-    central_connection_pool(10),
+	logger_manager(logger_manager_),	// 日志管理器
+	central_connection_pool(10),    // 中心服务器连接池大小为 10
     data_connection_pool(10),   // 数据库连接池大小为 10
     gateway_connection_pool(10),    // 网关连接池大小为 10
 	logic_connection_pool(10),  // 逻辑服务器连接池大小为 10

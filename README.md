@@ -15,7 +15,24 @@
 2.2. 文件上传下载：文件切块，断点续传，文件压缩等
 2.3. 日志系统
 
-# 安装及使用说明
+# 开发环境
+建议文件编码全部使用utf-8，以免导致编译错误
+cmd脚本使用 unix 格式，以免在 windows 下运行时出现错误
+
+## 操作系统
+windows 10 / 11
+
+## 编译器
+Visual Studio 2022
+	使用 VS 参与项目时，可以先下载下面的插件
+	FileEncoding
+	force utf-8 （no BOM）
+	用来设置文件编码为 utf-8 无 BOM
+
+## 第三方库管理工具
+vcpkg
+
+# 安装说明
 ## clone 项目
 ### 
 ```git clone https://github.com/rhfgxg/poor_server_stl.git```

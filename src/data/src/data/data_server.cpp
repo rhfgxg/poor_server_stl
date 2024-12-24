@@ -2,8 +2,9 @@
 #include <codecvt>
 #include <locale>
 
-DatabaseServerImpl::DatabaseServerImpl(mysqlx::Session& DBlink_) :
-	DBlink(DBlink_),    // 数据库链接
+DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_, mysqlx::Session& DBlink_) :
+    logger_manager(logger_manager_),	// 日志管理器
+    DBlink(DBlink_),    // 数据库链接
     central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))) // 中心服务器存根
 {
 
@@ -32,11 +33,12 @@ void DatabaseServerImpl::register_server()
 
     if (status.ok() && response.success())
     {
-        std::cout << "服务器注册成功: " << response.message() << std::endl;
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("数据库服务器注册成功: {} {}","localhost","50052");
+
     }
     else
     {
-        std::cerr << "服务器注册失败: " << response.message() << std::endl;
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("数据库服务器注册失败: {} {}","localhost","50052");
     }
 }
 
@@ -70,17 +72,17 @@ void DatabaseServerImpl::unregister_server()
 // 添加
 grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const myproject::CreateRequest* request, myproject::CreateResponse* response)
 {
-	// 获取请求参数
-	std::string db_name = request->database();
-	std::string tab_name = request->table();
-	// 假设数据库操作
-	// ...
-	// 设置响应参数
-	response->set_success(true);
-	response->set_message("创建成功");
-	std::cout << "数据库创建成功" << std::endl;
+    // 获取请求参数
+    std::string db_name = request->database();
+    std::string tab_name = request->table();
+    // 假设数据库操作
+    // ...
+    // 设置响应参数
+    response->set_success(true);
+    response->set_message("创建成功");
+    std::cout << "数据库创建成功" << std::endl;
 
-	return grpc::Status::OK;
+    return grpc::Status::OK;
 }
 
 // 查询
@@ -183,31 +185,31 @@ grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const myproj
 // 更新
 grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const myproject::UpdateRequest* request, myproject::UpdateResponse* response)
 {
-	// 获取请求参数
-	std::string db_name = request->database();
-	std::string tab_name = request->table();
-	// 假设数据库操作
-	// ...
-	// 设置响应参数
-	response->set_success(true);
-	response->set_message("更新成功");
-	std::cout << "数据库更新成功" << std::endl;
+    // 获取请求参数
+    std::string db_name = request->database();
+    std::string tab_name = request->table();
+    // 假设数据库操作
+    // ...
+    // 设置响应参数
+    response->set_success(true);
+    response->set_message("更新成功");
+    std::cout << "数据库更新成功" << std::endl;
 
-	return grpc::Status::OK;
+    return grpc::Status::OK;
 }
 
 // 删除
 grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const myproject::DeleteRequest* request, myproject::DeleteResponse* response)
 {
-	// 获取请求参数
-	std::string db_name = request->database();
-	std::string tab_name = request->table();
-	// 假设数据库操作
-	// ...
-	// 设置响应参数
-	response->set_success(true);
-	response->set_message("删除成功");
-	std::cout << "数据库删除成功" << std::endl;
+    // 获取请求参数
+    std::string db_name = request->database();
+    std::string tab_name = request->table();
+    // 假设数据库操作
+    // ...
+    // 设置响应参数
+    response->set_success(true);
+    response->set_message("删除成功");
+    std::cout << "数据库删除成功" << std::endl;
 
-	return grpc::Status::OK;
+    return grpc::Status::OK;
 }

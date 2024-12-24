@@ -4,17 +4,18 @@
 #include "server_login.grpc.pb.h"	// 登录服务
 #include "server_data.grpc.pb.h"    // 数据库服务
 #include "server_central.grpc.pb.h"	// 中心服务
-
 #include "connection_pool.h"    // 连接池
+#include "logger_manager.h"     // 日志管理器
 
 #include <grpcpp/grpcpp.h>
 #include <map>
 #include <string>
 
 // 登录服务实现类
-class LoginServerImpl final : public myproject::LoginServer::Service {
+class LoginServerImpl final : public myproject::LoginServer::Service
+{
 public:
-	LoginServerImpl();	// 构造函数
+	LoginServerImpl(LoggerManager& logger_manager_);	// 构造函数
 
 	void register_server(); // 注册服务器
 	void unregister_server(); // 注销服务器
@@ -30,7 +31,10 @@ private:
 	std::string login_(const std::string& database, const std::string& table, std::map<std::string, std::string> query);    // 登录
 	std::string register_(const std::string& database, const std::string& table, std::map<std::string, std::string> data);    // 注册
 	std::string authenticate_(const std::string& token);    // 令牌验证
-	
+
+    // 日志管理器
+    LoggerManager& logger_manager;
+
 	std::unique_ptr<myproject::CentralServer::Stub> central_stub;	// 中心服务存根
 	ConnectionPool db_connection_pool;   // 登录服务器连接池
 };

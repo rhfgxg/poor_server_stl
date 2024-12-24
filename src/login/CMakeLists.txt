@@ -24,6 +24,7 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/login/src/login/login_server.cpp
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
+    ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
     # protobuf 生成的源文件
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.grpc.pb.cc
@@ -40,9 +41,10 @@ add_executable(${MODULE_NAME} ${SOURCES})
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # 设置编译选项
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4251 /wd4244")   # 忽略警告
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4251 /wd4244 /utf-8")   # 忽略警告，使用utf-8编码
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd /D_ITERATOR_DEBUG_LEVEL=2")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD /D_ITERATOR_DEBUG_LEVEL=0")
+add_compile_options(/wd4828)    # 忽略utf-8相关警告
 
 # 如果需要链接第三方库，可以在这里指定（项目名，库文件权限，库名列表）
 target_link_libraries(${MODULE_NAME} PRIVATE
@@ -120,6 +122,12 @@ target_link_libraries(${MODULE_NAME} PRIVATE
     # address_sorting 库
     debug "${VCPKG_DEBUG_LIB}/address_sorting.lib"
     optimized "${VCPKG_LIB}/address_sorting.lib"
+    # fmt 库
+    debug "${VCPKG_DEBUG_LIB}/fmtd.lib"
+    optimized "${VCPKG_LIB}/fmt.lib"
+    # spdlog 库
+    debug "${VCPKG_DEBUG_LIB}/spdlogd.lib"
+    optimized "${VCPKG_LIB}/spdlog.lib"
 )
 
 # 创建一个列表，包含所有需要复制的 .dll 文件
@@ -134,6 +142,8 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
         "${VCPKG_DEBUG_BIN}/zlibd1.dll"
         "${VCPKG_DEBUG_BIN}/re2.dll"
         "${VCPKG_DEBUG_BIN}/cares.dll"
+        "${VCPKG_DEBUG_BIN}/fmtd.dll"
+        "${VCPKG_DEBUG_BIN}/spdlogd.dll"
     )
 else()
     set(DLL_FILES
@@ -146,6 +156,8 @@ else()
         "${VCPKG_BIN}/zlib1.dll"
         "${VCPKG_BIN}/re2.dll"
         "${VCPKG_BIN}/cares.dll"
+        "${VCPKG_BIN}/fmt.dll"
+        "${VCPKG_BIN}/spdlog.dll"
     )
 endif()
 

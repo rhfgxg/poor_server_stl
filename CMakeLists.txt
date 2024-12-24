@@ -45,6 +45,11 @@ add_subdirectory(./src/login)
 # 指定编译生成的可执行文件信息：文件名${PROJECT_NAME} ，${SOURCES} 项目所有源文件路径
 add_executable(${PROJECT_NAME} ${SOURCES})
 
+# 设置编译选项
+# /utf-8：使用 utf-8 编码
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
+add_compile_options(/wd4828)    # 忽略utf-8相关警告
+
 # 如果需要链接第三方库，可以在这里指定（项目名，库文件权限，库名列表）
 target_link_libraries(${PROJECT_NAME} PRIVATE
 # 第三方库

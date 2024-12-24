@@ -1,6 +1,7 @@
 #include "login_server.h"
 
-LoginServerImpl::LoginServerImpl() :
+LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_):
+    logger_manager(logger_manager_),	// 日志管理器
     central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 链接中心服务器
 	db_connection_pool(10) // 初始化数据库服务器连接池，设置连接池大小为10
 {
@@ -26,13 +27,13 @@ void LoginServerImpl::register_server()
 
     if (status.ok() && response.success())
     {
-        std::cout << "服务器注册成功: " << response.message() << std::endl;
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("登录服务器注册成功: {} {}","localhost","50053");
 
 		init_connection_pool(); // 初始化连接池
     }
     else 
     {
-        std::cerr << "服务器注册失败: " << response.message() << std::endl;
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("登录服务器注册失败: {} {}","localhost","50053");
     }
 }
 

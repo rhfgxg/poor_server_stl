@@ -3,7 +3,8 @@
 #include <chrono>
 
 // GatewayServerImpl 构造函数
-GatewayServerImpl::GatewayServerImpl() :   
+GatewayServerImpl::GatewayServerImpl(LoggerManager& logger_manager_):
+    logger_manager(logger_manager_),	// 日志管理器   
     central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 中心服务器存根
     login_connection_pool(10) // 初始化登录服务器连接池，设置连接池大小为10
 {
@@ -28,12 +29,12 @@ void GatewayServerImpl::register_server()
 
     if (status.ok() && response.success())
     {
-        std::cout << "服务器注册成功: " << response.message() << std::endl;
-		init_connection_pool(); // 初始化连接池
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器注册成功: {} {}","localhost","50051");
+        init_connection_pool(); // 初始化连接池
     }
     else
     {
-        std::cerr << "服务器注册失败: " << response.message() << std::endl;
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器注册成功: {} {}","localhost","50051");
     }
 }
 
@@ -54,10 +55,10 @@ void GatewayServerImpl::unregister_server()
     grpc::Status status = central_stub->UnregisterServer(&context, request, &response);
 
     if (status.ok() && response.success()) {
-        std::cout << "服务器注销成功: " << response.message() << std::endl;
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器注销成功: {} {}","localhost","50051");
     }
     else {
-        std::cerr << "服务器注销失败: " << response.message() << std::endl;
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器注销失败: {} {}","localhost","50051");
     }
 }
 
@@ -84,7 +85,7 @@ void GatewayServerImpl::init_connection_pool()
     }
     else
     {
-        std::cerr << "无法获取登录服务器连接池信息: " << status.error_message() << std::endl;
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("无法获取连接池信息");
     }
 }
 

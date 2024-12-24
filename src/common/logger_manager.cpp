@@ -1,10 +1,10 @@
 #include "logger_manager.h"
 #include <ctime>
 
-void LoggerManager::initialize(const std::string& server_name)
+void LoggerManager::initialize(myproject::ServerType server_type)
 {
     // 创建日志文件夹
-    createLogDirectory(server_name);
+    createLogDirectory(server_type);
 
     // 创建控制台日志器
     auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
@@ -39,6 +39,7 @@ void LoggerManager::initialize(const std::string& server_name)
     spdlog::flush_on(spdlog::level::info); // 设置日志刷新级别
 }
 
+// 获取日志器
 std::shared_ptr<spdlog::logger> LoggerManager::getLogger(LogCategory category)
 {
     auto it = loggers.find(category);
@@ -53,8 +54,33 @@ std::shared_ptr<spdlog::logger> LoggerManager::getLogger(LogCategory category)
     }
 }
 
-void LoggerManager::createLogDirectory(const std::string& server_name)
+// 创建日志文件夹
+void LoggerManager::createLogDirectory(myproject::ServerType server_type)
 {
+    std::string server_name = "defult"; // 默认日志文件夹名
+
+    switch(server_type)
+    {
+    case myproject::CENTRAL:
+    server_name = "central_server";
+    break;
+    case myproject::DATA:
+    server_name = "data_server";
+    break;
+    case myproject::GATEWAY:
+    server_name = "gateway_server";
+    break;
+    case myproject::LOGIN:
+    server_name = "login_server";
+    break;
+    case myproject::LOGIC:
+    server_name = "logic_server";
+    break;
+    default:
+    server_name = "defult";
+    break;
+    }
+
     // 获取当前日期
     std::time_t t = std::time(nullptr);
     std::tm tm = *std::localtime(&t);
@@ -62,6 +88,6 @@ void LoggerManager::createLogDirectory(const std::string& server_name)
     std::strftime(date, sizeof(date), "%Y/%m/%d", &tm);
 
     // 创建日志文件夹
-    log_directory = "logs/" + server_name + "/" + date;
+    log_directory = "../../logs/" + server_name + "/" + date;
     std::filesystem::create_directories(log_directory);
 }
