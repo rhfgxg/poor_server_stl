@@ -1,4 +1,4 @@
-#include "central_server.h"
+#include "central/central_server.h"
 #include "logger_manager.h" // 引入日志管理器
 
 // 运行服务器
@@ -12,7 +12,7 @@ int main()
     logger_manager.initialize(myproject::ServerType::CENTRAL);    // 传入服务器类型，创建日志文件夹
 
     // 记录启动日志
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("中心服务器启动"); // 记录启动日志：日志分类, 日志内容
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Central_server started"); // Log startup: log category, log content
 
     RunServer(logger_manager); // 运行服务器
 
@@ -29,6 +29,6 @@ void RunServer(LoggerManager& logger_manager)
     builder.RegisterService(&central_server); // 注册服务
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("CentralServer 启动，监听地址: {}", server_address);
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
     server->Wait();
 }

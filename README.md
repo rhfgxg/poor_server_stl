@@ -23,11 +23,18 @@ cmd脚本使用 unix 格式，以免在 windows 下运行时出现错误
 windows 10 / 11
 
 ## 编译器
-Visual Studio 2022
-	使用 VS 参与项目时，可以先下载下面的插件
+### Visual Studio 2022 配置
+1. 使用 VS 参与项目时，可以先下载下面的插件
 	FileEncoding
 	force utf-8 （no BOM）
-	用来设置文件编码为 utf-8 无 BOM
+用来设置文件编码为 utf-8 无 BOM
+2. 使用配置文件 .editorconfig 来设置默认文件编码格式
+3. CMakeLists 文件添加编译选项
+```cmake
+# 设置编译选项
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
+add_compile_options(/wd4828)    # 忽略utf-8相关警告
+```
 
 ## 第三方库管理工具
 vcpkg
@@ -44,6 +51,7 @@ vcpkg
 # 文件树
 tree.txt：文件树（包含其他文件的详细介绍）
 vcpkg_json, vcpkg-configuration.json：第三方库文件列表
+.editorconfig：VS 配置文件，设置文件编码格式为 utf-8
 
 config/：系统配置文件
 protobuf/：各模块 grpc通信 proto协议文件

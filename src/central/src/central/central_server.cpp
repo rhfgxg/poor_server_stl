@@ -8,9 +8,15 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_) :
 	logic_connection_pool(10),  // 逻辑服务器连接池大小为 10
     login_connection_pool(10)   // 登录连接池大小为 10
 {
+    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: initialized successfully, pool size: 10");
+    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: initialized successfully, pool size: 10");
+    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: initialized successfully, pool size: 10");
+    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("logic_connection_pool: initialized successfully, pool size: 10");
+    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("login_connection_pool: initialized successfully, pool size: 10");
+
     // 在中心服务器连接池中加入本服务器
     central_connection_pool.add_server(myproject::ServerType::CENTRAL, "localhost", "50050");
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("中心服务器注册成功: {} {}", "localhost", "50050");
+    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}", "localhost", "50050");
 
     //// 启动定时任务，定时检测服务器运行状态
     //std::thread([this]() {
@@ -24,6 +30,7 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_) :
 
 CentralServerImpl::~CentralServerImpl()
 {
+
 }
 
 // 服务器注册
@@ -39,25 +46,31 @@ grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, con
     case myproject::ServerType::CENTRAL:
     {
         // todo：中心服务器
-        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("中心服务器注册成功: {} {}暂未实现", address, port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}",address, port);
         break;
     }
     case myproject::ServerType::DATA:   // 数据库服务器
     {
         data_connection_pool.add_server(myproject::ServerType::DATA, address, port);    // 加入连接池
-        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("数据库服务器注册成功: {} {}", address, port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully registered a server: {} {}",address, port);
         break;
     }
     case myproject::ServerType::GATEWAY:    // 网关服务器
     {
         gateway_connection_pool.add_server(myproject::ServerType::GATEWAY, address, port);
-        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("网关服务器注册成功: {} {}", address, port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully registered a server: {} {}",address, port);
+        break;
+    }
+    case myproject::ServerType::LOGIC:      // 逻辑服务器
+    {
+        login_connection_pool.add_server(myproject::ServerType::LOGIC,address,port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Logic_connection_pool: successfully registered a server: {} {}",address,port);
         break;
     }
     case myproject::ServerType::LOGIN:      // 登录服务器
     {
         login_connection_pool.add_server(myproject::ServerType::LOGIN, address, port);
-        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("登录服务器注册成功: {} {}", address, port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully registered a server: {} {}",address, port);
         break;
     }
     }
@@ -80,33 +93,45 @@ grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, c
     case myproject::ServerType::CENTRAL:
     {
         // todo：中心服务器
-        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("数据库服务器断开连接成功: {} {}暂未实现", address, port);
+        login_connection_pool.remove_server(myproject::ServerType::CENTRAL,address,port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     case myproject::ServerType::DATA:   // 数据库服务器
     {
         data_connection_pool.remove_server(myproject::ServerType::DATA, address, port);    // 从连接池中删除
-        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("数据库服务器断开连接成功: {} {}", address, port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     case myproject::ServerType::GATEWAY:    // 网关服务器
     {
         gateway_connection_pool.remove_server(myproject::ServerType::GATEWAY, address, port);
-        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("网关服务器断开连接成功: {} {}", address, port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully unregistered a server: {} {}", address, port);
+        break;
+    }
+    case myproject::ServerType::LOGIC:      // 逻辑服务器
+    {
+        login_connection_pool.remove_server(myproject::ServerType::LOGIC,address,port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Logic_connection_pool: successfully unregistered a server: {} {}", address,port);
         break;
     }
     case myproject::ServerType::LOGIN:      // 登录服务器
     {
         login_connection_pool.remove_server(myproject::ServerType::LOGIN, address, port);
-        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("登录服务器断开连接成功: {} {}", address, port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     default:
-        logger_manager.getLogger(LogCategory::REQUESTS_RESPONSES)->info("尝试断开未知服务器: {} {}", address, port);
+    {
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Unknown server type: unregistered a server: {} {}",address,port);
         response->set_success(false);
-        response->set_message("无效的服务器类型");
+        response->set_message("Unknown server type");
         return grpc::Status::OK;
     }
+    }
+    response->set_success(true);
+    response->set_message("successfully unregistered");
+    return grpc::Status::OK;
 }
 
 // 获取连接池中所有链接
