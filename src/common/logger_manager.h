@@ -41,6 +41,8 @@ class LoggerManager
 public:
     // 初始化日志器
     void initialize(myproject::ServerType server_type);
+    // 清理日志器
+    void cleanup();
 
     // 获取日志器
     std::shared_ptr<spdlog::logger> getLogger(LogCategory category);

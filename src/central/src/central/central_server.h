@@ -1,8 +1,6 @@
 #ifndef CENTRAL_SERVER_H
 #define CENTRAL_SERVER_H
 
-// 中心服务器实现类，负责处理中心服务器的所有请求
-
 #include "server_central.grpc.pb.h" // 中心服务器
 #include "server_data.grpc.pb.h"    // 数据库服务器
 #include "server_gateway.grpc.pb.h" // 网关服务器
@@ -11,35 +9,53 @@
 #include "logger_manager.h"     // 日志管理器
 
 #include <grpcpp/grpcpp.h>
-#include <thread>
-#include <chrono>
- 
+#include <thread>   // 线程
+#include <chrono>   // 时间
+#include <vector>
+#include <queue>
+#include <mutex>    // 互斥锁
+#include <condition_variable>   // 条件变量
+
 // 中心服务器实现类
-class CentralServerImpl final : public myproject::CentralServer::Service
+class CentralServerImpl final: public myproject::CentralServer::Service
 {
 public:
     CentralServerImpl(LoggerManager& logger_manager_);
-	~CentralServerImpl();  
+    ~CentralServerImpl();
 
     // 服务器注册
-    grpc::Status RegisterServer(grpc::ServerContext* context, const myproject::RegisterServerRequest* request, myproject::RegisterServerResponse* response);
+    grpc::Status RegisterServer(grpc::ServerContext* context,const myproject::RegisterServerRequest* request,myproject::RegisterServerResponse* response);
     // 服务器断开
-    grpc::Status UnregisterServer(grpc::ServerContext* context, const myproject::UnregisterServerRequest* request, myproject::UnregisterServerResponse* response);
-    
+    grpc::Status UnregisterServer(grpc::ServerContext* context,const myproject::UnregisterServerRequest* request,myproject::UnregisterServerResponse* response);
     // 获取连接池中所有链接
-    grpc::Status GetConnectPoor(grpc::ServerContext* context, const myproject::ConnectPoorRequest* request, myproject::ConnectPoorResponse* response);
+    grpc::Status GetConnectPoor(grpc::ServerContext* context,const myproject::ConnectPoorRequest* request,myproject::ConnectPoorResponse* response);
+
+    // 启动线程池
+    void start_thread_pool(int num_threads);
+    // 停止线程池
+    void stop_thread_pool();
 
 private:
-	// 日志管理器
-	LoggerManager& logger_manager;
+    // 线程池工作函数
+    void worker_thread();
+
+    // 日志管理器
+    LoggerManager& logger_manager;
 
     // 连接池
-	ConnectionPool central_connection_pool; // 多中心服务器，所有中心服务器都维护同一个连接池
+    ConnectionPool central_connection_pool;
     ConnectionPool data_connection_pool;
     ConnectionPool gateway_connection_pool;
     ConnectionPool logic_connection_pool;
     ConnectionPool login_connection_pool;
-};
 
+    // 线程池
+    std::vector<std::thread> thread_pool;   // 线程池
+    std::queue<std::function<void()>> task_queue;   // 任务队列
+
+    std::mutex queue_mutex; // 任务队列互斥锁
+    std::condition_variable queue_cv;   // 任务队列条件变量
+    bool stop_threads = false;  // 线程停止标志
+};
 
 #endif // CENTRAL_SERVER_H

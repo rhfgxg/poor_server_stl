@@ -24,7 +24,12 @@ add_executable(${MODULE_NAME} ${SOURCES})
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # 如果需要链接第三方库，可以在这里指定（项目名，库文件权限，库名列表）
-target_link_libraries(${MODULE_NAME} PRIVATE ${THIRD_PARTY_LIBS})
+target_link_libraries(${MODULE_NAME} PRIVATE 
+    ${THIRD_PARTY_LIBS}
+    # mysql库
+    debug "${VCPKG_DEBUG_LIB}/mysqlcppconn8.lib"
+    optimized "${VCPKG_LIB}/mysqlcppconn8.lib"
+)
 
 # 安装可执行文件到 bin 目录
 install(TARGETS ${MODULE_NAME} DESTINATION bin)

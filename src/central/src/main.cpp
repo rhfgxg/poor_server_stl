@@ -28,7 +28,11 @@ void RunServer(LoggerManager& logger_manager)
     builder.AddListeningPort(server_address, grpc::InsecureServerCredentials()); // 添加监听端口
     builder.RegisterService(&central_server); // 注册服务
 
+    central_server.start_thread_pool(4); // 启动4个线程处理请求
+
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
     logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
     server->Wait();
+
+    central_server.stop_thread_pool(); // 停止线程池
 }

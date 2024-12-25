@@ -40,6 +40,12 @@ void LoggerManager::initialize(myproject::ServerType server_type)
     spdlog::flush_on(spdlog::level::info); // 设置日志刷新级别
 }
 
+// 清理日志器
+void LoggerManager::cleanup()
+{
+    loggers.clear();
+}
+
 // 获取日志器
 std::shared_ptr<spdlog::logger> LoggerManager::getLogger(LogCategory category)
 {

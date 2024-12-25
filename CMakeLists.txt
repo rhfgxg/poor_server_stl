@@ -65,9 +65,6 @@ set(THIRD_PARTY_LIBS
     optimized "${VCPKG_LIB}/libprotobuf.lib"
     debug "${VCPKG_DEBUG_LIB}/libprotocd.lib"
     optimized "${VCPKG_LIB}/libprotoc.lib"
-    # mysql库
-    debug "${VCPKG_DEBUG_LIB}/mysqlcppconn8.lib"
-    optimized "${VCPKG_LIB}/mysqlcppconn8.lib"
     # openssl 库
     debug "${VCPKG_DEBUG_LIB}/libssl.lib"
     optimized "${VCPKG_LIB}/libssl.lib"
@@ -185,7 +182,7 @@ add_subdirectory(./src/login)
 # 链接第三方库
 target_link_libraries(${PROJECT_NAME} PRIVATE ${THIRD_PARTY_LIBS})
 
-# 安装可执行文件到 bin 目录
+# 安装可执行文件到 install/x64-Debug/bin 目录
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
 # 遍历 dll列表，将所有 .dll 文件，逐一复制到可执行文件所在目录
