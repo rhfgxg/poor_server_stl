@@ -65,6 +65,9 @@ private:
     void handle_update(const myproject::UpdateRequest* request,myproject::UpdateResponse* response);
     void handle_delete(const myproject::DeleteRequest* request,myproject::DeleteResponse* response);
 
+    // 定时任务：
+    void send_heartbeat();  // 发送心跳包
+
 private:
     // 日志管理器
     LoggerManager& logger_manager;

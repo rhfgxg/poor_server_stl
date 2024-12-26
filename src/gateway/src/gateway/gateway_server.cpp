@@ -6,7 +6,12 @@ GatewayServerImpl::GatewayServerImpl(LoggerManager& logger_manager_):
     login_connection_pool(10) // 初始化登录服务器连接池，设置连接池大小为10
 {
     register_server();  // 注册服务器
-    // 启动定时任务，定时向中心服务器获取最新的连接池状态
+
+    // 启动定时任务，
+    // 定时向中心服务器获取最新的连接池状态
+    std::thread(&GatewayServerImpl::update_connection_pool,this).detach();
+    // 定时向中心服务器发送心跳包
+    std::thread(&GatewayServerImpl::send_heartbeat,this).detach();
 }
 
 // GatewayServerImpl 析构函数
@@ -98,8 +103,7 @@ void GatewayServerImpl::register_server()
     {
         logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器注册成功: {} {}","localhost","50051");
         init_connection_pool(); // 初始化连接池
-    }
-    else
+    } else
     {
         logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器注册失败: {} {}","localhost","50051");
     }
@@ -124,8 +128,7 @@ void GatewayServerImpl::unregister_server()
     if(status.ok() && response.success())
     {
         logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器注销成功: {} {}","localhost","50051");
-    }
-    else
+    } else
     {
         logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器注销失败: {} {}","localhost","50051");
     }
@@ -151,10 +154,44 @@ void GatewayServerImpl::init_connection_pool()
         {
             login_connection_pool.add_server(myproject::ServerType::LOGIN,server_info.address(),std::to_string(server_info.port()));
         }
-    }
-    else
+    } else
     {
         logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("无法获取连接池信息");
+    }
+}
+
+// 定时任务：更新连接池
+void GatewayServerImpl::update_connection_pool()
+{
+    while(true) {
+        std::this_thread::sleep_for(std::chrono::minutes(5)); // 每5分钟更新一次连接池
+        init_connection_pool();
+    }
+}
+
+// 定时任务：发送心跳包
+void GatewayServerImpl::send_heartbeat()
+{
+    while(true) {
+        std::this_thread::sleep_for(std::chrono::seconds(10)); // 每10秒发送一次心跳包
+
+        myproject::HeartbeatRequest request;
+        myproject::HeartbeatResponse response;
+        grpc::ClientContext context;
+
+        request.set_server_type(myproject::ServerType::GATEWAY);
+        request.set_address("127.0.0.1"); // 设置服务器ip
+        request.set_port("50051"); // 设置服务器端口
+
+        grpc::Status status = central_stub->Heartbeat(&context,request,&response);
+
+        if(status.ok() && response.success())
+        {
+            logger_manager.getLogger(LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
+        } else
+        {
+            logger_manager.getLogger(LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
+        }
     }
 }
 
@@ -168,7 +205,7 @@ grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context,cons
             {
             case myproject::ServiceType::REQ_LOGIN: // 用户登录请求
             {
-                forward_to_login_service(request->payload(),response);
+                forward_to_login_service(request->payload(),response);  // 解析负载，并转发到登录服务
                 break;
             }
             default:    // 未知服务类型
@@ -215,4 +252,3 @@ grpc::Status GatewayServerImpl::forward_to_login_service(const std::string& payl
     response->set_success(true);
     return grpc::Status::OK;
 }
-

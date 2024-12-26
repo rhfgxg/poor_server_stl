@@ -1,11 +1,11 @@
 #include "central_server.h"
 
-CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_) :
-	logger_manager(logger_manager_),	// 日志管理器
-	central_connection_pool(10),    // 中心服务器连接池大小为 10
+CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_):
+    logger_manager(logger_manager_),    // 日志管理器
+    central_connection_pool(10),    // 中心服务器连接池大小为 10
     data_connection_pool(10),   // 数据库连接池大小为 10
     gateway_connection_pool(10),    // 网关连接池大小为 10
-	logic_connection_pool(10),  // 逻辑服务器连接池大小为 10
+    logic_connection_pool(10),  // 逻辑服务器连接池大小为 10
     login_connection_pool(10)   // 登录连接池大小为 10
 {
     logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: initialized successfully, pool size: 10");
@@ -15,17 +15,11 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_) :
     logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("login_connection_pool: initialized successfully, pool size: 10");
 
     // 在中心服务器连接池中加入本服务器
-    central_connection_pool.add_server(myproject::ServerType::CENTRAL, "localhost", "50050");
-    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}", "localhost", "50050");
+    central_connection_pool.add_server(myproject::ServerType::CENTRAL,"localhost","50050");
+    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}","localhost","50050");
 
-    //// 启动定时任务，定时检测服务器运行状态
-    //std::thread([this]() {
-    //    while (true) {
-    //        // 检测服务器运行状态
-    //        // 更新连接池
-    //        std::this_thread::sleep_for(std::chrono::seconds(60));
-    //    }
-    //    }).detach();
+    // 启动定时任务，定时检测心跳包
+    std::thread(&CentralServerImpl::check_heartbeat,this).detach();
 }
 
 CentralServerImpl::~CentralServerImpl()
@@ -33,7 +27,7 @@ CentralServerImpl::~CentralServerImpl()
     stop_thread_pool(); // 停止并清空线程池
 
     // 记录关闭日志
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Central_server stopped");  
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Central_server stopped");
     // 停止并清理日志管理器
     logger_manager.cleanup();
 
@@ -43,9 +37,9 @@ CentralServerImpl::~CentralServerImpl()
 // 启动线程池
 void CentralServerImpl::start_thread_pool(int num_threads)
 {
-    for(int i = 0; i < num_threads; ++i)    
+    for(int i = 0; i < num_threads; ++i)
     {
-        thread_pool.emplace_back(&CentralServerImpl::worker_thread, this);   // 创建线程
+        thread_pool.emplace_back(&CentralServerImpl::worker_thread,this);   // 创建线程
     }
 }
 
@@ -93,7 +87,7 @@ void CentralServerImpl::worker_thread()
 }
 
 // 服务器注册
-grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, const myproject::RegisterServerRequest* request, myproject::RegisterServerResponse* response)
+grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context,const myproject::RegisterServerRequest* request,myproject::RegisterServerResponse* response)
 {
     myproject::ServerType server_type = request->server_type(); // 服务器类型
     std::string address = request->address();   // 服务器地址
@@ -103,24 +97,24 @@ grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, con
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
         task_queue.push([this,server_type,address,port] {   // lambda函数 将任务加入任务队列
             // 根据服务器类型，将服务器加入连接池
-            switch (server_type)
+            switch(server_type)
             {
             case myproject::ServerType::CENTRAL:
             {
                 // todo：中心服务器
-                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}",address, port);
+                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}",address,port);
                 break;
             }
             case myproject::ServerType::DATA:   // 数据库服务器
             {
-                data_connection_pool.add_server(myproject::ServerType::DATA, address, port);    // 加入连接池
-                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully registered a server: {} {}",address, port);
+                data_connection_pool.add_server(myproject::ServerType::DATA,address,port);    // 加入连接池
+                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully registered a server: {} {}",address,port);
                 break;
             }
             case myproject::ServerType::GATEWAY:    // 网关服务器
             {
-                gateway_connection_pool.add_server(myproject::ServerType::GATEWAY, address, port);
-                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully registered a server: {} {}",address, port);
+                gateway_connection_pool.add_server(myproject::ServerType::GATEWAY,address,port);
+                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully registered a server: {} {}",address,port);
                 break;
             }
             case myproject::ServerType::LOGIC:      // 逻辑服务器
@@ -131,8 +125,8 @@ grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, con
             }
             case myproject::ServerType::LOGIN:      // 登录服务器
             {
-                login_connection_pool.add_server(myproject::ServerType::LOGIN, address, port);
-                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully registered a server: {} {}",address, port);
+                login_connection_pool.add_server(myproject::ServerType::LOGIN,address,port);
+                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully registered a server: {} {}",address,port);
                 break;
             }
             }
@@ -145,8 +139,8 @@ grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, con
     return grpc::Status::OK;
 }
 
-// 断开服务器连接
-grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, const myproject::UnregisterServerRequest* request, myproject::UnregisterServerResponse* response)
+// 服务器断开
+grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context,const myproject::UnregisterServerRequest* request,myproject::UnregisterServerResponse* response)
 {
     myproject::ServerType server_type = request->server_type(); // 服务器类型  
     std::string address = request->address();   // 服务器地址
@@ -156,40 +150,7 @@ grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, c
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
         task_queue.push([this,server_type,address,port] {   // lambda函数 将任务加入任务队列
             // 根据服务器类型，从连接池中删除服务器
-            switch (server_type)
-            {
-            case myproject::ServerType::CENTRAL:
-            {
-                // todo：中心服务器
-                login_connection_pool.remove_server(myproject::ServerType::CENTRAL,address,port);
-                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully unregistered a server: {} {}", address, port);
-                break;
-            }
-            case myproject::ServerType::DATA:   // 数据库服务器
-            {
-                data_connection_pool.remove_server(myproject::ServerType::DATA, address, port);    // 从连接池中删除
-                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully unregistered a server: {} {}", address, port);
-                break;
-            }
-            case myproject::ServerType::GATEWAY:    // 网关服务器
-            {
-                gateway_connection_pool.remove_server(myproject::ServerType::GATEWAY, address, port);
-                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully unregistered a server: {} {}", address, port);
-                break;
-            }
-            case myproject::ServerType::LOGIC:      // 逻辑服务器
-            {
-                login_connection_pool.remove_server(myproject::ServerType::LOGIC,address,port);
-                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Logic_connection_pool: successfully unregistered a server: {} {}", address,port);
-                break;
-            }
-            case myproject::ServerType::LOGIN:      // 登录服务器
-            {
-                login_connection_pool.remove_server(myproject::ServerType::LOGIN, address, port);
-                logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully unregistered a server: {} {}", address, port);
-                break;
-            }
-            }
+            release_server_connection(server_type,address,port);
         });
     }
     queue_cv.notify_one();  // 通知线程池有新任务
@@ -200,14 +161,14 @@ grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, c
 }
 
 // 获取连接池中所有链接
-grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, const myproject::ConnectPoorRequest* request, myproject::ConnectPoorResponse* response)
+grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context,const myproject::ConnectPoorRequest* request,myproject::ConnectPoorResponse* response)
 {
     logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("获取连接池信息");
     myproject::ServerType server_type = request->server_type(); // 服务器类型  
 
-    std::unordered_map<myproject::ServerType, std::vector<std::pair<std::string, std::string>>> connections;
+    std::unordered_map<myproject::ServerType,std::vector<std::pair<std::string,std::string>>> connections;
 
-    switch (server_type)
+    switch(server_type)
     {
     case myproject::CENTRAL:
     {
@@ -234,12 +195,12 @@ grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, con
         break;
     }
     default:
-        response->set_success(false);
-        response->set_message("无效的服务器类型");
-        return grpc::Status::OK;
+    response->set_success(false);
+    response->set_message("无效的服务器类型");
+    return grpc::Status::OK;
     }
 
-    for (const auto& connection : connections[server_type])
+    for(const auto& connection : connections[server_type])
     {
         auto* conn_info = response->add_connect_info();
         conn_info->set_address(connection.first);
@@ -249,4 +210,74 @@ grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, con
     response->set_success(true);
     response->set_message("获取连接池信息成功");
     return grpc::Status::OK;
+}
+
+// 接收心跳包
+grpc::Status CentralServerImpl::Heartbeat(grpc::ServerContext* context, const myproject::HeartbeatRequest* request, myproject::HeartbeatResponse* response)
+{
+    std::lock_guard<std::mutex> lock(heartbeat_mutex);  // 加锁
+    heartbeat_records[request->address()] = {request->server_type(),request->address(),request->port(),std::chrono::steady_clock::now()}; // 记录心跳时间
+    response->set_success(true);    // 设置响应成功
+    response->set_message("Heartbeat received");
+    return grpc::Status::OK;
+}
+
+// 定时检查心跳记录
+void CentralServerImpl::check_heartbeat()
+{
+    while(true)
+    {
+        std::this_thread::sleep_for(std::chrono::seconds(10)); // 每10秒检查一次心跳记录
+        std::lock_guard<std::mutex> lock(heartbeat_mutex);  // 加锁
+        auto now = std::chrono::steady_clock::now();    // 当前时间
+        for(const auto& record : heartbeat_records) // 遍历心跳记录
+        {
+            if(std::chrono::duration_cast<std::chrono::seconds>(now - record.second.last_heartbeat).count() > 30)  // 如果心跳时间超过30秒
+            {
+                std::cout << "Server " << record.first << " is offline." << std::endl;
+                // 释放服务器连接
+                release_server_connection(record.second.server_type,record.second.address,record.second.port);
+            }
+        }
+    }
+}
+
+// 释放连接池中服务器连接
+void CentralServerImpl::release_server_connection(myproject::ServerType server_type,const std::string& address,const std::string& port)
+{
+    // 根据服务器类型，从连接池中删除服务器
+    switch(server_type)
+    {
+    case myproject::ServerType::CENTRAL:
+    {
+        // todo：中心服务器
+        login_connection_pool.remove_server(myproject::ServerType::CENTRAL,address,port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully unregistered a server: {} {}",address,port);
+        break;
+    }
+    case myproject::ServerType::DATA:   // 数据库服务器
+    {
+        data_connection_pool.remove_server(myproject::ServerType::DATA,address,port);    // 从连接池中删除
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully unregistered a server: {} {}",address,port);
+        break;
+    }
+    case myproject::ServerType::GATEWAY:    // 网关服务器
+    {
+        gateway_connection_pool.remove_server(myproject::ServerType::GATEWAY,address,port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully unregistered a server: {} {}",address,port);
+        break;
+    }
+    case myproject::ServerType::LOGIC:      // 逻辑服务器
+    {
+        login_connection_pool.remove_server(myproject::ServerType::LOGIC,address,port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Logic_connection_pool: successfully unregistered a server: {} {}",address,port);
+        break;
+    }
+    case myproject::ServerType::LOGIN:      // 登录服务器
+    {
+        login_connection_pool.remove_server(myproject::ServerType::LOGIN,address,port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully unregistered a server: {} {}",address,port);
+        break;
+    }
+    }
 }

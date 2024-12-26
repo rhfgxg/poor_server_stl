@@ -59,6 +59,14 @@ class CentralServer final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>>(PrepareAsyncGetConnectPoorRaw(context, request, cq));
     }
     // 获取连接池信息
+    virtual ::grpc::Status Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::myproject::HeartbeatResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::HeartbeatResponse>> AsyncHeartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::HeartbeatResponse>>(AsyncHeartbeatRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::HeartbeatResponse>> PrepareAsyncHeartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::HeartbeatResponse>>(PrepareAsyncHeartbeatRaw(context, request, cq));
+    }
+    // 接收心跳包
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -71,6 +79,9 @@ class CentralServer final {
       virtual void GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 获取连接池信息
+      virtual void Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 接收心跳包
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -82,6 +93,8 @@ class CentralServer final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>* PrepareAsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>* AsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>* PrepareAsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::HeartbeatResponse>* AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::HeartbeatResponse>* PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -107,6 +120,13 @@ class CentralServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ConnectPoorResponse>> PrepareAsyncGetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ConnectPoorResponse>>(PrepareAsyncGetConnectPoorRaw(context, request, cq));
     }
+    ::grpc::Status Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::myproject::HeartbeatResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>> AsyncHeartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>>(AsyncHeartbeatRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>> PrepareAsyncHeartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>>(PrepareAsyncHeartbeatRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -116,6 +136,8 @@ class CentralServer final {
       void UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response, std::function<void(::grpc::Status)>) override;
       void GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response, std::function<void(::grpc::Status)>) override;
+      void Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -133,9 +155,12 @@ class CentralServer final {
     ::grpc::ClientAsyncResponseReader< ::myproject::UnregisterServerResponse>* PrepareAsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::myproject::ConnectPoorResponse>* AsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::myproject::ConnectPoorResponse>* PrepareAsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>* AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>* PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_RegisterServer_;
     const ::grpc::internal::RpcMethod rpcmethod_UnregisterServer_;
     const ::grpc::internal::RpcMethod rpcmethod_GetConnectPoor_;
+    const ::grpc::internal::RpcMethod rpcmethod_Heartbeat_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -149,6 +174,8 @@ class CentralServer final {
     // 服务器断开
     virtual ::grpc::Status GetConnectPoor(::grpc::ServerContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response);
     // 获取连接池信息
+    virtual ::grpc::Status Heartbeat(::grpc::ServerContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response);
+    // 接收心跳包
   };
   template <class BaseClass>
   class WithAsyncMethod_RegisterServer : public BaseClass {
@@ -210,7 +237,27 @@ class CentralServer final {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_RegisterServer<WithAsyncMethod_UnregisterServer<WithAsyncMethod_GetConnectPoor<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Heartbeat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Heartbeat() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_Heartbeat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestHeartbeat(::grpc::ServerContext* context, ::myproject::HeartbeatRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::HeartbeatResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_RegisterServer<WithAsyncMethod_UnregisterServer<WithAsyncMethod_GetConnectPoor<WithAsyncMethod_Heartbeat<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_RegisterServer : public BaseClass {
    private:
@@ -292,7 +339,34 @@ class CentralServer final {
     virtual ::grpc::ServerUnaryReactor* GetConnectPoor(
       ::grpc::CallbackServerContext* /*context*/, const ::myproject::ConnectPoorRequest* /*request*/, ::myproject::ConnectPoorResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_RegisterServer<WithCallbackMethod_UnregisterServer<WithCallbackMethod_GetConnectPoor<Service > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Heartbeat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Heartbeat() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response) { return this->Heartbeat(context, request, response); }));}
+    void SetMessageAllocatorFor_Heartbeat(
+        ::grpc::MessageAllocator< ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Heartbeat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Heartbeat(
+      ::grpc::CallbackServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_RegisterServer<WithCallbackMethod_UnregisterServer<WithCallbackMethod_GetConnectPoor<WithCallbackMethod_Heartbeat<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_RegisterServer : public BaseClass {
@@ -341,6 +415,23 @@ class CentralServer final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::myproject::ConnectPoorRequest* /*request*/, ::myproject::ConnectPoorResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Heartbeat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Heartbeat() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_Heartbeat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -403,6 +494,26 @@ class CentralServer final {
     }
     void RequestGetConnectPoor(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Heartbeat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Heartbeat() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_Heartbeat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestHeartbeat(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -469,6 +580,28 @@ class CentralServer final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetConnectPoor(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Heartbeat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Heartbeat() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Heartbeat(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Heartbeat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Heartbeat(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -552,9 +685,36 @@ class CentralServer final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetConnectPoor(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::ConnectPoorRequest,::myproject::ConnectPoorResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_UnregisterServer<WithStreamedUnaryMethod_GetConnectPoor<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Heartbeat : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Heartbeat() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse>* streamer) {
+                       return this->StreamedHeartbeat(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Heartbeat() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedHeartbeat(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::HeartbeatRequest,::myproject::HeartbeatResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_UnregisterServer<WithStreamedUnaryMethod_GetConnectPoor<WithStreamedUnaryMethod_Heartbeat<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_UnregisterServer<WithStreamedUnaryMethod_GetConnectPoor<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_UnregisterServer<WithStreamedUnaryMethod_GetConnectPoor<WithStreamedUnaryMethod_Heartbeat<Service > > > > StreamedService;
 };
 
 }  // namespace myproject

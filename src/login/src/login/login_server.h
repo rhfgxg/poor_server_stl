@@ -41,6 +41,10 @@ private:
 	std::string register_(const std::string& database, const std::string& table, std::map<std::string, std::string> data);    // 注册
 	std::string authenticate_(const std::string& token);    // 令牌验证
 
+    // 定时任务：
+    void update_connection_pool();  // 更新连接池
+    void send_heartbeat();  // 发送心跳包
+
 private:
     // 日志管理器
     LoggerManager& logger_manager;

@@ -34,16 +34,20 @@ private:
     void init_connection_pool();    // 初始化链接池
     void worker_thread();   // 执行线程的任务
 
-// 解析并转发负载
+    // 解析并转发负载
     // 登录服务器：登录服务
     grpc::Status forward_to_login_service(const std::string& payload,myproject::ForwardResponse* response);
+
+    // 定时任务：
+    void update_connection_pool();  // 更新连接池
+    void send_heartbeat();  // 发送心跳包
 
 private:
     LoggerManager& logger_manager;  // 日志管理器
 
     std::unique_ptr<myproject::CentralServer::Stub> central_stub;  // 中心服务器的服务存根
     ConnectionPool login_connection_pool;   // 登录服务器连接池
-    
+
     std::vector<std::thread> thread_pool;   // 线程池
     std::queue<std::function<void()>> task_queue;    // 任务队列
     std::mutex queue_mutex; // 任务队列互斥锁

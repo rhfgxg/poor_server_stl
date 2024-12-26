@@ -25,6 +25,7 @@ static const char* CentralServer_method_names[] = {
   "/myproject.CentralServer/RegisterServer",
   "/myproject.CentralServer/UnregisterServer",
   "/myproject.CentralServer/GetConnectPoor",
+  "/myproject.CentralServer/Heartbeat",
 };
 
 std::unique_ptr< CentralServer::Stub> CentralServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -37,6 +38,7 @@ CentralServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   : channel_(channel), rpcmethod_RegisterServer_(CentralServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_UnregisterServer_(CentralServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetConnectPoor_(CentralServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Heartbeat_(CentralServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status CentralServer::Stub::RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::myproject::RegisterServerResponse* response) {
@@ -108,6 +110,29 @@ void CentralServer::Stub::async::GetConnectPoor(::grpc::ClientContext* context, 
   return result;
 }
 
+::grpc::Status CentralServer::Stub::Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::myproject::HeartbeatResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Heartbeat_, context, request, response);
+}
+
+void CentralServer::Stub::async::Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Heartbeat_, context, request, response, std::move(f));
+}
+
+void CentralServer::Stub::async::Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Heartbeat_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>* CentralServer::Stub::PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::myproject::HeartbeatResponse, ::myproject::HeartbeatRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Heartbeat_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>* CentralServer::Stub::AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncHeartbeatRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 CentralServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CentralServer_method_names[0],
@@ -139,6 +164,16 @@ CentralServer::Service::Service() {
              ::myproject::ConnectPoorResponse* resp) {
                return service->GetConnectPoor(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      CentralServer_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](CentralServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::myproject::HeartbeatRequest* req,
+             ::myproject::HeartbeatResponse* resp) {
+               return service->Heartbeat(ctx, req, resp);
+             }, this)));
 }
 
 CentralServer::Service::~Service() {
@@ -159,6 +194,13 @@ CentralServer::Service::~Service() {
 }
 
 ::grpc::Status CentralServer::Service::GetConnectPoor(::grpc::ServerContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status CentralServer::Service::Heartbeat(::grpc::ServerContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response) {
   (void) context;
   (void) request;
   (void) response;

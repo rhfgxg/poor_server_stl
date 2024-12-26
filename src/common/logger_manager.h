@@ -30,6 +30,7 @@ enum class LogCategory {
     ERRORS_EXCEPTIONS,  // 错误和异常
     CONNECTION_POOL,    // 连接池
     PERFORMANCE_MONITORING, // 性能监控
+    HEARTBEAT,  // 心跳
     SECURITY,   // 安全
     DEBUGGING,  // 调试
     CONFIGURATION_CHANGES,  // 配置变更

@@ -3,12 +3,16 @@
 #include <locale>
 
 // 数据库服务实现
-DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_,DBConnectionPool& db_pool_):
+DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_, DBConnectionPool& db_pool_):
     logger_manager(logger_manager_),    // 日志管理器
     db_pool(db_pool_),    // 数据库连接池
-    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050",grpc::InsecureChannelCredentials()))) // 中心服务器存根
+    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))) // 中心服务器存根
 {
     register_server(); // 注册服务器
+
+    // 启动定时任务，
+    // 定时向中心服务器发送心跳包
+    std::thread(&DatabaseServerImpl::send_heartbeat,this).detach();
 }
 
 DatabaseServerImpl::~DatabaseServerImpl()
@@ -128,6 +132,33 @@ void DatabaseServerImpl::unregister_server()
     } else
     {
         std::cerr << "服务器注销失败: " << response.message() << std::endl;
+    }
+}
+
+// 定时任务：发送心跳包
+void DatabaseServerImpl::send_heartbeat()
+{
+    while(true)
+    {
+        std::this_thread::sleep_for(std::chrono::seconds(10)); // 每10秒发送一次心跳包
+
+        myproject::HeartbeatRequest request;
+        myproject::HeartbeatResponse response;
+        grpc::ClientContext context;
+
+        request.set_server_type(myproject::ServerType::DATA);
+        request.set_address("127.0.0.1"); // 设置服务器ip
+        request.set_port("50052"); // 设置服务器端口
+
+        grpc::Status status = central_stub->Heartbeat(&context,request,&response);
+
+        if(status.ok() && response.success())
+        {
+            logger_manager.getLogger(LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
+        } else
+        {
+            logger_manager.getLogger(LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
+        }
     }
 }
 

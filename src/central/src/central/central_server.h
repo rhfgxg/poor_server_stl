@@ -15,6 +15,15 @@
 #include <queue>
 #include <mutex>    // 互斥锁
 #include <condition_variable>   // 条件变量
+#include <unordered_map> // 哈希表
+
+struct HeartbeatRecord
+{
+    myproject::ServerType server_type = myproject::ServerType::UNKNOWN;  // 服务器类型
+    std::string address;    // 服务器地址
+    std::string port;   // 服务器端口
+    std::chrono::steady_clock::time_point last_heartbeat;   // 最后一次心跳时间
+};
 
 // 中心服务器实现类
 class CentralServerImpl final: public myproject::CentralServer::Service
@@ -24,20 +33,28 @@ public:
     ~CentralServerImpl();
 
     // 服务器注册
-    grpc::Status RegisterServer(grpc::ServerContext* context,const myproject::RegisterServerRequest* request,myproject::RegisterServerResponse* response);
+    grpc::Status RegisterServer(grpc::ServerContext* context,const myproject::RegisterServerRequest* request,myproject::RegisterServerResponse* response) override;
     // 服务器断开
-    grpc::Status UnregisterServer(grpc::ServerContext* context,const myproject::UnregisterServerRequest* request,myproject::UnregisterServerResponse* response);
+    grpc::Status UnregisterServer(grpc::ServerContext* context,const myproject::UnregisterServerRequest* request,myproject::UnregisterServerResponse* response) override;
     // 获取连接池中所有链接
-    grpc::Status GetConnectPoor(grpc::ServerContext* context,const myproject::ConnectPoorRequest* request,myproject::ConnectPoorResponse* response);
+    grpc::Status GetConnectPoor(grpc::ServerContext* context,const myproject::ConnectPoorRequest* request,myproject::ConnectPoorResponse* response) override;
+    // 接收心跳包
+    grpc::Status Heartbeat(grpc::ServerContext* context,const myproject::HeartbeatRequest* request,myproject::HeartbeatResponse* response) override;
 
     // 启动线程池
     void start_thread_pool(int num_threads);
     // 停止线程池
     void stop_thread_pool();
 
+    // 定时检查心跳记录
+    void check_heartbeat();
+
 private:
     // 线程池工作函数
     void worker_thread();
+
+    // 释放连接池中服务器连接
+    void release_server_connection(myproject::ServerType server_type,const std::string& address,const std::string& port);
 
 private:
     // 日志管理器
@@ -57,6 +74,10 @@ private:
     std::mutex queue_mutex; // 任务队列互斥锁
     std::condition_variable queue_cv;   // 任务队列条件变量
     bool stop_threads = false;  // 线程停止标志
+
+    // 心跳记录
+    std::unordered_map<std::string,HeartbeatRecord> heartbeat_records;
+    std::mutex heartbeat_mutex; // 心跳记录互斥锁
 };
 
 #endif // CENTRAL_SERVER_H
