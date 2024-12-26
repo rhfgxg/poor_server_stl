@@ -1,14 +1,10 @@
 #include "./data/data_server.h"
 #include "logger_manager.h" // 引入日志管理器
-#include <iostream>
-#include <mysqlx/xdevapi.h> // mysql
-#include <cstdlib> // 使用 std::exit
+
+// 运行服务器
+void RunServer(LoggerManager& logger_manager,DBConnectionPool& db_pool); 
 
 // 数据库服务器main函数
-
-mysqlx::Session sql_link(); // 链接数据库
-void RunServer(LoggerManager& logger_manager, mysqlx::Session& sql_link); // 运行服务器
-
 int main()
 {
     // 初始化日志管理器，通过引用传递实现单例模式
@@ -16,61 +12,32 @@ int main()
     logger_manager.initialize(myproject::ServerType::DATA);    // 传入服务器类型，创建日志文件夹
 
     // 记录启动日志
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("数据库服务器启动"); // 记录启动日志：日志分类, 日志内容
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Data_server started"); // 记录启动日志：日志分类, 日志内容
+
+    // 初始化数据库连接池
+    DBConnectionPool db_pool("mysqlx://root:159357@localhost:33060",10);
 
     // 启动服务器
-    mysqlx::Session session = sql_link(); // 链接数据库
-
-    RunServer(logger_manager, session); // 运行服务器
+    RunServer(logger_manager,db_pool); // 运行服务器
 
     // 关闭服务器
-    session.close();    // 关闭数据库连接
     return 0;
 }
 
-mysqlx::Session sql_link()
+void RunServer(LoggerManager& logger_manager,DBConnectionPool& db_pool)
 {
-    try {
-        std::cout << "database link ing..." << std::endl;
-        mysqlx::SessionSettings option("localhost", 33060, "root", "159357");
-        mysqlx::Session session(option);
-        std::cout << "database link over..." << std::endl;
-
-        // 链接数据库
-        mysqlx::Schema schema = session.getSchema("poor_users");
-        std::cout << "poor_users link over..." << std::endl;
-        return session;
-    }
-    catch (const mysqlx::Error& err) {
-        std::cerr << "database link Error: " << err.what() << std::endl;
-        std::exit(EXIT_FAILURE); // 结束运行，提示数据库错误
-    }
-    catch (std::exception& ex) {
-        std::cerr << "Exception: " << ex.what() << std::endl;
-        std::exit(EXIT_FAILURE); // 结束运行，提示数据库错误
-    }
-    catch (...) {
-        std::cerr << "Unknown error occurred!" << std::endl;
-        std::exit(EXIT_FAILURE); // 结束运行，提示数据库错误
-    }
-}
-
-void RunServer(LoggerManager& logger_manager,mysqlx::Session& sql_link)
-{
-    DatabaseServerImpl service(logger_manager, sql_link); // 数据库rpc服务实现，传入数据库链接
+    DatabaseServerImpl db_server(logger_manager,db_pool); // 数据库rpc服务实现，传入数据库连接池
 
     grpc::ServerBuilder builder;
     std::string server_address("0.0.0.0:50052");    // 数据库服务器监听50052端口
-    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
-    builder.RegisterService(&service);
+    builder.AddListeningPort(server_address,grpc::InsecureServerCredentials());
+    builder.RegisterService(&db_server);  // 注册服务
+
+    db_server.start_thread_pool(4); // 启动4个线程处理请求
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("DataServer 启动，监听地址: {}",server_address);
-
-    // 注册服务器
-    service.register_server();
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}",server_address);
 
     server->Wait();
-    // 注销服务器
-    service.unregister_server();
+    db_server.stop_thread_pool(); // 停止线程池
 }

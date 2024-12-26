@@ -11,7 +11,7 @@ int main()
     logger_manager.initialize(myproject::ServerType::LOGIN);    // 传入服务器类型，创建日志文件夹
 
     // 记录启动日志
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("中心服务器启动"); // 记录启动日志：日志分类, 日志内容
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("登录服务器启动"); // 记录启动日志：日志分类, 日志内容
 
     RunServer(logger_manager); // 运行服务器
 
@@ -31,10 +31,8 @@ void RunServer(LoggerManager& logger_manager)
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // 构建并启动服务器
     logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("LoginServer 启动，监听地址: {}",server_address);
 
-    // 注册服务器
-	login_server.register_server(); // 注册服务器
+    login_server.start_thread_pool(4); // 启动4个线程处理请求
 
     server->Wait(); // 等待服务器终止
-	// 注销服务器
-	login_server.unregister_server(); // 注销服务器
+    login_server.stop_thread_pool(); // 停止线程池
 }

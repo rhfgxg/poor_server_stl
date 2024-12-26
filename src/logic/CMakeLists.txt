@@ -25,5 +25,8 @@ add_executable(${MODULE_NAME} ${SOURCES})
 # 向其他模块提供接口，将一些公共头文件指定为 PUBLIC，其他模块可以访问
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+# 链接第三方库lib
+target_link_libraries(${MODULE_NAME} PRIVATE ${THIRD_PARTY_LIBS})
+
 # 安装可执行文件到 bin 目录
 install(TARGETS ${MODULE_NAME} DESTINATION bin)

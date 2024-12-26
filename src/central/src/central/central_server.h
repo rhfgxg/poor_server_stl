@@ -39,6 +39,7 @@ private:
     // 线程池工作函数
     void worker_thread();
 
+private:
     // 日志管理器
     LoggerManager& logger_manager;
 

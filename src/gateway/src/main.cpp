@@ -1,7 +1,6 @@
 #include "gateway/gateway_server.h"
 #include "logger_manager.h" // 引入日志管理器
 
-
 // 运行服务器
 void RunServer(LoggerManager& logger_manager);
 // 模拟客户端登录
@@ -34,13 +33,13 @@ void RunServer(LoggerManager& logger_manager)
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // 构建并启动服务器
     logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("GatewayServer 启动，监听地址: {}",server_address);
 
-	gateway_server.register_server(); // 注册服务器
-
+    gateway_server.start_thread_pool(4); // 启动4个线程处理请求
 
     test_client();  // 模拟客户端登录
 
     server->Wait(); // 等待服务器终止
-	gateway_server.unregister_server(); // 注销服务器
+
+    gateway_server.stop_thread_pool(); // 停止线程池
 }
 
 void test_client()
