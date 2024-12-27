@@ -131,15 +131,14 @@ set(THIRD_PARTY_LIBS
     # spdlog 库
     debug "${VCPKG_DEBUG_LIB}/spdlogd.lib"
     optimized "${VCPKG_LIB}/spdlog.lib"
+    # lua 库
+    debug "${VCPKG_DEBUG_LIB}/lua.lib"
+    optimized "${VCPKG_LIB}/lua.lib"
 )
 
 # 第三方库 dll列表
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(DLL_FILES
-        # mysql库
-        "${VCPKG_DEBUG_BIN}/mysqlcppconn8-2-vs14.dll"
-        "${VCPKG_DEBUG_BIN}/lz4d.dll"
-        # boost库
         "${VCPKG_DEBUG_BIN}/boost_system-vc143-mt-gd-x64-1_85.dll"
         "${VCPKG_DEBUG_BIN}/libprotobufd.dll"
         "${VCPKG_DEBUG_BIN}/libprotocd.dll"
@@ -151,23 +150,24 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
         "${VCPKG_DEBUG_BIN}/cares.dll"
         "${VCPKG_DEBUG_BIN}/fmtd.dll"
         "${VCPKG_DEBUG_BIN}/spdlogd.dll"
+        "${VCPKG_DEBUG_BIN}/lua.dll"
     )
 else()
     set(DLL_FILES
-        # mysql库
-        "${VCPKG_DIR}/debug/bin/mysqlcppconn8-2-vs14.dll"  
-        "${VCPKG_BIN}/lz4.dll"
-        "${VCPKG_BIN}/boost_system-vc143-mt-x64-1_85.dll"
+        "${VCPKG_BIN}/boost_system-vc143-mt-x64-1_85.dll"   # boost 库
+        # protobuf 库
         "${VCPKG_BIN}/libprotobuf.dll"
-        "${VCPKG_BIN}/libprotoc.dll"
+        "${VCPKG_BIN}/libprotoc.dll"    
+        # openssl 库
         "${VCPKG_BIN}/libssl-3-x64.dll"
         "${VCPKG_BIN}/libcrypto-3-x64.dll"
-        "${VCPKG_BIN}/abseil_dll.dll"
-        "${VCPKG_BIN}/zlib1.dll"
-        "${VCPKG_BIN}/re2.dll"
-        "${VCPKG_BIN}/cares.dll"
-        "${VCPKG_BIN}/fmt.dll"
-        "${VCPKG_BIN}/spdlog.dll"
+        "${VCPKG_BIN}/abseil_dll.dll"   # abseil 库
+        "${VCPKG_BIN}/zlib1.dll"    # zlib 库
+        "${VCPKG_BIN}/re2.dll"  # re2 库
+        "${VCPKG_BIN}/cares.dll"    # c-ares 库
+        "${VCPKG_BIN}/fmt.dll"  # fmt 库
+        "${VCPKG_BIN}/spdlog.dll"   # spdlog 库
+        "${VCPKG_BIN}/lua.dll"  # lua 库
     )
 endif()
 

@@ -31,5 +31,29 @@ target_link_libraries(${MODULE_NAME} PRIVATE
     optimized "${VCPKG_LIB}/mysqlcppconn8.lib"
 )
 
+# 第三方库 dll列表
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(DLL_FILES
+        # mysql库
+        "${VCPKG_DEBUG_BIN}/mysqlcppconn8-2-vs14.dll"
+        "${VCPKG_DEBUG_BIN}/lz4d.dll"
+    )
+else()
+    set(DLL_FILES
+        # mysql库
+        "${VCPKG_DIR}/debug/bin/mysqlcppconn8-2-vs14.dll"  
+        "${VCPKG_BIN}/lz4.dll"  # lz4 库
+    )
+endif()
+
+# 遍历 dll列表，将所有 .dll 文件，逐一复制到可执行文件所在目录
+foreach(DLL_FILE ${DLL_FILES})
+    add_custom_command(TARGET ${MODULE_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${DLL_FILE}"
+        $<TARGET_FILE_DIR:${MODULE_NAME}>  # 复制到可执行文件生成目录
+    )
+endforeach()
+
 # 安装可执行文件到 bin 目录
 install(TARGETS ${MODULE_NAME} DESTINATION bin)
