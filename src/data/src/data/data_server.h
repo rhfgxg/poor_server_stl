@@ -19,7 +19,7 @@
 class DatabaseServerImpl final: public myproject::DatabaseServer::Service
 {
 public:
-    DatabaseServerImpl(LoggerManager& logger_manager_, DBConnectionPool& db_pool_); // 参数：日志管理器，数据库连接池
+    DatabaseServerImpl(LoggerManager& logger_manager_); // 参数：日志管理器，数据库连接池
     ~DatabaseServerImpl(); // 添加析构函数声明
 
     void register_server(); // 注册服务器
@@ -53,7 +53,8 @@ private:
 private:
     LoggerManager& logger_manager;  // 日志管理器
 
-    DBConnectionPool& db_pool; // 数据库连接池
+    DBConnectionPool db_pool; // 数据库连接池
+    // 其他数据库连接池
 
     std::unique_ptr<myproject::CentralServer::Stub> central_stub;    // 中心服务存根
 

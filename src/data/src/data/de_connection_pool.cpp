@@ -1,12 +1,28 @@
 #include "db_connection_pool.h"
+#include <iostream>
 
-DBConnectionPool::DBConnectionPool(const std::string& uri,size_t pool_size):
-    uri(uri),
-    pool_size(pool_size)
+DBConnectionPool::DBConnectionPool(const std::string& uri, size_t pool_size):
+    uri(uri),   // 数据库连接地址
+    pool_size(pool_size)    // 连接池大小
 {
     for(size_t i = 0; i < pool_size; ++i)
     {
-        pool.push(mysqlx::Session(uri));    // 创建数据库连接，并加入连接池
+        try
+        {
+            pool.push(mysqlx::Session(uri));    // 创建数据库连接，并加入连接池
+        }
+        catch(const mysqlx::Error &err)
+        {
+            std::cerr << "Error: " << err.what() << std::endl;
+        }
+        catch(std::exception &ex)
+        {
+            std::cerr << "STD Exception: " << ex.what() << std::endl;
+        }
+        catch(...)
+        {
+            std::cerr << "Unknown exception caught" << std::endl;
+        }
     }
 }
 

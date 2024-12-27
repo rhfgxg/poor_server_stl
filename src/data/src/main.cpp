@@ -2,7 +2,7 @@
 #include "logger_manager.h" // 引入日志管理器
 
 // 运行服务器
-void run_server(LoggerManager& logger_manager,DBConnectionPool& db_pool);
+void run_server(LoggerManager& logger_manager);
 
 // 数据库服务器main函数
 int main()
@@ -14,19 +14,16 @@ int main()
     // 记录启动日志
     logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Data_server started"); // 记录启动日志：日志分类, 日志内容
 
-    // 初始化数据库连接池
-    DBConnectionPool db_pool("mysqlx://root:159357@localhost:33060", 10);
-
     // 启动服务器
-    run_server(logger_manager,db_pool); // 运行服务器
+    run_server(logger_manager); // 运行服务器
 
     // 关闭服务器
     return 0;
 }
 
-void run_server(LoggerManager& logger_manager, DBConnectionPool& db_pool)
+void run_server(LoggerManager& logger_manager)
 {// 相关注释请参考 /src/central/src/main.cpp/run_server()
-    DatabaseServerImpl db_server(logger_manager, db_pool);  // 传入日志管理器和数据库连接池
+    DatabaseServerImpl db_server(logger_manager);  // 传入日志管理器和数据库连接池
 
     grpc::ServerBuilder builder;
     std::string server_address("0.0.0.0:50052");

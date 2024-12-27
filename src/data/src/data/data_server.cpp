@@ -1,13 +1,13 @@
 #include "data_server.h"
 
-DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_, DBConnectionPool& db_pool_):
+DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_):
     logger_manager(logger_manager_),    // 日志管理器
-    db_pool(db_pool_),    // 数据库连接池
+    db_pool("mysqlx://root:159357@localhost:33060/poor_users",10), // 初始化数据库连接池：传入数据库连接字符串和连接池大小
     central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))) // 中心服务器存根
 {
     register_server(); // 注册服务器
 
-    // 启动定时任务，
+    // 启动定时任务
     // 定时向中心服务器发送心跳包
     std::thread(&DatabaseServerImpl::send_heartbeat,this).detach();
 }

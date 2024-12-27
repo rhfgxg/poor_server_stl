@@ -9,11 +9,11 @@
 class DBConnectionPool
 {
 public:
-    DBConnectionPool(const std::string& uri,size_t pool_size);
+    DBConnectionPool(const std::string& uri, size_t pool_size);
     ~DBConnectionPool();
 
-    mysqlx::Session get_connection();
-    void release_connection(mysqlx::Session session);
+    mysqlx::Session get_connection();   // 获取数据库连接
+    void release_connection(mysqlx::Session session);   // 释放数据库连接
 
 private:
     std::string uri;    // 数据库连接地址
