@@ -1,4 +1,5 @@
 #include "gateway_server.h"
+#include <future>
 
 GatewayServerImpl::GatewayServerImpl(LoggerManager& logger_manager_):
     logger_manager(logger_manager_),  // 日志管理器   
@@ -198,31 +199,49 @@ void GatewayServerImpl::send_heartbeat()
 // 服务转发接口
 grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context,const myproject::ForwardRequest* request,myproject::ForwardResponse* response)
 {
+    // 深拷贝请求和响应对象
+    auto request_copy = std::make_shared<myproject::ForwardRequest>(*request);
+    auto response_copy = std::make_shared<myproject::ForwardResponse>();
+    // 创建响应 promise
+    auto response_promise = std::make_shared<std::promise<void>>();
+    auto response_future = response_promise->get_future();
+
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        task_queue.push([this,request,response] {
-            switch(request->service_type()) // 根据请求的服务类型进行转发
+        task_queue.push([this,request_copy,response_copy,response_promise] {
+            switch(request_copy->service_type()) // 根据请求的服务类型进行转发
             {
             case myproject::ServiceType::REQ_LOGIN: // 用户登录请求
             {
-                forward_to_login_service(request->payload(),response);  // 解析负载，并转发到登录服务
+                forward_to_login_service(request_copy->payload(),response_copy.get());  // 解析负载，并转发到登录服务
                 break;
             }
             default:    // 未知服务类型
-            response->set_success(false);
-            break;
+            {
+                response_copy->set_success(false);
+                break;
             }
+            }
+            response_promise->set_value();
         });
     }
     queue_cv.notify_one();  // 通知线程池有新任务
+
+    // 等待任务完成
+    response_future.wait();
+
+    // 将响应结果复制回原响应对象
+    *response = *response_copy;
+
     return grpc::Status::OK;
 }
 
 // Login 方法，处理登录请求
-grpc::Status GatewayServerImpl::forward_to_login_service(const std::string& payload,myproject::ForwardResponse* response)
+grpc::Status GatewayServerImpl::forward_to_login_service(const std::string& payload, myproject::ForwardResponse* response)
 {
     myproject::LoginRequest login_request;  // 创建登录请求对象
     bool request_out = login_request.ParseFromString(payload); // 将负载解析为登录请求对象
+
     if(!request_out) // 如果解析失败
     {
         return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,"Failed to parse LoginRequest");
@@ -249,6 +268,14 @@ grpc::Status GatewayServerImpl::forward_to_login_service(const std::string& payl
         return grpc::Status(grpc::StatusCode::INTERNAL,"Failed to serialize LoginResponse");
     }
 
-    response->set_success(true);
+    if(login_response.success()) // 如果登录成功
+    {
+        response->set_success(true);    // 设置响应对象 response 的 success 字段为 true
+    }
+    else
+    {
+        response->set_success(false);
+    }
+
     return grpc::Status::OK;
 }

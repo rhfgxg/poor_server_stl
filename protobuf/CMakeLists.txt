@@ -24,17 +24,7 @@ add_library(protobuf_files ${PROTO_SOURCES})
 target_include_directories(protobuf_files PUBLIC ${PROTOBUF_DIR})
 
 # 设置编译选项
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")   # 忽略警告，使用utf-8编码
-add_compile_options(/wd4828)    # 忽略utf-8相关警告
-
-
-# 链接第三方库，可以在这里指定（项目名，库文件权限，库名列表）
-target_link_libraries(protobuf_files PUBLIC
-    # grpc 库
-    "${VCPKG_LIB}/grpc++.lib"
-    # protobuf 库
-    "${VCPKG_LIB}/libprotobuf.lib"
-)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4828 /utf-8")   # 忽略警告，使用utf-8编码
 
 # 向其他模块提供接口，将一些公共头文件指定为 PUBLIC，其他模块可以访问
 target_include_directories(protobuf_files PUBLIC ${PROTOBUF_DIR})

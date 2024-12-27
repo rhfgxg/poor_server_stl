@@ -23,5 +23,5 @@ message ForwardRequest {
 // 请求处理响应
 message ForwardResponse {
     bool success = 1;
-    bytes response = 2;
+    bytes response = 2; // 响应负载
 }

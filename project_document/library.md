@@ -1,3 +1,6 @@
+# 在项目中使用引入库
+除了类似 mysql这种只有一个服务器需要用的库，其他库都放在顶级 CMakeLists.txt文件中引入
+
 # 项目中使用的第三方库
 所有第三方库文件都放在 vcpkg_installed/x64-windwos 文件夹下（需要使用vcpkg安装后，自动生成）
 第三方库的 debug模式的文件，放在 vcpkg_installed/x64-windwos/debug 文件夹下
@@ -7,6 +10,9 @@
 
 ### 网络库
 boost库
+
+### 线程库
+thread 库
 
 ### grpc：客户端与服务器，服务器之间的通信协议
 grpc库

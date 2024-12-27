@@ -205,10 +205,14 @@ grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const myprojec
 {
     {// 将任务加入任务队列
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        task_queue.push([this,request,response] {
+        // 深拷贝请求和响应对象
+        auto request_copy = std::make_shared<myproject::LoginRequest>(*request);
+        auto response_copy = std::make_shared<myproject::LoginResponse>();
+
+        task_queue.push([this,request_copy,response_copy] {
             // 获取用户名和密码
-            std::string username = request->username(); // 从 request 对象中提取用户名和密码
-            std::string password = request->password();
+            std::string username = request_copy->username(); // 从 request 对象中提取用户名和密码
+            std::string password = request_copy->password();
 	        // 构造查询条件
             std::map<std::string, std::string> query = { {"user_name", username}, {"user_password", password} }; 
 
@@ -216,15 +220,17 @@ grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const myprojec
 
             if (responses == "登录成功")
             {
-		        response->set_success(true);    // 设置响应对象 response 的 success 字段为 true
-                response->set_message("登录成功");
+                response_copy->set_success(true);    // 设置响应对象 response 的 success 字段为 true
+                response_copy->set_message("登录成功");
             }
             else 
             {
-                response->set_success(false);
-                response->set_message("登录失败");
+                response_copy->set_success(false);
+                response_copy->set_message("登录失败");
             }
         });
+        // 将响应结果复制回原响应对象
+        *response = *response_copy;
     }
     queue_cv.notify_one();  // 通知线程池有新任务
 
@@ -271,25 +277,14 @@ std::string LoginServerImpl::login_(const std::string& database, const std::stri
     // 向数据库服务器发送查询请求
     grpc::Status status = db_stub->Read(&client_context, read_request, &read_response);
 
-    if (status.ok())
+    if (status.ok() && read_response.success())
     {
-        // 打印查询结果
-        for (const auto& result : read_response.results())
-        {
-            std::cout << "查询结果: ";
-            for (const auto& field : result.fields())
-            {
-                std::cout << field.first << ": " << field.second << ", ";
-            }
-            std::cout << std::endl;
-        }
-
-        std::cout << "登录成功" << std::endl;
+        std::cout << "login yes" << std::endl;
         return "登录成功";
     }
     else
     {
-        std::cout << "登录失败" << std::endl;
+        std::cout << "login no" << std::endl;
         return "登录失败";
     }
 }
