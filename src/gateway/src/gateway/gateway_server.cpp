@@ -1,21 +1,19 @@
 #include "gateway_server.h"
-#include <future>
 
 GatewayServerImpl::GatewayServerImpl(LoggerManager& logger_manager_):
     logger_manager(logger_manager_),  // 日志管理器   
-    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050",grpc::InsecureChannelCredentials()))), // 中心服务器存根
+    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 中心服务器存根
     login_connection_pool(10) // 初始化登录服务器连接池，设置连接池大小为10
 {
     register_server();  // 注册服务器
 
     // 启动定时任务，
     // 定时向中心服务器获取最新的连接池状态
-    std::thread(&GatewayServerImpl::update_connection_pool,this).detach();
+    std::thread(&GatewayServerImpl::update_connection_pool, this).detach();
     // 定时向中心服务器发送心跳包
-    std::thread(&GatewayServerImpl::send_heartbeat,this).detach();
+    std::thread(&GatewayServerImpl::send_heartbeat, this).detach();
 }
 
-// GatewayServerImpl 析构函数
 GatewayServerImpl::~GatewayServerImpl()
 {
     stop_thread_pool(); // 停止并清空线程池
@@ -28,9 +26,10 @@ GatewayServerImpl::~GatewayServerImpl()
     logger_manager.cleanup();
 }
 
+/*************************************** 多线程工具函数 *****************************************************************/
 // 启动线程池
 void GatewayServerImpl::start_thread_pool(int num_threads)
-{
+{// 相关注释请参考 /src/central/src/central/central_server.cpp/start_thread_pool()
     for(int i = 0; i < num_threads; ++i)
     {
         thread_pool.emplace_back(&GatewayServerImpl::worker_thread,this);   // 创建线程
@@ -39,30 +38,30 @@ void GatewayServerImpl::start_thread_pool(int num_threads)
 
 // 停止线程池
 void GatewayServerImpl::stop_thread_pool()
-{
+{// 相关注释请参考 /src/central/src/central/central_server.cpp/stop_thread_pool()
     {
-        std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        stop_threads = true;    // 标志设置为 true，通知它应该停止工作
+        std::lock_guard<std::mutex> lock(queue_mutex);
+        stop_threads = true;
     }
 
-    queue_cv.notify_all();  // 通知所有线程，检查 stop_threads 标志
+    queue_cv.notify_all();
 
-    for(auto& thread : thread_pool) // 遍历线程池
+    for(auto& thread : thread_pool)
     {
-        if(thread.joinable())   // 如果线程可加入
+        if(thread.joinable())
         {
-            thread.join();  // 加入线程
+            thread.join();
         }
     }
-    thread_pool.clear();  // 清空线程池
-    // 清空任务队列
+    thread_pool.clear();
+
     std::queue<std::function<void()>> empty;
     std::swap(task_queue,empty);
 }
 
 // 线程池工作函数
 void GatewayServerImpl::worker_thread()
-{
+{// 相关注释请参考 /src/central/src/central/central_server.cpp/worker_thread()
     while(true)
     {
         std::function<void()> task;
@@ -84,6 +83,7 @@ void GatewayServerImpl::worker_thread()
     }
 }
 
+/*************************************** 连接池管理 *********************************************************/
 // 服务器注册
 void GatewayServerImpl::register_server()
 {
@@ -98,15 +98,16 @@ void GatewayServerImpl::register_server()
     // 客户端
     grpc::ClientContext context;
 
-    grpc::Status status = central_stub->RegisterServer(&context,request,&response);
+    grpc::Status status = central_stub->RegisterServer(&context, request, &response);
 
     if(status.ok() && response.success())
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器注册成功: {} {}","localhost","50051");
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server registered successfully: {} {}", "localhost", "50051");
         init_connection_pool(); // 初始化连接池
-    } else
+    }
+    else
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器注册失败: {} {}","localhost","50051");
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ERROR：Gateway server registration failed: {} {}", "localhost", "50051");
     }
 }
 
@@ -124,14 +125,15 @@ void GatewayServerImpl::unregister_server()
     // 响应
     myproject::UnregisterServerResponse response;
 
-    grpc::Status status = central_stub->UnregisterServer(&context,request,&response);
+    grpc::Status status = central_stub->UnregisterServer(&context, request, &response);
 
     if(status.ok() && response.success())
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器注销成功: {} {}","localhost","50051");
-    } else
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server unregistered successfully: {} {}", "localhost", "50051");
+    }
+    else
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("网关服务器注销失败: {} {}","localhost","50051");
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ERROR：Gateway server unregistration failed: {} {}", "localhost", "50051");
     }
 }
 
@@ -146,7 +148,7 @@ void GatewayServerImpl::init_connection_pool()
     // 响应
     myproject::ConnectPoorResponse response;
 
-    grpc::Status status = central_stub->GetConnectPoor(&context,request,&response);
+    grpc::Status status = central_stub->GetConnectPoor(&context, request ,&response);
 
     if(status.ok())
     {
@@ -155,12 +157,14 @@ void GatewayServerImpl::init_connection_pool()
         {
             login_connection_pool.add_server(myproject::ServerType::LOGIN,server_info.address(),std::to_string(server_info.port()));
         }
-    } else
+    }
+    else
     {
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("无法获取连接池信息");
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("ERROR：Failed to get connection pool information");
     }
 }
 
+/******************************************* 定时任务 *****************************************************/
 // 定时任务：更新连接池
 void GatewayServerImpl::update_connection_pool()
 {
@@ -196,6 +200,7 @@ void GatewayServerImpl::send_heartbeat()
     }
 }
 
+/**************************************** grpc服务接口定义 **************************************************************************/
 // 服务转发接口
 grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context,const myproject::ForwardRequest* request,myproject::ForwardResponse* response)
 {
@@ -236,6 +241,7 @@ grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context,cons
     return grpc::Status::OK;
 }
 
+/**************************************** grpc服务接口工具函数 **************************************************************************/
 // Login 方法，处理登录请求
 grpc::Status GatewayServerImpl::forward_to_login_service(const std::string& payload, myproject::ForwardResponse* response)
 {

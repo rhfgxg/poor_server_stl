@@ -86,12 +86,12 @@ extern ReadRequest_QueryEntry_DoNotUseDefaultTypeInternal _ReadRequest_QueryEntr
 class ReadResponse;
 struct ReadResponseDefaultTypeInternal;
 extern ReadResponseDefaultTypeInternal _ReadResponse_default_instance_;
-class ReadResponse_Result;
-struct ReadResponse_ResultDefaultTypeInternal;
-extern ReadResponse_ResultDefaultTypeInternal _ReadResponse_Result_default_instance_;
-class ReadResponse_Result_FieldsEntry_DoNotUse;
-struct ReadResponse_Result_FieldsEntry_DoNotUseDefaultTypeInternal;
-extern ReadResponse_Result_FieldsEntry_DoNotUseDefaultTypeInternal _ReadResponse_Result_FieldsEntry_DoNotUse_default_instance_;
+class Result;
+struct ResultDefaultTypeInternal;
+extern ResultDefaultTypeInternal _Result_default_instance_;
+class Result_FieldsEntry_DoNotUse;
+struct Result_FieldsEntry_DoNotUseDefaultTypeInternal;
+extern Result_FieldsEntry_DoNotUseDefaultTypeInternal _Result_FieldsEntry_DoNotUse_default_instance_;
 class UpdateRequest;
 struct UpdateRequestDefaultTypeInternal;
 extern UpdateRequestDefaultTypeInternal _UpdateRequest_default_instance_;
@@ -366,27 +366,27 @@ class UpdateRequest_DataEntry_DoNotUse final
 };
 // -------------------------------------------------------------------
 
-class ReadResponse_Result_FieldsEntry_DoNotUse final
+class Result_FieldsEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
-          ReadResponse_Result_FieldsEntry_DoNotUse, std::string, std::string,
+          Result_FieldsEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
           ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
-      ReadResponse_Result_FieldsEntry_DoNotUse, std::string, std::string,
+      Result_FieldsEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
-  ReadResponse_Result_FieldsEntry_DoNotUse();
+  Result_FieldsEntry_DoNotUse();
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR ReadResponse_Result_FieldsEntry_DoNotUse(
+  explicit PROTOBUF_CONSTEXPR Result_FieldsEntry_DoNotUse(
       ::google::protobuf::internal::ConstantInitialized);
-  explicit ReadResponse_Result_FieldsEntry_DoNotUse(::google::protobuf::Arena* arena);
-  static const ReadResponse_Result_FieldsEntry_DoNotUse* internal_default_instance() {
-    return reinterpret_cast<const ReadResponse_Result_FieldsEntry_DoNotUse*>(
-        &_ReadResponse_Result_FieldsEntry_DoNotUse_default_instance_);
+  explicit Result_FieldsEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const Result_FieldsEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const Result_FieldsEntry_DoNotUse*>(
+        &_Result_FieldsEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.ReadResponse.Result.FieldsEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.Result.FieldsEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -1104,26 +1104,26 @@ class UpdateRequest final :
   friend struct ::TableStruct_server_5fdata_2eproto;
 };// -------------------------------------------------------------------
 
-class ReadResponse_Result final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.ReadResponse.Result) */ {
+class Result final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.Result) */ {
  public:
-  inline ReadResponse_Result() : ReadResponse_Result(nullptr) {}
-  ~ReadResponse_Result() override;
+  inline Result() : Result(nullptr) {}
+  ~Result() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ReadResponse_Result(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR Result(::google::protobuf::internal::ConstantInitialized);
 
-  inline ReadResponse_Result(const ReadResponse_Result& from)
-      : ReadResponse_Result(nullptr, from) {}
-  ReadResponse_Result(ReadResponse_Result&& from) noexcept
-    : ReadResponse_Result() {
+  inline Result(const Result& from)
+      : Result(nullptr, from) {}
+  Result(Result&& from) noexcept
+    : Result() {
     *this = ::std::move(from);
   }
 
-  inline ReadResponse_Result& operator=(const ReadResponse_Result& from) {
+  inline Result& operator=(const Result& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ReadResponse_Result& operator=(ReadResponse_Result&& from) noexcept {
+  inline Result& operator=(Result&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1155,20 +1155,20 @@ class ReadResponse_Result final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ReadResponse_Result& default_instance() {
+  static const Result& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ReadResponse_Result* internal_default_instance() {
-    return reinterpret_cast<const ReadResponse_Result*>(
-               &_ReadResponse_Result_default_instance_);
+  static inline const Result* internal_default_instance() {
+    return reinterpret_cast<const Result*>(
+               &_Result_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
-  friend void swap(ReadResponse_Result& a, ReadResponse_Result& b) {
+  friend void swap(Result& a, Result& b) {
     a.Swap(&b);
   }
-  inline void Swap(ReadResponse_Result* other) {
+  inline void Swap(Result* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -1181,7 +1181,7 @@ class ReadResponse_Result final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ReadResponse_Result* other) {
+  void UnsafeArenaSwap(Result* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1189,14 +1189,14 @@ class ReadResponse_Result final :
 
   // implements Message ----------------------------------------------
 
-  ReadResponse_Result* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ReadResponse_Result>(arena);
+  Result* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Result>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ReadResponse_Result& from);
+  void CopyFrom(const Result& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ReadResponse_Result& from) {
-    ReadResponse_Result::MergeImpl(*this, from);
+  void MergeFrom( const Result& from) {
+    Result::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -1214,16 +1214,16 @@ class ReadResponse_Result final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(ReadResponse_Result* other);
+  void InternalSwap(Result* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.ReadResponse.Result";
+    return "myproject.Result";
   }
   protected:
-  explicit ReadResponse_Result(::google::protobuf::Arena* arena);
-  ReadResponse_Result(::google::protobuf::Arena* arena, const ReadResponse_Result& from);
+  explicit Result(::google::protobuf::Arena* arena);
+  Result(::google::protobuf::Arena* arena, const Result& from);
   public:
 
   static const ClassData _class_data_;
@@ -1254,14 +1254,14 @@ class ReadResponse_Result final :
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_fields();
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.ReadResponse.Result)
+  // @@protoc_insertion_point(class_scope:myproject.Result)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 1, 1,
-      44, 2>
+      31, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1277,7 +1277,7 @@ class ReadResponse_Result final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::MapField<ReadResponse_Result_FieldsEntry_DoNotUse, std::string, std::string,
+    ::google::protobuf::internal::MapField<Result_FieldsEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
                       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         fields_;
@@ -2007,7 +2007,7 @@ class ReadResponse final :
                &_ReadResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    5;
 
   friend void swap(ReadResponse& a, ReadResponse& b) {
     a.Swap(&b);
@@ -2077,8 +2077,6 @@ class ReadResponse final :
 
   // nested types ----------------------------------------------------
 
-  using Result = ReadResponse_Result;
-
   // accessors -------------------------------------------------------
 
   enum : int {
@@ -2086,23 +2084,23 @@ class ReadResponse final :
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // repeated .myproject.ReadResponse.Result results = 3;
+  // repeated .myproject.Result results = 3;
   int results_size() const;
   private:
   int _internal_results_size() const;
 
   public:
   void clear_results() ;
-  ::myproject::ReadResponse_Result* mutable_results(int index);
-  ::google::protobuf::RepeatedPtrField< ::myproject::ReadResponse_Result >*
+  ::myproject::Result* mutable_results(int index);
+  ::google::protobuf::RepeatedPtrField< ::myproject::Result >*
       mutable_results();
   private:
-  const ::google::protobuf::RepeatedPtrField<::myproject::ReadResponse_Result>& _internal_results() const;
-  ::google::protobuf::RepeatedPtrField<::myproject::ReadResponse_Result>* _internal_mutable_results();
+  const ::google::protobuf::RepeatedPtrField<::myproject::Result>& _internal_results() const;
+  ::google::protobuf::RepeatedPtrField<::myproject::Result>* _internal_mutable_results();
   public:
-  const ::myproject::ReadResponse_Result& results(int index) const;
-  ::myproject::ReadResponse_Result* add_results();
-  const ::google::protobuf::RepeatedPtrField< ::myproject::ReadResponse_Result >&
+  const ::myproject::Result& results(int index) const;
+  ::myproject::Result* add_results();
+  const ::google::protobuf::RepeatedPtrField< ::myproject::Result >&
       results() const;
   // bytes message = 2;
   void clear_message() ;
@@ -2153,7 +2151,7 @@ class ReadResponse final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedPtrField< ::myproject::ReadResponse_Result > results_;
+    ::google::protobuf::RepeatedPtrField< ::myproject::Result > results_;
     ::google::protobuf::internal::ArenaStringPtr message_;
     bool success_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -2537,40 +2535,6 @@ inline ::google::protobuf::Map<std::string, std::string>* ReadRequest::mutable_q
 
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
-
-// ReadResponse_Result
-
-// map<string, bytes> fields = 1;
-inline int ReadResponse_Result::_internal_fields_size() const {
-  return _internal_fields().size();
-}
-inline int ReadResponse_Result::fields_size() const {
-  return _internal_fields_size();
-}
-inline void ReadResponse_Result::clear_fields() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.fields_.Clear();
-}
-inline const ::google::protobuf::Map<std::string, std::string>& ReadResponse_Result::_internal_fields() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.fields_.GetMap();
-}
-inline const ::google::protobuf::Map<std::string, std::string>& ReadResponse_Result::fields() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:myproject.ReadResponse.Result.fields)
-  return _internal_fields();
-}
-inline ::google::protobuf::Map<std::string, std::string>* ReadResponse_Result::_internal_mutable_fields() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  return _impl_.fields_.MutableMap();
-}
-inline ::google::protobuf::Map<std::string, std::string>* ReadResponse_Result::mutable_fields() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:myproject.ReadResponse.Result.fields)
-  return _internal_mutable_fields();
-}
-
-// -------------------------------------------------------------------
-
 // ReadResponse
 
 // bool success = 1;
@@ -2649,7 +2613,7 @@ inline void ReadResponse::set_allocated_message(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:myproject.ReadResponse.message)
 }
 
-// repeated .myproject.ReadResponse.Result results = 3;
+// repeated .myproject.Result results = 3;
 inline int ReadResponse::_internal_results_size() const {
   return _internal_results().size();
 }
@@ -2660,42 +2624,76 @@ inline void ReadResponse::clear_results() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.results_.Clear();
 }
-inline ::myproject::ReadResponse_Result* ReadResponse::mutable_results(int index)
+inline ::myproject::Result* ReadResponse::mutable_results(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable:myproject.ReadResponse.results)
   return _internal_mutable_results()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::myproject::ReadResponse_Result>* ReadResponse::mutable_results()
+inline ::google::protobuf::RepeatedPtrField<::myproject::Result>* ReadResponse::mutable_results()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable_list:myproject.ReadResponse.results)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_results();
 }
-inline const ::myproject::ReadResponse_Result& ReadResponse::results(int index) const
+inline const ::myproject::Result& ReadResponse::results(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:myproject.ReadResponse.results)
   return _internal_results().Get(index);
 }
-inline ::myproject::ReadResponse_Result* ReadResponse::add_results() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::myproject::Result* ReadResponse::add_results() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::myproject::ReadResponse_Result* _add = _internal_mutable_results()->Add();
+  ::myproject::Result* _add = _internal_mutable_results()->Add();
   // @@protoc_insertion_point(field_add:myproject.ReadResponse.results)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::myproject::ReadResponse_Result>& ReadResponse::results() const
+inline const ::google::protobuf::RepeatedPtrField<::myproject::Result>& ReadResponse::results() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_list:myproject.ReadResponse.results)
   return _internal_results();
 }
-inline const ::google::protobuf::RepeatedPtrField<::myproject::ReadResponse_Result>&
+inline const ::google::protobuf::RepeatedPtrField<::myproject::Result>&
 ReadResponse::_internal_results() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.results_;
 }
-inline ::google::protobuf::RepeatedPtrField<::myproject::ReadResponse_Result>*
+inline ::google::protobuf::RepeatedPtrField<::myproject::Result>*
 ReadResponse::_internal_mutable_results() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.results_;
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// Result
+
+// map<string, bytes> fields = 1;
+inline int Result::_internal_fields_size() const {
+  return _internal_fields().size();
+}
+inline int Result::fields_size() const {
+  return _internal_fields_size();
+}
+inline void Result::clear_fields() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.fields_.Clear();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& Result::_internal_fields() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.fields_.GetMap();
+}
+inline const ::google::protobuf::Map<std::string, std::string>& Result::fields() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:myproject.Result.fields)
+  return _internal_fields();
+}
+inline ::google::protobuf::Map<std::string, std::string>* Result::_internal_mutable_fields() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _impl_.fields_.MutableMap();
+}
+inline ::google::protobuf::Map<std::string, std::string>* Result::mutable_fields() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:myproject.Result.fields)
+  return _internal_mutable_fields();
 }
 
 // -------------------------------------------------------------------

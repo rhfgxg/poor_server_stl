@@ -1,43 +1,49 @@
 syntax = "proto3";
-
 package myproject;
 
-service LoginServer {
+service LoginServer
+{
     rpc Login (LoginRequest) returns (LoginResponse);   // 登录服务
     rpc Register (RegisterRequest) returns (RegisterResponse);  // 注册服务
     rpc Authenticate (AuthenticateRequest) returns (AuthenticateResponse);  // 令牌验证服务
 }
 
 // 登录服务请求
-message LoginRequest {
+message LoginRequest
+{
     bytes username = 1;
     bytes password = 2;
 }
 // 登录服务响应
-message LoginResponse {
+message LoginResponse
+{
     bool success = 1;   // 操作结果
     bytes message = 2; // 响应信息
     bytes token = 3;  // 会话或令牌
 }
 
 // 注册服务请求
-message RegisterRequest {
+message RegisterRequest
+{
     bytes username = 1;
     bytes password = 2;
     bytes email = 3;
 }
 // 注册服务响应
-message RegisterResponse {
+message RegisterResponse
+{
     bool success = 1;
     bytes message = 2;
 }
 
 // 令牌验证服务请求
-message AuthenticateRequest {
+message AuthenticateRequest
+{
     bytes token = 1;
 }
 // 令牌验证服务响应
-message AuthenticateResponse {
+message AuthenticateResponse
+{
     bool success = 1;
     bytes message = 2;
 }

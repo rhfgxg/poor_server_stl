@@ -27,9 +27,10 @@ LoginServerImpl::~LoginServerImpl()
     logger_manager.cleanup();
 }
 
+/************************************ 线程池工具函数 ****************************************************/
 // 启动线程池
 void LoginServerImpl::start_thread_pool(int num_threads)
-{
+{// 相关注释请参考 /src/central/src/central/central_server.cpp/start_thread_pool()
     for(int i = 0; i < num_threads; ++i)
     {
         thread_pool.emplace_back(&LoginServerImpl::worker_thread,this);   // 创建线程
@@ -38,30 +39,29 @@ void LoginServerImpl::start_thread_pool(int num_threads)
 
 // 停止线程池
 void LoginServerImpl::stop_thread_pool()
-{
+{// 相关注释请参考 /src/central/src/central/central_server.cpp/stop_thread_pool()
     {
-        std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        stop_threads = true;    // 标志设置为 true，通知它应该停止工作
+        std::lock_guard<std::mutex> lock(queue_mutex);
+        stop_threads = true;
     }
 
-    queue_cv.notify_all();  // 通知所有线程，检查 stop_threads 标志
+    queue_cv.notify_all();
 
-    for(auto& thread : thread_pool) // 遍历线程池
+    for(auto& thread : thread_pool)
     {
-        if(thread.joinable())   // 如果线程可加入
+        if(thread.joinable())
         {
-            thread.join();  // 加入线程
+            thread.join();
         }
     }
-    thread_pool.clear();  // 清空线程池
-    // 清空任务队列
+    thread_pool.clear();
     std::queue<std::function<void()>> empty;
     std::swap(task_queue,empty);
 }
 
 // 线程池工作函数
 void LoginServerImpl::worker_thread()
-{
+{// 相关注释请参考 /src/central/src/central/central_server.cpp/worker_thread()
     while(true)
     {
         std::function<void()> task;
@@ -83,6 +83,7 @@ void LoginServerImpl::worker_thread()
     }
 }
 
+/************************************ 连接池管理 ********************************************************/
 // 注册服务器
 void LoginServerImpl::register_server() 
 {
@@ -102,12 +103,12 @@ void LoginServerImpl::register_server()
 
     if (status.ok() && response.success())
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("登录服务器注册成功: {} {}","localhost","50053");
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Login server registered successfully: {} {}","localhost","50053");
 		init_connection_pool(); // 初始化连接池
     }
     else 
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("登录服务器注册失败: {} {}","localhost","50053");
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ERROR: Login server registration failed: {} {}","localhost","50053");
     }
 }
 
@@ -130,11 +131,11 @@ void LoginServerImpl::unregister_server()
 
     if (status.ok() && response.success())
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("登录服务器注销成功: {} {}","localhost","50053");
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Login server unregistered successfully: {} {}","localhost","50053");
     }
     else
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("登录服务器注销失败: {} {}","localhost","50051");
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ERROR: Login server unregistration failed: {} {}","localhost","50053");
     }
 }
 
@@ -161,14 +162,16 @@ void LoginServerImpl::init_connection_pool()
     }
     else
     {
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("无法获取连接池信息");
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("ERROR: Failed to retrieve connection pool information");
     }
 }
 
+/************************************ 定时任务 ********************************************************/
 // 定时任务：更新连接池
 void LoginServerImpl::update_connection_pool()
 {
-    while(true) {
+    while(true)
+    {
         std::this_thread::sleep_for(std::chrono::minutes(5)); // 每5分钟更新一次连接池
         init_connection_pool();
     }
@@ -177,7 +180,8 @@ void LoginServerImpl::update_connection_pool()
 // 定时任务：发送心跳包
 void LoginServerImpl::send_heartbeat()
 {
-    while(true) {
+    while(true)
+    {
         std::this_thread::sleep_for(std::chrono::seconds(10)); // 每10秒发送一次心跳包
 
         myproject::HeartbeatRequest request;
@@ -193,14 +197,15 @@ void LoginServerImpl::send_heartbeat()
         if(status.ok() && response.success())
         {
             logger_manager.getLogger(LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
-        } else
+        }
+        else
         {
             logger_manager.getLogger(LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
         }
     }
 }
 
-
+/************************************ gRPC服务接口实现 ******************************************************/
 // 登录服务接口
 grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const myproject::LoginRequest* request, myproject::LoginResponse* response)
 {
@@ -223,15 +228,15 @@ grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const myprojec
 
 	        std::string responses = login_("poor_users", "users", query); // 查询的数据库名，表名，查询条件
 
-            if (responses == "登录成功")
+            if (responses == "Login successful")
             {
                 response_copy->set_success(true);    // 设置响应对象 response 的 success 字段为 true
-                response_copy->set_message("登录成功");
+                response_copy->set_message("Login successful");
             }
             else 
             {
                 response_copy->set_success(false);
-                response_copy->set_message("登录失败");
+                response_copy->set_message("Login failed");
             }
             task_promise.set_value();  // 设置 promise 的值，通知主线程任务完成
         });
@@ -264,7 +269,7 @@ grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const m
     return grpc::Status::OK;
 }
 
-
+/************************************ gRPC服务接口工具函数 **************************************************/
 // 登录服务
 std::string LoginServerImpl::login_(const std::string& database, const std::string& table, std::map<std::string, std::string> query)
 {
@@ -290,13 +295,13 @@ std::string LoginServerImpl::login_(const std::string& database, const std::stri
 
     if (status.ok() && read_response.success())
     {
-        std::cout << "login yes" << std::endl;
-        return "登录成功";
+        std::cout << "Login successful" << std::endl;
+        return "Login successful";
     }
     else
     {
-        std::cout << "login no" << std::endl;
-        return "登录失败";
+        std::cout << "Login failed" << std::endl;
+        return "Login failed";
     }
 }
 

@@ -3,8 +3,6 @@ set(PROTOBUF_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 # 需要编译的源文件列表
 set(PROTO_SOURCES
-    # ${PROTOBUF_DIR}/common/server_common.pb.cc
-    # ${PROTOBUF_DIR}/common/server_common.grpc.pb.cc
     ${PROTOBUF_DIR}/central/server_central.pb.cc
     ${PROTOBUF_DIR}/central/server_central.grpc.pb.cc
     ${PROTOBUF_DIR}/data/server_data.pb.cc

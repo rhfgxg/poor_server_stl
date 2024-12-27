@@ -1,20 +1,21 @@
 #ifndef LOGGER_MANAGER_H
 #define LOGGER_MANAGER_H
 
-// 日志管理器类，管理所有日志
-
 #include "server_central.grpc.pb.h" // 使用服务器类型枚举
 
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/sinks/daily_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <memory>
 #include <unordered_map>
 #include <string>
 #include <filesystem>
+#include <ctime>
 
 // 日志分级
-enum class LogLevel {
+enum class LogLevel
+{
     DEBUG,  // debug
     INFO,   // 正常信息
     WARN,   // 警告
@@ -24,7 +25,8 @@ enum class LogLevel {
 };
 
 // 日志分类
-enum class LogCategory {
+enum class LogCategory
+{
     STARTUP_SHUTDOWN,   // 启动和关闭
     REQUESTS_RESPONSES, // 请求和响应
     ERRORS_EXCEPTIONS,  // 错误和异常
@@ -37,6 +39,7 @@ enum class LogCategory {
     SCHEDULED_TASKS // 定时任务
 };
 
+// 日志管理器类，管理所有日志
 class LoggerManager
 {
 public:

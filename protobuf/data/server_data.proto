@@ -1,8 +1,8 @@
 syntax = "proto3";
-
 package myproject;
 
-service DatabaseServer{
+service DatabaseServer
+{
     rpc Create (CreateRequest) returns (CreateResponse);    // 增加数据服务
     rpc Read (ReadRequest) returns (ReadResponse);  // 查询数据服务
     rpc Update (UpdateRequest) returns (UpdateResponse);    // 更新数据服务
@@ -10,44 +10,50 @@ service DatabaseServer{
 }
 
 // 增加数据服务请求
-message CreateRequest {
+message CreateRequest
+{
     bytes database = 1;
     bytes table = 2;
     map<string, bytes> data = 3;  // 要插入的数据，键值对形式
 }
 // 增加数据服务响应
-message CreateResponse {
+message CreateResponse
+{
     bool success = 1;
     bytes message = 2;
 }
 
 // 查询服务请求
-message ReadRequest {
+message ReadRequest
+{
     bytes database = 1;
     bytes table = 2;
     map<string, bytes> query = 3;  // 查询条件，键值对形式
 }
 // 查询服务响应
-message ReadResponse {
+message ReadResponse
+{
     bool success = 1;
     bytes message = 2;
-
     repeated Result results = 3;  // 查询结果，多个匹配值
-
-    message Result {
-        map<string, bytes> fields = 1;  // 每个匹配值的多个字段
-    }
+}
+// 查询结果
+message Result
+{
+    map<string, bytes> fields = 1;  // 每个匹配值的多个字段
 }
 
 // 更新服务请求
-message UpdateRequest {
+message UpdateRequest
+{
     bytes database = 1;
     bytes table = 2;
     map<string, bytes> query = 3;  // 查询条件，键值对形式
     map<string, bytes> data = 4;   // 要更新的数据，键值对形式
 }
 // 更新服务响应
-message UpdateResponse {
+message UpdateResponse
+{
     bool success = 1;
     bytes message = 2;
 }

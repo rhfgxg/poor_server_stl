@@ -7,6 +7,7 @@ set(SOURCES
     # 源文件
     ${PROJECT_SOURCE_DIR}/src/data/src/main.cpp
     ${PROJECT_SOURCE_DIR}/src/data/src/data/data_server.cpp
+    ${PROJECT_SOURCE_DIR}/src/data/src/data/de_connection_pool.cpp
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp

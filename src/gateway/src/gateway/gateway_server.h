@@ -13,6 +13,7 @@
 #include <queue>
 #include <mutex>
 #include <condition_variable>
+#include <future>
 
 // 网关服务器对外接口
 class GatewayServerImpl final: public myproject::GatewayServer::Service
@@ -28,15 +29,15 @@ public:
     void stop_thread_pool();    // 停止线程池
 
     // 转发服务请求
-    grpc::Status RequestForward(grpc::ServerContext* context,const myproject::ForwardRequest* request,myproject::ForwardResponse* response);
+    grpc::Status RequestForward(grpc::ServerContext* context, const myproject::ForwardRequest* request, myproject::ForwardResponse* response);
 
 private:
     void init_connection_pool();    // 初始化链接池
     void worker_thread();   // 执行线程的任务
 
-    // 解析并转发负载
+// 处理转发请求
     // 登录服务器：登录服务
-    grpc::Status forward_to_login_service(const std::string& payload,myproject::ForwardResponse* response);
+    grpc::Status forward_to_login_service(const std::string& payload, myproject::ForwardResponse* response);
 
     // 定时任务：
     void update_connection_pool();  // 更新连接池

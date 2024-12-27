@@ -1,27 +1,30 @@
 syntax = "proto3";
-
 package myproject;
 
 // 服务类型：客户端与服务器通信的服务类型
-enum ServiceType {
+enum ServiceType
+{
     // REQ_ 请求
     // RES_ 响应
     REQ_LOGIN = 0;      // 登录请求
     RES_LOGIN = 1;      // 登录响应
 }
 
-service GatewayServer {
+service GatewayServer
+{
     rpc RequestForward (ForwardRequest) returns (ForwardResponse);  // 转发请求
 }
 
 // 传入请求
-message ForwardRequest {
+message ForwardRequest
+{
     ServiceType service_type = 1;   // 目标服务枚举
     bytes payload = 2;  // 负载
 }
 
 // 请求处理响应
-message ForwardResponse {
+message ForwardResponse
+{
     bool success = 1;
     bytes response = 2; // 响应负载
 }
