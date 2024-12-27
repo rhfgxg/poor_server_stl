@@ -22,7 +22,7 @@ LoginServerImpl::~LoginServerImpl()
     unregister_server(); // 注销服务器
 
     // 记录关闭日志
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("GatewayServer stopped");
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("LoginServer stopped");
     // 停止并清理日志管理器
     logger_manager.cleanup();
 }
@@ -108,7 +108,7 @@ void LoginServerImpl::register_server()
     }
     else 
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ERROR: Login server registration failed: {} {}","localhost","50053");
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Login server registration failed: {} {}","localhost","50053");
     }
 }
 
@@ -135,7 +135,7 @@ void LoginServerImpl::unregister_server()
     }
     else
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ERROR: Login server unregistration failed: {} {}","localhost","50053");
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Login server unregistration failed: {} {}","localhost","50053");
     }
 }
 
@@ -159,10 +159,11 @@ void LoginServerImpl::init_connection_pool()
         {
             db_connection_pool.add_server(myproject::ServerType::DATA, server_info.address(), std::to_string(server_info.port()));
         }
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Connection pool updated successfully");
     }
     else
     {
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("ERROR: Failed to retrieve connection pool information");
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->error("Failed to retrieve connection pool information");
     }
 }
 

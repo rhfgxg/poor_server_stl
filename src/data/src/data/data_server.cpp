@@ -2,7 +2,7 @@
 
 DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_):
     logger_manager(logger_manager_),    // 日志管理器
-    db_pool("mysqlx://root:159357@localhost:33060/poor_users",10), // 初始化数据库连接池：传入数据库连接字符串和连接池大小
+    db_pool("mysqlx://root:159357@localhost:33060/poor_users",  10), // 初始化数据库连接池：传入数据库连接字符串和连接池大小
     central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))) // 中心服务器存根
 {
     register_server(); // 注册服务器
@@ -157,7 +157,8 @@ void DatabaseServerImpl::send_heartbeat()
         if(status.ok() && response.success())
         {
             logger_manager.getLogger(LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
-        } else
+        }
+         else
         {
             logger_manager.getLogger(LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
         }
@@ -334,6 +335,8 @@ void DatabaseServerImpl::handle_read(const myproject::ReadRequest* request, mypr
             response_result->mutable_fields()->insert({column_name, column_value});
         }
     }
+
+    logger_manager.getLogger(LogCategory::DATABASE_OPERATIONS)->info("Database query operation successful: Database: {}", database);
 
     response->set_success(true);
     response->set_message("Query successful");

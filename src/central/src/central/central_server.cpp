@@ -173,34 +173,35 @@ grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, c
 // 获取连接池中所有链接
 grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, const myproject::ConnectPoorRequest* request, myproject::ConnectPoorResponse* response)
 {
-    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Get connection pool information");
     myproject::ServerType server_type = request->server_type(); // 服务器类型  
 
     std::unordered_map<myproject::ServerType, std::vector<std::pair<std::string, std::string>>> connections;
 
     switch(server_type)
     {
-    case myproject::CENTRAL:
+    case myproject::CENTRAL:    // 中心服务器
     {
         // 获取中央服务器连接池信息
         connections = central_connection_pool.get_all_connections();
         break;
     }
-    case myproject::DATA:
+    case myproject::DATA:       // 数据库服务器
     {
-        // 获取数据库服务器连接池信息
         connections = data_connection_pool.get_all_connections();
         break;
     }
-    case myproject::GATEWAY:
+    case myproject::GATEWAY:    // 网关服务器
     {
-        // 获取网关服务器连接池信息
         connections = gateway_connection_pool.get_all_connections();
         break;
     }
-    case myproject::LOGIN:
+    case myproject::LOGIC:      // 逻辑服务器    
     {
-        // 获取登录服务器连接池信息
+        connections = logic_connection_pool.get_all_connections();
+        break;
+    }
+    case myproject::LOGIN:      // 登录服务器    
+    {
         connections = login_connection_pool.get_all_connections();
         break;
     }
@@ -243,31 +244,31 @@ void CentralServerImpl::release_server_connection(myproject::ServerType server_t
     {
         // 连接池中移除链接，并记录日志
         login_connection_pool.remove_server(myproject::ServerType::CENTRAL, address, port);
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully unregistered a server: {} {}", address, port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Central_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     case myproject::ServerType::DATA:   // 数据库服务器
     {
         data_connection_pool.remove_server(myproject::ServerType::DATA, address, port);
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully unregistered a server: {} {}", address, port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Data_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     case myproject::ServerType::GATEWAY:    // 网关服务器
     {
         gateway_connection_pool.remove_server(myproject::ServerType::GATEWAY, address, port);
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully unregistered a server: {} {}", address, port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Gateway_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     case myproject::ServerType::LOGIC:      // 逻辑服务器
     {
         login_connection_pool.remove_server(myproject::ServerType::LOGIC, address, port);
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Logic_connection_pool: successfully unregistered a server: {} {}", address, port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Logic_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     case myproject::ServerType::LOGIN:      // 登录服务器
     {
         login_connection_pool.remove_server(myproject::ServerType::LOGIN, address, port);
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully unregistered a server: {} {}", address, port);
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Login_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     }
@@ -287,7 +288,7 @@ void CentralServerImpl::check_heartbeat()
         {
             if(std::chrono::duration_cast<std::chrono::seconds>(now - record.second.last_heartbeat).count() > 30)  
             {// 如果心跳时间超过30秒，释放服务器连接
-                std::cout << "Server " << record.first << " is offline." << std::endl;
+                logger_manager.getLogger(LogCategory::HEARTBEAT)->warn("Server lost heartbeat, address {} port ()", record.second.address, record.second.port);
                 release_server_connection(record.second.server_type, record.second.address, record.second.port);
             }
         }

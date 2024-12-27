@@ -137,7 +137,7 @@ void GatewayServerImpl::unregister_server()
     }
 }
 
-// 初始化连接池
+// 初始化/更新连接池
 void GatewayServerImpl::init_connection_pool()
 {
     // 客户端
@@ -157,10 +157,11 @@ void GatewayServerImpl::init_connection_pool()
         {
             login_connection_pool.add_server(myproject::ServerType::LOGIN,server_info.address(),std::to_string(server_info.port()));
         }
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway server updated connection pool successfully");
     }
     else
     {
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("ERROR：Failed to get connection pool information");
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->error("Failed to get connection pool information");
     }
 }
 
@@ -168,7 +169,8 @@ void GatewayServerImpl::init_connection_pool()
 // 定时任务：更新连接池
 void GatewayServerImpl::update_connection_pool()
 {
-    while(true) {
+    while(true)
+    {
         std::this_thread::sleep_for(std::chrono::minutes(5)); // 每5分钟更新一次连接池
         init_connection_pool();
     }
@@ -177,7 +179,8 @@ void GatewayServerImpl::update_connection_pool()
 // 定时任务：发送心跳包
 void GatewayServerImpl::send_heartbeat()
 {
-    while(true) {
+    while(true)
+    {
         std::this_thread::sleep_for(std::chrono::seconds(10)); // 每10秒发送一次心跳包
 
         myproject::HeartbeatRequest request;
@@ -193,7 +196,8 @@ void GatewayServerImpl::send_heartbeat()
         if(status.ok() && response.success())
         {
             logger_manager.getLogger(LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
-        } else
+        }
+        else
         {
             logger_manager.getLogger(LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
         }

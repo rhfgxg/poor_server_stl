@@ -22,18 +22,20 @@ void LoggerManager::initialize(myproject::ServerType server_type)
         loggers[category] = logger;
     };
 
+    // 创建所有分类的日志器
     create_file_logger(LogCategory::STARTUP_SHUTDOWN, "startup_shutdown");
-    create_file_logger(LogCategory::REQUESTS_RESPONSES, "requests_responses");
-    create_file_logger(LogCategory::ERRORS_EXCEPTIONS, "errors_exceptions");
+    create_file_logger(LogCategory::APPLICATION_ACTIVITY, "application_activity");
     create_file_logger(LogCategory::CONNECTION_POOL, "connection_pool");
-    create_file_logger(LogCategory::PERFORMANCE_MONITORING, "performance_monitoring");
+    create_file_logger(LogCategory::SYSTEM_MONITORING, "system_monitoring");
+    create_file_logger(LogCategory::HEARTBEAT,"heartbeat");
     create_file_logger(LogCategory::SECURITY, "security");
-    create_file_logger(LogCategory::DEBUGGING, "debugging");
     create_file_logger(LogCategory::CONFIGURATION_CHANGES, "configuration_changes");
-    create_file_logger(LogCategory::SCHEDULED_TASKS, "scheduled_tasks");
+    create_file_logger(LogCategory::DATABASE_OPERATIONS,"database_operations");
+    create_file_logger(LogCategory::USER_ACTIVITY,"user_activity");
+    create_file_logger(LogCategory::NETWORK,"network");
 
     // 设置默认日志器
-    spdlog::set_default_logger(loggers[LogCategory::DEBUGGING]);
+    spdlog::set_default_logger(loggers[LogCategory::APPLICATION_ACTIVITY]);
     spdlog::set_level(spdlog::level::debug); // 设置全局日志级别
     spdlog::flush_on(spdlog::level::info); // 设置日志刷新级别
 }

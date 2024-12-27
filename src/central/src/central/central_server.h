@@ -60,7 +60,7 @@ private:    // 私有函数
 private:    // 私有成员
     LoggerManager& logger_manager;  // 日志管理器
     
-    std::unordered_map<std::string,HeartbeatRecord> heartbeat_records;  // 心跳记录
+    std::unordered_map<std::string, HeartbeatRecord> heartbeat_records;  // 心跳记录
     std::mutex heartbeat_mutex; // 心跳记录互斥锁
 
     // 连接池
