@@ -1,6 +1,7 @@
 #include "data_server.h"
 #include <codecvt>
 #include <locale>
+#include <future>
 
 DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_, DBConnectionPool& db_pool_):
     logger_manager(logger_manager_),    // 日志管理器
@@ -178,35 +179,35 @@ grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context,const mypro
 }
 
 // 查询
-grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context,const myproject::ReadRequest* request, myproject::ReadResponse* response)
+grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context,const myproject::ReadRequest* request,myproject::ReadResponse* response)
 {
+    // 深拷贝请求和响应对象
+    auto request_copy = std::make_shared<myproject::ReadRequest>(*request);
+    auto response_copy = std::make_shared<myproject::ReadResponse>();
+    // 创建 promise 和 future
+    std::promise<void> task_promise;
+    std::future<void> task_future = task_promise.get_future();
+
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        // 深拷贝请求和响应对象
-        auto request_copy = std::make_shared<myproject::ReadRequest>(*request);
-        auto response_copy = std::make_shared<myproject::ReadResponse>();
-        
-        task_queue.push([this, request_copy, response_copy] {
+        task_queue.push([this,request_copy,response_copy,&task_promise] {
             handle_read(request_copy.get(),response_copy.get());
-            std::cout << "00: " << response_copy->success() << std::endl;
-
+            task_promise.set_value();  // 设置 promise 的值，通知主线程任务完成
         });
-        std::cout << "0: " << response_copy->success() << std::endl;
-
-        std::cout << "1: " << response->success() << std::endl;
-
-        // 将响应结果复制回原响应对象
-        *response = *response_copy;
-
-        std::cout << "2: " << response->success() << std::endl;
-
     }
 
-    std::cout << "3: " << response->success() << std::endl;
     queue_cv.notify_one();  // 通知线程池有新任务
+
+    // 等待任务完成
+    task_future.get();
+
+    // 将响应结果复制回原响应对象
+    *response = *response_copy;
 
     return grpc::Status::OK;
 }
+
+
 
 // 更新
 grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context,const myproject::UpdateRequest* request,myproject::UpdateResponse* response)

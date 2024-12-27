@@ -1,4 +1,5 @@
 #include "login_server.h"
+#include <future>
 
 LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_):
     logger_manager(logger_manager_),	// 日志管理器
@@ -203,13 +204,17 @@ void LoginServerImpl::send_heartbeat()
 // 登录服务接口
 grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const myproject::LoginRequest* request, myproject::LoginResponse* response)
 {
+    // 深拷贝请求和响应对象
+    auto request_copy = std::make_shared<myproject::LoginRequest>(*request);
+    auto response_copy = std::make_shared<myproject::LoginResponse>();
+    // 创建 promise 和 future
+    std::promise<void> task_promise;
+    std::future<void> task_future = task_promise.get_future();
+
     {// 将任务加入任务队列
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        // 深拷贝请求和响应对象
-        auto request_copy = std::make_shared<myproject::LoginRequest>(*request);
-        auto response_copy = std::make_shared<myproject::LoginResponse>();
 
-        task_queue.push([this,request_copy,response_copy] {
+        task_queue.push([this,request_copy,response_copy,&task_promise] {
             // 获取用户名和密码
             std::string username = request_copy->username(); // 从 request 对象中提取用户名和密码
             std::string password = request_copy->password();
@@ -228,11 +233,17 @@ grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const myprojec
                 response_copy->set_success(false);
                 response_copy->set_message("登录失败");
             }
+            task_promise.set_value();  // 设置 promise 的值，通知主线程任务完成
         });
-        // 将响应结果复制回原响应对象
-        *response = *response_copy;
+        
     }
     queue_cv.notify_one();  // 通知线程池有新任务
+
+    // 等待任务完成
+    task_future.get();
+
+    // 将响应结果复制回原响应对象
+    *response = *response_copy;
 
     // 返回gRPC状态
     return grpc::Status::OK;

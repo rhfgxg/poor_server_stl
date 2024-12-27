@@ -202,13 +202,13 @@ grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context,cons
     // 深拷贝请求和响应对象
     auto request_copy = std::make_shared<myproject::ForwardRequest>(*request);
     auto response_copy = std::make_shared<myproject::ForwardResponse>();
-    // 创建响应 promise
-    auto response_promise = std::make_shared<std::promise<void>>();
-    auto response_future = response_promise->get_future();
+    // 创建 promise 和 future
+    std::promise<void> task_promise;
+    std::future<void> task_future = task_promise.get_future();
 
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        task_queue.push([this,request_copy,response_copy,response_promise] {
+        task_queue.push([this,request_copy,response_copy,&task_promise] {
             switch(request_copy->service_type()) // 根据请求的服务类型进行转发
             {
             case myproject::ServiceType::REQ_LOGIN: // 用户登录请求
@@ -222,13 +222,13 @@ grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context,cons
                 break;
             }
             }
-            response_promise->set_value();
+            task_promise.set_value();  // 设置 promise 的值，通知主线程任务完成
         });
     }
     queue_cv.notify_one();  // 通知线程池有新任务
 
     // 等待任务完成
-    response_future.wait();
+    task_future.wait();
 
     // 将响应结果复制回原响应对象
     *response = *response_copy;
