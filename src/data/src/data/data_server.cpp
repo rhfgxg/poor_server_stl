@@ -2,9 +2,15 @@
 
 DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_):
     logger_manager(logger_manager_),    // 日志管理器
-    db_pool("mysqlx://root:159357@localhost:33060/poor_users",  10), // 初始化数据库连接池：传入数据库连接字符串和连接池大小
-    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))) // 中心服务器存根
+    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050",grpc::InsecureChannelCredentials()))) // 中心服务器存根
 {
+    lua_State* L = luaL_newstate();
+    luaL_openlibs(L);
+
+    // 读取配置文件并初始化数据库连接池
+    std::string db_uri = read_db_config(L, "../../config/db_config.lua");
+    user_db_pool = std::make_unique<DBConnectionPool>(db_uri,10);
+
     register_server(); // 注册服务器
 
     // 启动定时任务
@@ -240,7 +246,7 @@ grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const mypr
 void DatabaseServerImpl::handle_create(const myproject::CreateRequest* request, myproject::CreateResponse* response)
 {
     // 获取数据库连接
-    mysqlx::Session session = db_pool.get_connection();
+    mysqlx::Session session = user_db_pool->get_connection();
 
     // 获取请求参数
     std::string db_name = request->database();
@@ -253,14 +259,14 @@ void DatabaseServerImpl::handle_create(const myproject::CreateRequest* request, 
     std::cout << "Database created successfully" << std::endl;
 
     // 释放数据库连接
-    db_pool.release_connection(std::move(session));
+    user_db_pool->release_connection(std::move(session));
 }
 
 // 查询
 void DatabaseServerImpl::handle_read(const myproject::ReadRequest* request, myproject::ReadResponse* response)
 {
     // 获取数据库连接
-    mysqlx::Session session = db_pool.get_connection();
+    mysqlx::Session session = user_db_pool->get_connection();
 
     // 获取请求的 query 参数
     const std::string& database = request->database();
@@ -342,14 +348,14 @@ void DatabaseServerImpl::handle_read(const myproject::ReadRequest* request, mypr
     response->set_message("Query successful");
 
     // 释放数据库连接
-    db_pool.release_connection(std::move(session));
+    user_db_pool->release_connection(std::move(session));
 }
 
 // 更新
 void DatabaseServerImpl::handle_update(const myproject::UpdateRequest* request, myproject::UpdateResponse* response)
 {
     // 获取数据库连接
-    mysqlx::Session session = db_pool.get_connection();
+    mysqlx::Session session = user_db_pool->get_connection();
 
     // 获取请求参数
     std::string db_name = request->database();
@@ -362,14 +368,14 @@ void DatabaseServerImpl::handle_update(const myproject::UpdateRequest* request, 
     std::cout << "Database update successful" << std::endl;
 
     // 释放数据库连接
-    db_pool.release_connection(std::move(session));
+    user_db_pool->release_connection(std::move(session));
 }
 
 // 删除
 void DatabaseServerImpl::handle_delete(const myproject::DeleteRequest* request, myproject::DeleteResponse* response)
 {
     // 获取数据库连接
-    mysqlx::Session session = db_pool.get_connection();
+    mysqlx::Session session = user_db_pool->get_connection();
 
     // 获取请求参数
     std::string db_name = request->database();
@@ -382,5 +388,56 @@ void DatabaseServerImpl::handle_delete(const myproject::DeleteRequest* request, 
     std::cout << "Database delete successful" << std::endl;
 
     // 释放数据库连接
-    db_pool.release_connection(std::move(session));
+    user_db_pool->release_connection(std::move(session));
+}
+
+/******************************************** 其他工具函数 *****************************************************/
+std::string DatabaseServerImpl::read_db_config(lua_State* L, const std::string& script)
+{
+    if(luaL_dofile(L,script.c_str()) != LUA_OK) {
+        std::cerr << "Error: " << lua_tostring(L,-1) << std::endl;
+        lua_pop(L,1);
+        return "";
+    }
+
+    lua_getglobal(L,"db_config");
+    if(!lua_istable(L,-1)) {
+        std::cerr << "Error: db_config is not a table" << std::endl;
+        lua_pop(L,1);
+        return "";
+    }
+
+    lua_getfield(L,-1,"mysqlx");
+    if(!lua_istable(L,-1)) {
+        std::cerr << "Error: mysqlx is not a table" << std::endl;
+        lua_pop(L,1);
+        return "";
+    }
+
+    std::string host,port,username,password,db_name;
+    lua_getfield(L,-1,"Host");
+    host = lua_tostring(L,-1);
+    lua_pop(L,1);
+
+    lua_getfield(L,-1,"Port");
+    port = lua_tostring(L,-1);
+    lua_pop(L,1);
+
+    lua_getfield(L,-1,"UserName");
+    username = lua_tostring(L,-1);
+    lua_pop(L,1);
+
+    lua_getfield(L,-1,"Password");
+    password = lua_tostring(L,-1);
+    lua_pop(L,1);
+
+    lua_getfield(L,-1,"db_name");
+    lua_getfield(L,-1,"user_db");
+    db_name = lua_tostring(L,-1);
+    lua_pop(L,2);
+
+    lua_pop(L,2); // pop mysqlx and db_config
+
+    std::string db_uri = "mysqlx://" + username + ":" + password + "@" + host + ":" + port + "/" + db_name;
+    return db_uri;
 }

@@ -28,5 +28,20 @@ target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc
 # 链接第三方库lib
 target_link_libraries(${MODULE_NAME} PRIVATE ${THIRD_PARTY_LIBS})
 
+# 复制其他dll文件到可执行文件所在目录
+foreach(DLL_FILE ${DLL_FILES})
+    add_custom_command(TARGET ${MODULE_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${DLL_FILE}"
+        $<TARGET_FILE_DIR:${MODULE_NAME}>  # 复制到可执行文件生成目录
+    )
+endforeach()
+
+# 复制 Lua 配置文件到顶级模块所在文件夹
+add_custom_command(TARGET ${MODULE_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_SOURCE_DIR}/config"
+    "${CMAKE_BINARY_DIR}/config"
+)
 # 安装可执行文件到 bin 目录
 install(TARGETS ${MODULE_NAME} DESTINATION bin)

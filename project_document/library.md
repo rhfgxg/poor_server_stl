@@ -30,6 +30,10 @@ redis在windows下构建时，会导致一些异常，所以需要使用类进�
 ### json操作
 nlohmann-json库
 
+### lua
+lua 库
+使用lua作为配置文件
+
 ### protobuf：客户端与服务器，服务器之间的数据序列化
 protobuf库：包含在 grpc库中
 

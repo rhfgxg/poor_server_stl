@@ -14,6 +14,7 @@
 #include <mutex>
 #include <condition_variable>
 #include <future>
+#include <lua.hpp>
 
 // 数据库服务实现类
 class DatabaseServerImpl final: public myproject::DatabaseServer::Service
@@ -47,13 +48,17 @@ private:
     void handle_update(const myproject::UpdateRequest* request, myproject::UpdateResponse* response);
     void handle_delete(const myproject::DeleteRequest* request, myproject::DeleteResponse* response);
 
+    // 读取lua文件，获取数据库配置
+    std::string DatabaseServerImpl::read_db_config(lua_State* L,const std::string& script);
+
     // 定时任务：
     void send_heartbeat();  // 发送心跳包
 
 private:
     LoggerManager& logger_manager;  // 日志管理器
 
-    DBConnectionPool db_pool; // 数据库连接池
+    // 数据库连接池
+    std::unique_ptr<DBConnectionPool> user_db_pool; // 用户数据库
     // 其他数据库连接池
 
     std::unique_ptr<myproject::CentralServer::Stub> central_stub;    // 中心服务存根
