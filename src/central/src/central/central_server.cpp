@@ -1,6 +1,7 @@
 #include "central_server.h"
 
 CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_):
+    server_type(myproject::ServerType::CENTRAL),    // 服务器类型
     logger_manager(logger_manager_),    // 日志管理器
     central_connection_pool(10),    // 初始化中心服务器连接池大小为 10
     data_connection_pool(10),
@@ -15,9 +16,12 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_):
     logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("logic_connection_pool: initialized successfully, pool size: 10");
     logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("login_connection_pool: initialized successfully, pool size: 10");
 
-    // 在中心服务器连接池中加入本服务器
-    central_connection_pool.add_server(myproject::ServerType::CENTRAL,"localhost","50050");
-    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}", "localhost", "50050");
+    // 读取配置文件并初始化服务器地址和端口
+    read_server_config();
+
+    // 将本服务器加入中心数据库链接池
+    central_connection_pool.add_server(myproject::ServerType::CENTRAL, this->server_address,this->server_port);
+    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}", this->server_address, this->server_port);
 
     // 启动定时任务，定时检测心跳包
     std::thread(&CentralServerImpl::check_heartbeat, this).detach();
@@ -293,4 +297,47 @@ void CentralServerImpl::check_heartbeat()
             }
         }
     }
+}
+
+/******************************************** 其他工具函数 ***********************************************/
+// 读取服务器配置文件，初始化服务器地址和端口
+void CentralServerImpl::read_server_config()
+{
+    lua_State* L = luaL_newstate();  // 创建lua虚拟机
+    luaL_openlibs(L);   // 打开lua标准库
+
+    std::string file_url = "config/central_server_config.lua";  // 配置文件路径
+
+    if (luaL_dofile(L, file_url.c_str()) != LUA_OK)
+    {
+        lua_close(L);
+        throw std::runtime_error("Failed to load config file");
+    }
+
+    lua_getglobal(L, "central_server");
+    if (!lua_istable(L, -1))
+    {
+        lua_close(L);
+        throw std::runtime_error("Invalid config format");
+    }
+
+    lua_getfield(L, -1, "host");
+    if (!lua_isstring(L, -1))
+    {
+        lua_close(L);
+        throw std::runtime_error("Invalid host format");
+    }
+    this->server_address = lua_tostring(L, -1);
+    lua_pop(L, 1);
+
+    lua_getfield(L, -1, "port");
+    if (!lua_isinteger(L, -1))
+    {
+        lua_close(L);
+        throw std::runtime_error("Invalid port format");
+    }
+    this->server_port = std::to_string(lua_tointeger(L, -1));
+    lua_pop(L, 1);
+
+    lua_close(L);   // 关闭lua虚拟机
 }

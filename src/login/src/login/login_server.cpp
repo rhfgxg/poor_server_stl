@@ -2,10 +2,13 @@
 #include <future>
 
 LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_):
+    server_type(myproject::ServerType::LOGIN),    // 服务器类型
     logger_manager(logger_manager_),	// 日志管理器
     central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 链接中心服务器
 	db_connection_pool(10) // 初始化数据库服务器连接池，设置连接池大小为10
 {
+    read_server_config();   // 读取配置文件并初始化服务器地址和端口
+
     register_server(); // 注册服务器
 
     // 启动定时任务，
@@ -89,9 +92,9 @@ void LoginServerImpl::register_server()
 {
     // 请求
     myproject::RegisterServerRequest request;
-    request.set_server_type(myproject::ServerType::LOGIN);
-    request.set_address("127.0.0.1");
-    request.set_port("50053");
+    request.set_server_type(this->server_type);
+    request.set_address(this->server_address);
+    request.set_port(this->server_port);
 
     // 响应
     myproject::RegisterServerResponse response;
@@ -103,12 +106,12 @@ void LoginServerImpl::register_server()
 
     if (status.ok() && response.success())
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Login server registered successfully: {} {}","localhost","50053");
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Login server registered successfully: {} {}", this->server_address, this->server_port);
 		init_connection_pool(); // 初始化连接池
     }
     else 
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Login server registration failed: {} {}","localhost","50053");
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Login server registration failed: {} {}", this->server_address, this->server_port);
     }
 }
 
@@ -316,4 +319,47 @@ std::string LoginServerImpl::register_(const std::string& database, const std::s
 std::string LoginServerImpl::authenticate_(const std::string& token)
 {
 	return "验证成功";
+}
+
+/******************************************** 其他工具函数 ***********************************************/
+// 读取服务器配置文件，初始化服务器地址和端口
+void LoginServerImpl::read_server_config()
+{
+    lua_State* L = luaL_newstate();  // 创建lua虚拟机
+    luaL_openlibs(L);   // 打开lua标准库
+
+    std::string file_url = "config/login_server_config.lua";  // 配置文件路径
+
+    if(luaL_dofile(L,file_url.c_str()) != LUA_OK)
+    {
+        lua_close(L);
+        throw std::runtime_error("Failed to load config file");
+    }
+
+    lua_getglobal(L,"login_server");
+    if(!lua_istable(L,-1))
+    {
+        lua_close(L);
+        throw std::runtime_error("Invalid config format");
+    }
+
+    lua_getfield(L,-1,"host");
+    if(!lua_isstring(L,-1))
+    {
+        lua_close(L);
+        throw std::runtime_error("Invalid host format");
+    }
+    this->server_address = lua_tostring(L,-1);
+    lua_pop(L,1);
+
+    lua_getfield(L,-1,"port");
+    if(!lua_isinteger(L,-1))
+    {
+        lua_close(L);
+        throw std::runtime_error("Invalid port format");
+    }
+    this->server_port = std::to_string(lua_tointeger(L,-1));
+    lua_pop(L,1);
+
+    lua_close(L);   // 关闭lua虚拟机
 }

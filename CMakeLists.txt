@@ -193,10 +193,3 @@ foreach(DLL_FILE ${DLL_FILES})
         $<TARGET_FILE_DIR:${PROJECT_NAME}>  # 复制到可执行文件生成目录
     )
 endforeach()
-
-# 复制 Lua 配置文件到可执行文件生成目录
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    "${CMAKE_SOURCE_DIR}/config"
-    "$<TARGET_FILE_DIR:${PROJECT_NAME}>/config"
-)

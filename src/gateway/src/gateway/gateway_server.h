@@ -14,6 +14,7 @@
 #include <mutex>
 #include <condition_variable>
 #include <future>
+#include <lua.hpp>
 
 // 网关服务器对外接口
 class GatewayServerImpl final: public myproject::GatewayServer::Service
@@ -32,6 +33,8 @@ public:
     grpc::Status RequestForward(grpc::ServerContext* context, const myproject::ForwardRequest* request, myproject::ForwardResponse* response);
 
 private:
+    void read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
+
     void init_connection_pool();    // 初始化链接池
     void worker_thread();   // 执行线程的任务
 
@@ -44,6 +47,10 @@ private:
     void send_heartbeat();  // 发送心跳包
 
 private:
+    std::string server_address; // 服务器地址
+    std::string server_port;    // 服务器端口
+    myproject::ServerType server_type;  // 服务器类型
+
     LoggerManager& logger_manager;  // 日志管理器
 
     std::unique_ptr<myproject::CentralServer::Stub> central_stub;  // 中心服务器的服务存根

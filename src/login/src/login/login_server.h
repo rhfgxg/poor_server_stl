@@ -15,6 +15,7 @@
 #include <queue>
 #include <mutex>
 #include <condition_variable>
+#include <lua.hpp>
 
 // 登录服务实现类
 class LoginServerImpl final : public myproject::LoginServer::Service
@@ -34,6 +35,8 @@ public:
     grpc::Status Authenticate(grpc::ServerContext* context, const myproject::AuthenticateRequest* request, myproject::AuthenticateResponse* response) override;   // 令牌验证
 
 private:
+    void read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
+
 	void init_connection_pool();    // 初始化链接池
     void worker_thread();   // 执行线程的任务
 
@@ -46,6 +49,10 @@ private:
     void send_heartbeat();  // 发送心跳包
 
 private:
+    std::string server_address; // 服务器地址
+    std::string server_port;    // 服务器端口
+    myproject::ServerType server_type;  // 服务器类型
+
     // 日志管理器
     LoggerManager& logger_manager;
 

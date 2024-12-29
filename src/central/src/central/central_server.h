@@ -16,6 +16,7 @@
 #include <mutex>    // 互斥锁
 #include <condition_variable>   // 条件变量
 #include <unordered_map> // 哈希表
+#include <lua.hpp>  // lua
 
 // 心跳记录
 struct HeartbeatRecord
@@ -52,12 +53,18 @@ public:
     void check_heartbeat();
 
 private:    // 私有函数
+    void read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
+
     void worker_thread();   // 线程池工作函数
 
     // 释放连接池中服务器连接
     void release_server_connection(myproject::ServerType server_type,const std::string& address,const std::string& port);
 
 private:    // 私有成员
+    std::string server_address; // 服务器地址
+    std::string server_port;    // 服务器端口
+    myproject::ServerType server_type;  // 服务器类型
+
     LoggerManager& logger_manager;  // 日志管理器
     
     std::unordered_map<std::string, HeartbeatRecord> heartbeat_records;  // 心跳记录

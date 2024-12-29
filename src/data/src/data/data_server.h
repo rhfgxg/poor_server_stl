@@ -40,6 +40,9 @@ public:
     grpc::Status Delete(grpc::ServerContext* context, const myproject::DeleteRequest* request, myproject::DeleteResponse* response) override;
 
 private:
+    void read_server_config(lua_State* L,const std::string& file_url);   // 读取服务器配置文件，初始化服务器地址和端口
+    std::string read_db_config(lua_State* L,const std::string& file_url); // 读取 数据库配置配置文件，获得数据库连接字符串
+
     void worker_thread();   // 线程池工作函数
 
     // 处理数据库操作的函数
@@ -48,13 +51,14 @@ private:
     void handle_update(const myproject::UpdateRequest* request, myproject::UpdateResponse* response);
     void handle_delete(const myproject::DeleteRequest* request, myproject::DeleteResponse* response);
 
-    // 读取lua文件，获取数据库配置
-    std::string DatabaseServerImpl::read_db_config(lua_State* L,const std::string& script);
-
     // 定时任务：
     void send_heartbeat();  // 发送心跳包
 
 private:
+    std::string server_address; // 服务器地址
+    std::string server_port;    // 服务器端口
+    myproject::ServerType server_type;  // 服务器类型
+
     LoggerManager& logger_manager;  // 日志管理器
 
     // 数据库连接池

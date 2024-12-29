@@ -1,15 +1,20 @@
 #include "data_server.h"
 
 DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_):
+    server_type(myproject::ServerType::DATA),    // 服务器类型
     logger_manager(logger_manager_),    // 日志管理器
     central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050",grpc::InsecureChannelCredentials()))) // 中心服务器存根
 {
-    lua_State* L = luaL_newstate();
-    luaL_openlibs(L);
+    lua_State* L = luaL_newstate();  // 创建lua虚拟机
+    luaL_openlibs(L);   // 打开lua标准库
+
+    read_server_config(L,"config/db_server_config.lua"); // 读取服务器配置文件，初始化服务器地址和端口
 
     // 读取配置文件并初始化数据库连接池
-    std::string db_uri = read_db_config(L, "../../config/db_config.lua");
-    user_db_pool = std::make_unique<DBConnectionPool>(db_uri,10);
+    std::string db_uri = read_db_config(L, "config/db_config.lua");
+    user_db_pool = std::make_unique<DBConnectionPool>(db_uri,10);   // 初始化数据库连接池
+
+    lua_close(L);   // 关闭lua虚拟机
 
     register_server(); // 注册服务器
 
@@ -93,9 +98,9 @@ void DatabaseServerImpl::register_server()
 {
     // 创建请求
     myproject::RegisterServerRequest request;
-    request.set_server_type(myproject::ServerType::DATA);
-    request.set_address("127.0.0.1");
-    request.set_port("50052");
+    request.set_server_type(this->server_type);
+    request.set_address(this->server_address);
+    request.set_port(this->server_port);
     // 创建响应
     myproject::RegisterServerResponse response;
 
@@ -106,12 +111,11 @@ void DatabaseServerImpl::register_server()
 
     if(status.ok() && response.success())
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Database server registered successfully: {} {}", "localhost", "50052");
-
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Database server registered successfully: {} {}",this->server_address,this->server_port);
     }
     else
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Database server registration failed: {} {}", "localhost", "50052");
+        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Database server registration failed: {} {}",this->server_address,this->server_port);
     }
 }
 
@@ -392,9 +396,45 @@ void DatabaseServerImpl::handle_delete(const myproject::DeleteRequest* request, 
 }
 
 /******************************************** 其他工具函数 *****************************************************/
-std::string DatabaseServerImpl::read_db_config(lua_State* L, const std::string& script)
+// 读取服务器配置文件，初始化服务器地址和端口
+void DatabaseServerImpl::read_server_config(lua_State* L, const std::string& file_url)
 {
-    if(luaL_dofile(L,script.c_str()) != LUA_OK) {
+    if(luaL_dofile(L,file_url.c_str()) != LUA_OK)
+    {
+        lua_close(L);
+        throw std::runtime_error("Failed to load config file");
+    }
+
+    lua_getglobal(L,"db_server");
+    if(!lua_istable(L,-1))
+    {
+        lua_close(L);
+        throw std::runtime_error("Invalid config format");
+    }
+
+    lua_getfield(L,-1,"host");
+    if(!lua_isstring(L,-1))
+    {
+        lua_close(L);
+        throw std::runtime_error("Invalid host format");
+    }
+    this->server_address = lua_tostring(L,-1);
+    lua_pop(L,1);
+
+    lua_getfield(L,-1,"port");
+    if(!lua_isinteger(L,-1))
+    {
+        lua_close(L);
+        throw std::runtime_error("Invalid port format");
+    }
+    this->server_port = std::to_string(lua_tointeger(L,-1));
+    lua_pop(L,1);
+}
+
+// 读取 数据库配置配置文件，获得数据库连接字符串
+std::string DatabaseServerImpl::read_db_config(lua_State* L, const std::string& file_url)
+{
+    if(luaL_dofile(L,file_url.c_str()) != LUA_OK) {
         std::cerr << "Error: " << lua_tostring(L,-1) << std::endl;
         lua_pop(L,1);
         return "";

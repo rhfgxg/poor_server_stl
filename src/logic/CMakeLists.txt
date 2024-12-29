@@ -37,12 +37,5 @@ foreach(DLL_FILE ${DLL_FILES})
     )
 endforeach()
 
-# 复制 Lua 配置文件到顶级模块所在文件夹
-add_custom_command(TARGET ${MODULE_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    "${CMAKE_SOURCE_DIR}/config"
-    "${CMAKE_BINARY_DIR}/config"
-)
-
 # 安装可执行文件到 bin 目录
 install(TARGETS ${MODULE_NAME} DESTINATION bin)
