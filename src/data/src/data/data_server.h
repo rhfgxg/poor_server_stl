@@ -40,19 +40,19 @@ public:
     grpc::Status Delete(grpc::ServerContext* context, const myproject::DeleteRequest* request, myproject::DeleteResponse* response) override;
 
 private:
-    void read_server_config(lua_State* L,const std::string& file_url);   // 读取服务器配置文件，初始化服务器地址和端口
-    std::string read_db_config(lua_State* L,const std::string& file_url); // 读取 数据库配置配置文件，获得数据库连接字符串
+    void Read_server_config(lua_State* L,const std::string& file_url);   // 读取服务器配置文件，初始化服务器地址和端口
+    std::string Read_db_config(lua_State* L,const std::string& file_url); // 读取 数据库配置配置文件，获得数据库连接字符串
 
-    void worker_thread();   // 线程池工作函数
+    void Worker_thread();   // 线程池工作函数
 
     // 处理数据库操作的函数
-    void handle_create(const myproject::CreateRequest* request, myproject::CreateResponse* response);
-    void handle_read(const myproject::ReadRequest* request, myproject::ReadResponse* response);
-    void handle_update(const myproject::UpdateRequest* request, myproject::UpdateResponse* response);
-    void handle_delete(const myproject::DeleteRequest* request, myproject::DeleteResponse* response);
+    void Handle_create(const myproject::CreateRequest* request, myproject::CreateResponse* response);
+    void Handle_read(const myproject::ReadRequest* request, myproject::ReadResponse* response);
+    void Handle_update(const myproject::UpdateRequest* request, myproject::UpdateResponse* response);
+    void Handle_delete(const myproject::DeleteRequest* request, myproject::DeleteResponse* response);
 
     // 定时任务：
-    void send_heartbeat();  // 发送心跳包
+    void Send_heartbeat();  // 发送心跳包
 
 private:
     std::string server_address; // 服务器地址

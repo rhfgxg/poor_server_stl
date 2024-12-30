@@ -11,7 +11,7 @@ int main()
     logger_manager.initialize(myproject::ServerType::LOGIN);    // 传入服务器类型，创建日志文件夹
 
     // 记录启动日志
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("登录服务器启动"); // 记录启动日志：日志分类, 日志内容
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Login server started"); // 记录启动日志：日志分类, 日志内容
 
     RunServer(logger_manager); // 运行服务器
 

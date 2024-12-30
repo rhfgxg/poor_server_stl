@@ -7,15 +7,15 @@ LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_):
     central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 链接中心服务器
 	db_connection_pool(10) // 初始化数据库服务器连接池，设置连接池大小为10
 {
-    read_server_config();   // 读取配置文件并初始化服务器地址和端口
+    Read_server_config();   // 读取配置文件并初始化服务器地址和端口
 
     register_server(); // 注册服务器
 
     // 启动定时任务，
     // 定时向中心服务器获取最新的连接池状态
-    std::thread(&LoginServerImpl::update_connection_pool,this).detach();
+    std::thread(&LoginServerImpl::Update_connection_pool,this).detach();
     // 定时向中心服务器发送心跳包
-    std::thread(&LoginServerImpl::send_heartbeat,this).detach();
+    std::thread(&LoginServerImpl::Send_heartbeat,this).detach();
 }
 
 LoginServerImpl::~LoginServerImpl()
@@ -36,7 +36,7 @@ void LoginServerImpl::start_thread_pool(int num_threads)
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/start_thread_pool()
     for(int i = 0; i < num_threads; ++i)
     {
-        thread_pool.emplace_back(&LoginServerImpl::worker_thread,this);   // 创建线程
+        thread_pool.emplace_back(&LoginServerImpl::Worker_thread,this);   // 创建线程
     }
 }
 
@@ -63,7 +63,7 @@ void LoginServerImpl::stop_thread_pool()
 }
 
 // 线程池工作函数
-void LoginServerImpl::worker_thread()
+void LoginServerImpl::Worker_thread()
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/worker_thread()
     while(true)
     {
@@ -107,7 +107,7 @@ void LoginServerImpl::register_server()
     if (status.ok() && response.success())
     {
         logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Login server registered successfully: {} {}", this->server_address, this->server_port);
-		init_connection_pool(); // 初始化连接池
+        Init_connection_pool(); // 初始化连接池
     }
     else 
     {
@@ -143,7 +143,7 @@ void LoginServerImpl::unregister_server()
 }
 
 // 初始化连接池
-void LoginServerImpl::init_connection_pool()
+void LoginServerImpl::Init_connection_pool()
 {
     // 客户端
     grpc::ClientContext context;
@@ -172,17 +172,17 @@ void LoginServerImpl::init_connection_pool()
 
 /************************************ 定时任务 ********************************************************/
 // 定时任务：更新连接池
-void LoginServerImpl::update_connection_pool()
+void LoginServerImpl::Update_connection_pool()
 {
     while(true)
     {
         std::this_thread::sleep_for(std::chrono::minutes(5)); // 每5分钟更新一次连接池
-        init_connection_pool();
+        Init_connection_pool();
     }
 }
 
 // 定时任务：发送心跳包
-void LoginServerImpl::send_heartbeat()
+void LoginServerImpl::Send_heartbeat()
 {
     while(true)
     {
@@ -230,7 +230,7 @@ grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const myprojec
 	        // 构造查询条件
             std::map<std::string, std::string> query = { {"user_name", username}, {"user_password", password} }; 
 
-	        std::string responses = login_("poor_users", "users", query); // 查询的数据库名，表名，查询条件
+	        std::string responses = Handle_login("poor_users", "users", query); // 查询的数据库名，表名，查询条件
 
             if (responses == "Login successful")
             {
@@ -275,7 +275,7 @@ grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const m
 
 /************************************ gRPC服务接口工具函数 **************************************************/
 // 登录服务
-std::string LoginServerImpl::login_(const std::string& database, const std::string& table, std::map<std::string, std::string> query)
+std::string LoginServerImpl::Handle_login(const std::string& database, const std::string& table, std::map<std::string, std::string> query)
 {
     // 构造请求
     myproject::ReadRequest read_request;
@@ -310,20 +310,20 @@ std::string LoginServerImpl::login_(const std::string& database, const std::stri
 }
 
 // 注册服务
-std::string LoginServerImpl::register_(const std::string& database, const std::string& table, std::map<std::string, std::string> data)
+std::string LoginServerImpl::Handle_register(const std::string& database, const std::string& table, std::map<std::string, std::string> data)
 {
 	return "注册成功";
 }
 
 // 令牌验证服务
-std::string LoginServerImpl::authenticate_(const std::string& token)
+std::string LoginServerImpl::Handle_authenticate(const std::string& token)
 {
 	return "验证成功";
 }
 
 /******************************************** 其他工具函数 ***********************************************/
 // 读取服务器配置文件，初始化服务器地址和端口
-void LoginServerImpl::read_server_config()
+void LoginServerImpl::Read_server_config()
 {
     lua_State* L = luaL_newstate();  // 创建lua虚拟机
     luaL_openlibs(L);   // 打开lua标准库

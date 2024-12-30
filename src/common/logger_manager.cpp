@@ -3,7 +3,7 @@
 void LoggerManager::initialize(myproject::ServerType server_type)
 {
     // 创建日志文件夹
-    createLogDirectory(server_type);
+    Create_log_directory(server_type);
 
     // 创建控制台日志器
     auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
@@ -62,7 +62,7 @@ std::shared_ptr<spdlog::logger> LoggerManager::getLogger(LogCategory category)
 }
 
 // 创建日志文件夹
-void LoggerManager::createLogDirectory(myproject::ServerType server_type)
+void LoggerManager::Create_log_directory(myproject::ServerType server_type)
 {
     std::string server_name = "default"; // 默认日志文件夹名
 

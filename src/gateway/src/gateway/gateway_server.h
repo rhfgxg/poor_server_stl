@@ -33,18 +33,18 @@ public:
     grpc::Status RequestForward(grpc::ServerContext* context, const myproject::ForwardRequest* request, myproject::ForwardResponse* response);
 
 private:
-    void read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
+    void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
 
-    void init_connection_pool();    // 初始化链接池
-    void worker_thread();   // 执行线程的任务
+    void Init_connection_pool();    // 初始化链接池
+    void Worker_thread();   // 执行线程的任务
 
 // 处理转发请求
     // 登录服务器：登录服务
-    grpc::Status forward_to_login_service(const std::string& payload, myproject::ForwardResponse* response);
+    grpc::Status Forward_to_login_service(const std::string& payload, myproject::ForwardResponse* response);
 
     // 定时任务：
-    void update_connection_pool();  // 更新连接池
-    void send_heartbeat();  // 发送心跳包
+    void Update_connection_pool();  // 更新连接池
+    void Send_heartbeat();  // 发送心跳包
 
 private:
     std::string server_address; // 服务器地址

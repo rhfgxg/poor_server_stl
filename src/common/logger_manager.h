@@ -53,8 +53,9 @@ public:
 
 private:
     // 创建日志文件夹
-    void createLogDirectory(myproject::ServerType server_type);
+    void Create_log_directory(myproject::ServerType server_type);
 
+private:
     std::unordered_map<LogCategory, std::shared_ptr<spdlog::logger>> loggers;   // 日志器容器
     std::string log_directory;  // 日志文件夹
 };

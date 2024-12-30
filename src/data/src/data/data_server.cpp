@@ -8,10 +8,10 @@ DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_):
     lua_State* L = luaL_newstate();  // 创建lua虚拟机
     luaL_openlibs(L);   // 打开lua标准库
 
-    read_server_config(L,"config/db_server_config.lua"); // 读取服务器配置文件，初始化服务器地址和端口
+    Read_server_config(L,"config/db_server_config.lua"); // 读取服务器配置文件，初始化服务器地址和端口
 
     // 读取配置文件并初始化数据库连接池
-    std::string db_uri = read_db_config(L, "config/db_config.lua");
+    std::string db_uri = Read_db_config(L, "config/db_config.lua");
     user_db_pool = std::make_unique<DBConnectionPool>(db_uri,10);   // 初始化数据库连接池
 
     lua_close(L);   // 关闭lua虚拟机
@@ -20,7 +20,7 @@ DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_):
 
     // 启动定时任务
     // 定时向中心服务器发送心跳包
-    std::thread(&DatabaseServerImpl::send_heartbeat,this).detach();
+    std::thread(&DatabaseServerImpl::Send_heartbeat,this).detach();
 }
 
 DatabaseServerImpl::~DatabaseServerImpl()
@@ -41,7 +41,7 @@ void DatabaseServerImpl::start_thread_pool(int num_threads)
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/start_thread_pool()
     for(int i = 0; i < num_threads; ++i)
     {
-        thread_pool.emplace_back(&DatabaseServerImpl::worker_thread,this);
+        thread_pool.emplace_back(&DatabaseServerImpl::Worker_thread,this);
     }
 }
 
@@ -69,7 +69,7 @@ void DatabaseServerImpl::stop_thread_pool()
 }
 
 // 线程池工作函数
-void DatabaseServerImpl::worker_thread()
+void DatabaseServerImpl::Worker_thread()
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/worker_thread()
     while(true)
     {
@@ -148,7 +148,7 @@ void DatabaseServerImpl::unregister_server()
 
 /*************************************** 定时任务 *********************************************************/
 // 定时任务：发送心跳包
-void DatabaseServerImpl::send_heartbeat()
+void DatabaseServerImpl::Send_heartbeat()
 {
     while(true)
     {
@@ -182,7 +182,7 @@ grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const mypr
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
         task_queue.push([this, request, response] {
-            handle_create(request, response);
+            Handle_create(request, response);
         });
     }
     queue_cv.notify_one();  // 通知线程池有新任务
@@ -202,7 +202,7 @@ grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const myproj
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
         task_queue.push([this,request_copy, response_copy, &task_promise] {
-            handle_read(request_copy.get(), response_copy.get());
+            Handle_read(request_copy.get(), response_copy.get());
             task_promise.set_value();  // 设置 promise 的值，通知主线程任务完成
         });
     }
@@ -224,7 +224,7 @@ grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const mypr
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
         task_queue.push([this, request, response] {
-            handle_update(request, response);
+            Handle_update(request, response);
         });
     }
     queue_cv.notify_one();  // 通知线程池有新任务
@@ -237,7 +237,7 @@ grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const mypr
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
         task_queue.push([this, request, response] {
-            handle_delete(request, response);
+            Handle_delete(request, response);
         });
     }
     queue_cv.notify_one();  // 通知线程池有新任务
@@ -247,7 +247,7 @@ grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const mypr
 /**************************************** grpc接口工具函数 **************************************************************************/
 // 处理数据库操作的函数
 // 添加
-void DatabaseServerImpl::handle_create(const myproject::CreateRequest* request, myproject::CreateResponse* response)
+void DatabaseServerImpl::Handle_create(const myproject::CreateRequest* request, myproject::CreateResponse* response)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
@@ -267,7 +267,7 @@ void DatabaseServerImpl::handle_create(const myproject::CreateRequest* request, 
 }
 
 // 查询
-void DatabaseServerImpl::handle_read(const myproject::ReadRequest* request, myproject::ReadResponse* response)
+void DatabaseServerImpl::Handle_read(const myproject::ReadRequest* request, myproject::ReadResponse* response)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
@@ -356,7 +356,7 @@ void DatabaseServerImpl::handle_read(const myproject::ReadRequest* request, mypr
 }
 
 // 更新
-void DatabaseServerImpl::handle_update(const myproject::UpdateRequest* request, myproject::UpdateResponse* response)
+void DatabaseServerImpl::Handle_update(const myproject::UpdateRequest* request, myproject::UpdateResponse* response)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
@@ -376,7 +376,7 @@ void DatabaseServerImpl::handle_update(const myproject::UpdateRequest* request, 
 }
 
 // 删除
-void DatabaseServerImpl::handle_delete(const myproject::DeleteRequest* request, myproject::DeleteResponse* response)
+void DatabaseServerImpl::Handle_delete(const myproject::DeleteRequest* request, myproject::DeleteResponse* response)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
@@ -397,7 +397,7 @@ void DatabaseServerImpl::handle_delete(const myproject::DeleteRequest* request, 
 
 /******************************************** 其他工具函数 *****************************************************/
 // 读取服务器配置文件，初始化服务器地址和端口
-void DatabaseServerImpl::read_server_config(lua_State* L, const std::string& file_url)
+void DatabaseServerImpl::Read_server_config(lua_State* L, const std::string& file_url)
 {
     if(luaL_dofile(L,file_url.c_str()) != LUA_OK)
     {
@@ -432,7 +432,7 @@ void DatabaseServerImpl::read_server_config(lua_State* L, const std::string& fil
 }
 
 // 读取 数据库配置配置文件，获得数据库连接字符串
-std::string DatabaseServerImpl::read_db_config(lua_State* L, const std::string& file_url)
+std::string DatabaseServerImpl::Read_db_config(lua_State* L, const std::string& file_url)
 {
     if(luaL_dofile(L,file_url.c_str()) != LUA_OK) {
         std::cerr << "Error: " << lua_tostring(L,-1) << std::endl;

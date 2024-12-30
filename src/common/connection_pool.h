@@ -35,7 +35,7 @@ public:
 
 private:
     // 向中心服务器获取最新连接
-    std::shared_ptr<grpc::Channel> new_connection(const std::string& server_address, const std::string& server_port);
+    std::shared_ptr<grpc::Channel> New_connection(const std::string& server_address, const std::string& server_port);
 
 private:
     size_t pool_size;  // 连接池大小

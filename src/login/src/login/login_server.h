@@ -35,18 +35,18 @@ public:
     grpc::Status Authenticate(grpc::ServerContext* context, const myproject::AuthenticateRequest* request, myproject::AuthenticateResponse* response) override;   // 令牌验证
 
 private:
-    void read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
+    void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
 
-	void init_connection_pool();    // 初始化链接池
-    void worker_thread();   // 执行线程的任务
+	void Init_connection_pool();    // 初始化链接池
+    void Worker_thread();   // 执行线程的任务
 
-	std::string login_(const std::string& database, const std::string& table, std::map<std::string, std::string> query);    // 登录
-	std::string register_(const std::string& database, const std::string& table, std::map<std::string, std::string> data);    // 注册
-	std::string authenticate_(const std::string& token);    // 令牌验证
+	std::string Handle_login(const std::string& database, const std::string& table, std::map<std::string, std::string> query);    // 登录
+	std::string Handle_register(const std::string& database, const std::string& table, std::map<std::string, std::string> data);    // 注册
+	std::string Handle_authenticate(const std::string& token);    // 令牌验证
 
     // 定时任务：
-    void update_connection_pool();  // 更新连接池
-    void send_heartbeat();  // 发送心跳包
+    void Update_connection_pool();  // 更新连接池
+    void Send_heartbeat();  // 发送心跳包
 
 private:
     std::string server_address; // 服务器地址

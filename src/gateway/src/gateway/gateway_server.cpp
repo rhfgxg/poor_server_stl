@@ -7,15 +7,15 @@ GatewayServerImpl::GatewayServerImpl(LoggerManager& logger_manager_):
     login_connection_pool(10) // 初始化登录服务器连接池，设置连接池大小为10
 {
     
-    this->read_server_config();   // 读取配置文件并初始化服务器地址和端口
+    this->Read_server_config();   // 读取配置文件并初始化服务器地址和端口
 
     this->register_server();  // 注册服务器
 
     // 启动定时任务，
     // 定时向中心服务器获取最新的连接池状态
-    std::thread(&GatewayServerImpl::update_connection_pool, this).detach();
+    std::thread(&GatewayServerImpl::Update_connection_pool, this).detach();
     // 定时向中心服务器发送心跳包
-    std::thread(&GatewayServerImpl::send_heartbeat, this).detach();
+    std::thread(&GatewayServerImpl::Send_heartbeat, this).detach();
 }
 
 GatewayServerImpl::~GatewayServerImpl()
@@ -36,7 +36,7 @@ void GatewayServerImpl::start_thread_pool(int num_threads)
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/start_thread_pool()
     for(int i = 0; i < num_threads; ++i)
     {
-        thread_pool.emplace_back(&GatewayServerImpl::worker_thread,this);   // 创建线程
+        thread_pool.emplace_back(&GatewayServerImpl::Worker_thread,this);   // 创建线程
     }
 }
 
@@ -64,7 +64,7 @@ void GatewayServerImpl::stop_thread_pool()
 }
 
 // 线程池工作函数
-void GatewayServerImpl::worker_thread()
+void GatewayServerImpl::Worker_thread()
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/worker_thread()
     while(true)
     {
@@ -107,7 +107,7 @@ void GatewayServerImpl::register_server()
     if(status.ok() && response.success())
     {
         logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server registered successfully: {} {}", "localhost", "50051");
-        init_connection_pool(); // 初始化连接池
+        Init_connection_pool(); // 初始化连接池
     }
     else
     {
@@ -142,7 +142,7 @@ void GatewayServerImpl::unregister_server()
 }
 
 // 初始化/更新连接池
-void GatewayServerImpl::init_connection_pool()
+void GatewayServerImpl::Init_connection_pool()
 {
     // 客户端
     grpc::ClientContext context;
@@ -171,17 +171,17 @@ void GatewayServerImpl::init_connection_pool()
 
 /******************************************* 定时任务 *****************************************************/
 // 定时任务：更新连接池
-void GatewayServerImpl::update_connection_pool()
+void GatewayServerImpl::Update_connection_pool()
 {
     while(true)
     {
         std::this_thread::sleep_for(std::chrono::minutes(5)); // 每5分钟更新一次连接池
-        init_connection_pool();
+        Init_connection_pool();
     }
 }
 
 // 定时任务：发送心跳包
-void GatewayServerImpl::send_heartbeat()
+void GatewayServerImpl::Send_heartbeat()
 {
     while(true)
     {
@@ -226,7 +226,7 @@ grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context,cons
             {
             case myproject::ServiceType::REQ_LOGIN: // 用户登录请求
             {
-                forward_to_login_service(request_copy->payload(),response_copy.get());  // 解析负载，并转发到登录服务
+                Forward_to_login_service(request_copy->payload(),response_copy.get());  // 解析负载，并转发到登录服务
                 break;
             }
             default:    // 未知服务类型
@@ -251,7 +251,7 @@ grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context,cons
 
 /**************************************** grpc服务接口工具函数 **************************************************************************/
 // Login 方法，处理登录请求
-grpc::Status GatewayServerImpl::forward_to_login_service(const std::string& payload, myproject::ForwardResponse* response)
+grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payload, myproject::ForwardResponse* response)
 {
     myproject::LoginRequest login_request;  // 创建登录请求对象
     bool request_out = login_request.ParseFromString(payload); // 将负载解析为登录请求对象
@@ -296,7 +296,7 @@ grpc::Status GatewayServerImpl::forward_to_login_service(const std::string& payl
 
 /******************************************** 其他工具函数 ***********************************************/
 // 读取服务器配置文件，初始化服务器地址和端口
-void GatewayServerImpl::read_server_config()
+void GatewayServerImpl::Read_server_config()
 {
     lua_State* L = luaL_newstate();  // 创建lua虚拟机
     luaL_openlibs(L);   // 打开lua标准库

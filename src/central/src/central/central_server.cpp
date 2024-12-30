@@ -17,7 +17,7 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_):
     logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("login_connection_pool: initialized successfully, pool size: 10");
 
     // 读取配置文件并初始化服务器地址和端口
-    read_server_config();
+    Read_server_config();
 
     // 将本服务器加入中心数据库链接池
     central_connection_pool.add_server(myproject::ServerType::CENTRAL, this->server_address,this->server_port);
@@ -44,7 +44,7 @@ void CentralServerImpl::start_thread_pool(int num_threads)
 {
     for(int i=0; i<num_threads; ++i)
     {
-        thread_pool.emplace_back(&CentralServerImpl::worker_thread, this);   // 创建线程
+        thread_pool.emplace_back(&CentralServerImpl::Worker_thread, this);   // 创建线程
     }
 }
 
@@ -72,7 +72,7 @@ void CentralServerImpl::stop_thread_pool()
 }
 
 // 线程池工作函数
-void CentralServerImpl::worker_thread()
+void CentralServerImpl::Worker_thread()
 {
     while(true)
     {
@@ -164,7 +164,7 @@ grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, c
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
         task_queue.push([this, server_type, address, port] { 
             // 根据服务器类型，从连接池中删除服务器
-            release_server_connection(server_type, address, port);
+            Release_server_connection(server_type, address, port);
         });
     }
     queue_cv.notify_one();  // 通知线程池有新任务
@@ -239,7 +239,7 @@ grpc::Status CentralServerImpl::Heartbeat(grpc::ServerContext* context, const my
 
 /************************************* grpc服务接口工具函数 **********************************************/
 // 释放连接池中服务器连接
-void CentralServerImpl::release_server_connection(myproject::ServerType server_type, const std::string& address,const std::string& port)
+void CentralServerImpl::Release_server_connection(myproject::ServerType server_type, const std::string& address,const std::string& port)
 {
     // 根据服务器类型，从连接池中删除服务器
     switch(server_type)
@@ -293,7 +293,7 @@ void CentralServerImpl::check_heartbeat()
             if(std::chrono::duration_cast<std::chrono::seconds>(now - record.second.last_heartbeat).count() > 30)  
             {// 如果心跳时间超过30秒，释放服务器连接
                 logger_manager.getLogger(LogCategory::HEARTBEAT)->warn("Server lost heartbeat, address {} port ()", record.second.address, record.second.port);
-                release_server_connection(record.second.server_type, record.second.address, record.second.port);
+                Release_server_connection(record.second.server_type, record.second.address, record.second.port);
             }
         }
     }
@@ -301,7 +301,7 @@ void CentralServerImpl::check_heartbeat()
 
 /******************************************** 其他工具函数 ***********************************************/
 // 读取服务器配置文件，初始化服务器地址和端口
-void CentralServerImpl::read_server_config()
+void CentralServerImpl::Read_server_config()
 {
     lua_State* L = luaL_newstate();  // 创建lua虚拟机
     luaL_openlibs(L);   // 打开lua标准库

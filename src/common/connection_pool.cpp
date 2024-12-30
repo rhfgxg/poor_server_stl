@@ -57,14 +57,14 @@ void ConnectionPool::update_connections(myproject::ServerType server_type,const 
     // 添加新连接到连接池
     for(size_t i=0; i<pool_size; ++i)
     {
-        auto channel = new_connection(server_address,server_port);
+        auto channel = New_connection(server_address,server_port);
         pool_map[server_type].push(channel);
     }
 }
 
 /***************************************** 工具函数 ******************************************************/
 // 向中心服务器获取最新连接
-std::shared_ptr<grpc::Channel> ConnectionPool::new_connection(const std::string& server_address, const std::string& server_port)
+std::shared_ptr<grpc::Channel> ConnectionPool::New_connection(const std::string& server_address, const std::string& server_port)
 {
     return grpc::CreateChannel(server_address + ":" + server_port,grpc::InsecureChannelCredentials());
 }
@@ -78,7 +78,7 @@ void ConnectionPool::add_server(myproject::ServerType server_type,const std::str
 
     for(size_t i = 0; i < pool_size; ++i)  // 遍历连接池，添加连接
     {
-        auto channel = new_connection(server_address,server_port); // 创建连接
+        auto channel = New_connection(server_address,server_port); // 创建连接
         pool_map[server_type].push(channel);    // 加入连接池
     }
 }
