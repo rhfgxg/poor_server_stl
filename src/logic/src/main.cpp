@@ -2,6 +2,6 @@
 
 int main()
 {
-	std::cout << "逻辑服务器" << std::endl;
-	return 0;
+    std::cout << "逻辑服务器" << std::endl;
+    return 0;
 }

@@ -9,6 +9,6 @@
 - 文件名全部小写，单词之间用下划线分割（工具配置文件除外）
 
 - protobuf 生成的文件在VS中查看编码会有问题（实际为 utf-8，显示为sys：gb2312）以记事本为准
-
+    
 # 文档基本格式
 [code_layout.md](code_layout.md)

@@ -21,11 +21,11 @@
 class LoginServerImpl final : public rpc_server::LoginServer::Service
 {
 public:
-	LoginServerImpl(LoggerManager& logger_manager_);	// 构造函数
+    LoginServerImpl(LoggerManager& logger_manager_);	// 构造函数
     ~LoginServerImpl();	// 析构函数
 
-	void register_server(); // 注册服务器
-	void unregister_server(); // 注销服务器
+    void register_server(); // 注册服务器
+    void unregister_server(); // 注销服务器
 
     void start_thread_pool(int num_threads);    // 启动线程池
     void stop_thread_pool();    // 停止线程池
@@ -37,12 +37,12 @@ public:
 private:
     void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
 
-	void Init_connection_pool();    // 初始化链接池
+    void Init_connection_pool();    // 初始化链接池
     void Worker_thread();   // 执行线程的任务
 
-	std::string Handle_login(const std::string& database, const std::string& table, std::map<std::string, std::string> query);    // 登录
-	std::string Handle_register(const std::string& database, const std::string& table, std::map<std::string, std::string> data);    // 注册
-	std::string Handle_authenticate(const std::string& token);    // 令牌验证
+    std::string Handle_login(const std::string& database, const std::string& table, std::map<std::string, std::string> query);    // 登录
+    std::string Handle_register(const std::string& database, const std::string& table, std::map<std::string, std::string> data);    // 注册
+    std::string Handle_authenticate(const std::string& token);    // 令牌验证
 
     // 定时任务：
     void Update_connection_pool();  // 更新连接池
@@ -56,8 +56,8 @@ private:
     // 日志管理器
     LoggerManager& logger_manager;
 
-	std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;	// 中心服务存根
-	ConnectionPool db_connection_pool;   // 数据库服务器连接池
+    std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;	// 中心服务存根
+    ConnectionPool db_connection_pool;   // 数据库服务器连接池
 
     std::vector<std::thread> thread_pool;   // 线程池
     std::queue<std::function<void()>> task_queue;    // 任务队列

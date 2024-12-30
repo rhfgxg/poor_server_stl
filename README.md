@@ -30,7 +30,7 @@
 
 
 # 开发环境
-建议文件编码全部使用utf-8，以免导致编译错误
+文件编码及格式：文件编码使用 utf-8，行末换行符为 LF(unix)，统一使用空格而不是tab缩进（tab设为4个空格）
 cmd脚本使用 unix 格式，以免在 windows 下运行时出现错误
 
 ## 操作系统
@@ -40,8 +40,8 @@ linux（待验证）
 ## 编译器
 ### Visual Studio 2022 配置
 1. 使用 VS 参与项目时，可以先下载下面的插件
-	FileEncoding
-	force utf-8 （no BOM）
+    FileEncoding
+    force utf-8 （no BOM）
 用来设置文件编码为 utf-8 无 BOM
 2. 使用配置文件 .editorconfig 来设置默认文件编码格式
 3. CMakeLists 文件添加编译选项

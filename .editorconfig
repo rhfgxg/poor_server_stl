@@ -8,7 +8,7 @@ root = true
 cpp_generate_documentation_comments = xml
 
 # Visual C++ 格式设置
-
+    
 cpp_indent_braces = false
 cpp_indent_multi_line_relative_to = statement_begin
 cpp_indent_within_parentheses = indent
