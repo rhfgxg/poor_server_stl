@@ -36,7 +36,7 @@ void LoginServerImpl::start_thread_pool(int num_threads)
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/start_thread_pool()
     for(int i = 0; i < num_threads; ++i)
     {
-        thread_pool.emplace_back(&LoginServerImpl::Worker_thread,this);   // 创建线程
+        this->thread_pool.emplace_back(&LoginServerImpl::Worker_thread, this);   // 创建线程
     }
 }
 
@@ -44,22 +44,22 @@ void LoginServerImpl::start_thread_pool(int num_threads)
 void LoginServerImpl::stop_thread_pool()
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/stop_thread_pool()
     {
-        std::lock_guard<std::mutex> lock(queue_mutex);
-        stop_threads = true;
+        std::lock_guard<std::mutex> lock(this->queue_mutex);
+        this->stop_threads = true;
     }
 
-    queue_cv.notify_all();
+    this->queue_cv.notify_all();
 
-    for(auto& thread : thread_pool)
+    for(auto& thread : this->thread_pool)
     {
         if(thread.joinable())
         {
             thread.join();
         }
     }
-    thread_pool.clear();
+    this->thread_pool.clear();
     std::queue<std::function<void()>> empty;
-    std::swap(task_queue,empty);
+    std::swap(this->task_queue,empty);
 }
 
 // 线程池工作函数
@@ -69,18 +69,18 @@ void LoginServerImpl::Worker_thread()
     {
         std::function<void()> task;
         {
-            std::unique_lock<std::mutex> lock(queue_mutex);
+            std::unique_lock<std::mutex> lock(this->queue_mutex);
 
-            queue_cv.wait(lock,[this] {
-                return !task_queue.empty() || stop_threads;
+            this->queue_cv.wait(lock,[this] {
+                return !this->task_queue.empty() || this->stop_threads;
             });
 
-            if(stop_threads && task_queue.empty())
+            if(this->stop_threads && this->task_queue.empty())
             {
                 return;
             }
-            task = std::move(task_queue.front());
-            task_queue.pop();
+            task = std::move(this->task_queue.front());
+            this->task_queue.pop();
         }
         task();
     }
@@ -130,15 +130,15 @@ void LoginServerImpl::unregister_server()
     // 客户端
     grpc::ClientContext context;
 
-    grpc::Status status = central_stub->Unregister_server(&context, request, &response);
+    grpc::Status status = this->central_stub->Unregister_server(&context, request, &response);
 
     if (status.ok() && response.success())
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Login server unregistered successfully: {} {}","localhost","50053");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Login server unregistered successfully: {} {}","localhost","50053");
     }
     else
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Login server unregistration failed: {} {}","localhost","50053");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Login server unregistration failed: {} {}","localhost","50053");
     }
 }
 
@@ -160,13 +160,13 @@ void LoginServerImpl::Init_connection_pool()
         // 更新登录服务器连接池
         for (const auto& server_info : response.connect_info())
         {
-            db_connection_pool.add_server(rpc_server::ServerType::DATA, server_info.address(), std::to_string(server_info.port()));
+            this->db_connection_pool.add_server(rpc_server::ServerType::DATA, server_info.address(), std::to_string(server_info.port()));
         }
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Connection pool updated successfully");
+        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Connection pool updated successfully");
     }
     else
     {
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->error("Failed to retrieve connection pool information");
+        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->error("Failed to retrieve connection pool information");
     }
 }
 
@@ -177,7 +177,7 @@ void LoginServerImpl::Update_connection_pool()
     while(true)
     {
         std::this_thread::sleep_for(std::chrono::minutes(5)); // 每5分钟更新一次连接池
-        Init_connection_pool();
+        this->Init_connection_pool();
     }
 }
 
@@ -200,11 +200,11 @@ void LoginServerImpl::Send_heartbeat()
 
         if(status.ok() && response.success())
         {
-            logger_manager.getLogger(LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
+            this->logger_manager.getLogger(LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
         }
         else
         {
-            logger_manager.getLogger(LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
+            this->logger_manager.getLogger(LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
         }
     }
 }
@@ -221,9 +221,9 @@ grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const rpc_serv
     std::future<void> task_future = task_promise.get_future();
 
     {// 将任务加入任务队列
-        std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
+        std::lock_guard<std::mutex> lock(this->queue_mutex);  // 加锁
 
-        task_queue.push([this,request_copy,response_copy,&task_promise] {
+        this->task_queue.push([this,request_copy,response_copy,&task_promise] {
             // 获取用户名和密码
             std::string username = request_copy->username(); // 从 request 对象中提取用户名和密码
             std::string password = request_copy->password();
@@ -246,7 +246,7 @@ grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const rpc_serv
         });
         
     }
-    queue_cv.notify_one();  // 通知线程池有新任务
+    this->queue_cv.notify_one();  // 通知线程池有新任务
 
     // 等待任务完成
     task_future.get();
@@ -291,7 +291,7 @@ std::string LoginServerImpl::Handle_login(const std::string& database, const std
     grpc::ClientContext client_context; // 包含 RPC 调用的元数据和其他信息
 
     // 获取连接池中的连接
-    auto channel = db_connection_pool.get_connection(rpc_server::ServerType::DATA);
+    auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DATA);
     auto db_stub = rpc_server::DatabaseServer::NewStub(channel);
 
     // 向数据库服务器发送查询请求

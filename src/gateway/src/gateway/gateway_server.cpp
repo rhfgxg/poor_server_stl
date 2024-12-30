@@ -36,7 +36,7 @@ void GatewayServerImpl::start_thread_pool(int num_threads)
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/start_thread_pool()
     for(int i = 0; i < num_threads; ++i)
     {
-        thread_pool.emplace_back(&GatewayServerImpl::Worker_thread,this);   // 创建线程
+        this->thread_pool.emplace_back(&GatewayServerImpl::Worker_thread, this);   // 创建线程
     }
 }
 
@@ -44,23 +44,23 @@ void GatewayServerImpl::start_thread_pool(int num_threads)
 void GatewayServerImpl::stop_thread_pool()
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/stop_thread_pool()
     {
-        std::lock_guard<std::mutex> lock(queue_mutex);
-        stop_threads = true;
+        std::lock_guard<std::mutex> lock(this->queue_mutex);
+        this->stop_threads = true;
     }
 
-    queue_cv.notify_all();
+    this->queue_cv.notify_all();
 
-    for(auto& thread : thread_pool)
+    for(auto& thread : this->thread_pool)
     {
         if(thread.joinable())
         {
             thread.join();
         }
     }
-    thread_pool.clear();
+    this->thread_pool.clear();
 
     std::queue<std::function<void()>> empty;
-    std::swap(task_queue,empty);
+    std::swap(this->task_queue,empty);
 }
 
 // 线程池工作函数
@@ -70,18 +70,18 @@ void GatewayServerImpl::Worker_thread()
     {
         std::function<void()> task;
         {
-            std::unique_lock<std::mutex> lock(queue_mutex);
+            std::unique_lock<std::mutex> lock(this->queue_mutex);
 
-            queue_cv.wait(lock,[this] {
-                return !task_queue.empty() || stop_threads;
+            this->queue_cv.wait(lock,[this] {
+                return !this->task_queue.empty() || this->stop_threads;
             });
 
-            if(stop_threads && task_queue.empty())
+            if(this->stop_threads && this->task_queue.empty())
             {
                 return;
             }
-            task = std::move(task_queue.front());
-            task_queue.pop();
+            task = std::move(this->task_queue.front());
+            this->task_queue.pop();
         }
         task();
     }
@@ -102,16 +102,16 @@ void GatewayServerImpl::register_server()
     // 客户端
     grpc::ClientContext context;
 
-    grpc::Status status = central_stub->Register_server(&context, request, &response);
+    grpc::Status status = this->central_stub->Register_server(&context, request, &response);
 
     if(status.ok() && response.success())
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server registered successfully: {} {}", "localhost", "50051");
-        Init_connection_pool(); // 初始化连接池
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server registered successfully: {} {}", "localhost", "50051");
+        this->Init_connection_pool(); // 初始化连接池
     }
     else
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ERROR：Gateway server registration failed: {} {}", "localhost", "50051");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ERROR：Gateway server registration failed: {} {}", "localhost", "50051");
     }
 }
 
@@ -129,15 +129,15 @@ void GatewayServerImpl::unregister_server()
     // 响应
     rpc_server::UnregisterServerRes response;
 
-    grpc::Status status = central_stub->Unregister_server(&context, request, &response);
+    grpc::Status status = this->central_stub->Unregister_server(&context, request, &response);
 
     if(status.ok() && response.success())
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server unregistered successfully: {} {}", "localhost", "50051");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server unregistered successfully: {} {}", "localhost", "50051");
     }
     else
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ERROR：Gateway server unregistration failed: {} {}", "localhost", "50051");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ERROR：Gateway server unregistration failed: {} {}", "localhost", "50051");
     }
 }
 
@@ -220,8 +220,8 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, co
     std::future<void> task_future = task_promise.get_future();
 
     {
-        std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        task_queue.push([this,request_copy,response_copy,&task_promise] {
+        std::lock_guard<std::mutex> lock(this->queue_mutex);  // 加锁
+        this->task_queue.push([this,request_copy,response_copy,&task_promise] {
             switch(request_copy->service_type()) // 根据请求的服务类型进行转发
             {
             case rpc_server::ServiceType::REQ_LOGIN: // 用户登录请求
@@ -238,7 +238,7 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, co
             task_promise.set_value();  // 设置 promise 的值，通知主线程任务完成
         });
     }
-    queue_cv.notify_one();  // 通知线程池有新任务
+    this->queue_cv.notify_one();  // 通知线程池有新任务
 
     // 等待任务完成
     task_future.wait();
@@ -266,10 +266,10 @@ grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payl
     grpc::ClientContext context;
 
     // 获取连接池中的连接
-    auto channel = login_connection_pool.get_connection(rpc_server::ServerType::LOGIN);
+    auto channel = this->login_connection_pool.get_connection(rpc_server::ServerType::LOGIN);
     auto login_stub = rpc_server::LoginServer::NewStub(channel);
 
-    grpc::Status status = login_stub->Login(&context,login_request,&login_response);
+    grpc::Status status = login_stub->Login(&context, login_request, &login_response);
 
     if(!status.ok()) // 如果调用失败
     {

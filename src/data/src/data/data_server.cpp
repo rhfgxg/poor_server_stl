@@ -41,7 +41,7 @@ void DatabaseServerImpl::start_thread_pool(int num_threads)
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/start_thread_pool()
     for(int i = 0; i < num_threads; ++i)
     {
-        thread_pool.emplace_back(&DatabaseServerImpl::Worker_thread,this);
+        this->thread_pool.emplace_back(&DatabaseServerImpl::Worker_thread, this);
     }
 }
 
@@ -49,23 +49,23 @@ void DatabaseServerImpl::start_thread_pool(int num_threads)
 void DatabaseServerImpl::stop_thread_pool()
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/stop_thread_pool()
     {
-        std::lock_guard<std::mutex> lock(queue_mutex);
-        stop_threads = true;
+        std::lock_guard<std::mutex> lock(this->queue_mutex);
+        this->stop_threads = true;
     }
 
-    queue_cv.notify_all();
+    this->queue_cv.notify_all();
 
-    for(auto& thread : thread_pool)
+    for(auto& thread : this->thread_pool)
     {
         if(thread.joinable())
         {
             thread.join();
         }
     }
-    thread_pool.clear();
+    this->thread_pool.clear();
     // 清空任务队列
     std::queue<std::function<void()>> empty;
-    std::swap(task_queue,empty);
+    std::swap(this->task_queue,empty);
 }
 
 // 线程池工作函数
@@ -77,16 +77,16 @@ void DatabaseServerImpl::Worker_thread()
         {
             std::unique_lock<std::mutex> lock(queue_mutex);
 
-            queue_cv.wait(lock,[this] {
-                return !task_queue.empty() || stop_threads;
+            this->queue_cv.wait(lock,[this] {
+                return !this->task_queue.empty() || this->stop_threads;
             });
 
-            if(stop_threads && task_queue.empty())
+            if(this->stop_threads && this->task_queue.empty())
             {
                 return;
             }
-            task = std::move(task_queue.front());
-            task_queue.pop();
+            task = std::move(this->task_queue.front());
+            this->task_queue.pop();
         }
         task();
     }
@@ -111,11 +111,11 @@ void DatabaseServerImpl::register_server()
 
     if(status.ok() && response.success())
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Database server registered successfully: {} {}",this->server_address,this->server_port);
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Database server registered successfully: {} {}",this->server_address,this->server_port);
     }
     else
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Database server registration failed: {} {}",this->server_address,this->server_port);
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Database server registration failed: {} {}",this->server_address,this->server_port);
     }
 }
 
@@ -134,15 +134,15 @@ void DatabaseServerImpl::unregister_server()
     // 客户端
     grpc::ClientContext context;
 
-    grpc::Status status = central_stub->Unregister_server(&context,request,&response);
+    grpc::Status status = central_stub->Unregister_server(&context, request, &response);
 
     if(status.ok() && response.success())
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Server unregistration successful: {}", response.message());
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Server unregistration successful: {}", response.message());
     }
     else
     {
-        logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Server unregistration failed:  {}",response.message());
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Server unregistration failed:  {}",response.message());
     }
 }
 
@@ -166,11 +166,11 @@ void DatabaseServerImpl::Send_heartbeat()
 
         if(status.ok() && response.success())
         {
-            logger_manager.getLogger(LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
+            this->logger_manager.getLogger(LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
         }
          else
         {
-            logger_manager.getLogger(LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
+            this->logger_manager.getLogger(LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
         }
     }
 }
@@ -180,12 +180,12 @@ void DatabaseServerImpl::Send_heartbeat()
 grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const rpc_server::CreateReq* req, rpc_server::CreateRes* res)
 {
     {
-        std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        task_queue.push([this, req, res] {
-            Handle_create(req, res);
+        std::lock_guard<std::mutex> lock(this->queue_mutex);  // 加锁
+        this->task_queue.push([this, req, res] {
+            this->Handle_create(req, res);
         });
     }
-    queue_cv.notify_one();  // 通知线程池有新任务
+    this->queue_cv.notify_one();  // 通知线程池有新任务
     return grpc::Status::OK;
 }
 
@@ -200,14 +200,14 @@ grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const rpc_se
     std::future<void> task_future = task_promise.get_future();
 
     {
-        std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        task_queue.push([this,request_copy, response_copy, &task_promise] {
-            Handle_read(request_copy.get(), response_copy.get());
+        std::lock_guard<std::mutex> lock(this->queue_mutex);  // 加锁
+        this->task_queue.push([this,request_copy, response_copy, &task_promise] {
+            this->Handle_read(request_copy.get(), response_copy.get());
             task_promise.set_value();  // 设置 promise 的值，通知主线程任务完成
         });
     }
 
-    queue_cv.notify_one();  // 通知线程池有新任务
+    this->queue_cv.notify_one();  // 通知线程池有新任务
 
     // 等待任务完成
     task_future.get();
@@ -222,12 +222,12 @@ grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const rpc_se
 grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res)
 {
     {
-        std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        task_queue.push([this, req, res] {
-            Handle_update(req, res);
+        std::lock_guard<std::mutex> lock(this->queue_mutex);  // 加锁
+        this->task_queue.push([this, req, res] {
+            this->Handle_update(req, res);
         });
     }
-    queue_cv.notify_one();  // 通知线程池有新任务
+    this->queue_cv.notify_one();  // 通知线程池有新任务
     return grpc::Status::OK;
 }
 
@@ -235,12 +235,12 @@ grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const rpc_
 grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res)
 {
     {
-        std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        task_queue.push([this, req, res] {
-            Handle_delete(req, res);
+        std::lock_guard<std::mutex> lock(this->queue_mutex);  // 加锁
+        this->task_queue.push([this, req, res] {
+            this->Handle_delete(req, res);
         });
     }
-    queue_cv.notify_one();  // 通知线程池有新任务
+    this->queue_cv.notify_one();  // 通知线程池有新任务
     return grpc::Status::OK;
 }
 
@@ -250,7 +250,7 @@ grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const rpc_
 void DatabaseServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_server::CreateRes* res)
 {
     // 获取数据库连接
-    mysqlx::Session session = user_db_pool->get_connection();
+    mysqlx::Session session = this->user_db_pool->get_connection();
 
     // 获取请求参数
     std::string db_name = req->database();
@@ -263,7 +263,7 @@ void DatabaseServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_ser
     std::cout << "Database created successfully" << std::endl;
 
     // 释放数据库连接
-    user_db_pool->release_connection(std::move(session));
+    this->user_db_pool->release_connection(std::move(session));
 }
 
 // 查询
@@ -346,20 +346,20 @@ void DatabaseServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server:
         }
     }
 
-    logger_manager.getLogger(LogCategory::DATABASE_OPERATIONS)->info("Database query operation successful: Database: {}", database);
+    this->logger_manager.getLogger(LogCategory::DATABASE_OPERATIONS)->info("Database query operation successful: Database: {}", database);
 
     res->set_success(true);
     res->set_message("Query successful");
 
     // 释放数据库连接
-    user_db_pool->release_connection(std::move(session));
+    this->user_db_pool->release_connection(std::move(session));
 }
 
 // 更新
 void DatabaseServerImpl::Handle_update(const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res)
 {
     // 获取数据库连接
-    mysqlx::Session session = user_db_pool->get_connection();
+    mysqlx::Session session = this->user_db_pool->get_connection();
 
     // 获取请求参数
     std::string db_name = req->database();
@@ -372,14 +372,14 @@ void DatabaseServerImpl::Handle_update(const rpc_server::UpdateReq* req, rpc_ser
     std::cout << "Database update successful" << std::endl;
 
     // 释放数据库连接
-    user_db_pool->release_connection(std::move(session));
+    this->user_db_pool->release_connection(std::move(session));
 }
 
 // 删除
 void DatabaseServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res)
 {
     // 获取数据库连接
-    mysqlx::Session session = user_db_pool->get_connection();
+    mysqlx::Session session = this->user_db_pool->get_connection();
 
     // 获取请求参数
     std::string db_name = req->database();
@@ -392,7 +392,7 @@ void DatabaseServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_ser
     std::cout << "Database delete successful" << std::endl;
 
     // 释放数据库连接
-    user_db_pool->release_connection(std::move(session));
+    this->user_db_pool->release_connection(std::move(session));
 }
 
 /******************************************** 其他工具函数 *****************************************************/

@@ -28,30 +28,30 @@ DBConnectionPool::DBConnectionPool(const std::string& uri, size_t pool_size):
 
 DBConnectionPool::~DBConnectionPool()
 {
-    while(!pool.empty())
+    while(!this->pool.empty())
     {
-        pool.front().close();
-        pool.pop();
+        this->pool.front().close();
+        this->pool.pop();
     }
 }
 
 // 获取数据库连接
 mysqlx::Session DBConnectionPool::get_connection()
 {
-    std::unique_lock<std::mutex> lock(pool_mutex);  // 加锁
+    std::unique_lock<std::mutex> lock(this->pool_mutex);  // 加锁
     pool_cv.wait(lock,[this] {
-        return !pool.empty();
+        return !this->pool.empty();
     });    // 等待连接池不为空
 
-    mysqlx::Session session = std::move(pool.front());  // 获取数据库连接
-    pool.pop(); // 弹出连接
+    mysqlx::Session session = std::move(this->pool.front());  // 获取数据库连接
+    this->pool.pop(); // 弹出连接
     return session;
 }
 
 // 释放数据库连接
 void DBConnectionPool::release_connection(mysqlx::Session session)
 {
-    std::lock_guard<std::mutex> lock(pool_mutex);   // 加锁
-    pool.push(std::move(session));  // 释放数据库连接
-    pool_cv.notify_one();   // 通知有新的连接
+    std::lock_guard<std::mutex> lock(this->pool_mutex);   // 加锁
+    this->pool.push(std::move(session));  // 释放数据库连接
+    this->pool_cv.notify_one();   // 通知有新的连接
 }
