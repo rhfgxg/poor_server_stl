@@ -59,51 +59,51 @@ struct TableStruct_server_5fdata_2eproto {
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_server_5fdata_2eproto;
 namespace rpc_server {
-class CreateRequest;
-struct CreateRequestDefaultTypeInternal;
-extern CreateRequestDefaultTypeInternal _CreateRequest_default_instance_;
-class CreateRequest_DataEntry_DoNotUse;
-struct CreateRequest_DataEntry_DoNotUseDefaultTypeInternal;
-extern CreateRequest_DataEntry_DoNotUseDefaultTypeInternal _CreateRequest_DataEntry_DoNotUse_default_instance_;
-class CreateResponse;
-struct CreateResponseDefaultTypeInternal;
-extern CreateResponseDefaultTypeInternal _CreateResponse_default_instance_;
-class DeleteRequest;
-struct DeleteRequestDefaultTypeInternal;
-extern DeleteRequestDefaultTypeInternal _DeleteRequest_default_instance_;
-class DeleteRequest_QueryEntry_DoNotUse;
-struct DeleteRequest_QueryEntry_DoNotUseDefaultTypeInternal;
-extern DeleteRequest_QueryEntry_DoNotUseDefaultTypeInternal _DeleteRequest_QueryEntry_DoNotUse_default_instance_;
-class DeleteResponse;
-struct DeleteResponseDefaultTypeInternal;
-extern DeleteResponseDefaultTypeInternal _DeleteResponse_default_instance_;
-class ReadRequest;
-struct ReadRequestDefaultTypeInternal;
-extern ReadRequestDefaultTypeInternal _ReadRequest_default_instance_;
-class ReadRequest_QueryEntry_DoNotUse;
-struct ReadRequest_QueryEntry_DoNotUseDefaultTypeInternal;
-extern ReadRequest_QueryEntry_DoNotUseDefaultTypeInternal _ReadRequest_QueryEntry_DoNotUse_default_instance_;
-class ReadResponse;
-struct ReadResponseDefaultTypeInternal;
-extern ReadResponseDefaultTypeInternal _ReadResponse_default_instance_;
+class CreateReq;
+struct CreateReqDefaultTypeInternal;
+extern CreateReqDefaultTypeInternal _CreateReq_default_instance_;
+class CreateReq_DataEntry_DoNotUse;
+struct CreateReq_DataEntry_DoNotUseDefaultTypeInternal;
+extern CreateReq_DataEntry_DoNotUseDefaultTypeInternal _CreateReq_DataEntry_DoNotUse_default_instance_;
+class CreateRes;
+struct CreateResDefaultTypeInternal;
+extern CreateResDefaultTypeInternal _CreateRes_default_instance_;
+class DeleteReq;
+struct DeleteReqDefaultTypeInternal;
+extern DeleteReqDefaultTypeInternal _DeleteReq_default_instance_;
+class DeleteReq_QueryEntry_DoNotUse;
+struct DeleteReq_QueryEntry_DoNotUseDefaultTypeInternal;
+extern DeleteReq_QueryEntry_DoNotUseDefaultTypeInternal _DeleteReq_QueryEntry_DoNotUse_default_instance_;
+class DeleteRes;
+struct DeleteResDefaultTypeInternal;
+extern DeleteResDefaultTypeInternal _DeleteRes_default_instance_;
+class ReadReq;
+struct ReadReqDefaultTypeInternal;
+extern ReadReqDefaultTypeInternal _ReadReq_default_instance_;
+class ReadReq_QueryEntry_DoNotUse;
+struct ReadReq_QueryEntry_DoNotUseDefaultTypeInternal;
+extern ReadReq_QueryEntry_DoNotUseDefaultTypeInternal _ReadReq_QueryEntry_DoNotUse_default_instance_;
+class ReadRes;
+struct ReadResDefaultTypeInternal;
+extern ReadResDefaultTypeInternal _ReadRes_default_instance_;
 class Result;
 struct ResultDefaultTypeInternal;
 extern ResultDefaultTypeInternal _Result_default_instance_;
 class Result_FieldsEntry_DoNotUse;
 struct Result_FieldsEntry_DoNotUseDefaultTypeInternal;
 extern Result_FieldsEntry_DoNotUseDefaultTypeInternal _Result_FieldsEntry_DoNotUse_default_instance_;
-class UpdateRequest;
-struct UpdateRequestDefaultTypeInternal;
-extern UpdateRequestDefaultTypeInternal _UpdateRequest_default_instance_;
-class UpdateRequest_DataEntry_DoNotUse;
-struct UpdateRequest_DataEntry_DoNotUseDefaultTypeInternal;
-extern UpdateRequest_DataEntry_DoNotUseDefaultTypeInternal _UpdateRequest_DataEntry_DoNotUse_default_instance_;
-class UpdateRequest_QueryEntry_DoNotUse;
-struct UpdateRequest_QueryEntry_DoNotUseDefaultTypeInternal;
-extern UpdateRequest_QueryEntry_DoNotUseDefaultTypeInternal _UpdateRequest_QueryEntry_DoNotUse_default_instance_;
-class UpdateResponse;
-struct UpdateResponseDefaultTypeInternal;
-extern UpdateResponseDefaultTypeInternal _UpdateResponse_default_instance_;
+class UpdateReq;
+struct UpdateReqDefaultTypeInternal;
+extern UpdateReqDefaultTypeInternal _UpdateReq_default_instance_;
+class UpdateReq_DataEntry_DoNotUse;
+struct UpdateReq_DataEntry_DoNotUseDefaultTypeInternal;
+extern UpdateReq_DataEntry_DoNotUseDefaultTypeInternal _UpdateReq_DataEntry_DoNotUse_default_instance_;
+class UpdateReq_QueryEntry_DoNotUse;
+struct UpdateReq_QueryEntry_DoNotUseDefaultTypeInternal;
+extern UpdateReq_QueryEntry_DoNotUseDefaultTypeInternal _UpdateReq_QueryEntry_DoNotUse_default_instance_;
+class UpdateRes;
+struct UpdateResDefaultTypeInternal;
+extern UpdateResDefaultTypeInternal _UpdateRes_default_instance_;
 }  // namespace rpc_server
 namespace google {
 namespace protobuf {
@@ -117,26 +117,26 @@ namespace rpc_server {
 
 // -------------------------------------------------------------------
 
-class UpdateResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UpdateResponse) */ {
+class UpdateRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UpdateRes) */ {
  public:
-  inline UpdateResponse() : UpdateResponse(nullptr) {}
-  ~UpdateResponse() override;
+  inline UpdateRes() : UpdateRes(nullptr) {}
+  ~UpdateRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR UpdateResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR UpdateRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline UpdateResponse(const UpdateResponse& from)
-      : UpdateResponse(nullptr, from) {}
-  UpdateResponse(UpdateResponse&& from) noexcept
-    : UpdateResponse() {
+  inline UpdateRes(const UpdateRes& from)
+      : UpdateRes(nullptr, from) {}
+  UpdateRes(UpdateRes&& from) noexcept
+    : UpdateRes() {
     *this = ::std::move(from);
   }
 
-  inline UpdateResponse& operator=(const UpdateResponse& from) {
+  inline UpdateRes& operator=(const UpdateRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline UpdateResponse& operator=(UpdateResponse&& from) noexcept {
+  inline UpdateRes& operator=(UpdateRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -168,20 +168,20 @@ class UpdateResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const UpdateResponse& default_instance() {
+  static const UpdateRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const UpdateResponse* internal_default_instance() {
-    return reinterpret_cast<const UpdateResponse*>(
-               &_UpdateResponse_default_instance_);
+  static inline const UpdateRes* internal_default_instance() {
+    return reinterpret_cast<const UpdateRes*>(
+               &_UpdateRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     11;
 
-  friend void swap(UpdateResponse& a, UpdateResponse& b) {
+  friend void swap(UpdateRes& a, UpdateRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(UpdateResponse* other) {
+  inline void Swap(UpdateRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -194,7 +194,7 @@ class UpdateResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(UpdateResponse* other) {
+  void UnsafeArenaSwap(UpdateRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -202,14 +202,14 @@ class UpdateResponse final :
 
   // implements Message ----------------------------------------------
 
-  UpdateResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<UpdateResponse>(arena);
+  UpdateRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const UpdateResponse& from);
+  void CopyFrom(const UpdateRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const UpdateResponse& from) {
-    UpdateResponse::MergeImpl(*this, from);
+  void MergeFrom( const UpdateRes& from) {
+    UpdateRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -227,16 +227,16 @@ class UpdateResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(UpdateResponse* other);
+  void InternalSwap(UpdateRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.UpdateResponse";
+    return "rpc_server.UpdateRes";
   }
   protected:
-  explicit UpdateResponse(::google::protobuf::Arena* arena);
-  UpdateResponse(::google::protobuf::Arena* arena, const UpdateResponse& from);
+  explicit UpdateRes(::google::protobuf::Arena* arena);
+  UpdateRes(::google::protobuf::Arena* arena, const UpdateRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -278,7 +278,7 @@ class UpdateResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.UpdateResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.UpdateRes)
  private:
   class _Internal;
 
@@ -310,27 +310,27 @@ class UpdateResponse final :
   friend struct ::TableStruct_server_5fdata_2eproto;
 };// -------------------------------------------------------------------
 
-class UpdateRequest_QueryEntry_DoNotUse final
+class UpdateReq_QueryEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
-          UpdateRequest_QueryEntry_DoNotUse, std::string, std::string,
+          UpdateReq_QueryEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
           ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
-      UpdateRequest_QueryEntry_DoNotUse, std::string, std::string,
+      UpdateReq_QueryEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
-  UpdateRequest_QueryEntry_DoNotUse();
+  UpdateReq_QueryEntry_DoNotUse();
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR UpdateRequest_QueryEntry_DoNotUse(
+  explicit PROTOBUF_CONSTEXPR UpdateReq_QueryEntry_DoNotUse(
       ::google::protobuf::internal::ConstantInitialized);
-  explicit UpdateRequest_QueryEntry_DoNotUse(::google::protobuf::Arena* arena);
-  static const UpdateRequest_QueryEntry_DoNotUse* internal_default_instance() {
-    return reinterpret_cast<const UpdateRequest_QueryEntry_DoNotUse*>(
-        &_UpdateRequest_QueryEntry_DoNotUse_default_instance_);
+  explicit UpdateReq_QueryEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const UpdateReq_QueryEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const UpdateReq_QueryEntry_DoNotUse*>(
+        &_UpdateReq_QueryEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.UpdateRequest.QueryEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.UpdateReq.QueryEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -338,27 +338,27 @@ class UpdateRequest_QueryEntry_DoNotUse final
 };
 // -------------------------------------------------------------------
 
-class UpdateRequest_DataEntry_DoNotUse final
+class UpdateReq_DataEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
-          UpdateRequest_DataEntry_DoNotUse, std::string, std::string,
+          UpdateReq_DataEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
           ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
-      UpdateRequest_DataEntry_DoNotUse, std::string, std::string,
+      UpdateReq_DataEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
-  UpdateRequest_DataEntry_DoNotUse();
+  UpdateReq_DataEntry_DoNotUse();
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR UpdateRequest_DataEntry_DoNotUse(
+  explicit PROTOBUF_CONSTEXPR UpdateReq_DataEntry_DoNotUse(
       ::google::protobuf::internal::ConstantInitialized);
-  explicit UpdateRequest_DataEntry_DoNotUse(::google::protobuf::Arena* arena);
-  static const UpdateRequest_DataEntry_DoNotUse* internal_default_instance() {
-    return reinterpret_cast<const UpdateRequest_DataEntry_DoNotUse*>(
-        &_UpdateRequest_DataEntry_DoNotUse_default_instance_);
+  explicit UpdateReq_DataEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const UpdateReq_DataEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const UpdateReq_DataEntry_DoNotUse*>(
+        &_UpdateReq_DataEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.UpdateRequest.DataEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.UpdateReq.DataEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -394,27 +394,27 @@ class Result_FieldsEntry_DoNotUse final
 };
 // -------------------------------------------------------------------
 
-class ReadRequest_QueryEntry_DoNotUse final
+class ReadReq_QueryEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
-          ReadRequest_QueryEntry_DoNotUse, std::string, std::string,
+          ReadReq_QueryEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
           ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
-      ReadRequest_QueryEntry_DoNotUse, std::string, std::string,
+      ReadReq_QueryEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
-  ReadRequest_QueryEntry_DoNotUse();
+  ReadReq_QueryEntry_DoNotUse();
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR ReadRequest_QueryEntry_DoNotUse(
+  explicit PROTOBUF_CONSTEXPR ReadReq_QueryEntry_DoNotUse(
       ::google::protobuf::internal::ConstantInitialized);
-  explicit ReadRequest_QueryEntry_DoNotUse(::google::protobuf::Arena* arena);
-  static const ReadRequest_QueryEntry_DoNotUse* internal_default_instance() {
-    return reinterpret_cast<const ReadRequest_QueryEntry_DoNotUse*>(
-        &_ReadRequest_QueryEntry_DoNotUse_default_instance_);
+  explicit ReadReq_QueryEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const ReadReq_QueryEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const ReadReq_QueryEntry_DoNotUse*>(
+        &_ReadReq_QueryEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.ReadRequest.QueryEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.ReadReq.QueryEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -422,26 +422,26 @@ class ReadRequest_QueryEntry_DoNotUse final
 };
 // -------------------------------------------------------------------
 
-class DeleteResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.DeleteResponse) */ {
+class DeleteRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.DeleteRes) */ {
  public:
-  inline DeleteResponse() : DeleteResponse(nullptr) {}
-  ~DeleteResponse() override;
+  inline DeleteRes() : DeleteRes(nullptr) {}
+  ~DeleteRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR DeleteResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR DeleteRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline DeleteResponse(const DeleteResponse& from)
-      : DeleteResponse(nullptr, from) {}
-  DeleteResponse(DeleteResponse&& from) noexcept
-    : DeleteResponse() {
+  inline DeleteRes(const DeleteRes& from)
+      : DeleteRes(nullptr, from) {}
+  DeleteRes(DeleteRes&& from) noexcept
+    : DeleteRes() {
     *this = ::std::move(from);
   }
 
-  inline DeleteResponse& operator=(const DeleteResponse& from) {
+  inline DeleteRes& operator=(const DeleteRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline DeleteResponse& operator=(DeleteResponse&& from) noexcept {
+  inline DeleteRes& operator=(DeleteRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -473,20 +473,20 @@ class DeleteResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const DeleteResponse& default_instance() {
+  static const DeleteRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const DeleteResponse* internal_default_instance() {
-    return reinterpret_cast<const DeleteResponse*>(
-               &_DeleteResponse_default_instance_);
+  static inline const DeleteRes* internal_default_instance() {
+    return reinterpret_cast<const DeleteRes*>(
+               &_DeleteRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     14;
 
-  friend void swap(DeleteResponse& a, DeleteResponse& b) {
+  friend void swap(DeleteRes& a, DeleteRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(DeleteResponse* other) {
+  inline void Swap(DeleteRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -499,7 +499,7 @@ class DeleteResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(DeleteResponse* other) {
+  void UnsafeArenaSwap(DeleteRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -507,14 +507,14 @@ class DeleteResponse final :
 
   // implements Message ----------------------------------------------
 
-  DeleteResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DeleteResponse>(arena);
+  DeleteRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const DeleteResponse& from);
+  void CopyFrom(const DeleteRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const DeleteResponse& from) {
-    DeleteResponse::MergeImpl(*this, from);
+  void MergeFrom( const DeleteRes& from) {
+    DeleteRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -532,16 +532,16 @@ class DeleteResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(DeleteResponse* other);
+  void InternalSwap(DeleteRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.DeleteResponse";
+    return "rpc_server.DeleteRes";
   }
   protected:
-  explicit DeleteResponse(::google::protobuf::Arena* arena);
-  DeleteResponse(::google::protobuf::Arena* arena, const DeleteResponse& from);
+  explicit DeleteRes(::google::protobuf::Arena* arena);
+  DeleteRes(::google::protobuf::Arena* arena, const DeleteRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -583,7 +583,7 @@ class DeleteResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.DeleteResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.DeleteRes)
  private:
   class _Internal;
 
@@ -615,27 +615,27 @@ class DeleteResponse final :
   friend struct ::TableStruct_server_5fdata_2eproto;
 };// -------------------------------------------------------------------
 
-class DeleteRequest_QueryEntry_DoNotUse final
+class DeleteReq_QueryEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
-          DeleteRequest_QueryEntry_DoNotUse, std::string, std::string,
+          DeleteReq_QueryEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
           ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
-      DeleteRequest_QueryEntry_DoNotUse, std::string, std::string,
+      DeleteReq_QueryEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
-  DeleteRequest_QueryEntry_DoNotUse();
+  DeleteReq_QueryEntry_DoNotUse();
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR DeleteRequest_QueryEntry_DoNotUse(
+  explicit PROTOBUF_CONSTEXPR DeleteReq_QueryEntry_DoNotUse(
       ::google::protobuf::internal::ConstantInitialized);
-  explicit DeleteRequest_QueryEntry_DoNotUse(::google::protobuf::Arena* arena);
-  static const DeleteRequest_QueryEntry_DoNotUse* internal_default_instance() {
-    return reinterpret_cast<const DeleteRequest_QueryEntry_DoNotUse*>(
-        &_DeleteRequest_QueryEntry_DoNotUse_default_instance_);
+  explicit DeleteReq_QueryEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const DeleteReq_QueryEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const DeleteReq_QueryEntry_DoNotUse*>(
+        &_DeleteReq_QueryEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.DeleteRequest.QueryEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.DeleteReq.QueryEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -643,26 +643,26 @@ class DeleteRequest_QueryEntry_DoNotUse final
 };
 // -------------------------------------------------------------------
 
-class CreateResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CreateResponse) */ {
+class CreateRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CreateRes) */ {
  public:
-  inline CreateResponse() : CreateResponse(nullptr) {}
-  ~CreateResponse() override;
+  inline CreateRes() : CreateRes(nullptr) {}
+  ~CreateRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR CreateResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR CreateRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline CreateResponse(const CreateResponse& from)
-      : CreateResponse(nullptr, from) {}
-  CreateResponse(CreateResponse&& from) noexcept
-    : CreateResponse() {
+  inline CreateRes(const CreateRes& from)
+      : CreateRes(nullptr, from) {}
+  CreateRes(CreateRes&& from) noexcept
+    : CreateRes() {
     *this = ::std::move(from);
   }
 
-  inline CreateResponse& operator=(const CreateResponse& from) {
+  inline CreateRes& operator=(const CreateRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline CreateResponse& operator=(CreateResponse&& from) noexcept {
+  inline CreateRes& operator=(CreateRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -694,20 +694,20 @@ class CreateResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const CreateResponse& default_instance() {
+  static const CreateRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const CreateResponse* internal_default_instance() {
-    return reinterpret_cast<const CreateResponse*>(
-               &_CreateResponse_default_instance_);
+  static inline const CreateRes* internal_default_instance() {
+    return reinterpret_cast<const CreateRes*>(
+               &_CreateRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(CreateResponse& a, CreateResponse& b) {
+  friend void swap(CreateRes& a, CreateRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(CreateResponse* other) {
+  inline void Swap(CreateRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -720,7 +720,7 @@ class CreateResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(CreateResponse* other) {
+  void UnsafeArenaSwap(CreateRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -728,14 +728,14 @@ class CreateResponse final :
 
   // implements Message ----------------------------------------------
 
-  CreateResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<CreateResponse>(arena);
+  CreateRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const CreateResponse& from);
+  void CopyFrom(const CreateRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const CreateResponse& from) {
-    CreateResponse::MergeImpl(*this, from);
+  void MergeFrom( const CreateRes& from) {
+    CreateRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -753,16 +753,16 @@ class CreateResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(CreateResponse* other);
+  void InternalSwap(CreateRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.CreateResponse";
+    return "rpc_server.CreateRes";
   }
   protected:
-  explicit CreateResponse(::google::protobuf::Arena* arena);
-  CreateResponse(::google::protobuf::Arena* arena, const CreateResponse& from);
+  explicit CreateRes(::google::protobuf::Arena* arena);
+  CreateRes(::google::protobuf::Arena* arena, const CreateRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -804,7 +804,7 @@ class CreateResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.CreateResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.CreateRes)
  private:
   class _Internal;
 
@@ -836,27 +836,27 @@ class CreateResponse final :
   friend struct ::TableStruct_server_5fdata_2eproto;
 };// -------------------------------------------------------------------
 
-class CreateRequest_DataEntry_DoNotUse final
+class CreateReq_DataEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
-          CreateRequest_DataEntry_DoNotUse, std::string, std::string,
+          CreateReq_DataEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
           ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
-      CreateRequest_DataEntry_DoNotUse, std::string, std::string,
+      CreateReq_DataEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
-  CreateRequest_DataEntry_DoNotUse();
+  CreateReq_DataEntry_DoNotUse();
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR CreateRequest_DataEntry_DoNotUse(
+  explicit PROTOBUF_CONSTEXPR CreateReq_DataEntry_DoNotUse(
       ::google::protobuf::internal::ConstantInitialized);
-  explicit CreateRequest_DataEntry_DoNotUse(::google::protobuf::Arena* arena);
-  static const CreateRequest_DataEntry_DoNotUse* internal_default_instance() {
-    return reinterpret_cast<const CreateRequest_DataEntry_DoNotUse*>(
-        &_CreateRequest_DataEntry_DoNotUse_default_instance_);
+  explicit CreateReq_DataEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const CreateReq_DataEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const CreateReq_DataEntry_DoNotUse*>(
+        &_CreateReq_DataEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.CreateRequest.DataEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.CreateReq.DataEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -864,26 +864,26 @@ class CreateRequest_DataEntry_DoNotUse final
 };
 // -------------------------------------------------------------------
 
-class UpdateRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UpdateRequest) */ {
+class UpdateReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UpdateReq) */ {
  public:
-  inline UpdateRequest() : UpdateRequest(nullptr) {}
-  ~UpdateRequest() override;
+  inline UpdateReq() : UpdateReq(nullptr) {}
+  ~UpdateReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR UpdateRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR UpdateReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline UpdateRequest(const UpdateRequest& from)
-      : UpdateRequest(nullptr, from) {}
-  UpdateRequest(UpdateRequest&& from) noexcept
-    : UpdateRequest() {
+  inline UpdateReq(const UpdateReq& from)
+      : UpdateReq(nullptr, from) {}
+  UpdateReq(UpdateReq&& from) noexcept
+    : UpdateReq() {
     *this = ::std::move(from);
   }
 
-  inline UpdateRequest& operator=(const UpdateRequest& from) {
+  inline UpdateReq& operator=(const UpdateReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline UpdateRequest& operator=(UpdateRequest&& from) noexcept {
+  inline UpdateReq& operator=(UpdateReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -915,20 +915,20 @@ class UpdateRequest final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const UpdateRequest& default_instance() {
+  static const UpdateReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const UpdateRequest* internal_default_instance() {
-    return reinterpret_cast<const UpdateRequest*>(
-               &_UpdateRequest_default_instance_);
+  static inline const UpdateReq* internal_default_instance() {
+    return reinterpret_cast<const UpdateReq*>(
+               &_UpdateReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     10;
 
-  friend void swap(UpdateRequest& a, UpdateRequest& b) {
+  friend void swap(UpdateReq& a, UpdateReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(UpdateRequest* other) {
+  inline void Swap(UpdateReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -941,7 +941,7 @@ class UpdateRequest final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(UpdateRequest* other) {
+  void UnsafeArenaSwap(UpdateReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -949,14 +949,14 @@ class UpdateRequest final :
 
   // implements Message ----------------------------------------------
 
-  UpdateRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<UpdateRequest>(arena);
+  UpdateReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UpdateReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const UpdateRequest& from);
+  void CopyFrom(const UpdateReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const UpdateRequest& from) {
-    UpdateRequest::MergeImpl(*this, from);
+  void MergeFrom( const UpdateReq& from) {
+    UpdateReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -974,16 +974,16 @@ class UpdateRequest final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(UpdateRequest* other);
+  void InternalSwap(UpdateReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.UpdateRequest";
+    return "rpc_server.UpdateReq";
   }
   protected:
-  explicit UpdateRequest(::google::protobuf::Arena* arena);
-  UpdateRequest(::google::protobuf::Arena* arena, const UpdateRequest& from);
+  explicit UpdateReq(::google::protobuf::Arena* arena);
+  UpdateReq(::google::protobuf::Arena* arena, const UpdateReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -1064,14 +1064,14 @@ class UpdateRequest final :
   std::string* _internal_mutable_table();
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.UpdateRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.UpdateReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 4, 2,
-      42, 2>
+      38, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1087,11 +1087,11 @@ class UpdateRequest final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::MapField<UpdateRequest_QueryEntry_DoNotUse, std::string, std::string,
+    ::google::protobuf::internal::MapField<UpdateReq_QueryEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
                       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         query_;
-    ::google::protobuf::internal::MapField<UpdateRequest_DataEntry_DoNotUse, std::string, std::string,
+    ::google::protobuf::internal::MapField<UpdateReq_DataEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
                       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         data_;
@@ -1288,26 +1288,26 @@ class Result final :
   friend struct ::TableStruct_server_5fdata_2eproto;
 };// -------------------------------------------------------------------
 
-class ReadRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ReadRequest) */ {
+class ReadReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ReadReq) */ {
  public:
-  inline ReadRequest() : ReadRequest(nullptr) {}
-  ~ReadRequest() override;
+  inline ReadReq() : ReadReq(nullptr) {}
+  ~ReadReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ReadRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR ReadReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline ReadRequest(const ReadRequest& from)
-      : ReadRequest(nullptr, from) {}
-  ReadRequest(ReadRequest&& from) noexcept
-    : ReadRequest() {
+  inline ReadReq(const ReadReq& from)
+      : ReadReq(nullptr, from) {}
+  ReadReq(ReadReq&& from) noexcept
+    : ReadReq() {
     *this = ::std::move(from);
   }
 
-  inline ReadRequest& operator=(const ReadRequest& from) {
+  inline ReadReq& operator=(const ReadReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ReadRequest& operator=(ReadRequest&& from) noexcept {
+  inline ReadReq& operator=(ReadReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1339,20 +1339,20 @@ class ReadRequest final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ReadRequest& default_instance() {
+  static const ReadReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ReadRequest* internal_default_instance() {
-    return reinterpret_cast<const ReadRequest*>(
-               &_ReadRequest_default_instance_);
+  static inline const ReadReq* internal_default_instance() {
+    return reinterpret_cast<const ReadReq*>(
+               &_ReadReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     4;
 
-  friend void swap(ReadRequest& a, ReadRequest& b) {
+  friend void swap(ReadReq& a, ReadReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(ReadRequest* other) {
+  inline void Swap(ReadReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -1365,7 +1365,7 @@ class ReadRequest final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ReadRequest* other) {
+  void UnsafeArenaSwap(ReadReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1373,14 +1373,14 @@ class ReadRequest final :
 
   // implements Message ----------------------------------------------
 
-  ReadRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ReadRequest>(arena);
+  ReadReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ReadReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ReadRequest& from);
+  void CopyFrom(const ReadReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ReadRequest& from) {
-    ReadRequest::MergeImpl(*this, from);
+  void MergeFrom( const ReadReq& from) {
+    ReadReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -1398,16 +1398,16 @@ class ReadRequest final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(ReadRequest* other);
+  void InternalSwap(ReadReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.ReadRequest";
+    return "rpc_server.ReadReq";
   }
   protected:
-  explicit ReadRequest(::google::protobuf::Arena* arena);
-  ReadRequest(::google::protobuf::Arena* arena, const ReadRequest& from);
+  explicit ReadReq(::google::protobuf::Arena* arena);
+  ReadReq(::google::protobuf::Arena* arena, const ReadReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -1472,14 +1472,14 @@ class ReadRequest final :
   std::string* _internal_mutable_table();
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.ReadRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.ReadReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      36, 2>
+      32, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1495,7 +1495,7 @@ class ReadRequest final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::MapField<ReadRequest_QueryEntry_DoNotUse, std::string, std::string,
+    ::google::protobuf::internal::MapField<ReadReq_QueryEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
                       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         query_;
@@ -1508,26 +1508,26 @@ class ReadRequest final :
   friend struct ::TableStruct_server_5fdata_2eproto;
 };// -------------------------------------------------------------------
 
-class DeleteRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.DeleteRequest) */ {
+class DeleteReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.DeleteReq) */ {
  public:
-  inline DeleteRequest() : DeleteRequest(nullptr) {}
-  ~DeleteRequest() override;
+  inline DeleteReq() : DeleteReq(nullptr) {}
+  ~DeleteReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR DeleteRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR DeleteReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline DeleteRequest(const DeleteRequest& from)
-      : DeleteRequest(nullptr, from) {}
-  DeleteRequest(DeleteRequest&& from) noexcept
-    : DeleteRequest() {
+  inline DeleteReq(const DeleteReq& from)
+      : DeleteReq(nullptr, from) {}
+  DeleteReq(DeleteReq&& from) noexcept
+    : DeleteReq() {
     *this = ::std::move(from);
   }
 
-  inline DeleteRequest& operator=(const DeleteRequest& from) {
+  inline DeleteReq& operator=(const DeleteReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline DeleteRequest& operator=(DeleteRequest&& from) noexcept {
+  inline DeleteReq& operator=(DeleteReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1559,20 +1559,20 @@ class DeleteRequest final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const DeleteRequest& default_instance() {
+  static const DeleteReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const DeleteRequest* internal_default_instance() {
-    return reinterpret_cast<const DeleteRequest*>(
-               &_DeleteRequest_default_instance_);
+  static inline const DeleteReq* internal_default_instance() {
+    return reinterpret_cast<const DeleteReq*>(
+               &_DeleteReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     13;
 
-  friend void swap(DeleteRequest& a, DeleteRequest& b) {
+  friend void swap(DeleteReq& a, DeleteReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(DeleteRequest* other) {
+  inline void Swap(DeleteReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -1585,7 +1585,7 @@ class DeleteRequest final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(DeleteRequest* other) {
+  void UnsafeArenaSwap(DeleteReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1593,14 +1593,14 @@ class DeleteRequest final :
 
   // implements Message ----------------------------------------------
 
-  DeleteRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DeleteRequest>(arena);
+  DeleteReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DeleteReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const DeleteRequest& from);
+  void CopyFrom(const DeleteReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const DeleteRequest& from) {
-    DeleteRequest::MergeImpl(*this, from);
+  void MergeFrom( const DeleteReq& from) {
+    DeleteReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -1618,16 +1618,16 @@ class DeleteRequest final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(DeleteRequest* other);
+  void InternalSwap(DeleteReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.DeleteRequest";
+    return "rpc_server.DeleteReq";
   }
   protected:
-  explicit DeleteRequest(::google::protobuf::Arena* arena);
-  DeleteRequest(::google::protobuf::Arena* arena, const DeleteRequest& from);
+  explicit DeleteReq(::google::protobuf::Arena* arena);
+  DeleteReq(::google::protobuf::Arena* arena, const DeleteReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -1692,14 +1692,14 @@ class DeleteRequest final :
   std::string* _internal_mutable_table();
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.DeleteRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.DeleteReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      38, 2>
+      34, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1715,7 +1715,7 @@ class DeleteRequest final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::MapField<DeleteRequest_QueryEntry_DoNotUse, std::string, std::string,
+    ::google::protobuf::internal::MapField<DeleteReq_QueryEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
                       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         query_;
@@ -1728,26 +1728,26 @@ class DeleteRequest final :
   friend struct ::TableStruct_server_5fdata_2eproto;
 };// -------------------------------------------------------------------
 
-class CreateRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CreateRequest) */ {
+class CreateReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CreateReq) */ {
  public:
-  inline CreateRequest() : CreateRequest(nullptr) {}
-  ~CreateRequest() override;
+  inline CreateReq() : CreateReq(nullptr) {}
+  ~CreateReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR CreateRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR CreateReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline CreateRequest(const CreateRequest& from)
-      : CreateRequest(nullptr, from) {}
-  CreateRequest(CreateRequest&& from) noexcept
-    : CreateRequest() {
+  inline CreateReq(const CreateReq& from)
+      : CreateReq(nullptr, from) {}
+  CreateReq(CreateReq&& from) noexcept
+    : CreateReq() {
     *this = ::std::move(from);
   }
 
-  inline CreateRequest& operator=(const CreateRequest& from) {
+  inline CreateReq& operator=(const CreateReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline CreateRequest& operator=(CreateRequest&& from) noexcept {
+  inline CreateReq& operator=(CreateReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1779,20 +1779,20 @@ class CreateRequest final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const CreateRequest& default_instance() {
+  static const CreateReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const CreateRequest* internal_default_instance() {
-    return reinterpret_cast<const CreateRequest*>(
-               &_CreateRequest_default_instance_);
+  static inline const CreateReq* internal_default_instance() {
+    return reinterpret_cast<const CreateReq*>(
+               &_CreateReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(CreateRequest& a, CreateRequest& b) {
+  friend void swap(CreateReq& a, CreateReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(CreateRequest* other) {
+  inline void Swap(CreateReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -1805,7 +1805,7 @@ class CreateRequest final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(CreateRequest* other) {
+  void UnsafeArenaSwap(CreateReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1813,14 +1813,14 @@ class CreateRequest final :
 
   // implements Message ----------------------------------------------
 
-  CreateRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<CreateRequest>(arena);
+  CreateReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const CreateRequest& from);
+  void CopyFrom(const CreateReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const CreateRequest& from) {
-    CreateRequest::MergeImpl(*this, from);
+  void MergeFrom( const CreateReq& from) {
+    CreateReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -1838,16 +1838,16 @@ class CreateRequest final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(CreateRequest* other);
+  void InternalSwap(CreateReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.CreateRequest";
+    return "rpc_server.CreateReq";
   }
   protected:
-  explicit CreateRequest(::google::protobuf::Arena* arena);
-  CreateRequest(::google::protobuf::Arena* arena, const CreateRequest& from);
+  explicit CreateReq(::google::protobuf::Arena* arena);
+  CreateReq(::google::protobuf::Arena* arena, const CreateReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -1912,14 +1912,14 @@ class CreateRequest final :
   std::string* _internal_mutable_table();
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.CreateRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.CreateReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      37, 2>
+      33, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1935,7 +1935,7 @@ class CreateRequest final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::MapField<CreateRequest_DataEntry_DoNotUse, std::string, std::string,
+    ::google::protobuf::internal::MapField<CreateReq_DataEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
                       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         data_;
@@ -1948,26 +1948,26 @@ class CreateRequest final :
   friend struct ::TableStruct_server_5fdata_2eproto;
 };// -------------------------------------------------------------------
 
-class ReadResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ReadResponse) */ {
+class ReadRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ReadRes) */ {
  public:
-  inline ReadResponse() : ReadResponse(nullptr) {}
-  ~ReadResponse() override;
+  inline ReadRes() : ReadRes(nullptr) {}
+  ~ReadRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ReadResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR ReadRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline ReadResponse(const ReadResponse& from)
-      : ReadResponse(nullptr, from) {}
-  ReadResponse(ReadResponse&& from) noexcept
-    : ReadResponse() {
+  inline ReadRes(const ReadRes& from)
+      : ReadRes(nullptr, from) {}
+  ReadRes(ReadRes&& from) noexcept
+    : ReadRes() {
     *this = ::std::move(from);
   }
 
-  inline ReadResponse& operator=(const ReadResponse& from) {
+  inline ReadRes& operator=(const ReadRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ReadResponse& operator=(ReadResponse&& from) noexcept {
+  inline ReadRes& operator=(ReadRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1999,20 +1999,20 @@ class ReadResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ReadResponse& default_instance() {
+  static const ReadRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ReadResponse* internal_default_instance() {
-    return reinterpret_cast<const ReadResponse*>(
-               &_ReadResponse_default_instance_);
+  static inline const ReadRes* internal_default_instance() {
+    return reinterpret_cast<const ReadRes*>(
+               &_ReadRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     5;
 
-  friend void swap(ReadResponse& a, ReadResponse& b) {
+  friend void swap(ReadRes& a, ReadRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(ReadResponse* other) {
+  inline void Swap(ReadRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -2025,7 +2025,7 @@ class ReadResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ReadResponse* other) {
+  void UnsafeArenaSwap(ReadRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -2033,14 +2033,14 @@ class ReadResponse final :
 
   // implements Message ----------------------------------------------
 
-  ReadResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ReadResponse>(arena);
+  ReadRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ReadRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ReadResponse& from);
+  void CopyFrom(const ReadRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ReadResponse& from) {
-    ReadResponse::MergeImpl(*this, from);
+  void MergeFrom( const ReadRes& from) {
+    ReadRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -2058,16 +2058,16 @@ class ReadResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(ReadResponse* other);
+  void InternalSwap(ReadRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.ReadResponse";
+    return "rpc_server.ReadRes";
   }
   protected:
-  explicit ReadResponse(::google::protobuf::Arena* arena);
-  ReadResponse(::google::protobuf::Arena* arena, const ReadResponse& from);
+  explicit ReadRes(::google::protobuf::Arena* arena);
+  ReadRes(::google::protobuf::Arena* arena, const ReadRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -2128,7 +2128,7 @@ class ReadResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.ReadResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.ReadRes)
  private:
   class _Internal;
 
@@ -2177,51 +2177,51 @@ class ReadResponse final :
 
 // -------------------------------------------------------------------
 
-// CreateRequest
+// CreateReq
 
 // bytes database = 1;
-inline void CreateRequest::clear_database() {
+inline void CreateReq::clear_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.ClearToEmpty();
 }
-inline const std::string& CreateRequest::database() const
+inline const std::string& CreateReq::database() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.CreateRequest.database)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateReq.database)
   return _internal_database();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void CreateRequest::set_database(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateReq::set_database(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.CreateRequest.database)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateReq.database)
 }
-inline std::string* CreateRequest::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateReq::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_database();
-  // @@protoc_insertion_point(field_mutable:rpc_server.CreateRequest.database)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateReq.database)
   return _s;
 }
-inline const std::string& CreateRequest::_internal_database() const {
+inline const std::string& CreateReq::_internal_database() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.database_.Get();
 }
-inline void CreateRequest::_internal_set_database(const std::string& value) {
+inline void CreateReq::_internal_set_database(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.Set(value, GetArena());
 }
-inline std::string* CreateRequest::_internal_mutable_database() {
+inline std::string* CreateReq::_internal_mutable_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.database_.Mutable( GetArena());
 }
-inline std::string* CreateRequest::release_database() {
+inline std::string* CreateReq::release_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.CreateRequest.database)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateReq.database)
   return _impl_.database_.Release();
 }
-inline void CreateRequest::set_allocated_database(std::string* value) {
+inline void CreateReq::set_allocated_database(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2229,52 +2229,52 @@ inline void CreateRequest::set_allocated_database(std::string* value) {
           _impl_.database_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateRequest.database)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateReq.database)
 }
 
 // bytes table = 2;
-inline void CreateRequest::clear_table() {
+inline void CreateReq::clear_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.ClearToEmpty();
 }
-inline const std::string& CreateRequest::table() const
+inline const std::string& CreateReq::table() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.CreateRequest.table)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateReq.table)
   return _internal_table();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void CreateRequest::set_table(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateReq::set_table(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.CreateRequest.table)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateReq.table)
 }
-inline std::string* CreateRequest::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateReq::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_table();
-  // @@protoc_insertion_point(field_mutable:rpc_server.CreateRequest.table)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateReq.table)
   return _s;
 }
-inline const std::string& CreateRequest::_internal_table() const {
+inline const std::string& CreateReq::_internal_table() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.table_.Get();
 }
-inline void CreateRequest::_internal_set_table(const std::string& value) {
+inline void CreateReq::_internal_set_table(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.Set(value, GetArena());
 }
-inline std::string* CreateRequest::_internal_mutable_table() {
+inline std::string* CreateReq::_internal_mutable_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.table_.Mutable( GetArena());
 }
-inline std::string* CreateRequest::release_table() {
+inline std::string* CreateReq::release_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.CreateRequest.table)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateReq.table)
   return _impl_.table_.Release();
 }
-inline void CreateRequest::set_allocated_table(std::string* value) {
+inline void CreateReq::set_allocated_table(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2282,107 +2282,107 @@ inline void CreateRequest::set_allocated_table(std::string* value) {
           _impl_.table_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateRequest.table)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateReq.table)
 }
 
 // map<string, bytes> data = 3;
-inline int CreateRequest::_internal_data_size() const {
+inline int CreateReq::_internal_data_size() const {
   return _internal_data().size();
 }
-inline int CreateRequest::data_size() const {
+inline int CreateReq::data_size() const {
   return _internal_data_size();
 }
-inline void CreateRequest::clear_data() {
+inline void CreateReq::clear_data() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.data_.Clear();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& CreateRequest::_internal_data() const {
+inline const ::google::protobuf::Map<std::string, std::string>& CreateReq::_internal_data() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.data_.GetMap();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& CreateRequest::data() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:rpc_server.CreateRequest.data)
+inline const ::google::protobuf::Map<std::string, std::string>& CreateReq::data() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:rpc_server.CreateReq.data)
   return _internal_data();
 }
-inline ::google::protobuf::Map<std::string, std::string>* CreateRequest::_internal_mutable_data() {
+inline ::google::protobuf::Map<std::string, std::string>* CreateReq::_internal_mutable_data() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _impl_.data_.MutableMap();
 }
-inline ::google::protobuf::Map<std::string, std::string>* CreateRequest::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:rpc_server.CreateRequest.data)
+inline ::google::protobuf::Map<std::string, std::string>* CreateReq::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.CreateReq.data)
   return _internal_mutable_data();
 }
 
 // -------------------------------------------------------------------
 
-// CreateResponse
+// CreateRes
 
 // bool success = 1;
-inline void CreateResponse::clear_success() {
+inline void CreateRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool CreateResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.CreateResponse.success)
+inline bool CreateRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.CreateRes.success)
   return _internal_success();
 }
-inline void CreateResponse::set_success(bool value) {
+inline void CreateRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.CreateResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateRes.success)
 }
-inline bool CreateResponse::_internal_success() const {
+inline bool CreateRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void CreateResponse::_internal_set_success(bool value) {
+inline void CreateRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // bytes message = 2;
-inline void CreateResponse::clear_message() {
+inline void CreateRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& CreateResponse::message() const
+inline const std::string& CreateRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.CreateResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void CreateResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.CreateResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateRes.message)
 }
-inline std::string* CreateResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.CreateResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateRes.message)
   return _s;
 }
-inline const std::string& CreateResponse::_internal_message() const {
+inline const std::string& CreateRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void CreateResponse::_internal_set_message(const std::string& value) {
+inline void CreateRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* CreateResponse::_internal_mutable_message() {
+inline std::string* CreateRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* CreateResponse::release_message() {
+inline std::string* CreateRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.CreateResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateRes.message)
   return _impl_.message_.Release();
 }
-inline void CreateResponse::set_allocated_message(std::string* value) {
+inline void CreateRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2390,58 +2390,58 @@ inline void CreateResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateRes.message)
 }
 
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
 
-// ReadRequest
+// ReadReq
 
 // bytes database = 1;
-inline void ReadRequest::clear_database() {
+inline void ReadReq::clear_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.ClearToEmpty();
 }
-inline const std::string& ReadRequest::database() const
+inline const std::string& ReadReq::database() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.ReadRequest.database)
+  // @@protoc_insertion_point(field_get:rpc_server.ReadReq.database)
   return _internal_database();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ReadRequest::set_database(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void ReadReq::set_database(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.ReadRequest.database)
+  // @@protoc_insertion_point(field_set:rpc_server.ReadReq.database)
 }
-inline std::string* ReadRequest::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* ReadReq::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_database();
-  // @@protoc_insertion_point(field_mutable:rpc_server.ReadRequest.database)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ReadReq.database)
   return _s;
 }
-inline const std::string& ReadRequest::_internal_database() const {
+inline const std::string& ReadReq::_internal_database() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.database_.Get();
 }
-inline void ReadRequest::_internal_set_database(const std::string& value) {
+inline void ReadReq::_internal_set_database(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.Set(value, GetArena());
 }
-inline std::string* ReadRequest::_internal_mutable_database() {
+inline std::string* ReadReq::_internal_mutable_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.database_.Mutable( GetArena());
 }
-inline std::string* ReadRequest::release_database() {
+inline std::string* ReadReq::release_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.ReadRequest.database)
+  // @@protoc_insertion_point(field_release:rpc_server.ReadReq.database)
   return _impl_.database_.Release();
 }
-inline void ReadRequest::set_allocated_database(std::string* value) {
+inline void ReadReq::set_allocated_database(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2449,52 +2449,52 @@ inline void ReadRequest::set_allocated_database(std::string* value) {
           _impl_.database_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.ReadRequest.database)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.ReadReq.database)
 }
 
 // bytes table = 2;
-inline void ReadRequest::clear_table() {
+inline void ReadReq::clear_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.ClearToEmpty();
 }
-inline const std::string& ReadRequest::table() const
+inline const std::string& ReadReq::table() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.ReadRequest.table)
+  // @@protoc_insertion_point(field_get:rpc_server.ReadReq.table)
   return _internal_table();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ReadRequest::set_table(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void ReadReq::set_table(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.ReadRequest.table)
+  // @@protoc_insertion_point(field_set:rpc_server.ReadReq.table)
 }
-inline std::string* ReadRequest::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* ReadReq::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_table();
-  // @@protoc_insertion_point(field_mutable:rpc_server.ReadRequest.table)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ReadReq.table)
   return _s;
 }
-inline const std::string& ReadRequest::_internal_table() const {
+inline const std::string& ReadReq::_internal_table() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.table_.Get();
 }
-inline void ReadRequest::_internal_set_table(const std::string& value) {
+inline void ReadReq::_internal_set_table(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.Set(value, GetArena());
 }
-inline std::string* ReadRequest::_internal_mutable_table() {
+inline std::string* ReadReq::_internal_mutable_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.table_.Mutable( GetArena());
 }
-inline std::string* ReadRequest::release_table() {
+inline std::string* ReadReq::release_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.ReadRequest.table)
+  // @@protoc_insertion_point(field_release:rpc_server.ReadReq.table)
   return _impl_.table_.Release();
 }
-inline void ReadRequest::set_allocated_table(std::string* value) {
+inline void ReadReq::set_allocated_table(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2502,107 +2502,107 @@ inline void ReadRequest::set_allocated_table(std::string* value) {
           _impl_.table_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.ReadRequest.table)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.ReadReq.table)
 }
 
 // map<string, bytes> query = 3;
-inline int ReadRequest::_internal_query_size() const {
+inline int ReadReq::_internal_query_size() const {
   return _internal_query().size();
 }
-inline int ReadRequest::query_size() const {
+inline int ReadReq::query_size() const {
   return _internal_query_size();
 }
-inline void ReadRequest::clear_query() {
+inline void ReadReq::clear_query() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.query_.Clear();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& ReadRequest::_internal_query() const {
+inline const ::google::protobuf::Map<std::string, std::string>& ReadReq::_internal_query() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.query_.GetMap();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& ReadRequest::query() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:rpc_server.ReadRequest.query)
+inline const ::google::protobuf::Map<std::string, std::string>& ReadReq::query() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:rpc_server.ReadReq.query)
   return _internal_query();
 }
-inline ::google::protobuf::Map<std::string, std::string>* ReadRequest::_internal_mutable_query() {
+inline ::google::protobuf::Map<std::string, std::string>* ReadReq::_internal_mutable_query() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _impl_.query_.MutableMap();
 }
-inline ::google::protobuf::Map<std::string, std::string>* ReadRequest::mutable_query() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:rpc_server.ReadRequest.query)
+inline ::google::protobuf::Map<std::string, std::string>* ReadReq::mutable_query() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.ReadReq.query)
   return _internal_mutable_query();
 }
 
 // -------------------------------------------------------------------
 
-// ReadResponse
+// ReadRes
 
 // bool success = 1;
-inline void ReadResponse::clear_success() {
+inline void ReadRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool ReadResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.ReadResponse.success)
+inline bool ReadRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.ReadRes.success)
   return _internal_success();
 }
-inline void ReadResponse::set_success(bool value) {
+inline void ReadRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.ReadResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.ReadRes.success)
 }
-inline bool ReadResponse::_internal_success() const {
+inline bool ReadRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void ReadResponse::_internal_set_success(bool value) {
+inline void ReadRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // bytes message = 2;
-inline void ReadResponse::clear_message() {
+inline void ReadRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& ReadResponse::message() const
+inline const std::string& ReadRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.ReadResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.ReadRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ReadResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void ReadRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.ReadResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.ReadRes.message)
 }
-inline std::string* ReadResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* ReadRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.ReadResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ReadRes.message)
   return _s;
 }
-inline const std::string& ReadResponse::_internal_message() const {
+inline const std::string& ReadRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void ReadResponse::_internal_set_message(const std::string& value) {
+inline void ReadRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* ReadResponse::_internal_mutable_message() {
+inline std::string* ReadRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* ReadResponse::release_message() {
+inline std::string* ReadRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.ReadResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.ReadRes.message)
   return _impl_.message_.Release();
 }
-inline void ReadResponse::set_allocated_message(std::string* value) {
+inline void ReadRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2610,54 +2610,54 @@ inline void ReadResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.ReadResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.ReadRes.message)
 }
 
 // repeated .rpc_server.Result results = 3;
-inline int ReadResponse::_internal_results_size() const {
+inline int ReadRes::_internal_results_size() const {
   return _internal_results().size();
 }
-inline int ReadResponse::results_size() const {
+inline int ReadRes::results_size() const {
   return _internal_results_size();
 }
-inline void ReadResponse::clear_results() {
+inline void ReadRes::clear_results() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.results_.Clear();
 }
-inline ::rpc_server::Result* ReadResponse::mutable_results(int index)
+inline ::rpc_server::Result* ReadRes::mutable_results(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:rpc_server.ReadResponse.results)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ReadRes.results)
   return _internal_mutable_results()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::rpc_server::Result>* ReadResponse::mutable_results()
+inline ::google::protobuf::RepeatedPtrField<::rpc_server::Result>* ReadRes::mutable_results()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:rpc_server.ReadResponse.results)
+  // @@protoc_insertion_point(field_mutable_list:rpc_server.ReadRes.results)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_results();
 }
-inline const ::rpc_server::Result& ReadResponse::results(int index) const
+inline const ::rpc_server::Result& ReadRes::results(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.ReadResponse.results)
+  // @@protoc_insertion_point(field_get:rpc_server.ReadRes.results)
   return _internal_results().Get(index);
 }
-inline ::rpc_server::Result* ReadResponse::add_results() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::rpc_server::Result* ReadRes::add_results() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::rpc_server::Result* _add = _internal_mutable_results()->Add();
-  // @@protoc_insertion_point(field_add:rpc_server.ReadResponse.results)
+  // @@protoc_insertion_point(field_add:rpc_server.ReadRes.results)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::rpc_server::Result>& ReadResponse::results() const
+inline const ::google::protobuf::RepeatedPtrField<::rpc_server::Result>& ReadRes::results() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:rpc_server.ReadResponse.results)
+  // @@protoc_insertion_point(field_list:rpc_server.ReadRes.results)
   return _internal_results();
 }
 inline const ::google::protobuf::RepeatedPtrField<::rpc_server::Result>&
-ReadResponse::_internal_results() const {
+ReadRes::_internal_results() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.results_;
 }
 inline ::google::protobuf::RepeatedPtrField<::rpc_server::Result>*
-ReadResponse::_internal_mutable_results() {
+ReadRes::_internal_mutable_results() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.results_;
 }
@@ -2702,51 +2702,51 @@ inline ::google::protobuf::Map<std::string, std::string>* Result::mutable_fields
 
 // -------------------------------------------------------------------
 
-// UpdateRequest
+// UpdateReq
 
 // bytes database = 1;
-inline void UpdateRequest::clear_database() {
+inline void UpdateReq::clear_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.ClearToEmpty();
 }
-inline const std::string& UpdateRequest::database() const
+inline const std::string& UpdateReq::database() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UpdateRequest.database)
+  // @@protoc_insertion_point(field_get:rpc_server.UpdateReq.database)
   return _internal_database();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UpdateRequest::set_database(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void UpdateReq::set_database(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UpdateRequest.database)
+  // @@protoc_insertion_point(field_set:rpc_server.UpdateReq.database)
 }
-inline std::string* UpdateRequest::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* UpdateReq::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_database();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UpdateRequest.database)
+  // @@protoc_insertion_point(field_mutable:rpc_server.UpdateReq.database)
   return _s;
 }
-inline const std::string& UpdateRequest::_internal_database() const {
+inline const std::string& UpdateReq::_internal_database() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.database_.Get();
 }
-inline void UpdateRequest::_internal_set_database(const std::string& value) {
+inline void UpdateReq::_internal_set_database(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.Set(value, GetArena());
 }
-inline std::string* UpdateRequest::_internal_mutable_database() {
+inline std::string* UpdateReq::_internal_mutable_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.database_.Mutable( GetArena());
 }
-inline std::string* UpdateRequest::release_database() {
+inline std::string* UpdateReq::release_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UpdateRequest.database)
+  // @@protoc_insertion_point(field_release:rpc_server.UpdateReq.database)
   return _impl_.database_.Release();
 }
-inline void UpdateRequest::set_allocated_database(std::string* value) {
+inline void UpdateReq::set_allocated_database(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2754,52 +2754,52 @@ inline void UpdateRequest::set_allocated_database(std::string* value) {
           _impl_.database_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UpdateRequest.database)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UpdateReq.database)
 }
 
 // bytes table = 2;
-inline void UpdateRequest::clear_table() {
+inline void UpdateReq::clear_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.ClearToEmpty();
 }
-inline const std::string& UpdateRequest::table() const
+inline const std::string& UpdateReq::table() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UpdateRequest.table)
+  // @@protoc_insertion_point(field_get:rpc_server.UpdateReq.table)
   return _internal_table();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UpdateRequest::set_table(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void UpdateReq::set_table(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UpdateRequest.table)
+  // @@protoc_insertion_point(field_set:rpc_server.UpdateReq.table)
 }
-inline std::string* UpdateRequest::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* UpdateReq::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_table();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UpdateRequest.table)
+  // @@protoc_insertion_point(field_mutable:rpc_server.UpdateReq.table)
   return _s;
 }
-inline const std::string& UpdateRequest::_internal_table() const {
+inline const std::string& UpdateReq::_internal_table() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.table_.Get();
 }
-inline void UpdateRequest::_internal_set_table(const std::string& value) {
+inline void UpdateReq::_internal_set_table(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.Set(value, GetArena());
 }
-inline std::string* UpdateRequest::_internal_mutable_table() {
+inline std::string* UpdateReq::_internal_mutable_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.table_.Mutable( GetArena());
 }
-inline std::string* UpdateRequest::release_table() {
+inline std::string* UpdateReq::release_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UpdateRequest.table)
+  // @@protoc_insertion_point(field_release:rpc_server.UpdateReq.table)
   return _impl_.table_.Release();
 }
-inline void UpdateRequest::set_allocated_table(std::string* value) {
+inline void UpdateReq::set_allocated_table(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2807,135 +2807,135 @@ inline void UpdateRequest::set_allocated_table(std::string* value) {
           _impl_.table_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UpdateRequest.table)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UpdateReq.table)
 }
 
 // map<string, bytes> query = 3;
-inline int UpdateRequest::_internal_query_size() const {
+inline int UpdateReq::_internal_query_size() const {
   return _internal_query().size();
 }
-inline int UpdateRequest::query_size() const {
+inline int UpdateReq::query_size() const {
   return _internal_query_size();
 }
-inline void UpdateRequest::clear_query() {
+inline void UpdateReq::clear_query() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.query_.Clear();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& UpdateRequest::_internal_query() const {
+inline const ::google::protobuf::Map<std::string, std::string>& UpdateReq::_internal_query() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.query_.GetMap();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& UpdateRequest::query() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:rpc_server.UpdateRequest.query)
+inline const ::google::protobuf::Map<std::string, std::string>& UpdateReq::query() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:rpc_server.UpdateReq.query)
   return _internal_query();
 }
-inline ::google::protobuf::Map<std::string, std::string>* UpdateRequest::_internal_mutable_query() {
+inline ::google::protobuf::Map<std::string, std::string>* UpdateReq::_internal_mutable_query() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _impl_.query_.MutableMap();
 }
-inline ::google::protobuf::Map<std::string, std::string>* UpdateRequest::mutable_query() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:rpc_server.UpdateRequest.query)
+inline ::google::protobuf::Map<std::string, std::string>* UpdateReq::mutable_query() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.UpdateReq.query)
   return _internal_mutable_query();
 }
 
 // map<string, bytes> data = 4;
-inline int UpdateRequest::_internal_data_size() const {
+inline int UpdateReq::_internal_data_size() const {
   return _internal_data().size();
 }
-inline int UpdateRequest::data_size() const {
+inline int UpdateReq::data_size() const {
   return _internal_data_size();
 }
-inline void UpdateRequest::clear_data() {
+inline void UpdateReq::clear_data() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.data_.Clear();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& UpdateRequest::_internal_data() const {
+inline const ::google::protobuf::Map<std::string, std::string>& UpdateReq::_internal_data() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.data_.GetMap();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& UpdateRequest::data() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:rpc_server.UpdateRequest.data)
+inline const ::google::protobuf::Map<std::string, std::string>& UpdateReq::data() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:rpc_server.UpdateReq.data)
   return _internal_data();
 }
-inline ::google::protobuf::Map<std::string, std::string>* UpdateRequest::_internal_mutable_data() {
+inline ::google::protobuf::Map<std::string, std::string>* UpdateReq::_internal_mutable_data() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _impl_.data_.MutableMap();
 }
-inline ::google::protobuf::Map<std::string, std::string>* UpdateRequest::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:rpc_server.UpdateRequest.data)
+inline ::google::protobuf::Map<std::string, std::string>* UpdateReq::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.UpdateReq.data)
   return _internal_mutable_data();
 }
 
 // -------------------------------------------------------------------
 
-// UpdateResponse
+// UpdateRes
 
 // bool success = 1;
-inline void UpdateResponse::clear_success() {
+inline void UpdateRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool UpdateResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.UpdateResponse.success)
+inline bool UpdateRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.UpdateRes.success)
   return _internal_success();
 }
-inline void UpdateResponse::set_success(bool value) {
+inline void UpdateRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.UpdateResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.UpdateRes.success)
 }
-inline bool UpdateResponse::_internal_success() const {
+inline bool UpdateRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void UpdateResponse::_internal_set_success(bool value) {
+inline void UpdateRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // bytes message = 2;
-inline void UpdateResponse::clear_message() {
+inline void UpdateRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& UpdateResponse::message() const
+inline const std::string& UpdateRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UpdateResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.UpdateRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UpdateResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void UpdateRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UpdateResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.UpdateRes.message)
 }
-inline std::string* UpdateResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* UpdateRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UpdateResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.UpdateRes.message)
   return _s;
 }
-inline const std::string& UpdateResponse::_internal_message() const {
+inline const std::string& UpdateRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void UpdateResponse::_internal_set_message(const std::string& value) {
+inline void UpdateRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* UpdateResponse::_internal_mutable_message() {
+inline std::string* UpdateRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* UpdateResponse::release_message() {
+inline std::string* UpdateRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UpdateResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.UpdateRes.message)
   return _impl_.message_.Release();
 }
-inline void UpdateResponse::set_allocated_message(std::string* value) {
+inline void UpdateRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2943,58 +2943,58 @@ inline void UpdateResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UpdateResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UpdateRes.message)
 }
 
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
 
-// DeleteRequest
+// DeleteReq
 
 // bytes database = 1;
-inline void DeleteRequest::clear_database() {
+inline void DeleteReq::clear_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.ClearToEmpty();
 }
-inline const std::string& DeleteRequest::database() const
+inline const std::string& DeleteReq::database() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.DeleteRequest.database)
+  // @@protoc_insertion_point(field_get:rpc_server.DeleteReq.database)
   return _internal_database();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DeleteRequest::set_database(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void DeleteReq::set_database(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.DeleteRequest.database)
+  // @@protoc_insertion_point(field_set:rpc_server.DeleteReq.database)
 }
-inline std::string* DeleteRequest::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* DeleteReq::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_database();
-  // @@protoc_insertion_point(field_mutable:rpc_server.DeleteRequest.database)
+  // @@protoc_insertion_point(field_mutable:rpc_server.DeleteReq.database)
   return _s;
 }
-inline const std::string& DeleteRequest::_internal_database() const {
+inline const std::string& DeleteReq::_internal_database() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.database_.Get();
 }
-inline void DeleteRequest::_internal_set_database(const std::string& value) {
+inline void DeleteReq::_internal_set_database(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.Set(value, GetArena());
 }
-inline std::string* DeleteRequest::_internal_mutable_database() {
+inline std::string* DeleteReq::_internal_mutable_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.database_.Mutable( GetArena());
 }
-inline std::string* DeleteRequest::release_database() {
+inline std::string* DeleteReq::release_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.DeleteRequest.database)
+  // @@protoc_insertion_point(field_release:rpc_server.DeleteReq.database)
   return _impl_.database_.Release();
 }
-inline void DeleteRequest::set_allocated_database(std::string* value) {
+inline void DeleteReq::set_allocated_database(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -3002,52 +3002,52 @@ inline void DeleteRequest::set_allocated_database(std::string* value) {
           _impl_.database_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.DeleteRequest.database)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.DeleteReq.database)
 }
 
 // bytes table = 2;
-inline void DeleteRequest::clear_table() {
+inline void DeleteReq::clear_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.ClearToEmpty();
 }
-inline const std::string& DeleteRequest::table() const
+inline const std::string& DeleteReq::table() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.DeleteRequest.table)
+  // @@protoc_insertion_point(field_get:rpc_server.DeleteReq.table)
   return _internal_table();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DeleteRequest::set_table(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void DeleteReq::set_table(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.DeleteRequest.table)
+  // @@protoc_insertion_point(field_set:rpc_server.DeleteReq.table)
 }
-inline std::string* DeleteRequest::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* DeleteReq::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_table();
-  // @@protoc_insertion_point(field_mutable:rpc_server.DeleteRequest.table)
+  // @@protoc_insertion_point(field_mutable:rpc_server.DeleteReq.table)
   return _s;
 }
-inline const std::string& DeleteRequest::_internal_table() const {
+inline const std::string& DeleteReq::_internal_table() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.table_.Get();
 }
-inline void DeleteRequest::_internal_set_table(const std::string& value) {
+inline void DeleteReq::_internal_set_table(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.Set(value, GetArena());
 }
-inline std::string* DeleteRequest::_internal_mutable_table() {
+inline std::string* DeleteReq::_internal_mutable_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.table_.Mutable( GetArena());
 }
-inline std::string* DeleteRequest::release_table() {
+inline std::string* DeleteReq::release_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.DeleteRequest.table)
+  // @@protoc_insertion_point(field_release:rpc_server.DeleteReq.table)
   return _impl_.table_.Release();
 }
-inline void DeleteRequest::set_allocated_table(std::string* value) {
+inline void DeleteReq::set_allocated_table(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -3055,107 +3055,107 @@ inline void DeleteRequest::set_allocated_table(std::string* value) {
           _impl_.table_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.DeleteRequest.table)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.DeleteReq.table)
 }
 
 // map<string, bytes> query = 3;
-inline int DeleteRequest::_internal_query_size() const {
+inline int DeleteReq::_internal_query_size() const {
   return _internal_query().size();
 }
-inline int DeleteRequest::query_size() const {
+inline int DeleteReq::query_size() const {
   return _internal_query_size();
 }
-inline void DeleteRequest::clear_query() {
+inline void DeleteReq::clear_query() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.query_.Clear();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& DeleteRequest::_internal_query() const {
+inline const ::google::protobuf::Map<std::string, std::string>& DeleteReq::_internal_query() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.query_.GetMap();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& DeleteRequest::query() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:rpc_server.DeleteRequest.query)
+inline const ::google::protobuf::Map<std::string, std::string>& DeleteReq::query() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:rpc_server.DeleteReq.query)
   return _internal_query();
 }
-inline ::google::protobuf::Map<std::string, std::string>* DeleteRequest::_internal_mutable_query() {
+inline ::google::protobuf::Map<std::string, std::string>* DeleteReq::_internal_mutable_query() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _impl_.query_.MutableMap();
 }
-inline ::google::protobuf::Map<std::string, std::string>* DeleteRequest::mutable_query() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:rpc_server.DeleteRequest.query)
+inline ::google::protobuf::Map<std::string, std::string>* DeleteReq::mutable_query() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.DeleteReq.query)
   return _internal_mutable_query();
 }
 
 // -------------------------------------------------------------------
 
-// DeleteResponse
+// DeleteRes
 
 // bool success = 1;
-inline void DeleteResponse::clear_success() {
+inline void DeleteRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool DeleteResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.DeleteResponse.success)
+inline bool DeleteRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.DeleteRes.success)
   return _internal_success();
 }
-inline void DeleteResponse::set_success(bool value) {
+inline void DeleteRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.DeleteResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.DeleteRes.success)
 }
-inline bool DeleteResponse::_internal_success() const {
+inline bool DeleteRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void DeleteResponse::_internal_set_success(bool value) {
+inline void DeleteRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // bytes message = 2;
-inline void DeleteResponse::clear_message() {
+inline void DeleteRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& DeleteResponse::message() const
+inline const std::string& DeleteRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.DeleteResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.DeleteRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void DeleteResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void DeleteRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.DeleteResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.DeleteRes.message)
 }
-inline std::string* DeleteResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* DeleteRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.DeleteResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.DeleteRes.message)
   return _s;
 }
-inline const std::string& DeleteResponse::_internal_message() const {
+inline const std::string& DeleteRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void DeleteResponse::_internal_set_message(const std::string& value) {
+inline void DeleteRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* DeleteResponse::_internal_mutable_message() {
+inline std::string* DeleteRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* DeleteResponse::release_message() {
+inline std::string* DeleteRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.DeleteResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.DeleteRes.message)
   return _impl_.message_.Release();
 }
-inline void DeleteResponse::set_allocated_message(std::string* value) {
+inline void DeleteRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -3163,7 +3163,7 @@ inline void DeleteResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.DeleteResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.DeleteRes.message)
 }
 
 #ifdef __GNUC__

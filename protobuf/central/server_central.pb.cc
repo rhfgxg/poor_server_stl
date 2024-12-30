@@ -22,7 +22,7 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace rpc_server {
 
-inline constexpr UnregisterServerResponse::Impl_::Impl_(
+inline constexpr UnregisterServerRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -31,20 +31,20 @@ inline constexpr UnregisterServerResponse::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR UnregisterServerResponse::UnregisterServerResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR UnregisterServerRes::UnregisterServerRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct UnregisterServerResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UnregisterServerResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UnregisterServerResponseDefaultTypeInternal() {}
+struct UnregisterServerResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UnregisterServerResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UnregisterServerResDefaultTypeInternal() {}
   union {
-    UnregisterServerResponse _instance;
+    UnregisterServerRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UnregisterServerResponseDefaultTypeInternal _UnregisterServerResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UnregisterServerResDefaultTypeInternal _UnregisterServerRes_default_instance_;
 
-inline constexpr UnregisterServerRequest::Impl_::Impl_(
+inline constexpr UnregisterServerReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : address_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -56,20 +56,20 @@ inline constexpr UnregisterServerRequest::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR UnregisterServerRequest::UnregisterServerRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR UnregisterServerReq::UnregisterServerReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct UnregisterServerRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UnregisterServerRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UnregisterServerRequestDefaultTypeInternal() {}
+struct UnregisterServerReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UnregisterServerReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UnregisterServerReqDefaultTypeInternal() {}
   union {
-    UnregisterServerRequest _instance;
+    UnregisterServerReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UnregisterServerRequestDefaultTypeInternal _UnregisterServerRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UnregisterServerReqDefaultTypeInternal _UnregisterServerReq_default_instance_;
 
-inline constexpr RegisterServerResponse::Impl_::Impl_(
+inline constexpr RegisterServerRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -78,20 +78,20 @@ inline constexpr RegisterServerResponse::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR RegisterServerResponse::RegisterServerResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR RegisterServerRes::RegisterServerRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct RegisterServerResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RegisterServerResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RegisterServerResponseDefaultTypeInternal() {}
+struct RegisterServerResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RegisterServerResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RegisterServerResDefaultTypeInternal() {}
   union {
-    RegisterServerResponse _instance;
+    RegisterServerRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RegisterServerResponseDefaultTypeInternal _RegisterServerResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RegisterServerResDefaultTypeInternal _RegisterServerRes_default_instance_;
 
-inline constexpr RegisterServerRequest::Impl_::Impl_(
+inline constexpr RegisterServerReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : address_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -103,20 +103,20 @@ inline constexpr RegisterServerRequest::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR RegisterServerRequest::RegisterServerRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR RegisterServerReq::RegisterServerReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct RegisterServerRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RegisterServerRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RegisterServerRequestDefaultTypeInternal() {}
+struct RegisterServerReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RegisterServerReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~RegisterServerReqDefaultTypeInternal() {}
   union {
-    RegisterServerRequest _instance;
+    RegisterServerReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RegisterServerRequestDefaultTypeInternal _RegisterServerRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RegisterServerReqDefaultTypeInternal _RegisterServerReq_default_instance_;
 
-inline constexpr HeartbeatResponse::Impl_::Impl_(
+inline constexpr HeartbeatRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -125,20 +125,20 @@ inline constexpr HeartbeatResponse::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR HeartbeatResponse::HeartbeatResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR HeartbeatRes::HeartbeatRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct HeartbeatResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR HeartbeatResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~HeartbeatResponseDefaultTypeInternal() {}
+struct HeartbeatResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR HeartbeatResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~HeartbeatResDefaultTypeInternal() {}
   union {
-    HeartbeatResponse _instance;
+    HeartbeatRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HeartbeatResponseDefaultTypeInternal _HeartbeatResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HeartbeatResDefaultTypeInternal _HeartbeatRes_default_instance_;
 
-inline constexpr HeartbeatRequest::Impl_::Impl_(
+inline constexpr HeartbeatReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : address_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -150,37 +150,37 @@ inline constexpr HeartbeatRequest::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR HeartbeatRequest::HeartbeatRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR HeartbeatReq::HeartbeatReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct HeartbeatRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR HeartbeatRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~HeartbeatRequestDefaultTypeInternal() {}
+struct HeartbeatReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR HeartbeatReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~HeartbeatReqDefaultTypeInternal() {}
   union {
-    HeartbeatRequest _instance;
+    HeartbeatReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HeartbeatRequestDefaultTypeInternal _HeartbeatRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HeartbeatReqDefaultTypeInternal _HeartbeatReq_default_instance_;
 
-inline constexpr ConnectPoorRequest::Impl_::Impl_(
+inline constexpr ConnectPoorReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : server_type_{static_cast< ::rpc_server::ServerType >(0)},
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR ConnectPoorRequest::ConnectPoorRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR ConnectPoorReq::ConnectPoorReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct ConnectPoorRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ConnectPoorRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ConnectPoorRequestDefaultTypeInternal() {}
+struct ConnectPoorReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ConnectPoorReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ConnectPoorReqDefaultTypeInternal() {}
   union {
-    ConnectPoorRequest _instance;
+    ConnectPoorReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectPoorRequestDefaultTypeInternal _ConnectPoorRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectPoorReqDefaultTypeInternal _ConnectPoorReq_default_instance_;
 
 inline constexpr ConnectInfo::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -204,7 +204,7 @@ struct ConnectInfoDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectInfoDefaultTypeInternal _ConnectInfo_default_instance_;
 
-inline constexpr ConnectPoorResponse::Impl_::Impl_(
+inline constexpr ConnectPoorRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : connect_info_{},
         message_(
@@ -214,18 +214,18 @@ inline constexpr ConnectPoorResponse::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR ConnectPoorResponse::ConnectPoorResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR ConnectPoorRes::ConnectPoorRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct ConnectPoorResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ConnectPoorResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ConnectPoorResponseDefaultTypeInternal() {}
+struct ConnectPoorResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ConnectPoorResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ConnectPoorResDefaultTypeInternal() {}
   union {
-    ConnectPoorResponse _instance;
+    ConnectPoorRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectPoorResponseDefaultTypeInternal _ConnectPoorResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectPoorResDefaultTypeInternal _ConnectPoorRes_default_instance_;
 }  // namespace rpc_server
 static ::_pb::Metadata file_level_metadata_server_5fcentral_2eproto[9];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_server_5fcentral_2eproto[1];
@@ -234,67 +234,67 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t TableStruct_server_5fcentral_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     protodesc_cold) = {
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerRequest, _impl_.server_type_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerRequest, _impl_.address_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerRequest, _impl_.port_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerReq, _impl_.server_type_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerReq, _impl_.address_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerReq, _impl_.port_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerResponse, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterServerRes, _impl_.message_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerRequest, _impl_.server_type_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerRequest, _impl_.address_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerRequest, _impl_.port_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerReq, _impl_.server_type_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerReq, _impl_.address_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerReq, _impl_.port_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerResponse, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerRes, _impl_.message_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorRequest, _impl_.server_type_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorReq, _impl_.server_type_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorResponse, _impl_.connect_info_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorResponse, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorRes, _impl_.connect_info_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorRes, _impl_.message_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectInfo, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -306,89 +306,87 @@ const ::uint32_t TableStruct_server_5fcentral_2eproto::offsets[] PROTOBUF_SECTIO
     PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectInfo, _impl_.address_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectInfo, _impl_.port_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatRequest, _impl_.server_type_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatRequest, _impl_.address_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatRequest, _impl_.port_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatReq, _impl_.server_type_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatReq, _impl_.address_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatReq, _impl_.port_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatResponse, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatRes, _impl_.message_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::rpc_server::RegisterServerRequest)},
-        {11, -1, -1, sizeof(::rpc_server::RegisterServerResponse)},
-        {21, -1, -1, sizeof(::rpc_server::UnregisterServerRequest)},
-        {32, -1, -1, sizeof(::rpc_server::UnregisterServerResponse)},
-        {42, -1, -1, sizeof(::rpc_server::ConnectPoorRequest)},
-        {51, -1, -1, sizeof(::rpc_server::ConnectPoorResponse)},
+        {0, -1, -1, sizeof(::rpc_server::RegisterServerReq)},
+        {11, -1, -1, sizeof(::rpc_server::RegisterServerRes)},
+        {21, -1, -1, sizeof(::rpc_server::UnregisterServerReq)},
+        {32, -1, -1, sizeof(::rpc_server::UnregisterServerRes)},
+        {42, -1, -1, sizeof(::rpc_server::ConnectPoorReq)},
+        {51, -1, -1, sizeof(::rpc_server::ConnectPoorRes)},
         {62, -1, -1, sizeof(::rpc_server::ConnectInfo)},
-        {72, -1, -1, sizeof(::rpc_server::HeartbeatRequest)},
-        {83, -1, -1, sizeof(::rpc_server::HeartbeatResponse)},
+        {72, -1, -1, sizeof(::rpc_server::HeartbeatReq)},
+        {83, -1, -1, sizeof(::rpc_server::HeartbeatRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-    &::rpc_server::_RegisterServerRequest_default_instance_._instance,
-    &::rpc_server::_RegisterServerResponse_default_instance_._instance,
-    &::rpc_server::_UnregisterServerRequest_default_instance_._instance,
-    &::rpc_server::_UnregisterServerResponse_default_instance_._instance,
-    &::rpc_server::_ConnectPoorRequest_default_instance_._instance,
-    &::rpc_server::_ConnectPoorResponse_default_instance_._instance,
+    &::rpc_server::_RegisterServerReq_default_instance_._instance,
+    &::rpc_server::_RegisterServerRes_default_instance_._instance,
+    &::rpc_server::_UnregisterServerReq_default_instance_._instance,
+    &::rpc_server::_UnregisterServerRes_default_instance_._instance,
+    &::rpc_server::_ConnectPoorReq_default_instance_._instance,
+    &::rpc_server::_ConnectPoorRes_default_instance_._instance,
     &::rpc_server::_ConnectInfo_default_instance_._instance,
-    &::rpc_server::_HeartbeatRequest_default_instance_._instance,
-    &::rpc_server::_HeartbeatResponse_default_instance_._instance,
+    &::rpc_server::_HeartbeatReq_default_instance_._instance,
+    &::rpc_server::_HeartbeatRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fcentral_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\024server_central.proto\022\nrpc_server\"c\n\025Re"
-    "gisterServerRequest\022+\n\013server_type\030\001 \001(\016"
-    "2\026.rpc_server.ServerType\022\017\n\007address\030\002 \001("
-    "\t\022\014\n\004port\030\003 \001(\t\":\n\026RegisterServerRespons"
-    "e\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"e\n\027U"
-    "nregisterServerRequest\022+\n\013server_type\030\001 "
-    "\001(\0162\026.rpc_server.ServerType\022\017\n\007address\030\002"
-    " \001(\t\022\014\n\004port\030\003 \001(\t\"<\n\030UnregisterServerRe"
-    "sponse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t"
-    "\"A\n\022ConnectPoorRequest\022+\n\013server_type\030\001 "
-    "\001(\0162\026.rpc_server.ServerType\"f\n\023ConnectPo"
-    "orResponse\022\017\n\007success\030\001 \001(\010\022-\n\014connect_i"
-    "nfo\030\002 \003(\0132\027.rpc_server.ConnectInfo\022\017\n\007me"
-    "ssage\030\003 \001(\t\",\n\013ConnectInfo\022\017\n\007address\030\001 "
-    "\001(\t\022\014\n\004port\030\002 \001(\005\"^\n\020HeartbeatRequest\022+\n"
-    "\013server_type\030\001 \001(\0162\026.rpc_server.ServerTy"
-    "pe\022\017\n\007address\030\002 \001(\t\022\014\n\004port\030\003 \001(\t\"5\n\021Hea"
-    "rtbeatResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007messa"
-    "ge\030\002 \001(\t*S\n\nServerType\022\013\n\007UNKNOWN\020\000\022\013\n\007C"
-    "ENTRAL\020\001\022\010\n\004DATA\020\002\022\013\n\007GATEWAY\020\003\022\t\n\005LOGIN"
-    "\020\004\022\t\n\005LOGIC\020\0052\344\002\n\rCentralServer\022W\n\016Regis"
-    "terServer\022!.rpc_server.RegisterServerReq"
-    "uest\032\".rpc_server.RegisterServerResponse"
-    "\022]\n\020UnregisterServer\022#.rpc_server.Unregi"
-    "sterServerRequest\032$.rpc_server.Unregiste"
-    "rServerResponse\022Q\n\016GetConnectPoor\022\036.rpc_"
-    "server.ConnectPoorRequest\032\037.rpc_server.C"
-    "onnectPoorResponse\022H\n\tHeartbeat\022\034.rpc_se"
-    "rver.HeartbeatRequest\032\035.rpc_server.Heart"
-    "beatResponseb\006proto3"
+    "\n\024server_central.proto\022\nrpc_server\"_\n\021Re"
+    "gisterServerReq\022+\n\013server_type\030\001 \001(\0162\026.r"
+    "pc_server.ServerType\022\017\n\007address\030\002 \001(\t\022\014\n"
+    "\004port\030\003 \001(\t\"5\n\021RegisterServerRes\022\017\n\007succ"
+    "ess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"a\n\023Unregister"
+    "ServerReq\022+\n\013server_type\030\001 \001(\0162\026.rpc_ser"
+    "ver.ServerType\022\017\n\007address\030\002 \001(\t\022\014\n\004port\030"
+    "\003 \001(\t\"7\n\023UnregisterServerRes\022\017\n\007success\030"
+    "\001 \001(\010\022\017\n\007message\030\002 \001(\t\"=\n\016ConnectPoorReq"
+    "\022+\n\013server_type\030\001 \001(\0162\026.rpc_server.Serve"
+    "rType\"a\n\016ConnectPoorRes\022\017\n\007success\030\001 \001(\010"
+    "\022-\n\014connect_info\030\002 \003(\0132\027.rpc_server.Conn"
+    "ectInfo\022\017\n\007message\030\003 \001(\t\",\n\013ConnectInfo\022"
+    "\017\n\007address\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\"Z\n\014Heartb"
+    "eatReq\022+\n\013server_type\030\001 \001(\0162\026.rpc_server"
+    ".ServerType\022\017\n\007address\030\002 \001(\t\022\014\n\004port\030\003 \001"
+    "(\t\"0\n\014HeartbeatRes\022\017\n\007success\030\001 \001(\010\022\017\n\007m"
+    "essage\030\002 \001(\t*S\n\nServerType\022\013\n\007UNKNOWN\020\000\022"
+    "\013\n\007CENTRAL\020\001\022\010\n\004DATA\020\002\022\013\n\007GATEWAY\020\003\022\t\n\005L"
+    "OGIN\020\004\022\t\n\005LOGIC\020\0052\303\002\n\rCentralServer\022O\n\017R"
+    "egister_server\022\035.rpc_server.RegisterServ"
+    "erReq\032\035.rpc_server.RegisterServerRes\022U\n\021"
+    "Unregister_server\022\037.rpc_server.Unregiste"
+    "rServerReq\032\037.rpc_server.UnregisterServer"
+    "Res\022I\n\017Get_connec_poor\022\032.rpc_server.Conn"
+    "ectPoorReq\032\032.rpc_server.ConnectPoorRes\022\?"
+    "\n\tHeartbeat\022\030.rpc_server.HeartbeatReq\032\030."
+    "rpc_server.HeartbeatResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fcentral_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fcentral_2eproto = {
     false,
     false,
-    1180,
+    1111,
     descriptor_table_protodef_server_5fcentral_2eproto,
     "server_central.proto",
     &descriptor_table_server_5fcentral_2eproto_once,
@@ -432,60 +430,60 @@ bool ServerType_IsValid(int value) {
 }
 // ===================================================================
 
-class RegisterServerRequest::_Internal {
+class RegisterServerReq::_Internal {
  public:
 };
 
-RegisterServerRequest::RegisterServerRequest(::google::protobuf::Arena* arena)
+RegisterServerReq::RegisterServerReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.RegisterServerRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.RegisterServerReq)
 }
-inline PROTOBUF_NDEBUG_INLINE RegisterServerRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE RegisterServerReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : address_(arena, from.address_),
         port_(arena, from.port_),
         _cached_size_{0} {}
 
-RegisterServerRequest::RegisterServerRequest(
+RegisterServerReq::RegisterServerReq(
     ::google::protobuf::Arena* arena,
-    const RegisterServerRequest& from)
+    const RegisterServerReq& from)
     : ::google::protobuf::Message(arena) {
-  RegisterServerRequest* const _this = this;
+  RegisterServerReq* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.server_type_ = from._impl_.server_type_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.RegisterServerRequest)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.RegisterServerReq)
 }
-inline PROTOBUF_NDEBUG_INLINE RegisterServerRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE RegisterServerReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : address_(arena),
         port_(arena),
         _cached_size_{0} {}
 
-inline void RegisterServerRequest::SharedCtor(::_pb::Arena* arena) {
+inline void RegisterServerReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.server_type_ = {};
 }
-RegisterServerRequest::~RegisterServerRequest() {
-  // @@protoc_insertion_point(destructor:rpc_server.RegisterServerRequest)
+RegisterServerReq::~RegisterServerReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.RegisterServerReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void RegisterServerRequest::SharedDtor() {
+inline void RegisterServerReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.address_.Destroy();
   _impl_.port_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void RegisterServerRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.RegisterServerRequest)
+PROTOBUF_NOINLINE void RegisterServerReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.RegisterServerReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -497,7 +495,7 @@ PROTOBUF_NOINLINE void RegisterServerRequest::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* RegisterServerRequest::_InternalParse(
+const char* RegisterServerReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -505,7 +503,7 @@ const char* RegisterServerRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 52, 2> RegisterServerRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 48, 2> RegisterServerReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -516,45 +514,45 @@ const ::_pbi::TcParseTable<2, 3, 0, 52, 2> RegisterServerRequest::_table_ = {
     3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_RegisterServerRequest_default_instance_._instance,
+    &_RegisterServerReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     // .rpc_server.ServerType server_type = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RegisterServerRequest, _impl_.server_type_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.server_type_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RegisterServerReq, _impl_.server_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.server_type_)}},
     // string address = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.address_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.address_)}},
     // string port = 3;
     {::_pbi::TcParser::FastUS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.port_)}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.port_)}},
   }}, {{
     65535, 65535
   }}, {{
     // .rpc_server.ServerType server_type = 1;
-    {PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.server_type_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.server_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // string address = 2;
-    {PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.address_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.address_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string port = 3;
-    {PROTOBUF_FIELD_OFFSET(RegisterServerRequest, _impl_.port_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.port_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\40\0\7\4\0\0\0\0"
-    "rpc_server.RegisterServerRequest"
+    "\34\0\7\4\0\0\0\0"
+    "rpc_server.RegisterServerReq"
     "address"
     "port"
   }},
 };
 
-::uint8_t* RegisterServerRequest::_InternalSerialize(
+::uint8_t* RegisterServerReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.RegisterServerRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.RegisterServerReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -569,7 +567,7 @@ const ::_pbi::TcParseTable<2, 3, 0, 52, 2> RegisterServerRequest::_table_ = {
   if (!this->_internal_address().empty()) {
     const std::string& _s = this->_internal_address();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.RegisterServerRequest.address");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.RegisterServerReq.address");
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
@@ -577,7 +575,7 @@ const ::_pbi::TcParseTable<2, 3, 0, 52, 2> RegisterServerRequest::_table_ = {
   if (!this->_internal_port().empty()) {
     const std::string& _s = this->_internal_port();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.RegisterServerRequest.port");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.RegisterServerReq.port");
     target = stream->WriteStringMaybeAliased(3, _s, target);
   }
 
@@ -586,12 +584,12 @@ const ::_pbi::TcParseTable<2, 3, 0, 52, 2> RegisterServerRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.RegisterServerRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.RegisterServerReq)
   return target;
 }
 
-::size_t RegisterServerRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.RegisterServerRequest)
+::size_t RegisterServerReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.RegisterServerReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -619,18 +617,18 @@ const ::_pbi::TcParseTable<2, 3, 0, 52, 2> RegisterServerRequest::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData RegisterServerRequest::_class_data_ = {
-    RegisterServerRequest::MergeImpl,
+const ::google::protobuf::Message::ClassData RegisterServerReq::_class_data_ = {
+    RegisterServerReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* RegisterServerRequest::GetClassData() const {
+const ::google::protobuf::Message::ClassData* RegisterServerReq::GetClassData() const {
   return &_class_data_;
 }
 
-void RegisterServerRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<RegisterServerRequest*>(&to_msg);
-  auto& from = static_cast<const RegisterServerRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.RegisterServerRequest)
+void RegisterServerReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<RegisterServerReq*>(&to_msg);
+  auto& from = static_cast<const RegisterServerReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.RegisterServerReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -647,21 +645,21 @@ void RegisterServerRequest::MergeImpl(::google::protobuf::Message& to_msg, const
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void RegisterServerRequest::CopyFrom(const RegisterServerRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.RegisterServerRequest)
+void RegisterServerReq::CopyFrom(const RegisterServerReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.RegisterServerReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool RegisterServerRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool RegisterServerReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* RegisterServerRequest::AccessCachedSize() const {
+::_pbi::CachedSize* RegisterServerReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void RegisterServerRequest::InternalSwap(RegisterServerRequest* PROTOBUF_RESTRICT other) {
+void RegisterServerReq::InternalSwap(RegisterServerReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -671,64 +669,64 @@ void RegisterServerRequest::InternalSwap(RegisterServerRequest* PROTOBUF_RESTRIC
   swap(_impl_.server_type_, other->_impl_.server_type_);
 }
 
-::google::protobuf::Metadata RegisterServerRequest::GetMetadata() const {
+::google::protobuf::Metadata RegisterServerReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
       file_level_metadata_server_5fcentral_2eproto[0]);
 }
 // ===================================================================
 
-class RegisterServerResponse::_Internal {
+class RegisterServerRes::_Internal {
  public:
 };
 
-RegisterServerResponse::RegisterServerResponse(::google::protobuf::Arena* arena)
+RegisterServerRes::RegisterServerRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.RegisterServerResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.RegisterServerRes)
 }
-inline PROTOBUF_NDEBUG_INLINE RegisterServerResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE RegisterServerRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : message_(arena, from.message_),
         _cached_size_{0} {}
 
-RegisterServerResponse::RegisterServerResponse(
+RegisterServerRes::RegisterServerRes(
     ::google::protobuf::Arena* arena,
-    const RegisterServerResponse& from)
+    const RegisterServerRes& from)
     : ::google::protobuf::Message(arena) {
-  RegisterServerResponse* const _this = this;
+  RegisterServerRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.RegisterServerResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.RegisterServerRes)
 }
-inline PROTOBUF_NDEBUG_INLINE RegisterServerResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE RegisterServerRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : message_(arena),
         _cached_size_{0} {}
 
-inline void RegisterServerResponse::SharedCtor(::_pb::Arena* arena) {
+inline void RegisterServerRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.success_ = {};
 }
-RegisterServerResponse::~RegisterServerResponse() {
-  // @@protoc_insertion_point(destructor:rpc_server.RegisterServerResponse)
+RegisterServerRes::~RegisterServerRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.RegisterServerRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void RegisterServerResponse::SharedDtor() {
+inline void RegisterServerRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void RegisterServerResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.RegisterServerResponse)
+PROTOBUF_NOINLINE void RegisterServerRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.RegisterServerRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -739,7 +737,7 @@ PROTOBUF_NOINLINE void RegisterServerResponse::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* RegisterServerResponse::_InternalParse(
+const char* RegisterServerRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -747,7 +745,7 @@ const char* RegisterServerResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 49, 2> RegisterServerResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 44, 2> RegisterServerRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -758,37 +756,37 @@ const ::_pbi::TcParseTable<1, 2, 0, 49, 2> RegisterServerResponse::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_RegisterServerResponse_default_instance_._instance,
+    &_RegisterServerRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // string message = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerResponse, _impl_.message_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerRes, _impl_.message_)}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(RegisterServerResponse, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerResponse, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(RegisterServerRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerRes, _impl_.success_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(RegisterServerResponse, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(RegisterServerRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // string message = 2;
-    {PROTOBUF_FIELD_OFFSET(RegisterServerResponse, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(RegisterServerRes, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\41\0\7\0\0\0\0\0"
-    "rpc_server.RegisterServerResponse"
+    "\34\0\7\0\0\0\0\0"
+    "rpc_server.RegisterServerRes"
     "message"
   }},
 };
 
-::uint8_t* RegisterServerResponse::_InternalSerialize(
+::uint8_t* RegisterServerRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.RegisterServerResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.RegisterServerRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -803,7 +801,7 @@ const ::_pbi::TcParseTable<1, 2, 0, 49, 2> RegisterServerResponse::_table_ = {
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.RegisterServerResponse.message");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.RegisterServerRes.message");
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
@@ -812,12 +810,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 49, 2> RegisterServerResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.RegisterServerResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.RegisterServerRes)
   return target;
 }
 
-::size_t RegisterServerResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.RegisterServerResponse)
+::size_t RegisterServerRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.RegisterServerRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -838,18 +836,18 @@ const ::_pbi::TcParseTable<1, 2, 0, 49, 2> RegisterServerResponse::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData RegisterServerResponse::_class_data_ = {
-    RegisterServerResponse::MergeImpl,
+const ::google::protobuf::Message::ClassData RegisterServerRes::_class_data_ = {
+    RegisterServerRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* RegisterServerResponse::GetClassData() const {
+const ::google::protobuf::Message::ClassData* RegisterServerRes::GetClassData() const {
   return &_class_data_;
 }
 
-void RegisterServerResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<RegisterServerResponse*>(&to_msg);
-  auto& from = static_cast<const RegisterServerResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.RegisterServerResponse)
+void RegisterServerRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<RegisterServerRes*>(&to_msg);
+  auto& from = static_cast<const RegisterServerRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.RegisterServerRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -863,21 +861,21 @@ void RegisterServerResponse::MergeImpl(::google::protobuf::Message& to_msg, cons
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void RegisterServerResponse::CopyFrom(const RegisterServerResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.RegisterServerResponse)
+void RegisterServerRes::CopyFrom(const RegisterServerRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.RegisterServerRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool RegisterServerResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool RegisterServerRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* RegisterServerResponse::AccessCachedSize() const {
+::_pbi::CachedSize* RegisterServerRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void RegisterServerResponse::InternalSwap(RegisterServerResponse* PROTOBUF_RESTRICT other) {
+void RegisterServerRes::InternalSwap(RegisterServerRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -886,67 +884,67 @@ void RegisterServerResponse::InternalSwap(RegisterServerResponse* PROTOBUF_RESTR
         swap(_impl_.success_, other->_impl_.success_);
 }
 
-::google::protobuf::Metadata RegisterServerResponse::GetMetadata() const {
+::google::protobuf::Metadata RegisterServerRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
       file_level_metadata_server_5fcentral_2eproto[1]);
 }
 // ===================================================================
 
-class UnregisterServerRequest::_Internal {
+class UnregisterServerReq::_Internal {
  public:
 };
 
-UnregisterServerRequest::UnregisterServerRequest(::google::protobuf::Arena* arena)
+UnregisterServerReq::UnregisterServerReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.UnregisterServerRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UnregisterServerReq)
 }
-inline PROTOBUF_NDEBUG_INLINE UnregisterServerRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE UnregisterServerReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : address_(arena, from.address_),
         port_(arena, from.port_),
         _cached_size_{0} {}
 
-UnregisterServerRequest::UnregisterServerRequest(
+UnregisterServerReq::UnregisterServerReq(
     ::google::protobuf::Arena* arena,
-    const UnregisterServerRequest& from)
+    const UnregisterServerReq& from)
     : ::google::protobuf::Message(arena) {
-  UnregisterServerRequest* const _this = this;
+  UnregisterServerReq* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.server_type_ = from._impl_.server_type_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.UnregisterServerRequest)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UnregisterServerReq)
 }
-inline PROTOBUF_NDEBUG_INLINE UnregisterServerRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE UnregisterServerReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : address_(arena),
         port_(arena),
         _cached_size_{0} {}
 
-inline void UnregisterServerRequest::SharedCtor(::_pb::Arena* arena) {
+inline void UnregisterServerReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.server_type_ = {};
 }
-UnregisterServerRequest::~UnregisterServerRequest() {
-  // @@protoc_insertion_point(destructor:rpc_server.UnregisterServerRequest)
+UnregisterServerReq::~UnregisterServerReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.UnregisterServerReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void UnregisterServerRequest::SharedDtor() {
+inline void UnregisterServerReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.address_.Destroy();
   _impl_.port_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void UnregisterServerRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.UnregisterServerRequest)
+PROTOBUF_NOINLINE void UnregisterServerReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UnregisterServerReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -958,7 +956,7 @@ PROTOBUF_NOINLINE void UnregisterServerRequest::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* UnregisterServerRequest::_InternalParse(
+const char* UnregisterServerReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -966,7 +964,7 @@ const char* UnregisterServerRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 54, 2> UnregisterServerRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 50, 2> UnregisterServerReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -977,45 +975,45 @@ const ::_pbi::TcParseTable<2, 3, 0, 54, 2> UnregisterServerRequest::_table_ = {
     3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_UnregisterServerRequest_default_instance_._instance,
+    &_UnregisterServerReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     // .rpc_server.ServerType server_type = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UnregisterServerRequest, _impl_.server_type_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.server_type_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UnregisterServerReq, _impl_.server_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.server_type_)}},
     // string address = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.address_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.address_)}},
     // string port = 3;
     {::_pbi::TcParser::FastUS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.port_)}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.port_)}},
   }}, {{
     65535, 65535
   }}, {{
     // .rpc_server.ServerType server_type = 1;
-    {PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.server_type_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.server_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // string address = 2;
-    {PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.address_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.address_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string port = 3;
-    {PROTOBUF_FIELD_OFFSET(UnregisterServerRequest, _impl_.port_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.port_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\42\0\7\4\0\0\0\0"
-    "rpc_server.UnregisterServerRequest"
+    "\36\0\7\4\0\0\0\0"
+    "rpc_server.UnregisterServerReq"
     "address"
     "port"
   }},
 };
 
-::uint8_t* UnregisterServerRequest::_InternalSerialize(
+::uint8_t* UnregisterServerReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UnregisterServerRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UnregisterServerReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1030,7 +1028,7 @@ const ::_pbi::TcParseTable<2, 3, 0, 54, 2> UnregisterServerRequest::_table_ = {
   if (!this->_internal_address().empty()) {
     const std::string& _s = this->_internal_address();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UnregisterServerRequest.address");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UnregisterServerReq.address");
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
@@ -1038,7 +1036,7 @@ const ::_pbi::TcParseTable<2, 3, 0, 54, 2> UnregisterServerRequest::_table_ = {
   if (!this->_internal_port().empty()) {
     const std::string& _s = this->_internal_port();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UnregisterServerRequest.port");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UnregisterServerReq.port");
     target = stream->WriteStringMaybeAliased(3, _s, target);
   }
 
@@ -1047,12 +1045,12 @@ const ::_pbi::TcParseTable<2, 3, 0, 54, 2> UnregisterServerRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UnregisterServerRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UnregisterServerReq)
   return target;
 }
 
-::size_t UnregisterServerRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.UnregisterServerRequest)
+::size_t UnregisterServerReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UnregisterServerReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -1080,18 +1078,18 @@ const ::_pbi::TcParseTable<2, 3, 0, 54, 2> UnregisterServerRequest::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData UnregisterServerRequest::_class_data_ = {
-    UnregisterServerRequest::MergeImpl,
+const ::google::protobuf::Message::ClassData UnregisterServerReq::_class_data_ = {
+    UnregisterServerReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* UnregisterServerRequest::GetClassData() const {
+const ::google::protobuf::Message::ClassData* UnregisterServerReq::GetClassData() const {
   return &_class_data_;
 }
 
-void UnregisterServerRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<UnregisterServerRequest*>(&to_msg);
-  auto& from = static_cast<const UnregisterServerRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UnregisterServerRequest)
+void UnregisterServerReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UnregisterServerReq*>(&to_msg);
+  auto& from = static_cast<const UnregisterServerReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UnregisterServerReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1108,21 +1106,21 @@ void UnregisterServerRequest::MergeImpl(::google::protobuf::Message& to_msg, con
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void UnregisterServerRequest::CopyFrom(const UnregisterServerRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UnregisterServerRequest)
+void UnregisterServerReq::CopyFrom(const UnregisterServerReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UnregisterServerReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool UnregisterServerRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool UnregisterServerReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* UnregisterServerRequest::AccessCachedSize() const {
+::_pbi::CachedSize* UnregisterServerReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void UnregisterServerRequest::InternalSwap(UnregisterServerRequest* PROTOBUF_RESTRICT other) {
+void UnregisterServerReq::InternalSwap(UnregisterServerReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -1132,64 +1130,64 @@ void UnregisterServerRequest::InternalSwap(UnregisterServerRequest* PROTOBUF_RES
   swap(_impl_.server_type_, other->_impl_.server_type_);
 }
 
-::google::protobuf::Metadata UnregisterServerRequest::GetMetadata() const {
+::google::protobuf::Metadata UnregisterServerReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
       file_level_metadata_server_5fcentral_2eproto[2]);
 }
 // ===================================================================
 
-class UnregisterServerResponse::_Internal {
+class UnregisterServerRes::_Internal {
  public:
 };
 
-UnregisterServerResponse::UnregisterServerResponse(::google::protobuf::Arena* arena)
+UnregisterServerRes::UnregisterServerRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.UnregisterServerResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UnregisterServerRes)
 }
-inline PROTOBUF_NDEBUG_INLINE UnregisterServerResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE UnregisterServerRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : message_(arena, from.message_),
         _cached_size_{0} {}
 
-UnregisterServerResponse::UnregisterServerResponse(
+UnregisterServerRes::UnregisterServerRes(
     ::google::protobuf::Arena* arena,
-    const UnregisterServerResponse& from)
+    const UnregisterServerRes& from)
     : ::google::protobuf::Message(arena) {
-  UnregisterServerResponse* const _this = this;
+  UnregisterServerRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.UnregisterServerResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UnregisterServerRes)
 }
-inline PROTOBUF_NDEBUG_INLINE UnregisterServerResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE UnregisterServerRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : message_(arena),
         _cached_size_{0} {}
 
-inline void UnregisterServerResponse::SharedCtor(::_pb::Arena* arena) {
+inline void UnregisterServerRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.success_ = {};
 }
-UnregisterServerResponse::~UnregisterServerResponse() {
-  // @@protoc_insertion_point(destructor:rpc_server.UnregisterServerResponse)
+UnregisterServerRes::~UnregisterServerRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.UnregisterServerRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void UnregisterServerResponse::SharedDtor() {
+inline void UnregisterServerRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void UnregisterServerResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.UnregisterServerResponse)
+PROTOBUF_NOINLINE void UnregisterServerRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UnregisterServerRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1200,7 +1198,7 @@ PROTOBUF_NOINLINE void UnregisterServerResponse::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* UnregisterServerResponse::_InternalParse(
+const char* UnregisterServerRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -1208,7 +1206,7 @@ const char* UnregisterServerResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 51, 2> UnregisterServerResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 46, 2> UnregisterServerRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1219,37 +1217,37 @@ const ::_pbi::TcParseTable<1, 2, 0, 51, 2> UnregisterServerResponse::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_UnregisterServerResponse_default_instance_._instance,
+    &_UnregisterServerRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // string message = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerResponse, _impl_.message_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerRes, _impl_.message_)}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UnregisterServerResponse, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerResponse, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UnregisterServerRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerRes, _impl_.success_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(UnregisterServerResponse, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UnregisterServerRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // string message = 2;
-    {PROTOBUF_FIELD_OFFSET(UnregisterServerResponse, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UnregisterServerRes, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\43\0\7\0\0\0\0\0"
-    "rpc_server.UnregisterServerResponse"
+    "\36\0\7\0\0\0\0\0"
+    "rpc_server.UnregisterServerRes"
     "message"
   }},
 };
 
-::uint8_t* UnregisterServerResponse::_InternalSerialize(
+::uint8_t* UnregisterServerRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UnregisterServerResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UnregisterServerRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1264,7 +1262,7 @@ const ::_pbi::TcParseTable<1, 2, 0, 51, 2> UnregisterServerResponse::_table_ = {
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UnregisterServerResponse.message");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UnregisterServerRes.message");
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
@@ -1273,12 +1271,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 51, 2> UnregisterServerResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UnregisterServerResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UnregisterServerRes)
   return target;
 }
 
-::size_t UnregisterServerResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.UnregisterServerResponse)
+::size_t UnregisterServerRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UnregisterServerRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -1299,18 +1297,18 @@ const ::_pbi::TcParseTable<1, 2, 0, 51, 2> UnregisterServerResponse::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData UnregisterServerResponse::_class_data_ = {
-    UnregisterServerResponse::MergeImpl,
+const ::google::protobuf::Message::ClassData UnregisterServerRes::_class_data_ = {
+    UnregisterServerRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* UnregisterServerResponse::GetClassData() const {
+const ::google::protobuf::Message::ClassData* UnregisterServerRes::GetClassData() const {
   return &_class_data_;
 }
 
-void UnregisterServerResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<UnregisterServerResponse*>(&to_msg);
-  auto& from = static_cast<const UnregisterServerResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UnregisterServerResponse)
+void UnregisterServerRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UnregisterServerRes*>(&to_msg);
+  auto& from = static_cast<const UnregisterServerRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UnregisterServerRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1324,21 +1322,21 @@ void UnregisterServerResponse::MergeImpl(::google::protobuf::Message& to_msg, co
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void UnregisterServerResponse::CopyFrom(const UnregisterServerResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UnregisterServerResponse)
+void UnregisterServerRes::CopyFrom(const UnregisterServerRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UnregisterServerRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool UnregisterServerResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool UnregisterServerRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* UnregisterServerResponse::AccessCachedSize() const {
+::_pbi::CachedSize* UnregisterServerRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void UnregisterServerResponse::InternalSwap(UnregisterServerResponse* PROTOBUF_RESTRICT other) {
+void UnregisterServerRes::InternalSwap(UnregisterServerRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -1347,48 +1345,48 @@ void UnregisterServerResponse::InternalSwap(UnregisterServerResponse* PROTOBUF_R
         swap(_impl_.success_, other->_impl_.success_);
 }
 
-::google::protobuf::Metadata UnregisterServerResponse::GetMetadata() const {
+::google::protobuf::Metadata UnregisterServerRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
       file_level_metadata_server_5fcentral_2eproto[3]);
 }
 // ===================================================================
 
-class ConnectPoorRequest::_Internal {
+class ConnectPoorReq::_Internal {
  public:
 };
 
-ConnectPoorRequest::ConnectPoorRequest(::google::protobuf::Arena* arena)
+ConnectPoorReq::ConnectPoorReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.ConnectPoorRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ConnectPoorReq)
 }
-ConnectPoorRequest::ConnectPoorRequest(
-    ::google::protobuf::Arena* arena, const ConnectPoorRequest& from)
-    : ConnectPoorRequest(arena) {
+ConnectPoorReq::ConnectPoorReq(
+    ::google::protobuf::Arena* arena, const ConnectPoorReq& from)
+    : ConnectPoorReq(arena) {
   MergeFrom(from);
 }
-inline PROTOBUF_NDEBUG_INLINE ConnectPoorRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ConnectPoorReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0} {}
 
-inline void ConnectPoorRequest::SharedCtor(::_pb::Arena* arena) {
+inline void ConnectPoorReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.server_type_ = {};
 }
-ConnectPoorRequest::~ConnectPoorRequest() {
-  // @@protoc_insertion_point(destructor:rpc_server.ConnectPoorRequest)
+ConnectPoorReq::~ConnectPoorReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.ConnectPoorReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ConnectPoorRequest::SharedDtor() {
+inline void ConnectPoorReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void ConnectPoorRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.ConnectPoorRequest)
+PROTOBUF_NOINLINE void ConnectPoorReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.ConnectPoorReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1398,7 +1396,7 @@ PROTOBUF_NOINLINE void ConnectPoorRequest::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ConnectPoorRequest::_InternalParse(
+const char* ConnectPoorReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -1406,7 +1404,7 @@ const char* ConnectPoorRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ConnectPoorRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ConnectPoorReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1417,17 +1415,17 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ConnectPoorRequest::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_ConnectPoorRequest_default_instance_._instance,
+    &_ConnectPoorReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // .rpc_server.ServerType server_type = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ConnectPoorRequest, _impl_.server_type_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorRequest, _impl_.server_type_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ConnectPoorReq, _impl_.server_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorReq, _impl_.server_type_)}},
   }}, {{
     65535, 65535
   }}, {{
     // .rpc_server.ServerType server_type = 1;
-    {PROTOBUF_FIELD_OFFSET(ConnectPoorRequest, _impl_.server_type_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ConnectPoorReq, _impl_.server_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
   }},
   // no aux_entries
@@ -1435,10 +1433,10 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ConnectPoorRequest::_table_ = {
   }},
 };
 
-::uint8_t* ConnectPoorRequest::_InternalSerialize(
+::uint8_t* ConnectPoorReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ConnectPoorRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ConnectPoorReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1454,12 +1452,12 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ConnectPoorRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ConnectPoorRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ConnectPoorReq)
   return target;
 }
 
-::size_t ConnectPoorRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.ConnectPoorRequest)
+::size_t ConnectPoorReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ConnectPoorReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -1475,18 +1473,18 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ConnectPoorRequest::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData ConnectPoorRequest::_class_data_ = {
-    ConnectPoorRequest::MergeImpl,
+const ::google::protobuf::Message::ClassData ConnectPoorReq::_class_data_ = {
+    ConnectPoorReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* ConnectPoorRequest::GetClassData() const {
+const ::google::protobuf::Message::ClassData* ConnectPoorReq::GetClassData() const {
   return &_class_data_;
 }
 
-void ConnectPoorRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ConnectPoorRequest*>(&to_msg);
-  auto& from = static_cast<const ConnectPoorRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ConnectPoorRequest)
+void ConnectPoorReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ConnectPoorReq*>(&to_msg);
+  auto& from = static_cast<const ConnectPoorReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ConnectPoorReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1497,86 +1495,86 @@ void ConnectPoorRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ConnectPoorRequest::CopyFrom(const ConnectPoorRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ConnectPoorRequest)
+void ConnectPoorReq::CopyFrom(const ConnectPoorReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ConnectPoorReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ConnectPoorRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool ConnectPoorReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* ConnectPoorRequest::AccessCachedSize() const {
+::_pbi::CachedSize* ConnectPoorReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void ConnectPoorRequest::InternalSwap(ConnectPoorRequest* PROTOBUF_RESTRICT other) {
+void ConnectPoorReq::InternalSwap(ConnectPoorReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_.server_type_, other->_impl_.server_type_);
 }
 
-::google::protobuf::Metadata ConnectPoorRequest::GetMetadata() const {
+::google::protobuf::Metadata ConnectPoorReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
       file_level_metadata_server_5fcentral_2eproto[4]);
 }
 // ===================================================================
 
-class ConnectPoorResponse::_Internal {
+class ConnectPoorRes::_Internal {
  public:
 };
 
-ConnectPoorResponse::ConnectPoorResponse(::google::protobuf::Arena* arena)
+ConnectPoorRes::ConnectPoorRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.ConnectPoorResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ConnectPoorRes)
 }
-inline PROTOBUF_NDEBUG_INLINE ConnectPoorResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ConnectPoorRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : connect_info_{visibility, arena, from.connect_info_},
         message_(arena, from.message_),
         _cached_size_{0} {}
 
-ConnectPoorResponse::ConnectPoorResponse(
+ConnectPoorRes::ConnectPoorRes(
     ::google::protobuf::Arena* arena,
-    const ConnectPoorResponse& from)
+    const ConnectPoorRes& from)
     : ::google::protobuf::Message(arena) {
-  ConnectPoorResponse* const _this = this;
+  ConnectPoorRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.ConnectPoorResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.ConnectPoorRes)
 }
-inline PROTOBUF_NDEBUG_INLINE ConnectPoorResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ConnectPoorRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : connect_info_{visibility, arena},
         message_(arena),
         _cached_size_{0} {}
 
-inline void ConnectPoorResponse::SharedCtor(::_pb::Arena* arena) {
+inline void ConnectPoorRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.success_ = {};
 }
-ConnectPoorResponse::~ConnectPoorResponse() {
-  // @@protoc_insertion_point(destructor:rpc_server.ConnectPoorResponse)
+ConnectPoorRes::~ConnectPoorRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.ConnectPoorRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ConnectPoorResponse::SharedDtor() {
+inline void ConnectPoorRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void ConnectPoorResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.ConnectPoorResponse)
+PROTOBUF_NOINLINE void ConnectPoorRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.ConnectPoorRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1588,7 +1586,7 @@ PROTOBUF_NOINLINE void ConnectPoorResponse::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ConnectPoorResponse::_InternalParse(
+const char* ConnectPoorRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -1596,7 +1594,7 @@ const char* ConnectPoorResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 1, 46, 2> ConnectPoorResponse::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 1, 41, 2> ConnectPoorRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1607,44 +1605,44 @@ const ::_pbi::TcParseTable<2, 3, 1, 46, 2> ConnectPoorResponse::_table_ = {
     3,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
-    &_ConnectPoorResponse_default_instance_._instance,
+    &_ConnectPoorRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ConnectPoorResponse, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorResponse, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ConnectPoorRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorRes, _impl_.success_)}},
     // repeated .rpc_server.ConnectInfo connect_info = 2;
     {::_pbi::TcParser::FastMtR1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorResponse, _impl_.connect_info_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorRes, _impl_.connect_info_)}},
     // string message = 3;
     {::_pbi::TcParser::FastUS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorResponse, _impl_.message_)}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorRes, _impl_.message_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(ConnectPoorResponse, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ConnectPoorRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // repeated .rpc_server.ConnectInfo connect_info = 2;
-    {PROTOBUF_FIELD_OFFSET(ConnectPoorResponse, _impl_.connect_info_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ConnectPoorRes, _impl_.connect_info_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // string message = 3;
-    {PROTOBUF_FIELD_OFFSET(ConnectPoorResponse, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ConnectPoorRes, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::rpc_server::ConnectInfo>()},
   }}, {{
-    "\36\0\0\7\0\0\0\0"
-    "rpc_server.ConnectPoorResponse"
+    "\31\0\0\7\0\0\0\0"
+    "rpc_server.ConnectPoorRes"
     "message"
   }},
 };
 
-::uint8_t* ConnectPoorResponse::_InternalSerialize(
+::uint8_t* ConnectPoorRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ConnectPoorResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ConnectPoorRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1667,7 +1665,7 @@ const ::_pbi::TcParseTable<2, 3, 1, 46, 2> ConnectPoorResponse::_table_ = {
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.ConnectPoorResponse.message");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.ConnectPoorRes.message");
     target = stream->WriteStringMaybeAliased(3, _s, target);
   }
 
@@ -1676,12 +1674,12 @@ const ::_pbi::TcParseTable<2, 3, 1, 46, 2> ConnectPoorResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ConnectPoorResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ConnectPoorRes)
   return target;
 }
 
-::size_t ConnectPoorResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.ConnectPoorResponse)
+::size_t ConnectPoorRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ConnectPoorRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -1708,18 +1706,18 @@ const ::_pbi::TcParseTable<2, 3, 1, 46, 2> ConnectPoorResponse::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData ConnectPoorResponse::_class_data_ = {
-    ConnectPoorResponse::MergeImpl,
+const ::google::protobuf::Message::ClassData ConnectPoorRes::_class_data_ = {
+    ConnectPoorRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* ConnectPoorResponse::GetClassData() const {
+const ::google::protobuf::Message::ClassData* ConnectPoorRes::GetClassData() const {
   return &_class_data_;
 }
 
-void ConnectPoorResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ConnectPoorResponse*>(&to_msg);
-  auto& from = static_cast<const ConnectPoorResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ConnectPoorResponse)
+void ConnectPoorRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ConnectPoorRes*>(&to_msg);
+  auto& from = static_cast<const ConnectPoorRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ConnectPoorRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1735,21 +1733,21 @@ void ConnectPoorResponse::MergeImpl(::google::protobuf::Message& to_msg, const :
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ConnectPoorResponse::CopyFrom(const ConnectPoorResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ConnectPoorResponse)
+void ConnectPoorRes::CopyFrom(const ConnectPoorRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ConnectPoorRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ConnectPoorResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool ConnectPoorRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* ConnectPoorResponse::AccessCachedSize() const {
+::_pbi::CachedSize* ConnectPoorRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void ConnectPoorResponse::InternalSwap(ConnectPoorResponse* PROTOBUF_RESTRICT other) {
+void ConnectPoorRes::InternalSwap(ConnectPoorRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -1759,7 +1757,7 @@ void ConnectPoorResponse::InternalSwap(ConnectPoorResponse* PROTOBUF_RESTRICT ot
         swap(_impl_.success_, other->_impl_.success_);
 }
 
-::google::protobuf::Metadata ConnectPoorResponse::GetMetadata() const {
+::google::protobuf::Metadata ConnectPoorRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
       file_level_metadata_server_5fcentral_2eproto[5]);
@@ -1982,60 +1980,60 @@ void ConnectInfo::InternalSwap(ConnectInfo* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-class HeartbeatRequest::_Internal {
+class HeartbeatReq::_Internal {
  public:
 };
 
-HeartbeatRequest::HeartbeatRequest(::google::protobuf::Arena* arena)
+HeartbeatReq::HeartbeatReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.HeartbeatRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.HeartbeatReq)
 }
-inline PROTOBUF_NDEBUG_INLINE HeartbeatRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE HeartbeatReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : address_(arena, from.address_),
         port_(arena, from.port_),
         _cached_size_{0} {}
 
-HeartbeatRequest::HeartbeatRequest(
+HeartbeatReq::HeartbeatReq(
     ::google::protobuf::Arena* arena,
-    const HeartbeatRequest& from)
+    const HeartbeatReq& from)
     : ::google::protobuf::Message(arena) {
-  HeartbeatRequest* const _this = this;
+  HeartbeatReq* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.server_type_ = from._impl_.server_type_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.HeartbeatRequest)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.HeartbeatReq)
 }
-inline PROTOBUF_NDEBUG_INLINE HeartbeatRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE HeartbeatReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : address_(arena),
         port_(arena),
         _cached_size_{0} {}
 
-inline void HeartbeatRequest::SharedCtor(::_pb::Arena* arena) {
+inline void HeartbeatReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.server_type_ = {};
 }
-HeartbeatRequest::~HeartbeatRequest() {
-  // @@protoc_insertion_point(destructor:rpc_server.HeartbeatRequest)
+HeartbeatReq::~HeartbeatReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.HeartbeatReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void HeartbeatRequest::SharedDtor() {
+inline void HeartbeatReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.address_.Destroy();
   _impl_.port_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void HeartbeatRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.HeartbeatRequest)
+PROTOBUF_NOINLINE void HeartbeatReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.HeartbeatReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -2047,7 +2045,7 @@ PROTOBUF_NOINLINE void HeartbeatRequest::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* HeartbeatRequest::_InternalParse(
+const char* HeartbeatReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -2055,7 +2053,7 @@ const char* HeartbeatRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 47, 2> HeartbeatRequest::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 43, 2> HeartbeatReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2066,45 +2064,45 @@ const ::_pbi::TcParseTable<2, 3, 0, 47, 2> HeartbeatRequest::_table_ = {
     3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_HeartbeatRequest_default_instance_._instance,
+    &_HeartbeatReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     // .rpc_server.ServerType server_type = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(HeartbeatRequest, _impl_.server_type_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatRequest, _impl_.server_type_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(HeartbeatReq, _impl_.server_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.server_type_)}},
     // string address = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatRequest, _impl_.address_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.address_)}},
     // string port = 3;
     {::_pbi::TcParser::FastUS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatRequest, _impl_.port_)}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.port_)}},
   }}, {{
     65535, 65535
   }}, {{
     // .rpc_server.ServerType server_type = 1;
-    {PROTOBUF_FIELD_OFFSET(HeartbeatRequest, _impl_.server_type_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.server_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // string address = 2;
-    {PROTOBUF_FIELD_OFFSET(HeartbeatRequest, _impl_.address_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.address_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string port = 3;
-    {PROTOBUF_FIELD_OFFSET(HeartbeatRequest, _impl_.port_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.port_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\33\0\7\4\0\0\0\0"
-    "rpc_server.HeartbeatRequest"
+    "\27\0\7\4\0\0\0\0"
+    "rpc_server.HeartbeatReq"
     "address"
     "port"
   }},
 };
 
-::uint8_t* HeartbeatRequest::_InternalSerialize(
+::uint8_t* HeartbeatReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.HeartbeatRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.HeartbeatReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -2119,7 +2117,7 @@ const ::_pbi::TcParseTable<2, 3, 0, 47, 2> HeartbeatRequest::_table_ = {
   if (!this->_internal_address().empty()) {
     const std::string& _s = this->_internal_address();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.HeartbeatRequest.address");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.HeartbeatReq.address");
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
@@ -2127,7 +2125,7 @@ const ::_pbi::TcParseTable<2, 3, 0, 47, 2> HeartbeatRequest::_table_ = {
   if (!this->_internal_port().empty()) {
     const std::string& _s = this->_internal_port();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.HeartbeatRequest.port");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.HeartbeatReq.port");
     target = stream->WriteStringMaybeAliased(3, _s, target);
   }
 
@@ -2136,12 +2134,12 @@ const ::_pbi::TcParseTable<2, 3, 0, 47, 2> HeartbeatRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.HeartbeatRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.HeartbeatReq)
   return target;
 }
 
-::size_t HeartbeatRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.HeartbeatRequest)
+::size_t HeartbeatReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.HeartbeatReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -2169,18 +2167,18 @@ const ::_pbi::TcParseTable<2, 3, 0, 47, 2> HeartbeatRequest::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData HeartbeatRequest::_class_data_ = {
-    HeartbeatRequest::MergeImpl,
+const ::google::protobuf::Message::ClassData HeartbeatReq::_class_data_ = {
+    HeartbeatReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* HeartbeatRequest::GetClassData() const {
+const ::google::protobuf::Message::ClassData* HeartbeatReq::GetClassData() const {
   return &_class_data_;
 }
 
-void HeartbeatRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<HeartbeatRequest*>(&to_msg);
-  auto& from = static_cast<const HeartbeatRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.HeartbeatRequest)
+void HeartbeatReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<HeartbeatReq*>(&to_msg);
+  auto& from = static_cast<const HeartbeatReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.HeartbeatReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -2197,21 +2195,21 @@ void HeartbeatRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::go
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void HeartbeatRequest::CopyFrom(const HeartbeatRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.HeartbeatRequest)
+void HeartbeatReq::CopyFrom(const HeartbeatReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.HeartbeatReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool HeartbeatRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool HeartbeatReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* HeartbeatRequest::AccessCachedSize() const {
+::_pbi::CachedSize* HeartbeatReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void HeartbeatRequest::InternalSwap(HeartbeatRequest* PROTOBUF_RESTRICT other) {
+void HeartbeatReq::InternalSwap(HeartbeatReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -2221,64 +2219,64 @@ void HeartbeatRequest::InternalSwap(HeartbeatRequest* PROTOBUF_RESTRICT other) {
   swap(_impl_.server_type_, other->_impl_.server_type_);
 }
 
-::google::protobuf::Metadata HeartbeatRequest::GetMetadata() const {
+::google::protobuf::Metadata HeartbeatReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
       file_level_metadata_server_5fcentral_2eproto[7]);
 }
 // ===================================================================
 
-class HeartbeatResponse::_Internal {
+class HeartbeatRes::_Internal {
  public:
 };
 
-HeartbeatResponse::HeartbeatResponse(::google::protobuf::Arena* arena)
+HeartbeatRes::HeartbeatRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.HeartbeatResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.HeartbeatRes)
 }
-inline PROTOBUF_NDEBUG_INLINE HeartbeatResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE HeartbeatRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : message_(arena, from.message_),
         _cached_size_{0} {}
 
-HeartbeatResponse::HeartbeatResponse(
+HeartbeatRes::HeartbeatRes(
     ::google::protobuf::Arena* arena,
-    const HeartbeatResponse& from)
+    const HeartbeatRes& from)
     : ::google::protobuf::Message(arena) {
-  HeartbeatResponse* const _this = this;
+  HeartbeatRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.HeartbeatResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.HeartbeatRes)
 }
-inline PROTOBUF_NDEBUG_INLINE HeartbeatResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE HeartbeatRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : message_(arena),
         _cached_size_{0} {}
 
-inline void HeartbeatResponse::SharedCtor(::_pb::Arena* arena) {
+inline void HeartbeatRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.success_ = {};
 }
-HeartbeatResponse::~HeartbeatResponse() {
-  // @@protoc_insertion_point(destructor:rpc_server.HeartbeatResponse)
+HeartbeatRes::~HeartbeatRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.HeartbeatRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void HeartbeatResponse::SharedDtor() {
+inline void HeartbeatRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void HeartbeatResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.HeartbeatResponse)
+PROTOBUF_NOINLINE void HeartbeatRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.HeartbeatRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -2289,7 +2287,7 @@ PROTOBUF_NOINLINE void HeartbeatResponse::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* HeartbeatResponse::_InternalParse(
+const char* HeartbeatRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -2297,7 +2295,7 @@ const char* HeartbeatResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 44, 2> HeartbeatResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 39, 2> HeartbeatRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2308,37 +2306,37 @@ const ::_pbi::TcParseTable<1, 2, 0, 44, 2> HeartbeatResponse::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_HeartbeatResponse_default_instance_._instance,
+    &_HeartbeatRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // string message = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatResponse, _impl_.message_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatRes, _impl_.message_)}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(HeartbeatResponse, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatResponse, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(HeartbeatRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatRes, _impl_.success_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(HeartbeatResponse, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(HeartbeatRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // string message = 2;
-    {PROTOBUF_FIELD_OFFSET(HeartbeatResponse, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(HeartbeatRes, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\34\0\7\0\0\0\0\0"
-    "rpc_server.HeartbeatResponse"
+    "\27\0\7\0\0\0\0\0"
+    "rpc_server.HeartbeatRes"
     "message"
   }},
 };
 
-::uint8_t* HeartbeatResponse::_InternalSerialize(
+::uint8_t* HeartbeatRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.HeartbeatResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.HeartbeatRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -2353,7 +2351,7 @@ const ::_pbi::TcParseTable<1, 2, 0, 44, 2> HeartbeatResponse::_table_ = {
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.HeartbeatResponse.message");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.HeartbeatRes.message");
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
@@ -2362,12 +2360,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 44, 2> HeartbeatResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.HeartbeatResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.HeartbeatRes)
   return target;
 }
 
-::size_t HeartbeatResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.HeartbeatResponse)
+::size_t HeartbeatRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.HeartbeatRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -2388,18 +2386,18 @@ const ::_pbi::TcParseTable<1, 2, 0, 44, 2> HeartbeatResponse::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData HeartbeatResponse::_class_data_ = {
-    HeartbeatResponse::MergeImpl,
+const ::google::protobuf::Message::ClassData HeartbeatRes::_class_data_ = {
+    HeartbeatRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* HeartbeatResponse::GetClassData() const {
+const ::google::protobuf::Message::ClassData* HeartbeatRes::GetClassData() const {
   return &_class_data_;
 }
 
-void HeartbeatResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<HeartbeatResponse*>(&to_msg);
-  auto& from = static_cast<const HeartbeatResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.HeartbeatResponse)
+void HeartbeatRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<HeartbeatRes*>(&to_msg);
+  auto& from = static_cast<const HeartbeatRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.HeartbeatRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -2413,21 +2411,21 @@ void HeartbeatResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::g
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void HeartbeatResponse::CopyFrom(const HeartbeatResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.HeartbeatResponse)
+void HeartbeatRes::CopyFrom(const HeartbeatRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.HeartbeatRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool HeartbeatResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool HeartbeatRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* HeartbeatResponse::AccessCachedSize() const {
+::_pbi::CachedSize* HeartbeatRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void HeartbeatResponse::InternalSwap(HeartbeatResponse* PROTOBUF_RESTRICT other) {
+void HeartbeatRes::InternalSwap(HeartbeatRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -2436,7 +2434,7 @@ void HeartbeatResponse::InternalSwap(HeartbeatResponse* PROTOBUF_RESTRICT other)
         swap(_impl_.success_, other->_impl_.success_);
 }
 
-::google::protobuf::Metadata HeartbeatResponse::GetMetadata() const {
+::google::protobuf::Metadata HeartbeatRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
       file_level_metadata_server_5fcentral_2eproto[8]);

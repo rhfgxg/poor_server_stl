@@ -30,9 +30,9 @@ public:
     void start_thread_pool(int num_threads);    // 启动线程池
     void stop_thread_pool();    // 停止线程池
 
-    grpc::Status Login(grpc::ServerContext* context, const rpc_server::LoginRequest* request, rpc_server::LoginResponse* response) override;  // 登录
-    grpc::Status Register(grpc::ServerContext* context, const rpc_server::RegisterRequest* request, rpc_server::RegisterResponse* response) override;   // 注册
-    grpc::Status Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateRequest* request, rpc_server::AuthenticateResponse* response) override;   // 令牌验证
+    grpc::Status Login(grpc::ServerContext* context, const rpc_server::LoginReq* req, rpc_server::LoginRes* res) override;  // 登录
+    grpc::Status Register(grpc::ServerContext* context, const rpc_server::RegisterReq* req, rpc_server::RegisterRes* res) override;   // 注册
+    grpc::Status Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateReq* req, rpc_server::AuthenticateRes* res) override;   // 令牌验证
 
 private:
     void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口

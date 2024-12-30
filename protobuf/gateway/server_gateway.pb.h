@@ -57,12 +57,12 @@ struct TableStruct_server_5fgateway_2eproto {
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_server_5fgateway_2eproto;
 namespace rpc_server {
-class ForwardRequest;
-struct ForwardRequestDefaultTypeInternal;
-extern ForwardRequestDefaultTypeInternal _ForwardRequest_default_instance_;
-class ForwardResponse;
-struct ForwardResponseDefaultTypeInternal;
-extern ForwardResponseDefaultTypeInternal _ForwardResponse_default_instance_;
+class ForwardReq;
+struct ForwardReqDefaultTypeInternal;
+extern ForwardReqDefaultTypeInternal _ForwardReq_default_instance_;
+class ForwardRes;
+struct ForwardResDefaultTypeInternal;
+extern ForwardResDefaultTypeInternal _ForwardRes_default_instance_;
 }  // namespace rpc_server
 namespace google {
 namespace protobuf {
@@ -109,26 +109,26 @@ inline bool ServiceType_Parse(absl::string_view name, ServiceType* value) {
 
 // -------------------------------------------------------------------
 
-class ForwardResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ForwardResponse) */ {
+class ForwardRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ForwardRes) */ {
  public:
-  inline ForwardResponse() : ForwardResponse(nullptr) {}
-  ~ForwardResponse() override;
+  inline ForwardRes() : ForwardRes(nullptr) {}
+  ~ForwardRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ForwardResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR ForwardRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline ForwardResponse(const ForwardResponse& from)
-      : ForwardResponse(nullptr, from) {}
-  ForwardResponse(ForwardResponse&& from) noexcept
-    : ForwardResponse() {
+  inline ForwardRes(const ForwardRes& from)
+      : ForwardRes(nullptr, from) {}
+  ForwardRes(ForwardRes&& from) noexcept
+    : ForwardRes() {
     *this = ::std::move(from);
   }
 
-  inline ForwardResponse& operator=(const ForwardResponse& from) {
+  inline ForwardRes& operator=(const ForwardRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ForwardResponse& operator=(ForwardResponse&& from) noexcept {
+  inline ForwardRes& operator=(ForwardRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -160,20 +160,20 @@ class ForwardResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ForwardResponse& default_instance() {
+  static const ForwardRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ForwardResponse* internal_default_instance() {
-    return reinterpret_cast<const ForwardResponse*>(
-               &_ForwardResponse_default_instance_);
+  static inline const ForwardRes* internal_default_instance() {
+    return reinterpret_cast<const ForwardRes*>(
+               &_ForwardRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(ForwardResponse& a, ForwardResponse& b) {
+  friend void swap(ForwardRes& a, ForwardRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(ForwardResponse* other) {
+  inline void Swap(ForwardRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -186,7 +186,7 @@ class ForwardResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ForwardResponse* other) {
+  void UnsafeArenaSwap(ForwardRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -194,14 +194,14 @@ class ForwardResponse final :
 
   // implements Message ----------------------------------------------
 
-  ForwardResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ForwardResponse>(arena);
+  ForwardRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ForwardRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ForwardResponse& from);
+  void CopyFrom(const ForwardRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ForwardResponse& from) {
-    ForwardResponse::MergeImpl(*this, from);
+  void MergeFrom( const ForwardRes& from) {
+    ForwardRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -219,16 +219,16 @@ class ForwardResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(ForwardResponse* other);
+  void InternalSwap(ForwardRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.ForwardResponse";
+    return "rpc_server.ForwardRes";
   }
   protected:
-  explicit ForwardResponse(::google::protobuf::Arena* arena);
-  ForwardResponse(::google::protobuf::Arena* arena, const ForwardResponse& from);
+  explicit ForwardRes(::google::protobuf::Arena* arena);
+  ForwardRes(::google::protobuf::Arena* arena, const ForwardRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -270,7 +270,7 @@ class ForwardResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.ForwardResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.ForwardRes)
  private:
   class _Internal;
 
@@ -302,26 +302,26 @@ class ForwardResponse final :
   friend struct ::TableStruct_server_5fgateway_2eproto;
 };// -------------------------------------------------------------------
 
-class ForwardRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ForwardRequest) */ {
+class ForwardReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ForwardReq) */ {
  public:
-  inline ForwardRequest() : ForwardRequest(nullptr) {}
-  ~ForwardRequest() override;
+  inline ForwardReq() : ForwardReq(nullptr) {}
+  ~ForwardReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ForwardRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR ForwardReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline ForwardRequest(const ForwardRequest& from)
-      : ForwardRequest(nullptr, from) {}
-  ForwardRequest(ForwardRequest&& from) noexcept
-    : ForwardRequest() {
+  inline ForwardReq(const ForwardReq& from)
+      : ForwardReq(nullptr, from) {}
+  ForwardReq(ForwardReq&& from) noexcept
+    : ForwardReq() {
     *this = ::std::move(from);
   }
 
-  inline ForwardRequest& operator=(const ForwardRequest& from) {
+  inline ForwardReq& operator=(const ForwardReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ForwardRequest& operator=(ForwardRequest&& from) noexcept {
+  inline ForwardReq& operator=(ForwardReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -353,20 +353,20 @@ class ForwardRequest final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ForwardRequest& default_instance() {
+  static const ForwardReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ForwardRequest* internal_default_instance() {
-    return reinterpret_cast<const ForwardRequest*>(
-               &_ForwardRequest_default_instance_);
+  static inline const ForwardReq* internal_default_instance() {
+    return reinterpret_cast<const ForwardReq*>(
+               &_ForwardReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(ForwardRequest& a, ForwardRequest& b) {
+  friend void swap(ForwardReq& a, ForwardReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(ForwardRequest* other) {
+  inline void Swap(ForwardReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -379,7 +379,7 @@ class ForwardRequest final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ForwardRequest* other) {
+  void UnsafeArenaSwap(ForwardReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -387,14 +387,14 @@ class ForwardRequest final :
 
   // implements Message ----------------------------------------------
 
-  ForwardRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ForwardRequest>(arena);
+  ForwardReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ForwardReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ForwardRequest& from);
+  void CopyFrom(const ForwardReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ForwardRequest& from) {
-    ForwardRequest::MergeImpl(*this, from);
+  void MergeFrom( const ForwardReq& from) {
+    ForwardReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -412,16 +412,16 @@ class ForwardRequest final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(ForwardRequest* other);
+  void InternalSwap(ForwardReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.ForwardRequest";
+    return "rpc_server.ForwardReq";
   }
   protected:
-  explicit ForwardRequest(::google::protobuf::Arena* arena);
-  ForwardRequest(::google::protobuf::Arena* arena, const ForwardRequest& from);
+  explicit ForwardReq(::google::protobuf::Arena* arena);
+  ForwardReq(::google::protobuf::Arena* arena, const ForwardReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -463,7 +463,7 @@ class ForwardRequest final :
   void _internal_set_service_type(::rpc_server::ServiceType value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.ForwardRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.ForwardReq)
  private:
   class _Internal;
 
@@ -509,74 +509,74 @@ class ForwardRequest final :
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// ForwardRequest
+// ForwardReq
 
 // .rpc_server.ServiceType service_type = 1;
-inline void ForwardRequest::clear_service_type() {
+inline void ForwardReq::clear_service_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.service_type_ = 0;
 }
-inline ::rpc_server::ServiceType ForwardRequest::service_type() const {
-  // @@protoc_insertion_point(field_get:rpc_server.ForwardRequest.service_type)
+inline ::rpc_server::ServiceType ForwardReq::service_type() const {
+  // @@protoc_insertion_point(field_get:rpc_server.ForwardReq.service_type)
   return _internal_service_type();
 }
-inline void ForwardRequest::set_service_type(::rpc_server::ServiceType value) {
+inline void ForwardReq::set_service_type(::rpc_server::ServiceType value) {
   _internal_set_service_type(value);
-  // @@protoc_insertion_point(field_set:rpc_server.ForwardRequest.service_type)
+  // @@protoc_insertion_point(field_set:rpc_server.ForwardReq.service_type)
 }
-inline ::rpc_server::ServiceType ForwardRequest::_internal_service_type() const {
+inline ::rpc_server::ServiceType ForwardReq::_internal_service_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return static_cast<::rpc_server::ServiceType>(_impl_.service_type_);
 }
-inline void ForwardRequest::_internal_set_service_type(::rpc_server::ServiceType value) {
+inline void ForwardReq::_internal_set_service_type(::rpc_server::ServiceType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.service_type_ = value;
 }
 
 // bytes payload = 2;
-inline void ForwardRequest::clear_payload() {
+inline void ForwardReq::clear_payload() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.payload_.ClearToEmpty();
 }
-inline const std::string& ForwardRequest::payload() const
+inline const std::string& ForwardReq::payload() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.ForwardRequest.payload)
+  // @@protoc_insertion_point(field_get:rpc_server.ForwardReq.payload)
   return _internal_payload();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ForwardRequest::set_payload(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void ForwardReq::set_payload(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.payload_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.ForwardRequest.payload)
+  // @@protoc_insertion_point(field_set:rpc_server.ForwardReq.payload)
 }
-inline std::string* ForwardRequest::mutable_payload() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* ForwardReq::mutable_payload() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_payload();
-  // @@protoc_insertion_point(field_mutable:rpc_server.ForwardRequest.payload)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ForwardReq.payload)
   return _s;
 }
-inline const std::string& ForwardRequest::_internal_payload() const {
+inline const std::string& ForwardReq::_internal_payload() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.payload_.Get();
 }
-inline void ForwardRequest::_internal_set_payload(const std::string& value) {
+inline void ForwardReq::_internal_set_payload(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.payload_.Set(value, GetArena());
 }
-inline std::string* ForwardRequest::_internal_mutable_payload() {
+inline std::string* ForwardReq::_internal_mutable_payload() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.payload_.Mutable( GetArena());
 }
-inline std::string* ForwardRequest::release_payload() {
+inline std::string* ForwardReq::release_payload() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.ForwardRequest.payload)
+  // @@protoc_insertion_point(field_release:rpc_server.ForwardReq.payload)
   return _impl_.payload_.Release();
 }
-inline void ForwardRequest::set_allocated_payload(std::string* value) {
+inline void ForwardReq::set_allocated_payload(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.payload_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -584,79 +584,79 @@ inline void ForwardRequest::set_allocated_payload(std::string* value) {
           _impl_.payload_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.ForwardRequest.payload)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.ForwardReq.payload)
 }
 
 // -------------------------------------------------------------------
 
-// ForwardResponse
+// ForwardRes
 
 // bool success = 1;
-inline void ForwardResponse::clear_success() {
+inline void ForwardRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool ForwardResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.ForwardResponse.success)
+inline bool ForwardRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.ForwardRes.success)
   return _internal_success();
 }
-inline void ForwardResponse::set_success(bool value) {
+inline void ForwardRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.ForwardResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.ForwardRes.success)
 }
-inline bool ForwardResponse::_internal_success() const {
+inline bool ForwardRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void ForwardResponse::_internal_set_success(bool value) {
+inline void ForwardRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // bytes response = 2;
-inline void ForwardResponse::clear_response() {
+inline void ForwardRes::clear_response() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.response_.ClearToEmpty();
 }
-inline const std::string& ForwardResponse::response() const
+inline const std::string& ForwardRes::response() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.ForwardResponse.response)
+  // @@protoc_insertion_point(field_get:rpc_server.ForwardRes.response)
   return _internal_response();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ForwardResponse::set_response(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void ForwardRes::set_response(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.response_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.ForwardResponse.response)
+  // @@protoc_insertion_point(field_set:rpc_server.ForwardRes.response)
 }
-inline std::string* ForwardResponse::mutable_response() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* ForwardRes::mutable_response() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_response();
-  // @@protoc_insertion_point(field_mutable:rpc_server.ForwardResponse.response)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ForwardRes.response)
   return _s;
 }
-inline const std::string& ForwardResponse::_internal_response() const {
+inline const std::string& ForwardRes::_internal_response() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.response_.Get();
 }
-inline void ForwardResponse::_internal_set_response(const std::string& value) {
+inline void ForwardRes::_internal_set_response(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.response_.Set(value, GetArena());
 }
-inline std::string* ForwardResponse::_internal_mutable_response() {
+inline std::string* ForwardRes::_internal_mutable_response() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.response_.Mutable( GetArena());
 }
-inline std::string* ForwardResponse::release_response() {
+inline std::string* ForwardRes::release_response() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.ForwardResponse.response)
+  // @@protoc_insertion_point(field_release:rpc_server.ForwardRes.response)
   return _impl_.response_.Release();
 }
-inline void ForwardResponse::set_allocated_response(std::string* value) {
+inline void ForwardRes::set_allocated_response(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.response_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -664,7 +664,7 @@ inline void ForwardResponse::set_allocated_response(std::string* value) {
           _impl_.response_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.ForwardResponse.response)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.ForwardRes.response)
 }
 
 #ifdef __GNUC__

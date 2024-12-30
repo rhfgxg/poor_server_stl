@@ -97,17 +97,17 @@ void DatabaseServerImpl::Worker_thread()
 void DatabaseServerImpl::register_server()
 {
     // 创建请求
-    rpc_server::RegisterServerRequest request;
+    rpc_server::RegisterServerReq request;
     request.set_server_type(this->server_type);
     request.set_address(this->server_address);
     request.set_port(this->server_port);
     // 创建响应
-    rpc_server::RegisterServerResponse response;
+    rpc_server::RegisterServerRes response;
 
     // 客户端
     grpc::ClientContext context;
 
-    grpc::Status status = central_stub->RegisterServer(&context, request, &response);
+    grpc::Status status = central_stub->Register_server(&context, request, &response);
 
     if(status.ok() && response.success())
     {
@@ -123,18 +123,18 @@ void DatabaseServerImpl::register_server()
 void DatabaseServerImpl::unregister_server()
 {
     // 请求
-    rpc_server::UnregisterServerRequest request;
+    rpc_server::UnregisterServerReq request;
     request.set_server_type(rpc_server::ServerType::DATA);
     request.set_address("localhost");
     request.set_port("50052");
 
     // 响应
-    rpc_server::UnregisterServerResponse response;
+    rpc_server::UnregisterServerRes response;
 
     // 客户端
     grpc::ClientContext context;
 
-    grpc::Status status = central_stub->UnregisterServer(&context,request,&response);
+    grpc::Status status = central_stub->Unregister_server(&context,request,&response);
 
     if(status.ok() && response.success())
     {
@@ -154,8 +154,8 @@ void DatabaseServerImpl::Send_heartbeat()
     {
         std::this_thread::sleep_for(std::chrono::seconds(10)); // 每10秒发送一次心跳包
 
-        rpc_server::HeartbeatRequest request;
-        rpc_server::HeartbeatResponse response;
+        rpc_server::HeartbeatReq request;
+        rpc_server::HeartbeatRes response;
         grpc::ClientContext context;
 
         request.set_server_type(rpc_server::ServerType::DATA);
@@ -177,12 +177,12 @@ void DatabaseServerImpl::Send_heartbeat()
 
 /**************************************** grpc服务接口定义 **************************************************************************/
 // 添加
-grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const rpc_server::CreateRequest* request, rpc_server::CreateResponse* response)
+grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const rpc_server::CreateReq* req, rpc_server::CreateRes* res)
 {
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        task_queue.push([this, request, response] {
-            Handle_create(request, response);
+        task_queue.push([this, req, res] {
+            Handle_create(req, res);
         });
     }
     queue_cv.notify_one();  // 通知线程池有新任务
@@ -190,11 +190,11 @@ grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const rpc_
 }
 
 // 查询
-grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const rpc_server::ReadRequest* request, rpc_server::ReadResponse* response)
+grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const rpc_server::ReadReq* req, rpc_server::ReadRes* res)
 {
     // 深拷贝请求和响应对象
-    auto request_copy = std::make_shared<rpc_server::ReadRequest>(*request);
-    auto response_copy = std::make_shared<rpc_server::ReadResponse>();
+    auto request_copy = std::make_shared<rpc_server::ReadReq>(*req);
+    auto response_copy = std::make_shared<rpc_server::ReadRes>();
     // 创建 promise 和 future
     std::promise<void> task_promise;
     std::future<void> task_future = task_promise.get_future();
@@ -213,18 +213,18 @@ grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const rpc_se
     task_future.get();
 
     // 将响应结果复制回原响应对象
-    *response = *response_copy;
+    *res = *response_copy;
 
     return grpc::Status::OK;
 }
 
 // 更新
-grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const rpc_server::UpdateRequest* request, rpc_server::UpdateResponse* response)
+grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res)
 {
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        task_queue.push([this, request, response] {
-            Handle_update(request, response);
+        task_queue.push([this, req, res] {
+            Handle_update(req, res);
         });
     }
     queue_cv.notify_one();  // 通知线程池有新任务
@@ -232,12 +232,12 @@ grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const rpc_
 }
 
 // 删除
-grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const rpc_server::DeleteRequest* request, rpc_server::DeleteResponse* response)
+grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res)
 {
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
-        task_queue.push([this, request, response] {
-            Handle_delete(request, response);
+        task_queue.push([this, req, res] {
+            Handle_delete(req, res);
         });
     }
     queue_cv.notify_one();  // 通知线程池有新任务
@@ -247,19 +247,19 @@ grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const rpc_
 /**************************************** grpc接口工具函数 **************************************************************************/
 // 处理数据库操作的函数
 // 添加
-void DatabaseServerImpl::Handle_create(const rpc_server::CreateRequest* request, rpc_server::CreateResponse* response)
+void DatabaseServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_server::CreateRes* res)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
 
     // 获取请求参数
-    std::string db_name = request->database();
-    std::string tab_name = request->table();
+    std::string db_name = req->database();
+    std::string tab_name = req->table();
     // 假设数据库操作
     // ...
     // 设置响应参数
-    response->set_success(true);
-    response->set_message("Create successful");
+    res->set_success(true);
+    res->set_message("Create successful");
     std::cout << "Database created successfully" << std::endl;
 
     // 释放数据库连接
@@ -267,15 +267,15 @@ void DatabaseServerImpl::Handle_create(const rpc_server::CreateRequest* request,
 }
 
 // 查询
-void DatabaseServerImpl::Handle_read(const rpc_server::ReadRequest* request, rpc_server::ReadResponse* response)
+void DatabaseServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadRes* res)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
 
     // 获取请求的 query 参数
-    const std::string& database = request->database();
-    const std::string& table = request->table();
-    const auto& query = request->query();
+    const std::string& database = req->database();
+    const std::string& table = req->table();
+    const auto& query = req->query();
 
     // 选择数据库
     mysqlx::Table tbl = session.getSchema(database).getTable(table);
@@ -297,7 +297,7 @@ void DatabaseServerImpl::Handle_read(const rpc_server::ReadRequest* request, rpc
     // 设置响应：查询结果
     for(mysqlx::Row row : result)
     {
-        rpc_server::Result* response_result = response->add_results();
+        rpc_server::Result* response_result = res->add_results();
         for(size_t i = 0; i < row.colCount(); ++i)
         {
             std::string column_name = result.getColumn(i).getColumnName();
@@ -348,27 +348,27 @@ void DatabaseServerImpl::Handle_read(const rpc_server::ReadRequest* request, rpc
 
     logger_manager.getLogger(LogCategory::DATABASE_OPERATIONS)->info("Database query operation successful: Database: {}", database);
 
-    response->set_success(true);
-    response->set_message("Query successful");
+    res->set_success(true);
+    res->set_message("Query successful");
 
     // 释放数据库连接
     user_db_pool->release_connection(std::move(session));
 }
 
 // 更新
-void DatabaseServerImpl::Handle_update(const rpc_server::UpdateRequest* request, rpc_server::UpdateResponse* response)
+void DatabaseServerImpl::Handle_update(const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
 
     // 获取请求参数
-    std::string db_name = request->database();
-    std::string tab_name = request->table();
+    std::string db_name = req->database();
+    std::string tab_name = req->table();
     // 假设数据库操作
     // ...
     // 设置响应参数
-    response->set_success(true);
-    response->set_message("Update successful");
+    res->set_success(true);
+    res->set_message("Update successful");
     std::cout << "Database update successful" << std::endl;
 
     // 释放数据库连接
@@ -376,19 +376,19 @@ void DatabaseServerImpl::Handle_update(const rpc_server::UpdateRequest* request,
 }
 
 // 删除
-void DatabaseServerImpl::Handle_delete(const rpc_server::DeleteRequest* request, rpc_server::DeleteResponse* response)
+void DatabaseServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
 
     // 获取请求参数
-    std::string db_name = request->database();
-    std::string tab_name = request->table();
+    std::string db_name = req->database();
+    std::string tab_name = req->table();
     // 假设数据库操作
     // ...
     // 设置响应参数
-    response->set_success(true);
-    response->set_message("Delete successful");
+    res->set_success(true);
+    res->set_message("Delete successful");
     std::cout << "Database delete successful" << std::endl;
 
     // 释放数据库连接

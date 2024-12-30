@@ -59,24 +59,24 @@ struct TableStruct_server_5flogic_2eproto {
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_server_5flogic_2eproto;
 namespace rpc_server {
-class GameActionRequest;
-struct GameActionRequestDefaultTypeInternal;
-extern GameActionRequestDefaultTypeInternal _GameActionRequest_default_instance_;
-class GameActionRequest_ParametersEntry_DoNotUse;
-struct GameActionRequest_ParametersEntry_DoNotUseDefaultTypeInternal;
-extern GameActionRequest_ParametersEntry_DoNotUseDefaultTypeInternal _GameActionRequest_ParametersEntry_DoNotUse_default_instance_;
-class GameActionResponse;
-struct GameActionResponseDefaultTypeInternal;
-extern GameActionResponseDefaultTypeInternal _GameActionResponse_default_instance_;
-class GameStateRequest;
-struct GameStateRequestDefaultTypeInternal;
-extern GameStateRequestDefaultTypeInternal _GameStateRequest_default_instance_;
-class GameStateResponse;
-struct GameStateResponseDefaultTypeInternal;
-extern GameStateResponseDefaultTypeInternal _GameStateResponse_default_instance_;
-class GameStateResponse_StateEntry_DoNotUse;
-struct GameStateResponse_StateEntry_DoNotUseDefaultTypeInternal;
-extern GameStateResponse_StateEntry_DoNotUseDefaultTypeInternal _GameStateResponse_StateEntry_DoNotUse_default_instance_;
+class GameActionReq;
+struct GameActionReqDefaultTypeInternal;
+extern GameActionReqDefaultTypeInternal _GameActionReq_default_instance_;
+class GameActionReq_ParametersEntry_DoNotUse;
+struct GameActionReq_ParametersEntry_DoNotUseDefaultTypeInternal;
+extern GameActionReq_ParametersEntry_DoNotUseDefaultTypeInternal _GameActionReq_ParametersEntry_DoNotUse_default_instance_;
+class GameActionRes;
+struct GameActionResDefaultTypeInternal;
+extern GameActionResDefaultTypeInternal _GameActionRes_default_instance_;
+class GameStateReq;
+struct GameStateReqDefaultTypeInternal;
+extern GameStateReqDefaultTypeInternal _GameStateReq_default_instance_;
+class GameStateRes;
+struct GameStateResDefaultTypeInternal;
+extern GameStateResDefaultTypeInternal _GameStateRes_default_instance_;
+class GameStateRes_StateEntry_DoNotUse;
+struct GameStateRes_StateEntry_DoNotUseDefaultTypeInternal;
+extern GameStateRes_StateEntry_DoNotUseDefaultTypeInternal _GameStateRes_StateEntry_DoNotUse_default_instance_;
 }  // namespace rpc_server
 namespace google {
 namespace protobuf {
@@ -90,27 +90,27 @@ namespace rpc_server {
 
 // -------------------------------------------------------------------
 
-class GameStateResponse_StateEntry_DoNotUse final
+class GameStateRes_StateEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
-          GameStateResponse_StateEntry_DoNotUse, std::string, std::string,
+          GameStateRes_StateEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
           ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
-      GameStateResponse_StateEntry_DoNotUse, std::string, std::string,
+      GameStateRes_StateEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
-  GameStateResponse_StateEntry_DoNotUse();
+  GameStateRes_StateEntry_DoNotUse();
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR GameStateResponse_StateEntry_DoNotUse(
+  explicit PROTOBUF_CONSTEXPR GameStateRes_StateEntry_DoNotUse(
       ::google::protobuf::internal::ConstantInitialized);
-  explicit GameStateResponse_StateEntry_DoNotUse(::google::protobuf::Arena* arena);
-  static const GameStateResponse_StateEntry_DoNotUse* internal_default_instance() {
-    return reinterpret_cast<const GameStateResponse_StateEntry_DoNotUse*>(
-        &_GameStateResponse_StateEntry_DoNotUse_default_instance_);
+  explicit GameStateRes_StateEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const GameStateRes_StateEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const GameStateRes_StateEntry_DoNotUse*>(
+        &_GameStateRes_StateEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.GameStateResponse.StateEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.GameStateRes.StateEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -118,26 +118,26 @@ class GameStateResponse_StateEntry_DoNotUse final
 };
 // -------------------------------------------------------------------
 
-class GameStateRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GameStateRequest) */ {
+class GameStateReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GameStateReq) */ {
  public:
-  inline GameStateRequest() : GameStateRequest(nullptr) {}
-  ~GameStateRequest() override;
+  inline GameStateReq() : GameStateReq(nullptr) {}
+  ~GameStateReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR GameStateRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR GameStateReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline GameStateRequest(const GameStateRequest& from)
-      : GameStateRequest(nullptr, from) {}
-  GameStateRequest(GameStateRequest&& from) noexcept
-    : GameStateRequest() {
+  inline GameStateReq(const GameStateReq& from)
+      : GameStateReq(nullptr, from) {}
+  GameStateReq(GameStateReq&& from) noexcept
+    : GameStateReq() {
     *this = ::std::move(from);
   }
 
-  inline GameStateRequest& operator=(const GameStateRequest& from) {
+  inline GameStateReq& operator=(const GameStateReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline GameStateRequest& operator=(GameStateRequest&& from) noexcept {
+  inline GameStateReq& operator=(GameStateReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -169,20 +169,20 @@ class GameStateRequest final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const GameStateRequest& default_instance() {
+  static const GameStateReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const GameStateRequest* internal_default_instance() {
-    return reinterpret_cast<const GameStateRequest*>(
-               &_GameStateRequest_default_instance_);
+  static inline const GameStateReq* internal_default_instance() {
+    return reinterpret_cast<const GameStateReq*>(
+               &_GameStateReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     3;
 
-  friend void swap(GameStateRequest& a, GameStateRequest& b) {
+  friend void swap(GameStateReq& a, GameStateReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(GameStateRequest* other) {
+  inline void Swap(GameStateReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -195,7 +195,7 @@ class GameStateRequest final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(GameStateRequest* other) {
+  void UnsafeArenaSwap(GameStateReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -203,14 +203,14 @@ class GameStateRequest final :
 
   // implements Message ----------------------------------------------
 
-  GameStateRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GameStateRequest>(arena);
+  GameStateReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GameStateReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const GameStateRequest& from);
+  void CopyFrom(const GameStateReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const GameStateRequest& from) {
-    GameStateRequest::MergeImpl(*this, from);
+  void MergeFrom( const GameStateReq& from) {
+    GameStateReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -228,16 +228,16 @@ class GameStateRequest final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(GameStateRequest* other);
+  void InternalSwap(GameStateReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.GameStateRequest";
+    return "rpc_server.GameStateReq";
   }
   protected:
-  explicit GameStateRequest(::google::protobuf::Arena* arena);
-  GameStateRequest(::google::protobuf::Arena* arena, const GameStateRequest& from);
+  explicit GameStateReq(::google::protobuf::Arena* arena);
+  GameStateReq(::google::protobuf::Arena* arena, const GameStateReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -268,7 +268,7 @@ class GameStateRequest final :
   std::string* _internal_mutable_game_id();
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.GameStateRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.GameStateReq)
  private:
   class _Internal;
 
@@ -299,26 +299,26 @@ class GameStateRequest final :
   friend struct ::TableStruct_server_5flogic_2eproto;
 };// -------------------------------------------------------------------
 
-class GameActionResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GameActionResponse) */ {
+class GameActionRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GameActionRes) */ {
  public:
-  inline GameActionResponse() : GameActionResponse(nullptr) {}
-  ~GameActionResponse() override;
+  inline GameActionRes() : GameActionRes(nullptr) {}
+  ~GameActionRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR GameActionResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR GameActionRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline GameActionResponse(const GameActionResponse& from)
-      : GameActionResponse(nullptr, from) {}
-  GameActionResponse(GameActionResponse&& from) noexcept
-    : GameActionResponse() {
+  inline GameActionRes(const GameActionRes& from)
+      : GameActionRes(nullptr, from) {}
+  GameActionRes(GameActionRes&& from) noexcept
+    : GameActionRes() {
     *this = ::std::move(from);
   }
 
-  inline GameActionResponse& operator=(const GameActionResponse& from) {
+  inline GameActionRes& operator=(const GameActionRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline GameActionResponse& operator=(GameActionResponse&& from) noexcept {
+  inline GameActionRes& operator=(GameActionRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -350,20 +350,20 @@ class GameActionResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const GameActionResponse& default_instance() {
+  static const GameActionRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const GameActionResponse* internal_default_instance() {
-    return reinterpret_cast<const GameActionResponse*>(
-               &_GameActionResponse_default_instance_);
+  static inline const GameActionRes* internal_default_instance() {
+    return reinterpret_cast<const GameActionRes*>(
+               &_GameActionRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(GameActionResponse& a, GameActionResponse& b) {
+  friend void swap(GameActionRes& a, GameActionRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(GameActionResponse* other) {
+  inline void Swap(GameActionRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -376,7 +376,7 @@ class GameActionResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(GameActionResponse* other) {
+  void UnsafeArenaSwap(GameActionRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -384,14 +384,14 @@ class GameActionResponse final :
 
   // implements Message ----------------------------------------------
 
-  GameActionResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GameActionResponse>(arena);
+  GameActionRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GameActionRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const GameActionResponse& from);
+  void CopyFrom(const GameActionRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const GameActionResponse& from) {
-    GameActionResponse::MergeImpl(*this, from);
+  void MergeFrom( const GameActionRes& from) {
+    GameActionRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -409,16 +409,16 @@ class GameActionResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(GameActionResponse* other);
+  void InternalSwap(GameActionRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.GameActionResponse";
+    return "rpc_server.GameActionRes";
   }
   protected:
-  explicit GameActionResponse(::google::protobuf::Arena* arena);
-  GameActionResponse(::google::protobuf::Arena* arena, const GameActionResponse& from);
+  explicit GameActionRes(::google::protobuf::Arena* arena);
+  GameActionRes(::google::protobuf::Arena* arena, const GameActionRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -460,7 +460,7 @@ class GameActionResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.GameActionResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.GameActionRes)
  private:
   class _Internal;
 
@@ -492,27 +492,27 @@ class GameActionResponse final :
   friend struct ::TableStruct_server_5flogic_2eproto;
 };// -------------------------------------------------------------------
 
-class GameActionRequest_ParametersEntry_DoNotUse final
+class GameActionReq_ParametersEntry_DoNotUse final
     : public ::google::protobuf::internal::MapEntry<
-          GameActionRequest_ParametersEntry_DoNotUse, std::string, std::string,
+          GameActionReq_ParametersEntry_DoNotUse, std::string, std::string,
           ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
           ::google::protobuf::internal::WireFormatLite::TYPE_BYTES> {
  public:
   using SuperType = ::google::protobuf::internal::MapEntry<
-      GameActionRequest_ParametersEntry_DoNotUse, std::string, std::string,
+      GameActionReq_ParametersEntry_DoNotUse, std::string, std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>;
-  GameActionRequest_ParametersEntry_DoNotUse();
+  GameActionReq_ParametersEntry_DoNotUse();
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR GameActionRequest_ParametersEntry_DoNotUse(
+  explicit PROTOBUF_CONSTEXPR GameActionReq_ParametersEntry_DoNotUse(
       ::google::protobuf::internal::ConstantInitialized);
-  explicit GameActionRequest_ParametersEntry_DoNotUse(::google::protobuf::Arena* arena);
-  static const GameActionRequest_ParametersEntry_DoNotUse* internal_default_instance() {
-    return reinterpret_cast<const GameActionRequest_ParametersEntry_DoNotUse*>(
-        &_GameActionRequest_ParametersEntry_DoNotUse_default_instance_);
+  explicit GameActionReq_ParametersEntry_DoNotUse(::google::protobuf::Arena* arena);
+  static const GameActionReq_ParametersEntry_DoNotUse* internal_default_instance() {
+    return reinterpret_cast<const GameActionReq_ParametersEntry_DoNotUse*>(
+        &_GameActionReq_ParametersEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.GameActionRequest.ParametersEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.GameActionReq.ParametersEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -520,26 +520,26 @@ class GameActionRequest_ParametersEntry_DoNotUse final
 };
 // -------------------------------------------------------------------
 
-class GameStateResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GameStateResponse) */ {
+class GameStateRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GameStateRes) */ {
  public:
-  inline GameStateResponse() : GameStateResponse(nullptr) {}
-  ~GameStateResponse() override;
+  inline GameStateRes() : GameStateRes(nullptr) {}
+  ~GameStateRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR GameStateResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR GameStateRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline GameStateResponse(const GameStateResponse& from)
-      : GameStateResponse(nullptr, from) {}
-  GameStateResponse(GameStateResponse&& from) noexcept
-    : GameStateResponse() {
+  inline GameStateRes(const GameStateRes& from)
+      : GameStateRes(nullptr, from) {}
+  GameStateRes(GameStateRes&& from) noexcept
+    : GameStateRes() {
     *this = ::std::move(from);
   }
 
-  inline GameStateResponse& operator=(const GameStateResponse& from) {
+  inline GameStateRes& operator=(const GameStateRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline GameStateResponse& operator=(GameStateResponse&& from) noexcept {
+  inline GameStateRes& operator=(GameStateRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -571,20 +571,20 @@ class GameStateResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const GameStateResponse& default_instance() {
+  static const GameStateRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const GameStateResponse* internal_default_instance() {
-    return reinterpret_cast<const GameStateResponse*>(
-               &_GameStateResponse_default_instance_);
+  static inline const GameStateRes* internal_default_instance() {
+    return reinterpret_cast<const GameStateRes*>(
+               &_GameStateRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     5;
 
-  friend void swap(GameStateResponse& a, GameStateResponse& b) {
+  friend void swap(GameStateRes& a, GameStateRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(GameStateResponse* other) {
+  inline void Swap(GameStateRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -597,7 +597,7 @@ class GameStateResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(GameStateResponse* other) {
+  void UnsafeArenaSwap(GameStateRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -605,14 +605,14 @@ class GameStateResponse final :
 
   // implements Message ----------------------------------------------
 
-  GameStateResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GameStateResponse>(arena);
+  GameStateRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GameStateRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const GameStateResponse& from);
+  void CopyFrom(const GameStateRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const GameStateResponse& from) {
-    GameStateResponse::MergeImpl(*this, from);
+  void MergeFrom( const GameStateRes& from) {
+    GameStateRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -630,16 +630,16 @@ class GameStateResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(GameStateResponse* other);
+  void InternalSwap(GameStateRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.GameStateResponse";
+    return "rpc_server.GameStateRes";
   }
   protected:
-  explicit GameStateResponse(::google::protobuf::Arena* arena);
-  GameStateResponse(::google::protobuf::Arena* arena, const GameStateResponse& from);
+  explicit GameStateRes(::google::protobuf::Arena* arena);
+  GameStateRes(::google::protobuf::Arena* arena, const GameStateRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -698,14 +698,14 @@ class GameStateResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.GameStateResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.GameStateRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      42, 2>
+      37, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -721,7 +721,7 @@ class GameStateResponse final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::MapField<GameStateResponse_StateEntry_DoNotUse, std::string, std::string,
+    ::google::protobuf::internal::MapField<GameStateRes_StateEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
                       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         state_;
@@ -734,26 +734,26 @@ class GameStateResponse final :
   friend struct ::TableStruct_server_5flogic_2eproto;
 };// -------------------------------------------------------------------
 
-class GameActionRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GameActionRequest) */ {
+class GameActionReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GameActionReq) */ {
  public:
-  inline GameActionRequest() : GameActionRequest(nullptr) {}
-  ~GameActionRequest() override;
+  inline GameActionReq() : GameActionReq(nullptr) {}
+  ~GameActionReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR GameActionRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR GameActionReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline GameActionRequest(const GameActionRequest& from)
-      : GameActionRequest(nullptr, from) {}
-  GameActionRequest(GameActionRequest&& from) noexcept
-    : GameActionRequest() {
+  inline GameActionReq(const GameActionReq& from)
+      : GameActionReq(nullptr, from) {}
+  GameActionReq(GameActionReq&& from) noexcept
+    : GameActionReq() {
     *this = ::std::move(from);
   }
 
-  inline GameActionRequest& operator=(const GameActionRequest& from) {
+  inline GameActionReq& operator=(const GameActionReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline GameActionRequest& operator=(GameActionRequest&& from) noexcept {
+  inline GameActionReq& operator=(GameActionReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -785,20 +785,20 @@ class GameActionRequest final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const GameActionRequest& default_instance() {
+  static const GameActionReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const GameActionRequest* internal_default_instance() {
-    return reinterpret_cast<const GameActionRequest*>(
-               &_GameActionRequest_default_instance_);
+  static inline const GameActionReq* internal_default_instance() {
+    return reinterpret_cast<const GameActionReq*>(
+               &_GameActionReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(GameActionRequest& a, GameActionRequest& b) {
+  friend void swap(GameActionReq& a, GameActionReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(GameActionRequest* other) {
+  inline void Swap(GameActionReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -811,7 +811,7 @@ class GameActionRequest final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(GameActionRequest* other) {
+  void UnsafeArenaSwap(GameActionReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -819,14 +819,14 @@ class GameActionRequest final :
 
   // implements Message ----------------------------------------------
 
-  GameActionRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GameActionRequest>(arena);
+  GameActionReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GameActionReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const GameActionRequest& from);
+  void CopyFrom(const GameActionReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const GameActionRequest& from) {
-    GameActionRequest::MergeImpl(*this, from);
+  void MergeFrom( const GameActionReq& from) {
+    GameActionReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -844,16 +844,16 @@ class GameActionRequest final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(GameActionRequest* other);
+  void InternalSwap(GameActionReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.GameActionRequest";
+    return "rpc_server.GameActionReq";
   }
   protected:
-  explicit GameActionRequest(::google::protobuf::Arena* arena);
-  GameActionRequest(::google::protobuf::Arena* arena, const GameActionRequest& from);
+  explicit GameActionReq(::google::protobuf::Arena* arena);
+  GameActionReq(::google::protobuf::Arena* arena, const GameActionReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -901,14 +901,14 @@ class GameActionRequest final :
   std::string* _internal_mutable_action();
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.GameActionRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.GameActionReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 2, 1,
-      47, 2>
+      43, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -924,7 +924,7 @@ class GameActionRequest final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::MapField<GameActionRequest_ParametersEntry_DoNotUse, std::string, std::string,
+    ::google::protobuf::internal::MapField<GameActionReq_ParametersEntry_DoNotUse, std::string, std::string,
                       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
                       ::google::protobuf::internal::WireFormatLite::TYPE_BYTES>
         parameters_;
@@ -952,51 +952,51 @@ class GameActionRequest final :
 
 // -------------------------------------------------------------------
 
-// GameActionRequest
+// GameActionReq
 
 // bytes action = 1;
-inline void GameActionRequest::clear_action() {
+inline void GameActionReq::clear_action() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.action_.ClearToEmpty();
 }
-inline const std::string& GameActionRequest::action() const
+inline const std::string& GameActionReq::action() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.GameActionRequest.action)
+  // @@protoc_insertion_point(field_get:rpc_server.GameActionReq.action)
   return _internal_action();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void GameActionRequest::set_action(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void GameActionReq::set_action(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.action_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.GameActionRequest.action)
+  // @@protoc_insertion_point(field_set:rpc_server.GameActionReq.action)
 }
-inline std::string* GameActionRequest::mutable_action() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* GameActionReq::mutable_action() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_action();
-  // @@protoc_insertion_point(field_mutable:rpc_server.GameActionRequest.action)
+  // @@protoc_insertion_point(field_mutable:rpc_server.GameActionReq.action)
   return _s;
 }
-inline const std::string& GameActionRequest::_internal_action() const {
+inline const std::string& GameActionReq::_internal_action() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.action_.Get();
 }
-inline void GameActionRequest::_internal_set_action(const std::string& value) {
+inline void GameActionReq::_internal_set_action(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.action_.Set(value, GetArena());
 }
-inline std::string* GameActionRequest::_internal_mutable_action() {
+inline std::string* GameActionReq::_internal_mutable_action() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.action_.Mutable( GetArena());
 }
-inline std::string* GameActionRequest::release_action() {
+inline std::string* GameActionReq::release_action() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.GameActionRequest.action)
+  // @@protoc_insertion_point(field_release:rpc_server.GameActionReq.action)
   return _impl_.action_.Release();
 }
-inline void GameActionRequest::set_allocated_action(std::string* value) {
+inline void GameActionReq::set_allocated_action(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.action_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1004,107 +1004,107 @@ inline void GameActionRequest::set_allocated_action(std::string* value) {
           _impl_.action_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.GameActionRequest.action)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.GameActionReq.action)
 }
 
 // map<string, bytes> parameters = 2;
-inline int GameActionRequest::_internal_parameters_size() const {
+inline int GameActionReq::_internal_parameters_size() const {
   return _internal_parameters().size();
 }
-inline int GameActionRequest::parameters_size() const {
+inline int GameActionReq::parameters_size() const {
   return _internal_parameters_size();
 }
-inline void GameActionRequest::clear_parameters() {
+inline void GameActionReq::clear_parameters() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.parameters_.Clear();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& GameActionRequest::_internal_parameters() const {
+inline const ::google::protobuf::Map<std::string, std::string>& GameActionReq::_internal_parameters() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.parameters_.GetMap();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& GameActionRequest::parameters() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:rpc_server.GameActionRequest.parameters)
+inline const ::google::protobuf::Map<std::string, std::string>& GameActionReq::parameters() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:rpc_server.GameActionReq.parameters)
   return _internal_parameters();
 }
-inline ::google::protobuf::Map<std::string, std::string>* GameActionRequest::_internal_mutable_parameters() {
+inline ::google::protobuf::Map<std::string, std::string>* GameActionReq::_internal_mutable_parameters() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _impl_.parameters_.MutableMap();
 }
-inline ::google::protobuf::Map<std::string, std::string>* GameActionRequest::mutable_parameters() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:rpc_server.GameActionRequest.parameters)
+inline ::google::protobuf::Map<std::string, std::string>* GameActionReq::mutable_parameters() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.GameActionReq.parameters)
   return _internal_mutable_parameters();
 }
 
 // -------------------------------------------------------------------
 
-// GameActionResponse
+// GameActionRes
 
 // bool success = 1;
-inline void GameActionResponse::clear_success() {
+inline void GameActionRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool GameActionResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.GameActionResponse.success)
+inline bool GameActionRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.GameActionRes.success)
   return _internal_success();
 }
-inline void GameActionResponse::set_success(bool value) {
+inline void GameActionRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.GameActionResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.GameActionRes.success)
 }
-inline bool GameActionResponse::_internal_success() const {
+inline bool GameActionRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void GameActionResponse::_internal_set_success(bool value) {
+inline void GameActionRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // bytes message = 2;
-inline void GameActionResponse::clear_message() {
+inline void GameActionRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& GameActionResponse::message() const
+inline const std::string& GameActionRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.GameActionResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.GameActionRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void GameActionResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void GameActionRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.GameActionResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.GameActionRes.message)
 }
-inline std::string* GameActionResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* GameActionRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.GameActionResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.GameActionRes.message)
   return _s;
 }
-inline const std::string& GameActionResponse::_internal_message() const {
+inline const std::string& GameActionRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void GameActionResponse::_internal_set_message(const std::string& value) {
+inline void GameActionRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* GameActionResponse::_internal_mutable_message() {
+inline std::string* GameActionRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* GameActionResponse::release_message() {
+inline std::string* GameActionRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.GameActionResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.GameActionRes.message)
   return _impl_.message_.Release();
 }
-inline void GameActionResponse::set_allocated_message(std::string* value) {
+inline void GameActionRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1112,56 +1112,56 @@ inline void GameActionResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.GameActionResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.GameActionRes.message)
 }
 
 // -------------------------------------------------------------------
 
-// GameStateRequest
+// GameStateReq
 
 // bytes game_id = 1;
-inline void GameStateRequest::clear_game_id() {
+inline void GameStateReq::clear_game_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.game_id_.ClearToEmpty();
 }
-inline const std::string& GameStateRequest::game_id() const
+inline const std::string& GameStateReq::game_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.GameStateRequest.game_id)
+  // @@protoc_insertion_point(field_get:rpc_server.GameStateReq.game_id)
   return _internal_game_id();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void GameStateRequest::set_game_id(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void GameStateReq::set_game_id(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.game_id_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.GameStateRequest.game_id)
+  // @@protoc_insertion_point(field_set:rpc_server.GameStateReq.game_id)
 }
-inline std::string* GameStateRequest::mutable_game_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* GameStateReq::mutable_game_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_game_id();
-  // @@protoc_insertion_point(field_mutable:rpc_server.GameStateRequest.game_id)
+  // @@protoc_insertion_point(field_mutable:rpc_server.GameStateReq.game_id)
   return _s;
 }
-inline const std::string& GameStateRequest::_internal_game_id() const {
+inline const std::string& GameStateReq::_internal_game_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.game_id_.Get();
 }
-inline void GameStateRequest::_internal_set_game_id(const std::string& value) {
+inline void GameStateReq::_internal_set_game_id(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.game_id_.Set(value, GetArena());
 }
-inline std::string* GameStateRequest::_internal_mutable_game_id() {
+inline std::string* GameStateReq::_internal_mutable_game_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.game_id_.Mutable( GetArena());
 }
-inline std::string* GameStateRequest::release_game_id() {
+inline std::string* GameStateReq::release_game_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.GameStateRequest.game_id)
+  // @@protoc_insertion_point(field_release:rpc_server.GameStateReq.game_id)
   return _impl_.game_id_.Release();
 }
-inline void GameStateRequest::set_allocated_game_id(std::string* value) {
+inline void GameStateReq::set_allocated_game_id(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.game_id_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1169,81 +1169,81 @@ inline void GameStateRequest::set_allocated_game_id(std::string* value) {
           _impl_.game_id_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.GameStateRequest.game_id)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.GameStateReq.game_id)
 }
 
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
 
-// GameStateResponse
+// GameStateRes
 
 // bool success = 1;
-inline void GameStateResponse::clear_success() {
+inline void GameStateRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool GameStateResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.GameStateResponse.success)
+inline bool GameStateRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.GameStateRes.success)
   return _internal_success();
 }
-inline void GameStateResponse::set_success(bool value) {
+inline void GameStateRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.GameStateResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.GameStateRes.success)
 }
-inline bool GameStateResponse::_internal_success() const {
+inline bool GameStateRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void GameStateResponse::_internal_set_success(bool value) {
+inline void GameStateRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // bytes message = 2;
-inline void GameStateResponse::clear_message() {
+inline void GameStateRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& GameStateResponse::message() const
+inline const std::string& GameStateRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.GameStateResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.GameStateRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void GameStateResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void GameStateRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.GameStateResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.GameStateRes.message)
 }
-inline std::string* GameStateResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* GameStateRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.GameStateResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.GameStateRes.message)
   return _s;
 }
-inline const std::string& GameStateResponse::_internal_message() const {
+inline const std::string& GameStateRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void GameStateResponse::_internal_set_message(const std::string& value) {
+inline void GameStateRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* GameStateResponse::_internal_mutable_message() {
+inline std::string* GameStateRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* GameStateResponse::release_message() {
+inline std::string* GameStateRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.GameStateResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.GameStateRes.message)
   return _impl_.message_.Release();
 }
-inline void GameStateResponse::set_allocated_message(std::string* value) {
+inline void GameStateRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1251,34 +1251,34 @@ inline void GameStateResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.GameStateResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.GameStateRes.message)
 }
 
 // map<string, bytes> state = 3;
-inline int GameStateResponse::_internal_state_size() const {
+inline int GameStateRes::_internal_state_size() const {
   return _internal_state().size();
 }
-inline int GameStateResponse::state_size() const {
+inline int GameStateRes::state_size() const {
   return _internal_state_size();
 }
-inline void GameStateResponse::clear_state() {
+inline void GameStateRes::clear_state() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.state_.Clear();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& GameStateResponse::_internal_state() const {
+inline const ::google::protobuf::Map<std::string, std::string>& GameStateRes::_internal_state() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.state_.GetMap();
 }
-inline const ::google::protobuf::Map<std::string, std::string>& GameStateResponse::state() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:rpc_server.GameStateResponse.state)
+inline const ::google::protobuf::Map<std::string, std::string>& GameStateRes::state() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_map:rpc_server.GameStateRes.state)
   return _internal_state();
 }
-inline ::google::protobuf::Map<std::string, std::string>* GameStateResponse::_internal_mutable_state() {
+inline ::google::protobuf::Map<std::string, std::string>* GameStateRes::_internal_mutable_state() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _impl_.state_.MutableMap();
 }
-inline ::google::protobuf::Map<std::string, std::string>* GameStateResponse::mutable_state() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:rpc_server.GameStateResponse.state)
+inline ::google::protobuf::Map<std::string, std::string>* GameStateRes::mutable_state() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.GameStateRes.state)
   return _internal_mutable_state();
 }
 

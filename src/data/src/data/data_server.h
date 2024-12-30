@@ -31,25 +31,25 @@ public:
 
     // 服务实现
     // 添加数据库记录
-    grpc::Status Create(grpc::ServerContext* context, const rpc_server::CreateRequest* request, rpc_server::CreateResponse* response) override;
+    grpc::Status Create(grpc::ServerContext* context, const rpc_server::CreateReq* req, rpc_server::CreateRes* res) override;
     // 读取数据库记录
-    grpc::Status Read(grpc::ServerContext* context, const rpc_server::ReadRequest* request, rpc_server::ReadResponse* response) override;
+    grpc::Status Read(grpc::ServerContext* context, const rpc_server::ReadReq* req, rpc_server::ReadRes* res) override;
     // 更新数据库记录
-    grpc::Status Update(grpc::ServerContext* context, const rpc_server::UpdateRequest* request, rpc_server::UpdateResponse* response) override;
+    grpc::Status Update(grpc::ServerContext* context, const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res) override;
     // 删除数据库记录
-    grpc::Status Delete(grpc::ServerContext* context, const rpc_server::DeleteRequest* request, rpc_server::DeleteResponse* response) override;
+    grpc::Status Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res) override;
 
 private:
-    void Read_server_config(lua_State* L,const std::string& file_url);   // 读取服务器配置文件，初始化服务器地址和端口
-    std::string Read_db_config(lua_State* L,const std::string& file_url); // 读取 数据库配置配置文件，获得数据库连接字符串
+    void Read_server_config(lua_State* L, const std::string& file_url);   // 读取服务器配置文件，初始化服务器地址和端口
+    std::string Read_db_config(lua_State* L, const std::string& file_url); // 读取 数据库配置配置文件，获得数据库连接字符串
 
     void Worker_thread();   // 线程池工作函数
 
     // 处理数据库操作的函数
-    void Handle_create(const rpc_server::CreateRequest* request, rpc_server::CreateResponse* response);
-    void Handle_read(const rpc_server::ReadRequest* request, rpc_server::ReadResponse* response);
-    void Handle_update(const rpc_server::UpdateRequest* request, rpc_server::UpdateResponse* response);
-    void Handle_delete(const rpc_server::DeleteRequest* request, rpc_server::DeleteResponse* response);
+    void Handle_create(const rpc_server::CreateReq* req, rpc_server::CreateRes* res);
+    void Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadRes* res);
+    void Handle_update(const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res);
+    void Handle_delete(const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res);
 
     // 定时任务：
     void Send_heartbeat();  // 发送心跳包

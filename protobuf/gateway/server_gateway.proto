@@ -12,18 +12,18 @@ enum ServiceType
 
 service GatewayServer
 {
-    rpc RequestForward (ForwardRequest) returns (ForwardResponse);  // 转发请求
+    rpc Request_forward (ForwardReq) returns (ForwardRes);  // 转发请求
 }
 
 // 传入请求
-message ForwardRequest
+message ForwardReq
 {
     ServiceType service_type = 1;   // 目标服务枚举
     bytes payload = 2;  // 负载
 }
 
 // 请求处理响应
-message ForwardResponse
+message ForwardRes
 {
     bool success = 1;
     bytes response = 2; // 响应负载

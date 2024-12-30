@@ -52,25 +52,25 @@ void test_client()
     std::string password = "159357";
 
     // 构造登录请求
-    rpc_server::LoginRequest login_request;
-    login_request.set_username(user_name); // 设置用户名
-    login_request.set_password(password); // 设置密码
+    rpc_server::LoginReq login_req;
+    login_req.set_username(user_name); // 设置用户名
+    login_req.set_password(password); // 设置密码
 
     // 包装为转发请求
-    rpc_server::ForwardRequest forward_request;
-    forward_request.set_service_type(rpc_server::ServiceType::REQ_LOGIN); // 设置服务类型
-    login_request.SerializeToString(forward_request.mutable_payload()); // 序列化登录请求
+    rpc_server::ForwardReq forward_req;
+    forward_req.set_service_type(rpc_server::ServiceType::REQ_LOGIN); // 设置服务类型
+    login_req.SerializeToString(forward_req.mutable_payload()); // 序列化登录请求
 
     //for(int i = 0; i < 100; ++i)
     {
         // 构造响应
-        rpc_server::ForwardResponse forward_response;
+        rpc_server::ForwardRes forward_res;
         grpc::ClientContext client_context; // 包含 RPC 调用的元数据和其他信息
 
         // 向网关服务器发送请求
-        grpc::Status status = stub->RequestForward(&client_context,forward_request,&forward_response);
+        grpc::Status status = stub->Request_forward(&client_context,forward_req, &forward_res);
 
-        if(status.ok() && forward_response.success())
+        if(status.ok() && forward_res.success())
         {
             std::cout << "login yes" << std::endl;
         }

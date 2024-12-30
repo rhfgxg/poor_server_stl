@@ -22,7 +22,7 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace rpc_server {
 
-inline constexpr ForwardResponse::Impl_::Impl_(
+inline constexpr ForwardRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : response_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -31,20 +31,20 @@ inline constexpr ForwardResponse::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR ForwardResponse::ForwardResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR ForwardRes::ForwardRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct ForwardResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ForwardResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ForwardResponseDefaultTypeInternal() {}
+struct ForwardResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ForwardResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ForwardResDefaultTypeInternal() {}
   union {
-    ForwardResponse _instance;
+    ForwardRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ForwardResponseDefaultTypeInternal _ForwardResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ForwardResDefaultTypeInternal _ForwardRes_default_instance_;
 
-inline constexpr ForwardRequest::Impl_::Impl_(
+inline constexpr ForwardReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : payload_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -53,18 +53,18 @@ inline constexpr ForwardRequest::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR ForwardRequest::ForwardRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR ForwardReq::ForwardReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct ForwardRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ForwardRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ForwardRequestDefaultTypeInternal() {}
+struct ForwardReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ForwardReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ForwardReqDefaultTypeInternal() {}
   union {
-    ForwardRequest _instance;
+    ForwardReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ForwardRequestDefaultTypeInternal _ForwardRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ForwardReqDefaultTypeInternal _ForwardReq_default_instance_;
 }  // namespace rpc_server
 static ::_pb::Metadata file_level_metadata_server_5fgateway_2eproto[2];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_server_5fgateway_2eproto[1];
@@ -73,52 +73,52 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t TableStruct_server_5fgateway_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     protodesc_cold) = {
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardRequest, _impl_.service_type_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardRequest, _impl_.payload_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardReq, _impl_.service_type_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardReq, _impl_.payload_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardResponse, _impl_.response_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardRes, _impl_.response_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::rpc_server::ForwardRequest)},
-        {10, -1, -1, sizeof(::rpc_server::ForwardResponse)},
+        {0, -1, -1, sizeof(::rpc_server::ForwardReq)},
+        {10, -1, -1, sizeof(::rpc_server::ForwardRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-    &::rpc_server::_ForwardRequest_default_instance_._instance,
-    &::rpc_server::_ForwardResponse_default_instance_._instance,
+    &::rpc_server::_ForwardReq_default_instance_._instance,
+    &::rpc_server::_ForwardRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fgateway_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\024server_gateway.proto\022\nrpc_server\"P\n\016Fo"
-    "rwardRequest\022-\n\014service_type\030\001 \001(\0162\027.rpc"
-    "_server.ServiceType\022\017\n\007payload\030\002 \001(\014\"4\n\017"
-    "ForwardResponse\022\017\n\007success\030\001 \001(\010\022\020\n\010resp"
-    "onse\030\002 \001(\014*+\n\013ServiceType\022\r\n\tREQ_LOGIN\020\000"
-    "\022\r\n\tRES_LOGIN\020\0012Z\n\rGatewayServer\022I\n\016Requ"
-    "estForward\022\032.rpc_server.ForwardRequest\032\033"
-    ".rpc_server.ForwardResponseb\006proto3"
+    "\n\024server_gateway.proto\022\nrpc_server\"L\n\nFo"
+    "rwardReq\022-\n\014service_type\030\001 \001(\0162\027.rpc_ser"
+    "ver.ServiceType\022\017\n\007payload\030\002 \001(\014\"/\n\nForw"
+    "ardRes\022\017\n\007success\030\001 \001(\010\022\020\n\010response\030\002 \001("
+    "\014*+\n\013ServiceType\022\r\n\tREQ_LOGIN\020\000\022\r\n\tRES_L"
+    "OGIN\020\0012R\n\rGatewayServer\022A\n\017Request_forwa"
+    "rd\022\026.rpc_server.ForwardReq\032\026.rpc_server."
+    "ForwardResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fgateway_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fgateway_2eproto = {
     false,
     false,
-    315,
+    298,
     descriptor_table_protodef_server_5fgateway_2eproto,
     "server_gateway.proto",
     &descriptor_table_server_5fgateway_2eproto_once,
@@ -162,57 +162,57 @@ bool ServiceType_IsValid(int value) {
 }
 // ===================================================================
 
-class ForwardRequest::_Internal {
+class ForwardReq::_Internal {
  public:
 };
 
-ForwardRequest::ForwardRequest(::google::protobuf::Arena* arena)
+ForwardReq::ForwardReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.ForwardRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ForwardReq)
 }
-inline PROTOBUF_NDEBUG_INLINE ForwardRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ForwardReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : payload_(arena, from.payload_),
         _cached_size_{0} {}
 
-ForwardRequest::ForwardRequest(
+ForwardReq::ForwardReq(
     ::google::protobuf::Arena* arena,
-    const ForwardRequest& from)
+    const ForwardReq& from)
     : ::google::protobuf::Message(arena) {
-  ForwardRequest* const _this = this;
+  ForwardReq* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.service_type_ = from._impl_.service_type_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.ForwardRequest)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.ForwardReq)
 }
-inline PROTOBUF_NDEBUG_INLINE ForwardRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ForwardReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : payload_(arena),
         _cached_size_{0} {}
 
-inline void ForwardRequest::SharedCtor(::_pb::Arena* arena) {
+inline void ForwardReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.service_type_ = {};
 }
-ForwardRequest::~ForwardRequest() {
-  // @@protoc_insertion_point(destructor:rpc_server.ForwardRequest)
+ForwardReq::~ForwardReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.ForwardReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ForwardRequest::SharedDtor() {
+inline void ForwardReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.payload_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void ForwardRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.ForwardRequest)
+PROTOBUF_NOINLINE void ForwardReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.ForwardReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -223,7 +223,7 @@ PROTOBUF_NOINLINE void ForwardRequest::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ForwardRequest::_InternalParse(
+const char* ForwardReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -231,7 +231,7 @@ const char* ForwardRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -242,23 +242,23 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRequest::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_ForwardRequest_default_instance_._instance,
+    &_ForwardReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // bytes payload = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.payload_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardReq, _impl_.payload_)}},
     // .rpc_server.ServiceType service_type = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ForwardRequest, _impl_.service_type_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.service_type_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ForwardReq, _impl_.service_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardReq, _impl_.service_type_)}},
   }}, {{
     65535, 65535
   }}, {{
     // .rpc_server.ServiceType service_type = 1;
-    {PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.service_type_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ForwardReq, _impl_.service_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // bytes payload = 2;
-    {PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.payload_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ForwardReq, _impl_.payload_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
@@ -266,10 +266,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRequest::_table_ = {
   }},
 };
 
-::uint8_t* ForwardRequest::_InternalSerialize(
+::uint8_t* ForwardReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ForwardRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ForwardReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -291,12 +291,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ForwardRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ForwardReq)
   return target;
 }
 
-::size_t ForwardRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.ForwardRequest)
+::size_t ForwardReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ForwardReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -318,18 +318,18 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRequest::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData ForwardRequest::_class_data_ = {
-    ForwardRequest::MergeImpl,
+const ::google::protobuf::Message::ClassData ForwardReq::_class_data_ = {
+    ForwardReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* ForwardRequest::GetClassData() const {
+const ::google::protobuf::Message::ClassData* ForwardReq::GetClassData() const {
   return &_class_data_;
 }
 
-void ForwardRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ForwardRequest*>(&to_msg);
-  auto& from = static_cast<const ForwardRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ForwardRequest)
+void ForwardReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ForwardReq*>(&to_msg);
+  auto& from = static_cast<const ForwardReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ForwardReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -343,21 +343,21 @@ void ForwardRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ForwardRequest::CopyFrom(const ForwardRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ForwardRequest)
+void ForwardReq::CopyFrom(const ForwardReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ForwardReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ForwardRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool ForwardReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* ForwardRequest::AccessCachedSize() const {
+::_pbi::CachedSize* ForwardReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void ForwardRequest::InternalSwap(ForwardRequest* PROTOBUF_RESTRICT other) {
+void ForwardReq::InternalSwap(ForwardReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -366,64 +366,64 @@ void ForwardRequest::InternalSwap(ForwardRequest* PROTOBUF_RESTRICT other) {
   swap(_impl_.service_type_, other->_impl_.service_type_);
 }
 
-::google::protobuf::Metadata ForwardRequest::GetMetadata() const {
+::google::protobuf::Metadata ForwardReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fgateway_2eproto_getter, &descriptor_table_server_5fgateway_2eproto_once,
       file_level_metadata_server_5fgateway_2eproto[0]);
 }
 // ===================================================================
 
-class ForwardResponse::_Internal {
+class ForwardRes::_Internal {
  public:
 };
 
-ForwardResponse::ForwardResponse(::google::protobuf::Arena* arena)
+ForwardRes::ForwardRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.ForwardResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ForwardRes)
 }
-inline PROTOBUF_NDEBUG_INLINE ForwardResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ForwardRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : response_(arena, from.response_),
         _cached_size_{0} {}
 
-ForwardResponse::ForwardResponse(
+ForwardRes::ForwardRes(
     ::google::protobuf::Arena* arena,
-    const ForwardResponse& from)
+    const ForwardRes& from)
     : ::google::protobuf::Message(arena) {
-  ForwardResponse* const _this = this;
+  ForwardRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.ForwardResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.ForwardRes)
 }
-inline PROTOBUF_NDEBUG_INLINE ForwardResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ForwardRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : response_(arena),
         _cached_size_{0} {}
 
-inline void ForwardResponse::SharedCtor(::_pb::Arena* arena) {
+inline void ForwardRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.success_ = {};
 }
-ForwardResponse::~ForwardResponse() {
-  // @@protoc_insertion_point(destructor:rpc_server.ForwardResponse)
+ForwardRes::~ForwardRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.ForwardRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ForwardResponse::SharedDtor() {
+inline void ForwardRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.response_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void ForwardResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.ForwardResponse)
+PROTOBUF_NOINLINE void ForwardRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.ForwardRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -434,7 +434,7 @@ PROTOBUF_NOINLINE void ForwardResponse::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ForwardResponse::_InternalParse(
+const char* ForwardRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -442,7 +442,7 @@ const char* ForwardResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -453,23 +453,23 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardResponse::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_ForwardResponse_default_instance_._instance,
+    &_ForwardRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // bytes response = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardResponse, _impl_.response_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardRes, _impl_.response_)}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ForwardResponse, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardResponse, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ForwardRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardRes, _impl_.success_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(ForwardResponse, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ForwardRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // bytes response = 2;
-    {PROTOBUF_FIELD_OFFSET(ForwardResponse, _impl_.response_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ForwardRes, _impl_.response_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
@@ -477,10 +477,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardResponse::_table_ = {
   }},
 };
 
-::uint8_t* ForwardResponse::_InternalSerialize(
+::uint8_t* ForwardRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ForwardResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ForwardRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -502,12 +502,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ForwardResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ForwardRes)
   return target;
 }
 
-::size_t ForwardResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.ForwardResponse)
+::size_t ForwardRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ForwardRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -528,18 +528,18 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardResponse::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData ForwardResponse::_class_data_ = {
-    ForwardResponse::MergeImpl,
+const ::google::protobuf::Message::ClassData ForwardRes::_class_data_ = {
+    ForwardRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* ForwardResponse::GetClassData() const {
+const ::google::protobuf::Message::ClassData* ForwardRes::GetClassData() const {
   return &_class_data_;
 }
 
-void ForwardResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ForwardResponse*>(&to_msg);
-  auto& from = static_cast<const ForwardResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ForwardResponse)
+void ForwardRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ForwardRes*>(&to_msg);
+  auto& from = static_cast<const ForwardRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ForwardRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -553,21 +553,21 @@ void ForwardResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::goo
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ForwardResponse::CopyFrom(const ForwardResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ForwardResponse)
+void ForwardRes::CopyFrom(const ForwardRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ForwardRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ForwardResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool ForwardRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* ForwardResponse::AccessCachedSize() const {
+::_pbi::CachedSize* ForwardRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void ForwardResponse::InternalSwap(ForwardResponse* PROTOBUF_RESTRICT other) {
+void ForwardRes::InternalSwap(ForwardRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -576,7 +576,7 @@ void ForwardResponse::InternalSwap(ForwardResponse* PROTOBUF_RESTRICT other) {
         swap(_impl_.success_, other->_impl_.success_);
 }
 
-::google::protobuf::Metadata ForwardResponse::GetMetadata() const {
+::google::protobuf::Metadata ForwardRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fgateway_2eproto_getter, &descriptor_table_server_5fgateway_2eproto_once,
       file_level_metadata_server_5fgateway_2eproto[1]);

@@ -60,30 +60,30 @@ namespace rpc_server {
 class ConnectInfo;
 struct ConnectInfoDefaultTypeInternal;
 extern ConnectInfoDefaultTypeInternal _ConnectInfo_default_instance_;
-class ConnectPoorRequest;
-struct ConnectPoorRequestDefaultTypeInternal;
-extern ConnectPoorRequestDefaultTypeInternal _ConnectPoorRequest_default_instance_;
-class ConnectPoorResponse;
-struct ConnectPoorResponseDefaultTypeInternal;
-extern ConnectPoorResponseDefaultTypeInternal _ConnectPoorResponse_default_instance_;
-class HeartbeatRequest;
-struct HeartbeatRequestDefaultTypeInternal;
-extern HeartbeatRequestDefaultTypeInternal _HeartbeatRequest_default_instance_;
-class HeartbeatResponse;
-struct HeartbeatResponseDefaultTypeInternal;
-extern HeartbeatResponseDefaultTypeInternal _HeartbeatResponse_default_instance_;
-class RegisterServerRequest;
-struct RegisterServerRequestDefaultTypeInternal;
-extern RegisterServerRequestDefaultTypeInternal _RegisterServerRequest_default_instance_;
-class RegisterServerResponse;
-struct RegisterServerResponseDefaultTypeInternal;
-extern RegisterServerResponseDefaultTypeInternal _RegisterServerResponse_default_instance_;
-class UnregisterServerRequest;
-struct UnregisterServerRequestDefaultTypeInternal;
-extern UnregisterServerRequestDefaultTypeInternal _UnregisterServerRequest_default_instance_;
-class UnregisterServerResponse;
-struct UnregisterServerResponseDefaultTypeInternal;
-extern UnregisterServerResponseDefaultTypeInternal _UnregisterServerResponse_default_instance_;
+class ConnectPoorReq;
+struct ConnectPoorReqDefaultTypeInternal;
+extern ConnectPoorReqDefaultTypeInternal _ConnectPoorReq_default_instance_;
+class ConnectPoorRes;
+struct ConnectPoorResDefaultTypeInternal;
+extern ConnectPoorResDefaultTypeInternal _ConnectPoorRes_default_instance_;
+class HeartbeatReq;
+struct HeartbeatReqDefaultTypeInternal;
+extern HeartbeatReqDefaultTypeInternal _HeartbeatReq_default_instance_;
+class HeartbeatRes;
+struct HeartbeatResDefaultTypeInternal;
+extern HeartbeatResDefaultTypeInternal _HeartbeatRes_default_instance_;
+class RegisterServerReq;
+struct RegisterServerReqDefaultTypeInternal;
+extern RegisterServerReqDefaultTypeInternal _RegisterServerReq_default_instance_;
+class RegisterServerRes;
+struct RegisterServerResDefaultTypeInternal;
+extern RegisterServerResDefaultTypeInternal _RegisterServerRes_default_instance_;
+class UnregisterServerReq;
+struct UnregisterServerReqDefaultTypeInternal;
+extern UnregisterServerReqDefaultTypeInternal _UnregisterServerReq_default_instance_;
+class UnregisterServerRes;
+struct UnregisterServerResDefaultTypeInternal;
+extern UnregisterServerResDefaultTypeInternal _UnregisterServerRes_default_instance_;
 }  // namespace rpc_server
 namespace google {
 namespace protobuf {
@@ -134,26 +134,26 @@ inline bool ServerType_Parse(absl::string_view name, ServerType* value) {
 
 // -------------------------------------------------------------------
 
-class UnregisterServerResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UnregisterServerResponse) */ {
+class UnregisterServerRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UnregisterServerRes) */ {
  public:
-  inline UnregisterServerResponse() : UnregisterServerResponse(nullptr) {}
-  ~UnregisterServerResponse() override;
+  inline UnregisterServerRes() : UnregisterServerRes(nullptr) {}
+  ~UnregisterServerRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR UnregisterServerResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR UnregisterServerRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline UnregisterServerResponse(const UnregisterServerResponse& from)
-      : UnregisterServerResponse(nullptr, from) {}
-  UnregisterServerResponse(UnregisterServerResponse&& from) noexcept
-    : UnregisterServerResponse() {
+  inline UnregisterServerRes(const UnregisterServerRes& from)
+      : UnregisterServerRes(nullptr, from) {}
+  UnregisterServerRes(UnregisterServerRes&& from) noexcept
+    : UnregisterServerRes() {
     *this = ::std::move(from);
   }
 
-  inline UnregisterServerResponse& operator=(const UnregisterServerResponse& from) {
+  inline UnregisterServerRes& operator=(const UnregisterServerRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline UnregisterServerResponse& operator=(UnregisterServerResponse&& from) noexcept {
+  inline UnregisterServerRes& operator=(UnregisterServerRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -185,20 +185,20 @@ class UnregisterServerResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const UnregisterServerResponse& default_instance() {
+  static const UnregisterServerRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const UnregisterServerResponse* internal_default_instance() {
-    return reinterpret_cast<const UnregisterServerResponse*>(
-               &_UnregisterServerResponse_default_instance_);
+  static inline const UnregisterServerRes* internal_default_instance() {
+    return reinterpret_cast<const UnregisterServerRes*>(
+               &_UnregisterServerRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     3;
 
-  friend void swap(UnregisterServerResponse& a, UnregisterServerResponse& b) {
+  friend void swap(UnregisterServerRes& a, UnregisterServerRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(UnregisterServerResponse* other) {
+  inline void Swap(UnregisterServerRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -211,7 +211,7 @@ class UnregisterServerResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(UnregisterServerResponse* other) {
+  void UnsafeArenaSwap(UnregisterServerRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -219,14 +219,14 @@ class UnregisterServerResponse final :
 
   // implements Message ----------------------------------------------
 
-  UnregisterServerResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<UnregisterServerResponse>(arena);
+  UnregisterServerRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UnregisterServerRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const UnregisterServerResponse& from);
+  void CopyFrom(const UnregisterServerRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const UnregisterServerResponse& from) {
-    UnregisterServerResponse::MergeImpl(*this, from);
+  void MergeFrom( const UnregisterServerRes& from) {
+    UnregisterServerRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -244,16 +244,16 @@ class UnregisterServerResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(UnregisterServerResponse* other);
+  void InternalSwap(UnregisterServerRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.UnregisterServerResponse";
+    return "rpc_server.UnregisterServerRes";
   }
   protected:
-  explicit UnregisterServerResponse(::google::protobuf::Arena* arena);
-  UnregisterServerResponse(::google::protobuf::Arena* arena, const UnregisterServerResponse& from);
+  explicit UnregisterServerRes(::google::protobuf::Arena* arena);
+  UnregisterServerRes(::google::protobuf::Arena* arena, const UnregisterServerRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -295,14 +295,14 @@ class UnregisterServerResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.UnregisterServerResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.UnregisterServerRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      51, 2>
+      46, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -327,26 +327,26 @@ class UnregisterServerResponse final :
   friend struct ::TableStruct_server_5fcentral_2eproto;
 };// -------------------------------------------------------------------
 
-class UnregisterServerRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UnregisterServerRequest) */ {
+class UnregisterServerReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UnregisterServerReq) */ {
  public:
-  inline UnregisterServerRequest() : UnregisterServerRequest(nullptr) {}
-  ~UnregisterServerRequest() override;
+  inline UnregisterServerReq() : UnregisterServerReq(nullptr) {}
+  ~UnregisterServerReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR UnregisterServerRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR UnregisterServerReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline UnregisterServerRequest(const UnregisterServerRequest& from)
-      : UnregisterServerRequest(nullptr, from) {}
-  UnregisterServerRequest(UnregisterServerRequest&& from) noexcept
-    : UnregisterServerRequest() {
+  inline UnregisterServerReq(const UnregisterServerReq& from)
+      : UnregisterServerReq(nullptr, from) {}
+  UnregisterServerReq(UnregisterServerReq&& from) noexcept
+    : UnregisterServerReq() {
     *this = ::std::move(from);
   }
 
-  inline UnregisterServerRequest& operator=(const UnregisterServerRequest& from) {
+  inline UnregisterServerReq& operator=(const UnregisterServerReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline UnregisterServerRequest& operator=(UnregisterServerRequest&& from) noexcept {
+  inline UnregisterServerReq& operator=(UnregisterServerReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -378,20 +378,20 @@ class UnregisterServerRequest final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const UnregisterServerRequest& default_instance() {
+  static const UnregisterServerReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const UnregisterServerRequest* internal_default_instance() {
-    return reinterpret_cast<const UnregisterServerRequest*>(
-               &_UnregisterServerRequest_default_instance_);
+  static inline const UnregisterServerReq* internal_default_instance() {
+    return reinterpret_cast<const UnregisterServerReq*>(
+               &_UnregisterServerReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(UnregisterServerRequest& a, UnregisterServerRequest& b) {
+  friend void swap(UnregisterServerReq& a, UnregisterServerReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(UnregisterServerRequest* other) {
+  inline void Swap(UnregisterServerReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -404,7 +404,7 @@ class UnregisterServerRequest final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(UnregisterServerRequest* other) {
+  void UnsafeArenaSwap(UnregisterServerReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -412,14 +412,14 @@ class UnregisterServerRequest final :
 
   // implements Message ----------------------------------------------
 
-  UnregisterServerRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<UnregisterServerRequest>(arena);
+  UnregisterServerReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UnregisterServerReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const UnregisterServerRequest& from);
+  void CopyFrom(const UnregisterServerReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const UnregisterServerRequest& from) {
-    UnregisterServerRequest::MergeImpl(*this, from);
+  void MergeFrom( const UnregisterServerReq& from) {
+    UnregisterServerReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -437,16 +437,16 @@ class UnregisterServerRequest final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(UnregisterServerRequest* other);
+  void InternalSwap(UnregisterServerReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.UnregisterServerRequest";
+    return "rpc_server.UnregisterServerReq";
   }
   protected:
-  explicit UnregisterServerRequest(::google::protobuf::Arena* arena);
-  UnregisterServerRequest(::google::protobuf::Arena* arena, const UnregisterServerRequest& from);
+  explicit UnregisterServerReq(::google::protobuf::Arena* arena);
+  UnregisterServerReq(::google::protobuf::Arena* arena, const UnregisterServerReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -505,14 +505,14 @@ class UnregisterServerRequest final :
   void _internal_set_server_type(::rpc_server::ServerType value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.UnregisterServerRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.UnregisterServerReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 0,
-      54, 2>
+      50, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -538,26 +538,26 @@ class UnregisterServerRequest final :
   friend struct ::TableStruct_server_5fcentral_2eproto;
 };// -------------------------------------------------------------------
 
-class RegisterServerResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.RegisterServerResponse) */ {
+class RegisterServerRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.RegisterServerRes) */ {
  public:
-  inline RegisterServerResponse() : RegisterServerResponse(nullptr) {}
-  ~RegisterServerResponse() override;
+  inline RegisterServerRes() : RegisterServerRes(nullptr) {}
+  ~RegisterServerRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR RegisterServerResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR RegisterServerRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline RegisterServerResponse(const RegisterServerResponse& from)
-      : RegisterServerResponse(nullptr, from) {}
-  RegisterServerResponse(RegisterServerResponse&& from) noexcept
-    : RegisterServerResponse() {
+  inline RegisterServerRes(const RegisterServerRes& from)
+      : RegisterServerRes(nullptr, from) {}
+  RegisterServerRes(RegisterServerRes&& from) noexcept
+    : RegisterServerRes() {
     *this = ::std::move(from);
   }
 
-  inline RegisterServerResponse& operator=(const RegisterServerResponse& from) {
+  inline RegisterServerRes& operator=(const RegisterServerRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline RegisterServerResponse& operator=(RegisterServerResponse&& from) noexcept {
+  inline RegisterServerRes& operator=(RegisterServerRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -589,20 +589,20 @@ class RegisterServerResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const RegisterServerResponse& default_instance() {
+  static const RegisterServerRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const RegisterServerResponse* internal_default_instance() {
-    return reinterpret_cast<const RegisterServerResponse*>(
-               &_RegisterServerResponse_default_instance_);
+  static inline const RegisterServerRes* internal_default_instance() {
+    return reinterpret_cast<const RegisterServerRes*>(
+               &_RegisterServerRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(RegisterServerResponse& a, RegisterServerResponse& b) {
+  friend void swap(RegisterServerRes& a, RegisterServerRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(RegisterServerResponse* other) {
+  inline void Swap(RegisterServerRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -615,7 +615,7 @@ class RegisterServerResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(RegisterServerResponse* other) {
+  void UnsafeArenaSwap(RegisterServerRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -623,14 +623,14 @@ class RegisterServerResponse final :
 
   // implements Message ----------------------------------------------
 
-  RegisterServerResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<RegisterServerResponse>(arena);
+  RegisterServerRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RegisterServerRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const RegisterServerResponse& from);
+  void CopyFrom(const RegisterServerRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const RegisterServerResponse& from) {
-    RegisterServerResponse::MergeImpl(*this, from);
+  void MergeFrom( const RegisterServerRes& from) {
+    RegisterServerRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -648,16 +648,16 @@ class RegisterServerResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(RegisterServerResponse* other);
+  void InternalSwap(RegisterServerRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.RegisterServerResponse";
+    return "rpc_server.RegisterServerRes";
   }
   protected:
-  explicit RegisterServerResponse(::google::protobuf::Arena* arena);
-  RegisterServerResponse(::google::protobuf::Arena* arena, const RegisterServerResponse& from);
+  explicit RegisterServerRes(::google::protobuf::Arena* arena);
+  RegisterServerRes(::google::protobuf::Arena* arena, const RegisterServerRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -699,411 +699,7 @@ class RegisterServerResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.RegisterServerResponse)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      49, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr message_;
-    bool success_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_server_5fcentral_2eproto;
-};// -------------------------------------------------------------------
-
-class RegisterServerRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.RegisterServerRequest) */ {
- public:
-  inline RegisterServerRequest() : RegisterServerRequest(nullptr) {}
-  ~RegisterServerRequest() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR RegisterServerRequest(::google::protobuf::internal::ConstantInitialized);
-
-  inline RegisterServerRequest(const RegisterServerRequest& from)
-      : RegisterServerRequest(nullptr, from) {}
-  RegisterServerRequest(RegisterServerRequest&& from) noexcept
-    : RegisterServerRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline RegisterServerRequest& operator=(const RegisterServerRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline RegisterServerRequest& operator=(RegisterServerRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const RegisterServerRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const RegisterServerRequest* internal_default_instance() {
-    return reinterpret_cast<const RegisterServerRequest*>(
-               &_RegisterServerRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    0;
-
-  friend void swap(RegisterServerRequest& a, RegisterServerRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(RegisterServerRequest* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(RegisterServerRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  RegisterServerRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<RegisterServerRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const RegisterServerRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const RegisterServerRequest& from) {
-    RegisterServerRequest::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(RegisterServerRequest* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "rpc_server.RegisterServerRequest";
-  }
-  protected:
-  explicit RegisterServerRequest(::google::protobuf::Arena* arena);
-  RegisterServerRequest(::google::protobuf::Arena* arena, const RegisterServerRequest& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kAddressFieldNumber = 2,
-    kPortFieldNumber = 3,
-    kServerTypeFieldNumber = 1,
-  };
-  // string address = 2;
-  void clear_address() ;
-  const std::string& address() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_address(Arg_&& arg, Args_... args);
-  std::string* mutable_address();
-  PROTOBUF_NODISCARD std::string* release_address();
-  void set_allocated_address(std::string* value);
-
-  private:
-  const std::string& _internal_address() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_address(
-      const std::string& value);
-  std::string* _internal_mutable_address();
-
-  public:
-  // string port = 3;
-  void clear_port() ;
-  const std::string& port() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_port(Arg_&& arg, Args_... args);
-  std::string* mutable_port();
-  PROTOBUF_NODISCARD std::string* release_port();
-  void set_allocated_port(std::string* value);
-
-  private:
-  const std::string& _internal_port() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_port(
-      const std::string& value);
-  std::string* _internal_mutable_port();
-
-  public:
-  // .rpc_server.ServerType server_type = 1;
-  void clear_server_type() ;
-  ::rpc_server::ServerType server_type() const;
-  void set_server_type(::rpc_server::ServerType value);
-
-  private:
-  ::rpc_server::ServerType _internal_server_type() const;
-  void _internal_set_server_type(::rpc_server::ServerType value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:rpc_server.RegisterServerRequest)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
-      52, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr address_;
-    ::google::protobuf::internal::ArenaStringPtr port_;
-    int server_type_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_server_5fcentral_2eproto;
-};// -------------------------------------------------------------------
-
-class HeartbeatResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.HeartbeatResponse) */ {
- public:
-  inline HeartbeatResponse() : HeartbeatResponse(nullptr) {}
-  ~HeartbeatResponse() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR HeartbeatResponse(::google::protobuf::internal::ConstantInitialized);
-
-  inline HeartbeatResponse(const HeartbeatResponse& from)
-      : HeartbeatResponse(nullptr, from) {}
-  HeartbeatResponse(HeartbeatResponse&& from) noexcept
-    : HeartbeatResponse() {
-    *this = ::std::move(from);
-  }
-
-  inline HeartbeatResponse& operator=(const HeartbeatResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline HeartbeatResponse& operator=(HeartbeatResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const HeartbeatResponse& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const HeartbeatResponse* internal_default_instance() {
-    return reinterpret_cast<const HeartbeatResponse*>(
-               &_HeartbeatResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    8;
-
-  friend void swap(HeartbeatResponse& a, HeartbeatResponse& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(HeartbeatResponse* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(HeartbeatResponse* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  HeartbeatResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<HeartbeatResponse>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const HeartbeatResponse& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const HeartbeatResponse& from) {
-    HeartbeatResponse::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(HeartbeatResponse* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "rpc_server.HeartbeatResponse";
-  }
-  protected:
-  explicit HeartbeatResponse(::google::protobuf::Arena* arena);
-  HeartbeatResponse(::google::protobuf::Arena* arena, const HeartbeatResponse& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kMessageFieldNumber = 2,
-    kSuccessFieldNumber = 1,
-  };
-  // string message = 2;
-  void clear_message() ;
-  const std::string& message() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_message(Arg_&& arg, Args_... args);
-  std::string* mutable_message();
-  PROTOBUF_NODISCARD std::string* release_message();
-  void set_allocated_message(std::string* value);
-
-  private:
-  const std::string& _internal_message() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
-      const std::string& value);
-  std::string* _internal_mutable_message();
-
-  public:
-  // bool success = 1;
-  void clear_success() ;
-  bool success() const;
-  void set_success(bool value);
-
-  private:
-  bool _internal_success() const;
-  void _internal_set_success(bool value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:rpc_server.HeartbeatResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.RegisterServerRes)
  private:
   class _Internal;
 
@@ -1135,26 +731,26 @@ class HeartbeatResponse final :
   friend struct ::TableStruct_server_5fcentral_2eproto;
 };// -------------------------------------------------------------------
 
-class HeartbeatRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.HeartbeatRequest) */ {
+class RegisterServerReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.RegisterServerReq) */ {
  public:
-  inline HeartbeatRequest() : HeartbeatRequest(nullptr) {}
-  ~HeartbeatRequest() override;
+  inline RegisterServerReq() : RegisterServerReq(nullptr) {}
+  ~RegisterServerReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR HeartbeatRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR RegisterServerReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline HeartbeatRequest(const HeartbeatRequest& from)
-      : HeartbeatRequest(nullptr, from) {}
-  HeartbeatRequest(HeartbeatRequest&& from) noexcept
-    : HeartbeatRequest() {
+  inline RegisterServerReq(const RegisterServerReq& from)
+      : RegisterServerReq(nullptr, from) {}
+  RegisterServerReq(RegisterServerReq&& from) noexcept
+    : RegisterServerReq() {
     *this = ::std::move(from);
   }
 
-  inline HeartbeatRequest& operator=(const HeartbeatRequest& from) {
+  inline RegisterServerReq& operator=(const RegisterServerReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline HeartbeatRequest& operator=(HeartbeatRequest&& from) noexcept {
+  inline RegisterServerReq& operator=(RegisterServerReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1186,20 +782,20 @@ class HeartbeatRequest final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const HeartbeatRequest& default_instance() {
+  static const RegisterServerReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const HeartbeatRequest* internal_default_instance() {
-    return reinterpret_cast<const HeartbeatRequest*>(
-               &_HeartbeatRequest_default_instance_);
+  static inline const RegisterServerReq* internal_default_instance() {
+    return reinterpret_cast<const RegisterServerReq*>(
+               &_RegisterServerReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    0;
 
-  friend void swap(HeartbeatRequest& a, HeartbeatRequest& b) {
+  friend void swap(RegisterServerReq& a, RegisterServerReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(HeartbeatRequest* other) {
+  inline void Swap(RegisterServerReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -1212,7 +808,7 @@ class HeartbeatRequest final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(HeartbeatRequest* other) {
+  void UnsafeArenaSwap(RegisterServerReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1220,14 +816,14 @@ class HeartbeatRequest final :
 
   // implements Message ----------------------------------------------
 
-  HeartbeatRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<HeartbeatRequest>(arena);
+  RegisterServerReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RegisterServerReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const HeartbeatRequest& from);
+  void CopyFrom(const RegisterServerReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const HeartbeatRequest& from) {
-    HeartbeatRequest::MergeImpl(*this, from);
+  void MergeFrom( const RegisterServerReq& from) {
+    RegisterServerReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -1245,16 +841,16 @@ class HeartbeatRequest final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(HeartbeatRequest* other);
+  void InternalSwap(RegisterServerReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.HeartbeatRequest";
+    return "rpc_server.RegisterServerReq";
   }
   protected:
-  explicit HeartbeatRequest(::google::protobuf::Arena* arena);
-  HeartbeatRequest(::google::protobuf::Arena* arena, const HeartbeatRequest& from);
+  explicit RegisterServerReq(::google::protobuf::Arena* arena);
+  RegisterServerReq(::google::protobuf::Arena* arena, const RegisterServerReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -1313,14 +909,14 @@ class HeartbeatRequest final :
   void _internal_set_server_type(::rpc_server::ServerType value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.HeartbeatRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.RegisterServerReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 0,
-      47, 2>
+      48, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1346,26 +942,26 @@ class HeartbeatRequest final :
   friend struct ::TableStruct_server_5fcentral_2eproto;
 };// -------------------------------------------------------------------
 
-class ConnectPoorRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ConnectPoorRequest) */ {
+class HeartbeatRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.HeartbeatRes) */ {
  public:
-  inline ConnectPoorRequest() : ConnectPoorRequest(nullptr) {}
-  ~ConnectPoorRequest() override;
+  inline HeartbeatRes() : HeartbeatRes(nullptr) {}
+  ~HeartbeatRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ConnectPoorRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR HeartbeatRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline ConnectPoorRequest(const ConnectPoorRequest& from)
-      : ConnectPoorRequest(nullptr, from) {}
-  ConnectPoorRequest(ConnectPoorRequest&& from) noexcept
-    : ConnectPoorRequest() {
+  inline HeartbeatRes(const HeartbeatRes& from)
+      : HeartbeatRes(nullptr, from) {}
+  HeartbeatRes(HeartbeatRes&& from) noexcept
+    : HeartbeatRes() {
     *this = ::std::move(from);
   }
 
-  inline ConnectPoorRequest& operator=(const ConnectPoorRequest& from) {
+  inline HeartbeatRes& operator=(const HeartbeatRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ConnectPoorRequest& operator=(ConnectPoorRequest&& from) noexcept {
+  inline HeartbeatRes& operator=(HeartbeatRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1397,20 +993,20 @@ class ConnectPoorRequest final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ConnectPoorRequest& default_instance() {
+  static const HeartbeatRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ConnectPoorRequest* internal_default_instance() {
-    return reinterpret_cast<const ConnectPoorRequest*>(
-               &_ConnectPoorRequest_default_instance_);
+  static inline const HeartbeatRes* internal_default_instance() {
+    return reinterpret_cast<const HeartbeatRes*>(
+               &_HeartbeatRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    8;
 
-  friend void swap(ConnectPoorRequest& a, ConnectPoorRequest& b) {
+  friend void swap(HeartbeatRes& a, HeartbeatRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(ConnectPoorRequest* other) {
+  inline void Swap(HeartbeatRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -1423,7 +1019,7 @@ class ConnectPoorRequest final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ConnectPoorRequest* other) {
+  void UnsafeArenaSwap(HeartbeatRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1431,14 +1027,14 @@ class ConnectPoorRequest final :
 
   // implements Message ----------------------------------------------
 
-  ConnectPoorRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ConnectPoorRequest>(arena);
+  HeartbeatRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<HeartbeatRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ConnectPoorRequest& from);
+  void CopyFrom(const HeartbeatRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ConnectPoorRequest& from) {
-    ConnectPoorRequest::MergeImpl(*this, from);
+  void MergeFrom( const HeartbeatRes& from) {
+    HeartbeatRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -1456,16 +1052,420 @@ class ConnectPoorRequest final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(ConnectPoorRequest* other);
+  void InternalSwap(HeartbeatRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.ConnectPoorRequest";
+    return "rpc_server.HeartbeatRes";
   }
   protected:
-  explicit ConnectPoorRequest(::google::protobuf::Arena* arena);
-  ConnectPoorRequest(::google::protobuf::Arena* arena, const ConnectPoorRequest& from);
+  explicit HeartbeatRes(::google::protobuf::Arena* arena);
+  HeartbeatRes(::google::protobuf::Arena* arena, const HeartbeatRes& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMessageFieldNumber = 2,
+    kSuccessFieldNumber = 1,
+  };
+  // string message = 2;
+  void clear_message() ;
+  const std::string& message() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_message(Arg_&& arg, Args_... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* value);
+
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
+      const std::string& value);
+  std::string* _internal_mutable_message();
+
+  public:
+  // bool success = 1;
+  void clear_success() ;
+  bool success() const;
+  void set_success(bool value);
+
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:rpc_server.HeartbeatRes)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      39, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr message_;
+    bool success_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5fcentral_2eproto;
+};// -------------------------------------------------------------------
+
+class HeartbeatReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.HeartbeatReq) */ {
+ public:
+  inline HeartbeatReq() : HeartbeatReq(nullptr) {}
+  ~HeartbeatReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR HeartbeatReq(::google::protobuf::internal::ConstantInitialized);
+
+  inline HeartbeatReq(const HeartbeatReq& from)
+      : HeartbeatReq(nullptr, from) {}
+  HeartbeatReq(HeartbeatReq&& from) noexcept
+    : HeartbeatReq() {
+    *this = ::std::move(from);
+  }
+
+  inline HeartbeatReq& operator=(const HeartbeatReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline HeartbeatReq& operator=(HeartbeatReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const HeartbeatReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const HeartbeatReq* internal_default_instance() {
+    return reinterpret_cast<const HeartbeatReq*>(
+               &_HeartbeatReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(HeartbeatReq& a, HeartbeatReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(HeartbeatReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(HeartbeatReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  HeartbeatReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<HeartbeatReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const HeartbeatReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const HeartbeatReq& from) {
+    HeartbeatReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(HeartbeatReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "rpc_server.HeartbeatReq";
+  }
+  protected:
+  explicit HeartbeatReq(::google::protobuf::Arena* arena);
+  HeartbeatReq(::google::protobuf::Arena* arena, const HeartbeatReq& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAddressFieldNumber = 2,
+    kPortFieldNumber = 3,
+    kServerTypeFieldNumber = 1,
+  };
+  // string address = 2;
+  void clear_address() ;
+  const std::string& address() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_address(Arg_&& arg, Args_... args);
+  std::string* mutable_address();
+  PROTOBUF_NODISCARD std::string* release_address();
+  void set_allocated_address(std::string* value);
+
+  private:
+  const std::string& _internal_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_address(
+      const std::string& value);
+  std::string* _internal_mutable_address();
+
+  public:
+  // string port = 3;
+  void clear_port() ;
+  const std::string& port() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_port(Arg_&& arg, Args_... args);
+  std::string* mutable_port();
+  PROTOBUF_NODISCARD std::string* release_port();
+  void set_allocated_port(std::string* value);
+
+  private:
+  const std::string& _internal_port() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_port(
+      const std::string& value);
+  std::string* _internal_mutable_port();
+
+  public:
+  // .rpc_server.ServerType server_type = 1;
+  void clear_server_type() ;
+  ::rpc_server::ServerType server_type() const;
+  void set_server_type(::rpc_server::ServerType value);
+
+  private:
+  ::rpc_server::ServerType _internal_server_type() const;
+  void _internal_set_server_type(::rpc_server::ServerType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:rpc_server.HeartbeatReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 0,
+      43, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr address_;
+    ::google::protobuf::internal::ArenaStringPtr port_;
+    int server_type_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5fcentral_2eproto;
+};// -------------------------------------------------------------------
+
+class ConnectPoorReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ConnectPoorReq) */ {
+ public:
+  inline ConnectPoorReq() : ConnectPoorReq(nullptr) {}
+  ~ConnectPoorReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR ConnectPoorReq(::google::protobuf::internal::ConstantInitialized);
+
+  inline ConnectPoorReq(const ConnectPoorReq& from)
+      : ConnectPoorReq(nullptr, from) {}
+  ConnectPoorReq(ConnectPoorReq&& from) noexcept
+    : ConnectPoorReq() {
+    *this = ::std::move(from);
+  }
+
+  inline ConnectPoorReq& operator=(const ConnectPoorReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ConnectPoorReq& operator=(ConnectPoorReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ConnectPoorReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ConnectPoorReq* internal_default_instance() {
+    return reinterpret_cast<const ConnectPoorReq*>(
+               &_ConnectPoorReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(ConnectPoorReq& a, ConnectPoorReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ConnectPoorReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ConnectPoorReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ConnectPoorReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ConnectPoorReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ConnectPoorReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const ConnectPoorReq& from) {
+    ConnectPoorReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(ConnectPoorReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "rpc_server.ConnectPoorReq";
+  }
+  protected:
+  explicit ConnectPoorReq(::google::protobuf::Arena* arena);
+  ConnectPoorReq(::google::protobuf::Arena* arena, const ConnectPoorReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -1490,7 +1490,7 @@ class ConnectPoorRequest final :
   void _internal_set_server_type(::rpc_server::ServerType value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.ConnectPoorRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.ConnectPoorReq)
  private:
   class _Internal;
 
@@ -1714,26 +1714,26 @@ class ConnectInfo final :
   friend struct ::TableStruct_server_5fcentral_2eproto;
 };// -------------------------------------------------------------------
 
-class ConnectPoorResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ConnectPoorResponse) */ {
+class ConnectPoorRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ConnectPoorRes) */ {
  public:
-  inline ConnectPoorResponse() : ConnectPoorResponse(nullptr) {}
-  ~ConnectPoorResponse() override;
+  inline ConnectPoorRes() : ConnectPoorRes(nullptr) {}
+  ~ConnectPoorRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ConnectPoorResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR ConnectPoorRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline ConnectPoorResponse(const ConnectPoorResponse& from)
-      : ConnectPoorResponse(nullptr, from) {}
-  ConnectPoorResponse(ConnectPoorResponse&& from) noexcept
-    : ConnectPoorResponse() {
+  inline ConnectPoorRes(const ConnectPoorRes& from)
+      : ConnectPoorRes(nullptr, from) {}
+  ConnectPoorRes(ConnectPoorRes&& from) noexcept
+    : ConnectPoorRes() {
     *this = ::std::move(from);
   }
 
-  inline ConnectPoorResponse& operator=(const ConnectPoorResponse& from) {
+  inline ConnectPoorRes& operator=(const ConnectPoorRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ConnectPoorResponse& operator=(ConnectPoorResponse&& from) noexcept {
+  inline ConnectPoorRes& operator=(ConnectPoorRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1765,20 +1765,20 @@ class ConnectPoorResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ConnectPoorResponse& default_instance() {
+  static const ConnectPoorRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ConnectPoorResponse* internal_default_instance() {
-    return reinterpret_cast<const ConnectPoorResponse*>(
-               &_ConnectPoorResponse_default_instance_);
+  static inline const ConnectPoorRes* internal_default_instance() {
+    return reinterpret_cast<const ConnectPoorRes*>(
+               &_ConnectPoorRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     5;
 
-  friend void swap(ConnectPoorResponse& a, ConnectPoorResponse& b) {
+  friend void swap(ConnectPoorRes& a, ConnectPoorRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(ConnectPoorResponse* other) {
+  inline void Swap(ConnectPoorRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -1791,7 +1791,7 @@ class ConnectPoorResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ConnectPoorResponse* other) {
+  void UnsafeArenaSwap(ConnectPoorRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1799,14 +1799,14 @@ class ConnectPoorResponse final :
 
   // implements Message ----------------------------------------------
 
-  ConnectPoorResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ConnectPoorResponse>(arena);
+  ConnectPoorRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ConnectPoorRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ConnectPoorResponse& from);
+  void CopyFrom(const ConnectPoorRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ConnectPoorResponse& from) {
-    ConnectPoorResponse::MergeImpl(*this, from);
+  void MergeFrom( const ConnectPoorRes& from) {
+    ConnectPoorRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -1824,16 +1824,16 @@ class ConnectPoorResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(ConnectPoorResponse* other);
+  void InternalSwap(ConnectPoorRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.ConnectPoorResponse";
+    return "rpc_server.ConnectPoorRes";
   }
   protected:
-  explicit ConnectPoorResponse(::google::protobuf::Arena* arena);
-  ConnectPoorResponse(::google::protobuf::Arena* arena, const ConnectPoorResponse& from);
+  explicit ConnectPoorRes(::google::protobuf::Arena* arena);
+  ConnectPoorRes(::google::protobuf::Arena* arena, const ConnectPoorRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -1894,14 +1894,14 @@ class ConnectPoorResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.ConnectPoorResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.ConnectPoorRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 1,
-      46, 2>
+      41, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1941,74 +1941,74 @@ class ConnectPoorResponse final :
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// RegisterServerRequest
+// RegisterServerReq
 
 // .rpc_server.ServerType server_type = 1;
-inline void RegisterServerRequest::clear_server_type() {
+inline void RegisterServerReq::clear_server_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.server_type_ = 0;
 }
-inline ::rpc_server::ServerType RegisterServerRequest::server_type() const {
-  // @@protoc_insertion_point(field_get:rpc_server.RegisterServerRequest.server_type)
+inline ::rpc_server::ServerType RegisterServerReq::server_type() const {
+  // @@protoc_insertion_point(field_get:rpc_server.RegisterServerReq.server_type)
   return _internal_server_type();
 }
-inline void RegisterServerRequest::set_server_type(::rpc_server::ServerType value) {
+inline void RegisterServerReq::set_server_type(::rpc_server::ServerType value) {
   _internal_set_server_type(value);
-  // @@protoc_insertion_point(field_set:rpc_server.RegisterServerRequest.server_type)
+  // @@protoc_insertion_point(field_set:rpc_server.RegisterServerReq.server_type)
 }
-inline ::rpc_server::ServerType RegisterServerRequest::_internal_server_type() const {
+inline ::rpc_server::ServerType RegisterServerReq::_internal_server_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return static_cast<::rpc_server::ServerType>(_impl_.server_type_);
 }
-inline void RegisterServerRequest::_internal_set_server_type(::rpc_server::ServerType value) {
+inline void RegisterServerReq::_internal_set_server_type(::rpc_server::ServerType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.server_type_ = value;
 }
 
 // string address = 2;
-inline void RegisterServerRequest::clear_address() {
+inline void RegisterServerReq::clear_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.address_.ClearToEmpty();
 }
-inline const std::string& RegisterServerRequest::address() const
+inline const std::string& RegisterServerReq::address() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.RegisterServerRequest.address)
+  // @@protoc_insertion_point(field_get:rpc_server.RegisterServerReq.address)
   return _internal_address();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void RegisterServerRequest::set_address(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void RegisterServerReq::set_address(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.RegisterServerRequest.address)
+  // @@protoc_insertion_point(field_set:rpc_server.RegisterServerReq.address)
 }
-inline std::string* RegisterServerRequest::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* RegisterServerReq::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_address();
-  // @@protoc_insertion_point(field_mutable:rpc_server.RegisterServerRequest.address)
+  // @@protoc_insertion_point(field_mutable:rpc_server.RegisterServerReq.address)
   return _s;
 }
-inline const std::string& RegisterServerRequest::_internal_address() const {
+inline const std::string& RegisterServerReq::_internal_address() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.address_.Get();
 }
-inline void RegisterServerRequest::_internal_set_address(const std::string& value) {
+inline void RegisterServerReq::_internal_set_address(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.address_.Set(value, GetArena());
 }
-inline std::string* RegisterServerRequest::_internal_mutable_address() {
+inline std::string* RegisterServerReq::_internal_mutable_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.address_.Mutable( GetArena());
 }
-inline std::string* RegisterServerRequest::release_address() {
+inline std::string* RegisterServerReq::release_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.RegisterServerRequest.address)
+  // @@protoc_insertion_point(field_release:rpc_server.RegisterServerReq.address)
   return _impl_.address_.Release();
 }
-inline void RegisterServerRequest::set_allocated_address(std::string* value) {
+inline void RegisterServerReq::set_allocated_address(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.address_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2016,52 +2016,52 @@ inline void RegisterServerRequest::set_allocated_address(std::string* value) {
           _impl_.address_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterServerRequest.address)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterServerReq.address)
 }
 
 // string port = 3;
-inline void RegisterServerRequest::clear_port() {
+inline void RegisterServerReq::clear_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.port_.ClearToEmpty();
 }
-inline const std::string& RegisterServerRequest::port() const
+inline const std::string& RegisterServerReq::port() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.RegisterServerRequest.port)
+  // @@protoc_insertion_point(field_get:rpc_server.RegisterServerReq.port)
   return _internal_port();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void RegisterServerRequest::set_port(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void RegisterServerReq::set_port(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.port_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.RegisterServerRequest.port)
+  // @@protoc_insertion_point(field_set:rpc_server.RegisterServerReq.port)
 }
-inline std::string* RegisterServerRequest::mutable_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* RegisterServerReq::mutable_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_port();
-  // @@protoc_insertion_point(field_mutable:rpc_server.RegisterServerRequest.port)
+  // @@protoc_insertion_point(field_mutable:rpc_server.RegisterServerReq.port)
   return _s;
 }
-inline const std::string& RegisterServerRequest::_internal_port() const {
+inline const std::string& RegisterServerReq::_internal_port() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.port_.Get();
 }
-inline void RegisterServerRequest::_internal_set_port(const std::string& value) {
+inline void RegisterServerReq::_internal_set_port(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.port_.Set(value, GetArena());
 }
-inline std::string* RegisterServerRequest::_internal_mutable_port() {
+inline std::string* RegisterServerReq::_internal_mutable_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.port_.Mutable( GetArena());
 }
-inline std::string* RegisterServerRequest::release_port() {
+inline std::string* RegisterServerReq::release_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.RegisterServerRequest.port)
+  // @@protoc_insertion_point(field_release:rpc_server.RegisterServerReq.port)
   return _impl_.port_.Release();
 }
-inline void RegisterServerRequest::set_allocated_port(std::string* value) {
+inline void RegisterServerReq::set_allocated_port(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.port_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2069,79 +2069,79 @@ inline void RegisterServerRequest::set_allocated_port(std::string* value) {
           _impl_.port_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterServerRequest.port)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterServerReq.port)
 }
 
 // -------------------------------------------------------------------
 
-// RegisterServerResponse
+// RegisterServerRes
 
 // bool success = 1;
-inline void RegisterServerResponse::clear_success() {
+inline void RegisterServerRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool RegisterServerResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.RegisterServerResponse.success)
+inline bool RegisterServerRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.RegisterServerRes.success)
   return _internal_success();
 }
-inline void RegisterServerResponse::set_success(bool value) {
+inline void RegisterServerRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.RegisterServerResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.RegisterServerRes.success)
 }
-inline bool RegisterServerResponse::_internal_success() const {
+inline bool RegisterServerRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void RegisterServerResponse::_internal_set_success(bool value) {
+inline void RegisterServerRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // string message = 2;
-inline void RegisterServerResponse::clear_message() {
+inline void RegisterServerRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& RegisterServerResponse::message() const
+inline const std::string& RegisterServerRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.RegisterServerResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.RegisterServerRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void RegisterServerResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void RegisterServerRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.RegisterServerResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.RegisterServerRes.message)
 }
-inline std::string* RegisterServerResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* RegisterServerRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.RegisterServerResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.RegisterServerRes.message)
   return _s;
 }
-inline const std::string& RegisterServerResponse::_internal_message() const {
+inline const std::string& RegisterServerRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void RegisterServerResponse::_internal_set_message(const std::string& value) {
+inline void RegisterServerRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* RegisterServerResponse::_internal_mutable_message() {
+inline std::string* RegisterServerRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* RegisterServerResponse::release_message() {
+inline std::string* RegisterServerRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.RegisterServerResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.RegisterServerRes.message)
   return _impl_.message_.Release();
 }
-inline void RegisterServerResponse::set_allocated_message(std::string* value) {
+inline void RegisterServerRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2149,79 +2149,79 @@ inline void RegisterServerResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterServerResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterServerRes.message)
 }
 
 // -------------------------------------------------------------------
 
-// UnregisterServerRequest
+// UnregisterServerReq
 
 // .rpc_server.ServerType server_type = 1;
-inline void UnregisterServerRequest::clear_server_type() {
+inline void UnregisterServerReq::clear_server_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.server_type_ = 0;
 }
-inline ::rpc_server::ServerType UnregisterServerRequest::server_type() const {
-  // @@protoc_insertion_point(field_get:rpc_server.UnregisterServerRequest.server_type)
+inline ::rpc_server::ServerType UnregisterServerReq::server_type() const {
+  // @@protoc_insertion_point(field_get:rpc_server.UnregisterServerReq.server_type)
   return _internal_server_type();
 }
-inline void UnregisterServerRequest::set_server_type(::rpc_server::ServerType value) {
+inline void UnregisterServerReq::set_server_type(::rpc_server::ServerType value) {
   _internal_set_server_type(value);
-  // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerRequest.server_type)
+  // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerReq.server_type)
 }
-inline ::rpc_server::ServerType UnregisterServerRequest::_internal_server_type() const {
+inline ::rpc_server::ServerType UnregisterServerReq::_internal_server_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return static_cast<::rpc_server::ServerType>(_impl_.server_type_);
 }
-inline void UnregisterServerRequest::_internal_set_server_type(::rpc_server::ServerType value) {
+inline void UnregisterServerReq::_internal_set_server_type(::rpc_server::ServerType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.server_type_ = value;
 }
 
 // string address = 2;
-inline void UnregisterServerRequest::clear_address() {
+inline void UnregisterServerReq::clear_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.address_.ClearToEmpty();
 }
-inline const std::string& UnregisterServerRequest::address() const
+inline const std::string& UnregisterServerReq::address() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UnregisterServerRequest.address)
+  // @@protoc_insertion_point(field_get:rpc_server.UnregisterServerReq.address)
   return _internal_address();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UnregisterServerRequest::set_address(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void UnregisterServerReq::set_address(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerRequest.address)
+  // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerReq.address)
 }
-inline std::string* UnregisterServerRequest::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* UnregisterServerReq::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_address();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UnregisterServerRequest.address)
+  // @@protoc_insertion_point(field_mutable:rpc_server.UnregisterServerReq.address)
   return _s;
 }
-inline const std::string& UnregisterServerRequest::_internal_address() const {
+inline const std::string& UnregisterServerReq::_internal_address() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.address_.Get();
 }
-inline void UnregisterServerRequest::_internal_set_address(const std::string& value) {
+inline void UnregisterServerReq::_internal_set_address(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.address_.Set(value, GetArena());
 }
-inline std::string* UnregisterServerRequest::_internal_mutable_address() {
+inline std::string* UnregisterServerReq::_internal_mutable_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.address_.Mutable( GetArena());
 }
-inline std::string* UnregisterServerRequest::release_address() {
+inline std::string* UnregisterServerReq::release_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UnregisterServerRequest.address)
+  // @@protoc_insertion_point(field_release:rpc_server.UnregisterServerReq.address)
   return _impl_.address_.Release();
 }
-inline void UnregisterServerRequest::set_allocated_address(std::string* value) {
+inline void UnregisterServerReq::set_allocated_address(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.address_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2229,52 +2229,52 @@ inline void UnregisterServerRequest::set_allocated_address(std::string* value) {
           _impl_.address_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UnregisterServerRequest.address)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UnregisterServerReq.address)
 }
 
 // string port = 3;
-inline void UnregisterServerRequest::clear_port() {
+inline void UnregisterServerReq::clear_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.port_.ClearToEmpty();
 }
-inline const std::string& UnregisterServerRequest::port() const
+inline const std::string& UnregisterServerReq::port() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UnregisterServerRequest.port)
+  // @@protoc_insertion_point(field_get:rpc_server.UnregisterServerReq.port)
   return _internal_port();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UnregisterServerRequest::set_port(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void UnregisterServerReq::set_port(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.port_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerRequest.port)
+  // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerReq.port)
 }
-inline std::string* UnregisterServerRequest::mutable_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* UnregisterServerReq::mutable_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_port();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UnregisterServerRequest.port)
+  // @@protoc_insertion_point(field_mutable:rpc_server.UnregisterServerReq.port)
   return _s;
 }
-inline const std::string& UnregisterServerRequest::_internal_port() const {
+inline const std::string& UnregisterServerReq::_internal_port() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.port_.Get();
 }
-inline void UnregisterServerRequest::_internal_set_port(const std::string& value) {
+inline void UnregisterServerReq::_internal_set_port(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.port_.Set(value, GetArena());
 }
-inline std::string* UnregisterServerRequest::_internal_mutable_port() {
+inline std::string* UnregisterServerReq::_internal_mutable_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.port_.Mutable( GetArena());
 }
-inline std::string* UnregisterServerRequest::release_port() {
+inline std::string* UnregisterServerReq::release_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UnregisterServerRequest.port)
+  // @@protoc_insertion_point(field_release:rpc_server.UnregisterServerReq.port)
   return _impl_.port_.Release();
 }
-inline void UnregisterServerRequest::set_allocated_port(std::string* value) {
+inline void UnregisterServerReq::set_allocated_port(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.port_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2282,79 +2282,79 @@ inline void UnregisterServerRequest::set_allocated_port(std::string* value) {
           _impl_.port_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UnregisterServerRequest.port)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UnregisterServerReq.port)
 }
 
 // -------------------------------------------------------------------
 
-// UnregisterServerResponse
+// UnregisterServerRes
 
 // bool success = 1;
-inline void UnregisterServerResponse::clear_success() {
+inline void UnregisterServerRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool UnregisterServerResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.UnregisterServerResponse.success)
+inline bool UnregisterServerRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.UnregisterServerRes.success)
   return _internal_success();
 }
-inline void UnregisterServerResponse::set_success(bool value) {
+inline void UnregisterServerRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerRes.success)
 }
-inline bool UnregisterServerResponse::_internal_success() const {
+inline bool UnregisterServerRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void UnregisterServerResponse::_internal_set_success(bool value) {
+inline void UnregisterServerRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // string message = 2;
-inline void UnregisterServerResponse::clear_message() {
+inline void UnregisterServerRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& UnregisterServerResponse::message() const
+inline const std::string& UnregisterServerRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UnregisterServerResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.UnregisterServerRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UnregisterServerResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void UnregisterServerRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerRes.message)
 }
-inline std::string* UnregisterServerResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* UnregisterServerRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UnregisterServerResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.UnregisterServerRes.message)
   return _s;
 }
-inline const std::string& UnregisterServerResponse::_internal_message() const {
+inline const std::string& UnregisterServerRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void UnregisterServerResponse::_internal_set_message(const std::string& value) {
+inline void UnregisterServerRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* UnregisterServerResponse::_internal_mutable_message() {
+inline std::string* UnregisterServerRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* UnregisterServerResponse::release_message() {
+inline std::string* UnregisterServerRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UnregisterServerResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.UnregisterServerRes.message)
   return _impl_.message_.Release();
 }
-inline void UnregisterServerResponse::set_allocated_message(std::string* value) {
+inline void UnregisterServerRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2362,31 +2362,31 @@ inline void UnregisterServerResponse::set_allocated_message(std::string* value) 
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UnregisterServerResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UnregisterServerRes.message)
 }
 
 // -------------------------------------------------------------------
 
-// ConnectPoorRequest
+// ConnectPoorReq
 
 // .rpc_server.ServerType server_type = 1;
-inline void ConnectPoorRequest::clear_server_type() {
+inline void ConnectPoorReq::clear_server_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.server_type_ = 0;
 }
-inline ::rpc_server::ServerType ConnectPoorRequest::server_type() const {
-  // @@protoc_insertion_point(field_get:rpc_server.ConnectPoorRequest.server_type)
+inline ::rpc_server::ServerType ConnectPoorReq::server_type() const {
+  // @@protoc_insertion_point(field_get:rpc_server.ConnectPoorReq.server_type)
   return _internal_server_type();
 }
-inline void ConnectPoorRequest::set_server_type(::rpc_server::ServerType value) {
+inline void ConnectPoorReq::set_server_type(::rpc_server::ServerType value) {
   _internal_set_server_type(value);
-  // @@protoc_insertion_point(field_set:rpc_server.ConnectPoorRequest.server_type)
+  // @@protoc_insertion_point(field_set:rpc_server.ConnectPoorReq.server_type)
 }
-inline ::rpc_server::ServerType ConnectPoorRequest::_internal_server_type() const {
+inline ::rpc_server::ServerType ConnectPoorReq::_internal_server_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return static_cast<::rpc_server::ServerType>(_impl_.server_type_);
 }
-inline void ConnectPoorRequest::_internal_set_server_type(::rpc_server::ServerType value) {
+inline void ConnectPoorReq::_internal_set_server_type(::rpc_server::ServerType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.server_type_ = value;
@@ -2394,123 +2394,123 @@ inline void ConnectPoorRequest::_internal_set_server_type(::rpc_server::ServerTy
 
 // -------------------------------------------------------------------
 
-// ConnectPoorResponse
+// ConnectPoorRes
 
 // bool success = 1;
-inline void ConnectPoorResponse::clear_success() {
+inline void ConnectPoorRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool ConnectPoorResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.ConnectPoorResponse.success)
+inline bool ConnectPoorRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.ConnectPoorRes.success)
   return _internal_success();
 }
-inline void ConnectPoorResponse::set_success(bool value) {
+inline void ConnectPoorRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.ConnectPoorResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.ConnectPoorRes.success)
 }
-inline bool ConnectPoorResponse::_internal_success() const {
+inline bool ConnectPoorRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void ConnectPoorResponse::_internal_set_success(bool value) {
+inline void ConnectPoorRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // repeated .rpc_server.ConnectInfo connect_info = 2;
-inline int ConnectPoorResponse::_internal_connect_info_size() const {
+inline int ConnectPoorRes::_internal_connect_info_size() const {
   return _internal_connect_info().size();
 }
-inline int ConnectPoorResponse::connect_info_size() const {
+inline int ConnectPoorRes::connect_info_size() const {
   return _internal_connect_info_size();
 }
-inline void ConnectPoorResponse::clear_connect_info() {
+inline void ConnectPoorRes::clear_connect_info() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.connect_info_.Clear();
 }
-inline ::rpc_server::ConnectInfo* ConnectPoorResponse::mutable_connect_info(int index)
+inline ::rpc_server::ConnectInfo* ConnectPoorRes::mutable_connect_info(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:rpc_server.ConnectPoorResponse.connect_info)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ConnectPoorRes.connect_info)
   return _internal_mutable_connect_info()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>* ConnectPoorResponse::mutable_connect_info()
+inline ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>* ConnectPoorRes::mutable_connect_info()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:rpc_server.ConnectPoorResponse.connect_info)
+  // @@protoc_insertion_point(field_mutable_list:rpc_server.ConnectPoorRes.connect_info)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_connect_info();
 }
-inline const ::rpc_server::ConnectInfo& ConnectPoorResponse::connect_info(int index) const
+inline const ::rpc_server::ConnectInfo& ConnectPoorRes::connect_info(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.ConnectPoorResponse.connect_info)
+  // @@protoc_insertion_point(field_get:rpc_server.ConnectPoorRes.connect_info)
   return _internal_connect_info().Get(index);
 }
-inline ::rpc_server::ConnectInfo* ConnectPoorResponse::add_connect_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::rpc_server::ConnectInfo* ConnectPoorRes::add_connect_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::rpc_server::ConnectInfo* _add = _internal_mutable_connect_info()->Add();
-  // @@protoc_insertion_point(field_add:rpc_server.ConnectPoorResponse.connect_info)
+  // @@protoc_insertion_point(field_add:rpc_server.ConnectPoorRes.connect_info)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>& ConnectPoorResponse::connect_info() const
+inline const ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>& ConnectPoorRes::connect_info() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:rpc_server.ConnectPoorResponse.connect_info)
+  // @@protoc_insertion_point(field_list:rpc_server.ConnectPoorRes.connect_info)
   return _internal_connect_info();
 }
 inline const ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>&
-ConnectPoorResponse::_internal_connect_info() const {
+ConnectPoorRes::_internal_connect_info() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.connect_info_;
 }
 inline ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>*
-ConnectPoorResponse::_internal_mutable_connect_info() {
+ConnectPoorRes::_internal_mutable_connect_info() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.connect_info_;
 }
 
 // string message = 3;
-inline void ConnectPoorResponse::clear_message() {
+inline void ConnectPoorRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& ConnectPoorResponse::message() const
+inline const std::string& ConnectPoorRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.ConnectPoorResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.ConnectPoorRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ConnectPoorResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void ConnectPoorRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.ConnectPoorResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.ConnectPoorRes.message)
 }
-inline std::string* ConnectPoorResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* ConnectPoorRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.ConnectPoorResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ConnectPoorRes.message)
   return _s;
 }
-inline const std::string& ConnectPoorResponse::_internal_message() const {
+inline const std::string& ConnectPoorRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void ConnectPoorResponse::_internal_set_message(const std::string& value) {
+inline void ConnectPoorRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* ConnectPoorResponse::_internal_mutable_message() {
+inline std::string* ConnectPoorRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* ConnectPoorResponse::release_message() {
+inline std::string* ConnectPoorRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.ConnectPoorResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.ConnectPoorRes.message)
   return _impl_.message_.Release();
 }
-inline void ConnectPoorResponse::set_allocated_message(std::string* value) {
+inline void ConnectPoorRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2518,7 +2518,7 @@ inline void ConnectPoorResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.ConnectPoorResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.ConnectPoorRes.message)
 }
 
 // -------------------------------------------------------------------
@@ -2603,74 +2603,74 @@ inline void ConnectInfo::_internal_set_port(::int32_t value) {
 
 // -------------------------------------------------------------------
 
-// HeartbeatRequest
+// HeartbeatReq
 
 // .rpc_server.ServerType server_type = 1;
-inline void HeartbeatRequest::clear_server_type() {
+inline void HeartbeatReq::clear_server_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.server_type_ = 0;
 }
-inline ::rpc_server::ServerType HeartbeatRequest::server_type() const {
-  // @@protoc_insertion_point(field_get:rpc_server.HeartbeatRequest.server_type)
+inline ::rpc_server::ServerType HeartbeatReq::server_type() const {
+  // @@protoc_insertion_point(field_get:rpc_server.HeartbeatReq.server_type)
   return _internal_server_type();
 }
-inline void HeartbeatRequest::set_server_type(::rpc_server::ServerType value) {
+inline void HeartbeatReq::set_server_type(::rpc_server::ServerType value) {
   _internal_set_server_type(value);
-  // @@protoc_insertion_point(field_set:rpc_server.HeartbeatRequest.server_type)
+  // @@protoc_insertion_point(field_set:rpc_server.HeartbeatReq.server_type)
 }
-inline ::rpc_server::ServerType HeartbeatRequest::_internal_server_type() const {
+inline ::rpc_server::ServerType HeartbeatReq::_internal_server_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return static_cast<::rpc_server::ServerType>(_impl_.server_type_);
 }
-inline void HeartbeatRequest::_internal_set_server_type(::rpc_server::ServerType value) {
+inline void HeartbeatReq::_internal_set_server_type(::rpc_server::ServerType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.server_type_ = value;
 }
 
 // string address = 2;
-inline void HeartbeatRequest::clear_address() {
+inline void HeartbeatReq::clear_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.address_.ClearToEmpty();
 }
-inline const std::string& HeartbeatRequest::address() const
+inline const std::string& HeartbeatReq::address() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.HeartbeatRequest.address)
+  // @@protoc_insertion_point(field_get:rpc_server.HeartbeatReq.address)
   return _internal_address();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void HeartbeatRequest::set_address(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void HeartbeatReq::set_address(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.HeartbeatRequest.address)
+  // @@protoc_insertion_point(field_set:rpc_server.HeartbeatReq.address)
 }
-inline std::string* HeartbeatRequest::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* HeartbeatReq::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_address();
-  // @@protoc_insertion_point(field_mutable:rpc_server.HeartbeatRequest.address)
+  // @@protoc_insertion_point(field_mutable:rpc_server.HeartbeatReq.address)
   return _s;
 }
-inline const std::string& HeartbeatRequest::_internal_address() const {
+inline const std::string& HeartbeatReq::_internal_address() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.address_.Get();
 }
-inline void HeartbeatRequest::_internal_set_address(const std::string& value) {
+inline void HeartbeatReq::_internal_set_address(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.address_.Set(value, GetArena());
 }
-inline std::string* HeartbeatRequest::_internal_mutable_address() {
+inline std::string* HeartbeatReq::_internal_mutable_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.address_.Mutable( GetArena());
 }
-inline std::string* HeartbeatRequest::release_address() {
+inline std::string* HeartbeatReq::release_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.HeartbeatRequest.address)
+  // @@protoc_insertion_point(field_release:rpc_server.HeartbeatReq.address)
   return _impl_.address_.Release();
 }
-inline void HeartbeatRequest::set_allocated_address(std::string* value) {
+inline void HeartbeatReq::set_allocated_address(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.address_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2678,52 +2678,52 @@ inline void HeartbeatRequest::set_allocated_address(std::string* value) {
           _impl_.address_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.HeartbeatRequest.address)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.HeartbeatReq.address)
 }
 
 // string port = 3;
-inline void HeartbeatRequest::clear_port() {
+inline void HeartbeatReq::clear_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.port_.ClearToEmpty();
 }
-inline const std::string& HeartbeatRequest::port() const
+inline const std::string& HeartbeatReq::port() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.HeartbeatRequest.port)
+  // @@protoc_insertion_point(field_get:rpc_server.HeartbeatReq.port)
   return _internal_port();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void HeartbeatRequest::set_port(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void HeartbeatReq::set_port(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.port_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.HeartbeatRequest.port)
+  // @@protoc_insertion_point(field_set:rpc_server.HeartbeatReq.port)
 }
-inline std::string* HeartbeatRequest::mutable_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* HeartbeatReq::mutable_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_port();
-  // @@protoc_insertion_point(field_mutable:rpc_server.HeartbeatRequest.port)
+  // @@protoc_insertion_point(field_mutable:rpc_server.HeartbeatReq.port)
   return _s;
 }
-inline const std::string& HeartbeatRequest::_internal_port() const {
+inline const std::string& HeartbeatReq::_internal_port() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.port_.Get();
 }
-inline void HeartbeatRequest::_internal_set_port(const std::string& value) {
+inline void HeartbeatReq::_internal_set_port(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.port_.Set(value, GetArena());
 }
-inline std::string* HeartbeatRequest::_internal_mutable_port() {
+inline std::string* HeartbeatReq::_internal_mutable_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.port_.Mutable( GetArena());
 }
-inline std::string* HeartbeatRequest::release_port() {
+inline std::string* HeartbeatReq::release_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.HeartbeatRequest.port)
+  // @@protoc_insertion_point(field_release:rpc_server.HeartbeatReq.port)
   return _impl_.port_.Release();
 }
-inline void HeartbeatRequest::set_allocated_port(std::string* value) {
+inline void HeartbeatReq::set_allocated_port(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.port_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2731,79 +2731,79 @@ inline void HeartbeatRequest::set_allocated_port(std::string* value) {
           _impl_.port_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.HeartbeatRequest.port)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.HeartbeatReq.port)
 }
 
 // -------------------------------------------------------------------
 
-// HeartbeatResponse
+// HeartbeatRes
 
 // bool success = 1;
-inline void HeartbeatResponse::clear_success() {
+inline void HeartbeatRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool HeartbeatResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.HeartbeatResponse.success)
+inline bool HeartbeatRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.HeartbeatRes.success)
   return _internal_success();
 }
-inline void HeartbeatResponse::set_success(bool value) {
+inline void HeartbeatRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.HeartbeatResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.HeartbeatRes.success)
 }
-inline bool HeartbeatResponse::_internal_success() const {
+inline bool HeartbeatRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void HeartbeatResponse::_internal_set_success(bool value) {
+inline void HeartbeatRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // string message = 2;
-inline void HeartbeatResponse::clear_message() {
+inline void HeartbeatRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& HeartbeatResponse::message() const
+inline const std::string& HeartbeatRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.HeartbeatResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.HeartbeatRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void HeartbeatResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void HeartbeatRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.HeartbeatResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.HeartbeatRes.message)
 }
-inline std::string* HeartbeatResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* HeartbeatRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.HeartbeatResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.HeartbeatRes.message)
   return _s;
 }
-inline const std::string& HeartbeatResponse::_internal_message() const {
+inline const std::string& HeartbeatRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void HeartbeatResponse::_internal_set_message(const std::string& value) {
+inline void HeartbeatRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* HeartbeatResponse::_internal_mutable_message() {
+inline std::string* HeartbeatRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* HeartbeatResponse::release_message() {
+inline std::string* HeartbeatRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.HeartbeatResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.HeartbeatRes.message)
   return _impl_.message_.Release();
 }
-inline void HeartbeatResponse::set_allocated_message(std::string* value) {
+inline void HeartbeatRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2811,7 +2811,7 @@ inline void HeartbeatResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.HeartbeatResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.HeartbeatRes.message)
 }
 
 #ifdef __GNUC__

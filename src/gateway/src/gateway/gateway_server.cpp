@@ -92,17 +92,17 @@ void GatewayServerImpl::Worker_thread()
 void GatewayServerImpl::register_server()
 {
     // 请求
-    rpc_server::RegisterServerRequest request;
+    rpc_server::RegisterServerReq request;
     request.set_server_type(rpc_server::ServerType::GATEWAY);
     request.set_address("127.0.0.1");
     request.set_port("50051");
     // 响应
-    rpc_server::RegisterServerResponse response;
+    rpc_server::RegisterServerRes response;
 
     // 客户端
     grpc::ClientContext context;
 
-    grpc::Status status = central_stub->RegisterServer(&context, request, &response);
+    grpc::Status status = central_stub->Register_server(&context, request, &response);
 
     if(status.ok() && response.success())
     {
@@ -121,15 +121,15 @@ void GatewayServerImpl::unregister_server()
     // 客户端
     grpc::ClientContext context;
     // 请求
-    rpc_server::UnregisterServerRequest request;
+    rpc_server::UnregisterServerReq request;
     request.set_server_type(rpc_server::ServerType::GATEWAY);
     request.set_address("localhost");
     request.set_port("50051");
 
     // 响应
-    rpc_server::UnregisterServerResponse response;
+    rpc_server::UnregisterServerRes response;
 
-    grpc::Status status = central_stub->UnregisterServer(&context, request, &response);
+    grpc::Status status = central_stub->Unregister_server(&context, request, &response);
 
     if(status.ok() && response.success())
     {
@@ -147,12 +147,12 @@ void GatewayServerImpl::Init_connection_pool()
     // 客户端
     grpc::ClientContext context;
     // 请求
-    rpc_server::ConnectPoorRequest request;
+    rpc_server::ConnectPoorReq request;
     request.set_server_type(rpc_server::ServerType::LOGIN);
     // 响应
-    rpc_server::ConnectPoorResponse response;
+    rpc_server::ConnectPoorRes response;
 
-    grpc::Status status = central_stub->GetConnectPoor(&context, request ,&response);
+    grpc::Status status = central_stub->Get_connec_poor(&context, request ,&response);
 
     if(status.ok())
     {
@@ -187,8 +187,8 @@ void GatewayServerImpl::Send_heartbeat()
     {
         std::this_thread::sleep_for(std::chrono::seconds(10)); // 每10秒发送一次心跳包
 
-        rpc_server::HeartbeatRequest request;
-        rpc_server::HeartbeatResponse response;
+        rpc_server::HeartbeatReq request;
+        rpc_server::HeartbeatRes response;
         grpc::ClientContext context;
 
         request.set_server_type(rpc_server::ServerType::GATEWAY);
@@ -210,11 +210,11 @@ void GatewayServerImpl::Send_heartbeat()
 
 /**************************************** grpc服务接口定义 **************************************************************************/
 // 服务转发接口
-grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context, const rpc_server::ForwardRequest* request, rpc_server::ForwardResponse* response)
+grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, const rpc_server::ForwardReq* req, rpc_server::ForwardRes* res)
 {
     // 深拷贝请求和响应对象
-    auto request_copy = std::make_shared<rpc_server::ForwardRequest>(*request);
-    auto response_copy = std::make_shared<rpc_server::ForwardResponse>();
+    auto request_copy = std::make_shared<rpc_server::ForwardReq>(*req);
+    auto response_copy = std::make_shared<rpc_server::ForwardRes>();
     // 创建 promise 和 future
     std::promise<void> task_promise;
     std::future<void> task_future = task_promise.get_future();
@@ -244,16 +244,16 @@ grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context, con
     task_future.wait();
 
     // 将响应结果复制回原响应对象
-    *response = *response_copy;
+    *res = *response_copy;
 
     return grpc::Status::OK;
 }
 
 /**************************************** grpc服务接口工具函数 **************************************************************************/
 // Login 方法，处理登录请求
-grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payload, rpc_server::ForwardResponse* response)
+grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payload, rpc_server::ForwardRes* response)
 {
-    rpc_server::LoginRequest login_request;  // 创建登录请求对象
+    rpc_server::LoginReq login_request;  // 创建登录请求对象
     bool request_out = login_request.ParseFromString(payload); // 将负载解析为登录请求对象
 
     if(!request_out) // 如果解析失败
@@ -262,7 +262,7 @@ grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payl
     }
 
     // 构造响应
-    rpc_server::LoginResponse login_response;
+    rpc_server::LoginRes login_response;
     grpc::ClientContext context;
 
     // 获取连接池中的连接
@@ -279,7 +279,7 @@ grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payl
     bool response_out = login_response.SerializeToString(response->mutable_response()); // 将登录响应序列化为转发响应
     if(!response_out) // 如果序列化失败
     {
-        return grpc::Status(grpc::StatusCode::INTERNAL,"Failed to serialize LoginResponse");
+        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize LoginResponse");
     }
 
     if(login_response.success()) // 如果登录成功

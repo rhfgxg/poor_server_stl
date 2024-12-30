@@ -96,15 +96,15 @@ void CentralServerImpl::Worker_thread()
 
 /**************************************** grpc服务接口 ************************************************/
 // 服务器注册
-grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, const rpc_server::RegisterServerRequest* request, rpc_server::RegisterServerResponse* response)
+grpc::Status CentralServerImpl::Register_server(grpc::ServerContext* context, const rpc_server::RegisterServerReq* req, rpc_server::RegisterServerRes* res)
 {/* 函数解释
   * 参数列表：发起请求的客户端信息context，服务请求request，服务响应response
   * 返回值：服务执行状态（成功，异常）
   * 请求与响应定义在 服务器对应的 proto文件中
   */
-    rpc_server::ServerType server_type = request->server_type(); // 服务器类型
-    std::string address = request->address();   // 服务器地址
-    std::string port = request->port(); // 服务器端口
+    rpc_server::ServerType server_type = req->server_type(); // 服务器类型
+    std::string address = req->address();   // 服务器地址
+    std::string port = req->port(); // 服务器端口
 
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
@@ -148,17 +148,17 @@ grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, con
     }
     queue_cv.notify_one();  // 通知线程池有新任务
 
-    response->set_success(true);
-    response->set_message("服务器注册成功");
+    res->set_success(true);
+    res->set_message("服务器注册成功");
     return grpc::Status::OK;
 }
 
 // 服务器断开
-grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, const rpc_server::UnregisterServerRequest* request, rpc_server::UnregisterServerResponse* response)
+grpc::Status CentralServerImpl::Unregister_server(grpc::ServerContext* context, const rpc_server::UnregisterServerReq* req, rpc_server::UnregisterServerRes* res)
 {
-    rpc_server::ServerType server_type = request->server_type(); // 服务器类型  
-    std::string address = request->address();   // 服务器地址
-    std::string port = request->port(); // 服务器端口
+    rpc_server::ServerType server_type = req->server_type(); // 服务器类型  
+    std::string address = req->address();   // 服务器地址
+    std::string port = req->port(); // 服务器端口
 
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
@@ -169,15 +169,15 @@ grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, c
     }
     queue_cv.notify_one();  // 通知线程池有新任务
 
-    response->set_success(true);
-    response->set_message("successfully unregistered");
+    res->set_success(true);
+    res->set_message("successfully unregistered");
     return grpc::Status::OK;
 }
 
 // 获取连接池中所有链接
-grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, const rpc_server::ConnectPoorRequest* request, rpc_server::ConnectPoorResponse* response)
+grpc::Status CentralServerImpl::Get_connec_poor(grpc::ServerContext* context, const rpc_server::ConnectPoorReq* req, rpc_server::ConnectPoorRes* res)
 {
-    rpc_server::ServerType server_type = request->server_type(); // 服务器类型  
+    rpc_server::ServerType server_type = req->server_type(); // 服务器类型  
 
     std::unordered_map<rpc_server::ServerType, std::vector<std::pair<std::string, std::string>>> connections;
 
@@ -210,30 +210,32 @@ grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, con
         break;
     }
     default:
-    response->set_success(false);
-    response->set_message("Invalid server type");
-    return grpc::Status::OK;
+    {
+        res->set_success(false);
+        res->set_message("Invalid server type");
+        return grpc::Status::OK;
+    }
     }
 
     for(const auto& connection : connections[server_type])
     {
-        auto* conn_info = response->add_connect_info();
+        auto* conn_info = res->add_connect_info();
         conn_info->set_address(connection.first);
         conn_info->set_port(std::stoi(connection.second)); // 将端口从字符串转换为整数
     }
 
-    response->set_success(true);
-    response->set_message("Connection pool information retrieved successfully");
+    res->set_success(true);
+    res->set_message("Connection pool information retrieved successfully");
     return grpc::Status::OK;
 }
 
 // 接收心跳包
-grpc::Status CentralServerImpl::Heartbeat(grpc::ServerContext* context, const rpc_server::HeartbeatRequest* request, rpc_server::HeartbeatResponse* response)
+grpc::Status CentralServerImpl::Heartbeat(grpc::ServerContext* context, const rpc_server::HeartbeatReq* req, rpc_server::HeartbeatRes* res)
 {
     std::lock_guard<std::mutex> lock(heartbeat_mutex);  // 加锁
-    heartbeat_records[request->address()] = {request->server_type(), request->address(), request->port(), std::chrono::steady_clock::now()}; // 记录心跳时间
-    response->set_success(true);    // 设置响应成功
-    response->set_message("Heartbeat received");
+    heartbeat_records[req->address()] = {req->server_type(),req->address(),req->port(), std::chrono::steady_clock::now()}; // 记录心跳时间
+    res->set_success(true);    // 设置响应成功
+    res->set_message("Heartbeat received");
     return grpc::Status::OK;
 }
 

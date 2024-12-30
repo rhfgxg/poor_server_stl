@@ -22,7 +22,7 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace rpc_server {
 
-inline constexpr UpdateResponse::Impl_::Impl_(
+inline constexpr UpdateRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -31,42 +31,42 @@ inline constexpr UpdateResponse::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR UpdateResponse::UpdateResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR UpdateRes::UpdateRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct UpdateResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UpdateResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UpdateResponseDefaultTypeInternal() {}
+struct UpdateResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateResDefaultTypeInternal() {}
   union {
-    UpdateResponse _instance;
+    UpdateRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateResponseDefaultTypeInternal _UpdateResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateResDefaultTypeInternal _UpdateRes_default_instance_;
       template <typename>
-PROTOBUF_CONSTEXPR UpdateRequest_QueryEntry_DoNotUse::UpdateRequest_QueryEntry_DoNotUse(::_pbi::ConstantInitialized) {}
-struct UpdateRequest_QueryEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UpdateRequest_QueryEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UpdateRequest_QueryEntry_DoNotUseDefaultTypeInternal() {}
+PROTOBUF_CONSTEXPR UpdateReq_QueryEntry_DoNotUse::UpdateReq_QueryEntry_DoNotUse(::_pbi::ConstantInitialized) {}
+struct UpdateReq_QueryEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateReq_QueryEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateReq_QueryEntry_DoNotUseDefaultTypeInternal() {}
   union {
-    UpdateRequest_QueryEntry_DoNotUse _instance;
+    UpdateReq_QueryEntry_DoNotUse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateRequest_QueryEntry_DoNotUseDefaultTypeInternal _UpdateRequest_QueryEntry_DoNotUse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateReq_QueryEntry_DoNotUseDefaultTypeInternal _UpdateReq_QueryEntry_DoNotUse_default_instance_;
       template <typename>
-PROTOBUF_CONSTEXPR UpdateRequest_DataEntry_DoNotUse::UpdateRequest_DataEntry_DoNotUse(::_pbi::ConstantInitialized) {}
-struct UpdateRequest_DataEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UpdateRequest_DataEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UpdateRequest_DataEntry_DoNotUseDefaultTypeInternal() {}
+PROTOBUF_CONSTEXPR UpdateReq_DataEntry_DoNotUse::UpdateReq_DataEntry_DoNotUse(::_pbi::ConstantInitialized) {}
+struct UpdateReq_DataEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateReq_DataEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateReq_DataEntry_DoNotUseDefaultTypeInternal() {}
   union {
-    UpdateRequest_DataEntry_DoNotUse _instance;
+    UpdateReq_DataEntry_DoNotUse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateRequest_DataEntry_DoNotUseDefaultTypeInternal _UpdateRequest_DataEntry_DoNotUse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateReq_DataEntry_DoNotUseDefaultTypeInternal _UpdateReq_DataEntry_DoNotUse_default_instance_;
       template <typename>
 PROTOBUF_CONSTEXPR Result_FieldsEntry_DoNotUse::Result_FieldsEntry_DoNotUse(::_pbi::ConstantInitialized) {}
 struct Result_FieldsEntry_DoNotUseDefaultTypeInternal {
@@ -80,19 +80,19 @@ struct Result_FieldsEntry_DoNotUseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Result_FieldsEntry_DoNotUseDefaultTypeInternal _Result_FieldsEntry_DoNotUse_default_instance_;
       template <typename>
-PROTOBUF_CONSTEXPR ReadRequest_QueryEntry_DoNotUse::ReadRequest_QueryEntry_DoNotUse(::_pbi::ConstantInitialized) {}
-struct ReadRequest_QueryEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ReadRequest_QueryEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ReadRequest_QueryEntry_DoNotUseDefaultTypeInternal() {}
+PROTOBUF_CONSTEXPR ReadReq_QueryEntry_DoNotUse::ReadReq_QueryEntry_DoNotUse(::_pbi::ConstantInitialized) {}
+struct ReadReq_QueryEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ReadReq_QueryEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ReadReq_QueryEntry_DoNotUseDefaultTypeInternal() {}
   union {
-    ReadRequest_QueryEntry_DoNotUse _instance;
+    ReadReq_QueryEntry_DoNotUse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadRequest_QueryEntry_DoNotUseDefaultTypeInternal _ReadRequest_QueryEntry_DoNotUse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadReq_QueryEntry_DoNotUseDefaultTypeInternal _ReadReq_QueryEntry_DoNotUse_default_instance_;
 
-inline constexpr DeleteResponse::Impl_::Impl_(
+inline constexpr DeleteRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -101,32 +101,32 @@ inline constexpr DeleteResponse::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR DeleteResponse::DeleteResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR DeleteRes::DeleteRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct DeleteResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DeleteResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DeleteResponseDefaultTypeInternal() {}
+struct DeleteResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DeleteResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DeleteResDefaultTypeInternal() {}
   union {
-    DeleteResponse _instance;
+    DeleteRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteResponseDefaultTypeInternal _DeleteResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteResDefaultTypeInternal _DeleteRes_default_instance_;
       template <typename>
-PROTOBUF_CONSTEXPR DeleteRequest_QueryEntry_DoNotUse::DeleteRequest_QueryEntry_DoNotUse(::_pbi::ConstantInitialized) {}
-struct DeleteRequest_QueryEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DeleteRequest_QueryEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DeleteRequest_QueryEntry_DoNotUseDefaultTypeInternal() {}
+PROTOBUF_CONSTEXPR DeleteReq_QueryEntry_DoNotUse::DeleteReq_QueryEntry_DoNotUse(::_pbi::ConstantInitialized) {}
+struct DeleteReq_QueryEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DeleteReq_QueryEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DeleteReq_QueryEntry_DoNotUseDefaultTypeInternal() {}
   union {
-    DeleteRequest_QueryEntry_DoNotUse _instance;
+    DeleteReq_QueryEntry_DoNotUse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteRequest_QueryEntry_DoNotUseDefaultTypeInternal _DeleteRequest_QueryEntry_DoNotUse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteReq_QueryEntry_DoNotUseDefaultTypeInternal _DeleteReq_QueryEntry_DoNotUse_default_instance_;
 
-inline constexpr CreateResponse::Impl_::Impl_(
+inline constexpr CreateRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -135,32 +135,32 @@ inline constexpr CreateResponse::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR CreateResponse::CreateResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR CreateRes::CreateRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct CreateResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CreateResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CreateResponseDefaultTypeInternal() {}
+struct CreateResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CreateResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CreateResDefaultTypeInternal() {}
   union {
-    CreateResponse _instance;
+    CreateRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreateResponseDefaultTypeInternal _CreateResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreateResDefaultTypeInternal _CreateRes_default_instance_;
       template <typename>
-PROTOBUF_CONSTEXPR CreateRequest_DataEntry_DoNotUse::CreateRequest_DataEntry_DoNotUse(::_pbi::ConstantInitialized) {}
-struct CreateRequest_DataEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CreateRequest_DataEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CreateRequest_DataEntry_DoNotUseDefaultTypeInternal() {}
+PROTOBUF_CONSTEXPR CreateReq_DataEntry_DoNotUse::CreateReq_DataEntry_DoNotUse(::_pbi::ConstantInitialized) {}
+struct CreateReq_DataEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CreateReq_DataEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CreateReq_DataEntry_DoNotUseDefaultTypeInternal() {}
   union {
-    CreateRequest_DataEntry_DoNotUse _instance;
+    CreateReq_DataEntry_DoNotUse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreateRequest_DataEntry_DoNotUseDefaultTypeInternal _CreateRequest_DataEntry_DoNotUse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreateReq_DataEntry_DoNotUseDefaultTypeInternal _CreateReq_DataEntry_DoNotUse_default_instance_;
 
-inline constexpr UpdateRequest::Impl_::Impl_(
+inline constexpr UpdateReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : query_{},
         data_{},
@@ -173,18 +173,18 @@ inline constexpr UpdateRequest::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR UpdateRequest::UpdateRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR UpdateReq::UpdateReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct UpdateRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR UpdateRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~UpdateRequestDefaultTypeInternal() {}
+struct UpdateReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdateReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdateReqDefaultTypeInternal() {}
   union {
-    UpdateRequest _instance;
+    UpdateReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateRequestDefaultTypeInternal _UpdateRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdateReqDefaultTypeInternal _UpdateReq_default_instance_;
 
 inline constexpr Result::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -205,7 +205,7 @@ struct ResultDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResultDefaultTypeInternal _Result_default_instance_;
 
-inline constexpr ReadRequest::Impl_::Impl_(
+inline constexpr ReadReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : query_{},
         database_(
@@ -217,20 +217,20 @@ inline constexpr ReadRequest::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR ReadRequest::ReadRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR ReadReq::ReadReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct ReadRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ReadRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ReadRequestDefaultTypeInternal() {}
+struct ReadReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ReadReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ReadReqDefaultTypeInternal() {}
   union {
-    ReadRequest _instance;
+    ReadReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadRequestDefaultTypeInternal _ReadRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadReqDefaultTypeInternal _ReadReq_default_instance_;
 
-inline constexpr DeleteRequest::Impl_::Impl_(
+inline constexpr DeleteReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : query_{},
         database_(
@@ -242,20 +242,20 @@ inline constexpr DeleteRequest::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR DeleteRequest::DeleteRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR DeleteReq::DeleteReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct DeleteRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DeleteRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DeleteRequestDefaultTypeInternal() {}
+struct DeleteReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DeleteReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DeleteReqDefaultTypeInternal() {}
   union {
-    DeleteRequest _instance;
+    DeleteReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteRequestDefaultTypeInternal _DeleteRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteReqDefaultTypeInternal _DeleteReq_default_instance_;
 
-inline constexpr CreateRequest::Impl_::Impl_(
+inline constexpr CreateReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : data_{},
         database_(
@@ -267,20 +267,20 @@ inline constexpr CreateRequest::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR CreateRequest::CreateRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR CreateReq::CreateReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct CreateRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CreateRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CreateRequestDefaultTypeInternal() {}
+struct CreateReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CreateReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CreateReqDefaultTypeInternal() {}
   union {
-    CreateRequest _instance;
+    CreateReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreateRequestDefaultTypeInternal _CreateRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CreateReqDefaultTypeInternal _CreateReq_default_instance_;
 
-inline constexpr ReadResponse::Impl_::Impl_(
+inline constexpr ReadRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : results_{},
         message_(
@@ -290,18 +290,18 @@ inline constexpr ReadResponse::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR ReadResponse::ReadResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR ReadRes::ReadRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct ReadResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ReadResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ReadResponseDefaultTypeInternal() {}
+struct ReadResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ReadResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ReadResDefaultTypeInternal() {}
   union {
-    ReadResponse _instance;
+    ReadRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadResponseDefaultTypeInternal _ReadResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadResDefaultTypeInternal _ReadRes_default_instance_;
 }  // namespace rpc_server
 static ::_pb::Metadata file_level_metadata_server_5fdata_2eproto[15];
 static constexpr const ::_pb::EnumDescriptor**
@@ -310,73 +310,73 @@ static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_server_5fdata_2eproto = nullptr;
 const ::uint32_t TableStruct_server_5fdata_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     protodesc_cold) = {
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateRequest_DataEntry_DoNotUse, _has_bits_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateRequest_DataEntry_DoNotUse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateReq_DataEntry_DoNotUse, _has_bits_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateReq_DataEntry_DoNotUse, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateRequest_DataEntry_DoNotUse, key_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateRequest_DataEntry_DoNotUse, value_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateReq_DataEntry_DoNotUse, key_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateReq_DataEntry_DoNotUse, value_),
     0,
     1,
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateRequest, _impl_.database_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateRequest, _impl_.table_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateRequest, _impl_.data_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateReq, _impl_.database_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateReq, _impl_.table_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateReq, _impl_.data_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateResponse, _impl_.message_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadRequest_QueryEntry_DoNotUse, _has_bits_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadRequest_QueryEntry_DoNotUse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CreateRes, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadReq_QueryEntry_DoNotUse, _has_bits_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadReq_QueryEntry_DoNotUse, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadRequest_QueryEntry_DoNotUse, key_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadRequest_QueryEntry_DoNotUse, value_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadReq_QueryEntry_DoNotUse, key_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadReq_QueryEntry_DoNotUse, value_),
     0,
     1,
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadRequest, _impl_.database_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadRequest, _impl_.table_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadRequest, _impl_.query_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadReq, _impl_.database_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadReq, _impl_.table_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadReq, _impl_.query_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadResponse, _impl_.message_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadResponse, _impl_.results_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadRes, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ReadRes, _impl_.results_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::Result_FieldsEntry_DoNotUse, _has_bits_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::Result_FieldsEntry_DoNotUse, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -398,164 +398,162 @@ const ::uint32_t TableStruct_server_5fdata_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::rpc_server::Result, _impl_.fields_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest_QueryEntry_DoNotUse, _has_bits_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest_QueryEntry_DoNotUse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq_QueryEntry_DoNotUse, _has_bits_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq_QueryEntry_DoNotUse, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest_QueryEntry_DoNotUse, key_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest_QueryEntry_DoNotUse, value_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq_QueryEntry_DoNotUse, key_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq_QueryEntry_DoNotUse, value_),
     0,
     1,
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest_DataEntry_DoNotUse, _has_bits_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest_DataEntry_DoNotUse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq_DataEntry_DoNotUse, _has_bits_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq_DataEntry_DoNotUse, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest_DataEntry_DoNotUse, key_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest_DataEntry_DoNotUse, value_),
-    0,
-    1,
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest, _impl_.database_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest, _impl_.table_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest, _impl_.query_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRequest, _impl_.data_),
-    ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateResponse, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateResponse, _impl_.message_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRequest_QueryEntry_DoNotUse, _has_bits_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRequest_QueryEntry_DoNotUse, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRequest_QueryEntry_DoNotUse, key_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRequest_QueryEntry_DoNotUse, value_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq_DataEntry_DoNotUse, key_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq_DataEntry_DoNotUse, value_),
     0,
     1,
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRequest, _impl_.database_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRequest, _impl_.table_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRequest, _impl_.query_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq, _impl_.database_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq, _impl_.table_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq, _impl_.query_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateReq, _impl_.data_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteResponse, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdateRes, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteReq_QueryEntry_DoNotUse, _has_bits_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteReq_QueryEntry_DoNotUse, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteReq_QueryEntry_DoNotUse, key_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteReq_QueryEntry_DoNotUse, value_),
+    0,
+    1,
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteReq, _impl_.database_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteReq, _impl_.table_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteReq, _impl_.query_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRes, _impl_.message_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, 10, -1, sizeof(::rpc_server::CreateRequest_DataEntry_DoNotUse)},
-        {12, -1, -1, sizeof(::rpc_server::CreateRequest)},
-        {23, -1, -1, sizeof(::rpc_server::CreateResponse)},
-        {33, 43, -1, sizeof(::rpc_server::ReadRequest_QueryEntry_DoNotUse)},
-        {45, -1, -1, sizeof(::rpc_server::ReadRequest)},
-        {56, -1, -1, sizeof(::rpc_server::ReadResponse)},
+        {0, 10, -1, sizeof(::rpc_server::CreateReq_DataEntry_DoNotUse)},
+        {12, -1, -1, sizeof(::rpc_server::CreateReq)},
+        {23, -1, -1, sizeof(::rpc_server::CreateRes)},
+        {33, 43, -1, sizeof(::rpc_server::ReadReq_QueryEntry_DoNotUse)},
+        {45, -1, -1, sizeof(::rpc_server::ReadReq)},
+        {56, -1, -1, sizeof(::rpc_server::ReadRes)},
         {67, 77, -1, sizeof(::rpc_server::Result_FieldsEntry_DoNotUse)},
         {79, -1, -1, sizeof(::rpc_server::Result)},
-        {88, 98, -1, sizeof(::rpc_server::UpdateRequest_QueryEntry_DoNotUse)},
-        {100, 110, -1, sizeof(::rpc_server::UpdateRequest_DataEntry_DoNotUse)},
-        {112, -1, -1, sizeof(::rpc_server::UpdateRequest)},
-        {124, -1, -1, sizeof(::rpc_server::UpdateResponse)},
-        {134, 144, -1, sizeof(::rpc_server::DeleteRequest_QueryEntry_DoNotUse)},
-        {146, -1, -1, sizeof(::rpc_server::DeleteRequest)},
-        {157, -1, -1, sizeof(::rpc_server::DeleteResponse)},
+        {88, 98, -1, sizeof(::rpc_server::UpdateReq_QueryEntry_DoNotUse)},
+        {100, 110, -1, sizeof(::rpc_server::UpdateReq_DataEntry_DoNotUse)},
+        {112, -1, -1, sizeof(::rpc_server::UpdateReq)},
+        {124, -1, -1, sizeof(::rpc_server::UpdateRes)},
+        {134, 144, -1, sizeof(::rpc_server::DeleteReq_QueryEntry_DoNotUse)},
+        {146, -1, -1, sizeof(::rpc_server::DeleteReq)},
+        {157, -1, -1, sizeof(::rpc_server::DeleteRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-    &::rpc_server::_CreateRequest_DataEntry_DoNotUse_default_instance_._instance,
-    &::rpc_server::_CreateRequest_default_instance_._instance,
-    &::rpc_server::_CreateResponse_default_instance_._instance,
-    &::rpc_server::_ReadRequest_QueryEntry_DoNotUse_default_instance_._instance,
-    &::rpc_server::_ReadRequest_default_instance_._instance,
-    &::rpc_server::_ReadResponse_default_instance_._instance,
+    &::rpc_server::_CreateReq_DataEntry_DoNotUse_default_instance_._instance,
+    &::rpc_server::_CreateReq_default_instance_._instance,
+    &::rpc_server::_CreateRes_default_instance_._instance,
+    &::rpc_server::_ReadReq_QueryEntry_DoNotUse_default_instance_._instance,
+    &::rpc_server::_ReadReq_default_instance_._instance,
+    &::rpc_server::_ReadRes_default_instance_._instance,
     &::rpc_server::_Result_FieldsEntry_DoNotUse_default_instance_._instance,
     &::rpc_server::_Result_default_instance_._instance,
-    &::rpc_server::_UpdateRequest_QueryEntry_DoNotUse_default_instance_._instance,
-    &::rpc_server::_UpdateRequest_DataEntry_DoNotUse_default_instance_._instance,
-    &::rpc_server::_UpdateRequest_default_instance_._instance,
-    &::rpc_server::_UpdateResponse_default_instance_._instance,
-    &::rpc_server::_DeleteRequest_QueryEntry_DoNotUse_default_instance_._instance,
-    &::rpc_server::_DeleteRequest_default_instance_._instance,
-    &::rpc_server::_DeleteResponse_default_instance_._instance,
+    &::rpc_server::_UpdateReq_QueryEntry_DoNotUse_default_instance_._instance,
+    &::rpc_server::_UpdateReq_DataEntry_DoNotUse_default_instance_._instance,
+    &::rpc_server::_UpdateReq_default_instance_._instance,
+    &::rpc_server::_UpdateRes_default_instance_._instance,
+    &::rpc_server::_DeleteReq_QueryEntry_DoNotUse_default_instance_._instance,
+    &::rpc_server::_DeleteReq_default_instance_._instance,
+    &::rpc_server::_DeleteRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fdata_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\021server_data.proto\022\nrpc_server\"\220\001\n\rCrea"
-    "teRequest\022\020\n\010database\030\001 \001(\014\022\r\n\005table\030\002 \001"
-    "(\014\0221\n\004data\030\003 \003(\0132#.rpc_server.CreateRequ"
-    "est.DataEntry\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022"
-    "\r\n\005value\030\002 \001(\014:\0028\001\"2\n\016CreateResponse\022\017\n\007"
-    "success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"\217\001\n\013ReadR"
-    "equest\022\020\n\010database\030\001 \001(\014\022\r\n\005table\030\002 \001(\014\022"
-    "1\n\005query\030\003 \003(\0132\".rpc_server.ReadRequest."
-    "QueryEntry\032,\n\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n"
-    "\005value\030\002 \001(\014:\0028\001\"U\n\014ReadResponse\022\017\n\007succ"
-    "ess\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\022#\n\007results\030\003 "
-    "\003(\0132\022.rpc_server.Result\"g\n\006Result\022.\n\006fie"
-    "lds\030\001 \003(\0132\036.rpc_server.Result.FieldsEntr"
-    "y\032-\n\013FieldsEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002"
-    " \001(\014:\0028\001\"\363\001\n\rUpdateRequest\022\020\n\010database\030\001"
-    " \001(\014\022\r\n\005table\030\002 \001(\014\0223\n\005query\030\003 \003(\0132$.rpc"
-    "_server.UpdateRequest.QueryEntry\0221\n\004data"
-    "\030\004 \003(\0132#.rpc_server.UpdateRequest.DataEn"
-    "try\032,\n\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030"
-    "\002 \001(\014:\0028\001\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005v"
-    "alue\030\002 \001(\014:\0028\001\"2\n\016UpdateResponse\022\017\n\007succ"
-    "ess\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"\223\001\n\rDeleteReq"
-    "uest\022\020\n\010database\030\001 \001(\014\022\r\n\005table\030\002 \001(\014\0223\n"
-    "\005query\030\003 \003(\0132$.rpc_server.DeleteRequest."
-    "QueryEntry\032,\n\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n"
-    "\005value\030\002 \001(\014:\0028\001\"2\n\016DeleteResponse\022\017\n\007su"
-    "ccess\030\001 \001(\010\022\017\n\007message\030\002 \001(\0142\216\002\n\016Databas"
-    "eServer\022\?\n\006Create\022\031.rpc_server.CreateReq"
-    "uest\032\032.rpc_server.CreateResponse\0229\n\004Read"
-    "\022\027.rpc_server.ReadRequest\032\030.rpc_server.R"
-    "eadResponse\022\?\n\006Update\022\031.rpc_server.Updat"
-    "eRequest\032\032.rpc_server.UpdateResponse\022\?\n\006"
-    "Delete\022\031.rpc_server.DeleteRequest\032\032.rpc_"
-    "server.DeleteResponseb\006proto3"
+    "\n\021server_data.proto\022\nrpc_server\"\210\001\n\tCrea"
+    "teReq\022\020\n\010database\030\001 \001(\014\022\r\n\005table\030\002 \001(\014\022-"
+    "\n\004data\030\003 \003(\0132\037.rpc_server.CreateReq.Data"
+    "Entry\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value"
+    "\030\002 \001(\014:\0028\001\"-\n\tCreateRes\022\017\n\007success\030\001 \001(\010"
+    "\022\017\n\007message\030\002 \001(\014\"\207\001\n\007ReadReq\022\020\n\010databas"
+    "e\030\001 \001(\014\022\r\n\005table\030\002 \001(\014\022-\n\005query\030\003 \003(\0132\036."
+    "rpc_server.ReadReq.QueryEntry\032,\n\nQueryEn"
+    "try\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"P\n\007R"
+    "eadRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014"
+    "\022#\n\007results\030\003 \003(\0132\022.rpc_server.Result\"g\n"
+    "\006Result\022.\n\006fields\030\001 \003(\0132\036.rpc_server.Res"
+    "ult.FieldsEntry\032-\n\013FieldsEntry\022\013\n\003key\030\001 "
+    "\001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"\347\001\n\tUpdateReq\022\020\n\010"
+    "database\030\001 \001(\014\022\r\n\005table\030\002 \001(\014\022/\n\005query\030\003"
+    " \003(\0132 .rpc_server.UpdateReq.QueryEntry\022-"
+    "\n\004data\030\004 \003(\0132\037.rpc_server.UpdateReq.Data"
+    "Entry\032,\n\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu"
+    "e\030\002 \001(\014:\0028\001\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n"
+    "\005value\030\002 \001(\014:\0028\001\"-\n\tUpdateRes\022\017\n\007success"
+    "\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"\213\001\n\tDeleteReq\022\020\n"
+    "\010database\030\001 \001(\014\022\r\n\005table\030\002 \001(\014\022/\n\005query\030"
+    "\003 \003(\0132 .rpc_server.DeleteReq.QueryEntry\032"
+    ",\n\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001("
+    "\014:\0028\001\"-\n\tDeleteRes\022\017\n\007success\030\001 \001(\010\022\017\n\007m"
+    "essage\030\002 \001(\0142\352\001\n\016DatabaseServer\0226\n\006Creat"
+    "e\022\025.rpc_server.CreateReq\032\025.rpc_server.Cr"
+    "eateRes\0220\n\004Read\022\023.rpc_server.ReadReq\032\023.r"
+    "pc_server.ReadRes\0226\n\006Update\022\025.rpc_server"
+    ".UpdateReq\032\025.rpc_server.UpdateRes\0226\n\006Del"
+    "ete\022\025.rpc_server.DeleteReq\032\025.rpc_server."
+    "DeleteResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fdata_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fdata_2eproto = {
     false,
     false,
-    1349,
+    1257,
     descriptor_table_protodef_server_5fdata_2eproto,
     "server_data.proto",
     &descriptor_table_server_5fdata_2eproto_once,
@@ -590,26 +588,26 @@ static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_server_5fdata_2eproto(&de
 namespace rpc_server {
 // ===================================================================
 
-CreateRequest_DataEntry_DoNotUse::CreateRequest_DataEntry_DoNotUse() {}
-CreateRequest_DataEntry_DoNotUse::CreateRequest_DataEntry_DoNotUse(::google::protobuf::Arena* arena)
+CreateReq_DataEntry_DoNotUse::CreateReq_DataEntry_DoNotUse() {}
+CreateReq_DataEntry_DoNotUse::CreateReq_DataEntry_DoNotUse(::google::protobuf::Arena* arena)
     : SuperType(arena) {}
-::google::protobuf::Metadata CreateRequest_DataEntry_DoNotUse::GetMetadata() const {
+::google::protobuf::Metadata CreateReq_DataEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[0]);
 }
 // ===================================================================
 
-class CreateRequest::_Internal {
+class CreateReq::_Internal {
  public:
 };
 
-CreateRequest::CreateRequest(::google::protobuf::Arena* arena)
+CreateReq::CreateReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.CreateRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.CreateReq)
 }
-inline PROTOBUF_NDEBUG_INLINE CreateRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE CreateReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : data_{visibility, arena, from.data_},
@@ -617,19 +615,19 @@ inline PROTOBUF_NDEBUG_INLINE CreateRequest::Impl_::Impl_(
         table_(arena, from.table_),
         _cached_size_{0} {}
 
-CreateRequest::CreateRequest(
+CreateReq::CreateReq(
     ::google::protobuf::Arena* arena,
-    const CreateRequest& from)
+    const CreateReq& from)
     : ::google::protobuf::Message(arena) {
-  CreateRequest* const _this = this;
+  CreateReq* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.CreateRequest)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.CreateReq)
 }
-inline PROTOBUF_NDEBUG_INLINE CreateRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE CreateReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : data_{visibility, arena},
@@ -637,23 +635,23 @@ inline PROTOBUF_NDEBUG_INLINE CreateRequest::Impl_::Impl_(
         table_(arena),
         _cached_size_{0} {}
 
-inline void CreateRequest::SharedCtor(::_pb::Arena* arena) {
+inline void CreateReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-CreateRequest::~CreateRequest() {
-  // @@protoc_insertion_point(destructor:rpc_server.CreateRequest)
+CreateReq::~CreateReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.CreateReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void CreateRequest::SharedDtor() {
+inline void CreateReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.database_.Destroy();
   _impl_.table_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void CreateRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.CreateRequest)
+PROTOBUF_NOINLINE void CreateReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.CreateReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -665,7 +663,7 @@ PROTOBUF_NOINLINE void CreateRequest::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* CreateRequest::_InternalParse(
+const char* CreateReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -673,7 +671,7 @@ const char* CreateRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 37, 2> CreateRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 3, 1, 33, 2> CreateReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -684,43 +682,43 @@ const ::_pbi::TcParseTable<1, 3, 1, 37, 2> CreateRequest::_table_ = {
     3,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
-    &_CreateRequest_default_instance_._instance,
+    &_CreateReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // bytes table = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.table_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(CreateReq, _impl_.table_)}},
     // bytes database = 1;
     {::_pbi::TcParser::FastBS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.database_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(CreateReq, _impl_.database_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bytes database = 1;
-    {PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.database_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(CreateReq, _impl_.database_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // bytes table = 2;
-    {PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.table_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(CreateReq, _impl_.table_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // map<string, bytes> data = 3;
-    {PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.data_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(CreateReq, _impl_.data_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
-        decltype(CreateRequest()._impl_.data_)>(
+        decltype(CreateReq()._impl_.data_)>(
         1, 0, 0, 9,
         12)},
   }}, {{
-    "\30\0\0\4\0\0\0\0"
-    "rpc_server.CreateRequest"
+    "\24\0\0\4\0\0\0\0"
+    "rpc_server.CreateReq"
     "data"
   }},
 };
 
-::uint8_t* CreateRequest::_InternalSerialize(
+::uint8_t* CreateReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.CreateRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.CreateReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -750,7 +748,7 @@ const ::_pbi::TcParseTable<1, 3, 1, 37, 2> CreateRequest::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.CreateRequest.data");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.CreateReq.data");
       }
     } else {
       for (const auto& entry : field) {
@@ -758,7 +756,7 @@ const ::_pbi::TcParseTable<1, 3, 1, 37, 2> CreateRequest::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.CreateRequest.data");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.CreateReq.data");
       }
     }
   }
@@ -768,12 +766,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 37, 2> CreateRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.CreateRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.CreateReq)
   return target;
 }
 
-::size_t CreateRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.CreateRequest)
+::size_t CreateReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.CreateReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -802,18 +800,18 @@ const ::_pbi::TcParseTable<1, 3, 1, 37, 2> CreateRequest::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData CreateRequest::_class_data_ = {
-    CreateRequest::MergeImpl,
+const ::google::protobuf::Message::ClassData CreateReq::_class_data_ = {
+    CreateReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* CreateRequest::GetClassData() const {
+const ::google::protobuf::Message::ClassData* CreateReq::GetClassData() const {
   return &_class_data_;
 }
 
-void CreateRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<CreateRequest*>(&to_msg);
-  auto& from = static_cast<const CreateRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.CreateRequest)
+void CreateReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<CreateReq*>(&to_msg);
+  auto& from = static_cast<const CreateReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.CreateReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -828,21 +826,21 @@ void CreateRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::googl
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void CreateRequest::CopyFrom(const CreateRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.CreateRequest)
+void CreateReq::CopyFrom(const CreateReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.CreateReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool CreateRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool CreateReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* CreateRequest::AccessCachedSize() const {
+::_pbi::CachedSize* CreateReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void CreateRequest::InternalSwap(CreateRequest* PROTOBUF_RESTRICT other) {
+void CreateReq::InternalSwap(CreateReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -852,64 +850,64 @@ void CreateRequest::InternalSwap(CreateRequest* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.table_, &other->_impl_.table_, arena);
 }
 
-::google::protobuf::Metadata CreateRequest::GetMetadata() const {
+::google::protobuf::Metadata CreateReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[1]);
 }
 // ===================================================================
 
-class CreateResponse::_Internal {
+class CreateRes::_Internal {
  public:
 };
 
-CreateResponse::CreateResponse(::google::protobuf::Arena* arena)
+CreateRes::CreateRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.CreateResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.CreateRes)
 }
-inline PROTOBUF_NDEBUG_INLINE CreateResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE CreateRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : message_(arena, from.message_),
         _cached_size_{0} {}
 
-CreateResponse::CreateResponse(
+CreateRes::CreateRes(
     ::google::protobuf::Arena* arena,
-    const CreateResponse& from)
+    const CreateRes& from)
     : ::google::protobuf::Message(arena) {
-  CreateResponse* const _this = this;
+  CreateRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.CreateResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.CreateRes)
 }
-inline PROTOBUF_NDEBUG_INLINE CreateResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE CreateRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : message_(arena),
         _cached_size_{0} {}
 
-inline void CreateResponse::SharedCtor(::_pb::Arena* arena) {
+inline void CreateRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.success_ = {};
 }
-CreateResponse::~CreateResponse() {
-  // @@protoc_insertion_point(destructor:rpc_server.CreateResponse)
+CreateRes::~CreateRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.CreateRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void CreateResponse::SharedDtor() {
+inline void CreateRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void CreateResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.CreateResponse)
+PROTOBUF_NOINLINE void CreateRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.CreateRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -920,7 +918,7 @@ PROTOBUF_NOINLINE void CreateResponse::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* CreateResponse::_InternalParse(
+const char* CreateRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -928,7 +926,7 @@ const char* CreateResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CreateResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CreateRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -939,23 +937,23 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CreateResponse::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_CreateResponse_default_instance_._instance,
+    &_CreateRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // bytes message = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(CreateResponse, _impl_.message_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(CreateRes, _impl_.message_)}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(CreateResponse, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(CreateResponse, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(CreateRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(CreateRes, _impl_.success_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(CreateResponse, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(CreateRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // bytes message = 2;
-    {PROTOBUF_FIELD_OFFSET(CreateResponse, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(CreateRes, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
@@ -963,10 +961,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CreateResponse::_table_ = {
   }},
 };
 
-::uint8_t* CreateResponse::_InternalSerialize(
+::uint8_t* CreateRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.CreateResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.CreateRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -988,12 +986,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CreateResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.CreateResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.CreateRes)
   return target;
 }
 
-::size_t CreateResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.CreateResponse)
+::size_t CreateRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.CreateRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -1014,18 +1012,18 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CreateResponse::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData CreateResponse::_class_data_ = {
-    CreateResponse::MergeImpl,
+const ::google::protobuf::Message::ClassData CreateRes::_class_data_ = {
+    CreateRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* CreateResponse::GetClassData() const {
+const ::google::protobuf::Message::ClassData* CreateRes::GetClassData() const {
   return &_class_data_;
 }
 
-void CreateResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<CreateResponse*>(&to_msg);
-  auto& from = static_cast<const CreateResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.CreateResponse)
+void CreateRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<CreateRes*>(&to_msg);
+  auto& from = static_cast<const CreateRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.CreateRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1039,21 +1037,21 @@ void CreateResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void CreateResponse::CopyFrom(const CreateResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.CreateResponse)
+void CreateRes::CopyFrom(const CreateRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.CreateRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool CreateResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool CreateRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* CreateResponse::AccessCachedSize() const {
+::_pbi::CachedSize* CreateRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void CreateResponse::InternalSwap(CreateResponse* PROTOBUF_RESTRICT other) {
+void CreateRes::InternalSwap(CreateRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -1062,33 +1060,33 @@ void CreateResponse::InternalSwap(CreateResponse* PROTOBUF_RESTRICT other) {
         swap(_impl_.success_, other->_impl_.success_);
 }
 
-::google::protobuf::Metadata CreateResponse::GetMetadata() const {
+::google::protobuf::Metadata CreateRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[2]);
 }
 // ===================================================================
 
-ReadRequest_QueryEntry_DoNotUse::ReadRequest_QueryEntry_DoNotUse() {}
-ReadRequest_QueryEntry_DoNotUse::ReadRequest_QueryEntry_DoNotUse(::google::protobuf::Arena* arena)
+ReadReq_QueryEntry_DoNotUse::ReadReq_QueryEntry_DoNotUse() {}
+ReadReq_QueryEntry_DoNotUse::ReadReq_QueryEntry_DoNotUse(::google::protobuf::Arena* arena)
     : SuperType(arena) {}
-::google::protobuf::Metadata ReadRequest_QueryEntry_DoNotUse::GetMetadata() const {
+::google::protobuf::Metadata ReadReq_QueryEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[3]);
 }
 // ===================================================================
 
-class ReadRequest::_Internal {
+class ReadReq::_Internal {
  public:
 };
 
-ReadRequest::ReadRequest(::google::protobuf::Arena* arena)
+ReadReq::ReadReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.ReadRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ReadReq)
 }
-inline PROTOBUF_NDEBUG_INLINE ReadRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ReadReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : query_{visibility, arena, from.query_},
@@ -1096,19 +1094,19 @@ inline PROTOBUF_NDEBUG_INLINE ReadRequest::Impl_::Impl_(
         table_(arena, from.table_),
         _cached_size_{0} {}
 
-ReadRequest::ReadRequest(
+ReadReq::ReadReq(
     ::google::protobuf::Arena* arena,
-    const ReadRequest& from)
+    const ReadReq& from)
     : ::google::protobuf::Message(arena) {
-  ReadRequest* const _this = this;
+  ReadReq* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.ReadRequest)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.ReadReq)
 }
-inline PROTOBUF_NDEBUG_INLINE ReadRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ReadReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : query_{visibility, arena},
@@ -1116,23 +1114,23 @@ inline PROTOBUF_NDEBUG_INLINE ReadRequest::Impl_::Impl_(
         table_(arena),
         _cached_size_{0} {}
 
-inline void ReadRequest::SharedCtor(::_pb::Arena* arena) {
+inline void ReadReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-ReadRequest::~ReadRequest() {
-  // @@protoc_insertion_point(destructor:rpc_server.ReadRequest)
+ReadReq::~ReadReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.ReadReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ReadRequest::SharedDtor() {
+inline void ReadReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.database_.Destroy();
   _impl_.table_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void ReadRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.ReadRequest)
+PROTOBUF_NOINLINE void ReadReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.ReadReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1144,7 +1142,7 @@ PROTOBUF_NOINLINE void ReadRequest::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ReadRequest::_InternalParse(
+const char* ReadReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -1152,7 +1150,7 @@ const char* ReadRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 36, 2> ReadRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 3, 1, 32, 2> ReadReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1163,43 +1161,43 @@ const ::_pbi::TcParseTable<1, 3, 1, 36, 2> ReadRequest::_table_ = {
     3,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
-    &_ReadRequest_default_instance_._instance,
+    &_ReadReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // bytes table = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ReadRequest, _impl_.table_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ReadReq, _impl_.table_)}},
     // bytes database = 1;
     {::_pbi::TcParser::FastBS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ReadRequest, _impl_.database_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ReadReq, _impl_.database_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bytes database = 1;
-    {PROTOBUF_FIELD_OFFSET(ReadRequest, _impl_.database_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ReadReq, _impl_.database_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // bytes table = 2;
-    {PROTOBUF_FIELD_OFFSET(ReadRequest, _impl_.table_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ReadReq, _impl_.table_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // map<string, bytes> query = 3;
-    {PROTOBUF_FIELD_OFFSET(ReadRequest, _impl_.query_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ReadReq, _impl_.query_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
-        decltype(ReadRequest()._impl_.query_)>(
+        decltype(ReadReq()._impl_.query_)>(
         1, 0, 0, 9,
         12)},
   }}, {{
-    "\26\0\0\5\0\0\0\0"
-    "rpc_server.ReadRequest"
+    "\22\0\0\5\0\0\0\0"
+    "rpc_server.ReadReq"
     "query"
   }},
 };
 
-::uint8_t* ReadRequest::_InternalSerialize(
+::uint8_t* ReadReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ReadRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ReadReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1229,7 +1227,7 @@ const ::_pbi::TcParseTable<1, 3, 1, 36, 2> ReadRequest::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.ReadRequest.query");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.ReadReq.query");
       }
     } else {
       for (const auto& entry : field) {
@@ -1237,7 +1235,7 @@ const ::_pbi::TcParseTable<1, 3, 1, 36, 2> ReadRequest::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.ReadRequest.query");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.ReadReq.query");
       }
     }
   }
@@ -1247,12 +1245,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 36, 2> ReadRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ReadRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ReadReq)
   return target;
 }
 
-::size_t ReadRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.ReadRequest)
+::size_t ReadReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ReadReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -1281,18 +1279,18 @@ const ::_pbi::TcParseTable<1, 3, 1, 36, 2> ReadRequest::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData ReadRequest::_class_data_ = {
-    ReadRequest::MergeImpl,
+const ::google::protobuf::Message::ClassData ReadReq::_class_data_ = {
+    ReadReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* ReadRequest::GetClassData() const {
+const ::google::protobuf::Message::ClassData* ReadReq::GetClassData() const {
   return &_class_data_;
 }
 
-void ReadRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ReadRequest*>(&to_msg);
-  auto& from = static_cast<const ReadRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ReadRequest)
+void ReadReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ReadReq*>(&to_msg);
+  auto& from = static_cast<const ReadReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ReadReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1307,21 +1305,21 @@ void ReadRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google:
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ReadRequest::CopyFrom(const ReadRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ReadRequest)
+void ReadReq::CopyFrom(const ReadReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ReadReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ReadRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool ReadReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* ReadRequest::AccessCachedSize() const {
+::_pbi::CachedSize* ReadReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void ReadRequest::InternalSwap(ReadRequest* PROTOBUF_RESTRICT other) {
+void ReadReq::InternalSwap(ReadReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -1331,66 +1329,66 @@ void ReadRequest::InternalSwap(ReadRequest* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.table_, &other->_impl_.table_, arena);
 }
 
-::google::protobuf::Metadata ReadRequest::GetMetadata() const {
+::google::protobuf::Metadata ReadReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[4]);
 }
 // ===================================================================
 
-class ReadResponse::_Internal {
+class ReadRes::_Internal {
  public:
 };
 
-ReadResponse::ReadResponse(::google::protobuf::Arena* arena)
+ReadRes::ReadRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.ReadResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ReadRes)
 }
-inline PROTOBUF_NDEBUG_INLINE ReadResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ReadRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : results_{visibility, arena, from.results_},
         message_(arena, from.message_),
         _cached_size_{0} {}
 
-ReadResponse::ReadResponse(
+ReadRes::ReadRes(
     ::google::protobuf::Arena* arena,
-    const ReadResponse& from)
+    const ReadRes& from)
     : ::google::protobuf::Message(arena) {
-  ReadResponse* const _this = this;
+  ReadRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.ReadResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.ReadRes)
 }
-inline PROTOBUF_NDEBUG_INLINE ReadResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE ReadRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : results_{visibility, arena},
         message_(arena),
         _cached_size_{0} {}
 
-inline void ReadResponse::SharedCtor(::_pb::Arena* arena) {
+inline void ReadRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.success_ = {};
 }
-ReadResponse::~ReadResponse() {
-  // @@protoc_insertion_point(destructor:rpc_server.ReadResponse)
+ReadRes::~ReadRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.ReadRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ReadResponse::SharedDtor() {
+inline void ReadRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void ReadResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.ReadResponse)
+PROTOBUF_NOINLINE void ReadRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.ReadRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1402,7 +1400,7 @@ PROTOBUF_NOINLINE void ReadResponse::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ReadResponse::_InternalParse(
+const char* ReadRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -1410,7 +1408,7 @@ const char* ReadResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 1, 0, 2> ReadResponse::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 1, 0, 2> ReadRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1421,30 +1419,30 @@ const ::_pbi::TcParseTable<2, 3, 1, 0, 2> ReadResponse::_table_ = {
     3,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
-    &_ReadResponse_default_instance_._instance,
+    &_ReadRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ReadResponse, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ReadResponse, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ReadRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ReadRes, _impl_.success_)}},
     // bytes message = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ReadResponse, _impl_.message_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ReadRes, _impl_.message_)}},
     // repeated .rpc_server.Result results = 3;
     {::_pbi::TcParser::FastMtR1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ReadResponse, _impl_.results_)}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ReadRes, _impl_.results_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(ReadResponse, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ReadRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // bytes message = 2;
-    {PROTOBUF_FIELD_OFFSET(ReadResponse, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ReadRes, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // repeated .rpc_server.Result results = 3;
-    {PROTOBUF_FIELD_OFFSET(ReadResponse, _impl_.results_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(ReadRes, _impl_.results_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::rpc_server::Result>()},
@@ -1452,10 +1450,10 @@ const ::_pbi::TcParseTable<2, 3, 1, 0, 2> ReadResponse::_table_ = {
   }},
 };
 
-::uint8_t* ReadResponse::_InternalSerialize(
+::uint8_t* ReadRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ReadResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ReadRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1485,12 +1483,12 @@ const ::_pbi::TcParseTable<2, 3, 1, 0, 2> ReadResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ReadResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ReadRes)
   return target;
 }
 
-::size_t ReadResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.ReadResponse)
+::size_t ReadRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ReadRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -1517,18 +1515,18 @@ const ::_pbi::TcParseTable<2, 3, 1, 0, 2> ReadResponse::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData ReadResponse::_class_data_ = {
-    ReadResponse::MergeImpl,
+const ::google::protobuf::Message::ClassData ReadRes::_class_data_ = {
+    ReadRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* ReadResponse::GetClassData() const {
+const ::google::protobuf::Message::ClassData* ReadRes::GetClassData() const {
   return &_class_data_;
 }
 
-void ReadResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ReadResponse*>(&to_msg);
-  auto& from = static_cast<const ReadResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ReadResponse)
+void ReadRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ReadRes*>(&to_msg);
+  auto& from = static_cast<const ReadRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ReadRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1544,21 +1542,21 @@ void ReadResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ReadResponse::CopyFrom(const ReadResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ReadResponse)
+void ReadRes::CopyFrom(const ReadRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ReadRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ReadResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool ReadRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* ReadResponse::AccessCachedSize() const {
+::_pbi::CachedSize* ReadRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void ReadResponse::InternalSwap(ReadResponse* PROTOBUF_RESTRICT other) {
+void ReadRes::InternalSwap(ReadRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -1568,7 +1566,7 @@ void ReadResponse::InternalSwap(ReadResponse* PROTOBUF_RESTRICT other) {
         swap(_impl_.success_, other->_impl_.success_);
 }
 
-::google::protobuf::Metadata ReadResponse::GetMetadata() const {
+::google::protobuf::Metadata ReadRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[5]);
@@ -1791,36 +1789,36 @@ void Result::InternalSwap(Result* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-UpdateRequest_QueryEntry_DoNotUse::UpdateRequest_QueryEntry_DoNotUse() {}
-UpdateRequest_QueryEntry_DoNotUse::UpdateRequest_QueryEntry_DoNotUse(::google::protobuf::Arena* arena)
+UpdateReq_QueryEntry_DoNotUse::UpdateReq_QueryEntry_DoNotUse() {}
+UpdateReq_QueryEntry_DoNotUse::UpdateReq_QueryEntry_DoNotUse(::google::protobuf::Arena* arena)
     : SuperType(arena) {}
-::google::protobuf::Metadata UpdateRequest_QueryEntry_DoNotUse::GetMetadata() const {
+::google::protobuf::Metadata UpdateReq_QueryEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[8]);
 }
 // ===================================================================
 
-UpdateRequest_DataEntry_DoNotUse::UpdateRequest_DataEntry_DoNotUse() {}
-UpdateRequest_DataEntry_DoNotUse::UpdateRequest_DataEntry_DoNotUse(::google::protobuf::Arena* arena)
+UpdateReq_DataEntry_DoNotUse::UpdateReq_DataEntry_DoNotUse() {}
+UpdateReq_DataEntry_DoNotUse::UpdateReq_DataEntry_DoNotUse(::google::protobuf::Arena* arena)
     : SuperType(arena) {}
-::google::protobuf::Metadata UpdateRequest_DataEntry_DoNotUse::GetMetadata() const {
+::google::protobuf::Metadata UpdateReq_DataEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[9]);
 }
 // ===================================================================
 
-class UpdateRequest::_Internal {
+class UpdateReq::_Internal {
  public:
 };
 
-UpdateRequest::UpdateRequest(::google::protobuf::Arena* arena)
+UpdateReq::UpdateReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.UpdateRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UpdateReq)
 }
-inline PROTOBUF_NDEBUG_INLINE UpdateRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE UpdateReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : query_{visibility, arena, from.query_},
@@ -1829,19 +1827,19 @@ inline PROTOBUF_NDEBUG_INLINE UpdateRequest::Impl_::Impl_(
         table_(arena, from.table_),
         _cached_size_{0} {}
 
-UpdateRequest::UpdateRequest(
+UpdateReq::UpdateReq(
     ::google::protobuf::Arena* arena,
-    const UpdateRequest& from)
+    const UpdateReq& from)
     : ::google::protobuf::Message(arena) {
-  UpdateRequest* const _this = this;
+  UpdateReq* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.UpdateRequest)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UpdateReq)
 }
-inline PROTOBUF_NDEBUG_INLINE UpdateRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE UpdateReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : query_{visibility, arena},
@@ -1850,23 +1848,23 @@ inline PROTOBUF_NDEBUG_INLINE UpdateRequest::Impl_::Impl_(
         table_(arena),
         _cached_size_{0} {}
 
-inline void UpdateRequest::SharedCtor(::_pb::Arena* arena) {
+inline void UpdateReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-UpdateRequest::~UpdateRequest() {
-  // @@protoc_insertion_point(destructor:rpc_server.UpdateRequest)
+UpdateReq::~UpdateReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.UpdateReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void UpdateRequest::SharedDtor() {
+inline void UpdateReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.database_.Destroy();
   _impl_.table_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void UpdateRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.UpdateRequest)
+PROTOBUF_NOINLINE void UpdateReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UpdateReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1879,7 +1877,7 @@ PROTOBUF_NOINLINE void UpdateRequest::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* UpdateRequest::_InternalParse(
+const char* UpdateReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -1887,7 +1885,7 @@ const char* UpdateRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 4, 2, 42, 2> UpdateRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 4, 2, 38, 2> UpdateReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1898,51 +1896,51 @@ const ::_pbi::TcParseTable<1, 4, 2, 42, 2> UpdateRequest::_table_ = {
     4,  // num_field_entries
     2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
-    &_UpdateRequest_default_instance_._instance,
+    &_UpdateReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // bytes table = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateRequest, _impl_.table_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateReq, _impl_.table_)}},
     // bytes database = 1;
     {::_pbi::TcParser::FastBS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateRequest, _impl_.database_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateReq, _impl_.database_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bytes database = 1;
-    {PROTOBUF_FIELD_OFFSET(UpdateRequest, _impl_.database_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateReq, _impl_.database_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // bytes table = 2;
-    {PROTOBUF_FIELD_OFFSET(UpdateRequest, _impl_.table_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateReq, _impl_.table_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // map<string, bytes> query = 3;
-    {PROTOBUF_FIELD_OFFSET(UpdateRequest, _impl_.query_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateReq, _impl_.query_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
     // map<string, bytes> data = 4;
-    {PROTOBUF_FIELD_OFFSET(UpdateRequest, _impl_.data_), 0, 1,
+    {PROTOBUF_FIELD_OFFSET(UpdateReq, _impl_.data_), 0, 1,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
-        decltype(UpdateRequest()._impl_.query_)>(
+        decltype(UpdateReq()._impl_.query_)>(
         1, 0, 0, 9,
         12)},
     {::_pbi::TcParser::GetMapAuxInfo<
-        decltype(UpdateRequest()._impl_.data_)>(
+        decltype(UpdateReq()._impl_.data_)>(
         1, 0, 0, 9,
         12)},
   }}, {{
-    "\30\0\0\5\4\0\0\0"
-    "rpc_server.UpdateRequest"
+    "\24\0\0\5\4\0\0\0"
+    "rpc_server.UpdateReq"
     "query"
     "data"
   }},
 };
 
-::uint8_t* UpdateRequest::_InternalSerialize(
+::uint8_t* UpdateReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UpdateRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UpdateReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1972,7 +1970,7 @@ const ::_pbi::TcParseTable<1, 4, 2, 42, 2> UpdateRequest::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdateRequest.query");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdateReq.query");
       }
     } else {
       for (const auto& entry : field) {
@@ -1980,7 +1978,7 @@ const ::_pbi::TcParseTable<1, 4, 2, 42, 2> UpdateRequest::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdateRequest.query");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdateReq.query");
       }
     }
   }
@@ -1999,7 +1997,7 @@ const ::_pbi::TcParseTable<1, 4, 2, 42, 2> UpdateRequest::_table_ = {
             4, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdateRequest.data");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdateReq.data");
       }
     } else {
       for (const auto& entry : field) {
@@ -2007,7 +2005,7 @@ const ::_pbi::TcParseTable<1, 4, 2, 42, 2> UpdateRequest::_table_ = {
             4, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdateRequest.data");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdateReq.data");
       }
     }
   }
@@ -2017,12 +2015,12 @@ const ::_pbi::TcParseTable<1, 4, 2, 42, 2> UpdateRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UpdateRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UpdateReq)
   return target;
 }
 
-::size_t UpdateRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.UpdateRequest)
+::size_t UpdateReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UpdateReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -2058,18 +2056,18 @@ const ::_pbi::TcParseTable<1, 4, 2, 42, 2> UpdateRequest::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData UpdateRequest::_class_data_ = {
-    UpdateRequest::MergeImpl,
+const ::google::protobuf::Message::ClassData UpdateReq::_class_data_ = {
+    UpdateReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* UpdateRequest::GetClassData() const {
+const ::google::protobuf::Message::ClassData* UpdateReq::GetClassData() const {
   return &_class_data_;
 }
 
-void UpdateRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<UpdateRequest*>(&to_msg);
-  auto& from = static_cast<const UpdateRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UpdateRequest)
+void UpdateReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdateReq*>(&to_msg);
+  auto& from = static_cast<const UpdateReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UpdateReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -2085,21 +2083,21 @@ void UpdateRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::googl
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void UpdateRequest::CopyFrom(const UpdateRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UpdateRequest)
+void UpdateReq::CopyFrom(const UpdateReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UpdateReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool UpdateRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool UpdateReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* UpdateRequest::AccessCachedSize() const {
+::_pbi::CachedSize* UpdateReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void UpdateRequest::InternalSwap(UpdateRequest* PROTOBUF_RESTRICT other) {
+void UpdateReq::InternalSwap(UpdateReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -2110,64 +2108,64 @@ void UpdateRequest::InternalSwap(UpdateRequest* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.table_, &other->_impl_.table_, arena);
 }
 
-::google::protobuf::Metadata UpdateRequest::GetMetadata() const {
+::google::protobuf::Metadata UpdateReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[10]);
 }
 // ===================================================================
 
-class UpdateResponse::_Internal {
+class UpdateRes::_Internal {
  public:
 };
 
-UpdateResponse::UpdateResponse(::google::protobuf::Arena* arena)
+UpdateRes::UpdateRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.UpdateResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UpdateRes)
 }
-inline PROTOBUF_NDEBUG_INLINE UpdateResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE UpdateRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : message_(arena, from.message_),
         _cached_size_{0} {}
 
-UpdateResponse::UpdateResponse(
+UpdateRes::UpdateRes(
     ::google::protobuf::Arena* arena,
-    const UpdateResponse& from)
+    const UpdateRes& from)
     : ::google::protobuf::Message(arena) {
-  UpdateResponse* const _this = this;
+  UpdateRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.UpdateResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UpdateRes)
 }
-inline PROTOBUF_NDEBUG_INLINE UpdateResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE UpdateRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : message_(arena),
         _cached_size_{0} {}
 
-inline void UpdateResponse::SharedCtor(::_pb::Arena* arena) {
+inline void UpdateRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.success_ = {};
 }
-UpdateResponse::~UpdateResponse() {
-  // @@protoc_insertion_point(destructor:rpc_server.UpdateResponse)
+UpdateRes::~UpdateRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.UpdateRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void UpdateResponse::SharedDtor() {
+inline void UpdateRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void UpdateResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.UpdateResponse)
+PROTOBUF_NOINLINE void UpdateRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UpdateRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -2178,7 +2176,7 @@ PROTOBUF_NOINLINE void UpdateResponse::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* UpdateResponse::_InternalParse(
+const char* UpdateRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -2186,7 +2184,7 @@ const char* UpdateResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UpdateResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UpdateRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2197,23 +2195,23 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UpdateResponse::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_UpdateResponse_default_instance_._instance,
+    &_UpdateRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // bytes message = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateResponse, _impl_.message_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateRes, _impl_.message_)}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdateResponse, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateResponse, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdateRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UpdateRes, _impl_.success_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(UpdateResponse, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // bytes message = 2;
-    {PROTOBUF_FIELD_OFFSET(UpdateResponse, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdateRes, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
@@ -2221,10 +2219,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UpdateResponse::_table_ = {
   }},
 };
 
-::uint8_t* UpdateResponse::_InternalSerialize(
+::uint8_t* UpdateRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UpdateResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UpdateRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -2246,12 +2244,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UpdateResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UpdateResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UpdateRes)
   return target;
 }
 
-::size_t UpdateResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.UpdateResponse)
+::size_t UpdateRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UpdateRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -2272,18 +2270,18 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UpdateResponse::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData UpdateResponse::_class_data_ = {
-    UpdateResponse::MergeImpl,
+const ::google::protobuf::Message::ClassData UpdateRes::_class_data_ = {
+    UpdateRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* UpdateResponse::GetClassData() const {
+const ::google::protobuf::Message::ClassData* UpdateRes::GetClassData() const {
   return &_class_data_;
 }
 
-void UpdateResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<UpdateResponse*>(&to_msg);
-  auto& from = static_cast<const UpdateResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UpdateResponse)
+void UpdateRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdateRes*>(&to_msg);
+  auto& from = static_cast<const UpdateRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UpdateRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -2297,21 +2295,21 @@ void UpdateResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void UpdateResponse::CopyFrom(const UpdateResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UpdateResponse)
+void UpdateRes::CopyFrom(const UpdateRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UpdateRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool UpdateResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool UpdateRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* UpdateResponse::AccessCachedSize() const {
+::_pbi::CachedSize* UpdateRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void UpdateResponse::InternalSwap(UpdateResponse* PROTOBUF_RESTRICT other) {
+void UpdateRes::InternalSwap(UpdateRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -2320,33 +2318,33 @@ void UpdateResponse::InternalSwap(UpdateResponse* PROTOBUF_RESTRICT other) {
         swap(_impl_.success_, other->_impl_.success_);
 }
 
-::google::protobuf::Metadata UpdateResponse::GetMetadata() const {
+::google::protobuf::Metadata UpdateRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[11]);
 }
 // ===================================================================
 
-DeleteRequest_QueryEntry_DoNotUse::DeleteRequest_QueryEntry_DoNotUse() {}
-DeleteRequest_QueryEntry_DoNotUse::DeleteRequest_QueryEntry_DoNotUse(::google::protobuf::Arena* arena)
+DeleteReq_QueryEntry_DoNotUse::DeleteReq_QueryEntry_DoNotUse() {}
+DeleteReq_QueryEntry_DoNotUse::DeleteReq_QueryEntry_DoNotUse(::google::protobuf::Arena* arena)
     : SuperType(arena) {}
-::google::protobuf::Metadata DeleteRequest_QueryEntry_DoNotUse::GetMetadata() const {
+::google::protobuf::Metadata DeleteReq_QueryEntry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[12]);
 }
 // ===================================================================
 
-class DeleteRequest::_Internal {
+class DeleteReq::_Internal {
  public:
 };
 
-DeleteRequest::DeleteRequest(::google::protobuf::Arena* arena)
+DeleteReq::DeleteReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.DeleteRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.DeleteReq)
 }
-inline PROTOBUF_NDEBUG_INLINE DeleteRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE DeleteReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : query_{visibility, arena, from.query_},
@@ -2354,19 +2352,19 @@ inline PROTOBUF_NDEBUG_INLINE DeleteRequest::Impl_::Impl_(
         table_(arena, from.table_),
         _cached_size_{0} {}
 
-DeleteRequest::DeleteRequest(
+DeleteReq::DeleteReq(
     ::google::protobuf::Arena* arena,
-    const DeleteRequest& from)
+    const DeleteReq& from)
     : ::google::protobuf::Message(arena) {
-  DeleteRequest* const _this = this;
+  DeleteReq* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.DeleteRequest)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.DeleteReq)
 }
-inline PROTOBUF_NDEBUG_INLINE DeleteRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE DeleteReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : query_{visibility, arena},
@@ -2374,23 +2372,23 @@ inline PROTOBUF_NDEBUG_INLINE DeleteRequest::Impl_::Impl_(
         table_(arena),
         _cached_size_{0} {}
 
-inline void DeleteRequest::SharedCtor(::_pb::Arena* arena) {
+inline void DeleteReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-DeleteRequest::~DeleteRequest() {
-  // @@protoc_insertion_point(destructor:rpc_server.DeleteRequest)
+DeleteReq::~DeleteReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.DeleteReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void DeleteRequest::SharedDtor() {
+inline void DeleteReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.database_.Destroy();
   _impl_.table_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void DeleteRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.DeleteRequest)
+PROTOBUF_NOINLINE void DeleteReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.DeleteReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -2402,7 +2400,7 @@ PROTOBUF_NOINLINE void DeleteRequest::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* DeleteRequest::_InternalParse(
+const char* DeleteReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -2410,7 +2408,7 @@ const char* DeleteRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 38, 2> DeleteRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 3, 1, 34, 2> DeleteReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2421,43 +2419,43 @@ const ::_pbi::TcParseTable<1, 3, 1, 38, 2> DeleteRequest::_table_ = {
     3,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
-    &_DeleteRequest_default_instance_._instance,
+    &_DeleteReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // bytes table = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteRequest, _impl_.table_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteReq, _impl_.table_)}},
     // bytes database = 1;
     {::_pbi::TcParser::FastBS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteRequest, _impl_.database_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteReq, _impl_.database_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bytes database = 1;
-    {PROTOBUF_FIELD_OFFSET(DeleteRequest, _impl_.database_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(DeleteReq, _impl_.database_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // bytes table = 2;
-    {PROTOBUF_FIELD_OFFSET(DeleteRequest, _impl_.table_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(DeleteReq, _impl_.table_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // map<string, bytes> query = 3;
-    {PROTOBUF_FIELD_OFFSET(DeleteRequest, _impl_.query_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(DeleteReq, _impl_.query_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
   }}, {{
     {::_pbi::TcParser::GetMapAuxInfo<
-        decltype(DeleteRequest()._impl_.query_)>(
+        decltype(DeleteReq()._impl_.query_)>(
         1, 0, 0, 9,
         12)},
   }}, {{
-    "\30\0\0\5\0\0\0\0"
-    "rpc_server.DeleteRequest"
+    "\24\0\0\5\0\0\0\0"
+    "rpc_server.DeleteReq"
     "query"
   }},
 };
 
-::uint8_t* DeleteRequest::_InternalSerialize(
+::uint8_t* DeleteReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.DeleteRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.DeleteReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -2487,7 +2485,7 @@ const ::_pbi::TcParseTable<1, 3, 1, 38, 2> DeleteRequest::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.DeleteRequest.query");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.DeleteReq.query");
       }
     } else {
       for (const auto& entry : field) {
@@ -2495,7 +2493,7 @@ const ::_pbi::TcParseTable<1, 3, 1, 38, 2> DeleteRequest::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.DeleteRequest.query");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.DeleteReq.query");
       }
     }
   }
@@ -2505,12 +2503,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 38, 2> DeleteRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.DeleteRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.DeleteReq)
   return target;
 }
 
-::size_t DeleteRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.DeleteRequest)
+::size_t DeleteReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.DeleteReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -2539,18 +2537,18 @@ const ::_pbi::TcParseTable<1, 3, 1, 38, 2> DeleteRequest::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData DeleteRequest::_class_data_ = {
-    DeleteRequest::MergeImpl,
+const ::google::protobuf::Message::ClassData DeleteReq::_class_data_ = {
+    DeleteReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* DeleteRequest::GetClassData() const {
+const ::google::protobuf::Message::ClassData* DeleteReq::GetClassData() const {
   return &_class_data_;
 }
 
-void DeleteRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<DeleteRequest*>(&to_msg);
-  auto& from = static_cast<const DeleteRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.DeleteRequest)
+void DeleteReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<DeleteReq*>(&to_msg);
+  auto& from = static_cast<const DeleteReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.DeleteReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -2565,21 +2563,21 @@ void DeleteRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::googl
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void DeleteRequest::CopyFrom(const DeleteRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.DeleteRequest)
+void DeleteReq::CopyFrom(const DeleteReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.DeleteReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool DeleteRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool DeleteReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* DeleteRequest::AccessCachedSize() const {
+::_pbi::CachedSize* DeleteReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void DeleteRequest::InternalSwap(DeleteRequest* PROTOBUF_RESTRICT other) {
+void DeleteReq::InternalSwap(DeleteReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -2589,64 +2587,64 @@ void DeleteRequest::InternalSwap(DeleteRequest* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.table_, &other->_impl_.table_, arena);
 }
 
-::google::protobuf::Metadata DeleteRequest::GetMetadata() const {
+::google::protobuf::Metadata DeleteReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[13]);
 }
 // ===================================================================
 
-class DeleteResponse::_Internal {
+class DeleteRes::_Internal {
  public:
 };
 
-DeleteResponse::DeleteResponse(::google::protobuf::Arena* arena)
+DeleteRes::DeleteRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.DeleteResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.DeleteRes)
 }
-inline PROTOBUF_NDEBUG_INLINE DeleteResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE DeleteRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : message_(arena, from.message_),
         _cached_size_{0} {}
 
-DeleteResponse::DeleteResponse(
+DeleteRes::DeleteRes(
     ::google::protobuf::Arena* arena,
-    const DeleteResponse& from)
+    const DeleteRes& from)
     : ::google::protobuf::Message(arena) {
-  DeleteResponse* const _this = this;
+  DeleteRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.DeleteResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.DeleteRes)
 }
-inline PROTOBUF_NDEBUG_INLINE DeleteResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE DeleteRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : message_(arena),
         _cached_size_{0} {}
 
-inline void DeleteResponse::SharedCtor(::_pb::Arena* arena) {
+inline void DeleteRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.success_ = {};
 }
-DeleteResponse::~DeleteResponse() {
-  // @@protoc_insertion_point(destructor:rpc_server.DeleteResponse)
+DeleteRes::~DeleteRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.DeleteRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void DeleteResponse::SharedDtor() {
+inline void DeleteRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void DeleteResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.DeleteResponse)
+PROTOBUF_NOINLINE void DeleteRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.DeleteRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -2657,7 +2655,7 @@ PROTOBUF_NOINLINE void DeleteResponse::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* DeleteResponse::_InternalParse(
+const char* DeleteRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -2665,7 +2663,7 @@ const char* DeleteResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> DeleteResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> DeleteRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2676,23 +2674,23 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> DeleteResponse::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_DeleteResponse_default_instance_._instance,
+    &_DeleteRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // bytes message = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteResponse, _impl_.message_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteRes, _impl_.message_)}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(DeleteResponse, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteResponse, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(DeleteRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteRes, _impl_.success_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(DeleteResponse, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(DeleteRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // bytes message = 2;
-    {PROTOBUF_FIELD_OFFSET(DeleteResponse, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(DeleteRes, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
@@ -2700,10 +2698,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> DeleteResponse::_table_ = {
   }},
 };
 
-::uint8_t* DeleteResponse::_InternalSerialize(
+::uint8_t* DeleteRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.DeleteResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.DeleteRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -2725,12 +2723,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> DeleteResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.DeleteResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.DeleteRes)
   return target;
 }
 
-::size_t DeleteResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.DeleteResponse)
+::size_t DeleteRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.DeleteRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -2751,18 +2749,18 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> DeleteResponse::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData DeleteResponse::_class_data_ = {
-    DeleteResponse::MergeImpl,
+const ::google::protobuf::Message::ClassData DeleteRes::_class_data_ = {
+    DeleteRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* DeleteResponse::GetClassData() const {
+const ::google::protobuf::Message::ClassData* DeleteRes::GetClassData() const {
   return &_class_data_;
 }
 
-void DeleteResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<DeleteResponse*>(&to_msg);
-  auto& from = static_cast<const DeleteResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.DeleteResponse)
+void DeleteRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<DeleteRes*>(&to_msg);
+  auto& from = static_cast<const DeleteRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.DeleteRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -2776,21 +2774,21 @@ void DeleteResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void DeleteResponse::CopyFrom(const DeleteResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.DeleteResponse)
+void DeleteRes::CopyFrom(const DeleteRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.DeleteRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool DeleteResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool DeleteRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* DeleteResponse::AccessCachedSize() const {
+::_pbi::CachedSize* DeleteRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void DeleteResponse::InternalSwap(DeleteResponse* PROTOBUF_RESTRICT other) {
+void DeleteRes::InternalSwap(DeleteRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -2799,7 +2797,7 @@ void DeleteResponse::InternalSwap(DeleteResponse* PROTOBUF_RESTRICT other) {
         swap(_impl_.success_, other->_impl_.success_);
 }
 
-::google::protobuf::Metadata DeleteResponse::GetMetadata() const {
+::google::protobuf::Metadata DeleteRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdata_2eproto_getter, &descriptor_table_server_5fdata_2eproto_once,
       file_level_metadata_server_5fdata_2eproto[14]);

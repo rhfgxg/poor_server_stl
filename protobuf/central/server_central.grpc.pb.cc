@@ -22,9 +22,9 @@
 namespace rpc_server {
 
 static const char* CentralServer_method_names[] = {
-  "/rpc_server.CentralServer/RegisterServer",
-  "/rpc_server.CentralServer/UnregisterServer",
-  "/rpc_server.CentralServer/GetConnectPoor",
+  "/rpc_server.CentralServer/Register_server",
+  "/rpc_server.CentralServer/Unregister_server",
+  "/rpc_server.CentralServer/Get_connec_poor",
   "/rpc_server.CentralServer/Heartbeat",
 };
 
@@ -35,98 +35,98 @@ std::unique_ptr< CentralServer::Stub> CentralServer::NewStub(const std::shared_p
 }
 
 CentralServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_RegisterServer_(CentralServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UnregisterServer_(CentralServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetConnectPoor_(CentralServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Register_server_(CentralServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Unregister_server_(CentralServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Get_connec_poor_(CentralServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Heartbeat_(CentralServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status CentralServer::Stub::RegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::rpc_server::RegisterServerResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::RegisterServerRequest, ::rpc_server::RegisterServerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RegisterServer_, context, request, response);
+::grpc::Status CentralServer::Stub::Register_server(::grpc::ClientContext* context, const ::rpc_server::RegisterServerReq& request, ::rpc_server::RegisterServerRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::RegisterServerReq, ::rpc_server::RegisterServerRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Register_server_, context, request, response);
 }
 
-void CentralServer::Stub::async::RegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest* request, ::rpc_server::RegisterServerResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::RegisterServerRequest, ::rpc_server::RegisterServerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RegisterServer_, context, request, response, std::move(f));
+void CentralServer::Stub::async::Register_server(::grpc::ClientContext* context, const ::rpc_server::RegisterServerReq* request, ::rpc_server::RegisterServerRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::RegisterServerReq, ::rpc_server::RegisterServerRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Register_server_, context, request, response, std::move(f));
 }
 
-void CentralServer::Stub::async::RegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest* request, ::rpc_server::RegisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RegisterServer_, context, request, response, reactor);
+void CentralServer::Stub::async::Register_server(::grpc::ClientContext* context, const ::rpc_server::RegisterServerReq* request, ::rpc_server::RegisterServerRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Register_server_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterServerResponse>* CentralServer::Stub::PrepareAsyncRegisterServerRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::RegisterServerResponse, ::rpc_server::RegisterServerRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RegisterServer_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterServerRes>* CentralServer::Stub::PrepareAsyncRegister_serverRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterServerReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::RegisterServerRes, ::rpc_server::RegisterServerReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Register_server_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterServerResponse>* CentralServer::Stub::AsyncRegisterServerRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterServerRes>* CentralServer::Stub::AsyncRegister_serverRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterServerReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncRegisterServerRaw(context, request, cq);
+    this->PrepareAsyncRegister_serverRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status CentralServer::Stub::UnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::rpc_server::UnregisterServerResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::UnregisterServerRequest, ::rpc_server::UnregisterServerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_UnregisterServer_, context, request, response);
+::grpc::Status CentralServer::Stub::Unregister_server(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq& request, ::rpc_server::UnregisterServerRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::UnregisterServerReq, ::rpc_server::UnregisterServerRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Unregister_server_, context, request, response);
 }
 
-void CentralServer::Stub::async::UnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest* request, ::rpc_server::UnregisterServerResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::UnregisterServerRequest, ::rpc_server::UnregisterServerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnregisterServer_, context, request, response, std::move(f));
+void CentralServer::Stub::async::Unregister_server(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq* request, ::rpc_server::UnregisterServerRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::UnregisterServerReq, ::rpc_server::UnregisterServerRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Unregister_server_, context, request, response, std::move(f));
 }
 
-void CentralServer::Stub::async::UnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest* request, ::rpc_server::UnregisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_UnregisterServer_, context, request, response, reactor);
+void CentralServer::Stub::async::Unregister_server(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq* request, ::rpc_server::UnregisterServerRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Unregister_server_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerResponse>* CentralServer::Stub::PrepareAsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::UnregisterServerResponse, ::rpc_server::UnregisterServerRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_UnregisterServer_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerRes>* CentralServer::Stub::PrepareAsyncUnregister_serverRaw(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::UnregisterServerRes, ::rpc_server::UnregisterServerReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Unregister_server_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerResponse>* CentralServer::Stub::AsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerRes>* CentralServer::Stub::AsyncUnregister_serverRaw(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncUnregisterServerRaw(context, request, cq);
+    this->PrepareAsyncUnregister_serverRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status CentralServer::Stub::GetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::rpc_server::ConnectPoorResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::ConnectPoorRequest, ::rpc_server::ConnectPoorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetConnectPoor_, context, request, response);
+::grpc::Status CentralServer::Stub::Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::rpc_server::ConnectPoorRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::ConnectPoorReq, ::rpc_server::ConnectPoorRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_connec_poor_, context, request, response);
 }
 
-void CentralServer::Stub::async::GetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest* request, ::rpc_server::ConnectPoorResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::ConnectPoorRequest, ::rpc_server::ConnectPoorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetConnectPoor_, context, request, response, std::move(f));
+void CentralServer::Stub::async::Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq* request, ::rpc_server::ConnectPoorRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::ConnectPoorReq, ::rpc_server::ConnectPoorRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_connec_poor_, context, request, response, std::move(f));
 }
 
-void CentralServer::Stub::async::GetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest* request, ::rpc_server::ConnectPoorResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetConnectPoor_, context, request, response, reactor);
+void CentralServer::Stub::async::Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq* request, ::rpc_server::ConnectPoorRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_connec_poor_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorResponse>* CentralServer::Stub::PrepareAsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::ConnectPoorResponse, ::rpc_server::ConnectPoorRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetConnectPoor_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorRes>* CentralServer::Stub::PrepareAsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::ConnectPoorRes, ::rpc_server::ConnectPoorReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_connec_poor_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorResponse>* CentralServer::Stub::AsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorRes>* CentralServer::Stub::AsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncGetConnectPoorRaw(context, request, cq);
+    this->PrepareAsyncGet_connec_poorRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status CentralServer::Stub::Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::rpc_server::HeartbeatResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::HeartbeatRequest, ::rpc_server::HeartbeatResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Heartbeat_, context, request, response);
+::grpc::Status CentralServer::Stub::Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq& request, ::rpc_server::HeartbeatRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::HeartbeatReq, ::rpc_server::HeartbeatRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Heartbeat_, context, request, response);
 }
 
-void CentralServer::Stub::async::Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest* request, ::rpc_server::HeartbeatResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::HeartbeatRequest, ::rpc_server::HeartbeatResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Heartbeat_, context, request, response, std::move(f));
+void CentralServer::Stub::async::Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq* request, ::rpc_server::HeartbeatRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::HeartbeatReq, ::rpc_server::HeartbeatRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Heartbeat_, context, request, response, std::move(f));
 }
 
-void CentralServer::Stub::async::Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest* request, ::rpc_server::HeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void CentralServer::Stub::async::Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq* request, ::rpc_server::HeartbeatRes* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Heartbeat_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatResponse>* CentralServer::Stub::PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::HeartbeatResponse, ::rpc_server::HeartbeatRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Heartbeat_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatRes>* CentralServer::Stub::PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::HeartbeatRes, ::rpc_server::HeartbeatReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Heartbeat_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatResponse>* CentralServer::Stub::AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatRes>* CentralServer::Stub::AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncHeartbeatRaw(context, request, cq);
   result->StartCall();
@@ -137,41 +137,41 @@ CentralServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CentralServer_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::rpc_server::RegisterServerRequest, ::rpc_server::RegisterServerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::rpc_server::RegisterServerReq, ::rpc_server::RegisterServerRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CentralServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::RegisterServerRequest* req,
-             ::rpc_server::RegisterServerResponse* resp) {
-               return service->RegisterServer(ctx, req, resp);
+             const ::rpc_server::RegisterServerReq* req,
+             ::rpc_server::RegisterServerRes* resp) {
+               return service->Register_server(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CentralServer_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::rpc_server::UnregisterServerRequest, ::rpc_server::UnregisterServerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::rpc_server::UnregisterServerReq, ::rpc_server::UnregisterServerRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CentralServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::UnregisterServerRequest* req,
-             ::rpc_server::UnregisterServerResponse* resp) {
-               return service->UnregisterServer(ctx, req, resp);
+             const ::rpc_server::UnregisterServerReq* req,
+             ::rpc_server::UnregisterServerRes* resp) {
+               return service->Unregister_server(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CentralServer_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::rpc_server::ConnectPoorRequest, ::rpc_server::ConnectPoorResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::rpc_server::ConnectPoorReq, ::rpc_server::ConnectPoorRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CentralServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::ConnectPoorRequest* req,
-             ::rpc_server::ConnectPoorResponse* resp) {
-               return service->GetConnectPoor(ctx, req, resp);
+             const ::rpc_server::ConnectPoorReq* req,
+             ::rpc_server::ConnectPoorRes* resp) {
+               return service->Get_connec_poor(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CentralServer_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::rpc_server::HeartbeatRequest, ::rpc_server::HeartbeatResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::rpc_server::HeartbeatReq, ::rpc_server::HeartbeatRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CentralServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::HeartbeatRequest* req,
-             ::rpc_server::HeartbeatResponse* resp) {
+             const ::rpc_server::HeartbeatReq* req,
+             ::rpc_server::HeartbeatRes* resp) {
                return service->Heartbeat(ctx, req, resp);
              }, this)));
 }
@@ -179,28 +179,28 @@ CentralServer::Service::Service() {
 CentralServer::Service::~Service() {
 }
 
-::grpc::Status CentralServer::Service::RegisterServer(::grpc::ServerContext* context, const ::rpc_server::RegisterServerRequest* request, ::rpc_server::RegisterServerResponse* response) {
+::grpc::Status CentralServer::Service::Register_server(::grpc::ServerContext* context, const ::rpc_server::RegisterServerReq* request, ::rpc_server::RegisterServerRes* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status CentralServer::Service::UnregisterServer(::grpc::ServerContext* context, const ::rpc_server::UnregisterServerRequest* request, ::rpc_server::UnregisterServerResponse* response) {
+::grpc::Status CentralServer::Service::Unregister_server(::grpc::ServerContext* context, const ::rpc_server::UnregisterServerReq* request, ::rpc_server::UnregisterServerRes* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status CentralServer::Service::GetConnectPoor(::grpc::ServerContext* context, const ::rpc_server::ConnectPoorRequest* request, ::rpc_server::ConnectPoorResponse* response) {
+::grpc::Status CentralServer::Service::Get_connec_poor(::grpc::ServerContext* context, const ::rpc_server::ConnectPoorReq* request, ::rpc_server::ConnectPoorRes* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status CentralServer::Service::Heartbeat(::grpc::ServerContext* context, const ::rpc_server::HeartbeatRequest* request, ::rpc_server::HeartbeatResponse* response) {
+::grpc::Status CentralServer::Service::Heartbeat(::grpc::ServerContext* context, const ::rpc_server::HeartbeatReq* request, ::rpc_server::HeartbeatRes* response) {
   (void) context;
   (void) request;
   (void) response;

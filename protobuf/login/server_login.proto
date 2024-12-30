@@ -3,19 +3,19 @@ package rpc_server;
 
 service LoginServer
 {
-    rpc Login (LoginRequest) returns (LoginResponse);   // 登录服务
-    rpc Register (RegisterRequest) returns (RegisterResponse);  // 注册服务
-    rpc Authenticate (AuthenticateRequest) returns (AuthenticateResponse);  // 令牌验证服务
+    rpc Login (LoginReq) returns (LoginRes);   // 登录服务
+    rpc Register (RegisterReq) returns (RegisterRes);  // 注册服务
+    rpc Authenticate (AuthenticateReq) returns (AuthenticateRes);  // 令牌验证服务
 }
 
 // 登录服务请求
-message LoginRequest
+message LoginReq
 {
     bytes username = 1;
     bytes password = 2;
 }
 // 登录服务响应
-message LoginResponse
+message LoginRes
 {
     bool success = 1;   // 操作结果
     bytes message = 2; // 响应信息
@@ -23,26 +23,26 @@ message LoginResponse
 }
 
 // 注册服务请求
-message RegisterRequest
+message RegisterReq
 {
     bytes username = 1;
     bytes password = 2;
     bytes email = 3;
 }
 // 注册服务响应
-message RegisterResponse
+message RegisterRes
 {
     bool success = 1;
     bytes message = 2;
 }
 
 // 令牌验证服务请求
-message AuthenticateRequest
+message AuthenticateReq
 {
     bytes token = 1;
 }
 // 令牌验证服务响应
-message AuthenticateResponse
+message AuthenticateRes
 {
     bool success = 1;
     bytes message = 2;

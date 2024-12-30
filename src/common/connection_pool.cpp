@@ -66,7 +66,7 @@ void ConnectionPool::update_connections(rpc_server::ServerType server_type,const
 // 向中心服务器获取最新连接
 std::shared_ptr<grpc::Channel> ConnectionPool::New_connection(const std::string& server_address, const std::string& server_port)
 {
-    return grpc::CreateChannel(server_address + ":" + server_port,grpc::InsecureChannelCredentials());
+    return grpc::CreateChannel(server_address + ":" + server_port, grpc::InsecureChannelCredentials());
 }
 
 /**************************************** 中心服务器管理连接池的接口 *****************************************/

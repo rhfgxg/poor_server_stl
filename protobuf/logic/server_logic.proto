@@ -3,30 +3,30 @@ package rpc_server;
 
 service LogicServer
 {
-    rpc ProcessGameAction (GameActionRequest) returns (GameActionResponse); // 处理游戏操作
-    rpc GetGameState (GameStateRequest) returns (GameStateResponse);    // 获取游戏状态
+    rpc Process_gameAction (GameActionReq) returns (GameActionRes); // 处理游戏操作
+    rpc Get_game_state (GameStateReq) returns (GameStateRes);    // 获取游戏状态
 }
 
 // 游戏操作请求
-message GameActionRequest
+message GameActionReq
 {
     bytes action = 1;
     map<string, bytes> parameters = 2;
 }
 // 游戏操作响应
-message GameActionResponse
+message GameActionRes
 {
     bool success = 1;
     bytes message = 2;
 }
 
 // 游戏状态请求
-message GameStateRequest
+message GameStateReq
 {
     bytes game_id = 1;
 }
 // 游戏状态响应
-message GameStateResponse 
+message GameStateRes
 {
     bool success = 1;
     bytes message = 2;

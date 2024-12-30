@@ -3,35 +3,35 @@ package rpc_server;
 
 service DatabaseServer
 {
-    rpc Create (CreateRequest) returns (CreateResponse);    // 增加数据服务
-    rpc Read (ReadRequest) returns (ReadResponse);  // 查询数据服务
-    rpc Update (UpdateRequest) returns (UpdateResponse);    // 更新数据服务
-    rpc Delete (DeleteRequest) returns (DeleteResponse);    // 删除数据服务
+    rpc Create (CreateReq) returns (CreateRes);    // 增加数据服务
+    rpc Read (ReadReq) returns (ReadRes);  // 查询数据服务
+    rpc Update (UpdateReq) returns (UpdateRes);    // 更新数据服务
+    rpc Delete (DeleteReq) returns (DeleteRes);    // 删除数据服务
 }
 
 // 增加数据服务请求
-message CreateRequest
+message CreateReq
 {
     bytes database = 1;
     bytes table = 2;
     map<string, bytes> data = 3;  // 要插入的数据，键值对形式
 }
 // 增加数据服务响应
-message CreateResponse
+message CreateRes
 {
     bool success = 1;
     bytes message = 2;
 }
 
 // 查询服务请求
-message ReadRequest
+message ReadReq
 {
     bytes database = 1;
     bytes table = 2;
     map<string, bytes> query = 3;  // 查询条件，键值对形式
 }
 // 查询服务响应
-message ReadResponse
+message ReadRes
 {
     bool success = 1;
     bytes message = 2;
@@ -44,7 +44,7 @@ message Result
 }
 
 // 更新服务请求
-message UpdateRequest
+message UpdateReq
 {
     bytes database = 1;
     bytes table = 2;
@@ -52,20 +52,22 @@ message UpdateRequest
     map<string, bytes> data = 4;   // 要更新的数据，键值对形式
 }
 // 更新服务响应
-message UpdateResponse
+message UpdateRes
 {
     bool success = 1;
     bytes message = 2;
 }
 
 // 删除服务请求
-message DeleteRequest {
+message DeleteReq
+{
     bytes database = 1;
     bytes table = 2;
     map<string, bytes> query = 3;  // 查询条件，键值对形式
 }
 // 删除服务响应
-message DeleteResponse {
+message DeleteRes
+{
     bool success = 1;
     bytes message = 2;
 }

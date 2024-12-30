@@ -30,7 +30,7 @@ public:
     void stop_thread_pool();    // 停止线程池
 
     // 转发服务请求
-    grpc::Status RequestForward(grpc::ServerContext* context, const rpc_server::ForwardRequest* request, rpc_server::ForwardResponse* response);
+    grpc::Status Request_forward(grpc::ServerContext* context, const rpc_server::ForwardReq* request, rpc_server::ForwardRes* response);
 
 private:
     void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
@@ -40,7 +40,7 @@ private:
 
 // 处理转发请求
     // 登录服务器：登录服务
-    grpc::Status Forward_to_login_service(const std::string& payload,rpc_server::ForwardResponse* response);
+    grpc::Status Forward_to_login_service(const std::string& payload, rpc_server::ForwardRes* response);
 
     // 定时任务：
     void Update_connection_pool();  // 更新连接池

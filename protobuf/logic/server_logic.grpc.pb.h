@@ -35,65 +35,65 @@ class LogicServer final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status ProcessGameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest& request, ::rpc_server::GameActionResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameActionResponse>> AsyncProcessGameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameActionResponse>>(AsyncProcessGameActionRaw(context, request, cq));
+    virtual ::grpc::Status Process_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::rpc_server::GameActionRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameActionRes>> AsyncProcess_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameActionRes>>(AsyncProcess_gameActionRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameActionResponse>> PrepareAsyncProcessGameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameActionResponse>>(PrepareAsyncProcessGameActionRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameActionRes>> PrepareAsyncProcess_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameActionRes>>(PrepareAsyncProcess_gameActionRaw(context, request, cq));
     }
     // 处理游戏操作
-    virtual ::grpc::Status GetGameState(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest& request, ::rpc_server::GameStateResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameStateResponse>> AsyncGetGameState(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameStateResponse>>(AsyncGetGameStateRaw(context, request, cq));
+    virtual ::grpc::Status Get_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::rpc_server::GameStateRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameStateRes>> AsyncGet_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameStateRes>>(AsyncGet_game_stateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameStateResponse>> PrepareAsyncGetGameState(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameStateResponse>>(PrepareAsyncGetGameStateRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameStateRes>> PrepareAsyncGet_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameStateRes>>(PrepareAsyncGet_game_stateRaw(context, request, cq));
     }
     // 获取游戏状态
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void ProcessGameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest* request, ::rpc_server::GameActionResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ProcessGameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest* request, ::rpc_server::GameActionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Process_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq* request, ::rpc_server::GameActionRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Process_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq* request, ::rpc_server::GameActionRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 处理游戏操作
-      virtual void GetGameState(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest* request, ::rpc_server::GameStateResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetGameState(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest* request, ::rpc_server::GameStateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Get_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq* request, ::rpc_server::GameStateRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Get_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq* request, ::rpc_server::GameStateRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 获取游戏状态
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameActionResponse>* AsyncProcessGameActionRaw(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameActionResponse>* PrepareAsyncProcessGameActionRaw(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameStateResponse>* AsyncGetGameStateRaw(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameStateResponse>* PrepareAsyncGetGameStateRaw(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameActionRes>* AsyncProcess_gameActionRaw(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameActionRes>* PrepareAsyncProcess_gameActionRaw(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameStateRes>* AsyncGet_game_stateRaw(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GameStateRes>* PrepareAsyncGet_game_stateRaw(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status ProcessGameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest& request, ::rpc_server::GameActionResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionResponse>> AsyncProcessGameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionResponse>>(AsyncProcessGameActionRaw(context, request, cq));
+    ::grpc::Status Process_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::rpc_server::GameActionRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionRes>> AsyncProcess_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionRes>>(AsyncProcess_gameActionRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionResponse>> PrepareAsyncProcessGameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionResponse>>(PrepareAsyncProcessGameActionRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionRes>> PrepareAsyncProcess_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionRes>>(PrepareAsyncProcess_gameActionRaw(context, request, cq));
     }
-    ::grpc::Status GetGameState(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest& request, ::rpc_server::GameStateResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateResponse>> AsyncGetGameState(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateResponse>>(AsyncGetGameStateRaw(context, request, cq));
+    ::grpc::Status Get_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::rpc_server::GameStateRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateRes>> AsyncGet_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateRes>>(AsyncGet_game_stateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateResponse>> PrepareAsyncGetGameState(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateResponse>>(PrepareAsyncGetGameStateRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateRes>> PrepareAsyncGet_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateRes>>(PrepareAsyncGet_game_stateRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void ProcessGameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest* request, ::rpc_server::GameActionResponse* response, std::function<void(::grpc::Status)>) override;
-      void ProcessGameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest* request, ::rpc_server::GameActionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetGameState(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest* request, ::rpc_server::GameStateResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetGameState(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest* request, ::rpc_server::GameStateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Process_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq* request, ::rpc_server::GameActionRes* response, std::function<void(::grpc::Status)>) override;
+      void Process_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq* request, ::rpc_server::GameActionRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Get_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq* request, ::rpc_server::GameStateRes* response, std::function<void(::grpc::Status)>) override;
+      void Get_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq* request, ::rpc_server::GameStateRes* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -105,12 +105,12 @@ class LogicServer final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionResponse>* AsyncProcessGameActionRaw(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionResponse>* PrepareAsyncProcessGameActionRaw(::grpc::ClientContext* context, const ::rpc_server::GameActionRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateResponse>* AsyncGetGameStateRaw(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateResponse>* PrepareAsyncGetGameStateRaw(::grpc::ClientContext* context, const ::rpc_server::GameStateRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_ProcessGameAction_;
-    const ::grpc::internal::RpcMethod rpcmethod_GetGameState_;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionRes>* AsyncProcess_gameActionRaw(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionRes>* PrepareAsyncProcess_gameActionRaw(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateRes>* AsyncGet_game_stateRaw(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateRes>* PrepareAsyncGet_game_stateRaw(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Process_gameAction_;
+    const ::grpc::internal::RpcMethod rpcmethod_Get_game_state_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -118,283 +118,283 @@ class LogicServer final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status ProcessGameAction(::grpc::ServerContext* context, const ::rpc_server::GameActionRequest* request, ::rpc_server::GameActionResponse* response);
+    virtual ::grpc::Status Process_gameAction(::grpc::ServerContext* context, const ::rpc_server::GameActionReq* request, ::rpc_server::GameActionRes* response);
     // 处理游戏操作
-    virtual ::grpc::Status GetGameState(::grpc::ServerContext* context, const ::rpc_server::GameStateRequest* request, ::rpc_server::GameStateResponse* response);
+    virtual ::grpc::Status Get_game_state(::grpc::ServerContext* context, const ::rpc_server::GameStateReq* request, ::rpc_server::GameStateRes* response);
     // 获取游戏状态
   };
   template <class BaseClass>
-  class WithAsyncMethod_ProcessGameAction : public BaseClass {
+  class WithAsyncMethod_Process_gameAction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_ProcessGameAction() {
+    WithAsyncMethod_Process_gameAction() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_ProcessGameAction() override {
+    ~WithAsyncMethod_Process_gameAction() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ProcessGameAction(::grpc::ServerContext* /*context*/, const ::rpc_server::GameActionRequest* /*request*/, ::rpc_server::GameActionResponse* /*response*/) override {
+    ::grpc::Status Process_gameAction(::grpc::ServerContext* /*context*/, const ::rpc_server::GameActionReq* /*request*/, ::rpc_server::GameActionRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestProcessGameAction(::grpc::ServerContext* context, ::rpc_server::GameActionRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::GameActionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestProcess_gameAction(::grpc::ServerContext* context, ::rpc_server::GameActionReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::GameActionRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_GetGameState : public BaseClass {
+  class WithAsyncMethod_Get_game_state : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_GetGameState() {
+    WithAsyncMethod_Get_game_state() {
       ::grpc::Service::MarkMethodAsync(1);
     }
-    ~WithAsyncMethod_GetGameState() override {
+    ~WithAsyncMethod_Get_game_state() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetGameState(::grpc::ServerContext* /*context*/, const ::rpc_server::GameStateRequest* /*request*/, ::rpc_server::GameStateResponse* /*response*/) override {
+    ::grpc::Status Get_game_state(::grpc::ServerContext* /*context*/, const ::rpc_server::GameStateReq* /*request*/, ::rpc_server::GameStateRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetGameState(::grpc::ServerContext* context, ::rpc_server::GameStateRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::GameStateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGet_game_state(::grpc::ServerContext* context, ::rpc_server::GameStateReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::GameStateRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_ProcessGameAction<WithAsyncMethod_GetGameState<Service > > AsyncService;
+  typedef WithAsyncMethod_Process_gameAction<WithAsyncMethod_Get_game_state<Service > > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_ProcessGameAction : public BaseClass {
+  class WithCallbackMethod_Process_gameAction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_ProcessGameAction() {
+    WithCallbackMethod_Process_gameAction() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::GameActionRequest, ::rpc_server::GameActionResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::GameActionReq, ::rpc_server::GameActionRes>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::GameActionRequest* request, ::rpc_server::GameActionResponse* response) { return this->ProcessGameAction(context, request, response); }));}
-    void SetMessageAllocatorFor_ProcessGameAction(
-        ::grpc::MessageAllocator< ::rpc_server::GameActionRequest, ::rpc_server::GameActionResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::GameActionReq* request, ::rpc_server::GameActionRes* response) { return this->Process_gameAction(context, request, response); }));}
+    void SetMessageAllocatorFor_Process_gameAction(
+        ::grpc::MessageAllocator< ::rpc_server::GameActionReq, ::rpc_server::GameActionRes>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::GameActionRequest, ::rpc_server::GameActionResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::GameActionReq, ::rpc_server::GameActionRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_ProcessGameAction() override {
+    ~WithCallbackMethod_Process_gameAction() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ProcessGameAction(::grpc::ServerContext* /*context*/, const ::rpc_server::GameActionRequest* /*request*/, ::rpc_server::GameActionResponse* /*response*/) override {
+    ::grpc::Status Process_gameAction(::grpc::ServerContext* /*context*/, const ::rpc_server::GameActionReq* /*request*/, ::rpc_server::GameActionRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* ProcessGameAction(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::GameActionRequest* /*request*/, ::rpc_server::GameActionResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* Process_gameAction(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::GameActionReq* /*request*/, ::rpc_server::GameActionRes* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_GetGameState : public BaseClass {
+  class WithCallbackMethod_Get_game_state : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_GetGameState() {
+    WithCallbackMethod_Get_game_state() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::GameStateRequest, ::rpc_server::GameStateResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::GameStateReq, ::rpc_server::GameStateRes>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::GameStateRequest* request, ::rpc_server::GameStateResponse* response) { return this->GetGameState(context, request, response); }));}
-    void SetMessageAllocatorFor_GetGameState(
-        ::grpc::MessageAllocator< ::rpc_server::GameStateRequest, ::rpc_server::GameStateResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::GameStateReq* request, ::rpc_server::GameStateRes* response) { return this->Get_game_state(context, request, response); }));}
+    void SetMessageAllocatorFor_Get_game_state(
+        ::grpc::MessageAllocator< ::rpc_server::GameStateReq, ::rpc_server::GameStateRes>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::GameStateRequest, ::rpc_server::GameStateResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::GameStateReq, ::rpc_server::GameStateRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_GetGameState() override {
+    ~WithCallbackMethod_Get_game_state() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetGameState(::grpc::ServerContext* /*context*/, const ::rpc_server::GameStateRequest* /*request*/, ::rpc_server::GameStateResponse* /*response*/) override {
+    ::grpc::Status Get_game_state(::grpc::ServerContext* /*context*/, const ::rpc_server::GameStateReq* /*request*/, ::rpc_server::GameStateRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetGameState(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::GameStateRequest* /*request*/, ::rpc_server::GameStateResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* Get_game_state(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::GameStateReq* /*request*/, ::rpc_server::GameStateRes* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_ProcessGameAction<WithCallbackMethod_GetGameState<Service > > CallbackService;
+  typedef WithCallbackMethod_Process_gameAction<WithCallbackMethod_Get_game_state<Service > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_ProcessGameAction : public BaseClass {
+  class WithGenericMethod_Process_gameAction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_ProcessGameAction() {
+    WithGenericMethod_Process_gameAction() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_ProcessGameAction() override {
+    ~WithGenericMethod_Process_gameAction() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ProcessGameAction(::grpc::ServerContext* /*context*/, const ::rpc_server::GameActionRequest* /*request*/, ::rpc_server::GameActionResponse* /*response*/) override {
+    ::grpc::Status Process_gameAction(::grpc::ServerContext* /*context*/, const ::rpc_server::GameActionReq* /*request*/, ::rpc_server::GameActionRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_GetGameState : public BaseClass {
+  class WithGenericMethod_Get_game_state : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_GetGameState() {
+    WithGenericMethod_Get_game_state() {
       ::grpc::Service::MarkMethodGeneric(1);
     }
-    ~WithGenericMethod_GetGameState() override {
+    ~WithGenericMethod_Get_game_state() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetGameState(::grpc::ServerContext* /*context*/, const ::rpc_server::GameStateRequest* /*request*/, ::rpc_server::GameStateResponse* /*response*/) override {
+    ::grpc::Status Get_game_state(::grpc::ServerContext* /*context*/, const ::rpc_server::GameStateReq* /*request*/, ::rpc_server::GameStateRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithRawMethod_ProcessGameAction : public BaseClass {
+  class WithRawMethod_Process_gameAction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_ProcessGameAction() {
+    WithRawMethod_Process_gameAction() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_ProcessGameAction() override {
+    ~WithRawMethod_Process_gameAction() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ProcessGameAction(::grpc::ServerContext* /*context*/, const ::rpc_server::GameActionRequest* /*request*/, ::rpc_server::GameActionResponse* /*response*/) override {
+    ::grpc::Status Process_gameAction(::grpc::ServerContext* /*context*/, const ::rpc_server::GameActionReq* /*request*/, ::rpc_server::GameActionRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestProcessGameAction(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestProcess_gameAction(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_GetGameState : public BaseClass {
+  class WithRawMethod_Get_game_state : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_GetGameState() {
+    WithRawMethod_Get_game_state() {
       ::grpc::Service::MarkMethodRaw(1);
     }
-    ~WithRawMethod_GetGameState() override {
+    ~WithRawMethod_Get_game_state() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetGameState(::grpc::ServerContext* /*context*/, const ::rpc_server::GameStateRequest* /*request*/, ::rpc_server::GameStateResponse* /*response*/) override {
+    ::grpc::Status Get_game_state(::grpc::ServerContext* /*context*/, const ::rpc_server::GameStateReq* /*request*/, ::rpc_server::GameStateRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetGameState(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGet_game_state(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_ProcessGameAction : public BaseClass {
+  class WithRawCallbackMethod_Process_gameAction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_ProcessGameAction() {
+    WithRawCallbackMethod_Process_gameAction() {
       ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ProcessGameAction(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Process_gameAction(context, request, response); }));
     }
-    ~WithRawCallbackMethod_ProcessGameAction() override {
+    ~WithRawCallbackMethod_Process_gameAction() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ProcessGameAction(::grpc::ServerContext* /*context*/, const ::rpc_server::GameActionRequest* /*request*/, ::rpc_server::GameActionResponse* /*response*/) override {
+    ::grpc::Status Process_gameAction(::grpc::ServerContext* /*context*/, const ::rpc_server::GameActionReq* /*request*/, ::rpc_server::GameActionRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* ProcessGameAction(
+    virtual ::grpc::ServerUnaryReactor* Process_gameAction(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_GetGameState : public BaseClass {
+  class WithRawCallbackMethod_Get_game_state : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_GetGameState() {
+    WithRawCallbackMethod_Get_game_state() {
       ::grpc::Service::MarkMethodRawCallback(1,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->GetGameState(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get_game_state(context, request, response); }));
     }
-    ~WithRawCallbackMethod_GetGameState() override {
+    ~WithRawCallbackMethod_Get_game_state() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetGameState(::grpc::ServerContext* /*context*/, const ::rpc_server::GameStateRequest* /*request*/, ::rpc_server::GameStateResponse* /*response*/) override {
+    ::grpc::Status Get_game_state(::grpc::ServerContext* /*context*/, const ::rpc_server::GameStateReq* /*request*/, ::rpc_server::GameStateRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* GetGameState(
+    virtual ::grpc::ServerUnaryReactor* Get_game_state(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_ProcessGameAction : public BaseClass {
+  class WithStreamedUnaryMethod_Process_gameAction : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_ProcessGameAction() {
+    WithStreamedUnaryMethod_Process_gameAction() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::GameActionRequest, ::rpc_server::GameActionResponse>(
+          ::rpc_server::GameActionReq, ::rpc_server::GameActionRes>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::GameActionRequest, ::rpc_server::GameActionResponse>* streamer) {
-                       return this->StreamedProcessGameAction(context,
+                     ::rpc_server::GameActionReq, ::rpc_server::GameActionRes>* streamer) {
+                       return this->StreamedProcess_gameAction(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_ProcessGameAction() override {
+    ~WithStreamedUnaryMethod_Process_gameAction() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status ProcessGameAction(::grpc::ServerContext* /*context*/, const ::rpc_server::GameActionRequest* /*request*/, ::rpc_server::GameActionResponse* /*response*/) override {
+    ::grpc::Status Process_gameAction(::grpc::ServerContext* /*context*/, const ::rpc_server::GameActionReq* /*request*/, ::rpc_server::GameActionRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedProcessGameAction(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::GameActionRequest,::rpc_server::GameActionResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedProcess_gameAction(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::GameActionReq,::rpc_server::GameActionRes>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_GetGameState : public BaseClass {
+  class WithStreamedUnaryMethod_Get_game_state : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_GetGameState() {
+    WithStreamedUnaryMethod_Get_game_state() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::GameStateRequest, ::rpc_server::GameStateResponse>(
+          ::rpc_server::GameStateReq, ::rpc_server::GameStateRes>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::GameStateRequest, ::rpc_server::GameStateResponse>* streamer) {
-                       return this->StreamedGetGameState(context,
+                     ::rpc_server::GameStateReq, ::rpc_server::GameStateRes>* streamer) {
+                       return this->StreamedGet_game_state(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_GetGameState() override {
+    ~WithStreamedUnaryMethod_Get_game_state() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetGameState(::grpc::ServerContext* /*context*/, const ::rpc_server::GameStateRequest* /*request*/, ::rpc_server::GameStateResponse* /*response*/) override {
+    ::grpc::Status Get_game_state(::grpc::ServerContext* /*context*/, const ::rpc_server::GameStateReq* /*request*/, ::rpc_server::GameStateRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetGameState(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::GameStateRequest,::rpc_server::GameStateResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGet_game_state(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::GameStateReq,::rpc_server::GameStateRes>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_ProcessGameAction<WithStreamedUnaryMethod_GetGameState<Service > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Process_gameAction<WithStreamedUnaryMethod_Get_game_state<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_ProcessGameAction<WithStreamedUnaryMethod_GetGameState<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_Process_gameAction<WithStreamedUnaryMethod_Get_game_state<Service > > StreamedService;
 };
 
 }  // namespace rpc_server

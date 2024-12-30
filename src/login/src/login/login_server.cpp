@@ -5,7 +5,7 @@ LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_):
     server_type(rpc_server::ServerType::LOGIN),    // 服务器类型
     logger_manager(logger_manager_),	// 日志管理器
     central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 链接中心服务器
-	db_connection_pool(10) // 初始化数据库服务器连接池，设置连接池大小为10
+    db_connection_pool(10) // 初始化数据库服务器连接池，设置连接池大小为10
 {
     Read_server_config();   // 读取配置文件并初始化服务器地址和端口
 
@@ -91,18 +91,18 @@ void LoginServerImpl::Worker_thread()
 void LoginServerImpl::register_server() 
 {
     // 请求
-    rpc_server::RegisterServerRequest request;
+    rpc_server::RegisterServerReq request;
     request.set_server_type(this->server_type);
     request.set_address(this->server_address);
     request.set_port(this->server_port);
 
     // 响应
-    rpc_server::RegisterServerResponse response;
+    rpc_server::RegisterServerRes response;
 
     // 客户端
     grpc::ClientContext context;
 
-    grpc::Status status = central_stub->RegisterServer(&context, request, &response);
+    grpc::Status status = central_stub->Register_server(&context, request, &response);
 
     if (status.ok() && response.success())
     {
@@ -119,18 +119,18 @@ void LoginServerImpl::register_server()
 void LoginServerImpl::unregister_server() 
 {
     // 请求
-    rpc_server::UnregisterServerRequest request;
+    rpc_server::UnregisterServerReq request;
     request.set_server_type(rpc_server::ServerType::LOGIN);
     request.set_address("localhost");
     request.set_port("50053");
 
     // 响应
-    rpc_server::UnregisterServerResponse response;
+    rpc_server::UnregisterServerRes response;
 
     // 客户端
     grpc::ClientContext context;
 
-    grpc::Status status = central_stub->UnregisterServer(&context, request, &response);
+    grpc::Status status = central_stub->Unregister_server(&context, request, &response);
 
     if (status.ok() && response.success())
     {
@@ -148,12 +148,12 @@ void LoginServerImpl::Init_connection_pool()
     // 客户端
     grpc::ClientContext context;
     // 请求
-    rpc_server::ConnectPoorRequest request;
+    rpc_server::ConnectPoorReq request;
     request.set_server_type(rpc_server::ServerType::DATA);
     // 响应
-    rpc_server::ConnectPoorResponse response;
+    rpc_server::ConnectPoorRes response;
 
-    grpc::Status status = central_stub->GetConnectPoor(&context, request, &response);
+    grpc::Status status = central_stub->Get_connec_poor(&context, request, &response);
 
     if (status.ok())
     {
@@ -188,8 +188,8 @@ void LoginServerImpl::Send_heartbeat()
     {
         std::this_thread::sleep_for(std::chrono::seconds(10)); // 每10秒发送一次心跳包
 
-        rpc_server::HeartbeatRequest request;
-        rpc_server::HeartbeatResponse response;
+        rpc_server::HeartbeatReq request;
+        rpc_server::HeartbeatRes response;
         grpc::ClientContext context;
 
         request.set_server_type(rpc_server::ServerType::LOGIN);
@@ -211,11 +211,11 @@ void LoginServerImpl::Send_heartbeat()
 
 /************************************ gRPC服务接口实现 ******************************************************/
 // 登录服务接口
-grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const rpc_server::LoginRequest* request, rpc_server::LoginResponse* response)
+grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const rpc_server::LoginReq* req, rpc_server::LoginRes* res)
 {
     // 深拷贝请求和响应对象
-    auto request_copy = std::make_shared<rpc_server::LoginRequest>(*request);
-    auto response_copy = std::make_shared<rpc_server::LoginResponse>();
+    auto request_copy = std::make_shared<rpc_server::LoginReq>(*req);
+    auto response_copy = std::make_shared<rpc_server::LoginRes>();
     // 创建 promise 和 future
     std::promise<void> task_promise;
     std::future<void> task_future = task_promise.get_future();
@@ -227,10 +227,10 @@ grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const rpc_serv
             // 获取用户名和密码
             std::string username = request_copy->username(); // 从 request 对象中提取用户名和密码
             std::string password = request_copy->password();
-	        // 构造查询条件
+            // 构造查询条件
             std::map<std::string, std::string> query = { {"user_name", username}, {"user_password", password} }; 
 
-	        std::string responses = Handle_login("poor_users", "users", query); // 查询的数据库名，表名，查询条件
+            std::string responses = Handle_login("poor_users", "users", query); // 查询的数据库名，表名，查询条件
 
             if (responses == "Login successful")
             {
@@ -252,14 +252,14 @@ grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const rpc_serv
     task_future.get();
 
     // 将响应结果复制回原响应对象
-    *response = *response_copy;
+    *res = *response_copy;
 
     // 返回gRPC状态
     return grpc::Status::OK;
 }
 
 // 注册服务接口
-grpc::Status LoginServerImpl::Register(grpc::ServerContext* context, const rpc_server::RegisterRequest* request, rpc_server::RegisterResponse* response)
+grpc::Status LoginServerImpl::Register(grpc::ServerContext* context, const rpc_server::RegisterReq* req, rpc_server::RegisterRes* res)
 {
 
     // 返回gRPC状态
@@ -267,7 +267,7 @@ grpc::Status LoginServerImpl::Register(grpc::ServerContext* context, const rpc_s
 }
 
 // 令牌验证服务接口
-grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateRequest* request, rpc_server::AuthenticateResponse* response)
+grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateReq* req, rpc_server::AuthenticateRes* res)
 {
 
     return grpc::Status::OK;
@@ -278,7 +278,7 @@ grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const r
 std::string LoginServerImpl::Handle_login(const std::string& database, const std::string& table, std::map<std::string, std::string> query)
 {
     // 构造请求
-    rpc_server::ReadRequest read_request;
+    rpc_server::ReadReq read_request;
     read_request.set_database(database); // 设置查询数据库
     read_request.set_table(table); // 设置查询表
     for (auto& it : query)
@@ -287,7 +287,7 @@ std::string LoginServerImpl::Handle_login(const std::string& database, const std
     }
 
     // 构造响应
-    rpc_server::ReadResponse read_response;
+    rpc_server::ReadRes read_response;
     grpc::ClientContext client_context; // 包含 RPC 调用的元数据和其他信息
 
     // 获取连接池中的连接
@@ -312,13 +312,13 @@ std::string LoginServerImpl::Handle_login(const std::string& database, const std
 // 注册服务
 std::string LoginServerImpl::Handle_register(const std::string& database, const std::string& table, std::map<std::string, std::string> data)
 {
-	return "注册成功";
+    return "注册成功";
 }
 
 // 令牌验证服务
 std::string LoginServerImpl::Handle_authenticate(const std::string& token)
 {
-	return "验证成功";
+    return "验证成功";
 }
 
 /******************************************** 其他工具函数 ***********************************************/

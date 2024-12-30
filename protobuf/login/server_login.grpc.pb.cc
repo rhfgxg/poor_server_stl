@@ -39,69 +39,69 @@ LoginServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   , rpcmethod_Authenticate_(LoginServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status LoginServer::Stub::Login(::grpc::ClientContext* context, const ::rpc_server::LoginRequest& request, ::rpc_server::LoginResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::LoginRequest, ::rpc_server::LoginResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Login_, context, request, response);
+::grpc::Status LoginServer::Stub::Login(::grpc::ClientContext* context, const ::rpc_server::LoginReq& request, ::rpc_server::LoginRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::LoginReq, ::rpc_server::LoginRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Login_, context, request, response);
 }
 
-void LoginServer::Stub::async::Login(::grpc::ClientContext* context, const ::rpc_server::LoginRequest* request, ::rpc_server::LoginResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::LoginRequest, ::rpc_server::LoginResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Login_, context, request, response, std::move(f));
+void LoginServer::Stub::async::Login(::grpc::ClientContext* context, const ::rpc_server::LoginReq* request, ::rpc_server::LoginRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::LoginReq, ::rpc_server::LoginRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Login_, context, request, response, std::move(f));
 }
 
-void LoginServer::Stub::async::Login(::grpc::ClientContext* context, const ::rpc_server::LoginRequest* request, ::rpc_server::LoginResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void LoginServer::Stub::async::Login(::grpc::ClientContext* context, const ::rpc_server::LoginReq* request, ::rpc_server::LoginRes* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Login_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::LoginResponse>* LoginServer::Stub::PrepareAsyncLoginRaw(::grpc::ClientContext* context, const ::rpc_server::LoginRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::LoginResponse, ::rpc_server::LoginRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Login_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::LoginRes>* LoginServer::Stub::PrepareAsyncLoginRaw(::grpc::ClientContext* context, const ::rpc_server::LoginReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::LoginRes, ::rpc_server::LoginReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Login_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::LoginResponse>* LoginServer::Stub::AsyncLoginRaw(::grpc::ClientContext* context, const ::rpc_server::LoginRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::LoginRes>* LoginServer::Stub::AsyncLoginRaw(::grpc::ClientContext* context, const ::rpc_server::LoginReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncLoginRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status LoginServer::Stub::Register(::grpc::ClientContext* context, const ::rpc_server::RegisterRequest& request, ::rpc_server::RegisterResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::RegisterRequest, ::rpc_server::RegisterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Register_, context, request, response);
+::grpc::Status LoginServer::Stub::Register(::grpc::ClientContext* context, const ::rpc_server::RegisterReq& request, ::rpc_server::RegisterRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::RegisterReq, ::rpc_server::RegisterRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Register_, context, request, response);
 }
 
-void LoginServer::Stub::async::Register(::grpc::ClientContext* context, const ::rpc_server::RegisterRequest* request, ::rpc_server::RegisterResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::RegisterRequest, ::rpc_server::RegisterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Register_, context, request, response, std::move(f));
+void LoginServer::Stub::async::Register(::grpc::ClientContext* context, const ::rpc_server::RegisterReq* request, ::rpc_server::RegisterRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::RegisterReq, ::rpc_server::RegisterRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Register_, context, request, response, std::move(f));
 }
 
-void LoginServer::Stub::async::Register(::grpc::ClientContext* context, const ::rpc_server::RegisterRequest* request, ::rpc_server::RegisterResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void LoginServer::Stub::async::Register(::grpc::ClientContext* context, const ::rpc_server::RegisterReq* request, ::rpc_server::RegisterRes* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Register_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterResponse>* LoginServer::Stub::PrepareAsyncRegisterRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::RegisterResponse, ::rpc_server::RegisterRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Register_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterRes>* LoginServer::Stub::PrepareAsyncRegisterRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::RegisterRes, ::rpc_server::RegisterReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Register_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterResponse>* LoginServer::Stub::AsyncRegisterRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterRes>* LoginServer::Stub::AsyncRegisterRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncRegisterRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status LoginServer::Stub::Authenticate(::grpc::ClientContext* context, const ::rpc_server::AuthenticateRequest& request, ::rpc_server::AuthenticateResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::AuthenticateRequest, ::rpc_server::AuthenticateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Authenticate_, context, request, response);
+::grpc::Status LoginServer::Stub::Authenticate(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq& request, ::rpc_server::AuthenticateRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::AuthenticateReq, ::rpc_server::AuthenticateRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Authenticate_, context, request, response);
 }
 
-void LoginServer::Stub::async::Authenticate(::grpc::ClientContext* context, const ::rpc_server::AuthenticateRequest* request, ::rpc_server::AuthenticateResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::AuthenticateRequest, ::rpc_server::AuthenticateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Authenticate_, context, request, response, std::move(f));
+void LoginServer::Stub::async::Authenticate(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq* request, ::rpc_server::AuthenticateRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::AuthenticateReq, ::rpc_server::AuthenticateRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Authenticate_, context, request, response, std::move(f));
 }
 
-void LoginServer::Stub::async::Authenticate(::grpc::ClientContext* context, const ::rpc_server::AuthenticateRequest* request, ::rpc_server::AuthenticateResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void LoginServer::Stub::async::Authenticate(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq* request, ::rpc_server::AuthenticateRes* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Authenticate_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::AuthenticateResponse>* LoginServer::Stub::PrepareAsyncAuthenticateRaw(::grpc::ClientContext* context, const ::rpc_server::AuthenticateRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::AuthenticateResponse, ::rpc_server::AuthenticateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Authenticate_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::AuthenticateRes>* LoginServer::Stub::PrepareAsyncAuthenticateRaw(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::AuthenticateRes, ::rpc_server::AuthenticateReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Authenticate_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::AuthenticateResponse>* LoginServer::Stub::AsyncAuthenticateRaw(::grpc::ClientContext* context, const ::rpc_server::AuthenticateRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::AuthenticateRes>* LoginServer::Stub::AsyncAuthenticateRaw(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncAuthenticateRaw(context, request, cq);
   result->StartCall();
@@ -112,31 +112,31 @@ LoginServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       LoginServer_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::LoginRequest, ::rpc_server::LoginResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::LoginReq, ::rpc_server::LoginRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](LoginServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::LoginRequest* req,
-             ::rpc_server::LoginResponse* resp) {
+             const ::rpc_server::LoginReq* req,
+             ::rpc_server::LoginRes* resp) {
                return service->Login(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       LoginServer_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::RegisterRequest, ::rpc_server::RegisterResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::RegisterReq, ::rpc_server::RegisterRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](LoginServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::RegisterRequest* req,
-             ::rpc_server::RegisterResponse* resp) {
+             const ::rpc_server::RegisterReq* req,
+             ::rpc_server::RegisterRes* resp) {
                return service->Register(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       LoginServer_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::AuthenticateRequest, ::rpc_server::AuthenticateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::AuthenticateReq, ::rpc_server::AuthenticateRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](LoginServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::AuthenticateRequest* req,
-             ::rpc_server::AuthenticateResponse* resp) {
+             const ::rpc_server::AuthenticateReq* req,
+             ::rpc_server::AuthenticateRes* resp) {
                return service->Authenticate(ctx, req, resp);
              }, this)));
 }
@@ -144,21 +144,21 @@ LoginServer::Service::Service() {
 LoginServer::Service::~Service() {
 }
 
-::grpc::Status LoginServer::Service::Login(::grpc::ServerContext* context, const ::rpc_server::LoginRequest* request, ::rpc_server::LoginResponse* response) {
+::grpc::Status LoginServer::Service::Login(::grpc::ServerContext* context, const ::rpc_server::LoginReq* request, ::rpc_server::LoginRes* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status LoginServer::Service::Register(::grpc::ServerContext* context, const ::rpc_server::RegisterRequest* request, ::rpc_server::RegisterResponse* response) {
+::grpc::Status LoginServer::Service::Register(::grpc::ServerContext* context, const ::rpc_server::RegisterReq* request, ::rpc_server::RegisterRes* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status LoginServer::Service::Authenticate(::grpc::ServerContext* context, const ::rpc_server::AuthenticateRequest* request, ::rpc_server::AuthenticateResponse* response) {
+::grpc::Status LoginServer::Service::Authenticate(::grpc::ServerContext* context, const ::rpc_server::AuthenticateReq* request, ::rpc_server::AuthenticateRes* response) {
   (void) context;
   (void) request;
   (void) response;

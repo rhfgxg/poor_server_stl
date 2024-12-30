@@ -36,13 +36,13 @@ public:
 
 // grpc服务接口
     // 服务器注册
-    grpc::Status RegisterServer(grpc::ServerContext* context, const rpc_server::RegisterServerRequest* request, rpc_server::RegisterServerResponse* response);
+    grpc::Status Register_server(grpc::ServerContext* context, const rpc_server::RegisterServerReq* req, rpc_server::RegisterServerRes* res);
     // 服务器断开
-    grpc::Status UnregisterServer(grpc::ServerContext* context, const rpc_server::UnregisterServerRequest* request, rpc_server::UnregisterServerResponse* response);
+    grpc::Status Unregister_server(grpc::ServerContext* context, const rpc_server::UnregisterServerReq* req, rpc_server::UnregisterServerRes* res);
     // 获取连接池中所有链接
-    grpc::Status GetConnectPoor(grpc::ServerContext* context, const rpc_server::ConnectPoorRequest* request, rpc_server::ConnectPoorResponse* response);
+    grpc::Status Get_connec_poor(grpc::ServerContext* context, const rpc_server::ConnectPoorReq* req, rpc_server::ConnectPoorRes* res);
     // 接收心跳包
-    grpc::Status Heartbeat(grpc::ServerContext* context, const rpc_server::HeartbeatRequest* request, rpc_server::HeartbeatResponse* response);
+    grpc::Status Heartbeat(grpc::ServerContext* context, const rpc_server::HeartbeatReq* req, rpc_server::HeartbeatRes* res);
 
 // 线程池
     void start_thread_pool(int num_threads);    // 启动线程池
