@@ -1,5 +1,5 @@
 syntax = "proto3";
-package myproject;
+package rpc_server;
 
 // 服务类型：客户端与服务器通信的服务类型
 enum ServiceType

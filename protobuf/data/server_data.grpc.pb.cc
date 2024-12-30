@@ -19,13 +19,13 @@
 #include <grpcpp/server_context.h>
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/support/sync_stream.h>
-namespace myproject {
+namespace rpc_server {
 
 static const char* DatabaseServer_method_names[] = {
-  "/myproject.DatabaseServer/Create",
-  "/myproject.DatabaseServer/Read",
-  "/myproject.DatabaseServer/Update",
-  "/myproject.DatabaseServer/Delete",
+  "/rpc_server.DatabaseServer/Create",
+  "/rpc_server.DatabaseServer/Read",
+  "/rpc_server.DatabaseServer/Update",
+  "/rpc_server.DatabaseServer/Delete",
 };
 
 std::unique_ptr< DatabaseServer::Stub> DatabaseServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -41,92 +41,92 @@ DatabaseServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& cha
   , rpcmethod_Delete_(DatabaseServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status DatabaseServer::Stub::Create(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::myproject::CreateResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::myproject::CreateRequest, ::myproject::CreateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
+::grpc::Status DatabaseServer::Stub::Create(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::rpc_server::CreateResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::CreateRequest, ::rpc_server::CreateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Create_, context, request, response);
 }
 
-void DatabaseServer::Stub::async::Create(::grpc::ClientContext* context, const ::myproject::CreateRequest* request, ::myproject::CreateResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::myproject::CreateRequest, ::myproject::CreateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
+void DatabaseServer::Stub::async::Create(::grpc::ClientContext* context, const ::rpc_server::CreateRequest* request, ::rpc_server::CreateResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::CreateRequest, ::rpc_server::CreateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, std::move(f));
 }
 
-void DatabaseServer::Stub::async::Create(::grpc::ClientContext* context, const ::myproject::CreateRequest* request, ::myproject::CreateResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void DatabaseServer::Stub::async::Create(::grpc::ClientContext* context, const ::rpc_server::CreateRequest* request, ::rpc_server::CreateResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Create_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::CreateResponse>* DatabaseServer::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::myproject::CreateResponse, ::myproject::CreateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::CreateResponse>* DatabaseServer::Stub::PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::CreateResponse, ::rpc_server::CreateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Create_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::CreateResponse>* DatabaseServer::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::CreateResponse>* DatabaseServer::Stub::AsyncCreateRaw(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncCreateRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status DatabaseServer::Stub::Read(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::myproject::ReadResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::myproject::ReadRequest, ::myproject::ReadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Read_, context, request, response);
+::grpc::Status DatabaseServer::Stub::Read(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::rpc_server::ReadResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::ReadRequest, ::rpc_server::ReadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Read_, context, request, response);
 }
 
-void DatabaseServer::Stub::async::Read(::grpc::ClientContext* context, const ::myproject::ReadRequest* request, ::myproject::ReadResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::myproject::ReadRequest, ::myproject::ReadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Read_, context, request, response, std::move(f));
+void DatabaseServer::Stub::async::Read(::grpc::ClientContext* context, const ::rpc_server::ReadRequest* request, ::rpc_server::ReadResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::ReadRequest, ::rpc_server::ReadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Read_, context, request, response, std::move(f));
 }
 
-void DatabaseServer::Stub::async::Read(::grpc::ClientContext* context, const ::myproject::ReadRequest* request, ::myproject::ReadResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void DatabaseServer::Stub::async::Read(::grpc::ClientContext* context, const ::rpc_server::ReadRequest* request, ::rpc_server::ReadResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Read_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::ReadResponse>* DatabaseServer::Stub::PrepareAsyncReadRaw(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::myproject::ReadResponse, ::myproject::ReadRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Read_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::ReadResponse>* DatabaseServer::Stub::PrepareAsyncReadRaw(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::ReadResponse, ::rpc_server::ReadRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Read_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::ReadResponse>* DatabaseServer::Stub::AsyncReadRaw(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::ReadResponse>* DatabaseServer::Stub::AsyncReadRaw(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncReadRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status DatabaseServer::Stub::Update(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::myproject::UpdateResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::myproject::UpdateRequest, ::myproject::UpdateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_, context, request, response);
+::grpc::Status DatabaseServer::Stub::Update(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::rpc_server::UpdateResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::UpdateRequest, ::rpc_server::UpdateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_, context, request, response);
 }
 
-void DatabaseServer::Stub::async::Update(::grpc::ClientContext* context, const ::myproject::UpdateRequest* request, ::myproject::UpdateResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::myproject::UpdateRequest, ::myproject::UpdateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, std::move(f));
+void DatabaseServer::Stub::async::Update(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest* request, ::rpc_server::UpdateResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::UpdateRequest, ::rpc_server::UpdateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, std::move(f));
 }
 
-void DatabaseServer::Stub::async::Update(::grpc::ClientContext* context, const ::myproject::UpdateRequest* request, ::myproject::UpdateResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void DatabaseServer::Stub::async::Update(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest* request, ::rpc_server::UpdateResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::UpdateResponse>* DatabaseServer::Stub::PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::myproject::UpdateResponse, ::myproject::UpdateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::UpdateResponse>* DatabaseServer::Stub::PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::UpdateResponse, ::rpc_server::UpdateRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::UpdateResponse>* DatabaseServer::Stub::AsyncUpdateRaw(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::UpdateResponse>* DatabaseServer::Stub::AsyncUpdateRaw(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncUpdateRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status DatabaseServer::Stub::Delete(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::myproject::DeleteResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::myproject::DeleteRequest, ::myproject::DeleteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Delete_, context, request, response);
+::grpc::Status DatabaseServer::Stub::Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::rpc_server::DeleteResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::DeleteRequest, ::rpc_server::DeleteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Delete_, context, request, response);
 }
 
-void DatabaseServer::Stub::async::Delete(::grpc::ClientContext* context, const ::myproject::DeleteRequest* request, ::myproject::DeleteResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::myproject::DeleteRequest, ::myproject::DeleteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, std::move(f));
+void DatabaseServer::Stub::async::Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest* request, ::rpc_server::DeleteResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::DeleteRequest, ::rpc_server::DeleteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, std::move(f));
 }
 
-void DatabaseServer::Stub::async::Delete(::grpc::ClientContext* context, const ::myproject::DeleteRequest* request, ::myproject::DeleteResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void DatabaseServer::Stub::async::Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest* request, ::rpc_server::DeleteResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::DeleteResponse>* DatabaseServer::Stub::PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::myproject::DeleteResponse, ::myproject::DeleteRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Delete_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteResponse>* DatabaseServer::Stub::PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::DeleteResponse, ::rpc_server::DeleteRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Delete_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::DeleteResponse>* DatabaseServer::Stub::AsyncDeleteRaw(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteResponse>* DatabaseServer::Stub::AsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncDeleteRaw(context, request, cq);
   result->StartCall();
@@ -137,41 +137,41 @@ DatabaseServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DatabaseServer_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< DatabaseServer::Service, ::myproject::CreateRequest, ::myproject::CreateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< DatabaseServer::Service, ::rpc_server::CreateRequest, ::rpc_server::CreateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DatabaseServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::myproject::CreateRequest* req,
-             ::myproject::CreateResponse* resp) {
+             const ::rpc_server::CreateRequest* req,
+             ::rpc_server::CreateResponse* resp) {
                return service->Create(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DatabaseServer_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< DatabaseServer::Service, ::myproject::ReadRequest, ::myproject::ReadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< DatabaseServer::Service, ::rpc_server::ReadRequest, ::rpc_server::ReadResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DatabaseServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::myproject::ReadRequest* req,
-             ::myproject::ReadResponse* resp) {
+             const ::rpc_server::ReadRequest* req,
+             ::rpc_server::ReadResponse* resp) {
                return service->Read(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DatabaseServer_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< DatabaseServer::Service, ::myproject::UpdateRequest, ::myproject::UpdateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< DatabaseServer::Service, ::rpc_server::UpdateRequest, ::rpc_server::UpdateResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DatabaseServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::myproject::UpdateRequest* req,
-             ::myproject::UpdateResponse* resp) {
+             const ::rpc_server::UpdateRequest* req,
+             ::rpc_server::UpdateResponse* resp) {
                return service->Update(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DatabaseServer_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< DatabaseServer::Service, ::myproject::DeleteRequest, ::myproject::DeleteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< DatabaseServer::Service, ::rpc_server::DeleteRequest, ::rpc_server::DeleteResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](DatabaseServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::myproject::DeleteRequest* req,
-             ::myproject::DeleteResponse* resp) {
+             const ::rpc_server::DeleteRequest* req,
+             ::rpc_server::DeleteResponse* resp) {
                return service->Delete(ctx, req, resp);
              }, this)));
 }
@@ -179,28 +179,28 @@ DatabaseServer::Service::Service() {
 DatabaseServer::Service::~Service() {
 }
 
-::grpc::Status DatabaseServer::Service::Create(::grpc::ServerContext* context, const ::myproject::CreateRequest* request, ::myproject::CreateResponse* response) {
+::grpc::Status DatabaseServer::Service::Create(::grpc::ServerContext* context, const ::rpc_server::CreateRequest* request, ::rpc_server::CreateResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status DatabaseServer::Service::Read(::grpc::ServerContext* context, const ::myproject::ReadRequest* request, ::myproject::ReadResponse* response) {
+::grpc::Status DatabaseServer::Service::Read(::grpc::ServerContext* context, const ::rpc_server::ReadRequest* request, ::rpc_server::ReadResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status DatabaseServer::Service::Update(::grpc::ServerContext* context, const ::myproject::UpdateRequest* request, ::myproject::UpdateResponse* response) {
+::grpc::Status DatabaseServer::Service::Update(::grpc::ServerContext* context, const ::rpc_server::UpdateRequest* request, ::rpc_server::UpdateResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status DatabaseServer::Service::Delete(::grpc::ServerContext* context, const ::myproject::DeleteRequest* request, ::myproject::DeleteResponse* response) {
+::grpc::Status DatabaseServer::Service::Delete(::grpc::ServerContext* context, const ::rpc_server::DeleteRequest* request, ::rpc_server::DeleteResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -208,5 +208,5 @@ DatabaseServer::Service::~Service() {
 }
 
 
-}  // namespace myproject
+}  // namespace rpc_server
 

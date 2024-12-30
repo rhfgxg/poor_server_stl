@@ -25,119 +25,119 @@
 #include <grpcpp/support/stub_options.h>
 #include <grpcpp/support/sync_stream.h>
 
-namespace myproject {
+namespace rpc_server {
 
 class CentralServer final {
  public:
   static constexpr char const* service_full_name() {
-    return "myproject.CentralServer";
+    return "rpc_server.CentralServer";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::myproject::RegisterServerResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>> AsyncRegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>>(AsyncRegisterServerRaw(context, request, cq));
+    virtual ::grpc::Status RegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::rpc_server::RegisterServerResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::RegisterServerResponse>> AsyncRegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::RegisterServerResponse>>(AsyncRegisterServerRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>> PrepareAsyncRegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>>(PrepareAsyncRegisterServerRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::RegisterServerResponse>> PrepareAsyncRegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::RegisterServerResponse>>(PrepareAsyncRegisterServerRaw(context, request, cq));
     }
     // 服务器注册
-    virtual ::grpc::Status UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::myproject::UnregisterServerResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>> AsyncUnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>>(AsyncUnregisterServerRaw(context, request, cq));
+    virtual ::grpc::Status UnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::rpc_server::UnregisterServerResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UnregisterServerResponse>> AsyncUnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UnregisterServerResponse>>(AsyncUnregisterServerRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>> PrepareAsyncUnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>>(PrepareAsyncUnregisterServerRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UnregisterServerResponse>> PrepareAsyncUnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UnregisterServerResponse>>(PrepareAsyncUnregisterServerRaw(context, request, cq));
     }
     // 服务器断开
-    virtual ::grpc::Status GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::myproject::ConnectPoorResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>> AsyncGetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>>(AsyncGetConnectPoorRaw(context, request, cq));
+    virtual ::grpc::Status GetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::rpc_server::ConnectPoorResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ConnectPoorResponse>> AsyncGetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ConnectPoorResponse>>(AsyncGetConnectPoorRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>> PrepareAsyncGetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>>(PrepareAsyncGetConnectPoorRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ConnectPoorResponse>> PrepareAsyncGetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ConnectPoorResponse>>(PrepareAsyncGetConnectPoorRaw(context, request, cq));
     }
     // 获取连接池信息
-    virtual ::grpc::Status Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::myproject::HeartbeatResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::HeartbeatResponse>> AsyncHeartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::HeartbeatResponse>>(AsyncHeartbeatRaw(context, request, cq));
+    virtual ::grpc::Status Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::rpc_server::HeartbeatResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::HeartbeatResponse>> AsyncHeartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::HeartbeatResponse>>(AsyncHeartbeatRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::HeartbeatResponse>> PrepareAsyncHeartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::HeartbeatResponse>>(PrepareAsyncHeartbeatRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::HeartbeatResponse>> PrepareAsyncHeartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::HeartbeatResponse>>(PrepareAsyncHeartbeatRaw(context, request, cq));
     }
     // 接收心跳包
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void RegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest* request, ::rpc_server::RegisterServerResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void RegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest* request, ::rpc_server::RegisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 服务器注册
-      virtual void UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void UnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest* request, ::rpc_server::UnregisterServerResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void UnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest* request, ::rpc_server::UnregisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 服务器断开
-      virtual void GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void GetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest* request, ::rpc_server::ConnectPoorResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void GetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest* request, ::rpc_server::ConnectPoorResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 获取连接池信息
-      virtual void Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest* request, ::rpc_server::HeartbeatResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest* request, ::rpc_server::HeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 接收心跳包
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>* AsyncRegisterServerRaw(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::RegisterServerResponse>* PrepareAsyncRegisterServerRaw(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>* AsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UnregisterServerResponse>* PrepareAsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>* AsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ConnectPoorResponse>* PrepareAsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::HeartbeatResponse>* AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::HeartbeatResponse>* PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::RegisterServerResponse>* AsyncRegisterServerRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::RegisterServerResponse>* PrepareAsyncRegisterServerRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UnregisterServerResponse>* AsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UnregisterServerResponse>* PrepareAsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ConnectPoorResponse>* AsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ConnectPoorResponse>* PrepareAsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::HeartbeatResponse>* AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::HeartbeatResponse>* PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::myproject::RegisterServerResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>> AsyncRegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>>(AsyncRegisterServerRaw(context, request, cq));
+    ::grpc::Status RegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::rpc_server::RegisterServerResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterServerResponse>> AsyncRegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterServerResponse>>(AsyncRegisterServerRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>> PrepareAsyncRegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>>(PrepareAsyncRegisterServerRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterServerResponse>> PrepareAsyncRegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterServerResponse>>(PrepareAsyncRegisterServerRaw(context, request, cq));
     }
-    ::grpc::Status UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::myproject::UnregisterServerResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::UnregisterServerResponse>> AsyncUnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::UnregisterServerResponse>>(AsyncUnregisterServerRaw(context, request, cq));
+    ::grpc::Status UnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::rpc_server::UnregisterServerResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerResponse>> AsyncUnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerResponse>>(AsyncUnregisterServerRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::UnregisterServerResponse>> PrepareAsyncUnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::UnregisterServerResponse>>(PrepareAsyncUnregisterServerRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerResponse>> PrepareAsyncUnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerResponse>>(PrepareAsyncUnregisterServerRaw(context, request, cq));
     }
-    ::grpc::Status GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::myproject::ConnectPoorResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ConnectPoorResponse>> AsyncGetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ConnectPoorResponse>>(AsyncGetConnectPoorRaw(context, request, cq));
+    ::grpc::Status GetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::rpc_server::ConnectPoorResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorResponse>> AsyncGetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorResponse>>(AsyncGetConnectPoorRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ConnectPoorResponse>> PrepareAsyncGetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ConnectPoorResponse>>(PrepareAsyncGetConnectPoorRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorResponse>> PrepareAsyncGetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorResponse>>(PrepareAsyncGetConnectPoorRaw(context, request, cq));
     }
-    ::grpc::Status Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::myproject::HeartbeatResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>> AsyncHeartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>>(AsyncHeartbeatRaw(context, request, cq));
+    ::grpc::Status Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::rpc_server::HeartbeatResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatResponse>> AsyncHeartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatResponse>>(AsyncHeartbeatRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>> PrepareAsyncHeartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>>(PrepareAsyncHeartbeatRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatResponse>> PrepareAsyncHeartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatResponse>>(PrepareAsyncHeartbeatRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response, std::function<void(::grpc::Status)>) override;
-      void RegisterServer(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response, std::function<void(::grpc::Status)>) override;
-      void UnregisterServer(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response, std::function<void(::grpc::Status)>) override;
-      void GetConnectPoor(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response, std::function<void(::grpc::Status)>) override;
-      void Heartbeat(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void RegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest* request, ::rpc_server::RegisterServerResponse* response, std::function<void(::grpc::Status)>) override;
+      void RegisterServer(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest* request, ::rpc_server::RegisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void UnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest* request, ::rpc_server::UnregisterServerResponse* response, std::function<void(::grpc::Status)>) override;
+      void UnregisterServer(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest* request, ::rpc_server::UnregisterServerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void GetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest* request, ::rpc_server::ConnectPoorResponse* response, std::function<void(::grpc::Status)>) override;
+      void GetConnectPoor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest* request, ::rpc_server::ConnectPoorResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest* request, ::rpc_server::HeartbeatResponse* response, std::function<void(::grpc::Status)>) override;
+      void Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest* request, ::rpc_server::HeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -149,14 +149,14 @@ class CentralServer final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>* AsyncRegisterServerRaw(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::RegisterServerResponse>* PrepareAsyncRegisterServerRaw(::grpc::ClientContext* context, const ::myproject::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::UnregisterServerResponse>* AsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::UnregisterServerResponse>* PrepareAsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::myproject::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::ConnectPoorResponse>* AsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::ConnectPoorResponse>* PrepareAsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::myproject::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>* AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::HeartbeatResponse>* PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::myproject::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterServerResponse>* AsyncRegisterServerRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterServerResponse>* PrepareAsyncRegisterServerRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerResponse>* AsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerResponse>* PrepareAsyncUnregisterServerRaw(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorResponse>* AsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorResponse>* PrepareAsyncGetConnectPoorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatResponse>* AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatResponse>* PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::HeartbeatRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_RegisterServer_;
     const ::grpc::internal::RpcMethod rpcmethod_UnregisterServer_;
     const ::grpc::internal::RpcMethod rpcmethod_GetConnectPoor_;
@@ -168,13 +168,13 @@ class CentralServer final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status RegisterServer(::grpc::ServerContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response);
+    virtual ::grpc::Status RegisterServer(::grpc::ServerContext* context, const ::rpc_server::RegisterServerRequest* request, ::rpc_server::RegisterServerResponse* response);
     // 服务器注册
-    virtual ::grpc::Status UnregisterServer(::grpc::ServerContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response);
+    virtual ::grpc::Status UnregisterServer(::grpc::ServerContext* context, const ::rpc_server::UnregisterServerRequest* request, ::rpc_server::UnregisterServerResponse* response);
     // 服务器断开
-    virtual ::grpc::Status GetConnectPoor(::grpc::ServerContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response);
+    virtual ::grpc::Status GetConnectPoor(::grpc::ServerContext* context, const ::rpc_server::ConnectPoorRequest* request, ::rpc_server::ConnectPoorResponse* response);
     // 获取连接池信息
-    virtual ::grpc::Status Heartbeat(::grpc::ServerContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response);
+    virtual ::grpc::Status Heartbeat(::grpc::ServerContext* context, const ::rpc_server::HeartbeatRequest* request, ::rpc_server::HeartbeatResponse* response);
     // 接收心跳包
   };
   template <class BaseClass>
@@ -189,11 +189,11 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/) override {
+    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::rpc_server::RegisterServerRequest* /*request*/, ::rpc_server::RegisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestRegisterServer(::grpc::ServerContext* context, ::myproject::RegisterServerRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::RegisterServerResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestRegisterServer(::grpc::ServerContext* context, ::rpc_server::RegisterServerRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::RegisterServerResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -209,11 +209,11 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UnregisterServer(::grpc::ServerContext* /*context*/, const ::myproject::UnregisterServerRequest* /*request*/, ::myproject::UnregisterServerResponse* /*response*/) override {
+    ::grpc::Status UnregisterServer(::grpc::ServerContext* /*context*/, const ::rpc_server::UnregisterServerRequest* /*request*/, ::rpc_server::UnregisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUnregisterServer(::grpc::ServerContext* context, ::myproject::UnregisterServerRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::UnregisterServerResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUnregisterServer(::grpc::ServerContext* context, ::rpc_server::UnregisterServerRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::UnregisterServerResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -229,11 +229,11 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::myproject::ConnectPoorRequest* /*request*/, ::myproject::ConnectPoorResponse* /*response*/) override {
+    ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::rpc_server::ConnectPoorRequest* /*request*/, ::rpc_server::ConnectPoorResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGetConnectPoor(::grpc::ServerContext* context, ::myproject::ConnectPoorRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::ConnectPoorResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGetConnectPoor(::grpc::ServerContext* context, ::rpc_server::ConnectPoorRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::ConnectPoorResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -249,11 +249,11 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/) override {
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::rpc_server::HeartbeatRequest* /*request*/, ::rpc_server::HeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestHeartbeat(::grpc::ServerContext* context, ::myproject::HeartbeatRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::HeartbeatResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestHeartbeat(::grpc::ServerContext* context, ::rpc_server::HeartbeatRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::HeartbeatResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -265,25 +265,25 @@ class CentralServer final {
    public:
     WithCallbackMethod_RegisterServer() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::myproject::RegisterServerRequest, ::myproject::RegisterServerResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::RegisterServerRequest, ::rpc_server::RegisterServerResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::myproject::RegisterServerRequest* request, ::myproject::RegisterServerResponse* response) { return this->RegisterServer(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::RegisterServerRequest* request, ::rpc_server::RegisterServerResponse* response) { return this->RegisterServer(context, request, response); }));}
     void SetMessageAllocatorFor_RegisterServer(
-        ::grpc::MessageAllocator< ::myproject::RegisterServerRequest, ::myproject::RegisterServerResponse>* allocator) {
+        ::grpc::MessageAllocator< ::rpc_server::RegisterServerRequest, ::rpc_server::RegisterServerResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::RegisterServerRequest, ::myproject::RegisterServerResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::RegisterServerRequest, ::rpc_server::RegisterServerResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_RegisterServer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/) override {
+    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::rpc_server::RegisterServerRequest* /*request*/, ::rpc_server::RegisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* RegisterServer(
-      ::grpc::CallbackServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::RegisterServerRequest* /*request*/, ::rpc_server::RegisterServerResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_UnregisterServer : public BaseClass {
@@ -292,25 +292,25 @@ class CentralServer final {
    public:
     WithCallbackMethod_UnregisterServer() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::myproject::UnregisterServerRequest, ::myproject::UnregisterServerResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::UnregisterServerRequest, ::rpc_server::UnregisterServerResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::myproject::UnregisterServerRequest* request, ::myproject::UnregisterServerResponse* response) { return this->UnregisterServer(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::UnregisterServerRequest* request, ::rpc_server::UnregisterServerResponse* response) { return this->UnregisterServer(context, request, response); }));}
     void SetMessageAllocatorFor_UnregisterServer(
-        ::grpc::MessageAllocator< ::myproject::UnregisterServerRequest, ::myproject::UnregisterServerResponse>* allocator) {
+        ::grpc::MessageAllocator< ::rpc_server::UnregisterServerRequest, ::rpc_server::UnregisterServerResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::UnregisterServerRequest, ::myproject::UnregisterServerResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::UnregisterServerRequest, ::rpc_server::UnregisterServerResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_UnregisterServer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UnregisterServer(::grpc::ServerContext* /*context*/, const ::myproject::UnregisterServerRequest* /*request*/, ::myproject::UnregisterServerResponse* /*response*/) override {
+    ::grpc::Status UnregisterServer(::grpc::ServerContext* /*context*/, const ::rpc_server::UnregisterServerRequest* /*request*/, ::rpc_server::UnregisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* UnregisterServer(
-      ::grpc::CallbackServerContext* /*context*/, const ::myproject::UnregisterServerRequest* /*request*/, ::myproject::UnregisterServerResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::UnregisterServerRequest* /*request*/, ::rpc_server::UnregisterServerResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_GetConnectPoor : public BaseClass {
@@ -319,25 +319,25 @@ class CentralServer final {
    public:
     WithCallbackMethod_GetConnectPoor() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::myproject::ConnectPoorRequest, ::myproject::ConnectPoorResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::ConnectPoorRequest, ::rpc_server::ConnectPoorResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::myproject::ConnectPoorRequest* request, ::myproject::ConnectPoorResponse* response) { return this->GetConnectPoor(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::ConnectPoorRequest* request, ::rpc_server::ConnectPoorResponse* response) { return this->GetConnectPoor(context, request, response); }));}
     void SetMessageAllocatorFor_GetConnectPoor(
-        ::grpc::MessageAllocator< ::myproject::ConnectPoorRequest, ::myproject::ConnectPoorResponse>* allocator) {
+        ::grpc::MessageAllocator< ::rpc_server::ConnectPoorRequest, ::rpc_server::ConnectPoorResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::ConnectPoorRequest, ::myproject::ConnectPoorResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::ConnectPoorRequest, ::rpc_server::ConnectPoorResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_GetConnectPoor() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::myproject::ConnectPoorRequest* /*request*/, ::myproject::ConnectPoorResponse* /*response*/) override {
+    ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::rpc_server::ConnectPoorRequest* /*request*/, ::rpc_server::ConnectPoorResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetConnectPoor(
-      ::grpc::CallbackServerContext* /*context*/, const ::myproject::ConnectPoorRequest* /*request*/, ::myproject::ConnectPoorResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::ConnectPoorRequest* /*request*/, ::rpc_server::ConnectPoorResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Heartbeat : public BaseClass {
@@ -346,25 +346,25 @@ class CentralServer final {
    public:
     WithCallbackMethod_Heartbeat() {
       ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::HeartbeatRequest, ::rpc_server::HeartbeatResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::myproject::HeartbeatRequest* request, ::myproject::HeartbeatResponse* response) { return this->Heartbeat(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::HeartbeatRequest* request, ::rpc_server::HeartbeatResponse* response) { return this->Heartbeat(context, request, response); }));}
     void SetMessageAllocatorFor_Heartbeat(
-        ::grpc::MessageAllocator< ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse>* allocator) {
+        ::grpc::MessageAllocator< ::rpc_server::HeartbeatRequest, ::rpc_server::HeartbeatResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::HeartbeatRequest, ::rpc_server::HeartbeatResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Heartbeat() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/) override {
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::rpc_server::HeartbeatRequest* /*request*/, ::rpc_server::HeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Heartbeat(
-      ::grpc::CallbackServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::HeartbeatRequest* /*request*/, ::rpc_server::HeartbeatResponse* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_RegisterServer<WithCallbackMethod_UnregisterServer<WithCallbackMethod_GetConnectPoor<WithCallbackMethod_Heartbeat<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -380,7 +380,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/) override {
+    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::rpc_server::RegisterServerRequest* /*request*/, ::rpc_server::RegisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -397,7 +397,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UnregisterServer(::grpc::ServerContext* /*context*/, const ::myproject::UnregisterServerRequest* /*request*/, ::myproject::UnregisterServerResponse* /*response*/) override {
+    ::grpc::Status UnregisterServer(::grpc::ServerContext* /*context*/, const ::rpc_server::UnregisterServerRequest* /*request*/, ::rpc_server::UnregisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -414,7 +414,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::myproject::ConnectPoorRequest* /*request*/, ::myproject::ConnectPoorResponse* /*response*/) override {
+    ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::rpc_server::ConnectPoorRequest* /*request*/, ::rpc_server::ConnectPoorResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -431,7 +431,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/) override {
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::rpc_server::HeartbeatRequest* /*request*/, ::rpc_server::HeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -448,7 +448,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/) override {
+    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::rpc_server::RegisterServerRequest* /*request*/, ::rpc_server::RegisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -468,7 +468,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UnregisterServer(::grpc::ServerContext* /*context*/, const ::myproject::UnregisterServerRequest* /*request*/, ::myproject::UnregisterServerResponse* /*response*/) override {
+    ::grpc::Status UnregisterServer(::grpc::ServerContext* /*context*/, const ::rpc_server::UnregisterServerRequest* /*request*/, ::rpc_server::UnregisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -488,7 +488,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::myproject::ConnectPoorRequest* /*request*/, ::myproject::ConnectPoorResponse* /*response*/) override {
+    ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::rpc_server::ConnectPoorRequest* /*request*/, ::rpc_server::ConnectPoorResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -508,7 +508,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/) override {
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::rpc_server::HeartbeatRequest* /*request*/, ::rpc_server::HeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -531,7 +531,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/) override {
+    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::rpc_server::RegisterServerRequest* /*request*/, ::rpc_server::RegisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -553,7 +553,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status UnregisterServer(::grpc::ServerContext* /*context*/, const ::myproject::UnregisterServerRequest* /*request*/, ::myproject::UnregisterServerResponse* /*response*/) override {
+    ::grpc::Status UnregisterServer(::grpc::ServerContext* /*context*/, const ::rpc_server::UnregisterServerRequest* /*request*/, ::rpc_server::UnregisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -575,7 +575,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::myproject::ConnectPoorRequest* /*request*/, ::myproject::ConnectPoorResponse* /*response*/) override {
+    ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::rpc_server::ConnectPoorRequest* /*request*/, ::rpc_server::ConnectPoorResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -597,7 +597,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/) override {
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::rpc_server::HeartbeatRequest* /*request*/, ::rpc_server::HeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -612,10 +612,10 @@ class CentralServer final {
     WithStreamedUnaryMethod_RegisterServer() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::myproject::RegisterServerRequest, ::myproject::RegisterServerResponse>(
+          ::rpc_server::RegisterServerRequest, ::rpc_server::RegisterServerResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::myproject::RegisterServerRequest, ::myproject::RegisterServerResponse>* streamer) {
+                     ::rpc_server::RegisterServerRequest, ::rpc_server::RegisterServerResponse>* streamer) {
                        return this->StreamedRegisterServer(context,
                          streamer);
                   }));
@@ -624,12 +624,12 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::myproject::RegisterServerRequest* /*request*/, ::myproject::RegisterServerResponse* /*response*/) override {
+    ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::rpc_server::RegisterServerRequest* /*request*/, ::rpc_server::RegisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedRegisterServer(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::RegisterServerRequest,::myproject::RegisterServerResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedRegisterServer(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::RegisterServerRequest,::rpc_server::RegisterServerResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_UnregisterServer : public BaseClass {
@@ -639,10 +639,10 @@ class CentralServer final {
     WithStreamedUnaryMethod_UnregisterServer() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::myproject::UnregisterServerRequest, ::myproject::UnregisterServerResponse>(
+          ::rpc_server::UnregisterServerRequest, ::rpc_server::UnregisterServerResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::myproject::UnregisterServerRequest, ::myproject::UnregisterServerResponse>* streamer) {
+                     ::rpc_server::UnregisterServerRequest, ::rpc_server::UnregisterServerResponse>* streamer) {
                        return this->StreamedUnregisterServer(context,
                          streamer);
                   }));
@@ -651,12 +651,12 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status UnregisterServer(::grpc::ServerContext* /*context*/, const ::myproject::UnregisterServerRequest* /*request*/, ::myproject::UnregisterServerResponse* /*response*/) override {
+    ::grpc::Status UnregisterServer(::grpc::ServerContext* /*context*/, const ::rpc_server::UnregisterServerRequest* /*request*/, ::rpc_server::UnregisterServerResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUnregisterServer(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::UnregisterServerRequest,::myproject::UnregisterServerResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedUnregisterServer(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::UnregisterServerRequest,::rpc_server::UnregisterServerResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_GetConnectPoor : public BaseClass {
@@ -666,10 +666,10 @@ class CentralServer final {
     WithStreamedUnaryMethod_GetConnectPoor() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::myproject::ConnectPoorRequest, ::myproject::ConnectPoorResponse>(
+          ::rpc_server::ConnectPoorRequest, ::rpc_server::ConnectPoorResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::myproject::ConnectPoorRequest, ::myproject::ConnectPoorResponse>* streamer) {
+                     ::rpc_server::ConnectPoorRequest, ::rpc_server::ConnectPoorResponse>* streamer) {
                        return this->StreamedGetConnectPoor(context,
                          streamer);
                   }));
@@ -678,12 +678,12 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::myproject::ConnectPoorRequest* /*request*/, ::myproject::ConnectPoorResponse* /*response*/) override {
+    ::grpc::Status GetConnectPoor(::grpc::ServerContext* /*context*/, const ::rpc_server::ConnectPoorRequest* /*request*/, ::rpc_server::ConnectPoorResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGetConnectPoor(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::ConnectPoorRequest,::myproject::ConnectPoorResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGetConnectPoor(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::ConnectPoorRequest,::rpc_server::ConnectPoorResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Heartbeat : public BaseClass {
@@ -693,10 +693,10 @@ class CentralServer final {
     WithStreamedUnaryMethod_Heartbeat() {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse>(
+          ::rpc_server::HeartbeatRequest, ::rpc_server::HeartbeatResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::myproject::HeartbeatRequest, ::myproject::HeartbeatResponse>* streamer) {
+                     ::rpc_server::HeartbeatRequest, ::rpc_server::HeartbeatResponse>* streamer) {
                        return this->StreamedHeartbeat(context,
                          streamer);
                   }));
@@ -705,19 +705,19 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::myproject::HeartbeatRequest* /*request*/, ::myproject::HeartbeatResponse* /*response*/) override {
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::rpc_server::HeartbeatRequest* /*request*/, ::rpc_server::HeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedHeartbeat(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::HeartbeatRequest,::myproject::HeartbeatResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedHeartbeat(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::HeartbeatRequest,::rpc_server::HeartbeatResponse>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_UnregisterServer<WithStreamedUnaryMethod_GetConnectPoor<WithStreamedUnaryMethod_Heartbeat<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
   typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_UnregisterServer<WithStreamedUnaryMethod_GetConnectPoor<WithStreamedUnaryMethod_Heartbeat<Service > > > > StreamedService;
 };
 
-}  // namespace myproject
+}  // namespace rpc_server
 
 
 #endif  // GRPC_server_5fcentral_2eproto__INCLUDED

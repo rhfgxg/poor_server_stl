@@ -1,6 +1,6 @@
 #include "logger_manager.h"
 
-void LoggerManager::initialize(myproject::ServerType server_type)
+void LoggerManager::initialize(rpc_server::ServerType server_type)
 {
     // 创建日志文件夹
     Create_log_directory(server_type);
@@ -62,33 +62,33 @@ std::shared_ptr<spdlog::logger> LoggerManager::getLogger(LogCategory category)
 }
 
 // 创建日志文件夹
-void LoggerManager::Create_log_directory(myproject::ServerType server_type)
+void LoggerManager::Create_log_directory(rpc_server::ServerType server_type)
 {
     std::string server_name = "default"; // 默认日志文件夹名
 
     switch(server_type) // 根据服务器类型设置日志文件夹名
     {
-    case myproject::CENTRAL:
+    case rpc_server::CENTRAL:
     {
         server_name = "central_server";
         break;
     }
-    case myproject::DATA:
+    case rpc_server::DATA:
     {
         server_name = "data_server";
         break;
     }
-    case myproject::GATEWAY:
+    case rpc_server::GATEWAY:
     {
         server_name = "gateway_server";
         break;
     }
-    case myproject::LOGIN:
+    case rpc_server::LOGIN:
     {
         server_name = "login_server";
         break;
     }
-    case myproject::LOGIC:
+    case rpc_server::LOGIC:
     {
         server_name = "logic_server";
         break;

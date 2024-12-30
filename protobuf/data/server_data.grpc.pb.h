@@ -25,119 +25,119 @@
 #include <grpcpp/support/stub_options.h>
 #include <grpcpp/support/sync_stream.h>
 
-namespace myproject {
+namespace rpc_server {
 
 class DatabaseServer final {
  public:
   static constexpr char const* service_full_name() {
-    return "myproject.DatabaseServer";
+    return "rpc_server.DatabaseServer";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status Create(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::myproject::CreateResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::CreateResponse>> AsyncCreate(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::CreateResponse>>(AsyncCreateRaw(context, request, cq));
+    virtual ::grpc::Status Create(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::rpc_server::CreateResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CreateResponse>> AsyncCreate(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CreateResponse>>(AsyncCreateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::CreateResponse>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::CreateResponse>>(PrepareAsyncCreateRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CreateResponse>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CreateResponse>>(PrepareAsyncCreateRaw(context, request, cq));
     }
     // 增加数据服务
-    virtual ::grpc::Status Read(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::myproject::ReadResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ReadResponse>> AsyncRead(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ReadResponse>>(AsyncReadRaw(context, request, cq));
+    virtual ::grpc::Status Read(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::rpc_server::ReadResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ReadResponse>> AsyncRead(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ReadResponse>>(AsyncReadRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ReadResponse>> PrepareAsyncRead(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ReadResponse>>(PrepareAsyncReadRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ReadResponse>> PrepareAsyncRead(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ReadResponse>>(PrepareAsyncReadRaw(context, request, cq));
     }
     // 查询数据服务
-    virtual ::grpc::Status Update(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::myproject::UpdateResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateResponse>> AsyncUpdate(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateResponse>>(AsyncUpdateRaw(context, request, cq));
+    virtual ::grpc::Status Update(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::rpc_server::UpdateResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdateResponse>> AsyncUpdate(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdateResponse>>(AsyncUpdateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateResponse>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateResponse>>(PrepareAsyncUpdateRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdateResponse>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdateResponse>>(PrepareAsyncUpdateRaw(context, request, cq));
     }
     // 更新数据服务
-    virtual ::grpc::Status Delete(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::myproject::DeleteResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::DeleteResponse>> AsyncDelete(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::DeleteResponse>>(AsyncDeleteRaw(context, request, cq));
+    virtual ::grpc::Status Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::rpc_server::DeleteResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteResponse>> AsyncDelete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteResponse>>(AsyncDeleteRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::DeleteResponse>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::myproject::DeleteResponse>>(PrepareAsyncDeleteRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteResponse>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteResponse>>(PrepareAsyncDeleteRaw(context, request, cq));
     }
     // 删除数据服务
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void Create(::grpc::ClientContext* context, const ::myproject::CreateRequest* request, ::myproject::CreateResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Create(::grpc::ClientContext* context, const ::myproject::CreateRequest* request, ::myproject::CreateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Create(::grpc::ClientContext* context, const ::rpc_server::CreateRequest* request, ::rpc_server::CreateResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Create(::grpc::ClientContext* context, const ::rpc_server::CreateRequest* request, ::rpc_server::CreateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 增加数据服务
-      virtual void Read(::grpc::ClientContext* context, const ::myproject::ReadRequest* request, ::myproject::ReadResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Read(::grpc::ClientContext* context, const ::myproject::ReadRequest* request, ::myproject::ReadResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Read(::grpc::ClientContext* context, const ::rpc_server::ReadRequest* request, ::rpc_server::ReadResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Read(::grpc::ClientContext* context, const ::rpc_server::ReadRequest* request, ::rpc_server::ReadResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 查询数据服务
-      virtual void Update(::grpc::ClientContext* context, const ::myproject::UpdateRequest* request, ::myproject::UpdateResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Update(::grpc::ClientContext* context, const ::myproject::UpdateRequest* request, ::myproject::UpdateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Update(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest* request, ::rpc_server::UpdateResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Update(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest* request, ::rpc_server::UpdateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 更新数据服务
-      virtual void Delete(::grpc::ClientContext* context, const ::myproject::DeleteRequest* request, ::myproject::DeleteResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Delete(::grpc::ClientContext* context, const ::myproject::DeleteRequest* request, ::myproject::DeleteResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest* request, ::rpc_server::DeleteResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest* request, ::rpc_server::DeleteResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 删除数据服务
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::CreateResponse>* AsyncCreateRaw(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::CreateResponse>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ReadResponse>* AsyncReadRaw(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::ReadResponse>* PrepareAsyncReadRaw(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateResponse>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::UpdateResponse>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::DeleteResponse>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::myproject::DeleteResponse>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CreateResponse>* AsyncCreateRaw(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CreateResponse>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ReadResponse>* AsyncReadRaw(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ReadResponse>* PrepareAsyncReadRaw(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdateResponse>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdateResponse>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteResponse>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteResponse>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status Create(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::myproject::CreateResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::CreateResponse>> AsyncCreate(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::CreateResponse>>(AsyncCreateRaw(context, request, cq));
+    ::grpc::Status Create(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::rpc_server::CreateResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::CreateResponse>> AsyncCreate(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::CreateResponse>>(AsyncCreateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::CreateResponse>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::CreateResponse>>(PrepareAsyncCreateRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::CreateResponse>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::CreateResponse>>(PrepareAsyncCreateRaw(context, request, cq));
     }
-    ::grpc::Status Read(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::myproject::ReadResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ReadResponse>> AsyncRead(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ReadResponse>>(AsyncReadRaw(context, request, cq));
+    ::grpc::Status Read(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::rpc_server::ReadResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ReadResponse>> AsyncRead(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ReadResponse>>(AsyncReadRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ReadResponse>> PrepareAsyncRead(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::ReadResponse>>(PrepareAsyncReadRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ReadResponse>> PrepareAsyncRead(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ReadResponse>>(PrepareAsyncReadRaw(context, request, cq));
     }
-    ::grpc::Status Update(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::myproject::UpdateResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::UpdateResponse>> AsyncUpdate(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::UpdateResponse>>(AsyncUpdateRaw(context, request, cq));
+    ::grpc::Status Update(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::rpc_server::UpdateResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdateResponse>> AsyncUpdate(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdateResponse>>(AsyncUpdateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::UpdateResponse>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::UpdateResponse>>(PrepareAsyncUpdateRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdateResponse>> PrepareAsyncUpdate(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdateResponse>>(PrepareAsyncUpdateRaw(context, request, cq));
     }
-    ::grpc::Status Delete(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::myproject::DeleteResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::DeleteResponse>> AsyncDelete(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::DeleteResponse>>(AsyncDeleteRaw(context, request, cq));
+    ::grpc::Status Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::rpc_server::DeleteResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteResponse>> AsyncDelete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteResponse>>(AsyncDeleteRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::DeleteResponse>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::myproject::DeleteResponse>>(PrepareAsyncDeleteRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteResponse>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteResponse>>(PrepareAsyncDeleteRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void Create(::grpc::ClientContext* context, const ::myproject::CreateRequest* request, ::myproject::CreateResponse* response, std::function<void(::grpc::Status)>) override;
-      void Create(::grpc::ClientContext* context, const ::myproject::CreateRequest* request, ::myproject::CreateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Read(::grpc::ClientContext* context, const ::myproject::ReadRequest* request, ::myproject::ReadResponse* response, std::function<void(::grpc::Status)>) override;
-      void Read(::grpc::ClientContext* context, const ::myproject::ReadRequest* request, ::myproject::ReadResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Update(::grpc::ClientContext* context, const ::myproject::UpdateRequest* request, ::myproject::UpdateResponse* response, std::function<void(::grpc::Status)>) override;
-      void Update(::grpc::ClientContext* context, const ::myproject::UpdateRequest* request, ::myproject::UpdateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Delete(::grpc::ClientContext* context, const ::myproject::DeleteRequest* request, ::myproject::DeleteResponse* response, std::function<void(::grpc::Status)>) override;
-      void Delete(::grpc::ClientContext* context, const ::myproject::DeleteRequest* request, ::myproject::DeleteResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Create(::grpc::ClientContext* context, const ::rpc_server::CreateRequest* request, ::rpc_server::CreateResponse* response, std::function<void(::grpc::Status)>) override;
+      void Create(::grpc::ClientContext* context, const ::rpc_server::CreateRequest* request, ::rpc_server::CreateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Read(::grpc::ClientContext* context, const ::rpc_server::ReadRequest* request, ::rpc_server::ReadResponse* response, std::function<void(::grpc::Status)>) override;
+      void Read(::grpc::ClientContext* context, const ::rpc_server::ReadRequest* request, ::rpc_server::ReadResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Update(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest* request, ::rpc_server::UpdateResponse* response, std::function<void(::grpc::Status)>) override;
+      void Update(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest* request, ::rpc_server::UpdateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest* request, ::rpc_server::DeleteResponse* response, std::function<void(::grpc::Status)>) override;
+      void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest* request, ::rpc_server::DeleteResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -149,14 +149,14 @@ class DatabaseServer final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::myproject::CreateResponse>* AsyncCreateRaw(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::CreateResponse>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::myproject::CreateRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::ReadResponse>* AsyncReadRaw(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::ReadResponse>* PrepareAsyncReadRaw(::grpc::ClientContext* context, const ::myproject::ReadRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::UpdateResponse>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::UpdateResponse>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::myproject::UpdateRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::DeleteResponse>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::myproject::DeleteResponse>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::myproject::DeleteRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::CreateResponse>* AsyncCreateRaw(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::CreateResponse>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::rpc_server::CreateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::ReadResponse>* AsyncReadRaw(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::ReadResponse>* PrepareAsyncReadRaw(::grpc::ClientContext* context, const ::rpc_server::ReadRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdateResponse>* AsyncUpdateRaw(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdateResponse>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::rpc_server::UpdateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteResponse>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteResponse>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Create_;
     const ::grpc::internal::RpcMethod rpcmethod_Read_;
     const ::grpc::internal::RpcMethod rpcmethod_Update_;
@@ -168,13 +168,13 @@ class DatabaseServer final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::myproject::CreateRequest* request, ::myproject::CreateResponse* response);
+    virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::rpc_server::CreateRequest* request, ::rpc_server::CreateResponse* response);
     // 增加数据服务
-    virtual ::grpc::Status Read(::grpc::ServerContext* context, const ::myproject::ReadRequest* request, ::myproject::ReadResponse* response);
+    virtual ::grpc::Status Read(::grpc::ServerContext* context, const ::rpc_server::ReadRequest* request, ::rpc_server::ReadResponse* response);
     // 查询数据服务
-    virtual ::grpc::Status Update(::grpc::ServerContext* context, const ::myproject::UpdateRequest* request, ::myproject::UpdateResponse* response);
+    virtual ::grpc::Status Update(::grpc::ServerContext* context, const ::rpc_server::UpdateRequest* request, ::rpc_server::UpdateResponse* response);
     // 更新数据服务
-    virtual ::grpc::Status Delete(::grpc::ServerContext* context, const ::myproject::DeleteRequest* request, ::myproject::DeleteResponse* response);
+    virtual ::grpc::Status Delete(::grpc::ServerContext* context, const ::rpc_server::DeleteRequest* request, ::rpc_server::DeleteResponse* response);
     // 删除数据服务
   };
   template <class BaseClass>
@@ -189,11 +189,11 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::myproject::CreateRequest* /*request*/, ::myproject::CreateResponse* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::rpc_server::CreateRequest* /*request*/, ::rpc_server::CreateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestCreate(::grpc::ServerContext* context, ::myproject::CreateRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::CreateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestCreate(::grpc::ServerContext* context, ::rpc_server::CreateRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::CreateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -209,11 +209,11 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Read(::grpc::ServerContext* /*context*/, const ::myproject::ReadRequest* /*request*/, ::myproject::ReadResponse* /*response*/) override {
+    ::grpc::Status Read(::grpc::ServerContext* /*context*/, const ::rpc_server::ReadRequest* /*request*/, ::rpc_server::ReadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestRead(::grpc::ServerContext* context, ::myproject::ReadRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::ReadResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestRead(::grpc::ServerContext* context, ::rpc_server::ReadRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::ReadResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -229,11 +229,11 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::myproject::UpdateRequest* /*request*/, ::myproject::UpdateResponse* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdateRequest* /*request*/, ::rpc_server::UpdateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpdate(::grpc::ServerContext* context, ::myproject::UpdateRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::UpdateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestUpdate(::grpc::ServerContext* context, ::rpc_server::UpdateRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::UpdateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -249,11 +249,11 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::myproject::DeleteRequest* /*request*/, ::myproject::DeleteResponse* /*response*/) override {
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteRequest* /*request*/, ::rpc_server::DeleteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestDelete(::grpc::ServerContext* context, ::myproject::DeleteRequest* request, ::grpc::ServerAsyncResponseWriter< ::myproject::DeleteResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestDelete(::grpc::ServerContext* context, ::rpc_server::DeleteRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::DeleteResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -265,25 +265,25 @@ class DatabaseServer final {
    public:
     WithCallbackMethod_Create() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::myproject::CreateRequest, ::myproject::CreateResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::CreateRequest, ::rpc_server::CreateResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::myproject::CreateRequest* request, ::myproject::CreateResponse* response) { return this->Create(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::CreateRequest* request, ::rpc_server::CreateResponse* response) { return this->Create(context, request, response); }));}
     void SetMessageAllocatorFor_Create(
-        ::grpc::MessageAllocator< ::myproject::CreateRequest, ::myproject::CreateResponse>* allocator) {
+        ::grpc::MessageAllocator< ::rpc_server::CreateRequest, ::rpc_server::CreateResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::CreateRequest, ::myproject::CreateResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::CreateRequest, ::rpc_server::CreateResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Create() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::myproject::CreateRequest* /*request*/, ::myproject::CreateResponse* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::rpc_server::CreateRequest* /*request*/, ::rpc_server::CreateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Create(
-      ::grpc::CallbackServerContext* /*context*/, const ::myproject::CreateRequest* /*request*/, ::myproject::CreateResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::CreateRequest* /*request*/, ::rpc_server::CreateResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Read : public BaseClass {
@@ -292,25 +292,25 @@ class DatabaseServer final {
    public:
     WithCallbackMethod_Read() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::myproject::ReadRequest, ::myproject::ReadResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::ReadRequest, ::rpc_server::ReadResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::myproject::ReadRequest* request, ::myproject::ReadResponse* response) { return this->Read(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::ReadRequest* request, ::rpc_server::ReadResponse* response) { return this->Read(context, request, response); }));}
     void SetMessageAllocatorFor_Read(
-        ::grpc::MessageAllocator< ::myproject::ReadRequest, ::myproject::ReadResponse>* allocator) {
+        ::grpc::MessageAllocator< ::rpc_server::ReadRequest, ::rpc_server::ReadResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::ReadRequest, ::myproject::ReadResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::ReadRequest, ::rpc_server::ReadResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Read() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Read(::grpc::ServerContext* /*context*/, const ::myproject::ReadRequest* /*request*/, ::myproject::ReadResponse* /*response*/) override {
+    ::grpc::Status Read(::grpc::ServerContext* /*context*/, const ::rpc_server::ReadRequest* /*request*/, ::rpc_server::ReadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Read(
-      ::grpc::CallbackServerContext* /*context*/, const ::myproject::ReadRequest* /*request*/, ::myproject::ReadResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::ReadRequest* /*request*/, ::rpc_server::ReadResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Update : public BaseClass {
@@ -319,25 +319,25 @@ class DatabaseServer final {
    public:
     WithCallbackMethod_Update() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::myproject::UpdateRequest, ::myproject::UpdateResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::UpdateRequest, ::rpc_server::UpdateResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::myproject::UpdateRequest* request, ::myproject::UpdateResponse* response) { return this->Update(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::UpdateRequest* request, ::rpc_server::UpdateResponse* response) { return this->Update(context, request, response); }));}
     void SetMessageAllocatorFor_Update(
-        ::grpc::MessageAllocator< ::myproject::UpdateRequest, ::myproject::UpdateResponse>* allocator) {
+        ::grpc::MessageAllocator< ::rpc_server::UpdateRequest, ::rpc_server::UpdateResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::UpdateRequest, ::myproject::UpdateResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::UpdateRequest, ::rpc_server::UpdateResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Update() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::myproject::UpdateRequest* /*request*/, ::myproject::UpdateResponse* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdateRequest* /*request*/, ::rpc_server::UpdateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Update(
-      ::grpc::CallbackServerContext* /*context*/, const ::myproject::UpdateRequest* /*request*/, ::myproject::UpdateResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::UpdateRequest* /*request*/, ::rpc_server::UpdateResponse* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Delete : public BaseClass {
@@ -346,25 +346,25 @@ class DatabaseServer final {
    public:
     WithCallbackMethod_Delete() {
       ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::myproject::DeleteRequest, ::myproject::DeleteResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::DeleteRequest, ::rpc_server::DeleteResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::myproject::DeleteRequest* request, ::myproject::DeleteResponse* response) { return this->Delete(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::DeleteRequest* request, ::rpc_server::DeleteResponse* response) { return this->Delete(context, request, response); }));}
     void SetMessageAllocatorFor_Delete(
-        ::grpc::MessageAllocator< ::myproject::DeleteRequest, ::myproject::DeleteResponse>* allocator) {
+        ::grpc::MessageAllocator< ::rpc_server::DeleteRequest, ::rpc_server::DeleteResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::myproject::DeleteRequest, ::myproject::DeleteResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::DeleteRequest, ::rpc_server::DeleteResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Delete() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::myproject::DeleteRequest* /*request*/, ::myproject::DeleteResponse* /*response*/) override {
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteRequest* /*request*/, ::rpc_server::DeleteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Delete(
-      ::grpc::CallbackServerContext* /*context*/, const ::myproject::DeleteRequest* /*request*/, ::myproject::DeleteResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::DeleteRequest* /*request*/, ::rpc_server::DeleteResponse* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_Create<WithCallbackMethod_Read<WithCallbackMethod_Update<WithCallbackMethod_Delete<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -380,7 +380,7 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::myproject::CreateRequest* /*request*/, ::myproject::CreateResponse* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::rpc_server::CreateRequest* /*request*/, ::rpc_server::CreateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -397,7 +397,7 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Read(::grpc::ServerContext* /*context*/, const ::myproject::ReadRequest* /*request*/, ::myproject::ReadResponse* /*response*/) override {
+    ::grpc::Status Read(::grpc::ServerContext* /*context*/, const ::rpc_server::ReadRequest* /*request*/, ::rpc_server::ReadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -414,7 +414,7 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::myproject::UpdateRequest* /*request*/, ::myproject::UpdateResponse* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdateRequest* /*request*/, ::rpc_server::UpdateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -431,7 +431,7 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::myproject::DeleteRequest* /*request*/, ::myproject::DeleteResponse* /*response*/) override {
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteRequest* /*request*/, ::rpc_server::DeleteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -448,7 +448,7 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::myproject::CreateRequest* /*request*/, ::myproject::CreateResponse* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::rpc_server::CreateRequest* /*request*/, ::rpc_server::CreateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -468,7 +468,7 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Read(::grpc::ServerContext* /*context*/, const ::myproject::ReadRequest* /*request*/, ::myproject::ReadResponse* /*response*/) override {
+    ::grpc::Status Read(::grpc::ServerContext* /*context*/, const ::rpc_server::ReadRequest* /*request*/, ::rpc_server::ReadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -488,7 +488,7 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::myproject::UpdateRequest* /*request*/, ::myproject::UpdateResponse* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdateRequest* /*request*/, ::rpc_server::UpdateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -508,7 +508,7 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::myproject::DeleteRequest* /*request*/, ::myproject::DeleteResponse* /*response*/) override {
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteRequest* /*request*/, ::rpc_server::DeleteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -531,7 +531,7 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::myproject::CreateRequest* /*request*/, ::myproject::CreateResponse* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::rpc_server::CreateRequest* /*request*/, ::rpc_server::CreateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -553,7 +553,7 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Read(::grpc::ServerContext* /*context*/, const ::myproject::ReadRequest* /*request*/, ::myproject::ReadResponse* /*response*/) override {
+    ::grpc::Status Read(::grpc::ServerContext* /*context*/, const ::rpc_server::ReadRequest* /*request*/, ::rpc_server::ReadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -575,7 +575,7 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::myproject::UpdateRequest* /*request*/, ::myproject::UpdateResponse* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdateRequest* /*request*/, ::rpc_server::UpdateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -597,7 +597,7 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::myproject::DeleteRequest* /*request*/, ::myproject::DeleteResponse* /*response*/) override {
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteRequest* /*request*/, ::rpc_server::DeleteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -612,10 +612,10 @@ class DatabaseServer final {
     WithStreamedUnaryMethod_Create() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::myproject::CreateRequest, ::myproject::CreateResponse>(
+          ::rpc_server::CreateRequest, ::rpc_server::CreateResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::myproject::CreateRequest, ::myproject::CreateResponse>* streamer) {
+                     ::rpc_server::CreateRequest, ::rpc_server::CreateResponse>* streamer) {
                        return this->StreamedCreate(context,
                          streamer);
                   }));
@@ -624,12 +624,12 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::myproject::CreateRequest* /*request*/, ::myproject::CreateResponse* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::rpc_server::CreateRequest* /*request*/, ::rpc_server::CreateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedCreate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::CreateRequest,::myproject::CreateResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedCreate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::CreateRequest,::rpc_server::CreateResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Read : public BaseClass {
@@ -639,10 +639,10 @@ class DatabaseServer final {
     WithStreamedUnaryMethod_Read() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::myproject::ReadRequest, ::myproject::ReadResponse>(
+          ::rpc_server::ReadRequest, ::rpc_server::ReadResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::myproject::ReadRequest, ::myproject::ReadResponse>* streamer) {
+                     ::rpc_server::ReadRequest, ::rpc_server::ReadResponse>* streamer) {
                        return this->StreamedRead(context,
                          streamer);
                   }));
@@ -651,12 +651,12 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Read(::grpc::ServerContext* /*context*/, const ::myproject::ReadRequest* /*request*/, ::myproject::ReadResponse* /*response*/) override {
+    ::grpc::Status Read(::grpc::ServerContext* /*context*/, const ::rpc_server::ReadRequest* /*request*/, ::rpc_server::ReadResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedRead(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::ReadRequest,::myproject::ReadResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedRead(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::ReadRequest,::rpc_server::ReadResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Update : public BaseClass {
@@ -666,10 +666,10 @@ class DatabaseServer final {
     WithStreamedUnaryMethod_Update() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::myproject::UpdateRequest, ::myproject::UpdateResponse>(
+          ::rpc_server::UpdateRequest, ::rpc_server::UpdateResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::myproject::UpdateRequest, ::myproject::UpdateResponse>* streamer) {
+                     ::rpc_server::UpdateRequest, ::rpc_server::UpdateResponse>* streamer) {
                        return this->StreamedUpdate(context,
                          streamer);
                   }));
@@ -678,12 +678,12 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::myproject::UpdateRequest* /*request*/, ::myproject::UpdateResponse* /*response*/) override {
+    ::grpc::Status Update(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdateRequest* /*request*/, ::rpc_server::UpdateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUpdate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::UpdateRequest,::myproject::UpdateResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedUpdate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::UpdateRequest,::rpc_server::UpdateResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Delete : public BaseClass {
@@ -693,10 +693,10 @@ class DatabaseServer final {
     WithStreamedUnaryMethod_Delete() {
       ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::myproject::DeleteRequest, ::myproject::DeleteResponse>(
+          ::rpc_server::DeleteRequest, ::rpc_server::DeleteResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::myproject::DeleteRequest, ::myproject::DeleteResponse>* streamer) {
+                     ::rpc_server::DeleteRequest, ::rpc_server::DeleteResponse>* streamer) {
                        return this->StreamedDelete(context,
                          streamer);
                   }));
@@ -705,19 +705,19 @@ class DatabaseServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::myproject::DeleteRequest* /*request*/, ::myproject::DeleteResponse* /*response*/) override {
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteRequest* /*request*/, ::rpc_server::DeleteResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedDelete(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::myproject::DeleteRequest,::myproject::DeleteResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedDelete(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::DeleteRequest,::rpc_server::DeleteResponse>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Read<WithStreamedUnaryMethod_Update<WithStreamedUnaryMethod_Delete<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
   typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Read<WithStreamedUnaryMethod_Update<WithStreamedUnaryMethod_Delete<Service > > > > StreamedService;
 };
 
-}  // namespace myproject
+}  // namespace rpc_server
 
 
 #endif  // GRPC_server_5fdata_2eproto__INCLUDED

@@ -1,9 +1,9 @@
 #include "data_server.h"
 
 DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_):
-    server_type(myproject::ServerType::DATA),    // 服务器类型
+    server_type(rpc_server::ServerType::DATA),    // 服务器类型
     logger_manager(logger_manager_),    // 日志管理器
-    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050",grpc::InsecureChannelCredentials()))) // 中心服务器存根
+    central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050",grpc::InsecureChannelCredentials()))) // 中心服务器存根
 {
     lua_State* L = luaL_newstate();  // 创建lua虚拟机
     luaL_openlibs(L);   // 打开lua标准库
@@ -97,12 +97,12 @@ void DatabaseServerImpl::Worker_thread()
 void DatabaseServerImpl::register_server()
 {
     // 创建请求
-    myproject::RegisterServerRequest request;
+    rpc_server::RegisterServerRequest request;
     request.set_server_type(this->server_type);
     request.set_address(this->server_address);
     request.set_port(this->server_port);
     // 创建响应
-    myproject::RegisterServerResponse response;
+    rpc_server::RegisterServerResponse response;
 
     // 客户端
     grpc::ClientContext context;
@@ -123,13 +123,13 @@ void DatabaseServerImpl::register_server()
 void DatabaseServerImpl::unregister_server()
 {
     // 请求
-    myproject::UnregisterServerRequest request;
-    request.set_server_type(myproject::ServerType::DATA);
+    rpc_server::UnregisterServerRequest request;
+    request.set_server_type(rpc_server::ServerType::DATA);
     request.set_address("localhost");
     request.set_port("50052");
 
     // 响应
-    myproject::UnregisterServerResponse response;
+    rpc_server::UnregisterServerResponse response;
 
     // 客户端
     grpc::ClientContext context;
@@ -154,11 +154,11 @@ void DatabaseServerImpl::Send_heartbeat()
     {
         std::this_thread::sleep_for(std::chrono::seconds(10)); // 每10秒发送一次心跳包
 
-        myproject::HeartbeatRequest request;
-        myproject::HeartbeatResponse response;
+        rpc_server::HeartbeatRequest request;
+        rpc_server::HeartbeatResponse response;
         grpc::ClientContext context;
 
-        request.set_server_type(myproject::ServerType::DATA);
+        request.set_server_type(rpc_server::ServerType::DATA);
         request.set_address("127.0.0.1"); // 设置服务器ip
         request.set_port("50052"); // 设置服务器端口
 
@@ -177,7 +177,7 @@ void DatabaseServerImpl::Send_heartbeat()
 
 /**************************************** grpc服务接口定义 **************************************************************************/
 // 添加
-grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const myproject::CreateRequest* request,  myproject::CreateResponse* response)
+grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const rpc_server::CreateRequest* request, rpc_server::CreateResponse* response)
 {
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
@@ -190,11 +190,11 @@ grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const mypr
 }
 
 // 查询
-grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const myproject::ReadRequest* request, myproject::ReadResponse* response)
+grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const rpc_server::ReadRequest* request, rpc_server::ReadResponse* response)
 {
     // 深拷贝请求和响应对象
-    auto request_copy = std::make_shared<myproject::ReadRequest>(*request);
-    auto response_copy = std::make_shared<myproject::ReadResponse>();
+    auto request_copy = std::make_shared<rpc_server::ReadRequest>(*request);
+    auto response_copy = std::make_shared<rpc_server::ReadResponse>();
     // 创建 promise 和 future
     std::promise<void> task_promise;
     std::future<void> task_future = task_promise.get_future();
@@ -219,7 +219,7 @@ grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const myproj
 }
 
 // 更新
-grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const myproject::UpdateRequest* request, myproject::UpdateResponse* response)
+grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const rpc_server::UpdateRequest* request, rpc_server::UpdateResponse* response)
 {
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
@@ -232,7 +232,7 @@ grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const mypr
 }
 
 // 删除
-grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const myproject::DeleteRequest* request, myproject::DeleteResponse* response)
+grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const rpc_server::DeleteRequest* request, rpc_server::DeleteResponse* response)
 {
     {
         std::lock_guard<std::mutex> lock(queue_mutex);  // 加锁
@@ -247,7 +247,7 @@ grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const mypr
 /**************************************** grpc接口工具函数 **************************************************************************/
 // 处理数据库操作的函数
 // 添加
-void DatabaseServerImpl::Handle_create(const myproject::CreateRequest* request, myproject::CreateResponse* response)
+void DatabaseServerImpl::Handle_create(const rpc_server::CreateRequest* request, rpc_server::CreateResponse* response)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
@@ -267,7 +267,7 @@ void DatabaseServerImpl::Handle_create(const myproject::CreateRequest* request, 
 }
 
 // 查询
-void DatabaseServerImpl::Handle_read(const myproject::ReadRequest* request, myproject::ReadResponse* response)
+void DatabaseServerImpl::Handle_read(const rpc_server::ReadRequest* request, rpc_server::ReadResponse* response)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
@@ -297,7 +297,7 @@ void DatabaseServerImpl::Handle_read(const myproject::ReadRequest* request, mypr
     // 设置响应：查询结果
     for(mysqlx::Row row : result)
     {
-        myproject::Result* response_result = response->add_results();
+        rpc_server::Result* response_result = response->add_results();
         for(size_t i = 0; i < row.colCount(); ++i)
         {
             std::string column_name = result.getColumn(i).getColumnName();
@@ -356,7 +356,7 @@ void DatabaseServerImpl::Handle_read(const myproject::ReadRequest* request, mypr
 }
 
 // 更新
-void DatabaseServerImpl::Handle_update(const myproject::UpdateRequest* request, myproject::UpdateResponse* response)
+void DatabaseServerImpl::Handle_update(const rpc_server::UpdateRequest* request, rpc_server::UpdateResponse* response)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
@@ -376,7 +376,7 @@ void DatabaseServerImpl::Handle_update(const myproject::UpdateRequest* request, 
 }
 
 // 删除
-void DatabaseServerImpl::Handle_delete(const myproject::DeleteRequest* request, myproject::DeleteResponse* response)
+void DatabaseServerImpl::Handle_delete(const rpc_server::DeleteRequest* request, rpc_server::DeleteResponse* response)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();

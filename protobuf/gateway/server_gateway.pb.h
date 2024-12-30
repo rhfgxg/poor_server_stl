@@ -56,20 +56,20 @@ struct TableStruct_server_5fgateway_2eproto {
 };
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_server_5fgateway_2eproto;
-namespace myproject {
+namespace rpc_server {
 class ForwardRequest;
 struct ForwardRequestDefaultTypeInternal;
 extern ForwardRequestDefaultTypeInternal _ForwardRequest_default_instance_;
 class ForwardResponse;
 struct ForwardResponseDefaultTypeInternal;
 extern ForwardResponseDefaultTypeInternal _ForwardResponse_default_instance_;
-}  // namespace myproject
+}  // namespace rpc_server
 namespace google {
 namespace protobuf {
 }  // namespace protobuf
 }  // namespace google
 
-namespace myproject {
+namespace rpc_server {
 enum ServiceType : int {
   REQ_LOGIN = 0,
   RES_LOGIN = 1,
@@ -110,7 +110,7 @@ inline bool ServiceType_Parse(absl::string_view name, ServiceType* value) {
 // -------------------------------------------------------------------
 
 class ForwardResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.ForwardResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ForwardResponse) */ {
  public:
   inline ForwardResponse() : ForwardResponse(nullptr) {}
   ~ForwardResponse() override;
@@ -224,7 +224,7 @@ class ForwardResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.ForwardResponse";
+    return "rpc_server.ForwardResponse";
   }
   protected:
   explicit ForwardResponse(::google::protobuf::Arena* arena);
@@ -270,7 +270,7 @@ class ForwardResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.ForwardResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.ForwardResponse)
  private:
   class _Internal;
 
@@ -303,7 +303,7 @@ class ForwardResponse final :
 };// -------------------------------------------------------------------
 
 class ForwardRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.ForwardRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ForwardRequest) */ {
  public:
   inline ForwardRequest() : ForwardRequest(nullptr) {}
   ~ForwardRequest() override;
@@ -417,7 +417,7 @@ class ForwardRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.ForwardRequest";
+    return "rpc_server.ForwardRequest";
   }
   protected:
   explicit ForwardRequest(::google::protobuf::Arena* arena);
@@ -453,17 +453,17 @@ class ForwardRequest final :
   std::string* _internal_mutable_payload();
 
   public:
-  // .myproject.ServiceType service_type = 1;
+  // .rpc_server.ServiceType service_type = 1;
   void clear_service_type() ;
-  ::myproject::ServiceType service_type() const;
-  void set_service_type(::myproject::ServiceType value);
+  ::rpc_server::ServiceType service_type() const;
+  void set_service_type(::rpc_server::ServiceType value);
 
   private:
-  ::myproject::ServiceType _internal_service_type() const;
-  void _internal_set_service_type(::myproject::ServiceType value);
+  ::rpc_server::ServiceType _internal_service_type() const;
+  void _internal_set_service_type(::rpc_server::ServiceType value);
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.ForwardRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.ForwardRequest)
  private:
   class _Internal;
 
@@ -511,24 +511,24 @@ class ForwardRequest final :
 
 // ForwardRequest
 
-// .myproject.ServiceType service_type = 1;
+// .rpc_server.ServiceType service_type = 1;
 inline void ForwardRequest::clear_service_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.service_type_ = 0;
 }
-inline ::myproject::ServiceType ForwardRequest::service_type() const {
-  // @@protoc_insertion_point(field_get:myproject.ForwardRequest.service_type)
+inline ::rpc_server::ServiceType ForwardRequest::service_type() const {
+  // @@protoc_insertion_point(field_get:rpc_server.ForwardRequest.service_type)
   return _internal_service_type();
 }
-inline void ForwardRequest::set_service_type(::myproject::ServiceType value) {
+inline void ForwardRequest::set_service_type(::rpc_server::ServiceType value) {
   _internal_set_service_type(value);
-  // @@protoc_insertion_point(field_set:myproject.ForwardRequest.service_type)
+  // @@protoc_insertion_point(field_set:rpc_server.ForwardRequest.service_type)
 }
-inline ::myproject::ServiceType ForwardRequest::_internal_service_type() const {
+inline ::rpc_server::ServiceType ForwardRequest::_internal_service_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::myproject::ServiceType>(_impl_.service_type_);
+  return static_cast<::rpc_server::ServiceType>(_impl_.service_type_);
 }
-inline void ForwardRequest::_internal_set_service_type(::myproject::ServiceType value) {
+inline void ForwardRequest::_internal_set_service_type(::rpc_server::ServiceType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.service_type_ = value;
@@ -541,7 +541,7 @@ inline void ForwardRequest::clear_payload() {
 }
 inline const std::string& ForwardRequest::payload() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.ForwardRequest.payload)
+  // @@protoc_insertion_point(field_get:rpc_server.ForwardRequest.payload)
   return _internal_payload();
 }
 template <typename Arg_, typename... Args_>
@@ -550,11 +550,11 @@ inline PROTOBUF_ALWAYS_INLINE void ForwardRequest::set_payload(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.payload_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.ForwardRequest.payload)
+  // @@protoc_insertion_point(field_set:rpc_server.ForwardRequest.payload)
 }
 inline std::string* ForwardRequest::mutable_payload() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_payload();
-  // @@protoc_insertion_point(field_mutable:myproject.ForwardRequest.payload)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ForwardRequest.payload)
   return _s;
 }
 inline const std::string& ForwardRequest::_internal_payload() const {
@@ -573,7 +573,7 @@ inline std::string* ForwardRequest::_internal_mutable_payload() {
 }
 inline std::string* ForwardRequest::release_payload() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.ForwardRequest.payload)
+  // @@protoc_insertion_point(field_release:rpc_server.ForwardRequest.payload)
   return _impl_.payload_.Release();
 }
 inline void ForwardRequest::set_allocated_payload(std::string* value) {
@@ -584,7 +584,7 @@ inline void ForwardRequest::set_allocated_payload(std::string* value) {
           _impl_.payload_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.ForwardRequest.payload)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.ForwardRequest.payload)
 }
 
 // -------------------------------------------------------------------
@@ -597,12 +597,12 @@ inline void ForwardResponse::clear_success() {
   _impl_.success_ = false;
 }
 inline bool ForwardResponse::success() const {
-  // @@protoc_insertion_point(field_get:myproject.ForwardResponse.success)
+  // @@protoc_insertion_point(field_get:rpc_server.ForwardResponse.success)
   return _internal_success();
 }
 inline void ForwardResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:myproject.ForwardResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.ForwardResponse.success)
 }
 inline bool ForwardResponse::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -621,7 +621,7 @@ inline void ForwardResponse::clear_response() {
 }
 inline const std::string& ForwardResponse::response() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.ForwardResponse.response)
+  // @@protoc_insertion_point(field_get:rpc_server.ForwardResponse.response)
   return _internal_response();
 }
 template <typename Arg_, typename... Args_>
@@ -630,11 +630,11 @@ inline PROTOBUF_ALWAYS_INLINE void ForwardResponse::set_response(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.response_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.ForwardResponse.response)
+  // @@protoc_insertion_point(field_set:rpc_server.ForwardResponse.response)
 }
 inline std::string* ForwardResponse::mutable_response() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_response();
-  // @@protoc_insertion_point(field_mutable:myproject.ForwardResponse.response)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ForwardResponse.response)
   return _s;
 }
 inline const std::string& ForwardResponse::_internal_response() const {
@@ -653,7 +653,7 @@ inline std::string* ForwardResponse::_internal_mutable_response() {
 }
 inline std::string* ForwardResponse::release_response() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.ForwardResponse.response)
+  // @@protoc_insertion_point(field_release:rpc_server.ForwardResponse.response)
   return _impl_.response_.Release();
 }
 inline void ForwardResponse::set_allocated_response(std::string* value) {
@@ -664,7 +664,7 @@ inline void ForwardResponse::set_allocated_response(std::string* value) {
           _impl_.response_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.ForwardResponse.response)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.ForwardResponse.response)
 }
 
 #ifdef __GNUC__
@@ -672,17 +672,17 @@ inline void ForwardResponse::set_allocated_response(std::string* value) {
 #endif  // __GNUC__
 
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace myproject
+}  // namespace rpc_server
 
 
 namespace google {
 namespace protobuf {
 
 template <>
-struct is_proto_enum<::myproject::ServiceType> : std::true_type {};
+struct is_proto_enum<::rpc_server::ServiceType> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::myproject::ServiceType>() {
-  return ::myproject::ServiceType_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::rpc_server::ServiceType>() {
+  return ::rpc_server::ServiceType_descriptor();
 }
 
 }  // namespace protobuf

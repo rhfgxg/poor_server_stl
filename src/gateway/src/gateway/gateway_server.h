@@ -17,7 +17,7 @@
 #include <lua.hpp>
 
 // 网关服务器对外接口
-class GatewayServerImpl final: public myproject::GatewayServer::Service
+class GatewayServerImpl final: public rpc_server::GatewayServer::Service
 {
 public:
     GatewayServerImpl(LoggerManager& logger_manager_);
@@ -30,7 +30,7 @@ public:
     void stop_thread_pool();    // 停止线程池
 
     // 转发服务请求
-    grpc::Status RequestForward(grpc::ServerContext* context, const myproject::ForwardRequest* request, myproject::ForwardResponse* response);
+    grpc::Status RequestForward(grpc::ServerContext* context, const rpc_server::ForwardRequest* request, rpc_server::ForwardResponse* response);
 
 private:
     void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
@@ -40,7 +40,7 @@ private:
 
 // 处理转发请求
     // 登录服务器：登录服务
-    grpc::Status Forward_to_login_service(const std::string& payload, myproject::ForwardResponse* response);
+    grpc::Status Forward_to_login_service(const std::string& payload,rpc_server::ForwardResponse* response);
 
     // 定时任务：
     void Update_connection_pool();  // 更新连接池
@@ -49,11 +49,11 @@ private:
 private:
     std::string server_address; // 服务器地址
     std::string server_port;    // 服务器端口
-    myproject::ServerType server_type;  // 服务器类型
+    rpc_server::ServerType server_type;  // 服务器类型
 
     LoggerManager& logger_manager;  // 日志管理器
 
-    std::unique_ptr<myproject::CentralServer::Stub> central_stub;  // 中心服务器的服务存根
+    std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;  // 中心服务器的服务存根
     ConnectionPool login_connection_pool;   // 登录服务器连接池
 
     std::vector<std::thread> thread_pool;   // 线程池

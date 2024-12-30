@@ -1,7 +1,7 @@
 #include "central_server.h"
 
 CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_):
-    server_type(myproject::ServerType::CENTRAL),    // 服务器类型
+    server_type(rpc_server::ServerType::CENTRAL),    // 服务器类型
     logger_manager(logger_manager_),    // 日志管理器
     central_connection_pool(10),    // 初始化中心服务器连接池大小为 10
     data_connection_pool(10),
@@ -20,7 +20,7 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_):
     Read_server_config();
 
     // 将本服务器加入中心数据库链接池
-    central_connection_pool.add_server(myproject::ServerType::CENTRAL, this->server_address,this->server_port);
+    central_connection_pool.add_server(rpc_server::ServerType::CENTRAL, this->server_address,this->server_port);
     logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}", this->server_address, this->server_port);
 
     // 启动定时任务，定时检测心跳包
@@ -96,13 +96,13 @@ void CentralServerImpl::Worker_thread()
 
 /**************************************** grpc服务接口 ************************************************/
 // 服务器注册
-grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, const myproject::RegisterServerRequest* request, myproject::RegisterServerResponse* response)
+grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, const rpc_server::RegisterServerRequest* request, rpc_server::RegisterServerResponse* response)
 {/* 函数解释
   * 参数列表：发起请求的客户端信息context，服务请求request，服务响应response
   * 返回值：服务执行状态（成功，异常）
   * 请求与响应定义在 服务器对应的 proto文件中
   */
-    myproject::ServerType server_type = request->server_type(); // 服务器类型
+    rpc_server::ServerType server_type = request->server_type(); // 服务器类型
     std::string address = request->address();   // 服务器地址
     std::string port = request->port(); // 服务器端口
 
@@ -112,34 +112,34 @@ grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, con
             // 根据服务器类型，将服务器加入连接池
             switch(server_type)
             {
-            case myproject::ServerType::CENTRAL:    // 中心服务器
+            case rpc_server::ServerType::CENTRAL:    // 中心服务器
             {
                 // 将链接加入连接池并记录日志
-                data_connection_pool.add_server(myproject::ServerType::CENTRAL, address, port);
+                data_connection_pool.add_server(rpc_server::ServerType::CENTRAL, address, port);
                 logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}", address, port);
                 break;
             }
-            case myproject::ServerType::DATA:   // 数据库服务器
+            case rpc_server::ServerType::DATA:   // 数据库服务器
             {
-                data_connection_pool.add_server(myproject::ServerType::DATA, address, port);
+                data_connection_pool.add_server(rpc_server::ServerType::DATA, address, port);
                 logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully registered a server: {} {}", address, port);
                 break;
             }
-            case myproject::ServerType::GATEWAY:    // 网关服务器
+            case rpc_server::ServerType::GATEWAY:    // 网关服务器
             {
-                gateway_connection_pool.add_server(myproject::ServerType::GATEWAY, address, port);
+                gateway_connection_pool.add_server(rpc_server::ServerType::GATEWAY, address, port);
                 logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully registered a server: {} {}", address, port);
                 break;
             }
-            case myproject::ServerType::LOGIC:      // 逻辑服务器
+            case rpc_server::ServerType::LOGIC:      // 逻辑服务器
             {
-                login_connection_pool.add_server(myproject::ServerType::LOGIC, address, port);
+                login_connection_pool.add_server(rpc_server::ServerType::LOGIC, address, port);
                 logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Logic_connection_pool: successfully registered a server: {} {}", address, port);
                 break;
             }
-            case myproject::ServerType::LOGIN:      // 登录服务器
+            case rpc_server::ServerType::LOGIN:      // 登录服务器
             {
-                login_connection_pool.add_server(myproject::ServerType::LOGIN, address, port);
+                login_connection_pool.add_server(rpc_server::ServerType::LOGIN, address, port);
                 logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully registered a server: {} {}", address, port);
                 break;
             }
@@ -154,9 +154,9 @@ grpc::Status CentralServerImpl::RegisterServer(grpc::ServerContext* context, con
 }
 
 // 服务器断开
-grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, const myproject::UnregisterServerRequest* request, myproject::UnregisterServerResponse* response)
+grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, const rpc_server::UnregisterServerRequest* request, rpc_server::UnregisterServerResponse* response)
 {
-    myproject::ServerType server_type = request->server_type(); // 服务器类型  
+    rpc_server::ServerType server_type = request->server_type(); // 服务器类型  
     std::string address = request->address();   // 服务器地址
     std::string port = request->port(); // 服务器端口
 
@@ -175,36 +175,36 @@ grpc::Status CentralServerImpl::UnregisterServer(grpc::ServerContext* context, c
 }
 
 // 获取连接池中所有链接
-grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, const myproject::ConnectPoorRequest* request, myproject::ConnectPoorResponse* response)
+grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, const rpc_server::ConnectPoorRequest* request, rpc_server::ConnectPoorResponse* response)
 {
-    myproject::ServerType server_type = request->server_type(); // 服务器类型  
+    rpc_server::ServerType server_type = request->server_type(); // 服务器类型  
 
-    std::unordered_map<myproject::ServerType, std::vector<std::pair<std::string, std::string>>> connections;
+    std::unordered_map<rpc_server::ServerType, std::vector<std::pair<std::string, std::string>>> connections;
 
     switch(server_type)
     {
-    case myproject::CENTRAL:    // 中心服务器
+    case rpc_server::CENTRAL:    // 中心服务器
     {
         // 获取中央服务器连接池信息
         connections = central_connection_pool.get_all_connections();
         break;
     }
-    case myproject::DATA:       // 数据库服务器
+    case rpc_server::DATA:       // 数据库服务器
     {
         connections = data_connection_pool.get_all_connections();
         break;
     }
-    case myproject::GATEWAY:    // 网关服务器
+    case rpc_server::GATEWAY:    // 网关服务器
     {
         connections = gateway_connection_pool.get_all_connections();
         break;
     }
-    case myproject::LOGIC:      // 逻辑服务器    
+    case rpc_server::LOGIC:      // 逻辑服务器    
     {
         connections = logic_connection_pool.get_all_connections();
         break;
     }
-    case myproject::LOGIN:      // 登录服务器    
+    case rpc_server::LOGIN:      // 登录服务器    
     {
         connections = login_connection_pool.get_all_connections();
         break;
@@ -228,7 +228,7 @@ grpc::Status CentralServerImpl::GetConnectPoor(grpc::ServerContext* context, con
 }
 
 // 接收心跳包
-grpc::Status CentralServerImpl::Heartbeat(grpc::ServerContext* context, const myproject::HeartbeatRequest* request, myproject::HeartbeatResponse* response)
+grpc::Status CentralServerImpl::Heartbeat(grpc::ServerContext* context, const rpc_server::HeartbeatRequest* request, rpc_server::HeartbeatResponse* response)
 {
     std::lock_guard<std::mutex> lock(heartbeat_mutex);  // 加锁
     heartbeat_records[request->address()] = {request->server_type(), request->address(), request->port(), std::chrono::steady_clock::now()}; // 记录心跳时间
@@ -239,39 +239,39 @@ grpc::Status CentralServerImpl::Heartbeat(grpc::ServerContext* context, const my
 
 /************************************* grpc服务接口工具函数 **********************************************/
 // 释放连接池中服务器连接
-void CentralServerImpl::Release_server_connection(myproject::ServerType server_type, const std::string& address,const std::string& port)
+void CentralServerImpl::Release_server_connection(rpc_server::ServerType server_type, const std::string& address,const std::string& port)
 {
     // 根据服务器类型，从连接池中删除服务器
     switch(server_type)
     {
-    case myproject::ServerType::CENTRAL:    // 中心服务器
+    case rpc_server::ServerType::CENTRAL:    // 中心服务器
     {
         // 连接池中移除链接，并记录日志
-        login_connection_pool.remove_server(myproject::ServerType::CENTRAL, address, port);
+        login_connection_pool.remove_server(rpc_server::ServerType::CENTRAL, address, port);
         logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Central_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
-    case myproject::ServerType::DATA:   // 数据库服务器
+    case rpc_server::ServerType::DATA:   // 数据库服务器
     {
-        data_connection_pool.remove_server(myproject::ServerType::DATA, address, port);
+        data_connection_pool.remove_server(rpc_server::ServerType::DATA, address, port);
         logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Data_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
-    case myproject::ServerType::GATEWAY:    // 网关服务器
+    case rpc_server::ServerType::GATEWAY:    // 网关服务器
     {
-        gateway_connection_pool.remove_server(myproject::ServerType::GATEWAY, address, port);
+        gateway_connection_pool.remove_server(rpc_server::ServerType::GATEWAY, address, port);
         logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Gateway_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
-    case myproject::ServerType::LOGIC:      // 逻辑服务器
+    case rpc_server::ServerType::LOGIC:      // 逻辑服务器
     {
-        login_connection_pool.remove_server(myproject::ServerType::LOGIC, address, port);
+        login_connection_pool.remove_server(rpc_server::ServerType::LOGIC, address, port);
         logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Logic_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
-    case myproject::ServerType::LOGIN:      // 登录服务器
+    case rpc_server::ServerType::LOGIN:      // 登录服务器
     {
-        login_connection_pool.remove_server(myproject::ServerType::LOGIN, address, port);
+        login_connection_pool.remove_server(rpc_server::ServerType::LOGIN, address, port);
         logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Login_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }

@@ -21,14 +21,14 @@
 // 心跳记录
 struct HeartbeatRecord
 {
-    myproject::ServerType server_type = myproject::ServerType::UNKNOWN;  // 服务器类型
+    rpc_server::ServerType server_type = rpc_server::ServerType::UNKNOWN;  // 服务器类型
     std::string address;    // 服务器地址
     std::string port;   // 服务器端口
     std::chrono::steady_clock::time_point last_heartbeat;   // 最后一次心跳时间
 };
 
 // 中心服务器实现类
-class CentralServerImpl final: public myproject::CentralServer::Service
+class CentralServerImpl final: public rpc_server::CentralServer::Service
 {
 public:
     CentralServerImpl(LoggerManager& logger_manager_);  
@@ -36,13 +36,13 @@ public:
 
 // grpc服务接口
     // 服务器注册
-    grpc::Status RegisterServer(grpc::ServerContext* context, const myproject::RegisterServerRequest* request, myproject::RegisterServerResponse* response);
+    grpc::Status RegisterServer(grpc::ServerContext* context, const rpc_server::RegisterServerRequest* request, rpc_server::RegisterServerResponse* response);
     // 服务器断开
-    grpc::Status UnregisterServer(grpc::ServerContext* context, const myproject::UnregisterServerRequest* request, myproject::UnregisterServerResponse* response);
+    grpc::Status UnregisterServer(grpc::ServerContext* context, const rpc_server::UnregisterServerRequest* request, rpc_server::UnregisterServerResponse* response);
     // 获取连接池中所有链接
-    grpc::Status GetConnectPoor(grpc::ServerContext* context, const myproject::ConnectPoorRequest* request, myproject::ConnectPoorResponse* response);
+    grpc::Status GetConnectPoor(grpc::ServerContext* context, const rpc_server::ConnectPoorRequest* request, rpc_server::ConnectPoorResponse* response);
     // 接收心跳包
-    grpc::Status Heartbeat(grpc::ServerContext* context, const myproject::HeartbeatRequest* request, myproject::HeartbeatResponse* response);
+    grpc::Status Heartbeat(grpc::ServerContext* context, const rpc_server::HeartbeatRequest* request, rpc_server::HeartbeatResponse* response);
 
 // 线程池
     void start_thread_pool(int num_threads);    // 启动线程池
@@ -58,12 +58,12 @@ private:    // 私有函数
     void Worker_thread();   // 线程池工作函数
 
     // 释放连接池中服务器连接
-    void Release_server_connection(myproject::ServerType server_type,const std::string& address,const std::string& port);
+    void Release_server_connection(rpc_server::ServerType server_type,const std::string& address,const std::string& port);
 
 private:    // 私有成员
     std::string server_address; // 服务器地址
     std::string server_port;    // 服务器端口
-    myproject::ServerType server_type;  // 服务器类型
+    rpc_server::ServerType server_type;  // 服务器类型
 
     LoggerManager& logger_manager;  // 日志管理器
     

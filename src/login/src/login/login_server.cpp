@@ -2,9 +2,9 @@
 #include <future>
 
 LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_):
-    server_type(myproject::ServerType::LOGIN),    // 服务器类型
+    server_type(rpc_server::ServerType::LOGIN),    // 服务器类型
     logger_manager(logger_manager_),	// 日志管理器
-    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 链接中心服务器
+    central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 链接中心服务器
 	db_connection_pool(10) // 初始化数据库服务器连接池，设置连接池大小为10
 {
     Read_server_config();   // 读取配置文件并初始化服务器地址和端口
@@ -91,13 +91,13 @@ void LoginServerImpl::Worker_thread()
 void LoginServerImpl::register_server() 
 {
     // 请求
-    myproject::RegisterServerRequest request;
+    rpc_server::RegisterServerRequest request;
     request.set_server_type(this->server_type);
     request.set_address(this->server_address);
     request.set_port(this->server_port);
 
     // 响应
-    myproject::RegisterServerResponse response;
+    rpc_server::RegisterServerResponse response;
 
     // 客户端
     grpc::ClientContext context;
@@ -119,13 +119,13 @@ void LoginServerImpl::register_server()
 void LoginServerImpl::unregister_server() 
 {
     // 请求
-    myproject::UnregisterServerRequest request;
-    request.set_server_type(myproject::ServerType::LOGIN);
+    rpc_server::UnregisterServerRequest request;
+    request.set_server_type(rpc_server::ServerType::LOGIN);
     request.set_address("localhost");
     request.set_port("50053");
 
     // 响应
-    myproject::UnregisterServerResponse response;
+    rpc_server::UnregisterServerResponse response;
 
     // 客户端
     grpc::ClientContext context;
@@ -148,10 +148,10 @@ void LoginServerImpl::Init_connection_pool()
     // 客户端
     grpc::ClientContext context;
     // 请求
-    myproject::ConnectPoorRequest request;
-    request.set_server_type(myproject::ServerType::DATA);
+    rpc_server::ConnectPoorRequest request;
+    request.set_server_type(rpc_server::ServerType::DATA);
     // 响应
-    myproject::ConnectPoorResponse response;
+    rpc_server::ConnectPoorResponse response;
 
     grpc::Status status = central_stub->GetConnectPoor(&context, request, &response);
 
@@ -160,7 +160,7 @@ void LoginServerImpl::Init_connection_pool()
         // 更新登录服务器连接池
         for (const auto& server_info : response.connect_info())
         {
-            db_connection_pool.add_server(myproject::ServerType::DATA, server_info.address(), std::to_string(server_info.port()));
+            db_connection_pool.add_server(rpc_server::ServerType::DATA, server_info.address(), std::to_string(server_info.port()));
         }
         logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Connection pool updated successfully");
     }
@@ -188,11 +188,11 @@ void LoginServerImpl::Send_heartbeat()
     {
         std::this_thread::sleep_for(std::chrono::seconds(10)); // 每10秒发送一次心跳包
 
-        myproject::HeartbeatRequest request;
-        myproject::HeartbeatResponse response;
+        rpc_server::HeartbeatRequest request;
+        rpc_server::HeartbeatResponse response;
         grpc::ClientContext context;
 
-        request.set_server_type(myproject::ServerType::LOGIN);
+        request.set_server_type(rpc_server::ServerType::LOGIN);
         request.set_address("127.0.0.1"); // 设置服务器ip
         request.set_port("50053"); // 设置服务器端口
 
@@ -211,11 +211,11 @@ void LoginServerImpl::Send_heartbeat()
 
 /************************************ gRPC服务接口实现 ******************************************************/
 // 登录服务接口
-grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const myproject::LoginRequest* request, myproject::LoginResponse* response)
+grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const rpc_server::LoginRequest* request, rpc_server::LoginResponse* response)
 {
     // 深拷贝请求和响应对象
-    auto request_copy = std::make_shared<myproject::LoginRequest>(*request);
-    auto response_copy = std::make_shared<myproject::LoginResponse>();
+    auto request_copy = std::make_shared<rpc_server::LoginRequest>(*request);
+    auto response_copy = std::make_shared<rpc_server::LoginResponse>();
     // 创建 promise 和 future
     std::promise<void> task_promise;
     std::future<void> task_future = task_promise.get_future();
@@ -259,7 +259,7 @@ grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const myprojec
 }
 
 // 注册服务接口
-grpc::Status LoginServerImpl::Register(grpc::ServerContext* context, const myproject::RegisterRequest* request, myproject::RegisterResponse* response)
+grpc::Status LoginServerImpl::Register(grpc::ServerContext* context, const rpc_server::RegisterRequest* request, rpc_server::RegisterResponse* response)
 {
 
     // 返回gRPC状态
@@ -267,7 +267,7 @@ grpc::Status LoginServerImpl::Register(grpc::ServerContext* context, const mypro
 }
 
 // 令牌验证服务接口
-grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const myproject::AuthenticateRequest* request, myproject::AuthenticateResponse* response)
+grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateRequest* request, rpc_server::AuthenticateResponse* response)
 {
 
     return grpc::Status::OK;
@@ -278,7 +278,7 @@ grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const m
 std::string LoginServerImpl::Handle_login(const std::string& database, const std::string& table, std::map<std::string, std::string> query)
 {
     // 构造请求
-    myproject::ReadRequest read_request;
+    rpc_server::ReadRequest read_request;
     read_request.set_database(database); // 设置查询数据库
     read_request.set_table(table); // 设置查询表
     for (auto& it : query)
@@ -287,12 +287,12 @@ std::string LoginServerImpl::Handle_login(const std::string& database, const std
     }
 
     // 构造响应
-    myproject::ReadResponse read_response;
+    rpc_server::ReadResponse read_response;
     grpc::ClientContext client_context; // 包含 RPC 调用的元数据和其他信息
 
     // 获取连接池中的连接
-    auto channel = db_connection_pool.get_connection(myproject::ServerType::DATA);
-    auto db_stub = myproject::DatabaseServer::NewStub(channel);
+    auto channel = db_connection_pool.get_connection(rpc_server::ServerType::DATA);
+    auto db_stub = rpc_server::DatabaseServer::NewStub(channel);
 
     // 向数据库服务器发送查询请求
     grpc::Status status = db_stub->Read(&client_context, read_request, &read_response);

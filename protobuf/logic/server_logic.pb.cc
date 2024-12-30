@@ -20,7 +20,7 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace _pb = ::google::protobuf;
 namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
-namespace myproject {
+namespace rpc_server {
       template <typename>
 PROTOBUF_CONSTEXPR GameStateResponse_StateEntry_DoNotUse::GameStateResponse_StateEntry_DoNotUse(::_pbi::ConstantInitialized) {}
 struct GameStateResponse_StateEntry_DoNotUseDefaultTypeInternal {
@@ -133,7 +133,7 @@ struct GameActionRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GameActionRequestDefaultTypeInternal _GameActionRequest_default_instance_;
-}  // namespace myproject
+}  // namespace rpc_server
 static ::_pb::Metadata file_level_metadata_server_5flogic_2eproto[6];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_server_5flogic_2eproto = nullptr;
@@ -141,113 +141,113 @@ static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_server_5flogic_2eproto = nullptr;
 const ::uint32_t TableStruct_server_5flogic_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     protodesc_cold) = {
-    PROTOBUF_FIELD_OFFSET(::myproject::GameActionRequest_ParametersEntry_DoNotUse, _has_bits_),
-    PROTOBUF_FIELD_OFFSET(::myproject::GameActionRequest_ParametersEntry_DoNotUse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionRequest_ParametersEntry_DoNotUse, _has_bits_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionRequest_ParametersEntry_DoNotUse, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::GameActionRequest_ParametersEntry_DoNotUse, key_),
-    PROTOBUF_FIELD_OFFSET(::myproject::GameActionRequest_ParametersEntry_DoNotUse, value_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionRequest_ParametersEntry_DoNotUse, key_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionRequest_ParametersEntry_DoNotUse, value_),
     0,
     1,
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::myproject::GameActionRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionRequest, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::GameActionRequest, _impl_.action_),
-    PROTOBUF_FIELD_OFFSET(::myproject::GameActionRequest, _impl_.parameters_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionRequest, _impl_.action_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionRequest, _impl_.parameters_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::myproject::GameActionResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionResponse, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::GameActionResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::myproject::GameActionResponse, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionResponse, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionResponse, _impl_.message_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::myproject::GameStateRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateRequest, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::GameStateRequest, _impl_.game_id_),
-    PROTOBUF_FIELD_OFFSET(::myproject::GameStateResponse_StateEntry_DoNotUse, _has_bits_),
-    PROTOBUF_FIELD_OFFSET(::myproject::GameStateResponse_StateEntry_DoNotUse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateRequest, _impl_.game_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateResponse_StateEntry_DoNotUse, _has_bits_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateResponse_StateEntry_DoNotUse, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::GameStateResponse_StateEntry_DoNotUse, key_),
-    PROTOBUF_FIELD_OFFSET(::myproject::GameStateResponse_StateEntry_DoNotUse, value_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateResponse_StateEntry_DoNotUse, key_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateResponse_StateEntry_DoNotUse, value_),
     0,
     1,
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::myproject::GameStateResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateResponse, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::GameStateResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::myproject::GameStateResponse, _impl_.message_),
-    PROTOBUF_FIELD_OFFSET(::myproject::GameStateResponse, _impl_.state_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateResponse, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateResponse, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateResponse, _impl_.state_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, 10, -1, sizeof(::myproject::GameActionRequest_ParametersEntry_DoNotUse)},
-        {12, -1, -1, sizeof(::myproject::GameActionRequest)},
-        {22, -1, -1, sizeof(::myproject::GameActionResponse)},
-        {32, -1, -1, sizeof(::myproject::GameStateRequest)},
-        {41, 51, -1, sizeof(::myproject::GameStateResponse_StateEntry_DoNotUse)},
-        {53, -1, -1, sizeof(::myproject::GameStateResponse)},
+        {0, 10, -1, sizeof(::rpc_server::GameActionRequest_ParametersEntry_DoNotUse)},
+        {12, -1, -1, sizeof(::rpc_server::GameActionRequest)},
+        {22, -1, -1, sizeof(::rpc_server::GameActionResponse)},
+        {32, -1, -1, sizeof(::rpc_server::GameStateRequest)},
+        {41, 51, -1, sizeof(::rpc_server::GameStateResponse_StateEntry_DoNotUse)},
+        {53, -1, -1, sizeof(::rpc_server::GameStateResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-    &::myproject::_GameActionRequest_ParametersEntry_DoNotUse_default_instance_._instance,
-    &::myproject::_GameActionRequest_default_instance_._instance,
-    &::myproject::_GameActionResponse_default_instance_._instance,
-    &::myproject::_GameStateRequest_default_instance_._instance,
-    &::myproject::_GameStateResponse_StateEntry_DoNotUse_default_instance_._instance,
-    &::myproject::_GameStateResponse_default_instance_._instance,
+    &::rpc_server::_GameActionRequest_ParametersEntry_DoNotUse_default_instance_._instance,
+    &::rpc_server::_GameActionRequest_default_instance_._instance,
+    &::rpc_server::_GameActionResponse_default_instance_._instance,
+    &::rpc_server::_GameStateRequest_default_instance_._instance,
+    &::rpc_server::_GameStateResponse_StateEntry_DoNotUse_default_instance_._instance,
+    &::rpc_server::_GameStateResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5flogic_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\022server_logic.proto\022\tmyproject\"\230\001\n\021Game"
-    "ActionRequest\022\016\n\006action\030\001 \001(\014\022@\n\nparamet"
-    "ers\030\002 \003(\0132,.myproject.GameActionRequest."
-    "ParametersEntry\0321\n\017ParametersEntry\022\013\n\003ke"
-    "y\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"6\n\022GameAction"
-    "Response\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001"
-    "(\014\"#\n\020GameStateRequest\022\017\n\007game_id\030\001 \001(\014\""
-    "\233\001\n\021GameStateResponse\022\017\n\007success\030\001 \001(\010\022\017"
-    "\n\007message\030\002 \001(\014\0226\n\005state\030\003 \003(\0132\'.myproje"
-    "ct.GameStateResponse.StateEntry\032,\n\nState"
-    "Entry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\0012\252\001"
-    "\n\013LogicServer\022P\n\021ProcessGameAction\022\034.myp"
-    "roject.GameActionRequest\032\035.myproject.Gam"
-    "eActionResponse\022I\n\014GetGameState\022\033.myproj"
-    "ect.GameStateRequest\032\034.myproject.GameSta"
-    "teResponseb\006proto3"
+    "\n\022server_logic.proto\022\nrpc_server\"\231\001\n\021Gam"
+    "eActionRequest\022\016\n\006action\030\001 \001(\014\022A\n\nparame"
+    "ters\030\002 \003(\0132-.rpc_server.GameActionReques"
+    "t.ParametersEntry\0321\n\017ParametersEntry\022\013\n\003"
+    "key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001\"6\n\022GameActi"
+    "onResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002"
+    " \001(\014\"#\n\020GameStateRequest\022\017\n\007game_id\030\001 \001("
+    "\014\"\234\001\n\021GameStateResponse\022\017\n\007success\030\001 \001(\010"
+    "\022\017\n\007message\030\002 \001(\014\0227\n\005state\030\003 \003(\0132(.rpc_s"
+    "erver.GameStateResponse.StateEntry\032,\n\nSt"
+    "ateEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:\0028\001"
+    "2\256\001\n\013LogicServer\022R\n\021ProcessGameAction\022\035."
+    "rpc_server.GameActionRequest\032\036.rpc_serve"
+    "r.GameActionResponse\022K\n\014GetGameState\022\034.r"
+    "pc_server.GameStateRequest\032\035.rpc_server."
+    "GameStateResponseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5flogic_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5flogic_2eproto = {
     false,
     false,
-    618,
+    625,
     descriptor_table_protodef_server_5flogic_2eproto,
     "server_logic.proto",
     &descriptor_table_server_5flogic_2eproto_once,
@@ -279,7 +279,7 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_server_5
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_server_5flogic_2eproto(&descriptor_table_server_5flogic_2eproto);
-namespace myproject {
+namespace rpc_server {
 // ===================================================================
 
 GameActionRequest_ParametersEntry_DoNotUse::GameActionRequest_ParametersEntry_DoNotUse() {}
@@ -299,7 +299,7 @@ class GameActionRequest::_Internal {
 GameActionRequest::GameActionRequest(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:myproject.GameActionRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.GameActionRequest)
 }
 inline PROTOBUF_NDEBUG_INLINE GameActionRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
@@ -318,7 +318,7 @@ GameActionRequest::GameActionRequest(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
 
-  // @@protoc_insertion_point(copy_constructor:myproject.GameActionRequest)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.GameActionRequest)
 }
 inline PROTOBUF_NDEBUG_INLINE GameActionRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -331,7 +331,7 @@ inline void GameActionRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
 GameActionRequest::~GameActionRequest() {
-  // @@protoc_insertion_point(destructor:myproject.GameActionRequest)
+  // @@protoc_insertion_point(destructor:rpc_server.GameActionRequest)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
@@ -342,7 +342,7 @@ inline void GameActionRequest::SharedDtor() {
 }
 
 PROTOBUF_NOINLINE void GameActionRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:myproject.GameActionRequest)
+// @@protoc_insertion_point(message_clear_start:rpc_server.GameActionRequest)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -361,7 +361,7 @@ const char* GameActionRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 2, 1, 46, 2> GameActionRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 2, 1, 47, 2> GameActionRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -393,8 +393,8 @@ const ::_pbi::TcParseTable<0, 2, 1, 46, 2> GameActionRequest::_table_ = {
         1, 0, 0, 9,
         12)},
   }}, {{
-    "\33\0\12\0\0\0\0\0"
-    "myproject.GameActionRequest"
+    "\34\0\12\0\0\0\0\0"
+    "rpc_server.GameActionRequest"
     "parameters"
   }},
 };
@@ -402,7 +402,7 @@ const ::_pbi::TcParseTable<0, 2, 1, 46, 2> GameActionRequest::_table_ = {
 ::uint8_t* GameActionRequest::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:myproject.GameActionRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GameActionRequest)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -426,7 +426,7 @@ const ::_pbi::TcParseTable<0, 2, 1, 46, 2> GameActionRequest::_table_ = {
             2, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameActionRequest.parameters");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GameActionRequest.parameters");
       }
     } else {
       for (const auto& entry : field) {
@@ -434,7 +434,7 @@ const ::_pbi::TcParseTable<0, 2, 1, 46, 2> GameActionRequest::_table_ = {
             2, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameActionRequest.parameters");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GameActionRequest.parameters");
       }
     }
   }
@@ -444,12 +444,12 @@ const ::_pbi::TcParseTable<0, 2, 1, 46, 2> GameActionRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:myproject.GameActionRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GameActionRequest)
   return target;
 }
 
 ::size_t GameActionRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:myproject.GameActionRequest)
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.GameActionRequest)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -483,7 +483,7 @@ const ::google::protobuf::Message::ClassData* GameActionRequest::GetClassData() 
 void GameActionRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<GameActionRequest*>(&to_msg);
   auto& from = static_cast<const GameActionRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.GameActionRequest)
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GameActionRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -496,7 +496,7 @@ void GameActionRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::g
 }
 
 void GameActionRequest::CopyFrom(const GameActionRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:myproject.GameActionRequest)
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GameActionRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -532,7 +532,7 @@ class GameActionResponse::_Internal {
 GameActionResponse::GameActionResponse(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:myproject.GameActionResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.GameActionResponse)
 }
 inline PROTOBUF_NDEBUG_INLINE GameActionResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
@@ -551,7 +551,7 @@ GameActionResponse::GameActionResponse(
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:myproject.GameActionResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.GameActionResponse)
 }
 inline PROTOBUF_NDEBUG_INLINE GameActionResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -564,7 +564,7 @@ inline void GameActionResponse::SharedCtor(::_pb::Arena* arena) {
   _impl_.success_ = {};
 }
 GameActionResponse::~GameActionResponse() {
-  // @@protoc_insertion_point(destructor:myproject.GameActionResponse)
+  // @@protoc_insertion_point(destructor:rpc_server.GameActionResponse)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
@@ -575,7 +575,7 @@ inline void GameActionResponse::SharedDtor() {
 }
 
 PROTOBUF_NOINLINE void GameActionResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:myproject.GameActionResponse)
+// @@protoc_insertion_point(message_clear_start:rpc_server.GameActionResponse)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -632,7 +632,7 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> GameActionResponse::_table_ = {
 ::uint8_t* GameActionResponse::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:myproject.GameActionResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GameActionResponse)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -654,12 +654,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> GameActionResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:myproject.GameActionResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GameActionResponse)
   return target;
 }
 
 ::size_t GameActionResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:myproject.GameActionResponse)
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.GameActionResponse)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -691,7 +691,7 @@ const ::google::protobuf::Message::ClassData* GameActionResponse::GetClassData()
 void GameActionResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<GameActionResponse*>(&to_msg);
   auto& from = static_cast<const GameActionResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.GameActionResponse)
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GameActionResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -706,7 +706,7 @@ void GameActionResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::
 }
 
 void GameActionResponse::CopyFrom(const GameActionResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:myproject.GameActionResponse)
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GameActionResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -742,7 +742,7 @@ class GameStateRequest::_Internal {
 GameStateRequest::GameStateRequest(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:myproject.GameStateRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.GameStateRequest)
 }
 inline PROTOBUF_NDEBUG_INLINE GameStateRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
@@ -760,7 +760,7 @@ GameStateRequest::GameStateRequest(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
 
-  // @@protoc_insertion_point(copy_constructor:myproject.GameStateRequest)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.GameStateRequest)
 }
 inline PROTOBUF_NDEBUG_INLINE GameStateRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -772,7 +772,7 @@ inline void GameStateRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
 GameStateRequest::~GameStateRequest() {
-  // @@protoc_insertion_point(destructor:myproject.GameStateRequest)
+  // @@protoc_insertion_point(destructor:rpc_server.GameStateRequest)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
@@ -783,7 +783,7 @@ inline void GameStateRequest::SharedDtor() {
 }
 
 PROTOBUF_NOINLINE void GameStateRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:myproject.GameStateRequest)
+// @@protoc_insertion_point(message_clear_start:rpc_server.GameStateRequest)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -833,7 +833,7 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GameStateRequest::_table_ = {
 ::uint8_t* GameStateRequest::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:myproject.GameStateRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GameStateRequest)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -848,12 +848,12 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GameStateRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:myproject.GameStateRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GameStateRequest)
   return target;
 }
 
 ::size_t GameStateRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:myproject.GameStateRequest)
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.GameStateRequest)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -880,7 +880,7 @@ const ::google::protobuf::Message::ClassData* GameStateRequest::GetClassData() c
 void GameStateRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<GameStateRequest*>(&to_msg);
   auto& from = static_cast<const GameStateRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.GameStateRequest)
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GameStateRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -892,7 +892,7 @@ void GameStateRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::go
 }
 
 void GameStateRequest::CopyFrom(const GameStateRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:myproject.GameStateRequest)
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GameStateRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -937,7 +937,7 @@ class GameStateResponse::_Internal {
 GameStateResponse::GameStateResponse(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:myproject.GameStateResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.GameStateResponse)
 }
 inline PROTOBUF_NDEBUG_INLINE GameStateResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
@@ -957,7 +957,7 @@ GameStateResponse::GameStateResponse(
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:myproject.GameStateResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.GameStateResponse)
 }
 inline PROTOBUF_NDEBUG_INLINE GameStateResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -971,7 +971,7 @@ inline void GameStateResponse::SharedCtor(::_pb::Arena* arena) {
   _impl_.success_ = {};
 }
 GameStateResponse::~GameStateResponse() {
-  // @@protoc_insertion_point(destructor:myproject.GameStateResponse)
+  // @@protoc_insertion_point(destructor:rpc_server.GameStateResponse)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
@@ -982,7 +982,7 @@ inline void GameStateResponse::SharedDtor() {
 }
 
 PROTOBUF_NOINLINE void GameStateResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:myproject.GameStateResponse)
+// @@protoc_insertion_point(message_clear_start:rpc_server.GameStateResponse)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1002,7 +1002,7 @@ const char* GameStateResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 41, 2> GameStateResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 3, 1, 42, 2> GameStateResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1040,8 +1040,8 @@ const ::_pbi::TcParseTable<1, 3, 1, 41, 2> GameStateResponse::_table_ = {
         1, 0, 0, 9,
         12)},
   }}, {{
-    "\33\0\0\5\0\0\0\0"
-    "myproject.GameStateResponse"
+    "\34\0\0\5\0\0\0\0"
+    "rpc_server.GameStateResponse"
     "state"
   }},
 };
@@ -1049,7 +1049,7 @@ const ::_pbi::TcParseTable<1, 3, 1, 41, 2> GameStateResponse::_table_ = {
 ::uint8_t* GameStateResponse::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:myproject.GameStateResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GameStateResponse)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1080,7 +1080,7 @@ const ::_pbi::TcParseTable<1, 3, 1, 41, 2> GameStateResponse::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameStateResponse.state");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GameStateResponse.state");
       }
     } else {
       for (const auto& entry : field) {
@@ -1088,7 +1088,7 @@ const ::_pbi::TcParseTable<1, 3, 1, 41, 2> GameStateResponse::_table_ = {
             3, entry.first, entry.second, target, stream);
         ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "myproject.GameStateResponse.state");
+ ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GameStateResponse.state");
       }
     }
   }
@@ -1098,12 +1098,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 41, 2> GameStateResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:myproject.GameStateResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GameStateResponse)
   return target;
 }
 
 ::size_t GameStateResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:myproject.GameStateResponse)
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.GameStateResponse)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -1142,7 +1142,7 @@ const ::google::protobuf::Message::ClassData* GameStateResponse::GetClassData() 
 void GameStateResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<GameStateResponse*>(&to_msg);
   auto& from = static_cast<const GameStateResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.GameStateResponse)
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GameStateResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1158,7 +1158,7 @@ void GameStateResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::g
 }
 
 void GameStateResponse::CopyFrom(const GameStateResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:myproject.GameStateResponse)
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GameStateResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1187,7 +1187,7 @@ void GameStateResponse::InternalSwap(GameStateResponse* PROTOBUF_RESTRICT other)
       file_level_metadata_server_5flogic_2eproto[5]);
 }
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace myproject
+}  // namespace rpc_server
 namespace google {
 namespace protobuf {
 }  // namespace protobuf

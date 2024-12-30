@@ -58,7 +58,7 @@ struct TableStruct_server_5flogic_2eproto {
 };
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_server_5flogic_2eproto;
-namespace myproject {
+namespace rpc_server {
 class GameActionRequest;
 struct GameActionRequestDefaultTypeInternal;
 extern GameActionRequestDefaultTypeInternal _GameActionRequest_default_instance_;
@@ -77,13 +77,13 @@ extern GameStateResponseDefaultTypeInternal _GameStateResponse_default_instance_
 class GameStateResponse_StateEntry_DoNotUse;
 struct GameStateResponse_StateEntry_DoNotUseDefaultTypeInternal;
 extern GameStateResponse_StateEntry_DoNotUseDefaultTypeInternal _GameStateResponse_StateEntry_DoNotUse_default_instance_;
-}  // namespace myproject
+}  // namespace rpc_server
 namespace google {
 namespace protobuf {
 }  // namespace protobuf
 }  // namespace google
 
-namespace myproject {
+namespace rpc_server {
 
 // ===================================================================
 
@@ -110,7 +110,7 @@ class GameStateResponse_StateEntry_DoNotUse final
         &_GameStateResponse_StateEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.GameStateResponse.StateEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.GameStateResponse.StateEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -119,7 +119,7 @@ class GameStateResponse_StateEntry_DoNotUse final
 // -------------------------------------------------------------------
 
 class GameStateRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.GameStateRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GameStateRequest) */ {
  public:
   inline GameStateRequest() : GameStateRequest(nullptr) {}
   ~GameStateRequest() override;
@@ -233,7 +233,7 @@ class GameStateRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.GameStateRequest";
+    return "rpc_server.GameStateRequest";
   }
   protected:
   explicit GameStateRequest(::google::protobuf::Arena* arena);
@@ -268,7 +268,7 @@ class GameStateRequest final :
   std::string* _internal_mutable_game_id();
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.GameStateRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.GameStateRequest)
  private:
   class _Internal;
 
@@ -300,7 +300,7 @@ class GameStateRequest final :
 };// -------------------------------------------------------------------
 
 class GameActionResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.GameActionResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GameActionResponse) */ {
  public:
   inline GameActionResponse() : GameActionResponse(nullptr) {}
   ~GameActionResponse() override;
@@ -414,7 +414,7 @@ class GameActionResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.GameActionResponse";
+    return "rpc_server.GameActionResponse";
   }
   protected:
   explicit GameActionResponse(::google::protobuf::Arena* arena);
@@ -460,7 +460,7 @@ class GameActionResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.GameActionResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.GameActionResponse)
  private:
   class _Internal;
 
@@ -512,7 +512,7 @@ class GameActionRequest_ParametersEntry_DoNotUse final
         &_GameActionRequest_ParametersEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.GameActionRequest.ParametersEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.GameActionRequest.ParametersEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -521,7 +521,7 @@ class GameActionRequest_ParametersEntry_DoNotUse final
 // -------------------------------------------------------------------
 
 class GameStateResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.GameStateResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GameStateResponse) */ {
  public:
   inline GameStateResponse() : GameStateResponse(nullptr) {}
   ~GameStateResponse() override;
@@ -635,7 +635,7 @@ class GameStateResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.GameStateResponse";
+    return "rpc_server.GameStateResponse";
   }
   protected:
   explicit GameStateResponse(::google::protobuf::Arena* arena);
@@ -698,14 +698,14 @@ class GameStateResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.GameStateResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.GameStateResponse)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      41, 2>
+      42, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -735,7 +735,7 @@ class GameStateResponse final :
 };// -------------------------------------------------------------------
 
 class GameActionRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.GameActionRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GameActionRequest) */ {
  public:
   inline GameActionRequest() : GameActionRequest(nullptr) {}
   ~GameActionRequest() override;
@@ -849,7 +849,7 @@ class GameActionRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.GameActionRequest";
+    return "rpc_server.GameActionRequest";
   }
   protected:
   explicit GameActionRequest(::google::protobuf::Arena* arena);
@@ -901,14 +901,14 @@ class GameActionRequest final :
   std::string* _internal_mutable_action();
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.GameActionRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.GameActionRequest)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 2, 1,
-      46, 2>
+      47, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -961,7 +961,7 @@ inline void GameActionRequest::clear_action() {
 }
 inline const std::string& GameActionRequest::action() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.GameActionRequest.action)
+  // @@protoc_insertion_point(field_get:rpc_server.GameActionRequest.action)
   return _internal_action();
 }
 template <typename Arg_, typename... Args_>
@@ -970,11 +970,11 @@ inline PROTOBUF_ALWAYS_INLINE void GameActionRequest::set_action(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.action_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.GameActionRequest.action)
+  // @@protoc_insertion_point(field_set:rpc_server.GameActionRequest.action)
 }
 inline std::string* GameActionRequest::mutable_action() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_action();
-  // @@protoc_insertion_point(field_mutable:myproject.GameActionRequest.action)
+  // @@protoc_insertion_point(field_mutable:rpc_server.GameActionRequest.action)
   return _s;
 }
 inline const std::string& GameActionRequest::_internal_action() const {
@@ -993,7 +993,7 @@ inline std::string* GameActionRequest::_internal_mutable_action() {
 }
 inline std::string* GameActionRequest::release_action() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.GameActionRequest.action)
+  // @@protoc_insertion_point(field_release:rpc_server.GameActionRequest.action)
   return _impl_.action_.Release();
 }
 inline void GameActionRequest::set_allocated_action(std::string* value) {
@@ -1004,7 +1004,7 @@ inline void GameActionRequest::set_allocated_action(std::string* value) {
           _impl_.action_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.GameActionRequest.action)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.GameActionRequest.action)
 }
 
 // map<string, bytes> parameters = 2;
@@ -1023,7 +1023,7 @@ inline const ::google::protobuf::Map<std::string, std::string>& GameActionReques
   return _impl_.parameters_.GetMap();
 }
 inline const ::google::protobuf::Map<std::string, std::string>& GameActionRequest::parameters() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:myproject.GameActionRequest.parameters)
+  // @@protoc_insertion_point(field_map:rpc_server.GameActionRequest.parameters)
   return _internal_parameters();
 }
 inline ::google::protobuf::Map<std::string, std::string>* GameActionRequest::_internal_mutable_parameters() {
@@ -1031,7 +1031,7 @@ inline ::google::protobuf::Map<std::string, std::string>* GameActionRequest::_in
   return _impl_.parameters_.MutableMap();
 }
 inline ::google::protobuf::Map<std::string, std::string>* GameActionRequest::mutable_parameters() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:myproject.GameActionRequest.parameters)
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.GameActionRequest.parameters)
   return _internal_mutable_parameters();
 }
 
@@ -1045,12 +1045,12 @@ inline void GameActionResponse::clear_success() {
   _impl_.success_ = false;
 }
 inline bool GameActionResponse::success() const {
-  // @@protoc_insertion_point(field_get:myproject.GameActionResponse.success)
+  // @@protoc_insertion_point(field_get:rpc_server.GameActionResponse.success)
   return _internal_success();
 }
 inline void GameActionResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:myproject.GameActionResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.GameActionResponse.success)
 }
 inline bool GameActionResponse::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -1069,7 +1069,7 @@ inline void GameActionResponse::clear_message() {
 }
 inline const std::string& GameActionResponse::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.GameActionResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.GameActionResponse.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
@@ -1078,11 +1078,11 @@ inline PROTOBUF_ALWAYS_INLINE void GameActionResponse::set_message(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.GameActionResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.GameActionResponse.message)
 }
 inline std::string* GameActionResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:myproject.GameActionResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.GameActionResponse.message)
   return _s;
 }
 inline const std::string& GameActionResponse::_internal_message() const {
@@ -1101,7 +1101,7 @@ inline std::string* GameActionResponse::_internal_mutable_message() {
 }
 inline std::string* GameActionResponse::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.GameActionResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.GameActionResponse.message)
   return _impl_.message_.Release();
 }
 inline void GameActionResponse::set_allocated_message(std::string* value) {
@@ -1112,7 +1112,7 @@ inline void GameActionResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.GameActionResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.GameActionResponse.message)
 }
 
 // -------------------------------------------------------------------
@@ -1126,7 +1126,7 @@ inline void GameStateRequest::clear_game_id() {
 }
 inline const std::string& GameStateRequest::game_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.GameStateRequest.game_id)
+  // @@protoc_insertion_point(field_get:rpc_server.GameStateRequest.game_id)
   return _internal_game_id();
 }
 template <typename Arg_, typename... Args_>
@@ -1135,11 +1135,11 @@ inline PROTOBUF_ALWAYS_INLINE void GameStateRequest::set_game_id(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.game_id_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.GameStateRequest.game_id)
+  // @@protoc_insertion_point(field_set:rpc_server.GameStateRequest.game_id)
 }
 inline std::string* GameStateRequest::mutable_game_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_game_id();
-  // @@protoc_insertion_point(field_mutable:myproject.GameStateRequest.game_id)
+  // @@protoc_insertion_point(field_mutable:rpc_server.GameStateRequest.game_id)
   return _s;
 }
 inline const std::string& GameStateRequest::_internal_game_id() const {
@@ -1158,7 +1158,7 @@ inline std::string* GameStateRequest::_internal_mutable_game_id() {
 }
 inline std::string* GameStateRequest::release_game_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.GameStateRequest.game_id)
+  // @@protoc_insertion_point(field_release:rpc_server.GameStateRequest.game_id)
   return _impl_.game_id_.Release();
 }
 inline void GameStateRequest::set_allocated_game_id(std::string* value) {
@@ -1169,7 +1169,7 @@ inline void GameStateRequest::set_allocated_game_id(std::string* value) {
           _impl_.game_id_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.GameStateRequest.game_id)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.GameStateRequest.game_id)
 }
 
 // -------------------------------------------------------------------
@@ -1184,12 +1184,12 @@ inline void GameStateResponse::clear_success() {
   _impl_.success_ = false;
 }
 inline bool GameStateResponse::success() const {
-  // @@protoc_insertion_point(field_get:myproject.GameStateResponse.success)
+  // @@protoc_insertion_point(field_get:rpc_server.GameStateResponse.success)
   return _internal_success();
 }
 inline void GameStateResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:myproject.GameStateResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.GameStateResponse.success)
 }
 inline bool GameStateResponse::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -1208,7 +1208,7 @@ inline void GameStateResponse::clear_message() {
 }
 inline const std::string& GameStateResponse::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.GameStateResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.GameStateResponse.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
@@ -1217,11 +1217,11 @@ inline PROTOBUF_ALWAYS_INLINE void GameStateResponse::set_message(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.GameStateResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.GameStateResponse.message)
 }
 inline std::string* GameStateResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:myproject.GameStateResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.GameStateResponse.message)
   return _s;
 }
 inline const std::string& GameStateResponse::_internal_message() const {
@@ -1240,7 +1240,7 @@ inline std::string* GameStateResponse::_internal_mutable_message() {
 }
 inline std::string* GameStateResponse::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.GameStateResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.GameStateResponse.message)
   return _impl_.message_.Release();
 }
 inline void GameStateResponse::set_allocated_message(std::string* value) {
@@ -1251,7 +1251,7 @@ inline void GameStateResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.GameStateResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.GameStateResponse.message)
 }
 
 // map<string, bytes> state = 3;
@@ -1270,7 +1270,7 @@ inline const ::google::protobuf::Map<std::string, std::string>& GameStateRespons
   return _impl_.state_.GetMap();
 }
 inline const ::google::protobuf::Map<std::string, std::string>& GameStateResponse::state() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:myproject.GameStateResponse.state)
+  // @@protoc_insertion_point(field_map:rpc_server.GameStateResponse.state)
   return _internal_state();
 }
 inline ::google::protobuf::Map<std::string, std::string>* GameStateResponse::_internal_mutable_state() {
@@ -1278,7 +1278,7 @@ inline ::google::protobuf::Map<std::string, std::string>* GameStateResponse::_in
   return _impl_.state_.MutableMap();
 }
 inline ::google::protobuf::Map<std::string, std::string>* GameStateResponse::mutable_state() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:myproject.GameStateResponse.state)
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.GameStateResponse.state)
   return _internal_mutable_state();
 }
 
@@ -1287,7 +1287,7 @@ inline ::google::protobuf::Map<std::string, std::string>* GameStateResponse::mut
 #endif  // __GNUC__
 
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace myproject
+}  // namespace rpc_server
 
 
 // @@protoc_insertion_point(global_scope)

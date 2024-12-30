@@ -1,5 +1,5 @@
 syntax = "proto3";
-package myproject;
+package rpc_server;
 
 service DatabaseServer
 {

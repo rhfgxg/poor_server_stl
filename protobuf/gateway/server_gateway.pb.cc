@@ -20,7 +20,7 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace _pb = ::google::protobuf;
 namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
-namespace myproject {
+namespace rpc_server {
 
 inline constexpr ForwardResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -49,7 +49,7 @@ inline constexpr ForwardRequest::Impl_::Impl_(
       : payload_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        service_type_{static_cast< ::myproject::ServiceType >(0)},
+        service_type_{static_cast< ::rpc_server::ServiceType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -65,7 +65,7 @@ struct ForwardRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ForwardRequestDefaultTypeInternal _ForwardRequest_default_instance_;
-}  // namespace myproject
+}  // namespace rpc_server
 static ::_pb::Metadata file_level_metadata_server_5fgateway_2eproto[2];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_server_5fgateway_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
@@ -73,52 +73,52 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t TableStruct_server_5fgateway_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     protodesc_cold) = {
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::myproject::ForwardRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardRequest, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::ForwardRequest, _impl_.service_type_),
-    PROTOBUF_FIELD_OFFSET(::myproject::ForwardRequest, _impl_.payload_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardRequest, _impl_.service_type_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardRequest, _impl_.payload_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::myproject::ForwardResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardResponse, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::myproject::ForwardResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::myproject::ForwardResponse, _impl_.response_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardResponse, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardResponse, _impl_.response_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::myproject::ForwardRequest)},
-        {10, -1, -1, sizeof(::myproject::ForwardResponse)},
+        {0, -1, -1, sizeof(::rpc_server::ForwardRequest)},
+        {10, -1, -1, sizeof(::rpc_server::ForwardResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-    &::myproject::_ForwardRequest_default_instance_._instance,
-    &::myproject::_ForwardResponse_default_instance_._instance,
+    &::rpc_server::_ForwardRequest_default_instance_._instance,
+    &::rpc_server::_ForwardResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fgateway_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\024server_gateway.proto\022\tmyproject\"O\n\016For"
-    "wardRequest\022,\n\014service_type\030\001 \001(\0162\026.mypr"
-    "oject.ServiceType\022\017\n\007payload\030\002 \001(\014\"4\n\017Fo"
-    "rwardResponse\022\017\n\007success\030\001 \001(\010\022\020\n\010respon"
-    "se\030\002 \001(\014*+\n\013ServiceType\022\r\n\tREQ_LOGIN\020\000\022\r"
-    "\n\tRES_LOGIN\020\0012X\n\rGatewayServer\022G\n\016Reques"
-    "tForward\022\031.myproject.ForwardRequest\032\032.my"
-    "project.ForwardResponseb\006proto3"
+    "\n\024server_gateway.proto\022\nrpc_server\"P\n\016Fo"
+    "rwardRequest\022-\n\014service_type\030\001 \001(\0162\027.rpc"
+    "_server.ServiceType\022\017\n\007payload\030\002 \001(\014\"4\n\017"
+    "ForwardResponse\022\017\n\007success\030\001 \001(\010\022\020\n\010resp"
+    "onse\030\002 \001(\014*+\n\013ServiceType\022\r\n\tREQ_LOGIN\020\000"
+    "\022\r\n\tRES_LOGIN\020\0012Z\n\rGatewayServer\022I\n\016Requ"
+    "estForward\022\032.rpc_server.ForwardRequest\032\033"
+    ".rpc_server.ForwardResponseb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fgateway_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fgateway_2eproto = {
     false,
     false,
-    311,
+    315,
     descriptor_table_protodef_server_5fgateway_2eproto,
     "server_gateway.proto",
     &descriptor_table_server_5fgateway_2eproto_once,
@@ -150,7 +150,7 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_server_5
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_server_5fgateway_2eproto(&descriptor_table_server_5fgateway_2eproto);
-namespace myproject {
+namespace rpc_server {
 const ::google::protobuf::EnumDescriptor* ServiceType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_server_5fgateway_2eproto);
   return file_level_enum_descriptors_server_5fgateway_2eproto[0];
@@ -169,7 +169,7 @@ class ForwardRequest::_Internal {
 ForwardRequest::ForwardRequest(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:myproject.ForwardRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ForwardRequest)
 }
 inline PROTOBUF_NDEBUG_INLINE ForwardRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
@@ -188,7 +188,7 @@ ForwardRequest::ForwardRequest(
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.service_type_ = from._impl_.service_type_;
 
-  // @@protoc_insertion_point(copy_constructor:myproject.ForwardRequest)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.ForwardRequest)
 }
 inline PROTOBUF_NDEBUG_INLINE ForwardRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -201,7 +201,7 @@ inline void ForwardRequest::SharedCtor(::_pb::Arena* arena) {
   _impl_.service_type_ = {};
 }
 ForwardRequest::~ForwardRequest() {
-  // @@protoc_insertion_point(destructor:myproject.ForwardRequest)
+  // @@protoc_insertion_point(destructor:rpc_server.ForwardRequest)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
@@ -212,7 +212,7 @@ inline void ForwardRequest::SharedDtor() {
 }
 
 PROTOBUF_NOINLINE void ForwardRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:myproject.ForwardRequest)
+// @@protoc_insertion_point(message_clear_start:rpc_server.ForwardRequest)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -248,13 +248,13 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRequest::_table_ = {
     // bytes payload = 2;
     {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.payload_)}},
-    // .myproject.ServiceType service_type = 1;
+    // .rpc_server.ServiceType service_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ForwardRequest, _impl_.service_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.service_type_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .myproject.ServiceType service_type = 1;
+    // .rpc_server.ServiceType service_type = 1;
     {PROTOBUF_FIELD_OFFSET(ForwardRequest, _impl_.service_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // bytes payload = 2;
@@ -269,11 +269,11 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRequest::_table_ = {
 ::uint8_t* ForwardRequest::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:myproject.ForwardRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ForwardRequest)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // .myproject.ServiceType service_type = 1;
+  // .rpc_server.ServiceType service_type = 1;
   if (this->_internal_service_type() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
@@ -291,12 +291,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:myproject.ForwardRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ForwardRequest)
   return target;
 }
 
 ::size_t ForwardRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:myproject.ForwardRequest)
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ForwardRequest)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -309,7 +309,7 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardRequest::_table_ = {
                                     this->_internal_payload());
   }
 
-  // .myproject.ServiceType service_type = 1;
+  // .rpc_server.ServiceType service_type = 1;
   if (this->_internal_service_type() != 0) {
     total_size += 1 +
                   ::_pbi::WireFormatLite::EnumSize(this->_internal_service_type());
@@ -329,7 +329,7 @@ const ::google::protobuf::Message::ClassData* ForwardRequest::GetClassData() con
 void ForwardRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<ForwardRequest*>(&to_msg);
   auto& from = static_cast<const ForwardRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.ForwardRequest)
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ForwardRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -344,7 +344,7 @@ void ForwardRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
 }
 
 void ForwardRequest::CopyFrom(const ForwardRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:myproject.ForwardRequest)
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ForwardRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -380,7 +380,7 @@ class ForwardResponse::_Internal {
 ForwardResponse::ForwardResponse(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:myproject.ForwardResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ForwardResponse)
 }
 inline PROTOBUF_NDEBUG_INLINE ForwardResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
@@ -399,7 +399,7 @@ ForwardResponse::ForwardResponse(
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:myproject.ForwardResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.ForwardResponse)
 }
 inline PROTOBUF_NDEBUG_INLINE ForwardResponse::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -412,7 +412,7 @@ inline void ForwardResponse::SharedCtor(::_pb::Arena* arena) {
   _impl_.success_ = {};
 }
 ForwardResponse::~ForwardResponse() {
-  // @@protoc_insertion_point(destructor:myproject.ForwardResponse)
+  // @@protoc_insertion_point(destructor:rpc_server.ForwardResponse)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
@@ -423,7 +423,7 @@ inline void ForwardResponse::SharedDtor() {
 }
 
 PROTOBUF_NOINLINE void ForwardResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:myproject.ForwardResponse)
+// @@protoc_insertion_point(message_clear_start:rpc_server.ForwardResponse)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -480,7 +480,7 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardResponse::_table_ = {
 ::uint8_t* ForwardResponse::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:myproject.ForwardResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ForwardResponse)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -502,12 +502,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ForwardResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:myproject.ForwardResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ForwardResponse)
   return target;
 }
 
 ::size_t ForwardResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:myproject.ForwardResponse)
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ForwardResponse)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -539,7 +539,7 @@ const ::google::protobuf::Message::ClassData* ForwardResponse::GetClassData() co
 void ForwardResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
   auto* const _this = static_cast<ForwardResponse*>(&to_msg);
   auto& from = static_cast<const ForwardResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:myproject.ForwardResponse)
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ForwardResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -554,7 +554,7 @@ void ForwardResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::goo
 }
 
 void ForwardResponse::CopyFrom(const ForwardResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:myproject.ForwardResponse)
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ForwardResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -582,7 +582,7 @@ void ForwardResponse::InternalSwap(ForwardResponse* PROTOBUF_RESTRICT other) {
       file_level_metadata_server_5fgateway_2eproto[1]);
 }
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace myproject
+}  // namespace rpc_server
 namespace google {
 namespace protobuf {
 }  // namespace protobuf

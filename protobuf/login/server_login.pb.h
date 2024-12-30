@@ -55,7 +55,7 @@ struct TableStruct_server_5flogin_2eproto {
 };
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_server_5flogin_2eproto;
-namespace myproject {
+namespace rpc_server {
 class AuthenticateRequest;
 struct AuthenticateRequestDefaultTypeInternal;
 extern AuthenticateRequestDefaultTypeInternal _AuthenticateRequest_default_instance_;
@@ -74,13 +74,13 @@ extern RegisterRequestDefaultTypeInternal _RegisterRequest_default_instance_;
 class RegisterResponse;
 struct RegisterResponseDefaultTypeInternal;
 extern RegisterResponseDefaultTypeInternal _RegisterResponse_default_instance_;
-}  // namespace myproject
+}  // namespace rpc_server
 namespace google {
 namespace protobuf {
 }  // namespace protobuf
 }  // namespace google
 
-namespace myproject {
+namespace rpc_server {
 
 // ===================================================================
 
@@ -88,7 +88,7 @@ namespace myproject {
 // -------------------------------------------------------------------
 
 class RegisterResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.RegisterResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.RegisterResponse) */ {
  public:
   inline RegisterResponse() : RegisterResponse(nullptr) {}
   ~RegisterResponse() override;
@@ -202,7 +202,7 @@ class RegisterResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.RegisterResponse";
+    return "rpc_server.RegisterResponse";
   }
   protected:
   explicit RegisterResponse(::google::protobuf::Arena* arena);
@@ -248,7 +248,7 @@ class RegisterResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.RegisterResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.RegisterResponse)
  private:
   class _Internal;
 
@@ -281,7 +281,7 @@ class RegisterResponse final :
 };// -------------------------------------------------------------------
 
 class RegisterRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.RegisterRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.RegisterRequest) */ {
  public:
   inline RegisterRequest() : RegisterRequest(nullptr) {}
   ~RegisterRequest() override;
@@ -395,7 +395,7 @@ class RegisterRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.RegisterRequest";
+    return "rpc_server.RegisterRequest";
   }
   protected:
   explicit RegisterRequest(::google::protobuf::Arena* arena);
@@ -464,7 +464,7 @@ class RegisterRequest final :
   std::string* _internal_mutable_email();
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.RegisterRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.RegisterRequest)
  private:
   class _Internal;
 
@@ -498,7 +498,7 @@ class RegisterRequest final :
 };// -------------------------------------------------------------------
 
 class LoginResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.LoginResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.LoginResponse) */ {
  public:
   inline LoginResponse() : LoginResponse(nullptr) {}
   ~LoginResponse() override;
@@ -612,7 +612,7 @@ class LoginResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.LoginResponse";
+    return "rpc_server.LoginResponse";
   }
   protected:
   explicit LoginResponse(::google::protobuf::Arena* arena);
@@ -675,7 +675,7 @@ class LoginResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.LoginResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.LoginResponse)
  private:
   class _Internal;
 
@@ -709,7 +709,7 @@ class LoginResponse final :
 };// -------------------------------------------------------------------
 
 class LoginRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.LoginRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.LoginRequest) */ {
  public:
   inline LoginRequest() : LoginRequest(nullptr) {}
   ~LoginRequest() override;
@@ -823,7 +823,7 @@ class LoginRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.LoginRequest";
+    return "rpc_server.LoginRequest";
   }
   protected:
   explicit LoginRequest(::google::protobuf::Arena* arena);
@@ -875,7 +875,7 @@ class LoginRequest final :
   std::string* _internal_mutable_password();
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.LoginRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.LoginRequest)
  private:
   class _Internal;
 
@@ -908,7 +908,7 @@ class LoginRequest final :
 };// -------------------------------------------------------------------
 
 class AuthenticateResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.AuthenticateResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.AuthenticateResponse) */ {
  public:
   inline AuthenticateResponse() : AuthenticateResponse(nullptr) {}
   ~AuthenticateResponse() override;
@@ -1022,7 +1022,7 @@ class AuthenticateResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.AuthenticateResponse";
+    return "rpc_server.AuthenticateResponse";
   }
   protected:
   explicit AuthenticateResponse(::google::protobuf::Arena* arena);
@@ -1068,7 +1068,7 @@ class AuthenticateResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.AuthenticateResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.AuthenticateResponse)
  private:
   class _Internal;
 
@@ -1101,7 +1101,7 @@ class AuthenticateResponse final :
 };// -------------------------------------------------------------------
 
 class AuthenticateRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.AuthenticateRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.AuthenticateRequest) */ {
  public:
   inline AuthenticateRequest() : AuthenticateRequest(nullptr) {}
   ~AuthenticateRequest() override;
@@ -1215,7 +1215,7 @@ class AuthenticateRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.AuthenticateRequest";
+    return "rpc_server.AuthenticateRequest";
   }
   protected:
   explicit AuthenticateRequest(::google::protobuf::Arena* arena);
@@ -1250,7 +1250,7 @@ class AuthenticateRequest final :
   std::string* _internal_mutable_token();
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.AuthenticateRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.AuthenticateRequest)
  private:
   class _Internal;
 
@@ -1304,7 +1304,7 @@ inline void LoginRequest::clear_username() {
 }
 inline const std::string& LoginRequest::username() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.LoginRequest.username)
+  // @@protoc_insertion_point(field_get:rpc_server.LoginRequest.username)
   return _internal_username();
 }
 template <typename Arg_, typename... Args_>
@@ -1313,11 +1313,11 @@ inline PROTOBUF_ALWAYS_INLINE void LoginRequest::set_username(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.username_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.LoginRequest.username)
+  // @@protoc_insertion_point(field_set:rpc_server.LoginRequest.username)
 }
 inline std::string* LoginRequest::mutable_username() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_username();
-  // @@protoc_insertion_point(field_mutable:myproject.LoginRequest.username)
+  // @@protoc_insertion_point(field_mutable:rpc_server.LoginRequest.username)
   return _s;
 }
 inline const std::string& LoginRequest::_internal_username() const {
@@ -1336,7 +1336,7 @@ inline std::string* LoginRequest::_internal_mutable_username() {
 }
 inline std::string* LoginRequest::release_username() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.LoginRequest.username)
+  // @@protoc_insertion_point(field_release:rpc_server.LoginRequest.username)
   return _impl_.username_.Release();
 }
 inline void LoginRequest::set_allocated_username(std::string* value) {
@@ -1347,7 +1347,7 @@ inline void LoginRequest::set_allocated_username(std::string* value) {
           _impl_.username_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.LoginRequest.username)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.LoginRequest.username)
 }
 
 // bytes password = 2;
@@ -1357,7 +1357,7 @@ inline void LoginRequest::clear_password() {
 }
 inline const std::string& LoginRequest::password() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.LoginRequest.password)
+  // @@protoc_insertion_point(field_get:rpc_server.LoginRequest.password)
   return _internal_password();
 }
 template <typename Arg_, typename... Args_>
@@ -1366,11 +1366,11 @@ inline PROTOBUF_ALWAYS_INLINE void LoginRequest::set_password(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.password_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.LoginRequest.password)
+  // @@protoc_insertion_point(field_set:rpc_server.LoginRequest.password)
 }
 inline std::string* LoginRequest::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_password();
-  // @@protoc_insertion_point(field_mutable:myproject.LoginRequest.password)
+  // @@protoc_insertion_point(field_mutable:rpc_server.LoginRequest.password)
   return _s;
 }
 inline const std::string& LoginRequest::_internal_password() const {
@@ -1389,7 +1389,7 @@ inline std::string* LoginRequest::_internal_mutable_password() {
 }
 inline std::string* LoginRequest::release_password() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.LoginRequest.password)
+  // @@protoc_insertion_point(field_release:rpc_server.LoginRequest.password)
   return _impl_.password_.Release();
 }
 inline void LoginRequest::set_allocated_password(std::string* value) {
@@ -1400,7 +1400,7 @@ inline void LoginRequest::set_allocated_password(std::string* value) {
           _impl_.password_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.LoginRequest.password)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.LoginRequest.password)
 }
 
 // -------------------------------------------------------------------
@@ -1413,12 +1413,12 @@ inline void LoginResponse::clear_success() {
   _impl_.success_ = false;
 }
 inline bool LoginResponse::success() const {
-  // @@protoc_insertion_point(field_get:myproject.LoginResponse.success)
+  // @@protoc_insertion_point(field_get:rpc_server.LoginResponse.success)
   return _internal_success();
 }
 inline void LoginResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:myproject.LoginResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.LoginResponse.success)
 }
 inline bool LoginResponse::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -1437,7 +1437,7 @@ inline void LoginResponse::clear_message() {
 }
 inline const std::string& LoginResponse::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.LoginResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.LoginResponse.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
@@ -1446,11 +1446,11 @@ inline PROTOBUF_ALWAYS_INLINE void LoginResponse::set_message(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.LoginResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.LoginResponse.message)
 }
 inline std::string* LoginResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:myproject.LoginResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.LoginResponse.message)
   return _s;
 }
 inline const std::string& LoginResponse::_internal_message() const {
@@ -1469,7 +1469,7 @@ inline std::string* LoginResponse::_internal_mutable_message() {
 }
 inline std::string* LoginResponse::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.LoginResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.LoginResponse.message)
   return _impl_.message_.Release();
 }
 inline void LoginResponse::set_allocated_message(std::string* value) {
@@ -1480,7 +1480,7 @@ inline void LoginResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.LoginResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.LoginResponse.message)
 }
 
 // bytes token = 3;
@@ -1490,7 +1490,7 @@ inline void LoginResponse::clear_token() {
 }
 inline const std::string& LoginResponse::token() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.LoginResponse.token)
+  // @@protoc_insertion_point(field_get:rpc_server.LoginResponse.token)
   return _internal_token();
 }
 template <typename Arg_, typename... Args_>
@@ -1499,11 +1499,11 @@ inline PROTOBUF_ALWAYS_INLINE void LoginResponse::set_token(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.token_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.LoginResponse.token)
+  // @@protoc_insertion_point(field_set:rpc_server.LoginResponse.token)
 }
 inline std::string* LoginResponse::mutable_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_token();
-  // @@protoc_insertion_point(field_mutable:myproject.LoginResponse.token)
+  // @@protoc_insertion_point(field_mutable:rpc_server.LoginResponse.token)
   return _s;
 }
 inline const std::string& LoginResponse::_internal_token() const {
@@ -1522,7 +1522,7 @@ inline std::string* LoginResponse::_internal_mutable_token() {
 }
 inline std::string* LoginResponse::release_token() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.LoginResponse.token)
+  // @@protoc_insertion_point(field_release:rpc_server.LoginResponse.token)
   return _impl_.token_.Release();
 }
 inline void LoginResponse::set_allocated_token(std::string* value) {
@@ -1533,7 +1533,7 @@ inline void LoginResponse::set_allocated_token(std::string* value) {
           _impl_.token_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.LoginResponse.token)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.LoginResponse.token)
 }
 
 // -------------------------------------------------------------------
@@ -1547,7 +1547,7 @@ inline void RegisterRequest::clear_username() {
 }
 inline const std::string& RegisterRequest::username() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.RegisterRequest.username)
+  // @@protoc_insertion_point(field_get:rpc_server.RegisterRequest.username)
   return _internal_username();
 }
 template <typename Arg_, typename... Args_>
@@ -1556,11 +1556,11 @@ inline PROTOBUF_ALWAYS_INLINE void RegisterRequest::set_username(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.username_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.RegisterRequest.username)
+  // @@protoc_insertion_point(field_set:rpc_server.RegisterRequest.username)
 }
 inline std::string* RegisterRequest::mutable_username() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_username();
-  // @@protoc_insertion_point(field_mutable:myproject.RegisterRequest.username)
+  // @@protoc_insertion_point(field_mutable:rpc_server.RegisterRequest.username)
   return _s;
 }
 inline const std::string& RegisterRequest::_internal_username() const {
@@ -1579,7 +1579,7 @@ inline std::string* RegisterRequest::_internal_mutable_username() {
 }
 inline std::string* RegisterRequest::release_username() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.RegisterRequest.username)
+  // @@protoc_insertion_point(field_release:rpc_server.RegisterRequest.username)
   return _impl_.username_.Release();
 }
 inline void RegisterRequest::set_allocated_username(std::string* value) {
@@ -1590,7 +1590,7 @@ inline void RegisterRequest::set_allocated_username(std::string* value) {
           _impl_.username_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.RegisterRequest.username)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterRequest.username)
 }
 
 // bytes password = 2;
@@ -1600,7 +1600,7 @@ inline void RegisterRequest::clear_password() {
 }
 inline const std::string& RegisterRequest::password() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.RegisterRequest.password)
+  // @@protoc_insertion_point(field_get:rpc_server.RegisterRequest.password)
   return _internal_password();
 }
 template <typename Arg_, typename... Args_>
@@ -1609,11 +1609,11 @@ inline PROTOBUF_ALWAYS_INLINE void RegisterRequest::set_password(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.password_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.RegisterRequest.password)
+  // @@protoc_insertion_point(field_set:rpc_server.RegisterRequest.password)
 }
 inline std::string* RegisterRequest::mutable_password() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_password();
-  // @@protoc_insertion_point(field_mutable:myproject.RegisterRequest.password)
+  // @@protoc_insertion_point(field_mutable:rpc_server.RegisterRequest.password)
   return _s;
 }
 inline const std::string& RegisterRequest::_internal_password() const {
@@ -1632,7 +1632,7 @@ inline std::string* RegisterRequest::_internal_mutable_password() {
 }
 inline std::string* RegisterRequest::release_password() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.RegisterRequest.password)
+  // @@protoc_insertion_point(field_release:rpc_server.RegisterRequest.password)
   return _impl_.password_.Release();
 }
 inline void RegisterRequest::set_allocated_password(std::string* value) {
@@ -1643,7 +1643,7 @@ inline void RegisterRequest::set_allocated_password(std::string* value) {
           _impl_.password_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.RegisterRequest.password)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterRequest.password)
 }
 
 // bytes email = 3;
@@ -1653,7 +1653,7 @@ inline void RegisterRequest::clear_email() {
 }
 inline const std::string& RegisterRequest::email() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.RegisterRequest.email)
+  // @@protoc_insertion_point(field_get:rpc_server.RegisterRequest.email)
   return _internal_email();
 }
 template <typename Arg_, typename... Args_>
@@ -1662,11 +1662,11 @@ inline PROTOBUF_ALWAYS_INLINE void RegisterRequest::set_email(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.email_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.RegisterRequest.email)
+  // @@protoc_insertion_point(field_set:rpc_server.RegisterRequest.email)
 }
 inline std::string* RegisterRequest::mutable_email() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_email();
-  // @@protoc_insertion_point(field_mutable:myproject.RegisterRequest.email)
+  // @@protoc_insertion_point(field_mutable:rpc_server.RegisterRequest.email)
   return _s;
 }
 inline const std::string& RegisterRequest::_internal_email() const {
@@ -1685,7 +1685,7 @@ inline std::string* RegisterRequest::_internal_mutable_email() {
 }
 inline std::string* RegisterRequest::release_email() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.RegisterRequest.email)
+  // @@protoc_insertion_point(field_release:rpc_server.RegisterRequest.email)
   return _impl_.email_.Release();
 }
 inline void RegisterRequest::set_allocated_email(std::string* value) {
@@ -1696,7 +1696,7 @@ inline void RegisterRequest::set_allocated_email(std::string* value) {
           _impl_.email_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.RegisterRequest.email)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterRequest.email)
 }
 
 // -------------------------------------------------------------------
@@ -1709,12 +1709,12 @@ inline void RegisterResponse::clear_success() {
   _impl_.success_ = false;
 }
 inline bool RegisterResponse::success() const {
-  // @@protoc_insertion_point(field_get:myproject.RegisterResponse.success)
+  // @@protoc_insertion_point(field_get:rpc_server.RegisterResponse.success)
   return _internal_success();
 }
 inline void RegisterResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:myproject.RegisterResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.RegisterResponse.success)
 }
 inline bool RegisterResponse::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -1733,7 +1733,7 @@ inline void RegisterResponse::clear_message() {
 }
 inline const std::string& RegisterResponse::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.RegisterResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.RegisterResponse.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
@@ -1742,11 +1742,11 @@ inline PROTOBUF_ALWAYS_INLINE void RegisterResponse::set_message(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.RegisterResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.RegisterResponse.message)
 }
 inline std::string* RegisterResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:myproject.RegisterResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.RegisterResponse.message)
   return _s;
 }
 inline const std::string& RegisterResponse::_internal_message() const {
@@ -1765,7 +1765,7 @@ inline std::string* RegisterResponse::_internal_mutable_message() {
 }
 inline std::string* RegisterResponse::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.RegisterResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.RegisterResponse.message)
   return _impl_.message_.Release();
 }
 inline void RegisterResponse::set_allocated_message(std::string* value) {
@@ -1776,7 +1776,7 @@ inline void RegisterResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.RegisterResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterResponse.message)
 }
 
 // -------------------------------------------------------------------
@@ -1790,7 +1790,7 @@ inline void AuthenticateRequest::clear_token() {
 }
 inline const std::string& AuthenticateRequest::token() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.AuthenticateRequest.token)
+  // @@protoc_insertion_point(field_get:rpc_server.AuthenticateRequest.token)
   return _internal_token();
 }
 template <typename Arg_, typename... Args_>
@@ -1799,11 +1799,11 @@ inline PROTOBUF_ALWAYS_INLINE void AuthenticateRequest::set_token(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.token_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.AuthenticateRequest.token)
+  // @@protoc_insertion_point(field_set:rpc_server.AuthenticateRequest.token)
 }
 inline std::string* AuthenticateRequest::mutable_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_token();
-  // @@protoc_insertion_point(field_mutable:myproject.AuthenticateRequest.token)
+  // @@protoc_insertion_point(field_mutable:rpc_server.AuthenticateRequest.token)
   return _s;
 }
 inline const std::string& AuthenticateRequest::_internal_token() const {
@@ -1822,7 +1822,7 @@ inline std::string* AuthenticateRequest::_internal_mutable_token() {
 }
 inline std::string* AuthenticateRequest::release_token() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.AuthenticateRequest.token)
+  // @@protoc_insertion_point(field_release:rpc_server.AuthenticateRequest.token)
   return _impl_.token_.Release();
 }
 inline void AuthenticateRequest::set_allocated_token(std::string* value) {
@@ -1833,7 +1833,7 @@ inline void AuthenticateRequest::set_allocated_token(std::string* value) {
           _impl_.token_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.AuthenticateRequest.token)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.AuthenticateRequest.token)
 }
 
 // -------------------------------------------------------------------
@@ -1846,12 +1846,12 @@ inline void AuthenticateResponse::clear_success() {
   _impl_.success_ = false;
 }
 inline bool AuthenticateResponse::success() const {
-  // @@protoc_insertion_point(field_get:myproject.AuthenticateResponse.success)
+  // @@protoc_insertion_point(field_get:rpc_server.AuthenticateResponse.success)
   return _internal_success();
 }
 inline void AuthenticateResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:myproject.AuthenticateResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.AuthenticateResponse.success)
 }
 inline bool AuthenticateResponse::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -1870,7 +1870,7 @@ inline void AuthenticateResponse::clear_message() {
 }
 inline const std::string& AuthenticateResponse::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.AuthenticateResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.AuthenticateResponse.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
@@ -1879,11 +1879,11 @@ inline PROTOBUF_ALWAYS_INLINE void AuthenticateResponse::set_message(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.AuthenticateResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.AuthenticateResponse.message)
 }
 inline std::string* AuthenticateResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:myproject.AuthenticateResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.AuthenticateResponse.message)
   return _s;
 }
 inline const std::string& AuthenticateResponse::_internal_message() const {
@@ -1902,7 +1902,7 @@ inline std::string* AuthenticateResponse::_internal_mutable_message() {
 }
 inline std::string* AuthenticateResponse::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.AuthenticateResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.AuthenticateResponse.message)
   return _impl_.message_.Release();
 }
 inline void AuthenticateResponse::set_allocated_message(std::string* value) {
@@ -1913,7 +1913,7 @@ inline void AuthenticateResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.AuthenticateResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.AuthenticateResponse.message)
 }
 
 #ifdef __GNUC__
@@ -1921,7 +1921,7 @@ inline void AuthenticateResponse::set_allocated_message(std::string* value) {
 #endif  // __GNUC__
 
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace myproject
+}  // namespace rpc_server
 
 
 // @@protoc_insertion_point(global_scope)

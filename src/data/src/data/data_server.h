@@ -17,7 +17,7 @@
 #include <lua.hpp>
 
 // 数据库服务实现类
-class DatabaseServerImpl final: public myproject::DatabaseServer::Service
+class DatabaseServerImpl final: public rpc_server::DatabaseServer::Service
 {
 public:
     DatabaseServerImpl(LoggerManager& logger_manager_); // 参数：日志管理器，数据库连接池
@@ -31,13 +31,13 @@ public:
 
     // 服务实现
     // 添加数据库记录
-    grpc::Status Create(grpc::ServerContext* context, const myproject::CreateRequest* request, myproject::CreateResponse* response) override;
+    grpc::Status Create(grpc::ServerContext* context, const rpc_server::CreateRequest* request, rpc_server::CreateResponse* response) override;
     // 读取数据库记录
-    grpc::Status Read(grpc::ServerContext* context, const myproject::ReadRequest* request, myproject::ReadResponse* response) override;
+    grpc::Status Read(grpc::ServerContext* context, const rpc_server::ReadRequest* request, rpc_server::ReadResponse* response) override;
     // 更新数据库记录
-    grpc::Status Update(grpc::ServerContext* context, const myproject::UpdateRequest* request, myproject::UpdateResponse* response) override;
+    grpc::Status Update(grpc::ServerContext* context, const rpc_server::UpdateRequest* request, rpc_server::UpdateResponse* response) override;
     // 删除数据库记录
-    grpc::Status Delete(grpc::ServerContext* context, const myproject::DeleteRequest* request, myproject::DeleteResponse* response) override;
+    grpc::Status Delete(grpc::ServerContext* context, const rpc_server::DeleteRequest* request, rpc_server::DeleteResponse* response) override;
 
 private:
     void Read_server_config(lua_State* L,const std::string& file_url);   // 读取服务器配置文件，初始化服务器地址和端口
@@ -46,10 +46,10 @@ private:
     void Worker_thread();   // 线程池工作函数
 
     // 处理数据库操作的函数
-    void Handle_create(const myproject::CreateRequest* request, myproject::CreateResponse* response);
-    void Handle_read(const myproject::ReadRequest* request, myproject::ReadResponse* response);
-    void Handle_update(const myproject::UpdateRequest* request, myproject::UpdateResponse* response);
-    void Handle_delete(const myproject::DeleteRequest* request, myproject::DeleteResponse* response);
+    void Handle_create(const rpc_server::CreateRequest* request, rpc_server::CreateResponse* response);
+    void Handle_read(const rpc_server::ReadRequest* request, rpc_server::ReadResponse* response);
+    void Handle_update(const rpc_server::UpdateRequest* request, rpc_server::UpdateResponse* response);
+    void Handle_delete(const rpc_server::DeleteRequest* request, rpc_server::DeleteResponse* response);
 
     // 定时任务：
     void Send_heartbeat();  // 发送心跳包
@@ -57,7 +57,7 @@ private:
 private:
     std::string server_address; // 服务器地址
     std::string server_port;    // 服务器端口
-    myproject::ServerType server_type;  // 服务器类型
+    rpc_server::ServerType server_type;  // 服务器类型
 
     LoggerManager& logger_manager;  // 日志管理器
 
@@ -65,7 +65,7 @@ private:
     std::unique_ptr<DBConnectionPool> user_db_pool; // 用户数据库
     // 其他数据库连接池
 
-    std::unique_ptr<myproject::CentralServer::Stub> central_stub;    // 中心服务存根
+    std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;    // 中心服务存根
 
     std::vector<std::thread> thread_pool;   // 线程池
     std::queue<std::function<void()>> task_queue;    // 任务队列

@@ -19,10 +19,10 @@
 #include <grpcpp/server_context.h>
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/support/sync_stream.h>
-namespace myproject {
+namespace rpc_server {
 
 static const char* GatewayServer_method_names[] = {
-  "/myproject.GatewayServer/RequestForward",
+  "/rpc_server.GatewayServer/RequestForward",
 };
 
 std::unique_ptr< GatewayServer::Stub> GatewayServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -35,23 +35,23 @@ GatewayServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   : channel_(channel), rpcmethod_RequestForward_(GatewayServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status GatewayServer::Stub::RequestForward(::grpc::ClientContext* context, const ::myproject::ForwardRequest& request, ::myproject::ForwardResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::myproject::ForwardRequest, ::myproject::ForwardResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RequestForward_, context, request, response);
+::grpc::Status GatewayServer::Stub::RequestForward(::grpc::ClientContext* context, const ::rpc_server::ForwardRequest& request, ::rpc_server::ForwardResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::ForwardRequest, ::rpc_server::ForwardResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_RequestForward_, context, request, response);
 }
 
-void GatewayServer::Stub::async::RequestForward(::grpc::ClientContext* context, const ::myproject::ForwardRequest* request, ::myproject::ForwardResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::myproject::ForwardRequest, ::myproject::ForwardResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RequestForward_, context, request, response, std::move(f));
+void GatewayServer::Stub::async::RequestForward(::grpc::ClientContext* context, const ::rpc_server::ForwardRequest* request, ::rpc_server::ForwardResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::ForwardRequest, ::rpc_server::ForwardResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RequestForward_, context, request, response, std::move(f));
 }
 
-void GatewayServer::Stub::async::RequestForward(::grpc::ClientContext* context, const ::myproject::ForwardRequest* request, ::myproject::ForwardResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void GatewayServer::Stub::async::RequestForward(::grpc::ClientContext* context, const ::rpc_server::ForwardRequest* request, ::rpc_server::ForwardResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_RequestForward_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::ForwardResponse>* GatewayServer::Stub::PrepareAsyncRequestForwardRaw(::grpc::ClientContext* context, const ::myproject::ForwardRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::myproject::ForwardResponse, ::myproject::ForwardRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RequestForward_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::ForwardResponse>* GatewayServer::Stub::PrepareAsyncRequestForwardRaw(::grpc::ClientContext* context, const ::rpc_server::ForwardRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::ForwardResponse, ::rpc_server::ForwardRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_RequestForward_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::myproject::ForwardResponse>* GatewayServer::Stub::AsyncRequestForwardRaw(::grpc::ClientContext* context, const ::myproject::ForwardRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::ForwardResponse>* GatewayServer::Stub::AsyncRequestForwardRaw(::grpc::ClientContext* context, const ::rpc_server::ForwardRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncRequestForwardRaw(context, request, cq);
   result->StartCall();
@@ -62,11 +62,11 @@ GatewayServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GatewayServer_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< GatewayServer::Service, ::myproject::ForwardRequest, ::myproject::ForwardResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< GatewayServer::Service, ::rpc_server::ForwardRequest, ::rpc_server::ForwardResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](GatewayServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::myproject::ForwardRequest* req,
-             ::myproject::ForwardResponse* resp) {
+             const ::rpc_server::ForwardRequest* req,
+             ::rpc_server::ForwardResponse* resp) {
                return service->RequestForward(ctx, req, resp);
              }, this)));
 }
@@ -74,7 +74,7 @@ GatewayServer::Service::Service() {
 GatewayServer::Service::~Service() {
 }
 
-::grpc::Status GatewayServer::Service::RequestForward(::grpc::ServerContext* context, const ::myproject::ForwardRequest* request, ::myproject::ForwardResponse* response) {
+::grpc::Status GatewayServer::Service::RequestForward(::grpc::ServerContext* context, const ::rpc_server::ForwardRequest* request, ::rpc_server::ForwardResponse* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -82,5 +82,5 @@ GatewayServer::Service::~Service() {
 }
 
 
-}  // namespace myproject
+}  // namespace rpc_server
 

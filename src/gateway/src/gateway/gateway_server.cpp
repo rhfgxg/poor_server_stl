@@ -1,9 +1,9 @@
 #include "gateway_server.h"
 
 GatewayServerImpl::GatewayServerImpl(LoggerManager& logger_manager_):
-    server_type(myproject::ServerType::GATEWAY),    // 服务器类型
+    server_type(rpc_server::ServerType::GATEWAY),    // 服务器类型
     logger_manager(logger_manager_),  // 日志管理器   
-    central_stub(myproject::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 中心服务器存根
+    central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 中心服务器存根
     login_connection_pool(10) // 初始化登录服务器连接池，设置连接池大小为10
 {
     
@@ -92,12 +92,12 @@ void GatewayServerImpl::Worker_thread()
 void GatewayServerImpl::register_server()
 {
     // 请求
-    myproject::RegisterServerRequest request;
-    request.set_server_type(myproject::ServerType::GATEWAY);
+    rpc_server::RegisterServerRequest request;
+    request.set_server_type(rpc_server::ServerType::GATEWAY);
     request.set_address("127.0.0.1");
     request.set_port("50051");
     // 响应
-    myproject::RegisterServerResponse response;
+    rpc_server::RegisterServerResponse response;
 
     // 客户端
     grpc::ClientContext context;
@@ -121,13 +121,13 @@ void GatewayServerImpl::unregister_server()
     // 客户端
     grpc::ClientContext context;
     // 请求
-    myproject::UnregisterServerRequest request;
-    request.set_server_type(myproject::ServerType::GATEWAY);
+    rpc_server::UnregisterServerRequest request;
+    request.set_server_type(rpc_server::ServerType::GATEWAY);
     request.set_address("localhost");
     request.set_port("50051");
 
     // 响应
-    myproject::UnregisterServerResponse response;
+    rpc_server::UnregisterServerResponse response;
 
     grpc::Status status = central_stub->UnregisterServer(&context, request, &response);
 
@@ -147,10 +147,10 @@ void GatewayServerImpl::Init_connection_pool()
     // 客户端
     grpc::ClientContext context;
     // 请求
-    myproject::ConnectPoorRequest request;
-    request.set_server_type(myproject::ServerType::LOGIN);
+    rpc_server::ConnectPoorRequest request;
+    request.set_server_type(rpc_server::ServerType::LOGIN);
     // 响应
-    myproject::ConnectPoorResponse response;
+    rpc_server::ConnectPoorResponse response;
 
     grpc::Status status = central_stub->GetConnectPoor(&context, request ,&response);
 
@@ -159,7 +159,7 @@ void GatewayServerImpl::Init_connection_pool()
         // 更新登录服务器连接池
         for(const auto& server_info : response.connect_info())
         {
-            login_connection_pool.add_server(myproject::ServerType::LOGIN,server_info.address(),std::to_string(server_info.port()));
+            login_connection_pool.add_server(rpc_server::ServerType::LOGIN,server_info.address(),std::to_string(server_info.port()));
         }
         logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway server updated connection pool successfully");
     }
@@ -187,11 +187,11 @@ void GatewayServerImpl::Send_heartbeat()
     {
         std::this_thread::sleep_for(std::chrono::seconds(10)); // 每10秒发送一次心跳包
 
-        myproject::HeartbeatRequest request;
-        myproject::HeartbeatResponse response;
+        rpc_server::HeartbeatRequest request;
+        rpc_server::HeartbeatResponse response;
         grpc::ClientContext context;
 
-        request.set_server_type(myproject::ServerType::GATEWAY);
+        request.set_server_type(rpc_server::ServerType::GATEWAY);
         request.set_address("127.0.0.1"); // 设置服务器ip
         request.set_port("50051"); // 设置服务器端口
 
@@ -210,11 +210,11 @@ void GatewayServerImpl::Send_heartbeat()
 
 /**************************************** grpc服务接口定义 **************************************************************************/
 // 服务转发接口
-grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context,const myproject::ForwardRequest* request,myproject::ForwardResponse* response)
+grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context, const rpc_server::ForwardRequest* request, rpc_server::ForwardResponse* response)
 {
     // 深拷贝请求和响应对象
-    auto request_copy = std::make_shared<myproject::ForwardRequest>(*request);
-    auto response_copy = std::make_shared<myproject::ForwardResponse>();
+    auto request_copy = std::make_shared<rpc_server::ForwardRequest>(*request);
+    auto response_copy = std::make_shared<rpc_server::ForwardResponse>();
     // 创建 promise 和 future
     std::promise<void> task_promise;
     std::future<void> task_future = task_promise.get_future();
@@ -224,7 +224,7 @@ grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context,cons
         task_queue.push([this,request_copy,response_copy,&task_promise] {
             switch(request_copy->service_type()) // 根据请求的服务类型进行转发
             {
-            case myproject::ServiceType::REQ_LOGIN: // 用户登录请求
+            case rpc_server::ServiceType::REQ_LOGIN: // 用户登录请求
             {
                 Forward_to_login_service(request_copy->payload(),response_copy.get());  // 解析负载，并转发到登录服务
                 break;
@@ -251,9 +251,9 @@ grpc::Status GatewayServerImpl::RequestForward(grpc::ServerContext* context,cons
 
 /**************************************** grpc服务接口工具函数 **************************************************************************/
 // Login 方法，处理登录请求
-grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payload, myproject::ForwardResponse* response)
+grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payload, rpc_server::ForwardResponse* response)
 {
-    myproject::LoginRequest login_request;  // 创建登录请求对象
+    rpc_server::LoginRequest login_request;  // 创建登录请求对象
     bool request_out = login_request.ParseFromString(payload); // 将负载解析为登录请求对象
 
     if(!request_out) // 如果解析失败
@@ -262,12 +262,12 @@ grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payl
     }
 
     // 构造响应
-    myproject::LoginResponse login_response;
+    rpc_server::LoginResponse login_response;
     grpc::ClientContext context;
 
     // 获取连接池中的连接
-    auto channel = login_connection_pool.get_connection(myproject::ServerType::LOGIN);
-    auto login_stub = myproject::LoginServer::NewStub(channel);
+    auto channel = login_connection_pool.get_connection(rpc_server::ServerType::LOGIN);
+    auto login_stub = rpc_server::LoginServer::NewStub(channel);
 
     grpc::Status status = login_stub->Login(&context,login_request,&login_response);
 

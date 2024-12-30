@@ -20,7 +20,7 @@ ConnectionPool::~ConnectionPool()
 
 /***************************************** 其他服务器使用连接池 ********************************************/
 // 获取链接
-std::shared_ptr<grpc::Channel> ConnectionPool::get_connection(myproject::ServerType server_type)
+std::shared_ptr<grpc::Channel> ConnectionPool::get_connection(rpc_server::ServerType server_type)
 {
     std::unique_lock<std::mutex> lock(pool_mutex);   // 加锁
     pool_cv.wait(lock,[this,server_type] {
@@ -33,7 +33,7 @@ std::shared_ptr<grpc::Channel> ConnectionPool::get_connection(myproject::ServerT
 }
 
 // 释放链接
-void ConnectionPool::release_connection(myproject::ServerType server_type, std::shared_ptr<grpc::Channel> connection)
+void ConnectionPool::release_connection(rpc_server::ServerType server_type, std::shared_ptr<grpc::Channel> connection)
 {
     std::lock_guard<std::mutex> lock(pool_mutex);   // 加锁
     pool_map[server_type].push(connection);  // 加入连接池
@@ -41,7 +41,7 @@ void ConnectionPool::release_connection(myproject::ServerType server_type, std::
 }
 
 // 更新连接池中的连接
-void ConnectionPool::update_connections(myproject::ServerType server_type,const std::string& server_address,const std::string& server_port)
+void ConnectionPool::update_connections(rpc_server::ServerType server_type,const std::string& server_address,const std::string& server_port)
 {
     std::lock_guard<std::mutex> lock(pool_mutex);   // 加锁
 
@@ -71,7 +71,7 @@ std::shared_ptr<grpc::Channel> ConnectionPool::New_connection(const std::string&
 
 /**************************************** 中心服务器管理连接池的接口 *****************************************/
 // 添加链接
-void ConnectionPool::add_server(myproject::ServerType server_type,const std::string& server_address,const std::string& server_port)
+void ConnectionPool::add_server(rpc_server::ServerType server_type,const std::string& server_address,const std::string& server_port)
 {
     std::lock_guard<std::mutex> lock(pool_mutex);   // 加锁
     server_info_map[server_type] = {server_address,server_port}; // 保存服务器信息
@@ -84,7 +84,7 @@ void ConnectionPool::add_server(myproject::ServerType server_type,const std::str
 }
 
 // 删除指定服务器的链接
-void ConnectionPool::remove_server(myproject::ServerType server_type,const std::string& server_address,const std::string& server_port)
+void ConnectionPool::remove_server(rpc_server::ServerType server_type,const std::string& server_address,const std::string& server_port)
 {
     std::lock_guard<std::mutex> lock(pool_mutex);   // 加锁
     server_info_map.erase(server_type); // 删除服务器信息
@@ -96,12 +96,12 @@ void ConnectionPool::remove_server(myproject::ServerType server_type,const std::
 }
 
 // 获取所有连接池的状态
-std::unordered_map<myproject::ServerType, std::vector<std::pair<std::string, std::string>>> ConnectionPool::get_all_connections()
+std::unordered_map<rpc_server::ServerType, std::vector<std::pair<std::string, std::string>>> ConnectionPool::get_all_connections()
 {
     std::lock_guard<std::mutex> lock(pool_mutex);   // 加锁
 
     // 保存所有连接
-    std::unordered_map<myproject::ServerType, std::vector<std::pair<std::string, std::string>>> all_connections;
+    std::unordered_map<rpc_server::ServerType, std::vector<std::pair<std::string, std::string>>> all_connections;
 
     for(const auto& pair : server_info_map)   // 遍历服务器信息
     {

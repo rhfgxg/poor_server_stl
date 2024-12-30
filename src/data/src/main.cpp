@@ -9,7 +9,7 @@ int main()
 {
     // 初始化日志管理器，通过引用传递实现单例模式
     LoggerManager logger_manager;
-    logger_manager.initialize(myproject::ServerType::DATA);    // 传入服务器类型，创建日志文件夹
+    logger_manager.initialize(rpc_server::ServerType::DATA);    // 传入服务器类型，创建日志文件夹
 
     // 记录启动日志
     logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Data_server started"); // 记录启动日志：日志分类, 日志内容

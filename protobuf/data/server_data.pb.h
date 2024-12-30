@@ -58,7 +58,7 @@ struct TableStruct_server_5fdata_2eproto {
 };
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_server_5fdata_2eproto;
-namespace myproject {
+namespace rpc_server {
 class CreateRequest;
 struct CreateRequestDefaultTypeInternal;
 extern CreateRequestDefaultTypeInternal _CreateRequest_default_instance_;
@@ -104,13 +104,13 @@ extern UpdateRequest_QueryEntry_DoNotUseDefaultTypeInternal _UpdateRequest_Query
 class UpdateResponse;
 struct UpdateResponseDefaultTypeInternal;
 extern UpdateResponseDefaultTypeInternal _UpdateResponse_default_instance_;
-}  // namespace myproject
+}  // namespace rpc_server
 namespace google {
 namespace protobuf {
 }  // namespace protobuf
 }  // namespace google
 
-namespace myproject {
+namespace rpc_server {
 
 // ===================================================================
 
@@ -118,7 +118,7 @@ namespace myproject {
 // -------------------------------------------------------------------
 
 class UpdateResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.UpdateResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UpdateResponse) */ {
  public:
   inline UpdateResponse() : UpdateResponse(nullptr) {}
   ~UpdateResponse() override;
@@ -232,7 +232,7 @@ class UpdateResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.UpdateResponse";
+    return "rpc_server.UpdateResponse";
   }
   protected:
   explicit UpdateResponse(::google::protobuf::Arena* arena);
@@ -278,7 +278,7 @@ class UpdateResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.UpdateResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.UpdateResponse)
  private:
   class _Internal;
 
@@ -330,7 +330,7 @@ class UpdateRequest_QueryEntry_DoNotUse final
         &_UpdateRequest_QueryEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.UpdateRequest.QueryEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.UpdateRequest.QueryEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -358,7 +358,7 @@ class UpdateRequest_DataEntry_DoNotUse final
         &_UpdateRequest_DataEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.UpdateRequest.DataEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.UpdateRequest.DataEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -386,7 +386,7 @@ class Result_FieldsEntry_DoNotUse final
         &_Result_FieldsEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.Result.FieldsEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.Result.FieldsEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -414,7 +414,7 @@ class ReadRequest_QueryEntry_DoNotUse final
         &_ReadRequest_QueryEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.ReadRequest.QueryEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.ReadRequest.QueryEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -423,7 +423,7 @@ class ReadRequest_QueryEntry_DoNotUse final
 // -------------------------------------------------------------------
 
 class DeleteResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.DeleteResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.DeleteResponse) */ {
  public:
   inline DeleteResponse() : DeleteResponse(nullptr) {}
   ~DeleteResponse() override;
@@ -537,7 +537,7 @@ class DeleteResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.DeleteResponse";
+    return "rpc_server.DeleteResponse";
   }
   protected:
   explicit DeleteResponse(::google::protobuf::Arena* arena);
@@ -583,7 +583,7 @@ class DeleteResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.DeleteResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.DeleteResponse)
  private:
   class _Internal;
 
@@ -635,7 +635,7 @@ class DeleteRequest_QueryEntry_DoNotUse final
         &_DeleteRequest_QueryEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.DeleteRequest.QueryEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.DeleteRequest.QueryEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -644,7 +644,7 @@ class DeleteRequest_QueryEntry_DoNotUse final
 // -------------------------------------------------------------------
 
 class CreateResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.CreateResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CreateResponse) */ {
  public:
   inline CreateResponse() : CreateResponse(nullptr) {}
   ~CreateResponse() override;
@@ -758,7 +758,7 @@ class CreateResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.CreateResponse";
+    return "rpc_server.CreateResponse";
   }
   protected:
   explicit CreateResponse(::google::protobuf::Arena* arena);
@@ -804,7 +804,7 @@ class CreateResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.CreateResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.CreateResponse)
  private:
   class _Internal;
 
@@ -856,7 +856,7 @@ class CreateRequest_DataEntry_DoNotUse final
         &_CreateRequest_DataEntry_DoNotUse_default_instance_);
   }
   static bool ValidateKey(std::string* s) {
-    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "myproject.CreateRequest.DataEntry.key");
+    return ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::google::protobuf::internal::WireFormatLite::PARSE, "rpc_server.CreateRequest.DataEntry.key");
  }
   static bool ValidateValue(void*) { return true; }
   ::google::protobuf::Metadata GetMetadata() const final;
@@ -865,7 +865,7 @@ class CreateRequest_DataEntry_DoNotUse final
 // -------------------------------------------------------------------
 
 class UpdateRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.UpdateRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UpdateRequest) */ {
  public:
   inline UpdateRequest() : UpdateRequest(nullptr) {}
   ~UpdateRequest() override;
@@ -979,7 +979,7 @@ class UpdateRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.UpdateRequest";
+    return "rpc_server.UpdateRequest";
   }
   protected:
   explicit UpdateRequest(::google::protobuf::Arena* arena);
@@ -1064,14 +1064,14 @@ class UpdateRequest final :
   std::string* _internal_mutable_table();
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.UpdateRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.UpdateRequest)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 4, 2,
-      41, 2>
+      42, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1105,7 +1105,7 @@ class UpdateRequest final :
 };// -------------------------------------------------------------------
 
 class Result final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.Result) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.Result) */ {
  public:
   inline Result() : Result(nullptr) {}
   ~Result() override;
@@ -1219,7 +1219,7 @@ class Result final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.Result";
+    return "rpc_server.Result";
   }
   protected:
   explicit Result(::google::protobuf::Arena* arena);
@@ -1254,14 +1254,14 @@ class Result final :
   ::google::protobuf::Map<std::string, std::string>* _internal_mutable_fields();
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.Result)
+  // @@protoc_insertion_point(class_scope:rpc_server.Result)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 1, 1,
-      31, 2>
+      32, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1289,7 +1289,7 @@ class Result final :
 };// -------------------------------------------------------------------
 
 class ReadRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.ReadRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ReadRequest) */ {
  public:
   inline ReadRequest() : ReadRequest(nullptr) {}
   ~ReadRequest() override;
@@ -1403,7 +1403,7 @@ class ReadRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.ReadRequest";
+    return "rpc_server.ReadRequest";
   }
   protected:
   explicit ReadRequest(::google::protobuf::Arena* arena);
@@ -1472,14 +1472,14 @@ class ReadRequest final :
   std::string* _internal_mutable_table();
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.ReadRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.ReadRequest)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      35, 2>
+      36, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1509,7 +1509,7 @@ class ReadRequest final :
 };// -------------------------------------------------------------------
 
 class DeleteRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.DeleteRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.DeleteRequest) */ {
  public:
   inline DeleteRequest() : DeleteRequest(nullptr) {}
   ~DeleteRequest() override;
@@ -1623,7 +1623,7 @@ class DeleteRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.DeleteRequest";
+    return "rpc_server.DeleteRequest";
   }
   protected:
   explicit DeleteRequest(::google::protobuf::Arena* arena);
@@ -1692,14 +1692,14 @@ class DeleteRequest final :
   std::string* _internal_mutable_table();
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.DeleteRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.DeleteRequest)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      37, 2>
+      38, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1729,7 +1729,7 @@ class DeleteRequest final :
 };// -------------------------------------------------------------------
 
 class CreateRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.CreateRequest) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CreateRequest) */ {
  public:
   inline CreateRequest() : CreateRequest(nullptr) {}
   ~CreateRequest() override;
@@ -1843,7 +1843,7 @@ class CreateRequest final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.CreateRequest";
+    return "rpc_server.CreateRequest";
   }
   protected:
   explicit CreateRequest(::google::protobuf::Arena* arena);
@@ -1912,14 +1912,14 @@ class CreateRequest final :
   std::string* _internal_mutable_table();
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.CreateRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.CreateRequest)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 3, 1,
-      36, 2>
+      37, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1949,7 +1949,7 @@ class CreateRequest final :
 };// -------------------------------------------------------------------
 
 class ReadResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:myproject.ReadResponse) */ {
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ReadResponse) */ {
  public:
   inline ReadResponse() : ReadResponse(nullptr) {}
   ~ReadResponse() override;
@@ -2063,7 +2063,7 @@ class ReadResponse final :
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "myproject.ReadResponse";
+    return "rpc_server.ReadResponse";
   }
   protected:
   explicit ReadResponse(::google::protobuf::Arena* arena);
@@ -2084,23 +2084,23 @@ class ReadResponse final :
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // repeated .myproject.Result results = 3;
+  // repeated .rpc_server.Result results = 3;
   int results_size() const;
   private:
   int _internal_results_size() const;
 
   public:
   void clear_results() ;
-  ::myproject::Result* mutable_results(int index);
-  ::google::protobuf::RepeatedPtrField< ::myproject::Result >*
+  ::rpc_server::Result* mutable_results(int index);
+  ::google::protobuf::RepeatedPtrField< ::rpc_server::Result >*
       mutable_results();
   private:
-  const ::google::protobuf::RepeatedPtrField<::myproject::Result>& _internal_results() const;
-  ::google::protobuf::RepeatedPtrField<::myproject::Result>* _internal_mutable_results();
+  const ::google::protobuf::RepeatedPtrField<::rpc_server::Result>& _internal_results() const;
+  ::google::protobuf::RepeatedPtrField<::rpc_server::Result>* _internal_mutable_results();
   public:
-  const ::myproject::Result& results(int index) const;
-  ::myproject::Result* add_results();
-  const ::google::protobuf::RepeatedPtrField< ::myproject::Result >&
+  const ::rpc_server::Result& results(int index) const;
+  ::rpc_server::Result* add_results();
+  const ::google::protobuf::RepeatedPtrField< ::rpc_server::Result >&
       results() const;
   // bytes message = 2;
   void clear_message() ;
@@ -2128,7 +2128,7 @@ class ReadResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:myproject.ReadResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.ReadResponse)
  private:
   class _Internal;
 
@@ -2151,7 +2151,7 @@ class ReadResponse final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedPtrField< ::myproject::Result > results_;
+    ::google::protobuf::RepeatedPtrField< ::rpc_server::Result > results_;
     ::google::protobuf::internal::ArenaStringPtr message_;
     bool success_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -2186,7 +2186,7 @@ inline void CreateRequest::clear_database() {
 }
 inline const std::string& CreateRequest::database() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.CreateRequest.database)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateRequest.database)
   return _internal_database();
 }
 template <typename Arg_, typename... Args_>
@@ -2195,11 +2195,11 @@ inline PROTOBUF_ALWAYS_INLINE void CreateRequest::set_database(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.CreateRequest.database)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateRequest.database)
 }
 inline std::string* CreateRequest::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_database();
-  // @@protoc_insertion_point(field_mutable:myproject.CreateRequest.database)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateRequest.database)
   return _s;
 }
 inline const std::string& CreateRequest::_internal_database() const {
@@ -2218,7 +2218,7 @@ inline std::string* CreateRequest::_internal_mutable_database() {
 }
 inline std::string* CreateRequest::release_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.CreateRequest.database)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateRequest.database)
   return _impl_.database_.Release();
 }
 inline void CreateRequest::set_allocated_database(std::string* value) {
@@ -2229,7 +2229,7 @@ inline void CreateRequest::set_allocated_database(std::string* value) {
           _impl_.database_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.CreateRequest.database)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateRequest.database)
 }
 
 // bytes table = 2;
@@ -2239,7 +2239,7 @@ inline void CreateRequest::clear_table() {
 }
 inline const std::string& CreateRequest::table() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.CreateRequest.table)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateRequest.table)
   return _internal_table();
 }
 template <typename Arg_, typename... Args_>
@@ -2248,11 +2248,11 @@ inline PROTOBUF_ALWAYS_INLINE void CreateRequest::set_table(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.CreateRequest.table)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateRequest.table)
 }
 inline std::string* CreateRequest::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_table();
-  // @@protoc_insertion_point(field_mutable:myproject.CreateRequest.table)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateRequest.table)
   return _s;
 }
 inline const std::string& CreateRequest::_internal_table() const {
@@ -2271,7 +2271,7 @@ inline std::string* CreateRequest::_internal_mutable_table() {
 }
 inline std::string* CreateRequest::release_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.CreateRequest.table)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateRequest.table)
   return _impl_.table_.Release();
 }
 inline void CreateRequest::set_allocated_table(std::string* value) {
@@ -2282,7 +2282,7 @@ inline void CreateRequest::set_allocated_table(std::string* value) {
           _impl_.table_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.CreateRequest.table)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateRequest.table)
 }
 
 // map<string, bytes> data = 3;
@@ -2301,7 +2301,7 @@ inline const ::google::protobuf::Map<std::string, std::string>& CreateRequest::_
   return _impl_.data_.GetMap();
 }
 inline const ::google::protobuf::Map<std::string, std::string>& CreateRequest::data() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:myproject.CreateRequest.data)
+  // @@protoc_insertion_point(field_map:rpc_server.CreateRequest.data)
   return _internal_data();
 }
 inline ::google::protobuf::Map<std::string, std::string>* CreateRequest::_internal_mutable_data() {
@@ -2309,7 +2309,7 @@ inline ::google::protobuf::Map<std::string, std::string>* CreateRequest::_intern
   return _impl_.data_.MutableMap();
 }
 inline ::google::protobuf::Map<std::string, std::string>* CreateRequest::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:myproject.CreateRequest.data)
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.CreateRequest.data)
   return _internal_mutable_data();
 }
 
@@ -2323,12 +2323,12 @@ inline void CreateResponse::clear_success() {
   _impl_.success_ = false;
 }
 inline bool CreateResponse::success() const {
-  // @@protoc_insertion_point(field_get:myproject.CreateResponse.success)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateResponse.success)
   return _internal_success();
 }
 inline void CreateResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:myproject.CreateResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateResponse.success)
 }
 inline bool CreateResponse::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -2347,7 +2347,7 @@ inline void CreateResponse::clear_message() {
 }
 inline const std::string& CreateResponse::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.CreateResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateResponse.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
@@ -2356,11 +2356,11 @@ inline PROTOBUF_ALWAYS_INLINE void CreateResponse::set_message(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.CreateResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateResponse.message)
 }
 inline std::string* CreateResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:myproject.CreateResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateResponse.message)
   return _s;
 }
 inline const std::string& CreateResponse::_internal_message() const {
@@ -2379,7 +2379,7 @@ inline std::string* CreateResponse::_internal_mutable_message() {
 }
 inline std::string* CreateResponse::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.CreateResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateResponse.message)
   return _impl_.message_.Release();
 }
 inline void CreateResponse::set_allocated_message(std::string* value) {
@@ -2390,7 +2390,7 @@ inline void CreateResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.CreateResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateResponse.message)
 }
 
 // -------------------------------------------------------------------
@@ -2406,7 +2406,7 @@ inline void ReadRequest::clear_database() {
 }
 inline const std::string& ReadRequest::database() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.ReadRequest.database)
+  // @@protoc_insertion_point(field_get:rpc_server.ReadRequest.database)
   return _internal_database();
 }
 template <typename Arg_, typename... Args_>
@@ -2415,11 +2415,11 @@ inline PROTOBUF_ALWAYS_INLINE void ReadRequest::set_database(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.ReadRequest.database)
+  // @@protoc_insertion_point(field_set:rpc_server.ReadRequest.database)
 }
 inline std::string* ReadRequest::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_database();
-  // @@protoc_insertion_point(field_mutable:myproject.ReadRequest.database)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ReadRequest.database)
   return _s;
 }
 inline const std::string& ReadRequest::_internal_database() const {
@@ -2438,7 +2438,7 @@ inline std::string* ReadRequest::_internal_mutable_database() {
 }
 inline std::string* ReadRequest::release_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.ReadRequest.database)
+  // @@protoc_insertion_point(field_release:rpc_server.ReadRequest.database)
   return _impl_.database_.Release();
 }
 inline void ReadRequest::set_allocated_database(std::string* value) {
@@ -2449,7 +2449,7 @@ inline void ReadRequest::set_allocated_database(std::string* value) {
           _impl_.database_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.ReadRequest.database)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.ReadRequest.database)
 }
 
 // bytes table = 2;
@@ -2459,7 +2459,7 @@ inline void ReadRequest::clear_table() {
 }
 inline const std::string& ReadRequest::table() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.ReadRequest.table)
+  // @@protoc_insertion_point(field_get:rpc_server.ReadRequest.table)
   return _internal_table();
 }
 template <typename Arg_, typename... Args_>
@@ -2468,11 +2468,11 @@ inline PROTOBUF_ALWAYS_INLINE void ReadRequest::set_table(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.ReadRequest.table)
+  // @@protoc_insertion_point(field_set:rpc_server.ReadRequest.table)
 }
 inline std::string* ReadRequest::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_table();
-  // @@protoc_insertion_point(field_mutable:myproject.ReadRequest.table)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ReadRequest.table)
   return _s;
 }
 inline const std::string& ReadRequest::_internal_table() const {
@@ -2491,7 +2491,7 @@ inline std::string* ReadRequest::_internal_mutable_table() {
 }
 inline std::string* ReadRequest::release_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.ReadRequest.table)
+  // @@protoc_insertion_point(field_release:rpc_server.ReadRequest.table)
   return _impl_.table_.Release();
 }
 inline void ReadRequest::set_allocated_table(std::string* value) {
@@ -2502,7 +2502,7 @@ inline void ReadRequest::set_allocated_table(std::string* value) {
           _impl_.table_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.ReadRequest.table)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.ReadRequest.table)
 }
 
 // map<string, bytes> query = 3;
@@ -2521,7 +2521,7 @@ inline const ::google::protobuf::Map<std::string, std::string>& ReadRequest::_in
   return _impl_.query_.GetMap();
 }
 inline const ::google::protobuf::Map<std::string, std::string>& ReadRequest::query() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:myproject.ReadRequest.query)
+  // @@protoc_insertion_point(field_map:rpc_server.ReadRequest.query)
   return _internal_query();
 }
 inline ::google::protobuf::Map<std::string, std::string>* ReadRequest::_internal_mutable_query() {
@@ -2529,7 +2529,7 @@ inline ::google::protobuf::Map<std::string, std::string>* ReadRequest::_internal
   return _impl_.query_.MutableMap();
 }
 inline ::google::protobuf::Map<std::string, std::string>* ReadRequest::mutable_query() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:myproject.ReadRequest.query)
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.ReadRequest.query)
   return _internal_mutable_query();
 }
 
@@ -2543,12 +2543,12 @@ inline void ReadResponse::clear_success() {
   _impl_.success_ = false;
 }
 inline bool ReadResponse::success() const {
-  // @@protoc_insertion_point(field_get:myproject.ReadResponse.success)
+  // @@protoc_insertion_point(field_get:rpc_server.ReadResponse.success)
   return _internal_success();
 }
 inline void ReadResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:myproject.ReadResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.ReadResponse.success)
 }
 inline bool ReadResponse::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -2567,7 +2567,7 @@ inline void ReadResponse::clear_message() {
 }
 inline const std::string& ReadResponse::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.ReadResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.ReadResponse.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
@@ -2576,11 +2576,11 @@ inline PROTOBUF_ALWAYS_INLINE void ReadResponse::set_message(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.ReadResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.ReadResponse.message)
 }
 inline std::string* ReadResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:myproject.ReadResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ReadResponse.message)
   return _s;
 }
 inline const std::string& ReadResponse::_internal_message() const {
@@ -2599,7 +2599,7 @@ inline std::string* ReadResponse::_internal_mutable_message() {
 }
 inline std::string* ReadResponse::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.ReadResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.ReadResponse.message)
   return _impl_.message_.Release();
 }
 inline void ReadResponse::set_allocated_message(std::string* value) {
@@ -2610,10 +2610,10 @@ inline void ReadResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.ReadResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.ReadResponse.message)
 }
 
-// repeated .myproject.Result results = 3;
+// repeated .rpc_server.Result results = 3;
 inline int ReadResponse::_internal_results_size() const {
   return _internal_results().size();
 }
@@ -2624,39 +2624,39 @@ inline void ReadResponse::clear_results() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.results_.Clear();
 }
-inline ::myproject::Result* ReadResponse::mutable_results(int index)
+inline ::rpc_server::Result* ReadResponse::mutable_results(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:myproject.ReadResponse.results)
+  // @@protoc_insertion_point(field_mutable:rpc_server.ReadResponse.results)
   return _internal_mutable_results()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::myproject::Result>* ReadResponse::mutable_results()
+inline ::google::protobuf::RepeatedPtrField<::rpc_server::Result>* ReadResponse::mutable_results()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:myproject.ReadResponse.results)
+  // @@protoc_insertion_point(field_mutable_list:rpc_server.ReadResponse.results)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_results();
 }
-inline const ::myproject::Result& ReadResponse::results(int index) const
+inline const ::rpc_server::Result& ReadResponse::results(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.ReadResponse.results)
+  // @@protoc_insertion_point(field_get:rpc_server.ReadResponse.results)
   return _internal_results().Get(index);
 }
-inline ::myproject::Result* ReadResponse::add_results() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::rpc_server::Result* ReadResponse::add_results() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::myproject::Result* _add = _internal_mutable_results()->Add();
-  // @@protoc_insertion_point(field_add:myproject.ReadResponse.results)
+  ::rpc_server::Result* _add = _internal_mutable_results()->Add();
+  // @@protoc_insertion_point(field_add:rpc_server.ReadResponse.results)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::myproject::Result>& ReadResponse::results() const
+inline const ::google::protobuf::RepeatedPtrField<::rpc_server::Result>& ReadResponse::results() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:myproject.ReadResponse.results)
+  // @@protoc_insertion_point(field_list:rpc_server.ReadResponse.results)
   return _internal_results();
 }
-inline const ::google::protobuf::RepeatedPtrField<::myproject::Result>&
+inline const ::google::protobuf::RepeatedPtrField<::rpc_server::Result>&
 ReadResponse::_internal_results() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.results_;
 }
-inline ::google::protobuf::RepeatedPtrField<::myproject::Result>*
+inline ::google::protobuf::RepeatedPtrField<::rpc_server::Result>*
 ReadResponse::_internal_mutable_results() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.results_;
@@ -2684,7 +2684,7 @@ inline const ::google::protobuf::Map<std::string, std::string>& Result::_interna
   return _impl_.fields_.GetMap();
 }
 inline const ::google::protobuf::Map<std::string, std::string>& Result::fields() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:myproject.Result.fields)
+  // @@protoc_insertion_point(field_map:rpc_server.Result.fields)
   return _internal_fields();
 }
 inline ::google::protobuf::Map<std::string, std::string>* Result::_internal_mutable_fields() {
@@ -2692,7 +2692,7 @@ inline ::google::protobuf::Map<std::string, std::string>* Result::_internal_muta
   return _impl_.fields_.MutableMap();
 }
 inline ::google::protobuf::Map<std::string, std::string>* Result::mutable_fields() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:myproject.Result.fields)
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.Result.fields)
   return _internal_mutable_fields();
 }
 
@@ -2711,7 +2711,7 @@ inline void UpdateRequest::clear_database() {
 }
 inline const std::string& UpdateRequest::database() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.UpdateRequest.database)
+  // @@protoc_insertion_point(field_get:rpc_server.UpdateRequest.database)
   return _internal_database();
 }
 template <typename Arg_, typename... Args_>
@@ -2720,11 +2720,11 @@ inline PROTOBUF_ALWAYS_INLINE void UpdateRequest::set_database(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.UpdateRequest.database)
+  // @@protoc_insertion_point(field_set:rpc_server.UpdateRequest.database)
 }
 inline std::string* UpdateRequest::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_database();
-  // @@protoc_insertion_point(field_mutable:myproject.UpdateRequest.database)
+  // @@protoc_insertion_point(field_mutable:rpc_server.UpdateRequest.database)
   return _s;
 }
 inline const std::string& UpdateRequest::_internal_database() const {
@@ -2743,7 +2743,7 @@ inline std::string* UpdateRequest::_internal_mutable_database() {
 }
 inline std::string* UpdateRequest::release_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.UpdateRequest.database)
+  // @@protoc_insertion_point(field_release:rpc_server.UpdateRequest.database)
   return _impl_.database_.Release();
 }
 inline void UpdateRequest::set_allocated_database(std::string* value) {
@@ -2754,7 +2754,7 @@ inline void UpdateRequest::set_allocated_database(std::string* value) {
           _impl_.database_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.UpdateRequest.database)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UpdateRequest.database)
 }
 
 // bytes table = 2;
@@ -2764,7 +2764,7 @@ inline void UpdateRequest::clear_table() {
 }
 inline const std::string& UpdateRequest::table() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.UpdateRequest.table)
+  // @@protoc_insertion_point(field_get:rpc_server.UpdateRequest.table)
   return _internal_table();
 }
 template <typename Arg_, typename... Args_>
@@ -2773,11 +2773,11 @@ inline PROTOBUF_ALWAYS_INLINE void UpdateRequest::set_table(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.UpdateRequest.table)
+  // @@protoc_insertion_point(field_set:rpc_server.UpdateRequest.table)
 }
 inline std::string* UpdateRequest::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_table();
-  // @@protoc_insertion_point(field_mutable:myproject.UpdateRequest.table)
+  // @@protoc_insertion_point(field_mutable:rpc_server.UpdateRequest.table)
   return _s;
 }
 inline const std::string& UpdateRequest::_internal_table() const {
@@ -2796,7 +2796,7 @@ inline std::string* UpdateRequest::_internal_mutable_table() {
 }
 inline std::string* UpdateRequest::release_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.UpdateRequest.table)
+  // @@protoc_insertion_point(field_release:rpc_server.UpdateRequest.table)
   return _impl_.table_.Release();
 }
 inline void UpdateRequest::set_allocated_table(std::string* value) {
@@ -2807,7 +2807,7 @@ inline void UpdateRequest::set_allocated_table(std::string* value) {
           _impl_.table_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.UpdateRequest.table)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UpdateRequest.table)
 }
 
 // map<string, bytes> query = 3;
@@ -2826,7 +2826,7 @@ inline const ::google::protobuf::Map<std::string, std::string>& UpdateRequest::_
   return _impl_.query_.GetMap();
 }
 inline const ::google::protobuf::Map<std::string, std::string>& UpdateRequest::query() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:myproject.UpdateRequest.query)
+  // @@protoc_insertion_point(field_map:rpc_server.UpdateRequest.query)
   return _internal_query();
 }
 inline ::google::protobuf::Map<std::string, std::string>* UpdateRequest::_internal_mutable_query() {
@@ -2834,7 +2834,7 @@ inline ::google::protobuf::Map<std::string, std::string>* UpdateRequest::_intern
   return _impl_.query_.MutableMap();
 }
 inline ::google::protobuf::Map<std::string, std::string>* UpdateRequest::mutable_query() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:myproject.UpdateRequest.query)
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.UpdateRequest.query)
   return _internal_mutable_query();
 }
 
@@ -2854,7 +2854,7 @@ inline const ::google::protobuf::Map<std::string, std::string>& UpdateRequest::_
   return _impl_.data_.GetMap();
 }
 inline const ::google::protobuf::Map<std::string, std::string>& UpdateRequest::data() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:myproject.UpdateRequest.data)
+  // @@protoc_insertion_point(field_map:rpc_server.UpdateRequest.data)
   return _internal_data();
 }
 inline ::google::protobuf::Map<std::string, std::string>* UpdateRequest::_internal_mutable_data() {
@@ -2862,7 +2862,7 @@ inline ::google::protobuf::Map<std::string, std::string>* UpdateRequest::_intern
   return _impl_.data_.MutableMap();
 }
 inline ::google::protobuf::Map<std::string, std::string>* UpdateRequest::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:myproject.UpdateRequest.data)
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.UpdateRequest.data)
   return _internal_mutable_data();
 }
 
@@ -2876,12 +2876,12 @@ inline void UpdateResponse::clear_success() {
   _impl_.success_ = false;
 }
 inline bool UpdateResponse::success() const {
-  // @@protoc_insertion_point(field_get:myproject.UpdateResponse.success)
+  // @@protoc_insertion_point(field_get:rpc_server.UpdateResponse.success)
   return _internal_success();
 }
 inline void UpdateResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:myproject.UpdateResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.UpdateResponse.success)
 }
 inline bool UpdateResponse::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -2900,7 +2900,7 @@ inline void UpdateResponse::clear_message() {
 }
 inline const std::string& UpdateResponse::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.UpdateResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.UpdateResponse.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
@@ -2909,11 +2909,11 @@ inline PROTOBUF_ALWAYS_INLINE void UpdateResponse::set_message(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.UpdateResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.UpdateResponse.message)
 }
 inline std::string* UpdateResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:myproject.UpdateResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.UpdateResponse.message)
   return _s;
 }
 inline const std::string& UpdateResponse::_internal_message() const {
@@ -2932,7 +2932,7 @@ inline std::string* UpdateResponse::_internal_mutable_message() {
 }
 inline std::string* UpdateResponse::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.UpdateResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.UpdateResponse.message)
   return _impl_.message_.Release();
 }
 inline void UpdateResponse::set_allocated_message(std::string* value) {
@@ -2943,7 +2943,7 @@ inline void UpdateResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.UpdateResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UpdateResponse.message)
 }
 
 // -------------------------------------------------------------------
@@ -2959,7 +2959,7 @@ inline void DeleteRequest::clear_database() {
 }
 inline const std::string& DeleteRequest::database() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.DeleteRequest.database)
+  // @@protoc_insertion_point(field_get:rpc_server.DeleteRequest.database)
   return _internal_database();
 }
 template <typename Arg_, typename... Args_>
@@ -2968,11 +2968,11 @@ inline PROTOBUF_ALWAYS_INLINE void DeleteRequest::set_database(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.DeleteRequest.database)
+  // @@protoc_insertion_point(field_set:rpc_server.DeleteRequest.database)
 }
 inline std::string* DeleteRequest::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_database();
-  // @@protoc_insertion_point(field_mutable:myproject.DeleteRequest.database)
+  // @@protoc_insertion_point(field_mutable:rpc_server.DeleteRequest.database)
   return _s;
 }
 inline const std::string& DeleteRequest::_internal_database() const {
@@ -2991,7 +2991,7 @@ inline std::string* DeleteRequest::_internal_mutable_database() {
 }
 inline std::string* DeleteRequest::release_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.DeleteRequest.database)
+  // @@protoc_insertion_point(field_release:rpc_server.DeleteRequest.database)
   return _impl_.database_.Release();
 }
 inline void DeleteRequest::set_allocated_database(std::string* value) {
@@ -3002,7 +3002,7 @@ inline void DeleteRequest::set_allocated_database(std::string* value) {
           _impl_.database_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.DeleteRequest.database)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.DeleteRequest.database)
 }
 
 // bytes table = 2;
@@ -3012,7 +3012,7 @@ inline void DeleteRequest::clear_table() {
 }
 inline const std::string& DeleteRequest::table() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.DeleteRequest.table)
+  // @@protoc_insertion_point(field_get:rpc_server.DeleteRequest.table)
   return _internal_table();
 }
 template <typename Arg_, typename... Args_>
@@ -3021,11 +3021,11 @@ inline PROTOBUF_ALWAYS_INLINE void DeleteRequest::set_table(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.DeleteRequest.table)
+  // @@protoc_insertion_point(field_set:rpc_server.DeleteRequest.table)
 }
 inline std::string* DeleteRequest::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_table();
-  // @@protoc_insertion_point(field_mutable:myproject.DeleteRequest.table)
+  // @@protoc_insertion_point(field_mutable:rpc_server.DeleteRequest.table)
   return _s;
 }
 inline const std::string& DeleteRequest::_internal_table() const {
@@ -3044,7 +3044,7 @@ inline std::string* DeleteRequest::_internal_mutable_table() {
 }
 inline std::string* DeleteRequest::release_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.DeleteRequest.table)
+  // @@protoc_insertion_point(field_release:rpc_server.DeleteRequest.table)
   return _impl_.table_.Release();
 }
 inline void DeleteRequest::set_allocated_table(std::string* value) {
@@ -3055,7 +3055,7 @@ inline void DeleteRequest::set_allocated_table(std::string* value) {
           _impl_.table_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.DeleteRequest.table)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.DeleteRequest.table)
 }
 
 // map<string, bytes> query = 3;
@@ -3074,7 +3074,7 @@ inline const ::google::protobuf::Map<std::string, std::string>& DeleteRequest::_
   return _impl_.query_.GetMap();
 }
 inline const ::google::protobuf::Map<std::string, std::string>& DeleteRequest::query() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_map:myproject.DeleteRequest.query)
+  // @@protoc_insertion_point(field_map:rpc_server.DeleteRequest.query)
   return _internal_query();
 }
 inline ::google::protobuf::Map<std::string, std::string>* DeleteRequest::_internal_mutable_query() {
@@ -3082,7 +3082,7 @@ inline ::google::protobuf::Map<std::string, std::string>* DeleteRequest::_intern
   return _impl_.query_.MutableMap();
 }
 inline ::google::protobuf::Map<std::string, std::string>* DeleteRequest::mutable_query() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_map:myproject.DeleteRequest.query)
+  // @@protoc_insertion_point(field_mutable_map:rpc_server.DeleteRequest.query)
   return _internal_mutable_query();
 }
 
@@ -3096,12 +3096,12 @@ inline void DeleteResponse::clear_success() {
   _impl_.success_ = false;
 }
 inline bool DeleteResponse::success() const {
-  // @@protoc_insertion_point(field_get:myproject.DeleteResponse.success)
+  // @@protoc_insertion_point(field_get:rpc_server.DeleteResponse.success)
   return _internal_success();
 }
 inline void DeleteResponse::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:myproject.DeleteResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.DeleteResponse.success)
 }
 inline bool DeleteResponse::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
@@ -3120,7 +3120,7 @@ inline void DeleteResponse::clear_message() {
 }
 inline const std::string& DeleteResponse::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:myproject.DeleteResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.DeleteResponse.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
@@ -3129,11 +3129,11 @@ inline PROTOBUF_ALWAYS_INLINE void DeleteResponse::set_message(Arg_&& arg,
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:myproject.DeleteResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.DeleteResponse.message)
 }
 inline std::string* DeleteResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:myproject.DeleteResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.DeleteResponse.message)
   return _s;
 }
 inline const std::string& DeleteResponse::_internal_message() const {
@@ -3152,7 +3152,7 @@ inline std::string* DeleteResponse::_internal_mutable_message() {
 }
 inline std::string* DeleteResponse::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:myproject.DeleteResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.DeleteResponse.message)
   return _impl_.message_.Release();
 }
 inline void DeleteResponse::set_allocated_message(std::string* value) {
@@ -3163,7 +3163,7 @@ inline void DeleteResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:myproject.DeleteResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.DeleteResponse.message)
 }
 
 #ifdef __GNUC__
@@ -3171,7 +3171,7 @@ inline void DeleteResponse::set_allocated_message(std::string* value) {
 #endif  // __GNUC__
 
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace myproject
+}  // namespace rpc_server
 
 
 // @@protoc_insertion_point(global_scope)

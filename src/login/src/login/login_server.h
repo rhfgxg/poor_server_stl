@@ -18,7 +18,7 @@
 #include <lua.hpp>
 
 // 登录服务实现类
-class LoginServerImpl final : public myproject::LoginServer::Service
+class LoginServerImpl final : public rpc_server::LoginServer::Service
 {
 public:
 	LoginServerImpl(LoggerManager& logger_manager_);	// 构造函数
@@ -30,9 +30,9 @@ public:
     void start_thread_pool(int num_threads);    // 启动线程池
     void stop_thread_pool();    // 停止线程池
 
-    grpc::Status Login(grpc::ServerContext* context, const myproject::LoginRequest* request, myproject::LoginResponse* response) override;  // 登录
-    grpc::Status Register(grpc::ServerContext* context, const myproject::RegisterRequest* request, myproject::RegisterResponse* response) override;   // 注册
-    grpc::Status Authenticate(grpc::ServerContext* context, const myproject::AuthenticateRequest* request, myproject::AuthenticateResponse* response) override;   // 令牌验证
+    grpc::Status Login(grpc::ServerContext* context, const rpc_server::LoginRequest* request, rpc_server::LoginResponse* response) override;  // 登录
+    grpc::Status Register(grpc::ServerContext* context, const rpc_server::RegisterRequest* request, rpc_server::RegisterResponse* response) override;   // 注册
+    grpc::Status Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateRequest* request, rpc_server::AuthenticateResponse* response) override;   // 令牌验证
 
 private:
     void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
@@ -51,12 +51,12 @@ private:
 private:
     std::string server_address; // 服务器地址
     std::string server_port;    // 服务器端口
-    myproject::ServerType server_type;  // 服务器类型
+    rpc_server::ServerType server_type;  // 服务器类型
 
     // 日志管理器
     LoggerManager& logger_manager;
 
-	std::unique_ptr<myproject::CentralServer::Stub> central_stub;	// 中心服务存根
+	std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;	// 中心服务存根
 	ConnectionPool db_connection_pool;   // 数据库服务器连接池
 
     std::vector<std::thread> thread_pool;   // 线程池
