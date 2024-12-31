@@ -43,6 +43,7 @@ private:
     void Read_server_config(lua_State* L, const std::string& file_url);   // 读取服务器配置文件，初始化服务器地址和端口
     std::string Read_db_config(lua_State* L, const std::string& file_url); // 读取 数据库配置配置文件，获得数据库连接字符串
 
+    std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 线程池工作函数
 
     // 处理数据库操作的函数

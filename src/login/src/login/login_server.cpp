@@ -1,5 +1,4 @@
 #include "login_server.h"
-#include <future>
 
 LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_):
     server_type(rpc_server::ServerType::LOGIN),    // 服务器类型
@@ -60,6 +59,22 @@ void LoginServerImpl::stop_thread_pool()
     this->thread_pool.clear();
     std::queue<std::function<void()>> empty;
     std::swap(this->task_queue,empty);
+}
+
+// 添加异步任务
+std::future<void> LoginServerImpl::add_async_task(std::function<void()> task)
+{
+    auto task_ptr = std::make_shared<std::packaged_task<void()>>(std::move(task));
+    std::future<void> task_future = task_ptr->get_future();
+
+    {
+        std::lock_guard<std::mutex> lock(this->queue_mutex);
+        this->task_queue.push([task_ptr]() {
+            (*task_ptr)();
+        });
+    }
+    this->queue_cv.notify_one();
+    return task_future;
 }
 
 // 线程池工作函数
@@ -213,48 +228,13 @@ void LoginServerImpl::Send_heartbeat()
 // 登录服务接口
 grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const rpc_server::LoginReq* req, rpc_server::LoginRes* res)
 {
-    // 深拷贝请求和响应对象
-    auto request_copy = std::make_shared<rpc_server::LoginReq>(*req);
-    auto response_copy = std::make_shared<rpc_server::LoginRes>();
-    // 创建 promise 和 future
-    std::promise<void> task_promise;
-    std::future<void> task_future = task_promise.get_future();
-
-    {// 将任务加入任务队列
-        std::lock_guard<std::mutex> lock(this->queue_mutex);  // 加锁
-
-        this->task_queue.push([this,request_copy,response_copy,&task_promise] {
-            // 获取用户名和密码
-            std::string username = request_copy->username(); // 从 request 对象中提取用户名和密码
-            std::string password = request_copy->password();
-            // 构造查询条件
-            std::map<std::string, std::string> query = { {"user_name", username}, {"user_password", password} }; 
-
-            std::string responses = Handle_login("poor_users", "users", query); // 查询的数据库名，表名，查询条件
-
-            if (responses == "Login successful")
-            {
-                response_copy->set_success(true);    // 设置响应对象 response 的 success 字段为 true
-                response_copy->set_message("Login successful");
-            }
-            else 
-            {
-                response_copy->set_success(false);
-                response_copy->set_message("Login failed");
-            }
-            task_promise.set_value();  // 设置 promise 的值，通知主线程任务完成
-        });
-        
-    }
-    this->queue_cv.notify_one();  // 通知线程池有新任务
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_login(req, res); // 查询的数据库名，表名，查询条件
+    });
 
     // 等待任务完成
     task_future.get();
 
-    // 将响应结果复制回原响应对象
-    *res = *response_copy;
-
-    // 返回gRPC状态
     return grpc::Status::OK;
 }
 
@@ -275,12 +255,18 @@ grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const r
 
 /************************************ gRPC服务接口工具函数 **************************************************/
 // 登录服务
-std::string LoginServerImpl::Handle_login(const std::string& database, const std::string& table, std::map<std::string, std::string> query)
+void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req,rpc_server::LoginRes* res)    // 登录
 {
+    // 获取用户名和密码
+    std::string username = req->username(); // 从 request 对象中提取用户名和密码
+    std::string password = req->password();
+    // 构造查询条件
+    std::map<std::string,std::string> query = {{"user_name",username},{"user_password",password}};
+
     // 构造请求
     rpc_server::ReadReq read_request;
-    read_request.set_database(database); // 设置查询数据库
-    read_request.set_table(table); // 设置查询表
+    read_request.set_database("poor_users"); // 设置查询数据库
+    read_request.set_table("users"); // 设置查询表
     for (auto& it : query)
     {
         (*read_request.mutable_query())[it.first] = it.second; // 设置查询条件
@@ -299,26 +285,26 @@ std::string LoginServerImpl::Handle_login(const std::string& database, const std
 
     if (status.ok() && read_response.success())
     {
-        std::cout << "Login successful" << std::endl;
-        return "Login successful";
+        res->set_success(true);    // 设置响应对象 response 的 success 字段为 true
+        res->set_message("Login successful");
+        this->logger_manager.getLogger(LogCategory::APPLICATION_ACTIVITY)->info("Login successful");
     }
     else
     {
-        std::cout << "Login failed" << std::endl;
-        return "Login failed";
+        res->set_success(false);
+        res->set_message("Login failed");
+        this->logger_manager.getLogger(LogCategory::APPLICATION_ACTIVITY)->info("Login failed");
     }
 }
 
 // 注册服务
-std::string LoginServerImpl::Handle_register(const std::string& database, const std::string& table, std::map<std::string, std::string> data)
+void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_server::RegisterRes* res)    // 注册
 {
-    return "注册成功";
 }
 
 // 令牌验证服务
-std::string LoginServerImpl::Handle_authenticate(const std::string& token)
+void LoginServerImpl::Handle_authenticate(const rpc_server::AuthenticateReq* req,rpc_server::AuthenticateRes* res)    // 令牌验证
 {
-    return "验证成功";
 }
 
 /******************************************** 其他工具函数 ***********************************************/

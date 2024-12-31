@@ -15,6 +15,7 @@
 #include <queue>
 #include <mutex>    // 互斥锁
 #include <condition_variable>   // 条件变量
+#include <future>
 #include <unordered_map> // 哈希表
 #include <lua.hpp>  // lua
 
@@ -55,6 +56,7 @@ public:
 private:    // 私有函数
     void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
 
+    std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 线程池工作函数
 
     // 释放连接池中服务器连接

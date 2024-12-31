@@ -3,16 +3,16 @@
 DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_):
     server_type(rpc_server::ServerType::DATA),    // 服务器类型
     logger_manager(logger_manager_),    // 日志管理器
-    central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050",grpc::InsecureChannelCredentials()))) // 中心服务器存根
+    central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))) // 中心服务器存根
 {
     lua_State* L = luaL_newstate();  // 创建lua虚拟机
     luaL_openlibs(L);   // 打开lua标准库
 
-    Read_server_config(L,"config/db_server_config.lua"); // 读取服务器配置文件，初始化服务器地址和端口
+    Read_server_config(L, "config/db_server_config.lua"); // 读取服务器配置文件，初始化服务器地址和端口
 
     // 读取配置文件并初始化数据库连接池
     std::string db_uri = Read_db_config(L, "config/db_config.lua");
-    user_db_pool = std::make_unique<DBConnectionPool>(db_uri,10);   // 初始化数据库连接池
+    user_db_pool = std::make_unique<DBConnectionPool>(db_uri, 10);   // 初始化数据库连接池
 
     lua_close(L);   // 关闭lua虚拟机
 
@@ -20,7 +20,7 @@ DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_):
 
     // 启动定时任务
     // 定时向中心服务器发送心跳包
-    std::thread(&DatabaseServerImpl::Send_heartbeat,this).detach();
+    std::thread(&DatabaseServerImpl::Send_heartbeat, this).detach();
 }
 
 DatabaseServerImpl::~DatabaseServerImpl()
@@ -68,6 +68,22 @@ void DatabaseServerImpl::stop_thread_pool()
     std::swap(this->task_queue,empty);
 }
 
+// 添加异步任务
+std::future<void> DatabaseServerImpl::add_async_task(std::function<void()> task)
+{
+    auto task_ptr = std::make_shared<std::packaged_task<void()>>(std::move(task));
+    std::future<void> task_future = task_ptr->get_future();
+
+    {
+        std::lock_guard<std::mutex> lock(this->queue_mutex);
+        this->task_queue.push([task_ptr]() {
+            (*task_ptr)();
+        });
+    }
+    this->queue_cv.notify_one();
+    return task_future;
+}
+
 // 线程池工作函数
 void DatabaseServerImpl::Worker_thread()
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/worker_thread()
@@ -75,17 +91,17 @@ void DatabaseServerImpl::Worker_thread()
     {
         std::function<void()> task;
         {
-            std::unique_lock<std::mutex> lock(queue_mutex);
+            std::unique_lock<std::mutex> lock(this->queue_mutex);
 
-            this->queue_cv.wait(lock,[this] {
+            this->queue_cv.wait(lock,[this] {   // 等待任务队列不为空或线程池停止
                 return !this->task_queue.empty() || this->stop_threads;
             });
 
-            if(this->stop_threads && this->task_queue.empty())
+            if(this->stop_threads && this->task_queue.empty())  // 线程池停止
             {
                 return;
             }
-            task = std::move(this->task_queue.front());
+            task = std::move(this->task_queue.front()); 
             this->task_queue.pop();
         }
         task();
@@ -179,68 +195,48 @@ void DatabaseServerImpl::Send_heartbeat()
 // 添加
 grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const rpc_server::CreateReq* req, rpc_server::CreateRes* res)
 {
-    {
-        std::lock_guard<std::mutex> lock(this->queue_mutex);  // 加锁
-        this->task_queue.push([this, req, res] {
-            this->Handle_create(req, res);
-        });
-    }
-    this->queue_cv.notify_one();  // 通知线程池有新任务
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_create(req, res);
+    });
+
+    // 等待任务完成
+    task_future.get();
     return grpc::Status::OK;
 }
 
 // 查询
 grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const rpc_server::ReadReq* req, rpc_server::ReadRes* res)
 {
-    // 深拷贝请求和响应对象
-    auto request_copy = std::make_shared<rpc_server::ReadReq>(*req);
-    auto response_copy = std::make_shared<rpc_server::ReadRes>();
-    // 创建 promise 和 future
-    std::promise<void> task_promise;
-    std::future<void> task_future = task_promise.get_future();
-
-    {
-        std::lock_guard<std::mutex> lock(this->queue_mutex);  // 加锁
-        this->task_queue.push([this,request_copy, response_copy, &task_promise] {
-            this->Handle_read(request_copy.get(), response_copy.get());
-            task_promise.set_value();  // 设置 promise 的值，通知主线程任务完成
-        });
-    }
-
-    this->queue_cv.notify_one();  // 通知线程池有新任务
+    auto task_future = this->add_async_task([this, req, res] {  
+        this->Handle_read(req, res);
+    }); // 添加异步任务：查询数据库
 
     // 等待任务完成
     task_future.get();
-
-    // 将响应结果复制回原响应对象
-    *res = *response_copy;
-
     return grpc::Status::OK;
 }
 
 // 更新
 grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res)
 {
-    {
-        std::lock_guard<std::mutex> lock(this->queue_mutex);  // 加锁
-        this->task_queue.push([this, req, res] {
-            this->Handle_update(req, res);
-        });
-    }
-    this->queue_cv.notify_one();  // 通知线程池有新任务
+    auto task_future = this->add_async_task([this,req,res] {
+        this->Handle_update(req, res);
+    });
+
+    // 等待任务完成
+    task_future.get();
     return grpc::Status::OK;
 }
 
 // 删除
 grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res)
 {
-    {
-        std::lock_guard<std::mutex> lock(this->queue_mutex);  // 加锁
-        this->task_queue.push([this, req, res] {
-            this->Handle_delete(req, res);
-        });
-    }
-    this->queue_cv.notify_one();  // 通知线程池有新任务
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_delete(req, res);
+    });
+
+    // 等待任务完成
+    task_future.get();
     return grpc::Status::OK;
 }
 

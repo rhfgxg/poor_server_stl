@@ -34,8 +34,9 @@ public:
 
 private:
     void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
-
     void Init_connection_pool();    // 初始化链接池
+
+    std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 执行线程的任务
 
 // 处理转发请求

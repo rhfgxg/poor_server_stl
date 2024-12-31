@@ -63,6 +63,22 @@ void GatewayServerImpl::stop_thread_pool()
     std::swap(this->task_queue,empty);
 }
 
+// 添加异步任务
+std::future<void> GatewayServerImpl::add_async_task(std::function<void()> task)
+{
+    auto task_ptr = std::make_shared<std::packaged_task<void()>>(std::move(task));
+    std::future<void> task_future = task_ptr->get_future();
+
+    {
+        std::lock_guard<std::mutex> lock(this->queue_mutex);
+        this->task_queue.push([task_ptr]() {
+            (*task_ptr)();
+        });
+    }
+    this->queue_cv.notify_one();
+    return task_future;
+}
+
 // 线程池工作函数
 void GatewayServerImpl::Worker_thread()
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/worker_thread()
@@ -212,39 +228,24 @@ void GatewayServerImpl::Send_heartbeat()
 // 服务转发接口
 grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, const rpc_server::ForwardReq* req, rpc_server::ForwardRes* res)
 {
-    // 深拷贝请求和响应对象
-    auto request_copy = std::make_shared<rpc_server::ForwardReq>(*req);
-    auto response_copy = std::make_shared<rpc_server::ForwardRes>();
-    // 创建 promise 和 future
-    std::promise<void> task_promise;
-    std::future<void> task_future = task_promise.get_future();
-
-    {
-        std::lock_guard<std::mutex> lock(this->queue_mutex);  // 加锁
-        this->task_queue.push([this,request_copy,response_copy,&task_promise] {
-            switch(request_copy->service_type()) // 根据请求的服务类型进行转发
-            {
-            case rpc_server::ServiceType::REQ_LOGIN: // 用户登录请求
-            {
-                Forward_to_login_service(request_copy->payload(),response_copy.get());  // 解析负载，并转发到登录服务
-                break;
-            }
-            default:    // 未知服务类型
-            {
-                response_copy->set_success(false);
-                break;
-            }
-            }
-            task_promise.set_value();  // 设置 promise 的值，通知主线程任务完成
-        });
-    }
-    this->queue_cv.notify_one();  // 通知线程池有新任务
+    auto task_future = this->add_async_task([this,req,res] {
+        switch(req->service_type()) // 根据请求的服务类型进行转发
+        {
+        case rpc_server::ServiceType::REQ_LOGIN: // 用户登录请求
+        {
+            Forward_to_login_service(req->payload(), res);  // 解析负载，并转发到登录服务
+            break;
+        }
+        default:    // 未知服务类型
+        {
+            res->set_success(false);
+            break;
+        }
+        }
+    });
 
     // 等待任务完成
-    task_future.wait();
-
-    // 将响应结果复制回原响应对象
-    *res = *response_copy;
+    task_future.get();
 
     return grpc::Status::OK;
 }

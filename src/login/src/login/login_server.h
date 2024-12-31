@@ -15,6 +15,7 @@
 #include <queue>
 #include <mutex>
 #include <condition_variable>
+#include <future>
 #include <lua.hpp>
 
 // 登录服务实现类
@@ -36,13 +37,14 @@ public:
 
 private:
     void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
-
     void Init_connection_pool();    // 初始化链接池
+
+    std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 执行线程的任务
 
-    std::string Handle_login(const std::string& database, const std::string& table, std::map<std::string, std::string> query);    // 登录
-    std::string Handle_register(const std::string& database, const std::string& table, std::map<std::string, std::string> data);    // 注册
-    std::string Handle_authenticate(const std::string& token);    // 令牌验证
+    void Handle_login(const rpc_server::LoginReq* req,rpc_server::LoginRes* res);    // 登录
+    void Handle_register(const rpc_server::RegisterReq* req,rpc_server::RegisterRes* res);    // 注册
+    void Handle_authenticate(const rpc_server::AuthenticateReq* req,rpc_server::AuthenticateRes* res);    // 令牌验证
 
     // 定时任务：
     void Update_connection_pool();  // 更新连接池
