@@ -21,6 +21,7 @@ int main()
     return 0; // 返回0表示程序正常结束
 }
 
+// 运行服务器
 void RunServer(LoggerManager& logger_manager)
 {
     GatewayServerImpl gateway_server(logger_manager); // 网关服务器实现
@@ -42,41 +43,41 @@ void RunServer(LoggerManager& logger_manager)
     gateway_server.stop_thread_pool(); // 停止线程池
 }
 
+// 模拟客户端登录
 void test_client()
 {
     auto channel = grpc::CreateChannel("localhost:50051",grpc::InsecureChannelCredentials()); // 链接网关服务器
     auto stub = rpc_server::GatewayServer::NewStub(channel); // 服务存根
 
     // 模拟登录数据
-    std::string user_name = "lhw";
+    std::string account = "3056078308";
     std::string password = "159357";
 
     // 构造登录请求
     rpc_server::LoginReq login_req;
-    login_req.set_username(user_name); // 设置用户名
-    login_req.set_password(password); // 设置密码
+    login_req.set_account(account);    // 设置用户账号
+    login_req.set_password(password);   // 设置密码
 
     // 包装为转发请求
     rpc_server::ForwardReq forward_req;
     forward_req.set_service_type(rpc_server::ServiceType::REQ_LOGIN); // 设置服务类型
     login_req.SerializeToString(forward_req.mutable_payload()); // 序列化登录请求
 
-    //for(int i = 0; i < 100; ++i)
+
+    // 构造响应
+    rpc_server::ForwardRes forward_res;
+    grpc::ClientContext client_context; // 包含 RPC 调用的元数据和其他信息
+
+    // 向网关服务器发送请求
+    grpc::Status status = stub->Request_forward(&client_context,forward_req, &forward_res);
+
+    if(status.ok() && forward_res.success())
     {
-        // 构造响应
-        rpc_server::ForwardRes forward_res;
-        grpc::ClientContext client_context; // 包含 RPC 调用的元数据和其他信息
-
-        // 向网关服务器发送请求
-        grpc::Status status = stub->Request_forward(&client_context,forward_req, &forward_res);
-
-        if(status.ok() && forward_res.success())
-        {
-            std::cout << "login yes" << std::endl;
-        }
-        else
-        {
-            std::cout << "login no" << std::endl;
-        }
+        std::cout << "Login successful" << std::endl;
     }
+    else
+    {
+        std::cout << "Login failed" << std::endl;
+    }
+    
 }

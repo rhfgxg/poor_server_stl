@@ -98,7 +98,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr LoginReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : username_(
+      : account_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         password_(
@@ -178,7 +178,7 @@ const ::uint32_t TableStruct_server_5flogin_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::LoginReq, _impl_.username_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::LoginReq, _impl_.account_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::LoginReq, _impl_.password_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::rpc_server::LoginRes, _internal_metadata_),
@@ -252,26 +252,26 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::rpc_server::_AuthenticateRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5flogin_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\022server_login.proto\022\nrpc_server\".\n\010Logi"
-    "nReq\022\020\n\010username\030\001 \001(\014\022\020\n\010password\030\002 \001(\014"
-    "\";\n\010LoginRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message"
-    "\030\002 \001(\014\022\r\n\005token\030\003 \001(\014\"@\n\013RegisterReq\022\020\n\010"
-    "username\030\001 \001(\014\022\020\n\010password\030\002 \001(\014\022\r\n\005emai"
-    "l\030\003 \001(\014\"/\n\013RegisterRes\022\017\n\007success\030\001 \001(\010\022"
-    "\017\n\007message\030\002 \001(\014\" \n\017AuthenticateReq\022\r\n\005t"
-    "oken\030\001 \001(\014\"3\n\017AuthenticateRes\022\017\n\007success"
-    "\030\001 \001(\010\022\017\n\007message\030\002 \001(\0142\312\001\n\013LoginServer\022"
-    "3\n\005Login\022\024.rpc_server.LoginReq\032\024.rpc_ser"
-    "ver.LoginRes\022<\n\010Register\022\027.rpc_server.Re"
-    "gisterReq\032\027.rpc_server.RegisterRes\022H\n\014Au"
-    "thenticate\022\033.rpc_server.AuthenticateReq\032"
-    "\033.rpc_server.AuthenticateResb\006proto3"
+    "\n\022server_login.proto\022\nrpc_server\"-\n\010Logi"
+    "nReq\022\017\n\007account\030\001 \001(\014\022\020\n\010password\030\002 \001(\014\""
+    ";\n\010LoginRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030"
+    "\002 \001(\014\022\r\n\005token\030\003 \001(\014\"@\n\013RegisterReq\022\020\n\010u"
+    "sername\030\001 \001(\014\022\020\n\010password\030\002 \001(\014\022\r\n\005email"
+    "\030\003 \001(\014\"/\n\013RegisterRes\022\017\n\007success\030\001 \001(\010\022\017"
+    "\n\007message\030\002 \001(\014\" \n\017AuthenticateReq\022\r\n\005to"
+    "ken\030\001 \001(\014\"3\n\017AuthenticateRes\022\017\n\007success\030"
+    "\001 \001(\010\022\017\n\007message\030\002 \001(\0142\312\001\n\013LoginServer\0223"
+    "\n\005Login\022\024.rpc_server.LoginReq\032\024.rpc_serv"
+    "er.LoginRes\022<\n\010Register\022\027.rpc_server.Reg"
+    "isterReq\032\027.rpc_server.RegisterRes\022H\n\014Aut"
+    "henticate\022\033.rpc_server.AuthenticateReq\032\033"
+    ".rpc_server.AuthenticateResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5flogin_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5flogin_2eproto = {
     false,
     false,
-    556,
+    555,
     descriptor_table_protodef_server_5flogin_2eproto,
     "server_login.proto",
     &descriptor_table_server_5flogin_2eproto_once,
@@ -318,7 +318,7 @@ LoginReq::LoginReq(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE LoginReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : username_(arena, from.username_),
+      : account_(arena, from.account_),
         password_(arena, from.password_),
         _cached_size_{0} {}
 
@@ -337,7 +337,7 @@ LoginReq::LoginReq(
 inline PROTOBUF_NDEBUG_INLINE LoginReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : username_(arena),
+      : account_(arena),
         password_(arena),
         _cached_size_{0} {}
 
@@ -351,7 +351,7 @@ LoginReq::~LoginReq() {
 }
 inline void LoginReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.username_.Destroy();
+  _impl_.account_.Destroy();
   _impl_.password_.Destroy();
   _impl_.~Impl_();
 }
@@ -363,7 +363,7 @@ PROTOBUF_NOINLINE void LoginReq::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.username_.ClearToEmpty();
+  _impl_.account_.ClearToEmpty();
   _impl_.password_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -393,14 +393,14 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> LoginReq::_table_ = {
     // bytes password = 2;
     {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(LoginReq, _impl_.password_)}},
-    // bytes username = 1;
+    // bytes account = 1;
     {::_pbi::TcParser::FastBS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(LoginReq, _impl_.username_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(LoginReq, _impl_.account_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // bytes username = 1;
-    {PROTOBUF_FIELD_OFFSET(LoginReq, _impl_.username_), 0, 0,
+    // bytes account = 1;
+    {PROTOBUF_FIELD_OFFSET(LoginReq, _impl_.account_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // bytes password = 2;
     {PROTOBUF_FIELD_OFFSET(LoginReq, _impl_.password_), 0, 0,
@@ -418,9 +418,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> LoginReq::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // bytes username = 1;
-  if (!this->_internal_username().empty()) {
-    const std::string& _s = this->_internal_username();
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    const std::string& _s = this->_internal_account();
     target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
@@ -447,10 +447,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> LoginReq::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes username = 1;
-  if (!this->_internal_username().empty()) {
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
-                                    this->_internal_username());
+                                    this->_internal_account());
   }
 
   // bytes password = 2;
@@ -478,8 +478,8 @@ void LoginReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::pr
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_username().empty()) {
-    _this->_internal_set_username(from._internal_username());
+  if (!from._internal_account().empty()) {
+    _this->_internal_set_account(from._internal_account());
   }
   if (!from._internal_password().empty()) {
     _this->_internal_set_password(from._internal_password());
@@ -506,7 +506,7 @@ void LoginReq::InternalSwap(LoginReq* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.username_, &other->_impl_.username_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_, &other->_impl_.account_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.password_, &other->_impl_.password_, arena);
 }
 

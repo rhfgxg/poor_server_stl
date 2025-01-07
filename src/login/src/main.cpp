@@ -4,6 +4,7 @@
 // 运行服务器
 void RunServer(LoggerManager& logger_manager);
 
+// 登录服务器
 int main() 
 {
     // 初始化日志管理器，通过引用传递实现单例模式

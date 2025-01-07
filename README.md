@@ -26,7 +26,7 @@
 ## 源码编译
 ```git clone https://github.com/rhfgxg/poor_server_stl.git```
 
-## 安装包
+## 安装包（暂无）
 
 
 # 开发环境

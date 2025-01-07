@@ -11,8 +11,8 @@ service LoginServer
 // 登录服务请求
 message LoginReq
 {
-    bytes username = 1;
-    bytes password = 2;
+    bytes account = 1;  // 账号
+    bytes password = 2; // 密码：md5加密
 }
 // 登录服务响应
 message LoginRes

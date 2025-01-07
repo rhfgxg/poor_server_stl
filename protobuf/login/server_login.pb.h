@@ -840,23 +840,23 @@ class LoginReq final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUsernameFieldNumber = 1,
+    kAccountFieldNumber = 1,
     kPasswordFieldNumber = 2,
   };
-  // bytes username = 1;
-  void clear_username() ;
-  const std::string& username() const;
+  // bytes account = 1;
+  void clear_account() ;
+  const std::string& account() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_username(Arg_&& arg, Args_... args);
-  std::string* mutable_username();
-  PROTOBUF_NODISCARD std::string* release_username();
-  void set_allocated_username(std::string* value);
+  void set_account(Arg_&& arg, Args_... args);
+  std::string* mutable_account();
+  PROTOBUF_NODISCARD std::string* release_account();
+  void set_allocated_account(std::string* value);
 
   private:
-  const std::string& _internal_username() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_username(
+  const std::string& _internal_account() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account(
       const std::string& value);
-  std::string* _internal_mutable_username();
+  std::string* _internal_mutable_account();
 
   public:
   // bytes password = 2;
@@ -898,7 +898,7 @@ class LoginReq final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr username_;
+    ::google::protobuf::internal::ArenaStringPtr account_;
     ::google::protobuf::internal::ArenaStringPtr password_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1297,57 +1297,57 @@ class AuthenticateReq final :
 
 // LoginReq
 
-// bytes username = 1;
-inline void LoginReq::clear_username() {
+// bytes account = 1;
+inline void LoginReq::clear_account() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.username_.ClearToEmpty();
+  _impl_.account_.ClearToEmpty();
 }
-inline const std::string& LoginReq::username() const
+inline const std::string& LoginReq::account() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.LoginReq.username)
-  return _internal_username();
+  // @@protoc_insertion_point(field_get:rpc_server.LoginReq.account)
+  return _internal_account();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void LoginReq::set_username(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void LoginReq::set_account(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.username_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.LoginReq.username)
+  _impl_.account_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.LoginReq.account)
 }
-inline std::string* LoginReq::mutable_username() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_username();
-  // @@protoc_insertion_point(field_mutable:rpc_server.LoginReq.username)
+inline std::string* LoginReq::mutable_account() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account();
+  // @@protoc_insertion_point(field_mutable:rpc_server.LoginReq.account)
   return _s;
 }
-inline const std::string& LoginReq::_internal_username() const {
+inline const std::string& LoginReq::_internal_account() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.username_.Get();
+  return _impl_.account_.Get();
 }
-inline void LoginReq::_internal_set_username(const std::string& value) {
+inline void LoginReq::_internal_set_account(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.username_.Set(value, GetArena());
+  _impl_.account_.Set(value, GetArena());
 }
-inline std::string* LoginReq::_internal_mutable_username() {
+inline std::string* LoginReq::_internal_mutable_account() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  return _impl_.username_.Mutable( GetArena());
+  return _impl_.account_.Mutable( GetArena());
 }
-inline std::string* LoginReq::release_username() {
+inline std::string* LoginReq::release_account() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.LoginReq.username)
-  return _impl_.username_.Release();
+  // @@protoc_insertion_point(field_release:rpc_server.LoginReq.account)
+  return _impl_.account_.Release();
 }
-inline void LoginReq::set_allocated_username(std::string* value) {
+inline void LoginReq::set_allocated_account(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.username_.SetAllocated(value, GetArena());
+  _impl_.account_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.username_.IsDefault()) {
-          _impl_.username_.Set("", GetArena());
+        if (_impl_.account_.IsDefault()) {
+          _impl_.account_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.LoginReq.username)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.LoginReq.account)
 }
 
 // bytes password = 2;

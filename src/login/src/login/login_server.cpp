@@ -255,32 +255,32 @@ grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const r
 
 /************************************ gRPC服务接口工具函数 **************************************************/
 // 登录服务
-void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req,rpc_server::LoginRes* res)    // 登录
+void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::LoginRes* res)
 {
     // 获取用户名和密码
-    std::string username = req->username(); // 从 request 对象中提取用户名和密码
+    std::string account = req->account(); // 从 request 对象中提取用户名和密码
     std::string password = req->password();
     // 构造查询条件
-    std::map<std::string,std::string> query = {{"user_name",username},{"user_password",password}};
+    std::map<std::string,std::string> query = {{"user_account", account}, {"user_password", password}};
 
     // 构造请求
     rpc_server::ReadReq read_request;
-    read_request.set_database("poor_users"); // 设置查询数据库
-    read_request.set_table("users"); // 设置查询表
+    read_request.set_database("poor_users"); // 需要查询的数据库
+    read_request.set_table("users"); // 需要查询的表
     for (auto& it : query)
     {
         (*read_request.mutable_query())[it.first] = it.second; // 设置查询条件
     }
 
-    // 构造响应
+    // 构造响应与客户端上下文
     rpc_server::ReadRes read_response;
-    grpc::ClientContext client_context; // 包含 RPC 调用的元数据和其他信息
+    grpc::ClientContext client_context;
 
-    // 获取连接池中的连接
+    // 从连接池中获取数据库服务器连接
     auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DATA);
     auto db_stub = rpc_server::DatabaseServer::NewStub(channel);
 
-    // 向数据库服务器发送查询请求
+    // 调用数据库服务器的查询服务
     grpc::Status status = db_stub->Read(&client_context, read_request, &read_response);
 
     if (status.ok() && read_response.success())
