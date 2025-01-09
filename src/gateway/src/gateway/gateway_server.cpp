@@ -127,7 +127,7 @@ void GatewayServerImpl::register_server()
     }
     else
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ERROR：Gateway server registration failed: {} {}", "localhost", "50051");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Gateway server registration failed: {} {}", "localhost", "50051");
     }
 }
 
@@ -153,7 +153,7 @@ void GatewayServerImpl::unregister_server()
     }
     else
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("ERROR：Gateway server unregistration failed: {} {}", "localhost", "50051");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("ERROR：Gateway server unregistration failed: {} {}", "localhost", "50051");
     }
 }
 

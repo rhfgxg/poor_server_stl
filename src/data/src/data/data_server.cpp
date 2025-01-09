@@ -131,7 +131,7 @@ void DatabaseServerImpl::register_server()
     }
     else
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Database server registration failed: {} {}",this->server_address,this->server_port);
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Database server registration failed: {} {}",this->server_address,this->server_port);
     }
 }
 
@@ -141,8 +141,8 @@ void DatabaseServerImpl::unregister_server()
     // 请求
     rpc_server::UnregisterServerReq request;
     request.set_server_type(rpc_server::ServerType::DATA);
-    request.set_address("localhost");
-    request.set_port("50052");
+    request.set_address(this->server_address);
+    request.set_port(this->server_port);
 
     // 响应
     rpc_server::UnregisterServerRes response;
@@ -158,7 +158,7 @@ void DatabaseServerImpl::unregister_server()
     }
     else
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Server unregistration failed:  {}",response.message());
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Server unregistration failed:  {}",response.message());
     }
 }
 

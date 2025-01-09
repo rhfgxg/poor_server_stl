@@ -10,6 +10,7 @@ enum ServerType
     GATEWAY = 3;          // 网关服务
     LOGIN = 4;            // 登录服务
     LOGIC = 5;            // 逻辑服务
+    FILE = 6;             // 文件服务
 }
 
 service CentralServer

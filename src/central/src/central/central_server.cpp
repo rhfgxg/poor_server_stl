@@ -7,7 +7,8 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_):
     data_connection_pool(10),
     gateway_connection_pool(10),
     logic_connection_pool(10),
-    login_connection_pool(10)
+    login_connection_pool(10),
+    file_connection_pool(10)
 {
     // 连接池日志
     logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: initialized successfully, pool size: 10");
@@ -15,6 +16,7 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_):
     logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: initialized successfully, pool size: 10");
     logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("logic_connection_pool: initialized successfully, pool size: 10");
     logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("login_connection_pool: initialized successfully, pool size: 10");
+    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("file_connection_pool: initialized successfully, pool size: 10");
 
     // 读取配置文件并初始化服务器地址和端口
     Read_server_config();
@@ -133,33 +135,57 @@ grpc::Status CentralServerImpl::Register_server(grpc::ServerContext* context, co
         case rpc_server::ServerType::CENTRAL:    // 中心服务器
         {
             // 将链接加入连接池并记录日志
-            this->data_connection_pool.add_server(rpc_server::ServerType::CENTRAL,address,port);
+            this->central_connection_pool.add_server(rpc_server::ServerType::CENTRAL, address, port);
             this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}",address,port);
+            res->set_success(true);
+            res->set_message("Server registered successfully");
             break;
         }
         case rpc_server::ServerType::DATA:   // 数据库服务器
         {
-            this->data_connection_pool.add_server(rpc_server::ServerType::DATA,address,port);
+            this->data_connection_pool.add_server(rpc_server::ServerType::DATA, address, port);
             this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully registered a server: {} {}",address,port);
+            res->set_success(true);
+            res->set_message("Server registered successfully");
             break;
         }
         case rpc_server::ServerType::GATEWAY:    // 网关服务器
         {
-            this->gateway_connection_pool.add_server(rpc_server::ServerType::GATEWAY,address,port);
+            this->gateway_connection_pool.add_server(rpc_server::ServerType::GATEWAY, address, port);
             this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully registered a server: {} {}",address,port);
+            res->set_success(true);
+            res->set_message("Server registered successfully");
             break;
         }
         case rpc_server::ServerType::LOGIC:      // 逻辑服务器
         {
-            this->login_connection_pool.add_server(rpc_server::ServerType::LOGIC,address,port);
+            this->logic_connection_pool.add_server(rpc_server::ServerType::LOGIC, address, port);
             this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Logic_connection_pool: successfully registered a server: {} {}",address,port);
+            res->set_success(true);
+            res->set_message("Server registered successfully");
             break;
         }
         case rpc_server::ServerType::LOGIN:      // 登录服务器
         {
-            this->login_connection_pool.add_server(rpc_server::ServerType::LOGIN,address,port);
+            this->login_connection_pool.add_server(rpc_server::ServerType::LOGIN, address, port);
             this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully registered a server: {} {}",address,port);
+            res->set_success(true);
+            res->set_message("Server registered successfully");
             break;
+        }
+        case rpc_server::ServerType::FILE:      // 文件服务器
+        {
+            this->file_connection_pool.add_server(rpc_server::ServerType::FILE, address, port);
+            this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("File_connection_pool: successfully registered a server: {} {}", address, port);
+
+            res->set_success(true);
+            res->set_message("Server registered successfully");
+            break;
+        }
+        default:
+        {
+            res->set_success(false);
+            res->set_message("Invalid server type");
         }
         }
     });
@@ -167,8 +193,7 @@ grpc::Status CentralServerImpl::Register_server(grpc::ServerContext* context, co
     // 等待任务完成
     task_future.get();
 
-    res->set_success(true);
-    res->set_message("服务器注册成功");
+    
     return grpc::Status::OK;
 }
 
@@ -227,6 +252,11 @@ grpc::Status CentralServerImpl::Get_connec_poor(grpc::ServerContext* context, co
         connections = login_connection_pool.get_all_connections();
         break;
     }
+    case rpc_server::FILE:      // 文件服务器    
+    {
+        connections = file_connection_pool.get_all_connections();
+        break;
+    }
     default:
     {
         res->set_success(false);
@@ -267,7 +297,7 @@ void CentralServerImpl::Release_server_connection(rpc_server::ServerType server_
     case rpc_server::ServerType::CENTRAL:    // 中心服务器
     {
         // 连接池中移除链接，并记录日志
-        this->login_connection_pool.remove_server(rpc_server::ServerType::CENTRAL, address, port);
+        this->central_connection_pool.remove_server(rpc_server::ServerType::CENTRAL, address, port);
         this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Central_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
@@ -285,7 +315,7 @@ void CentralServerImpl::Release_server_connection(rpc_server::ServerType server_
     }
     case rpc_server::ServerType::LOGIC:      // 逻辑服务器
     {
-        this->login_connection_pool.remove_server(rpc_server::ServerType::LOGIC, address, port);
+        this->logic_connection_pool.remove_server(rpc_server::ServerType::LOGIC, address, port);
         this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Logic_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
@@ -293,6 +323,12 @@ void CentralServerImpl::Release_server_connection(rpc_server::ServerType server_
     {
         this->login_connection_pool.remove_server(rpc_server::ServerType::LOGIN, address, port);
         this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Login_connection_pool: successfully unregistered a server: {} {}", address, port);
+        break;
+    }
+    case rpc_server::ServerType::FILE:      // 登录服务器
+    {
+        this->file_connection_pool.remove_server(rpc_server::ServerType::FILE, address, port);
+        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("File_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     }

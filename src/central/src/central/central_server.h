@@ -5,6 +5,8 @@
 #include "server_data.grpc.pb.h"    // 数据库服务器
 #include "server_gateway.grpc.pb.h" // 网关服务器
 #include "server_login.grpc.pb.h"   // 登录服务器
+#include "server_logic.grpc.pb.h"   // 逻辑服务器
+#include "server_file.grpc.pb.h"    // 文件服务器
 #include "connection_pool.h"    // 连接池
 #include "logger_manager.h"     // 日志管理器
 
@@ -78,6 +80,7 @@ private:    // 私有成员
     ConnectionPool gateway_connection_pool;
     ConnectionPool logic_connection_pool;
     ConnectionPool login_connection_pool;
+    ConnectionPool file_connection_pool;
 
     // 线程池
     std::vector<std::thread> thread_pool;   // 线程池

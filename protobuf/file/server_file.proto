@@ -1,0 +1,20 @@
+syntax = "proto3";
+package rpc_server;
+
+service FileServer
+{
+	rpc Upload (UploadReq) returns (UploadRes);   // 文件上传服务
+}
+
+// 文件上传服务请求
+message UploadReq
+{
+    bytes account = 1;  // 账号
+    bytes file_name = 2; // 文件名
+}
+// 文件上传服务响应
+message UploadRes
+{
+    bool success = 1;   // 操作结果
+    bytes message = 2; // 响应信息
+}

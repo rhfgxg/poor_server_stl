@@ -42,14 +42,6 @@ void RunServer(LoggerManager& logger_manager)
 
     std::string token = test_login();  // 模拟客户端登录
 
-    // 休息5秒
-    std::this_thread::sleep_for(std::chrono::seconds(5));
-    test_authenticate(token);   // 模拟客户端令牌验证
-
-    // 休息10秒
-    std::this_thread::sleep_for(std::chrono::seconds(10));
-    test_authenticate(token);   // 模拟客户端令牌验证
-
     server->Wait(); // 等待服务器终止
 
     gateway_server.stop_thread_pool(); // 停止线程池

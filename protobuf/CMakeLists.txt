@@ -13,6 +13,8 @@ set(PROTO_SOURCES
     ${PROTOBUF_DIR}/logic/server_logic.grpc.pb.cc
     ${PROTOBUF_DIR}/login/server_login.pb.cc
     ${PROTOBUF_DIR}/login/server_login.grpc.pb.cc
+    ${PROTOBUF_DIR}/file/server_file.pb.cc
+    ${PROTOBUF_DIR}/file/server_file.grpc.pb.cc
 )
 
 # 添加库

@@ -370,23 +370,24 @@ const char descriptor_table_protodef_server_5fcentral_2eproto[] PROTOBUF_SECTION
     "eatReq\022+\n\013server_type\030\001 \001(\0162\026.rpc_server"
     ".ServerType\022\017\n\007address\030\002 \001(\t\022\014\n\004port\030\003 \001"
     "(\t\"0\n\014HeartbeatRes\022\017\n\007success\030\001 \001(\010\022\017\n\007m"
-    "essage\030\002 \001(\t*S\n\nServerType\022\013\n\007UNKNOWN\020\000\022"
+    "essage\030\002 \001(\t*]\n\nServerType\022\013\n\007UNKNOWN\020\000\022"
     "\013\n\007CENTRAL\020\001\022\010\n\004DATA\020\002\022\013\n\007GATEWAY\020\003\022\t\n\005L"
-    "OGIN\020\004\022\t\n\005LOGIC\020\0052\303\002\n\rCentralServer\022O\n\017R"
-    "egister_server\022\035.rpc_server.RegisterServ"
-    "erReq\032\035.rpc_server.RegisterServerRes\022U\n\021"
-    "Unregister_server\022\037.rpc_server.Unregiste"
-    "rServerReq\032\037.rpc_server.UnregisterServer"
-    "Res\022I\n\017Get_connec_poor\022\032.rpc_server.Conn"
-    "ectPoorReq\032\032.rpc_server.ConnectPoorRes\022\?"
-    "\n\tHeartbeat\022\030.rpc_server.HeartbeatReq\032\030."
-    "rpc_server.HeartbeatResb\006proto3"
+    "OGIN\020\004\022\t\n\005LOGIC\020\005\022\010\n\004FILE\020\0062\303\002\n\rCentralS"
+    "erver\022O\n\017Register_server\022\035.rpc_server.Re"
+    "gisterServerReq\032\035.rpc_server.RegisterSer"
+    "verRes\022U\n\021Unregister_server\022\037.rpc_server"
+    ".UnregisterServerReq\032\037.rpc_server.Unregi"
+    "sterServerRes\022I\n\017Get_connec_poor\022\032.rpc_s"
+    "erver.ConnectPoorReq\032\032.rpc_server.Connec"
+    "tPoorRes\022\?\n\tHeartbeat\022\030.rpc_server.Heart"
+    "beatReq\032\030.rpc_server.HeartbeatResb\006proto"
+    "3"
 };
 static ::absl::once_flag descriptor_table_server_5fcentral_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fcentral_2eproto = {
     false,
     false,
-    1111,
+    1121,
     descriptor_table_protodef_server_5fcentral_2eproto,
     "server_central.proto",
     &descriptor_table_server_5fcentral_2eproto_once,
@@ -424,9 +425,9 @@ const ::google::protobuf::EnumDescriptor* ServerType_descriptor() {
   return file_level_enum_descriptors_server_5fcentral_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t ServerType_internal_data_[] = {
-    393216u, 0u, };
+    458752u, 0u, };
 bool ServerType_IsValid(int value) {
-  return 0 <= value && value <= 5;
+  return 0 <= value && value <= 6;
 }
 // ===================================================================
 
