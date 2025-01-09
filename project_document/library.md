@@ -45,3 +45,10 @@ proto 中，string默认是 utf-8格式，与c++冲突，所以在编写 proto�
 
 ### 日志库
 spdlog库
+
+### token 库
+jwt-cpp 库
+
+### RSA加密库
+openssl库
+非对称加密

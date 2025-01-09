@@ -299,11 +299,9 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
         // 将用户在线状态存储到Redis中
         auto client = redis_client.get_client();
         client->set(account, "online");
-        //client->expire(account, 1800); // 设置30分钟过期时间
-        client->expire(account, 10); // debug：设置10秒过期时间
+        client->expire(account, 1800); // 设置30分钟过期时间
         client->set(account + "_token", token);
-        //client->expire(account + "_token", 1800);
-        client->expire(account + "_token", 10);
+        client->expire(account + "_token", 1800);
 
         res->set_success(true);
         res->set_message("Login successful");
@@ -344,6 +342,10 @@ void LoginServerImpl::Handle_authenticate(const rpc_server::AuthenticateReq* req
     client->sync_commit();
     if(reply.get().as_integer() == 1)
     {
+        // 延续Token的有效期
+        client->expire(account, 1800);
+        client->expire(account + "_token", 1800);
+
         res->set_success(true);
         res->set_message("Token validated");
     }
@@ -404,8 +406,7 @@ std::string LoginServerImpl::GenerateToken(const std::string& account)
         .set_type("JWS")
         .set_subject(account)
         .set_audience("example.com")
-        .set_issued_at(std::chrono::system_clock::now())
-        .set_expires_at(std::chrono::system_clock::now() + std::chrono::minutes(30))
+        .set_issued_at(std::chrono::system_clock::now())    // 不设置过期时间，依靠Redis的过期时间
         .sign(jwt::algorithm::hs256{"secret"});
 
     return token;
