@@ -27,7 +27,7 @@
       "name": "lua"
     },
     {
-      "name": "openssl"
+      "name": "jwt-cpp"
     }
   ]
 }

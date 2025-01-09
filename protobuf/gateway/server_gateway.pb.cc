@@ -109,16 +109,19 @@ const char descriptor_table_protodef_server_5fgateway_2eproto[] PROTOBUF_SECTION
     "rwardReq\022-\n\014service_type\030\001 \001(\0162\027.rpc_ser"
     "ver.ServiceType\022\017\n\007payload\030\002 \001(\014\"/\n\nForw"
     "ardRes\022\017\n\007success\030\001 \001(\010\022\020\n\010response\030\002 \001("
-    "\014*+\n\013ServiceType\022\r\n\tREQ_LOGIN\020\000\022\r\n\tRES_L"
-    "OGIN\020\0012R\n\rGatewayServer\022A\n\017Request_forwa"
-    "rd\022\026.rpc_server.ForwardReq\032\026.rpc_server."
-    "ForwardResb\006proto3"
+    "\014*\233\001\n\013ServiceType\022\r\n\tREQ_LOGIN\020\000\022\r\n\tRES_"
+    "LOGIN\020\001\022\016\n\nREQ_LOGOUT\020\002\022\016\n\nRES_LOGOUT\020\003\022"
+    "\020\n\014REQ_REGISTER\020\004\022\020\n\014RES_REGISTER\020\005\022\024\n\020R"
+    "EQ_AUTHENTICATE\020\006\022\024\n\020RES_AUTHENTICATE\020\0072"
+    "R\n\rGatewayServer\022A\n\017Request_forward\022\026.rp"
+    "c_server.ForwardReq\032\026.rpc_server.Forward"
+    "Resb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fgateway_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fgateway_2eproto = {
     false,
     false,
-    298,
+    411,
     descriptor_table_protodef_server_5fgateway_2eproto,
     "server_gateway.proto",
     &descriptor_table_server_5fgateway_2eproto_once,
@@ -156,9 +159,9 @@ const ::google::protobuf::EnumDescriptor* ServiceType_descriptor() {
   return file_level_enum_descriptors_server_5fgateway_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t ServiceType_internal_data_[] = {
-    131072u, 0u, };
+    524288u, 0u, };
 bool ServiceType_IsValid(int value) {
-  return 0 <= value && value <= 1;
+  return 0 <= value && value <= 7;
 }
 // ===================================================================
 

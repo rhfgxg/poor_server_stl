@@ -6,6 +6,7 @@
 #include "server_central.grpc.pb.h"	// 中心服务
 #include "connection_pool.h"    // 连接池
 #include "logger_manager.h"     // 日志管理器
+#include "redis_client.h"       // Redis客户端
 
 #include <grpcpp/grpcpp.h>
 #include <map>
@@ -17,6 +18,9 @@
 #include <condition_variable>
 #include <future>
 #include <lua.hpp>
+// token
+#include <jwt-cpp/jwt.h>    // token生成与解析
+#include <chrono>   // 时间
 
 // 登录服务实现类
 class LoginServerImpl final : public rpc_server::LoginServer::Service
@@ -36,7 +40,7 @@ public:
     grpc::Status Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateReq* req, rpc_server::AuthenticateRes* res) override;   // 令牌验证
 
 private:
-    void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
+    
     void Init_connection_pool();    // 初始化链接池
 
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
@@ -50,13 +54,17 @@ private:
     void Update_connection_pool();  // 更新连接池
     void Send_heartbeat();  // 发送心跳包
 
+    // 工具函数
+    void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
+    std::string GenerateToken(const std::string& account);    // 生成用户 token
+    bool ValidateToken(const std::string& token, const std::string& account);  // 验证 token
 private:
     std::string server_address; // 服务器地址
     std::string server_port;    // 服务器端口
     rpc_server::ServerType server_type;  // 服务器类型
-
-    // 日志管理器
-    LoggerManager& logger_manager;
+    
+    LoggerManager& logger_manager;  // 日志管理器
+    RedisClient redis_client;    // Redis客户端
 
     std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;	// 中心服务存根
     ConnectionPool db_connection_pool;   // 数据库服务器连接池

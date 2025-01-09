@@ -73,6 +73,12 @@ namespace rpc_server {
 enum ServiceType : int {
   REQ_LOGIN = 0,
   RES_LOGIN = 1,
+  REQ_LOGOUT = 2,
+  RES_LOGOUT = 3,
+  REQ_REGISTER = 4,
+  RES_REGISTER = 5,
+  REQ_AUTHENTICATE = 6,
+  RES_AUTHENTICATE = 7,
   ServiceType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ServiceType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -82,8 +88,8 @@ enum ServiceType : int {
 bool ServiceType_IsValid(int value);
 extern const uint32_t ServiceType_internal_data_[];
 constexpr ServiceType ServiceType_MIN = static_cast<ServiceType>(0);
-constexpr ServiceType ServiceType_MAX = static_cast<ServiceType>(1);
-constexpr int ServiceType_ARRAYSIZE = 1 + 1;
+constexpr ServiceType ServiceType_MAX = static_cast<ServiceType>(7);
+constexpr int ServiceType_ARRAYSIZE = 7 + 1;
 const ::google::protobuf::EnumDescriptor*
 ServiceType_descriptor();
 template <typename T>
@@ -96,7 +102,7 @@ const std::string& ServiceType_Name(T value) {
 template <>
 inline const std::string& ServiceType_Name(ServiceType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<ServiceType_descriptor,
-                                                 0, 1>(
+                                                 0, 7>(
       static_cast<int>(value));
 }
 inline bool ServiceType_Parse(absl::string_view name, ServiceType* value) {

@@ -43,6 +43,14 @@ class LoginServer final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::LoginRes>>(PrepareAsyncLoginRaw(context, request, cq));
     }
     // 登录服务
+    virtual ::grpc::Status Logout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::rpc_server::LogoutRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::LogoutRes>> AsyncLogout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::LogoutRes>>(AsyncLogoutRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::LogoutRes>> PrepareAsyncLogout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::LogoutRes>>(PrepareAsyncLogoutRaw(context, request, cq));
+    }
+    // 登出服务
     virtual ::grpc::Status Register(::grpc::ClientContext* context, const ::rpc_server::RegisterReq& request, ::rpc_server::RegisterRes* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::RegisterRes>> AsyncRegister(::grpc::ClientContext* context, const ::rpc_server::RegisterReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::RegisterRes>>(AsyncRegisterRaw(context, request, cq));
@@ -59,18 +67,43 @@ class LoginServer final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::AuthenticateRes>>(PrepareAsyncAuthenticateRaw(context, request, cq));
     }
     // 令牌验证服务
+    virtual ::grpc::Status Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::rpc_server::ChangePasswordRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ChangePasswordRes>> AsyncChange_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ChangePasswordRes>>(AsyncChange_passwordRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ChangePasswordRes>> PrepareAsyncChange_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ChangePasswordRes>>(PrepareAsyncChange_passwordRaw(context, request, cq));
+    }
+    // 修改密码服务
+    virtual ::grpc::Status Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::rpc_server::GetOnlineUsersRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetOnlineUsersRes>> AsyncGet_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetOnlineUsersRes>>(AsyncGet_online_usersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetOnlineUsersRes>> PrepareAsyncGet_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetOnlineUsersRes>>(PrepareAsyncGet_online_usersRaw(context, request, cq));
+    }
+    // 获取在线用户列表
     class async_interface {
      public:
       virtual ~async_interface() {}
       virtual void Login(::grpc::ClientContext* context, const ::rpc_server::LoginReq* request, ::rpc_server::LoginRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Login(::grpc::ClientContext* context, const ::rpc_server::LoginReq* request, ::rpc_server::LoginRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 登录服务
+      virtual void Logout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq* request, ::rpc_server::LogoutRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Logout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq* request, ::rpc_server::LogoutRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 登出服务
       virtual void Register(::grpc::ClientContext* context, const ::rpc_server::RegisterReq* request, ::rpc_server::RegisterRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Register(::grpc::ClientContext* context, const ::rpc_server::RegisterReq* request, ::rpc_server::RegisterRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 注册服务
       virtual void Authenticate(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq* request, ::rpc_server::AuthenticateRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Authenticate(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq* request, ::rpc_server::AuthenticateRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 令牌验证服务
+      virtual void Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 修改密码服务
+      virtual void Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 获取在线用户列表
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -78,10 +111,16 @@ class LoginServer final {
    private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::LoginRes>* AsyncLoginRaw(::grpc::ClientContext* context, const ::rpc_server::LoginReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::LoginRes>* PrepareAsyncLoginRaw(::grpc::ClientContext* context, const ::rpc_server::LoginReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::LogoutRes>* AsyncLogoutRaw(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::LogoutRes>* PrepareAsyncLogoutRaw(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::RegisterRes>* AsyncRegisterRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::RegisterRes>* PrepareAsyncRegisterRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::AuthenticateRes>* AsyncAuthenticateRaw(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::AuthenticateRes>* PrepareAsyncAuthenticateRaw(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ChangePasswordRes>* AsyncChange_passwordRaw(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ChangePasswordRes>* PrepareAsyncChange_passwordRaw(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetOnlineUsersRes>* AsyncGet_online_usersRaw(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetOnlineUsersRes>* PrepareAsyncGet_online_usersRaw(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -92,6 +131,13 @@ class LoginServer final {
     }
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::LoginRes>> PrepareAsyncLogin(::grpc::ClientContext* context, const ::rpc_server::LoginReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::LoginRes>>(PrepareAsyncLoginRaw(context, request, cq));
+    }
+    ::grpc::Status Logout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::rpc_server::LogoutRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::LogoutRes>> AsyncLogout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::LogoutRes>>(AsyncLogoutRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::LogoutRes>> PrepareAsyncLogout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::LogoutRes>>(PrepareAsyncLogoutRaw(context, request, cq));
     }
     ::grpc::Status Register(::grpc::ClientContext* context, const ::rpc_server::RegisterReq& request, ::rpc_server::RegisterRes* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterRes>> AsyncRegister(::grpc::ClientContext* context, const ::rpc_server::RegisterReq& request, ::grpc::CompletionQueue* cq) {
@@ -107,15 +153,35 @@ class LoginServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::AuthenticateRes>> PrepareAsyncAuthenticate(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::AuthenticateRes>>(PrepareAsyncAuthenticateRaw(context, request, cq));
     }
+    ::grpc::Status Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::rpc_server::ChangePasswordRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ChangePasswordRes>> AsyncChange_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ChangePasswordRes>>(AsyncChange_passwordRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ChangePasswordRes>> PrepareAsyncChange_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ChangePasswordRes>>(PrepareAsyncChange_passwordRaw(context, request, cq));
+    }
+    ::grpc::Status Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::rpc_server::GetOnlineUsersRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>> AsyncGet_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>>(AsyncGet_online_usersRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>> PrepareAsyncGet_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>>(PrepareAsyncGet_online_usersRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
       void Login(::grpc::ClientContext* context, const ::rpc_server::LoginReq* request, ::rpc_server::LoginRes* response, std::function<void(::grpc::Status)>) override;
       void Login(::grpc::ClientContext* context, const ::rpc_server::LoginReq* request, ::rpc_server::LoginRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Logout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq* request, ::rpc_server::LogoutRes* response, std::function<void(::grpc::Status)>) override;
+      void Logout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq* request, ::rpc_server::LogoutRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Register(::grpc::ClientContext* context, const ::rpc_server::RegisterReq* request, ::rpc_server::RegisterRes* response, std::function<void(::grpc::Status)>) override;
       void Register(::grpc::ClientContext* context, const ::rpc_server::RegisterReq* request, ::rpc_server::RegisterRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Authenticate(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq* request, ::rpc_server::AuthenticateRes* response, std::function<void(::grpc::Status)>) override;
       void Authenticate(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq* request, ::rpc_server::AuthenticateRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response, std::function<void(::grpc::Status)>) override;
+      void Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response, std::function<void(::grpc::Status)>) override;
+      void Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -129,13 +195,22 @@ class LoginServer final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::rpc_server::LoginRes>* AsyncLoginRaw(::grpc::ClientContext* context, const ::rpc_server::LoginReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::LoginRes>* PrepareAsyncLoginRaw(::grpc::ClientContext* context, const ::rpc_server::LoginReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::LogoutRes>* AsyncLogoutRaw(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::LogoutRes>* PrepareAsyncLogoutRaw(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterRes>* AsyncRegisterRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterRes>* PrepareAsyncRegisterRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::AuthenticateRes>* AsyncAuthenticateRaw(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::AuthenticateRes>* PrepareAsyncAuthenticateRaw(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::ChangePasswordRes>* AsyncChange_passwordRaw(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::ChangePasswordRes>* PrepareAsyncChange_passwordRaw(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>* AsyncGet_online_usersRaw(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>* PrepareAsyncGet_online_usersRaw(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Login_;
+    const ::grpc::internal::RpcMethod rpcmethod_Logout_;
     const ::grpc::internal::RpcMethod rpcmethod_Register_;
     const ::grpc::internal::RpcMethod rpcmethod_Authenticate_;
+    const ::grpc::internal::RpcMethod rpcmethod_Change_password_;
+    const ::grpc::internal::RpcMethod rpcmethod_Get_online_users_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -145,10 +220,16 @@ class LoginServer final {
     virtual ~Service();
     virtual ::grpc::Status Login(::grpc::ServerContext* context, const ::rpc_server::LoginReq* request, ::rpc_server::LoginRes* response);
     // 登录服务
+    virtual ::grpc::Status Logout(::grpc::ServerContext* context, const ::rpc_server::LogoutReq* request, ::rpc_server::LogoutRes* response);
+    // 登出服务
     virtual ::grpc::Status Register(::grpc::ServerContext* context, const ::rpc_server::RegisterReq* request, ::rpc_server::RegisterRes* response);
     // 注册服务
     virtual ::grpc::Status Authenticate(::grpc::ServerContext* context, const ::rpc_server::AuthenticateReq* request, ::rpc_server::AuthenticateRes* response);
     // 令牌验证服务
+    virtual ::grpc::Status Change_password(::grpc::ServerContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response);
+    // 修改密码服务
+    virtual ::grpc::Status Get_online_users(::grpc::ServerContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response);
+    // 获取在线用户列表
   };
   template <class BaseClass>
   class WithAsyncMethod_Login : public BaseClass {
@@ -171,12 +252,32 @@ class LoginServer final {
     }
   };
   template <class BaseClass>
+  class WithAsyncMethod_Logout : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Logout() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Logout() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logout(::grpc::ServerContext* /*context*/, const ::rpc_server::LogoutReq* /*request*/, ::rpc_server::LogoutRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestLogout(::grpc::ServerContext* context, ::rpc_server::LogoutReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::LogoutRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithAsyncMethod_Register : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Register() {
-      ::grpc::Service::MarkMethodAsync(1);
+      ::grpc::Service::MarkMethodAsync(2);
     }
     ~WithAsyncMethod_Register() override {
       BaseClassMustBeDerivedFromService(this);
@@ -187,7 +288,7 @@ class LoginServer final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRegister(::grpc::ServerContext* context, ::rpc_server::RegisterReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::RegisterRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -196,7 +297,7 @@ class LoginServer final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_Authenticate() {
-      ::grpc::Service::MarkMethodAsync(2);
+      ::grpc::Service::MarkMethodAsync(3);
     }
     ~WithAsyncMethod_Authenticate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -207,10 +308,50 @@ class LoginServer final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAuthenticate(::grpc::ServerContext* context, ::rpc_server::AuthenticateReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::AuthenticateRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Login<WithAsyncMethod_Register<WithAsyncMethod_Authenticate<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Change_password : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Change_password() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_Change_password() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Change_password(::grpc::ServerContext* /*context*/, const ::rpc_server::ChangePasswordReq* /*request*/, ::rpc_server::ChangePasswordRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestChange_password(::grpc::ServerContext* context, ::rpc_server::ChangePasswordReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::ChangePasswordRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Get_online_users : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Get_online_users() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_Get_online_users() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get_online_users(::grpc::ServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet_online_users(::grpc::ServerContext* context, ::rpc_server::GetOnlineUsersReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::GetOnlineUsersRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Login<WithAsyncMethod_Logout<WithAsyncMethod_Register<WithAsyncMethod_Authenticate<WithAsyncMethod_Change_password<WithAsyncMethod_Get_online_users<Service > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Login : public BaseClass {
    private:
@@ -239,18 +380,45 @@ class LoginServer final {
       ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::LoginReq* /*request*/, ::rpc_server::LoginRes* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithCallbackMethod_Logout : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Logout() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::LogoutReq, ::rpc_server::LogoutRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::LogoutReq* request, ::rpc_server::LogoutRes* response) { return this->Logout(context, request, response); }));}
+    void SetMessageAllocatorFor_Logout(
+        ::grpc::MessageAllocator< ::rpc_server::LogoutReq, ::rpc_server::LogoutRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::LogoutReq, ::rpc_server::LogoutRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Logout() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logout(::grpc::ServerContext* /*context*/, const ::rpc_server::LogoutReq* /*request*/, ::rpc_server::LogoutRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Logout(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::LogoutReq* /*request*/, ::rpc_server::LogoutRes* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithCallbackMethod_Register : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_Register() {
-      ::grpc::Service::MarkMethodCallback(1,
+      ::grpc::Service::MarkMethodCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::RegisterReq, ::rpc_server::RegisterRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::rpc_server::RegisterReq* request, ::rpc_server::RegisterRes* response) { return this->Register(context, request, response); }));}
     void SetMessageAllocatorFor_Register(
         ::grpc::MessageAllocator< ::rpc_server::RegisterReq, ::rpc_server::RegisterRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::RegisterReq, ::rpc_server::RegisterRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -271,13 +439,13 @@ class LoginServer final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithCallbackMethod_Authenticate() {
-      ::grpc::Service::MarkMethodCallback(2,
+      ::grpc::Service::MarkMethodCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::AuthenticateReq, ::rpc_server::AuthenticateRes>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::rpc_server::AuthenticateReq* request, ::rpc_server::AuthenticateRes* response) { return this->Authenticate(context, request, response); }));}
     void SetMessageAllocatorFor_Authenticate(
         ::grpc::MessageAllocator< ::rpc_server::AuthenticateReq, ::rpc_server::AuthenticateRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::AuthenticateReq, ::rpc_server::AuthenticateRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
@@ -292,7 +460,61 @@ class LoginServer final {
     virtual ::grpc::ServerUnaryReactor* Authenticate(
       ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::AuthenticateReq* /*request*/, ::rpc_server::AuthenticateRes* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Login<WithCallbackMethod_Register<WithCallbackMethod_Authenticate<Service > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Change_password : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Change_password() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::ChangePasswordReq, ::rpc_server::ChangePasswordRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response) { return this->Change_password(context, request, response); }));}
+    void SetMessageAllocatorFor_Change_password(
+        ::grpc::MessageAllocator< ::rpc_server::ChangePasswordReq, ::rpc_server::ChangePasswordRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::ChangePasswordReq, ::rpc_server::ChangePasswordRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Change_password() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Change_password(::grpc::ServerContext* /*context*/, const ::rpc_server::ChangePasswordReq* /*request*/, ::rpc_server::ChangePasswordRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Change_password(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::ChangePasswordReq* /*request*/, ::rpc_server::ChangePasswordRes* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Get_online_users : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Get_online_users() {
+      ::grpc::Service::MarkMethodCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response) { return this->Get_online_users(context, request, response); }));}
+    void SetMessageAllocatorFor_Get_online_users(
+        ::grpc::MessageAllocator< ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Get_online_users() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get_online_users(::grpc::ServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get_online_users(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Login<WithCallbackMethod_Logout<WithCallbackMethod_Register<WithCallbackMethod_Authenticate<WithCallbackMethod_Change_password<WithCallbackMethod_Get_online_users<Service > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Login : public BaseClass {
@@ -312,12 +534,29 @@ class LoginServer final {
     }
   };
   template <class BaseClass>
+  class WithGenericMethod_Logout : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Logout() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Logout() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logout(::grpc::ServerContext* /*context*/, const ::rpc_server::LogoutReq* /*request*/, ::rpc_server::LogoutRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
   class WithGenericMethod_Register : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Register() {
-      ::grpc::Service::MarkMethodGeneric(1);
+      ::grpc::Service::MarkMethodGeneric(2);
     }
     ~WithGenericMethod_Register() override {
       BaseClassMustBeDerivedFromService(this);
@@ -334,13 +573,47 @@ class LoginServer final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_Authenticate() {
-      ::grpc::Service::MarkMethodGeneric(2);
+      ::grpc::Service::MarkMethodGeneric(3);
     }
     ~WithGenericMethod_Authenticate() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
     ::grpc::Status Authenticate(::grpc::ServerContext* /*context*/, const ::rpc_server::AuthenticateReq* /*request*/, ::rpc_server::AuthenticateRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Change_password : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Change_password() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_Change_password() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Change_password(::grpc::ServerContext* /*context*/, const ::rpc_server::ChangePasswordReq* /*request*/, ::rpc_server::ChangePasswordRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Get_online_users : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Get_online_users() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_Get_online_users() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get_online_users(::grpc::ServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -366,12 +639,32 @@ class LoginServer final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_Logout : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Logout() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Logout() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logout(::grpc::ServerContext* /*context*/, const ::rpc_server::LogoutReq* /*request*/, ::rpc_server::LogoutRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestLogout(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawMethod_Register : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Register() {
-      ::grpc::Service::MarkMethodRaw(1);
+      ::grpc::Service::MarkMethodRaw(2);
     }
     ~WithRawMethod_Register() override {
       BaseClassMustBeDerivedFromService(this);
@@ -382,7 +675,7 @@ class LoginServer final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestRegister(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -391,7 +684,7 @@ class LoginServer final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_Authenticate() {
-      ::grpc::Service::MarkMethodRaw(2);
+      ::grpc::Service::MarkMethodRaw(3);
     }
     ~WithRawMethod_Authenticate() override {
       BaseClassMustBeDerivedFromService(this);
@@ -402,7 +695,47 @@ class LoginServer final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void RequestAuthenticate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Change_password : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Change_password() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_Change_password() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Change_password(::grpc::ServerContext* /*context*/, const ::rpc_server::ChangePasswordReq* /*request*/, ::rpc_server::ChangePasswordRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestChange_password(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Get_online_users : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Get_online_users() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_Get_online_users() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get_online_users(::grpc::ServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet_online_users(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -428,12 +761,34 @@ class LoginServer final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
+  class WithRawCallbackMethod_Logout : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Logout() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Logout(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Logout() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Logout(::grpc::ServerContext* /*context*/, const ::rpc_server::LogoutReq* /*request*/, ::rpc_server::LogoutRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Logout(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_Register : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_Register() {
-      ::grpc::Service::MarkMethodRawCallback(1,
+      ::grpc::Service::MarkMethodRawCallback(2,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Register(context, request, response); }));
@@ -455,7 +810,7 @@ class LoginServer final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawCallbackMethod_Authenticate() {
-      ::grpc::Service::MarkMethodRawCallback(2,
+      ::grpc::Service::MarkMethodRawCallback(3,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
                    ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Authenticate(context, request, response); }));
@@ -469,6 +824,50 @@ class LoginServer final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Authenticate(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Change_password : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Change_password() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Change_password(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Change_password() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Change_password(::grpc::ServerContext* /*context*/, const ::rpc_server::ChangePasswordReq* /*request*/, ::rpc_server::ChangePasswordRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Change_password(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Get_online_users : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Get_online_users() {
+      ::grpc::Service::MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get_online_users(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Get_online_users() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get_online_users(::grpc::ServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get_online_users(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -499,12 +898,39 @@ class LoginServer final {
     virtual ::grpc::Status StreamedLogin(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::LoginReq,::rpc_server::LoginRes>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_Logout : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Logout() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::rpc_server::LogoutReq, ::rpc_server::LogoutRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::rpc_server::LogoutReq, ::rpc_server::LogoutRes>* streamer) {
+                       return this->StreamedLogout(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Logout() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Logout(::grpc::ServerContext* /*context*/, const ::rpc_server::LogoutReq* /*request*/, ::rpc_server::LogoutRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedLogout(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::LogoutReq,::rpc_server::LogoutRes>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_Register : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Register() {
-      ::grpc::Service::MarkMethodStreamed(1,
+      ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
           ::rpc_server::RegisterReq, ::rpc_server::RegisterRes>(
             [this](::grpc::ServerContext* context,
@@ -531,7 +957,7 @@ class LoginServer final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_Authenticate() {
-      ::grpc::Service::MarkMethodStreamed(2,
+      ::grpc::Service::MarkMethodStreamed(3,
         new ::grpc::internal::StreamedUnaryHandler<
           ::rpc_server::AuthenticateReq, ::rpc_server::AuthenticateRes>(
             [this](::grpc::ServerContext* context,
@@ -552,9 +978,63 @@ class LoginServer final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedAuthenticate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::AuthenticateReq,::rpc_server::AuthenticateRes>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_Register<WithStreamedUnaryMethod_Authenticate<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Change_password : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Change_password() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::rpc_server::ChangePasswordReq, ::rpc_server::ChangePasswordRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::rpc_server::ChangePasswordReq, ::rpc_server::ChangePasswordRes>* streamer) {
+                       return this->StreamedChange_password(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Change_password() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Change_password(::grpc::ServerContext* /*context*/, const ::rpc_server::ChangePasswordReq* /*request*/, ::rpc_server::ChangePasswordRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedChange_password(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::ChangePasswordReq,::rpc_server::ChangePasswordRes>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Get_online_users : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Get_online_users() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes>* streamer) {
+                       return this->StreamedGet_online_users(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Get_online_users() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Get_online_users(::grpc::ServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGet_online_users(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::GetOnlineUsersReq,::rpc_server::GetOnlineUsersRes>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_Logout<WithStreamedUnaryMethod_Register<WithStreamedUnaryMethod_Authenticate<WithStreamedUnaryMethod_Change_password<WithStreamedUnaryMethod_Get_online_users<Service > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_Register<WithStreamedUnaryMethod_Authenticate<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_Logout<WithStreamedUnaryMethod_Register<WithStreamedUnaryMethod_Authenticate<WithStreamedUnaryMethod_Change_password<WithStreamedUnaryMethod_Get_online_users<Service > > > > > > StreamedService;
 };
 
 }  // namespace rpc_server

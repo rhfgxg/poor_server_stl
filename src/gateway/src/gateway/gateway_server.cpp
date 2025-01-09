@@ -254,10 +254,10 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, co
 // Login 方法，处理登录请求
 grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payload, rpc_server::ForwardRes* response)
 {
-    rpc_server::LoginReq login_request;  // 创建登录请求对象
-    bool request_out = login_request.ParseFromString(payload); // 将负载解析为登录请求对象
+    rpc_server::LoginReq login_req;  // 创建登录请求对象
+    bool req_out = login_req.ParseFromString(payload); // 将负载解析为登录请求对象
 
-    if(!request_out) // 如果解析失败
+    if(!req_out) // 如果解析失败
     {
         return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,"Failed to parse LoginRequest");
     }
@@ -270,7 +270,7 @@ grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payl
     auto channel = this->login_connection_pool.get_connection(rpc_server::ServerType::LOGIN);
     auto login_stub = rpc_server::LoginServer::NewStub(channel);
 
-    grpc::Status status = login_stub->Login(&context, login_request, &login_response);
+    grpc::Status status = login_stub->Login(&context, login_req, &login_response);
 
     if(!status.ok()) // 如果调用失败
     {

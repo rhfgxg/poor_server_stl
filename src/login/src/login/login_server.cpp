@@ -1,5 +1,6 @@
 #include "login_server.h"
 
+
 LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_):
     server_type(rpc_server::ServerType::LOGIN),    // 服务器类型
     logger_manager(logger_manager_),	// 日志管理器
@@ -249,6 +250,12 @@ grpc::Status LoginServerImpl::Register(grpc::ServerContext* context, const rpc_s
 // 令牌验证服务接口
 grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateReq* req, rpc_server::AuthenticateRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_authenticate(req, res); // 查询的数据库名，表名，查询条件
+    });
+
+    // 等待任务完成
+    task_future.get();
 
     return grpc::Status::OK;
 }
@@ -258,18 +265,19 @@ grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const r
 void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::LoginRes* res)
 {
     // 获取用户名和密码
-    std::string account = req->account(); // 从 request 对象中提取用户名和密码
+    std::string account = req->account();
     std::string password = req->password();
-    // 构造查询条件
-    std::map<std::string,std::string> query = {{"user_account", account}, {"user_password", password}};
 
-    // 构造请求
+    // 构造查询条件
+    std::map<std::string, std::string> query = {{"user_account", account}, {"user_password", password}};
+
+    // 构造数据库查询请求
     rpc_server::ReadReq read_request;
-    read_request.set_database("poor_users"); // 需要查询的数据库
-    read_request.set_table("users"); // 需要查询的表
-    for (auto& it : query)
+    read_request.set_database("poor_users");
+    read_request.set_table("users");
+    for(auto& it : query)
     {
-        (*read_request.mutable_query())[it.first] = it.second; // 设置查询条件
+        (*read_request.mutable_query())[it.first] = it.second;
     }
 
     // 构造响应与客户端上下文
@@ -283,10 +291,23 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
     // 调用数据库服务器的查询服务
     grpc::Status status = db_stub->Read(&client_context, read_request, &read_response);
 
-    if (status.ok() && read_response.success())
+    if(status.ok() && read_response.success())
     {
-        res->set_success(true);    // 设置响应对象 response 的 success 字段为 true
+        // 生成Token
+        std::string token = GenerateToken(account);
+
+        // 将用户在线状态存储到Redis中
+        auto client = redis_client.get_client();
+        client->set(account, "online");
+        //client->expire(account, 1800); // 设置30分钟过期时间
+        client->expire(account, 10); // debug：设置10秒过期时间
+        client->set(account + "_token", token);
+        //client->expire(account + "_token", 1800);
+        client->expire(account + "_token", 10);
+
+        res->set_success(true);
         res->set_message("Login successful");
+        res->set_token(token);
         this->logger_manager.getLogger(LogCategory::APPLICATION_ACTIVITY)->info("Login successful");
     }
     else
@@ -303,10 +324,35 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
 }
 
 // 令牌验证服务
-void LoginServerImpl::Handle_authenticate(const rpc_server::AuthenticateReq* req,rpc_server::AuthenticateRes* res)    // 令牌验证
+void LoginServerImpl::Handle_authenticate(const rpc_server::AuthenticateReq* req, rpc_server::AuthenticateRes* res)
 {
-}
+    // 获取Token和账号
+    std::string token = req->token();
+    std::string account = req->account();
 
+    // 验证Token的有效性
+    if(!ValidateToken(token, account))
+    {
+        res->set_success(false);
+        res->set_message("Invalid token");
+        return;
+    }
+
+    // 检查用户的在线状态
+    auto client = redis_client.get_client();
+    auto reply = client->exists({account});
+    client->sync_commit();
+    if(reply.get().as_integer() == 1)
+    {
+        res->set_success(true);
+        res->set_message("Token validated");
+    }
+    else
+    {
+        res->set_success(false);
+        res->set_message("User is not online");
+    }
+}
 /******************************************** 其他工具函数 ***********************************************/
 // 读取服务器配置文件，初始化服务器地址和端口
 void LoginServerImpl::Read_server_config()
@@ -348,4 +394,39 @@ void LoginServerImpl::Read_server_config()
     lua_pop(L,1);
 
     lua_close(L);   // 关闭lua虚拟机
+}
+
+// 生成 用户token
+std::string LoginServerImpl::GenerateToken(const std::string& account)
+{
+    auto token = jwt::create()
+        .set_issuer("auth0")
+        .set_type("JWS")
+        .set_subject(account)
+        .set_audience("example.com")
+        .set_issued_at(std::chrono::system_clock::now())
+        .set_expires_at(std::chrono::system_clock::now() + std::chrono::minutes(30))
+        .sign(jwt::algorithm::hs256{"secret"});
+
+    return token;
+}
+
+// 验证 token
+bool LoginServerImpl::ValidateToken(const std::string& token, const std::string& account)
+{
+    try
+    {
+        auto decoded = jwt::decode(token);
+        auto verifier = jwt::verify()
+            .allow_algorithm(jwt::algorithm::hs256{"secret"})
+            .with_issuer("auth0")
+            .with_subject(account);
+
+        verifier.verify(decoded);
+        return true;
+    }
+    catch(const std::exception& e)
+    {
+        return false;
+    }
 }

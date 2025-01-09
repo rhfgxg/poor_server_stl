@@ -10,6 +10,7 @@ set(SOURCES
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
+    ${PROJECT_SOURCE_DIR}/src/common/redis_client.cpp
     # protobuf 生成的源文件
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.grpc.pb.cc

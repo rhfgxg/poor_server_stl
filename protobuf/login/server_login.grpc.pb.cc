@@ -23,8 +23,11 @@ namespace rpc_server {
 
 static const char* LoginServer_method_names[] = {
   "/rpc_server.LoginServer/Login",
+  "/rpc_server.LoginServer/Logout",
   "/rpc_server.LoginServer/Register",
   "/rpc_server.LoginServer/Authenticate",
+  "/rpc_server.LoginServer/Change_password",
+  "/rpc_server.LoginServer/Get_online_users",
 };
 
 std::unique_ptr< LoginServer::Stub> LoginServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -35,8 +38,11 @@ std::unique_ptr< LoginServer::Stub> LoginServer::NewStub(const std::shared_ptr< 
 
 LoginServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_Login_(LoginServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Register_(LoginServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Authenticate_(LoginServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Logout_(LoginServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Register_(LoginServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Authenticate_(LoginServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Change_password_(LoginServer_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Get_online_users_(LoginServer_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status LoginServer::Stub::Login(::grpc::ClientContext* context, const ::rpc_server::LoginReq& request, ::rpc_server::LoginRes* response) {
@@ -58,6 +64,29 @@ void LoginServer::Stub::async::Login(::grpc::ClientContext* context, const ::rpc
 ::grpc::ClientAsyncResponseReader< ::rpc_server::LoginRes>* LoginServer::Stub::AsyncLoginRaw(::grpc::ClientContext* context, const ::rpc_server::LoginReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncLoginRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status LoginServer::Stub::Logout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::rpc_server::LogoutRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::LogoutReq, ::rpc_server::LogoutRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Logout_, context, request, response);
+}
+
+void LoginServer::Stub::async::Logout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq* request, ::rpc_server::LogoutRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::LogoutReq, ::rpc_server::LogoutRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logout_, context, request, response, std::move(f));
+}
+
+void LoginServer::Stub::async::Logout(::grpc::ClientContext* context, const ::rpc_server::LogoutReq* request, ::rpc_server::LogoutRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Logout_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::LogoutRes>* LoginServer::Stub::PrepareAsyncLogoutRaw(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::LogoutRes, ::rpc_server::LogoutReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Logout_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::LogoutRes>* LoginServer::Stub::AsyncLogoutRaw(::grpc::ClientContext* context, const ::rpc_server::LogoutReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncLogoutRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -108,6 +137,52 @@ void LoginServer::Stub::async::Authenticate(::grpc::ClientContext* context, cons
   return result;
 }
 
+::grpc::Status LoginServer::Stub::Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::rpc_server::ChangePasswordRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::ChangePasswordReq, ::rpc_server::ChangePasswordRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Change_password_, context, request, response);
+}
+
+void LoginServer::Stub::async::Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::ChangePasswordReq, ::rpc_server::ChangePasswordRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Change_password_, context, request, response, std::move(f));
+}
+
+void LoginServer::Stub::async::Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Change_password_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::ChangePasswordRes>* LoginServer::Stub::PrepareAsyncChange_passwordRaw(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::ChangePasswordRes, ::rpc_server::ChangePasswordReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Change_password_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::ChangePasswordRes>* LoginServer::Stub::AsyncChange_passwordRaw(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncChange_passwordRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status LoginServer::Stub::Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::rpc_server::GetOnlineUsersRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_online_users_, context, request, response);
+}
+
+void LoginServer::Stub::async::Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_online_users_, context, request, response, std::move(f));
+}
+
+void LoginServer::Stub::async::Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_online_users_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>* LoginServer::Stub::PrepareAsyncGet_online_usersRaw(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::GetOnlineUsersRes, ::rpc_server::GetOnlineUsersReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_online_users_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>* LoginServer::Stub::AsyncGet_online_usersRaw(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGet_online_usersRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 LoginServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       LoginServer_method_names[0],
@@ -122,6 +197,16 @@ LoginServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       LoginServer_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::LogoutReq, ::rpc_server::LogoutRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](LoginServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::LogoutReq* req,
+             ::rpc_server::LogoutRes* resp) {
+               return service->Logout(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      LoginServer_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::RegisterReq, ::rpc_server::RegisterRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](LoginServer::Service* service,
              ::grpc::ServerContext* ctx,
@@ -130,7 +215,7 @@ LoginServer::Service::Service() {
                return service->Register(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      LoginServer_method_names[2],
+      LoginServer_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::AuthenticateReq, ::rpc_server::AuthenticateRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](LoginServer::Service* service,
@@ -139,12 +224,39 @@ LoginServer::Service::Service() {
              ::rpc_server::AuthenticateRes* resp) {
                return service->Authenticate(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      LoginServer_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::ChangePasswordReq, ::rpc_server::ChangePasswordRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](LoginServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::ChangePasswordReq* req,
+             ::rpc_server::ChangePasswordRes* resp) {
+               return service->Change_password(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      LoginServer_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](LoginServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::GetOnlineUsersReq* req,
+             ::rpc_server::GetOnlineUsersRes* resp) {
+               return service->Get_online_users(ctx, req, resp);
+             }, this)));
 }
 
 LoginServer::Service::~Service() {
 }
 
 ::grpc::Status LoginServer::Service::Login(::grpc::ServerContext* context, const ::rpc_server::LoginReq* request, ::rpc_server::LoginRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status LoginServer::Service::Logout(::grpc::ServerContext* context, const ::rpc_server::LogoutReq* request, ::rpc_server::LogoutRes* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -159,6 +271,20 @@ LoginServer::Service::~Service() {
 }
 
 ::grpc::Status LoginServer::Service::Authenticate(::grpc::ServerContext* context, const ::rpc_server::AuthenticateReq* request, ::rpc_server::AuthenticateRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status LoginServer::Service::Change_password(::grpc::ServerContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status LoginServer::Service::Get_online_users(::grpc::ServerContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response) {
   (void) context;
   (void) request;
   (void) response;
