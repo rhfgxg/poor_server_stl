@@ -30,7 +30,7 @@ void RunServer(LoggerManager& logger_manager)
     builder.RegisterService(&login_server); // 注册服务
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // 构建并启动服务器
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}",server_address);
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
 
     login_server.start_thread_pool(4); // 启动4个线程处理请求
 

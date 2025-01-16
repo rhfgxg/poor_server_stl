@@ -20,6 +20,11 @@ set DATABASE_PROTO_DIR=%PROTO_DIR%\data
 %PROTOC% --proto_path=%DATABASE_PROTO_DIR% --cpp_out=%DATABASE_PROTO_DIR% %DATABASE_PROTO_DIR%\server_data.proto
 %PROTOC% --proto_path=%DATABASE_PROTO_DIR% --grpc_out=%DATABASE_PROTO_DIR% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %DATABASE_PROTO_DIR%\server_data.proto
 
+rem 生成 file 模块：文件服务器模块
+set FILE_PROTO_DIR=%PROTO_DIR%\file
+%PROTOC% --proto_path=%FILE_PROTO_DIR% --cpp_out=%FILE_PROTO_DIR% %FILE_PROTO_DIR%\server_file.proto
+%PROTOC% --proto_path=%FILE_PROTO_DIR% --grpc_out=%FILE_PROTO_DIR% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %FILE_PROTO_DIR%\server_file.proto
+
 rem 生成 gateway 模块：网关模块
 set GATEWAY_PROTO_DIR=%PROTO_DIR%\gateway
 %PROTOC% --proto_path=%GATEWAY_PROTO_DIR% --cpp_out=%GATEWAY_PROTO_DIR% %GATEWAY_PROTO_DIR%\server_gateway.proto
@@ -34,11 +39,6 @@ rem 生成 login 模块：登录模块
 set LOGIN_PROTO_DIR=%PROTO_DIR%\login
 %PROTOC% --proto_path=%LOGIN_PROTO_DIR% --cpp_out=%LOGIN_PROTO_DIR% %LOGIN_PROTO_DIR%\server_login.proto
 %PROTOC% --proto_path=%LOGIN_PROTO_DIR% --grpc_out=%LOGIN_PROTO_DIR% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %LOGIN_PROTO_DIR%\server_login.proto
-
-rem 生成 file 模块：文件服务器模块
-set FILE_PROTO_DIR=%PROTO_DIR%\file
-%PROTOC% --proto_path=%FILE_PROTO_DIR% --cpp_out=%FILE_PROTO_DIR% %FILE_PROTO_DIR%\server_file.proto
-%PROTOC% --proto_path=%FILE_PROTO_DIR% --grpc_out=%FILE_PROTO_DIR% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %FILE_PROTO_DIR%\server_file.proto
 
 
 echo 脚本执行完毕

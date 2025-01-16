@@ -43,12 +43,45 @@ class FileServer final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UploadRes>>(PrepareAsyncUploadRaw(context, request, cq));
     }
     // 文件上传服务
+    virtual ::grpc::Status Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::rpc_server::DownloadRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DownloadRes>> AsyncDownload(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DownloadRes>>(AsyncDownloadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DownloadRes>> PrepareAsyncDownload(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DownloadRes>>(PrepareAsyncDownloadRaw(context, request, cq));
+    }
+    // 文件下载服务
+    virtual ::grpc::Status Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::rpc_server::DeleteFileRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteFileRes>> AsyncDelete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteFileRes>>(AsyncDeleteRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteFileRes>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteFileRes>>(PrepareAsyncDeleteRaw(context, request, cq));
+    }
+    // 文件删除服务
+    virtual ::grpc::Status ListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::rpc_server::ListFilesRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ListFilesRes>> AsyncListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ListFilesRes>>(AsyncListFilesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ListFilesRes>> PrepareAsyncListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ListFilesRes>>(PrepareAsyncListFilesRaw(context, request, cq));
+    }
+    // 获取文件列表服务
     class async_interface {
      public:
       virtual ~async_interface() {}
       virtual void Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 文件上传服务
+      virtual void Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq* request, ::rpc_server::DownloadRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq* request, ::rpc_server::DownloadRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 文件下载服务
+      virtual void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq* request, ::rpc_server::DeleteFileRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq* request, ::rpc_server::DeleteFileRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 文件删除服务
+      virtual void ListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq* request, ::rpc_server::ListFilesRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq* request, ::rpc_server::ListFilesRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 获取文件列表服务
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -56,6 +89,12 @@ class FileServer final {
    private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UploadRes>* AsyncUploadRaw(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UploadRes>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DownloadRes>* AsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DownloadRes>* PrepareAsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteFileRes>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteFileRes>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ListFilesRes>* AsyncListFilesRaw(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ListFilesRes>* PrepareAsyncListFilesRaw(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -67,11 +106,38 @@ class FileServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UploadRes>> PrepareAsyncUpload(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UploadRes>>(PrepareAsyncUploadRaw(context, request, cq));
     }
+    ::grpc::Status Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::rpc_server::DownloadRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DownloadRes>> AsyncDownload(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DownloadRes>>(AsyncDownloadRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DownloadRes>> PrepareAsyncDownload(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DownloadRes>>(PrepareAsyncDownloadRaw(context, request, cq));
+    }
+    ::grpc::Status Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::rpc_server::DeleteFileRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteFileRes>> AsyncDelete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteFileRes>>(AsyncDeleteRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteFileRes>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteFileRes>>(PrepareAsyncDeleteRaw(context, request, cq));
+    }
+    ::grpc::Status ListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::rpc_server::ListFilesRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ListFilesRes>> AsyncListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ListFilesRes>>(AsyncListFilesRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ListFilesRes>> PrepareAsyncListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ListFilesRes>>(PrepareAsyncListFilesRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
       void Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response, std::function<void(::grpc::Status)>) override;
       void Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq* request, ::rpc_server::DownloadRes* response, std::function<void(::grpc::Status)>) override;
+      void Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq* request, ::rpc_server::DownloadRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq* request, ::rpc_server::DeleteFileRes* response, std::function<void(::grpc::Status)>) override;
+      void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq* request, ::rpc_server::DeleteFileRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq* request, ::rpc_server::ListFilesRes* response, std::function<void(::grpc::Status)>) override;
+      void ListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq* request, ::rpc_server::ListFilesRes* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -85,7 +151,16 @@ class FileServer final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::rpc_server::UploadRes>* AsyncUploadRaw(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::UploadRes>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::DownloadRes>* AsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::DownloadRes>* PrepareAsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteFileRes>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteFileRes>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::ListFilesRes>* AsyncListFilesRaw(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::ListFilesRes>* PrepareAsyncListFilesRaw(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Upload_;
+    const ::grpc::internal::RpcMethod rpcmethod_Download_;
+    const ::grpc::internal::RpcMethod rpcmethod_Delete_;
+    const ::grpc::internal::RpcMethod rpcmethod_ListFiles_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -95,6 +170,12 @@ class FileServer final {
     virtual ~Service();
     virtual ::grpc::Status Upload(::grpc::ServerContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response);
     // 文件上传服务
+    virtual ::grpc::Status Download(::grpc::ServerContext* context, const ::rpc_server::DownloadReq* request, ::rpc_server::DownloadRes* response);
+    // 文件下载服务
+    virtual ::grpc::Status Delete(::grpc::ServerContext* context, const ::rpc_server::DeleteFileReq* request, ::rpc_server::DeleteFileRes* response);
+    // 文件删除服务
+    virtual ::grpc::Status ListFiles(::grpc::ServerContext* context, const ::rpc_server::ListFilesReq* request, ::rpc_server::ListFilesRes* response);
+    // 获取文件列表服务
   };
   template <class BaseClass>
   class WithAsyncMethod_Upload : public BaseClass {
@@ -116,7 +197,67 @@ class FileServer final {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Upload<Service > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Download : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Download() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Download() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Download(::grpc::ServerContext* /*context*/, const ::rpc_server::DownloadReq* /*request*/, ::rpc_server::DownloadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDownload(::grpc::ServerContext* context, ::rpc_server::DownloadReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::DownloadRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Delete : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Delete() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_Delete() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteFileReq* /*request*/, ::rpc_server::DeleteFileRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDelete(::grpc::ServerContext* context, ::rpc_server::DeleteFileReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::DeleteFileRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_ListFiles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_ListFiles() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_ListFiles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListFiles(::grpc::ServerContext* /*context*/, const ::rpc_server::ListFilesReq* /*request*/, ::rpc_server::ListFilesRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListFiles(::grpc::ServerContext* context, ::rpc_server::ListFilesReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::ListFilesRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Upload<WithAsyncMethod_Download<WithAsyncMethod_Delete<WithAsyncMethod_ListFiles<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Upload : public BaseClass {
    private:
@@ -144,7 +285,88 @@ class FileServer final {
     virtual ::grpc::ServerUnaryReactor* Upload(
       ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::UploadReq* /*request*/, ::rpc_server::UploadRes* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Upload<Service > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Download : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Download() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::DownloadReq, ::rpc_server::DownloadRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::DownloadReq* request, ::rpc_server::DownloadRes* response) { return this->Download(context, request, response); }));}
+    void SetMessageAllocatorFor_Download(
+        ::grpc::MessageAllocator< ::rpc_server::DownloadReq, ::rpc_server::DownloadRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::DownloadReq, ::rpc_server::DownloadRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Download() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Download(::grpc::ServerContext* /*context*/, const ::rpc_server::DownloadReq* /*request*/, ::rpc_server::DownloadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Download(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::DownloadReq* /*request*/, ::rpc_server::DownloadRes* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Delete : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Delete() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::DeleteFileReq, ::rpc_server::DeleteFileRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::DeleteFileReq* request, ::rpc_server::DeleteFileRes* response) { return this->Delete(context, request, response); }));}
+    void SetMessageAllocatorFor_Delete(
+        ::grpc::MessageAllocator< ::rpc_server::DeleteFileReq, ::rpc_server::DeleteFileRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::DeleteFileReq, ::rpc_server::DeleteFileRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Delete() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteFileReq* /*request*/, ::rpc_server::DeleteFileRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Delete(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::DeleteFileReq* /*request*/, ::rpc_server::DeleteFileRes* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_ListFiles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_ListFiles() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::ListFilesReq, ::rpc_server::ListFilesRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::ListFilesReq* request, ::rpc_server::ListFilesRes* response) { return this->ListFiles(context, request, response); }));}
+    void SetMessageAllocatorFor_ListFiles(
+        ::grpc::MessageAllocator< ::rpc_server::ListFilesReq, ::rpc_server::ListFilesRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::ListFilesReq, ::rpc_server::ListFilesRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_ListFiles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListFiles(::grpc::ServerContext* /*context*/, const ::rpc_server::ListFilesReq* /*request*/, ::rpc_server::ListFilesRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ListFiles(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::ListFilesReq* /*request*/, ::rpc_server::ListFilesRes* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Upload<WithCallbackMethod_Download<WithCallbackMethod_Delete<WithCallbackMethod_ListFiles<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Upload : public BaseClass {
@@ -159,6 +381,57 @@ class FileServer final {
     }
     // disable synchronous version of this method
     ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::rpc_server::UploadReq* /*request*/, ::rpc_server::UploadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Download : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Download() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Download() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Download(::grpc::ServerContext* /*context*/, const ::rpc_server::DownloadReq* /*request*/, ::rpc_server::DownloadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Delete : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Delete() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_Delete() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteFileReq* /*request*/, ::rpc_server::DeleteFileRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_ListFiles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_ListFiles() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_ListFiles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListFiles(::grpc::ServerContext* /*context*/, const ::rpc_server::ListFilesReq* /*request*/, ::rpc_server::ListFilesRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -184,6 +457,66 @@ class FileServer final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_Download : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Download() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Download() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Download(::grpc::ServerContext* /*context*/, const ::rpc_server::DownloadReq* /*request*/, ::rpc_server::DownloadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDownload(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Delete : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Delete() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_Delete() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteFileReq* /*request*/, ::rpc_server::DeleteFileRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDelete(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_ListFiles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_ListFiles() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_ListFiles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListFiles(::grpc::ServerContext* /*context*/, const ::rpc_server::ListFilesReq* /*request*/, ::rpc_server::ListFilesRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestListFiles(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_Upload : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -203,6 +536,72 @@ class FileServer final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Upload(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Download : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Download() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Download(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Download() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Download(::grpc::ServerContext* /*context*/, const ::rpc_server::DownloadReq* /*request*/, ::rpc_server::DownloadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Download(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Delete : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Delete() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Delete(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Delete() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteFileReq* /*request*/, ::rpc_server::DeleteFileRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Delete(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_ListFiles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_ListFiles() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->ListFiles(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_ListFiles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status ListFiles(::grpc::ServerContext* /*context*/, const ::rpc_server::ListFilesReq* /*request*/, ::rpc_server::ListFilesRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* ListFiles(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -232,9 +631,90 @@ class FileServer final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedUpload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::UploadReq,::rpc_server::UploadRes>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Upload<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Download : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Download() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::rpc_server::DownloadReq, ::rpc_server::DownloadRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::rpc_server::DownloadReq, ::rpc_server::DownloadRes>* streamer) {
+                       return this->StreamedDownload(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Download() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Download(::grpc::ServerContext* /*context*/, const ::rpc_server::DownloadReq* /*request*/, ::rpc_server::DownloadRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDownload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::DownloadReq,::rpc_server::DownloadRes>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Delete : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Delete() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::rpc_server::DeleteFileReq, ::rpc_server::DeleteFileRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::rpc_server::DeleteFileReq, ::rpc_server::DeleteFileRes>* streamer) {
+                       return this->StreamedDelete(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Delete() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteFileReq* /*request*/, ::rpc_server::DeleteFileRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDelete(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::DeleteFileReq,::rpc_server::DeleteFileRes>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_ListFiles : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_ListFiles() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::rpc_server::ListFilesReq, ::rpc_server::ListFilesRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::rpc_server::ListFilesReq, ::rpc_server::ListFilesRes>* streamer) {
+                       return this->StreamedListFiles(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_ListFiles() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status ListFiles(::grpc::ServerContext* /*context*/, const ::rpc_server::ListFilesReq* /*request*/, ::rpc_server::ListFilesRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedListFiles(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::ListFilesReq,::rpc_server::ListFilesRes>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Upload<WithStreamedUnaryMethod_Download<WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_ListFiles<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Upload<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_Upload<WithStreamedUnaryMethod_Download<WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_ListFiles<Service > > > > StreamedService;
 };
 
 }  // namespace rpc_server

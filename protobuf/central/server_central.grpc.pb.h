@@ -51,14 +51,14 @@ class CentralServer final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UnregisterServerRes>>(PrepareAsyncUnregister_serverRaw(context, request, cq));
     }
     // 服务器断开
-    virtual ::grpc::Status Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::rpc_server::ConnectPoorRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ConnectPoorRes>> AsyncGet_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ConnectPoorRes>>(AsyncGet_connec_poorRaw(context, request, cq));
+    virtual ::grpc::Status Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::rpc_server::MultipleConnectPoorRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MultipleConnectPoorRes>> AsyncGet_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MultipleConnectPoorRes>>(AsyncGet_connec_poorRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ConnectPoorRes>> PrepareAsyncGet_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ConnectPoorRes>>(PrepareAsyncGet_connec_poorRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MultipleConnectPoorRes>> PrepareAsyncGet_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MultipleConnectPoorRes>>(PrepareAsyncGet_connec_poorRaw(context, request, cq));
     }
-    // 获取连接池信息
+    // 获取多个连接池信息
     virtual ::grpc::Status Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq& request, ::rpc_server::HeartbeatRes* response) = 0;
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::HeartbeatRes>> AsyncHeartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::HeartbeatRes>>(AsyncHeartbeatRaw(context, request, cq));
@@ -76,9 +76,9 @@ class CentralServer final {
       virtual void Unregister_server(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq* request, ::rpc_server::UnregisterServerRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Unregister_server(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq* request, ::rpc_server::UnregisterServerRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 服务器断开
-      virtual void Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq* request, ::rpc_server::ConnectPoorRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq* request, ::rpc_server::ConnectPoorRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 获取连接池信息
+      virtual void Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq* request, ::rpc_server::MultipleConnectPoorRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq* request, ::rpc_server::MultipleConnectPoorRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 获取多个连接池信息
       virtual void Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq* request, ::rpc_server::HeartbeatRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq* request, ::rpc_server::HeartbeatRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 接收心跳包
@@ -91,8 +91,8 @@ class CentralServer final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::RegisterServerRes>* PrepareAsyncRegister_serverRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterServerReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UnregisterServerRes>* AsyncUnregister_serverRaw(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UnregisterServerRes>* PrepareAsyncUnregister_serverRaw(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ConnectPoorRes>* AsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ConnectPoorRes>* PrepareAsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MultipleConnectPoorRes>* AsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MultipleConnectPoorRes>* PrepareAsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::HeartbeatRes>* AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::HeartbeatRes>* PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
@@ -113,12 +113,12 @@ class CentralServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerRes>> PrepareAsyncUnregister_server(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerRes>>(PrepareAsyncUnregister_serverRaw(context, request, cq));
     }
-    ::grpc::Status Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::rpc_server::ConnectPoorRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorRes>> AsyncGet_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorRes>>(AsyncGet_connec_poorRaw(context, request, cq));
+    ::grpc::Status Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::rpc_server::MultipleConnectPoorRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::MultipleConnectPoorRes>> AsyncGet_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::MultipleConnectPoorRes>>(AsyncGet_connec_poorRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorRes>> PrepareAsyncGet_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorRes>>(PrepareAsyncGet_connec_poorRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::MultipleConnectPoorRes>> PrepareAsyncGet_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::MultipleConnectPoorRes>>(PrepareAsyncGet_connec_poorRaw(context, request, cq));
     }
     ::grpc::Status Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq& request, ::rpc_server::HeartbeatRes* response) override;
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatRes>> AsyncHeartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq& request, ::grpc::CompletionQueue* cq) {
@@ -134,8 +134,8 @@ class CentralServer final {
       void Register_server(::grpc::ClientContext* context, const ::rpc_server::RegisterServerReq* request, ::rpc_server::RegisterServerRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Unregister_server(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq* request, ::rpc_server::UnregisterServerRes* response, std::function<void(::grpc::Status)>) override;
       void Unregister_server(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq* request, ::rpc_server::UnregisterServerRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq* request, ::rpc_server::ConnectPoorRes* response, std::function<void(::grpc::Status)>) override;
-      void Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq* request, ::rpc_server::ConnectPoorRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq* request, ::rpc_server::MultipleConnectPoorRes* response, std::function<void(::grpc::Status)>) override;
+      void Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq* request, ::rpc_server::MultipleConnectPoorRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq* request, ::rpc_server::HeartbeatRes* response, std::function<void(::grpc::Status)>) override;
       void Heartbeat(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq* request, ::rpc_server::HeartbeatRes* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
@@ -153,8 +153,8 @@ class CentralServer final {
     ::grpc::ClientAsyncResponseReader< ::rpc_server::RegisterServerRes>* PrepareAsyncRegister_serverRaw(::grpc::ClientContext* context, const ::rpc_server::RegisterServerReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerRes>* AsyncUnregister_serverRaw(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::UnregisterServerRes>* PrepareAsyncUnregister_serverRaw(::grpc::ClientContext* context, const ::rpc_server::UnregisterServerReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorRes>* AsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorRes>* PrepareAsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::MultipleConnectPoorRes>* AsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::MultipleConnectPoorRes>* PrepareAsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatRes>* AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::HeartbeatRes>* PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::HeartbeatReq& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Register_server_;
@@ -172,8 +172,8 @@ class CentralServer final {
     // 服务器注册
     virtual ::grpc::Status Unregister_server(::grpc::ServerContext* context, const ::rpc_server::UnregisterServerReq* request, ::rpc_server::UnregisterServerRes* response);
     // 服务器断开
-    virtual ::grpc::Status Get_connec_poor(::grpc::ServerContext* context, const ::rpc_server::ConnectPoorReq* request, ::rpc_server::ConnectPoorRes* response);
-    // 获取连接池信息
+    virtual ::grpc::Status Get_connec_poor(::grpc::ServerContext* context, const ::rpc_server::MultipleConnectPoorReq* request, ::rpc_server::MultipleConnectPoorRes* response);
+    // 获取多个连接池信息
     virtual ::grpc::Status Heartbeat(::grpc::ServerContext* context, const ::rpc_server::HeartbeatReq* request, ::rpc_server::HeartbeatRes* response);
     // 接收心跳包
   };
@@ -229,11 +229,11 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_connec_poor(::grpc::ServerContext* /*context*/, const ::rpc_server::ConnectPoorReq* /*request*/, ::rpc_server::ConnectPoorRes* /*response*/) override {
+    ::grpc::Status Get_connec_poor(::grpc::ServerContext* /*context*/, const ::rpc_server::MultipleConnectPoorReq* /*request*/, ::rpc_server::MultipleConnectPoorRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGet_connec_poor(::grpc::ServerContext* context, ::rpc_server::ConnectPoorReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::ConnectPoorRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestGet_connec_poor(::grpc::ServerContext* context, ::rpc_server::MultipleConnectPoorReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::MultipleConnectPoorRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -319,25 +319,25 @@ class CentralServer final {
    public:
     WithCallbackMethod_Get_connec_poor() {
       ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::ConnectPoorReq, ::rpc_server::ConnectPoorRes>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::MultipleConnectPoorReq, ::rpc_server::MultipleConnectPoorRes>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::ConnectPoorReq* request, ::rpc_server::ConnectPoorRes* response) { return this->Get_connec_poor(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::MultipleConnectPoorReq* request, ::rpc_server::MultipleConnectPoorRes* response) { return this->Get_connec_poor(context, request, response); }));}
     void SetMessageAllocatorFor_Get_connec_poor(
-        ::grpc::MessageAllocator< ::rpc_server::ConnectPoorReq, ::rpc_server::ConnectPoorRes>* allocator) {
+        ::grpc::MessageAllocator< ::rpc_server::MultipleConnectPoorReq, ::rpc_server::MultipleConnectPoorRes>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::ConnectPoorReq, ::rpc_server::ConnectPoorRes>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::MultipleConnectPoorReq, ::rpc_server::MultipleConnectPoorRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Get_connec_poor() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_connec_poor(::grpc::ServerContext* /*context*/, const ::rpc_server::ConnectPoorReq* /*request*/, ::rpc_server::ConnectPoorRes* /*response*/) override {
+    ::grpc::Status Get_connec_poor(::grpc::ServerContext* /*context*/, const ::rpc_server::MultipleConnectPoorReq* /*request*/, ::rpc_server::MultipleConnectPoorRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Get_connec_poor(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::ConnectPoorReq* /*request*/, ::rpc_server::ConnectPoorRes* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::MultipleConnectPoorReq* /*request*/, ::rpc_server::MultipleConnectPoorRes* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Heartbeat : public BaseClass {
@@ -414,7 +414,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_connec_poor(::grpc::ServerContext* /*context*/, const ::rpc_server::ConnectPoorReq* /*request*/, ::rpc_server::ConnectPoorRes* /*response*/) override {
+    ::grpc::Status Get_connec_poor(::grpc::ServerContext* /*context*/, const ::rpc_server::MultipleConnectPoorReq* /*request*/, ::rpc_server::MultipleConnectPoorRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -488,7 +488,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_connec_poor(::grpc::ServerContext* /*context*/, const ::rpc_server::ConnectPoorReq* /*request*/, ::rpc_server::ConnectPoorRes* /*response*/) override {
+    ::grpc::Status Get_connec_poor(::grpc::ServerContext* /*context*/, const ::rpc_server::MultipleConnectPoorReq* /*request*/, ::rpc_server::MultipleConnectPoorRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -575,7 +575,7 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_connec_poor(::grpc::ServerContext* /*context*/, const ::rpc_server::ConnectPoorReq* /*request*/, ::rpc_server::ConnectPoorRes* /*response*/) override {
+    ::grpc::Status Get_connec_poor(::grpc::ServerContext* /*context*/, const ::rpc_server::MultipleConnectPoorReq* /*request*/, ::rpc_server::MultipleConnectPoorRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -666,10 +666,10 @@ class CentralServer final {
     WithStreamedUnaryMethod_Get_connec_poor() {
       ::grpc::Service::MarkMethodStreamed(2,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::ConnectPoorReq, ::rpc_server::ConnectPoorRes>(
+          ::rpc_server::MultipleConnectPoorReq, ::rpc_server::MultipleConnectPoorRes>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::ConnectPoorReq, ::rpc_server::ConnectPoorRes>* streamer) {
+                     ::rpc_server::MultipleConnectPoorReq, ::rpc_server::MultipleConnectPoorRes>* streamer) {
                        return this->StreamedGet_connec_poor(context,
                          streamer);
                   }));
@@ -678,12 +678,12 @@ class CentralServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Get_connec_poor(::grpc::ServerContext* /*context*/, const ::rpc_server::ConnectPoorReq* /*request*/, ::rpc_server::ConnectPoorRes* /*response*/) override {
+    ::grpc::Status Get_connec_poor(::grpc::ServerContext* /*context*/, const ::rpc_server::MultipleConnectPoorReq* /*request*/, ::rpc_server::MultipleConnectPoorRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGet_connec_poor(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::ConnectPoorReq,::rpc_server::ConnectPoorRes>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedGet_connec_poor(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::MultipleConnectPoorReq,::rpc_server::MultipleConnectPoorRes>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_Heartbeat : public BaseClass {

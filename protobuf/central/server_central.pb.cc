@@ -116,6 +116,26 @@ struct RegisterServerReqDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RegisterServerReqDefaultTypeInternal _RegisterServerReq_default_instance_;
 
+inline constexpr MultipleConnectPoorReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : server_types_{},
+        _server_types_cached_byte_size_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MultipleConnectPoorReq::MultipleConnectPoorReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MultipleConnectPoorReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MultipleConnectPoorReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MultipleConnectPoorReqDefaultTypeInternal() {}
+  union {
+    MultipleConnectPoorReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MultipleConnectPoorReqDefaultTypeInternal _MultipleConnectPoorReq_default_instance_;
+
 inline constexpr HeartbeatRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : message_(
@@ -163,25 +183,6 @@ struct HeartbeatReqDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HeartbeatReqDefaultTypeInternal _HeartbeatReq_default_instance_;
 
-inline constexpr ConnectPoorReq::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : server_type_{static_cast< ::rpc_server::ServerType >(0)},
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR ConnectPoorReq::ConnectPoorReq(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct ConnectPoorReqDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ConnectPoorReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ConnectPoorReqDefaultTypeInternal() {}
-  union {
-    ConnectPoorReq _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectPoorReqDefaultTypeInternal _ConnectPoorReq_default_instance_;
-
 inline constexpr ConnectInfo::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : address_(
@@ -204,9 +205,29 @@ struct ConnectInfoDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectInfoDefaultTypeInternal _ConnectInfo_default_instance_;
 
-inline constexpr ConnectPoorRes::Impl_::Impl_(
+inline constexpr ConnectPool::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : connect_info_{},
+        server_type_{static_cast< ::rpc_server::ServerType >(0)},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ConnectPool::ConnectPool(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ConnectPoolDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ConnectPoolDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ConnectPoolDefaultTypeInternal() {}
+  union {
+    ConnectPool _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectPoolDefaultTypeInternal _ConnectPool_default_instance_;
+
+inline constexpr MultipleConnectPoorRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : connect_pools_{},
         message_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
@@ -214,20 +235,20 @@ inline constexpr ConnectPoorRes::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR ConnectPoorRes::ConnectPoorRes(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR MultipleConnectPoorRes::MultipleConnectPoorRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct ConnectPoorResDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ConnectPoorResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ConnectPoorResDefaultTypeInternal() {}
+struct MultipleConnectPoorResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MultipleConnectPoorResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MultipleConnectPoorResDefaultTypeInternal() {}
   union {
-    ConnectPoorRes _instance;
+    MultipleConnectPoorRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ConnectPoorResDefaultTypeInternal _ConnectPoorRes_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MultipleConnectPoorResDefaultTypeInternal _MultipleConnectPoorRes_default_instance_;
 }  // namespace rpc_server
-static ::_pb::Metadata file_level_metadata_server_5fcentral_2eproto[9];
+static ::_pb::Metadata file_level_metadata_server_5fcentral_2eproto[10];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_server_5fcentral_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_server_5fcentral_2eproto = nullptr;
@@ -276,25 +297,25 @@ const ::uint32_t TableStruct_server_5fcentral_2eproto::offsets[] PROTOBUF_SECTIO
     PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerRes, _impl_.success_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::UnregisterServerRes, _impl_.message_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorReq, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MultipleConnectPoorReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorReq, _impl_.server_type_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MultipleConnectPoorReq, _impl_.server_types_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorRes, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MultipleConnectPoorRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorRes, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorRes, _impl_.connect_info_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPoorRes, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MultipleConnectPoorRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MultipleConnectPoorRes, _impl_.connect_pools_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MultipleConnectPoorRes, _impl_.message_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectInfo, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -305,6 +326,16 @@ const ::uint32_t TableStruct_server_5fcentral_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectInfo, _impl_.address_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectInfo, _impl_.port_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPool, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPool, _impl_.server_type_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ConnectPool, _impl_.connect_info_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::rpc_server::HeartbeatReq, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -334,11 +365,12 @@ static const ::_pbi::MigrationSchema
         {11, -1, -1, sizeof(::rpc_server::RegisterServerRes)},
         {21, -1, -1, sizeof(::rpc_server::UnregisterServerReq)},
         {32, -1, -1, sizeof(::rpc_server::UnregisterServerRes)},
-        {42, -1, -1, sizeof(::rpc_server::ConnectPoorReq)},
-        {51, -1, -1, sizeof(::rpc_server::ConnectPoorRes)},
+        {42, -1, -1, sizeof(::rpc_server::MultipleConnectPoorReq)},
+        {51, -1, -1, sizeof(::rpc_server::MultipleConnectPoorRes)},
         {62, -1, -1, sizeof(::rpc_server::ConnectInfo)},
-        {72, -1, -1, sizeof(::rpc_server::HeartbeatReq)},
-        {83, -1, -1, sizeof(::rpc_server::HeartbeatRes)},
+        {72, -1, -1, sizeof(::rpc_server::ConnectPool)},
+        {82, -1, -1, sizeof(::rpc_server::HeartbeatReq)},
+        {93, -1, -1, sizeof(::rpc_server::HeartbeatRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -346,54 +378,58 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::rpc_server::_RegisterServerRes_default_instance_._instance,
     &::rpc_server::_UnregisterServerReq_default_instance_._instance,
     &::rpc_server::_UnregisterServerRes_default_instance_._instance,
-    &::rpc_server::_ConnectPoorReq_default_instance_._instance,
-    &::rpc_server::_ConnectPoorRes_default_instance_._instance,
+    &::rpc_server::_MultipleConnectPoorReq_default_instance_._instance,
+    &::rpc_server::_MultipleConnectPoorRes_default_instance_._instance,
     &::rpc_server::_ConnectInfo_default_instance_._instance,
+    &::rpc_server::_ConnectPool_default_instance_._instance,
     &::rpc_server::_HeartbeatReq_default_instance_._instance,
     &::rpc_server::_HeartbeatRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fcentral_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\024server_central.proto\022\nrpc_server\"_\n\021Re"
     "gisterServerReq\022+\n\013server_type\030\001 \001(\0162\026.r"
-    "pc_server.ServerType\022\017\n\007address\030\002 \001(\t\022\014\n"
-    "\004port\030\003 \001(\t\"5\n\021RegisterServerRes\022\017\n\007succ"
-    "ess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"a\n\023Unregister"
+    "pc_server.ServerType\022\017\n\007address\030\002 \001(\014\022\014\n"
+    "\004port\030\003 \001(\014\"5\n\021RegisterServerRes\022\017\n\007succ"
+    "ess\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"a\n\023Unregister"
     "ServerReq\022+\n\013server_type\030\001 \001(\0162\026.rpc_ser"
-    "ver.ServerType\022\017\n\007address\030\002 \001(\t\022\014\n\004port\030"
-    "\003 \001(\t\"7\n\023UnregisterServerRes\022\017\n\007success\030"
-    "\001 \001(\010\022\017\n\007message\030\002 \001(\t\"=\n\016ConnectPoorReq"
-    "\022+\n\013server_type\030\001 \001(\0162\026.rpc_server.Serve"
-    "rType\"a\n\016ConnectPoorRes\022\017\n\007success\030\001 \001(\010"
-    "\022-\n\014connect_info\030\002 \003(\0132\027.rpc_server.Conn"
-    "ectInfo\022\017\n\007message\030\003 \001(\t\",\n\013ConnectInfo\022"
-    "\017\n\007address\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\"Z\n\014Heartb"
-    "eatReq\022+\n\013server_type\030\001 \001(\0162\026.rpc_server"
-    ".ServerType\022\017\n\007address\030\002 \001(\t\022\014\n\004port\030\003 \001"
-    "(\t\"0\n\014HeartbeatRes\022\017\n\007success\030\001 \001(\010\022\017\n\007m"
-    "essage\030\002 \001(\t*]\n\nServerType\022\013\n\007UNKNOWN\020\000\022"
-    "\013\n\007CENTRAL\020\001\022\010\n\004DATA\020\002\022\013\n\007GATEWAY\020\003\022\t\n\005L"
-    "OGIN\020\004\022\t\n\005LOGIC\020\005\022\010\n\004FILE\020\0062\303\002\n\rCentralS"
-    "erver\022O\n\017Register_server\022\035.rpc_server.Re"
-    "gisterServerReq\032\035.rpc_server.RegisterSer"
-    "verRes\022U\n\021Unregister_server\022\037.rpc_server"
-    ".UnregisterServerReq\032\037.rpc_server.Unregi"
-    "sterServerRes\022I\n\017Get_connec_poor\022\032.rpc_s"
-    "erver.ConnectPoorReq\032\032.rpc_server.Connec"
-    "tPoorRes\022\?\n\tHeartbeat\022\030.rpc_server.Heart"
-    "beatReq\032\030.rpc_server.HeartbeatResb\006proto"
-    "3"
+    "ver.ServerType\022\017\n\007address\030\002 \001(\014\022\014\n\004port\030"
+    "\003 \001(\014\"7\n\023UnregisterServerRes\022\017\n\007success\030"
+    "\001 \001(\010\022\017\n\007message\030\002 \001(\014\"F\n\026MultipleConnec"
+    "tPoorReq\022,\n\014server_types\030\001 \003(\0162\026.rpc_ser"
+    "ver.ServerType\"j\n\026MultipleConnectPoorRes"
+    "\022\017\n\007success\030\001 \001(\010\022.\n\rconnect_pools\030\002 \003(\013"
+    "2\027.rpc_server.ConnectPool\022\017\n\007message\030\003 \001"
+    "(\014\",\n\013ConnectInfo\022\017\n\007address\030\001 \001(\014\022\014\n\004po"
+    "rt\030\002 \001(\005\"i\n\013ConnectPool\022+\n\013server_type\030\001"
+    " \001(\0162\026.rpc_server.ServerType\022-\n\014connect_"
+    "info\030\002 \003(\0132\027.rpc_server.ConnectInfo\"Z\n\014H"
+    "eartbeatReq\022+\n\013server_type\030\001 \001(\0162\026.rpc_s"
+    "erver.ServerType\022\017\n\007address\030\002 \001(\014\022\014\n\004por"
+    "t\030\003 \001(\014\"0\n\014HeartbeatRes\022\017\n\007success\030\001 \001(\010"
+    "\022\017\n\007message\030\002 \001(\014*]\n\nServerType\022\013\n\007UNKNO"
+    "WN\020\000\022\013\n\007CENTRAL\020\001\022\010\n\004DATA\020\002\022\013\n\007GATEWAY\020\003"
+    "\022\t\n\005LOGIN\020\004\022\t\n\005LOGIC\020\005\022\010\n\004FILE\020\0062\323\002\n\rCen"
+    "tralServer\022O\n\017Register_server\022\035.rpc_serv"
+    "er.RegisterServerReq\032\035.rpc_server.Regist"
+    "erServerRes\022U\n\021Unregister_server\022\037.rpc_s"
+    "erver.UnregisterServerReq\032\037.rpc_server.U"
+    "nregisterServerRes\022Y\n\017Get_connec_poor\022\"."
+    "rpc_server.MultipleConnectPoorReq\032\".rpc_"
+    "server.MultipleConnectPoorRes\022\?\n\tHeartbe"
+    "at\022\030.rpc_server.HeartbeatReq\032\030.rpc_serve"
+    "r.HeartbeatResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fcentral_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fcentral_2eproto = {
     false,
     false,
-    1121,
+    1262,
     descriptor_table_protodef_server_5fcentral_2eproto,
     "server_central.proto",
     &descriptor_table_server_5fcentral_2eproto_once,
     nullptr,
     0,
-    9,
+    10,
     schemas,
     file_default_instances,
     TableStruct_server_5fcentral_2eproto::offsets,
@@ -504,7 +540,7 @@ const char* RegisterServerReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 48, 2> RegisterServerReq::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RegisterServerReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -522,11 +558,11 @@ const ::_pbi::TcParseTable<2, 3, 0, 48, 2> RegisterServerReq::_table_ = {
     // .rpc_server.ServerType server_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RegisterServerReq, _impl_.server_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.server_type_)}},
-    // string address = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes address = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.address_)}},
-    // string port = 3;
-    {::_pbi::TcParser::FastUS1,
+    // bytes port = 3;
+    {::_pbi::TcParser::FastBS1,
      {26, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.port_)}},
   }}, {{
     65535, 65535
@@ -534,19 +570,15 @@ const ::_pbi::TcParseTable<2, 3, 0, 48, 2> RegisterServerReq::_table_ = {
     // .rpc_server.ServerType server_type = 1;
     {PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.server_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // string address = 2;
+    // bytes address = 2;
     {PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.address_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string port = 3;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes port = 3;
     {PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.port_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\34\0\7\4\0\0\0\0"
-    "rpc_server.RegisterServerReq"
-    "address"
-    "port"
   }},
 };
 
@@ -564,20 +596,16 @@ const ::_pbi::TcParseTable<2, 3, 0, 48, 2> RegisterServerReq::_table_ = {
         1, this->_internal_server_type(), target);
   }
 
-  // string address = 2;
+  // bytes address = 2;
   if (!this->_internal_address().empty()) {
     const std::string& _s = this->_internal_address();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.RegisterServerReq.address");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // string port = 3;
+  // bytes port = 3;
   if (!this->_internal_port().empty()) {
     const std::string& _s = this->_internal_port();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.RegisterServerReq.port");
-    target = stream->WriteStringMaybeAliased(3, _s, target);
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -597,15 +625,15 @@ const ::_pbi::TcParseTable<2, 3, 0, 48, 2> RegisterServerReq::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string address = 2;
+  // bytes address = 2;
   if (!this->_internal_address().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_address());
   }
 
-  // string port = 3;
+  // bytes port = 3;
   if (!this->_internal_port().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_port());
   }
 
@@ -746,7 +774,7 @@ const char* RegisterServerRes::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 44, 2> RegisterServerRes::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> RegisterServerRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -760,8 +788,8 @@ const ::_pbi::TcParseTable<1, 2, 0, 44, 2> RegisterServerRes::_table_ = {
     &_RegisterServerRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string message = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerRes, _impl_.message_)}},
     // bool success = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(RegisterServerRes, _impl_.success_), 63>(),
@@ -772,15 +800,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 44, 2> RegisterServerRes::_table_ = {
     // bool success = 1;
     {PROTOBUF_FIELD_OFFSET(RegisterServerRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // string message = 2;
+    // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(RegisterServerRes, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\34\0\7\0\0\0\0\0"
-    "rpc_server.RegisterServerRes"
-    "message"
   }},
 };
 
@@ -798,12 +823,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 44, 2> RegisterServerRes::_table_ = {
         1, this->_internal_success(), target);
   }
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.RegisterServerRes.message");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -823,9 +846,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 44, 2> RegisterServerRes::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_message());
   }
 
@@ -965,7 +988,7 @@ const char* UnregisterServerReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 50, 2> UnregisterServerReq::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> UnregisterServerReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -983,11 +1006,11 @@ const ::_pbi::TcParseTable<2, 3, 0, 50, 2> UnregisterServerReq::_table_ = {
     // .rpc_server.ServerType server_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UnregisterServerReq, _impl_.server_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.server_type_)}},
-    // string address = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes address = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.address_)}},
-    // string port = 3;
-    {::_pbi::TcParser::FastUS1,
+    // bytes port = 3;
+    {::_pbi::TcParser::FastBS1,
      {26, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.port_)}},
   }}, {{
     65535, 65535
@@ -995,19 +1018,15 @@ const ::_pbi::TcParseTable<2, 3, 0, 50, 2> UnregisterServerReq::_table_ = {
     // .rpc_server.ServerType server_type = 1;
     {PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.server_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // string address = 2;
+    // bytes address = 2;
     {PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.address_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string port = 3;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes port = 3;
     {PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.port_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\36\0\7\4\0\0\0\0"
-    "rpc_server.UnregisterServerReq"
-    "address"
-    "port"
   }},
 };
 
@@ -1025,20 +1044,16 @@ const ::_pbi::TcParseTable<2, 3, 0, 50, 2> UnregisterServerReq::_table_ = {
         1, this->_internal_server_type(), target);
   }
 
-  // string address = 2;
+  // bytes address = 2;
   if (!this->_internal_address().empty()) {
     const std::string& _s = this->_internal_address();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UnregisterServerReq.address");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // string port = 3;
+  // bytes port = 3;
   if (!this->_internal_port().empty()) {
     const std::string& _s = this->_internal_port();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UnregisterServerReq.port");
-    target = stream->WriteStringMaybeAliased(3, _s, target);
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1058,15 +1073,15 @@ const ::_pbi::TcParseTable<2, 3, 0, 50, 2> UnregisterServerReq::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string address = 2;
+  // bytes address = 2;
   if (!this->_internal_address().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_address());
   }
 
-  // string port = 3;
+  // bytes port = 3;
   if (!this->_internal_port().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_port());
   }
 
@@ -1207,7 +1222,7 @@ const char* UnregisterServerRes::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 46, 2> UnregisterServerRes::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UnregisterServerRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1221,8 +1236,8 @@ const ::_pbi::TcParseTable<1, 2, 0, 46, 2> UnregisterServerRes::_table_ = {
     &_UnregisterServerRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string message = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerRes, _impl_.message_)}},
     // bool success = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UnregisterServerRes, _impl_.success_), 63>(),
@@ -1233,15 +1248,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 46, 2> UnregisterServerRes::_table_ = {
     // bool success = 1;
     {PROTOBUF_FIELD_OFFSET(UnregisterServerRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // string message = 2;
+    // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(UnregisterServerRes, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\36\0\7\0\0\0\0\0"
-    "rpc_server.UnregisterServerRes"
-    "message"
   }},
 };
 
@@ -1259,12 +1271,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 46, 2> UnregisterServerRes::_table_ = {
         1, this->_internal_success(), target);
   }
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UnregisterServerRes.message");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1284,9 +1294,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 46, 2> UnregisterServerRes::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_message());
   }
 
@@ -1353,51 +1363,66 @@ void UnregisterServerRes::InternalSwap(UnregisterServerRes* PROTOBUF_RESTRICT ot
 }
 // ===================================================================
 
-class ConnectPoorReq::_Internal {
+class MultipleConnectPoorReq::_Internal {
  public:
 };
 
-ConnectPoorReq::ConnectPoorReq(::google::protobuf::Arena* arena)
+MultipleConnectPoorReq::MultipleConnectPoorReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.ConnectPoorReq)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.MultipleConnectPoorReq)
 }
-ConnectPoorReq::ConnectPoorReq(
-    ::google::protobuf::Arena* arena, const ConnectPoorReq& from)
-    : ConnectPoorReq(arena) {
-  MergeFrom(from);
+inline PROTOBUF_NDEBUG_INLINE MultipleConnectPoorReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : server_types_{visibility, arena, from.server_types_},
+        _server_types_cached_byte_size_{0},
+        _cached_size_{0} {}
+
+MultipleConnectPoorReq::MultipleConnectPoorReq(
+    ::google::protobuf::Arena* arena,
+    const MultipleConnectPoorReq& from)
+    : ::google::protobuf::Message(arena) {
+  MultipleConnectPoorReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.MultipleConnectPoorReq)
 }
-inline PROTOBUF_NDEBUG_INLINE ConnectPoorReq::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE MultipleConnectPoorReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0} {}
+      : server_types_{visibility, arena},
+        _server_types_cached_byte_size_{0},
+        _cached_size_{0} {}
 
-inline void ConnectPoorReq::SharedCtor(::_pb::Arena* arena) {
+inline void MultipleConnectPoorReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.server_type_ = {};
 }
-ConnectPoorReq::~ConnectPoorReq() {
-  // @@protoc_insertion_point(destructor:rpc_server.ConnectPoorReq)
+MultipleConnectPoorReq::~MultipleConnectPoorReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.MultipleConnectPoorReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ConnectPoorReq::SharedDtor() {
+inline void MultipleConnectPoorReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void ConnectPoorReq::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.ConnectPoorReq)
+PROTOBUF_NOINLINE void MultipleConnectPoorReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.MultipleConnectPoorReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.server_type_ = 0;
+  _impl_.server_types_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ConnectPoorReq::_InternalParse(
+const char* MultipleConnectPoorReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -1405,7 +1430,7 @@ const char* ConnectPoorReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ConnectPoorReq::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> MultipleConnectPoorReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1416,36 +1441,38 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ConnectPoorReq::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_ConnectPoorReq_default_instance_._instance,
+    &_MultipleConnectPoorReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // .rpc_server.ServerType server_type = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ConnectPoorReq, _impl_.server_type_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorReq, _impl_.server_type_)}},
+    // repeated .rpc_server.ServerType server_types = 1;
+    {::_pbi::TcParser::FastV32P1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(MultipleConnectPoorReq, _impl_.server_types_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .rpc_server.ServerType server_type = 1;
-    {PROTOBUF_FIELD_OFFSET(ConnectPoorReq, _impl_.server_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // repeated .rpc_server.ServerType server_types = 1;
+    {PROTOBUF_FIELD_OFFSET(MultipleConnectPoorReq, _impl_.server_types_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedOpenEnum)},
   }},
   // no aux_entries
   {{
   }},
 };
 
-::uint8_t* ConnectPoorReq::_InternalSerialize(
+::uint8_t* MultipleConnectPoorReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ConnectPoorReq)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.MultipleConnectPoorReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // .rpc_server.ServerType server_type = 1;
-  if (this->_internal_server_type() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-        1, this->_internal_server_type(), target);
+  // repeated .rpc_server.ServerType server_types = 1;
+  {
+    std::size_t byte_size = _impl_._server_types_cached_byte_size_.Get();
+    if (byte_size > 0) {
+      target = stream->WriteEnumPacked(1, _internal_server_types(),
+                                       byte_size, target);
+    }
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1453,141 +1480,150 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ConnectPoorReq::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ConnectPoorReq)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.MultipleConnectPoorReq)
   return target;
 }
 
-::size_t ConnectPoorReq::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.ConnectPoorReq)
+::size_t MultipleConnectPoorReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.MultipleConnectPoorReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .rpc_server.ServerType server_type = 1;
-  if (this->_internal_server_type() != 0) {
-    total_size += 1 +
-                  ::_pbi::WireFormatLite::EnumSize(this->_internal_server_type());
-  }
+  // repeated .rpc_server.ServerType server_types = 1;
+  {
+    std::size_t data_size = 0;
+    auto count = static_cast<std::size_t>(this->_internal_server_types_size());
 
+    for (std::size_t i = 0; i < count; ++i) {
+      data_size += ::_pbi::WireFormatLite::EnumSize(
+          this->_internal_server_types().Get(static_cast<int>(i)));
+    }
+    total_size += data_size;
+    if (data_size > 0) {
+      total_size += 1;
+      total_size += ::_pbi::WireFormatLite::Int32Size(
+          static_cast<int32_t>(data_size));
+    }
+    _impl_._server_types_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData ConnectPoorReq::_class_data_ = {
-    ConnectPoorReq::MergeImpl,
+const ::google::protobuf::Message::ClassData MultipleConnectPoorReq::_class_data_ = {
+    MultipleConnectPoorReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* ConnectPoorReq::GetClassData() const {
+const ::google::protobuf::Message::ClassData* MultipleConnectPoorReq::GetClassData() const {
   return &_class_data_;
 }
 
-void ConnectPoorReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ConnectPoorReq*>(&to_msg);
-  auto& from = static_cast<const ConnectPoorReq&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ConnectPoorReq)
+void MultipleConnectPoorReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<MultipleConnectPoorReq*>(&to_msg);
+  auto& from = static_cast<const MultipleConnectPoorReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.MultipleConnectPoorReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_server_type() != 0) {
-    _this->_internal_set_server_type(from._internal_server_type());
-  }
+  _this->_internal_mutable_server_types()->MergeFrom(from._internal_server_types());
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ConnectPoorReq::CopyFrom(const ConnectPoorReq& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ConnectPoorReq)
+void MultipleConnectPoorReq::CopyFrom(const MultipleConnectPoorReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.MultipleConnectPoorReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ConnectPoorReq::IsInitialized() const {
+PROTOBUF_NOINLINE bool MultipleConnectPoorReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* ConnectPoorReq::AccessCachedSize() const {
+::_pbi::CachedSize* MultipleConnectPoorReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void ConnectPoorReq::InternalSwap(ConnectPoorReq* PROTOBUF_RESTRICT other) {
+void MultipleConnectPoorReq::InternalSwap(MultipleConnectPoorReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.server_type_, other->_impl_.server_type_);
+  _impl_.server_types_.InternalSwap(&other->_impl_.server_types_);
 }
 
-::google::protobuf::Metadata ConnectPoorReq::GetMetadata() const {
+::google::protobuf::Metadata MultipleConnectPoorReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
       file_level_metadata_server_5fcentral_2eproto[4]);
 }
 // ===================================================================
 
-class ConnectPoorRes::_Internal {
+class MultipleConnectPoorRes::_Internal {
  public:
 };
 
-ConnectPoorRes::ConnectPoorRes(::google::protobuf::Arena* arena)
+MultipleConnectPoorRes::MultipleConnectPoorRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.ConnectPoorRes)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.MultipleConnectPoorRes)
 }
-inline PROTOBUF_NDEBUG_INLINE ConnectPoorRes::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE MultipleConnectPoorRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : connect_info_{visibility, arena, from.connect_info_},
+      : connect_pools_{visibility, arena, from.connect_pools_},
         message_(arena, from.message_),
         _cached_size_{0} {}
 
-ConnectPoorRes::ConnectPoorRes(
+MultipleConnectPoorRes::MultipleConnectPoorRes(
     ::google::protobuf::Arena* arena,
-    const ConnectPoorRes& from)
+    const MultipleConnectPoorRes& from)
     : ::google::protobuf::Message(arena) {
-  ConnectPoorRes* const _this = this;
+  MultipleConnectPoorRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.ConnectPoorRes)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.MultipleConnectPoorRes)
 }
-inline PROTOBUF_NDEBUG_INLINE ConnectPoorRes::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE MultipleConnectPoorRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : connect_info_{visibility, arena},
+      : connect_pools_{visibility, arena},
         message_(arena),
         _cached_size_{0} {}
 
-inline void ConnectPoorRes::SharedCtor(::_pb::Arena* arena) {
+inline void MultipleConnectPoorRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.success_ = {};
 }
-ConnectPoorRes::~ConnectPoorRes() {
-  // @@protoc_insertion_point(destructor:rpc_server.ConnectPoorRes)
+MultipleConnectPoorRes::~MultipleConnectPoorRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.MultipleConnectPoorRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void ConnectPoorRes::SharedDtor() {
+inline void MultipleConnectPoorRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void ConnectPoorRes::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.ConnectPoorRes)
+PROTOBUF_NOINLINE void MultipleConnectPoorRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.MultipleConnectPoorRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.connect_info_.Clear();
+  _impl_.connect_pools_.Clear();
   _impl_.message_.ClearToEmpty();
   _impl_.success_ = false;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* ConnectPoorRes::_InternalParse(
+const char* MultipleConnectPoorRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -1595,7 +1631,7 @@ const char* ConnectPoorRes::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 1, 41, 2> ConnectPoorRes::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 1, 0, 2> MultipleConnectPoorRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1606,44 +1642,41 @@ const ::_pbi::TcParseTable<2, 3, 1, 41, 2> ConnectPoorRes::_table_ = {
     3,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
-    &_ConnectPoorRes_default_instance_._instance,
+    &_MultipleConnectPoorRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ConnectPoorRes, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorRes, _impl_.success_)}},
-    // repeated .rpc_server.ConnectInfo connect_info = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(MultipleConnectPoorRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MultipleConnectPoorRes, _impl_.success_)}},
+    // repeated .rpc_server.ConnectPool connect_pools = 2;
     {::_pbi::TcParser::FastMtR1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorRes, _impl_.connect_info_)}},
-    // string message = 3;
-    {::_pbi::TcParser::FastUS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPoorRes, _impl_.message_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MultipleConnectPoorRes, _impl_.connect_pools_)}},
+    // bytes message = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(MultipleConnectPoorRes, _impl_.message_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(ConnectPoorRes, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(MultipleConnectPoorRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // repeated .rpc_server.ConnectInfo connect_info = 2;
-    {PROTOBUF_FIELD_OFFSET(ConnectPoorRes, _impl_.connect_info_), 0, 0,
+    // repeated .rpc_server.ConnectPool connect_pools = 2;
+    {PROTOBUF_FIELD_OFFSET(MultipleConnectPoorRes, _impl_.connect_pools_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // string message = 3;
-    {PROTOBUF_FIELD_OFFSET(ConnectPoorRes, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // bytes message = 3;
+    {PROTOBUF_FIELD_OFFSET(MultipleConnectPoorRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::rpc_server::ConnectInfo>()},
+    {::_pbi::TcParser::GetTable<::rpc_server::ConnectPool>()},
   }}, {{
-    "\31\0\0\7\0\0\0\0"
-    "rpc_server.ConnectPoorRes"
-    "message"
   }},
 };
 
-::uint8_t* ConnectPoorRes::_InternalSerialize(
+::uint8_t* MultipleConnectPoorRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ConnectPoorRes)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.MultipleConnectPoorRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1654,20 +1687,18 @@ const ::_pbi::TcParseTable<2, 3, 1, 41, 2> ConnectPoorRes::_table_ = {
         1, this->_internal_success(), target);
   }
 
-  // repeated .rpc_server.ConnectInfo connect_info = 2;
+  // repeated .rpc_server.ConnectPool connect_pools = 2;
   for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_connect_info_size()); i < n; i++) {
-    const auto& repfield = this->_internal_connect_info().Get(i);
+      n = static_cast<unsigned>(this->_internal_connect_pools_size()); i < n; i++) {
+    const auto& repfield = this->_internal_connect_pools().Get(i);
     target = ::google::protobuf::internal::WireFormatLite::
         InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  // string message = 3;
+  // bytes message = 3;
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.ConnectPoorRes.message");
-    target = stream->WriteStringMaybeAliased(3, _s, target);
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1675,27 +1706,27 @@ const ::_pbi::TcParseTable<2, 3, 1, 41, 2> ConnectPoorRes::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ConnectPoorRes)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.MultipleConnectPoorRes)
   return target;
 }
 
-::size_t ConnectPoorRes::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.ConnectPoorRes)
+::size_t MultipleConnectPoorRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.MultipleConnectPoorRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .rpc_server.ConnectInfo connect_info = 2;
-  total_size += 1UL * this->_internal_connect_info_size();
-  for (const auto& msg : this->_internal_connect_info()) {
+  // repeated .rpc_server.ConnectPool connect_pools = 2;
+  total_size += 1UL * this->_internal_connect_pools_size();
+  for (const auto& msg : this->_internal_connect_pools()) {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-  // string message = 3;
+  // bytes message = 3;
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_message());
   }
 
@@ -1707,24 +1738,24 @@ const ::_pbi::TcParseTable<2, 3, 1, 41, 2> ConnectPoorRes::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData ConnectPoorRes::_class_data_ = {
-    ConnectPoorRes::MergeImpl,
+const ::google::protobuf::Message::ClassData MultipleConnectPoorRes::_class_data_ = {
+    MultipleConnectPoorRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* ConnectPoorRes::GetClassData() const {
+const ::google::protobuf::Message::ClassData* MultipleConnectPoorRes::GetClassData() const {
   return &_class_data_;
 }
 
-void ConnectPoorRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<ConnectPoorRes*>(&to_msg);
-  auto& from = static_cast<const ConnectPoorRes&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ConnectPoorRes)
+void MultipleConnectPoorRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<MultipleConnectPoorRes*>(&to_msg);
+  auto& from = static_cast<const MultipleConnectPoorRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.MultipleConnectPoorRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_connect_info()->MergeFrom(
-      from._internal_connect_info());
+  _this->_internal_mutable_connect_pools()->MergeFrom(
+      from._internal_connect_pools());
   if (!from._internal_message().empty()) {
     _this->_internal_set_message(from._internal_message());
   }
@@ -1734,31 +1765,31 @@ void ConnectPoorRes::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ConnectPoorRes::CopyFrom(const ConnectPoorRes& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ConnectPoorRes)
+void MultipleConnectPoorRes::CopyFrom(const MultipleConnectPoorRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.MultipleConnectPoorRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool ConnectPoorRes::IsInitialized() const {
+PROTOBUF_NOINLINE bool MultipleConnectPoorRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* ConnectPoorRes::AccessCachedSize() const {
+::_pbi::CachedSize* MultipleConnectPoorRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void ConnectPoorRes::InternalSwap(ConnectPoorRes* PROTOBUF_RESTRICT other) {
+void MultipleConnectPoorRes::InternalSwap(MultipleConnectPoorRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.connect_info_.InternalSwap(&other->_impl_.connect_info_);
+  _impl_.connect_pools_.InternalSwap(&other->_impl_.connect_pools_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
         swap(_impl_.success_, other->_impl_.success_);
 }
 
-::google::protobuf::Metadata ConnectPoorRes::GetMetadata() const {
+::google::protobuf::Metadata MultipleConnectPoorRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
       file_level_metadata_server_5fcentral_2eproto[5]);
@@ -1834,7 +1865,7 @@ const char* ConnectInfo::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 38, 2> ConnectInfo::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ConnectInfo::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1851,24 +1882,21 @@ const ::_pbi::TcParseTable<1, 2, 0, 38, 2> ConnectInfo::_table_ = {
     // int32 port = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ConnectInfo, _impl_.port_), 63>(),
      {16, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectInfo, _impl_.port_)}},
-    // string address = 1;
-    {::_pbi::TcParser::FastUS1,
+    // bytes address = 1;
+    {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectInfo, _impl_.address_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string address = 1;
+    // bytes address = 1;
     {PROTOBUF_FIELD_OFFSET(ConnectInfo, _impl_.address_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // int32 port = 2;
     {PROTOBUF_FIELD_OFFSET(ConnectInfo, _impl_.port_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
   }},
   // no aux_entries
   {{
-    "\26\7\0\0\0\0\0\0"
-    "rpc_server.ConnectInfo"
-    "address"
   }},
 };
 
@@ -1879,12 +1907,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 38, 2> ConnectInfo::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // string address = 1;
+  // bytes address = 1;
   if (!this->_internal_address().empty()) {
     const std::string& _s = this->_internal_address();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.ConnectInfo.address");
-    target = stream->WriteStringMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
   // int32 port = 2;
@@ -1911,9 +1937,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 38, 2> ConnectInfo::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string address = 1;
+  // bytes address = 1;
   if (!this->_internal_address().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_address());
   }
 
@@ -1978,6 +2004,215 @@ void ConnectInfo::InternalSwap(ConnectInfo* PROTOBUF_RESTRICT other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
       file_level_metadata_server_5fcentral_2eproto[6]);
+}
+// ===================================================================
+
+class ConnectPool::_Internal {
+ public:
+};
+
+ConnectPool::ConnectPool(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ConnectPool)
+}
+inline PROTOBUF_NDEBUG_INLINE ConnectPool::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : connect_info_{visibility, arena, from.connect_info_},
+        _cached_size_{0} {}
+
+ConnectPool::ConnectPool(
+    ::google::protobuf::Arena* arena,
+    const ConnectPool& from)
+    : ::google::protobuf::Message(arena) {
+  ConnectPool* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.server_type_ = from._impl_.server_type_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.ConnectPool)
+}
+inline PROTOBUF_NDEBUG_INLINE ConnectPool::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : connect_info_{visibility, arena},
+        _cached_size_{0} {}
+
+inline void ConnectPool::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.server_type_ = {};
+}
+ConnectPool::~ConnectPool() {
+  // @@protoc_insertion_point(destructor:rpc_server.ConnectPool)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ConnectPool::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ConnectPool::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.ConnectPool)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.connect_info_.Clear();
+  _impl_.server_type_ = 0;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ConnectPool::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 1, 0, 2> ConnectPool::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_ConnectPool_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated .rpc_server.ConnectInfo connect_info = 2;
+    {::_pbi::TcParser::FastMtR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPool, _impl_.connect_info_)}},
+    // .rpc_server.ServerType server_type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ConnectPool, _impl_.server_type_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPool, _impl_.server_type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .rpc_server.ServerType server_type = 1;
+    {PROTOBUF_FIELD_OFFSET(ConnectPool, _impl_.server_type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // repeated .rpc_server.ConnectInfo connect_info = 2;
+    {PROTOBUF_FIELD_OFFSET(ConnectPool, _impl_.connect_info_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::rpc_server::ConnectInfo>()},
+  }}, {{
+  }},
+};
+
+::uint8_t* ConnectPool::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ConnectPool)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .rpc_server.ServerType server_type = 1;
+  if (this->_internal_server_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_server_type(), target);
+  }
+
+  // repeated .rpc_server.ConnectInfo connect_info = 2;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_connect_info_size()); i < n; i++) {
+    const auto& repfield = this->_internal_connect_info().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ConnectPool)
+  return target;
+}
+
+::size_t ConnectPool::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ConnectPool)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .rpc_server.ConnectInfo connect_info = 2;
+  total_size += 1UL * this->_internal_connect_info_size();
+  for (const auto& msg : this->_internal_connect_info()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  // .rpc_server.ServerType server_type = 1;
+  if (this->_internal_server_type() != 0) {
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_server_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ConnectPool::_class_data_ = {
+    ConnectPool::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ConnectPool::GetClassData() const {
+  return &_class_data_;
+}
+
+void ConnectPool::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ConnectPool*>(&to_msg);
+  auto& from = static_cast<const ConnectPool&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ConnectPool)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_connect_info()->MergeFrom(
+      from._internal_connect_info());
+  if (from._internal_server_type() != 0) {
+    _this->_internal_set_server_type(from._internal_server_type());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ConnectPool::CopyFrom(const ConnectPool& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ConnectPool)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ConnectPool::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ConnectPool::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ConnectPool::InternalSwap(ConnectPool* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.connect_info_.InternalSwap(&other->_impl_.connect_info_);
+  swap(_impl_.server_type_, other->_impl_.server_type_);
+}
+
+::google::protobuf::Metadata ConnectPool::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
+      file_level_metadata_server_5fcentral_2eproto[7]);
 }
 // ===================================================================
 
@@ -2054,7 +2289,7 @@ const char* HeartbeatReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 43, 2> HeartbeatReq::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> HeartbeatReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2072,11 +2307,11 @@ const ::_pbi::TcParseTable<2, 3, 0, 43, 2> HeartbeatReq::_table_ = {
     // .rpc_server.ServerType server_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(HeartbeatReq, _impl_.server_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.server_type_)}},
-    // string address = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes address = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.address_)}},
-    // string port = 3;
-    {::_pbi::TcParser::FastUS1,
+    // bytes port = 3;
+    {::_pbi::TcParser::FastBS1,
      {26, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.port_)}},
   }}, {{
     65535, 65535
@@ -2084,19 +2319,15 @@ const ::_pbi::TcParseTable<2, 3, 0, 43, 2> HeartbeatReq::_table_ = {
     // .rpc_server.ServerType server_type = 1;
     {PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.server_type_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
-    // string address = 2;
+    // bytes address = 2;
     {PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.address_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string port = 3;
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes port = 3;
     {PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.port_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\27\0\7\4\0\0\0\0"
-    "rpc_server.HeartbeatReq"
-    "address"
-    "port"
   }},
 };
 
@@ -2114,20 +2345,16 @@ const ::_pbi::TcParseTable<2, 3, 0, 43, 2> HeartbeatReq::_table_ = {
         1, this->_internal_server_type(), target);
   }
 
-  // string address = 2;
+  // bytes address = 2;
   if (!this->_internal_address().empty()) {
     const std::string& _s = this->_internal_address();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.HeartbeatReq.address");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // string port = 3;
+  // bytes port = 3;
   if (!this->_internal_port().empty()) {
     const std::string& _s = this->_internal_port();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.HeartbeatReq.port");
-    target = stream->WriteStringMaybeAliased(3, _s, target);
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2147,15 +2374,15 @@ const ::_pbi::TcParseTable<2, 3, 0, 43, 2> HeartbeatReq::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string address = 2;
+  // bytes address = 2;
   if (!this->_internal_address().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_address());
   }
 
-  // string port = 3;
+  // bytes port = 3;
   if (!this->_internal_port().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_port());
   }
 
@@ -2223,7 +2450,7 @@ void HeartbeatReq::InternalSwap(HeartbeatReq* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata HeartbeatReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
-      file_level_metadata_server_5fcentral_2eproto[7]);
+      file_level_metadata_server_5fcentral_2eproto[8]);
 }
 // ===================================================================
 
@@ -2296,7 +2523,7 @@ const char* HeartbeatRes::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 39, 2> HeartbeatRes::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> HeartbeatRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2310,8 +2537,8 @@ const ::_pbi::TcParseTable<1, 2, 0, 39, 2> HeartbeatRes::_table_ = {
     &_HeartbeatRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // string message = 2;
-    {::_pbi::TcParser::FastUS1,
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatRes, _impl_.message_)}},
     // bool success = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(HeartbeatRes, _impl_.success_), 63>(),
@@ -2322,15 +2549,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 39, 2> HeartbeatRes::_table_ = {
     // bool success = 1;
     {PROTOBUF_FIELD_OFFSET(HeartbeatRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // string message = 2;
+    // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(HeartbeatRes, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\27\0\7\0\0\0\0\0"
-    "rpc_server.HeartbeatRes"
-    "message"
   }},
 };
 
@@ -2348,12 +2572,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 39, 2> HeartbeatRes::_table_ = {
         1, this->_internal_success(), target);
   }
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.HeartbeatRes.message");
-    target = stream->WriteStringMaybeAliased(2, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2373,9 +2595,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 39, 2> HeartbeatRes::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string message = 2;
+  // bytes message = 2;
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_message());
   }
 
@@ -2438,7 +2660,7 @@ void HeartbeatRes::InternalSwap(HeartbeatRes* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata HeartbeatRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fcentral_2eproto_getter, &descriptor_table_server_5fcentral_2eproto_once,
-      file_level_metadata_server_5fcentral_2eproto[8]);
+      file_level_metadata_server_5fcentral_2eproto[9]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace rpc_server

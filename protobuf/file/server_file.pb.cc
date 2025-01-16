@@ -52,6 +52,9 @@ inline constexpr UploadReq::Impl_::Impl_(
         file_name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        file_data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
 
 template <typename>
@@ -67,8 +70,147 @@ struct UploadReqDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadReqDefaultTypeInternal _UploadReq_default_instance_;
+
+inline constexpr ListFilesRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : file_names_{},
+        message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ListFilesRes::ListFilesRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ListFilesResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ListFilesResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ListFilesResDefaultTypeInternal() {}
+  union {
+    ListFilesRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListFilesResDefaultTypeInternal _ListFilesRes_default_instance_;
+
+inline constexpr ListFilesReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : account_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ListFilesReq::ListFilesReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ListFilesReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ListFilesReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ListFilesReqDefaultTypeInternal() {}
+  union {
+    ListFilesReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ListFilesReqDefaultTypeInternal _ListFilesReq_default_instance_;
+
+inline constexpr DownloadRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : file_data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR DownloadRes::DownloadRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct DownloadResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DownloadResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DownloadResDefaultTypeInternal() {}
+  union {
+    DownloadRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DownloadResDefaultTypeInternal _DownloadRes_default_instance_;
+
+inline constexpr DownloadReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : account_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        file_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR DownloadReq::DownloadReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct DownloadReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DownloadReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DownloadReqDefaultTypeInternal() {}
+  union {
+    DownloadReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DownloadReqDefaultTypeInternal _DownloadReq_default_instance_;
+
+inline constexpr DeleteFileRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR DeleteFileRes::DeleteFileRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct DeleteFileResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DeleteFileResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DeleteFileResDefaultTypeInternal() {}
+  union {
+    DeleteFileRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteFileResDefaultTypeInternal _DeleteFileRes_default_instance_;
+
+inline constexpr DeleteFileReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : account_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        file_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR DeleteFileReq::DeleteFileReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct DeleteFileReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DeleteFileReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DeleteFileReqDefaultTypeInternal() {}
+  union {
+    DeleteFileReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteFileReqDefaultTypeInternal _DeleteFileReq_default_instance_;
 }  // namespace rpc_server
-static ::_pb::Metadata file_level_metadata_server_5ffile_2eproto[2];
+static ::_pb::Metadata file_level_metadata_server_5ffile_2eproto[8];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_server_5ffile_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
@@ -85,6 +227,7 @@ const ::uint32_t TableStruct_server_5ffile_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReq, _impl_.account_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReq, _impl_.file_name_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReq, _impl_.file_data_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::rpc_server::UploadRes, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -95,37 +238,123 @@ const ::uint32_t TableStruct_server_5ffile_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::rpc_server::UploadRes, _impl_.success_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::UploadRes, _impl_.message_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DownloadReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DownloadReq, _impl_.account_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DownloadReq, _impl_.file_name_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DownloadRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DownloadRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DownloadRes, _impl_.file_data_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DownloadRes, _impl_.message_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteFileReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteFileReq, _impl_.account_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteFileReq, _impl_.file_name_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteFileRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteFileRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteFileRes, _impl_.message_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ListFilesReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ListFilesReq, _impl_.account_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ListFilesRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ListFilesRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ListFilesRes, _impl_.file_names_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ListFilesRes, _impl_.message_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::rpc_server::UploadReq)},
-        {10, -1, -1, sizeof(::rpc_server::UploadRes)},
+        {11, -1, -1, sizeof(::rpc_server::UploadRes)},
+        {21, -1, -1, sizeof(::rpc_server::DownloadReq)},
+        {31, -1, -1, sizeof(::rpc_server::DownloadRes)},
+        {42, -1, -1, sizeof(::rpc_server::DeleteFileReq)},
+        {52, -1, -1, sizeof(::rpc_server::DeleteFileRes)},
+        {62, -1, -1, sizeof(::rpc_server::ListFilesReq)},
+        {71, -1, -1, sizeof(::rpc_server::ListFilesRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::rpc_server::_UploadReq_default_instance_._instance,
     &::rpc_server::_UploadRes_default_instance_._instance,
+    &::rpc_server::_DownloadReq_default_instance_._instance,
+    &::rpc_server::_DownloadRes_default_instance_._instance,
+    &::rpc_server::_DeleteFileReq_default_instance_._instance,
+    &::rpc_server::_DeleteFileRes_default_instance_._instance,
+    &::rpc_server::_ListFilesReq_default_instance_._instance,
+    &::rpc_server::_ListFilesRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5ffile_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\021server_file.proto\022\nrpc_server\"/\n\tUploa"
+    "\n\021server_file.proto\022\nrpc_server\"B\n\tUploa"
     "dReq\022\017\n\007account\030\001 \001(\014\022\021\n\tfile_name\030\002 \001(\014"
-    "\"-\n\tUploadRes\022\017\n\007success\030\001 \001(\010\022\017\n\007messag"
-    "e\030\002 \001(\0142D\n\nFileServer\0226\n\006Upload\022\025.rpc_se"
-    "rver.UploadReq\032\025.rpc_server.UploadResb\006p"
-    "roto3"
+    "\022\021\n\tfile_data\030\003 \001(\014\"-\n\tUploadRes\022\017\n\007succ"
+    "ess\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"1\n\013DownloadRe"
+    "q\022\017\n\007account\030\001 \001(\014\022\021\n\tfile_name\030\002 \001(\014\"B\n"
+    "\013DownloadRes\022\017\n\007success\030\001 \001(\010\022\021\n\tfile_da"
+    "ta\030\002 \001(\014\022\017\n\007message\030\003 \001(\014\"3\n\rDeleteFileR"
+    "eq\022\017\n\007account\030\001 \001(\014\022\021\n\tfile_name\030\002 \001(\014\"1"
+    "\n\rDeleteFileRes\022\017\n\007success\030\001 \001(\010\022\017\n\007mess"
+    "age\030\002 \001(\014\"\037\n\014ListFilesReq\022\017\n\007account\030\001 \001"
+    "(\014\"D\n\014ListFilesRes\022\017\n\007success\030\001 \001(\010\022\022\n\nf"
+    "ile_names\030\002 \003(\014\022\017\n\007message\030\003 \001(\0142\203\002\n\nFil"
+    "eServer\0226\n\006Upload\022\025.rpc_server.UploadReq"
+    "\032\025.rpc_server.UploadRes\022<\n\010Download\022\027.rp"
+    "c_server.DownloadReq\032\027.rpc_server.Downlo"
+    "adRes\022>\n\006Delete\022\031.rpc_server.DeleteFileR"
+    "eq\032\031.rpc_server.DeleteFileRes\022\?\n\tListFil"
+    "es\022\030.rpc_server.ListFilesReq\032\030.rpc_serve"
+    "r.ListFilesResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5ffile_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5ffile_2eproto = {
     false,
     false,
-    205,
+    742,
     descriptor_table_protodef_server_5ffile_2eproto,
     "server_file.proto",
     &descriptor_table_server_5ffile_2eproto_once,
     nullptr,
     0,
-    2,
+    8,
     schemas,
     file_default_instances,
     TableStruct_server_5ffile_2eproto::offsets,
@@ -168,6 +397,7 @@ inline PROTOBUF_NDEBUG_INLINE UploadReq::Impl_::Impl_(
     const Impl_& from)
       : account_(arena, from.account_),
         file_name_(arena, from.file_name_),
+        file_data_(arena, from.file_data_),
         _cached_size_{0} {}
 
 UploadReq::UploadReq(
@@ -187,6 +417,7 @@ inline PROTOBUF_NDEBUG_INLINE UploadReq::Impl_::Impl_(
     ::google::protobuf::Arena* arena)
       : account_(arena),
         file_name_(arena),
+        file_data_(arena),
         _cached_size_{0} {}
 
 inline void UploadReq::SharedCtor(::_pb::Arena* arena) {
@@ -201,6 +432,7 @@ inline void UploadReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.account_.Destroy();
   _impl_.file_name_.Destroy();
+  _impl_.file_data_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -213,6 +445,7 @@ PROTOBUF_NOINLINE void UploadReq::Clear() {
 
   _impl_.account_.ClearToEmpty();
   _impl_.file_name_.ClearToEmpty();
+  _impl_.file_data_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -224,26 +457,30 @@ const char* UploadReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UploadReq::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> UploadReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    3, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_UploadReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bytes file_name = 2;
-    {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReq, _impl_.file_name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // bytes account = 1;
     {::_pbi::TcParser::FastBS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReq, _impl_.account_)}},
+    // bytes file_name = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReq, _impl_.file_name_)}},
+    // bytes file_data = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReq, _impl_.file_data_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -252,6 +489,9 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UploadReq::_table_ = {
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // bytes file_name = 2;
     {PROTOBUF_FIELD_OFFSET(UploadReq, _impl_.file_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes file_data = 3;
+    {PROTOBUF_FIELD_OFFSET(UploadReq, _impl_.file_data_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
@@ -276,6 +516,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UploadReq::_table_ = {
   if (!this->_internal_file_name().empty()) {
     const std::string& _s = this->_internal_file_name();
     target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  // bytes file_data = 3;
+  if (!this->_internal_file_data().empty()) {
+    const std::string& _s = this->_internal_file_data();
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -307,6 +553,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> UploadReq::_table_ = {
                                     this->_internal_file_name());
   }
 
+  // bytes file_data = 3;
+  if (!this->_internal_file_data().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_file_data());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -332,6 +584,9 @@ void UploadReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::p
   if (!from._internal_file_name().empty()) {
     _this->_internal_set_file_name(from._internal_file_name());
   }
+  if (!from._internal_file_data().empty()) {
+    _this->_internal_set_file_data(from._internal_file_data());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -356,6 +611,7 @@ void UploadReq::InternalSwap(UploadReq* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_, &other->_impl_.account_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_name_, &other->_impl_.file_name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_data_, &other->_impl_.file_data_, arena);
 }
 
 ::google::protobuf::Metadata UploadReq::GetMetadata() const {
@@ -572,6 +828,1294 @@ void UploadRes::InternalSwap(UploadRes* PROTOBUF_RESTRICT other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
       file_level_metadata_server_5ffile_2eproto[1]);
+}
+// ===================================================================
+
+class DownloadReq::_Internal {
+ public:
+};
+
+DownloadReq::DownloadReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.DownloadReq)
+}
+inline PROTOBUF_NDEBUG_INLINE DownloadReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : account_(arena, from.account_),
+        file_name_(arena, from.file_name_),
+        _cached_size_{0} {}
+
+DownloadReq::DownloadReq(
+    ::google::protobuf::Arena* arena,
+    const DownloadReq& from)
+    : ::google::protobuf::Message(arena) {
+  DownloadReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.DownloadReq)
+}
+inline PROTOBUF_NDEBUG_INLINE DownloadReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : account_(arena),
+        file_name_(arena),
+        _cached_size_{0} {}
+
+inline void DownloadReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+DownloadReq::~DownloadReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.DownloadReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void DownloadReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.account_.Destroy();
+  _impl_.file_name_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void DownloadReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.DownloadReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.account_.ClearToEmpty();
+  _impl_.file_name_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* DownloadReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> DownloadReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_DownloadReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bytes file_name = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(DownloadReq, _impl_.file_name_)}},
+    // bytes account = 1;
+    {::_pbi::TcParser::FastBS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(DownloadReq, _impl_.account_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bytes account = 1;
+    {PROTOBUF_FIELD_OFFSET(DownloadReq, _impl_.account_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes file_name = 2;
+    {PROTOBUF_FIELD_OFFSET(DownloadReq, _impl_.file_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* DownloadReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.DownloadReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    const std::string& _s = this->_internal_account();
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
+  }
+
+  // bytes file_name = 2;
+  if (!this->_internal_file_name().empty()) {
+    const std::string& _s = this->_internal_file_name();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.DownloadReq)
+  return target;
+}
+
+::size_t DownloadReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.DownloadReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_account());
+  }
+
+  // bytes file_name = 2;
+  if (!this->_internal_file_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_file_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData DownloadReq::_class_data_ = {
+    DownloadReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* DownloadReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void DownloadReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<DownloadReq*>(&to_msg);
+  auto& from = static_cast<const DownloadReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.DownloadReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_account().empty()) {
+    _this->_internal_set_account(from._internal_account());
+  }
+  if (!from._internal_file_name().empty()) {
+    _this->_internal_set_file_name(from._internal_file_name());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DownloadReq::CopyFrom(const DownloadReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.DownloadReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool DownloadReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* DownloadReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void DownloadReq::InternalSwap(DownloadReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_, &other->_impl_.account_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_name_, &other->_impl_.file_name_, arena);
+}
+
+::google::protobuf::Metadata DownloadReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
+      file_level_metadata_server_5ffile_2eproto[2]);
+}
+// ===================================================================
+
+class DownloadRes::_Internal {
+ public:
+};
+
+DownloadRes::DownloadRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.DownloadRes)
+}
+inline PROTOBUF_NDEBUG_INLINE DownloadRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : file_data_(arena, from.file_data_),
+        message_(arena, from.message_),
+        _cached_size_{0} {}
+
+DownloadRes::DownloadRes(
+    ::google::protobuf::Arena* arena,
+    const DownloadRes& from)
+    : ::google::protobuf::Message(arena) {
+  DownloadRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.DownloadRes)
+}
+inline PROTOBUF_NDEBUG_INLINE DownloadRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : file_data_(arena),
+        message_(arena),
+        _cached_size_{0} {}
+
+inline void DownloadRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+DownloadRes::~DownloadRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.DownloadRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void DownloadRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.file_data_.Destroy();
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void DownloadRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.DownloadRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.file_data_.ClearToEmpty();
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* DownloadRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> DownloadRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_DownloadRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(DownloadRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(DownloadRes, _impl_.success_)}},
+    // bytes file_data = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(DownloadRes, _impl_.file_data_)}},
+    // bytes message = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(DownloadRes, _impl_.message_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(DownloadRes, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bytes file_data = 2;
+    {PROTOBUF_FIELD_OFFSET(DownloadRes, _impl_.file_data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes message = 3;
+    {PROTOBUF_FIELD_OFFSET(DownloadRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* DownloadRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.DownloadRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // bytes file_data = 2;
+  if (!this->_internal_file_data().empty()) {
+    const std::string& _s = this->_internal_file_data();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  // bytes message = 3;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.DownloadRes)
+  return target;
+}
+
+::size_t DownloadRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.DownloadRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes file_data = 2;
+  if (!this->_internal_file_data().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_file_data());
+  }
+
+  // bytes message = 3;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_message());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData DownloadRes::_class_data_ = {
+    DownloadRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* DownloadRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void DownloadRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<DownloadRes*>(&to_msg);
+  auto& from = static_cast<const DownloadRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.DownloadRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_file_data().empty()) {
+    _this->_internal_set_file_data(from._internal_file_data());
+  }
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DownloadRes::CopyFrom(const DownloadRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.DownloadRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool DownloadRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* DownloadRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void DownloadRes::InternalSwap(DownloadRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_data_, &other->_impl_.file_data_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata DownloadRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
+      file_level_metadata_server_5ffile_2eproto[3]);
+}
+// ===================================================================
+
+class DeleteFileReq::_Internal {
+ public:
+};
+
+DeleteFileReq::DeleteFileReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.DeleteFileReq)
+}
+inline PROTOBUF_NDEBUG_INLINE DeleteFileReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : account_(arena, from.account_),
+        file_name_(arena, from.file_name_),
+        _cached_size_{0} {}
+
+DeleteFileReq::DeleteFileReq(
+    ::google::protobuf::Arena* arena,
+    const DeleteFileReq& from)
+    : ::google::protobuf::Message(arena) {
+  DeleteFileReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.DeleteFileReq)
+}
+inline PROTOBUF_NDEBUG_INLINE DeleteFileReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : account_(arena),
+        file_name_(arena),
+        _cached_size_{0} {}
+
+inline void DeleteFileReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+DeleteFileReq::~DeleteFileReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.DeleteFileReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void DeleteFileReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.account_.Destroy();
+  _impl_.file_name_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void DeleteFileReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.DeleteFileReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.account_.ClearToEmpty();
+  _impl_.file_name_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* DeleteFileReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> DeleteFileReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_DeleteFileReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bytes file_name = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteFileReq, _impl_.file_name_)}},
+    // bytes account = 1;
+    {::_pbi::TcParser::FastBS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteFileReq, _impl_.account_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bytes account = 1;
+    {PROTOBUF_FIELD_OFFSET(DeleteFileReq, _impl_.account_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes file_name = 2;
+    {PROTOBUF_FIELD_OFFSET(DeleteFileReq, _impl_.file_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* DeleteFileReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.DeleteFileReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    const std::string& _s = this->_internal_account();
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
+  }
+
+  // bytes file_name = 2;
+  if (!this->_internal_file_name().empty()) {
+    const std::string& _s = this->_internal_file_name();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.DeleteFileReq)
+  return target;
+}
+
+::size_t DeleteFileReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.DeleteFileReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_account());
+  }
+
+  // bytes file_name = 2;
+  if (!this->_internal_file_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_file_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData DeleteFileReq::_class_data_ = {
+    DeleteFileReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* DeleteFileReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void DeleteFileReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<DeleteFileReq*>(&to_msg);
+  auto& from = static_cast<const DeleteFileReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.DeleteFileReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_account().empty()) {
+    _this->_internal_set_account(from._internal_account());
+  }
+  if (!from._internal_file_name().empty()) {
+    _this->_internal_set_file_name(from._internal_file_name());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DeleteFileReq::CopyFrom(const DeleteFileReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.DeleteFileReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool DeleteFileReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* DeleteFileReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void DeleteFileReq::InternalSwap(DeleteFileReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_, &other->_impl_.account_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_name_, &other->_impl_.file_name_, arena);
+}
+
+::google::protobuf::Metadata DeleteFileReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
+      file_level_metadata_server_5ffile_2eproto[4]);
+}
+// ===================================================================
+
+class DeleteFileRes::_Internal {
+ public:
+};
+
+DeleteFileRes::DeleteFileRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.DeleteFileRes)
+}
+inline PROTOBUF_NDEBUG_INLINE DeleteFileRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+DeleteFileRes::DeleteFileRes(
+    ::google::protobuf::Arena* arena,
+    const DeleteFileRes& from)
+    : ::google::protobuf::Message(arena) {
+  DeleteFileRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.DeleteFileRes)
+}
+inline PROTOBUF_NDEBUG_INLINE DeleteFileRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void DeleteFileRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+DeleteFileRes::~DeleteFileRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.DeleteFileRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void DeleteFileRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void DeleteFileRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.DeleteFileRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* DeleteFileRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> DeleteFileRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_DeleteFileRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteFileRes, _impl_.message_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(DeleteFileRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(DeleteFileRes, _impl_.success_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(DeleteFileRes, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bytes message = 2;
+    {PROTOBUF_FIELD_OFFSET(DeleteFileRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* DeleteFileRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.DeleteFileRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // bytes message = 2;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.DeleteFileRes)
+  return target;
+}
+
+::size_t DeleteFileRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.DeleteFileRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes message = 2;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_message());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData DeleteFileRes::_class_data_ = {
+    DeleteFileRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* DeleteFileRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void DeleteFileRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<DeleteFileRes*>(&to_msg);
+  auto& from = static_cast<const DeleteFileRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.DeleteFileRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DeleteFileRes::CopyFrom(const DeleteFileRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.DeleteFileRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool DeleteFileRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* DeleteFileRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void DeleteFileRes::InternalSwap(DeleteFileRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata DeleteFileRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
+      file_level_metadata_server_5ffile_2eproto[5]);
+}
+// ===================================================================
+
+class ListFilesReq::_Internal {
+ public:
+};
+
+ListFilesReq::ListFilesReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ListFilesReq)
+}
+inline PROTOBUF_NDEBUG_INLINE ListFilesReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : account_(arena, from.account_),
+        _cached_size_{0} {}
+
+ListFilesReq::ListFilesReq(
+    ::google::protobuf::Arena* arena,
+    const ListFilesReq& from)
+    : ::google::protobuf::Message(arena) {
+  ListFilesReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.ListFilesReq)
+}
+inline PROTOBUF_NDEBUG_INLINE ListFilesReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : account_(arena),
+        _cached_size_{0} {}
+
+inline void ListFilesReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+ListFilesReq::~ListFilesReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.ListFilesReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ListFilesReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.account_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ListFilesReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.ListFilesReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.account_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ListFilesReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> ListFilesReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ListFilesReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bytes account = 1;
+    {::_pbi::TcParser::FastBS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ListFilesReq, _impl_.account_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bytes account = 1;
+    {PROTOBUF_FIELD_OFFSET(ListFilesReq, _impl_.account_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ListFilesReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ListFilesReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    const std::string& _s = this->_internal_account();
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ListFilesReq)
+  return target;
+}
+
+::size_t ListFilesReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ListFilesReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_account());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ListFilesReq::_class_data_ = {
+    ListFilesReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ListFilesReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void ListFilesReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ListFilesReq*>(&to_msg);
+  auto& from = static_cast<const ListFilesReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ListFilesReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_account().empty()) {
+    _this->_internal_set_account(from._internal_account());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ListFilesReq::CopyFrom(const ListFilesReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ListFilesReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ListFilesReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ListFilesReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ListFilesReq::InternalSwap(ListFilesReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_, &other->_impl_.account_, arena);
+}
+
+::google::protobuf::Metadata ListFilesReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
+      file_level_metadata_server_5ffile_2eproto[6]);
+}
+// ===================================================================
+
+class ListFilesRes::_Internal {
+ public:
+};
+
+ListFilesRes::ListFilesRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ListFilesRes)
+}
+inline PROTOBUF_NDEBUG_INLINE ListFilesRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : file_names_{visibility, arena, from.file_names_},
+        message_(arena, from.message_),
+        _cached_size_{0} {}
+
+ListFilesRes::ListFilesRes(
+    ::google::protobuf::Arena* arena,
+    const ListFilesRes& from)
+    : ::google::protobuf::Message(arena) {
+  ListFilesRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.ListFilesRes)
+}
+inline PROTOBUF_NDEBUG_INLINE ListFilesRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : file_names_{visibility, arena},
+        message_(arena),
+        _cached_size_{0} {}
+
+inline void ListFilesRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+ListFilesRes::~ListFilesRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.ListFilesRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ListFilesRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ListFilesRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.ListFilesRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.file_names_.Clear();
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ListFilesRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> ListFilesRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ListFilesRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ListFilesRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ListFilesRes, _impl_.success_)}},
+    // repeated bytes file_names = 2;
+    {::_pbi::TcParser::FastBR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ListFilesRes, _impl_.file_names_)}},
+    // bytes message = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ListFilesRes, _impl_.message_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(ListFilesRes, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // repeated bytes file_names = 2;
+    {PROTOBUF_FIELD_OFFSET(ListFilesRes, _impl_.file_names_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kBytes | ::_fl::kRepSString)},
+    // bytes message = 3;
+    {PROTOBUF_FIELD_OFFSET(ListFilesRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ListFilesRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ListFilesRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // repeated bytes file_names = 2;
+  for (int i = 0, n = this->_internal_file_names_size(); i < n; ++i) {
+    const auto& s = this->_internal_file_names().Get(i);
+    target = stream->WriteBytes(2, s, target);
+  }
+
+  // bytes message = 3;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ListFilesRes)
+  return target;
+}
+
+::size_t ListFilesRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ListFilesRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated bytes file_names = 2;
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_file_names().size());
+  for (int i = 0, n = _internal_file_names().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::BytesSize(
+        _internal_file_names().Get(i));
+  }
+  // bytes message = 3;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_message());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ListFilesRes::_class_data_ = {
+    ListFilesRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ListFilesRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void ListFilesRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ListFilesRes*>(&to_msg);
+  auto& from = static_cast<const ListFilesRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ListFilesRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_file_names()->MergeFrom(from._internal_file_names());
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ListFilesRes::CopyFrom(const ListFilesRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ListFilesRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ListFilesRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ListFilesRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ListFilesRes::InternalSwap(ListFilesRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.file_names_.InternalSwap(&other->_impl_.file_names_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata ListFilesRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
+      file_level_metadata_server_5ffile_2eproto[7]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace rpc_server

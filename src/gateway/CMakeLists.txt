@@ -18,6 +18,8 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/protobuf/logic/server_logic.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/login/server_login.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/login/server_login.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/file/server_file.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/file/server_file.grpc.pb.cc
 )
 
 # 指定编译生成的可执行文件信息：文件名${MODULE_NAME} ，${SOURCES} 项目所有源文件路径

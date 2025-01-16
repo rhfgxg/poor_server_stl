@@ -19,6 +19,8 @@ enum ServiceType
 service GatewayServer
 {
     rpc Request_forward (ForwardReq) returns (ForwardRes);  // 转发请求
+    rpc Get_file_server_address (GetFileServerAddressReq) returns (GetFileServerAddressRes); // 获取文件服务器地址，直连文件服务器进行文件传递
+    rpc Client_heartbeat (ClientHeartbeatReq) returns (ClientHeartbeatRes);    // 接收客户端心跳包
 }
 
 // 传入请求
@@ -27,10 +29,38 @@ message ForwardReq
     ServiceType service_type = 1;   // 目标服务枚举
     bytes payload = 2;  // 负载
 }
-
 // 请求处理响应
 message ForwardRes
 {
     bool success = 1;
     bytes response = 2; // 响应负载
+}
+
+// 获取文件服务器地址请求
+message GetFileServerAddressReq
+{
+    bytes account = 1; // 账号
+    bytes token = 2;
+}
+// 获取文件服务器地址响应
+message GetFileServerAddressRes 
+{
+    bool success = 1; // 操作结果
+    bytes address = 2; // 文件服务器地址
+    bytes port = 3; // 文件服务器端口
+    bytes message = 4; // 响应信息
+}
+
+// 客户端心跳包请求
+message ClientHeartbeatReq
+{
+    bytes account = 1; // 账号
+    bytes token = 2;
+    bytes address = 3; // 客户端地址
+}
+// 客户端心跳包响应
+message ClientHeartbeatRes
+{
+    bool success = 1; // 操作结果
+    bytes message = 2; // 响应信息
 }

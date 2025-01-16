@@ -60,18 +60,21 @@ namespace rpc_server {
 class ConnectInfo;
 struct ConnectInfoDefaultTypeInternal;
 extern ConnectInfoDefaultTypeInternal _ConnectInfo_default_instance_;
-class ConnectPoorReq;
-struct ConnectPoorReqDefaultTypeInternal;
-extern ConnectPoorReqDefaultTypeInternal _ConnectPoorReq_default_instance_;
-class ConnectPoorRes;
-struct ConnectPoorResDefaultTypeInternal;
-extern ConnectPoorResDefaultTypeInternal _ConnectPoorRes_default_instance_;
+class ConnectPool;
+struct ConnectPoolDefaultTypeInternal;
+extern ConnectPoolDefaultTypeInternal _ConnectPool_default_instance_;
 class HeartbeatReq;
 struct HeartbeatReqDefaultTypeInternal;
 extern HeartbeatReqDefaultTypeInternal _HeartbeatReq_default_instance_;
 class HeartbeatRes;
 struct HeartbeatResDefaultTypeInternal;
 extern HeartbeatResDefaultTypeInternal _HeartbeatRes_default_instance_;
+class MultipleConnectPoorReq;
+struct MultipleConnectPoorReqDefaultTypeInternal;
+extern MultipleConnectPoorReqDefaultTypeInternal _MultipleConnectPoorReq_default_instance_;
+class MultipleConnectPoorRes;
+struct MultipleConnectPoorResDefaultTypeInternal;
+extern MultipleConnectPoorResDefaultTypeInternal _MultipleConnectPoorRes_default_instance_;
 class RegisterServerReq;
 struct RegisterServerReqDefaultTypeInternal;
 extern RegisterServerReqDefaultTypeInternal _RegisterServerReq_default_instance_;
@@ -270,7 +273,7 @@ class UnregisterServerRes final :
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // string message = 2;
+  // bytes message = 2;
   void clear_message() ;
   const std::string& message() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -303,7 +306,7 @@ class UnregisterServerRes final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      46, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -464,7 +467,7 @@ class UnregisterServerReq final :
     kPortFieldNumber = 3,
     kServerTypeFieldNumber = 1,
   };
-  // string address = 2;
+  // bytes address = 2;
   void clear_address() ;
   const std::string& address() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -480,7 +483,7 @@ class UnregisterServerReq final :
   std::string* _internal_mutable_address();
 
   public:
-  // string port = 3;
+  // bytes port = 3;
   void clear_port() ;
   const std::string& port() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -513,7 +516,7 @@ class UnregisterServerReq final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 0,
-      50, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -674,7 +677,7 @@ class RegisterServerRes final :
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // string message = 2;
+  // bytes message = 2;
   void clear_message() ;
   const std::string& message() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -707,7 +710,7 @@ class RegisterServerRes final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      44, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -868,7 +871,7 @@ class RegisterServerReq final :
     kPortFieldNumber = 3,
     kServerTypeFieldNumber = 1,
   };
-  // string address = 2;
+  // bytes address = 2;
   void clear_address() ;
   const std::string& address() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -884,7 +887,7 @@ class RegisterServerReq final :
   std::string* _internal_mutable_address();
 
   public:
-  // string port = 3;
+  // bytes port = 3;
   void clear_port() ;
   const std::string& port() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -917,7 +920,7 @@ class RegisterServerReq final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 0,
-      48, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -936,6 +939,191 @@ class RegisterServerReq final :
     ::google::protobuf::internal::ArenaStringPtr address_;
     ::google::protobuf::internal::ArenaStringPtr port_;
     int server_type_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5fcentral_2eproto;
+};// -------------------------------------------------------------------
+
+class MultipleConnectPoorReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.MultipleConnectPoorReq) */ {
+ public:
+  inline MultipleConnectPoorReq() : MultipleConnectPoorReq(nullptr) {}
+  ~MultipleConnectPoorReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR MultipleConnectPoorReq(::google::protobuf::internal::ConstantInitialized);
+
+  inline MultipleConnectPoorReq(const MultipleConnectPoorReq& from)
+      : MultipleConnectPoorReq(nullptr, from) {}
+  MultipleConnectPoorReq(MultipleConnectPoorReq&& from) noexcept
+    : MultipleConnectPoorReq() {
+    *this = ::std::move(from);
+  }
+
+  inline MultipleConnectPoorReq& operator=(const MultipleConnectPoorReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MultipleConnectPoorReq& operator=(MultipleConnectPoorReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MultipleConnectPoorReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MultipleConnectPoorReq* internal_default_instance() {
+    return reinterpret_cast<const MultipleConnectPoorReq*>(
+               &_MultipleConnectPoorReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(MultipleConnectPoorReq& a, MultipleConnectPoorReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MultipleConnectPoorReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MultipleConnectPoorReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MultipleConnectPoorReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MultipleConnectPoorReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MultipleConnectPoorReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const MultipleConnectPoorReq& from) {
+    MultipleConnectPoorReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MultipleConnectPoorReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "rpc_server.MultipleConnectPoorReq";
+  }
+  protected:
+  explicit MultipleConnectPoorReq(::google::protobuf::Arena* arena);
+  MultipleConnectPoorReq(::google::protobuf::Arena* arena, const MultipleConnectPoorReq& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kServerTypesFieldNumber = 1,
+  };
+  // repeated .rpc_server.ServerType server_types = 1;
+  int server_types_size() const;
+  private:
+  int _internal_server_types_size() const;
+
+  public:
+  void clear_server_types() ;
+  public:
+  ::rpc_server::ServerType server_types(int index) const;
+  void set_server_types(int index, ::rpc_server::ServerType value);
+  void add_server_types(::rpc_server::ServerType value);
+  const ::google::protobuf::RepeatedField<int>& server_types() const;
+  ::google::protobuf::RepeatedField<int>* mutable_server_types();
+
+  private:
+  const ::google::protobuf::RepeatedField<int>& _internal_server_types() const;
+  ::google::protobuf::RepeatedField<int>* _internal_mutable_server_types();
+
+  public:
+  // @@protoc_insertion_point(class_scope:rpc_server.MultipleConnectPoorReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedField<int> server_types_;
+    mutable ::google::protobuf::internal::CachedSize _server_types_cached_byte_size_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1002,7 +1190,7 @@ class HeartbeatRes final :
                &_HeartbeatRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(HeartbeatRes& a, HeartbeatRes& b) {
     a.Swap(&b);
@@ -1078,7 +1266,7 @@ class HeartbeatRes final :
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
   };
-  // string message = 2;
+  // bytes message = 2;
   void clear_message() ;
   const std::string& message() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1111,7 +1299,7 @@ class HeartbeatRes final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      39, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1195,7 +1383,7 @@ class HeartbeatReq final :
                &_HeartbeatReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(HeartbeatReq& a, HeartbeatReq& b) {
     a.Swap(&b);
@@ -1272,7 +1460,7 @@ class HeartbeatReq final :
     kPortFieldNumber = 3,
     kServerTypeFieldNumber = 1,
   };
-  // string address = 2;
+  // bytes address = 2;
   void clear_address() ;
   const std::string& address() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1288,7 +1476,7 @@ class HeartbeatReq final :
   std::string* _internal_mutable_address();
 
   public:
-  // string port = 3;
+  // bytes port = 3;
   void clear_port() ;
   const std::string& port() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1321,7 +1509,7 @@ class HeartbeatReq final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 0,
-      43, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1339,181 +1527,6 @@ class HeartbeatReq final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr address_;
     ::google::protobuf::internal::ArenaStringPtr port_;
-    int server_type_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_server_5fcentral_2eproto;
-};// -------------------------------------------------------------------
-
-class ConnectPoorReq final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ConnectPoorReq) */ {
- public:
-  inline ConnectPoorReq() : ConnectPoorReq(nullptr) {}
-  ~ConnectPoorReq() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ConnectPoorReq(::google::protobuf::internal::ConstantInitialized);
-
-  inline ConnectPoorReq(const ConnectPoorReq& from)
-      : ConnectPoorReq(nullptr, from) {}
-  ConnectPoorReq(ConnectPoorReq&& from) noexcept
-    : ConnectPoorReq() {
-    *this = ::std::move(from);
-  }
-
-  inline ConnectPoorReq& operator=(const ConnectPoorReq& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ConnectPoorReq& operator=(ConnectPoorReq&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ConnectPoorReq& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ConnectPoorReq* internal_default_instance() {
-    return reinterpret_cast<const ConnectPoorReq*>(
-               &_ConnectPoorReq_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    4;
-
-  friend void swap(ConnectPoorReq& a, ConnectPoorReq& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ConnectPoorReq* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ConnectPoorReq* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ConnectPoorReq* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ConnectPoorReq>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ConnectPoorReq& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ConnectPoorReq& from) {
-    ConnectPoorReq::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(ConnectPoorReq* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "rpc_server.ConnectPoorReq";
-  }
-  protected:
-  explicit ConnectPoorReq(::google::protobuf::Arena* arena);
-  ConnectPoorReq(::google::protobuf::Arena* arena, const ConnectPoorReq& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kServerTypeFieldNumber = 1,
-  };
-  // .rpc_server.ServerType server_type = 1;
-  void clear_server_type() ;
-  ::rpc_server::ServerType server_type() const;
-  void set_server_type(::rpc_server::ServerType value);
-
-  private:
-  ::rpc_server::ServerType _internal_server_type() const;
-  void _internal_set_server_type(::rpc_server::ServerType value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:rpc_server.ConnectPoorReq)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      0, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
     int server_type_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1657,7 +1670,7 @@ class ConnectInfo final :
     kAddressFieldNumber = 1,
     kPortFieldNumber = 2,
   };
-  // string address = 1;
+  // bytes address = 1;
   void clear_address() ;
   const std::string& address() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1690,7 +1703,7 @@ class ConnectInfo final :
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      38, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1715,26 +1728,26 @@ class ConnectInfo final :
   friend struct ::TableStruct_server_5fcentral_2eproto;
 };// -------------------------------------------------------------------
 
-class ConnectPoorRes final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ConnectPoorRes) */ {
+class ConnectPool final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ConnectPool) */ {
  public:
-  inline ConnectPoorRes() : ConnectPoorRes(nullptr) {}
-  ~ConnectPoorRes() override;
+  inline ConnectPool() : ConnectPool(nullptr) {}
+  ~ConnectPool() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR ConnectPoorRes(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR ConnectPool(::google::protobuf::internal::ConstantInitialized);
 
-  inline ConnectPoorRes(const ConnectPoorRes& from)
-      : ConnectPoorRes(nullptr, from) {}
-  ConnectPoorRes(ConnectPoorRes&& from) noexcept
-    : ConnectPoorRes() {
+  inline ConnectPool(const ConnectPool& from)
+      : ConnectPool(nullptr, from) {}
+  ConnectPool(ConnectPool&& from) noexcept
+    : ConnectPool() {
     *this = ::std::move(from);
   }
 
-  inline ConnectPoorRes& operator=(const ConnectPoorRes& from) {
+  inline ConnectPool& operator=(const ConnectPool& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ConnectPoorRes& operator=(ConnectPoorRes&& from) noexcept {
+  inline ConnectPool& operator=(ConnectPool&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1766,20 +1779,20 @@ class ConnectPoorRes final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ConnectPoorRes& default_instance() {
+  static const ConnectPool& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ConnectPoorRes* internal_default_instance() {
-    return reinterpret_cast<const ConnectPoorRes*>(
-               &_ConnectPoorRes_default_instance_);
+  static inline const ConnectPool* internal_default_instance() {
+    return reinterpret_cast<const ConnectPool*>(
+               &_ConnectPool_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
-  friend void swap(ConnectPoorRes& a, ConnectPoorRes& b) {
+  friend void swap(ConnectPool& a, ConnectPool& b) {
     a.Swap(&b);
   }
-  inline void Swap(ConnectPoorRes* other) {
+  inline void Swap(ConnectPool* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -1792,7 +1805,7 @@ class ConnectPoorRes final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ConnectPoorRes* other) {
+  void UnsafeArenaSwap(ConnectPool* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1800,14 +1813,14 @@ class ConnectPoorRes final :
 
   // implements Message ----------------------------------------------
 
-  ConnectPoorRes* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ConnectPoorRes>(arena);
+  ConnectPool* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ConnectPool>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ConnectPoorRes& from);
+  void CopyFrom(const ConnectPool& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const ConnectPoorRes& from) {
-    ConnectPoorRes::MergeImpl(*this, from);
+  void MergeFrom( const ConnectPool& from) {
+    ConnectPool::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -1825,16 +1838,16 @@ class ConnectPoorRes final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(ConnectPoorRes* other);
+  void InternalSwap(ConnectPool* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.ConnectPoorRes";
+    return "rpc_server.ConnectPool";
   }
   protected:
-  explicit ConnectPoorRes(::google::protobuf::Arena* arena);
-  ConnectPoorRes(::google::protobuf::Arena* arena, const ConnectPoorRes& from);
+  explicit ConnectPool(::google::protobuf::Arena* arena);
+  ConnectPool(::google::protobuf::Arena* arena, const ConnectPool& from);
   public:
 
   static const ClassData _class_data_;
@@ -1848,8 +1861,7 @@ class ConnectPoorRes final :
 
   enum : int {
     kConnectInfoFieldNumber = 2,
-    kMessageFieldNumber = 3,
-    kSuccessFieldNumber = 1,
+    kServerTypeFieldNumber = 1,
   };
   // repeated .rpc_server.ConnectInfo connect_info = 2;
   int connect_info_size() const;
@@ -1869,7 +1881,203 @@ class ConnectPoorRes final :
   ::rpc_server::ConnectInfo* add_connect_info();
   const ::google::protobuf::RepeatedPtrField< ::rpc_server::ConnectInfo >&
       connect_info() const;
-  // string message = 3;
+  // .rpc_server.ServerType server_type = 1;
+  void clear_server_type() ;
+  ::rpc_server::ServerType server_type() const;
+  void set_server_type(::rpc_server::ServerType value);
+
+  private:
+  ::rpc_server::ServerType _internal_server_type() const;
+  void _internal_set_server_type(::rpc_server::ServerType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:rpc_server.ConnectPool)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField< ::rpc_server::ConnectInfo > connect_info_;
+    int server_type_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5fcentral_2eproto;
+};// -------------------------------------------------------------------
+
+class MultipleConnectPoorRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.MultipleConnectPoorRes) */ {
+ public:
+  inline MultipleConnectPoorRes() : MultipleConnectPoorRes(nullptr) {}
+  ~MultipleConnectPoorRes() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR MultipleConnectPoorRes(::google::protobuf::internal::ConstantInitialized);
+
+  inline MultipleConnectPoorRes(const MultipleConnectPoorRes& from)
+      : MultipleConnectPoorRes(nullptr, from) {}
+  MultipleConnectPoorRes(MultipleConnectPoorRes&& from) noexcept
+    : MultipleConnectPoorRes() {
+    *this = ::std::move(from);
+  }
+
+  inline MultipleConnectPoorRes& operator=(const MultipleConnectPoorRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MultipleConnectPoorRes& operator=(MultipleConnectPoorRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MultipleConnectPoorRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MultipleConnectPoorRes* internal_default_instance() {
+    return reinterpret_cast<const MultipleConnectPoorRes*>(
+               &_MultipleConnectPoorRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(MultipleConnectPoorRes& a, MultipleConnectPoorRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MultipleConnectPoorRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MultipleConnectPoorRes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MultipleConnectPoorRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MultipleConnectPoorRes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MultipleConnectPoorRes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const MultipleConnectPoorRes& from) {
+    MultipleConnectPoorRes::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(MultipleConnectPoorRes* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "rpc_server.MultipleConnectPoorRes";
+  }
+  protected:
+  explicit MultipleConnectPoorRes(::google::protobuf::Arena* arena);
+  MultipleConnectPoorRes(::google::protobuf::Arena* arena, const MultipleConnectPoorRes& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kConnectPoolsFieldNumber = 2,
+    kMessageFieldNumber = 3,
+    kSuccessFieldNumber = 1,
+  };
+  // repeated .rpc_server.ConnectPool connect_pools = 2;
+  int connect_pools_size() const;
+  private:
+  int _internal_connect_pools_size() const;
+
+  public:
+  void clear_connect_pools() ;
+  ::rpc_server::ConnectPool* mutable_connect_pools(int index);
+  ::google::protobuf::RepeatedPtrField< ::rpc_server::ConnectPool >*
+      mutable_connect_pools();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectPool>& _internal_connect_pools() const;
+  ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectPool>* _internal_mutable_connect_pools();
+  public:
+  const ::rpc_server::ConnectPool& connect_pools(int index) const;
+  ::rpc_server::ConnectPool* add_connect_pools();
+  const ::google::protobuf::RepeatedPtrField< ::rpc_server::ConnectPool >&
+      connect_pools() const;
+  // bytes message = 3;
   void clear_message() ;
   const std::string& message() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1895,14 +2103,14 @@ class ConnectPoorRes final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.ConnectPoorRes)
+  // @@protoc_insertion_point(class_scope:rpc_server.MultipleConnectPoorRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 1,
-      41, 2>
+      0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
@@ -1918,7 +2126,7 @@ class ConnectPoorRes final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedPtrField< ::rpc_server::ConnectInfo > connect_info_;
+    ::google::protobuf::RepeatedPtrField< ::rpc_server::ConnectPool > connect_pools_;
     ::google::protobuf::internal::ArenaStringPtr message_;
     bool success_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
@@ -1967,7 +2175,7 @@ inline void RegisterServerReq::_internal_set_server_type(::rpc_server::ServerTyp
   _impl_.server_type_ = value;
 }
 
-// string address = 2;
+// bytes address = 2;
 inline void RegisterServerReq::clear_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.address_.ClearToEmpty();
@@ -1982,7 +2190,7 @@ inline PROTOBUF_ALWAYS_INLINE void RegisterServerReq::set_address(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.address_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:rpc_server.RegisterServerReq.address)
 }
 inline std::string* RegisterServerReq::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2020,7 +2228,7 @@ inline void RegisterServerReq::set_allocated_address(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterServerReq.address)
 }
 
-// string port = 3;
+// bytes port = 3;
 inline void RegisterServerReq::clear_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.port_.ClearToEmpty();
@@ -2035,7 +2243,7 @@ inline PROTOBUF_ALWAYS_INLINE void RegisterServerReq::set_port(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.port_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.port_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:rpc_server.RegisterServerReq.port)
 }
 inline std::string* RegisterServerReq::mutable_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2100,7 +2308,7 @@ inline void RegisterServerRes::_internal_set_success(bool value) {
   _impl_.success_ = value;
 }
 
-// string message = 2;
+// bytes message = 2;
 inline void RegisterServerRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
@@ -2115,7 +2323,7 @@ inline PROTOBUF_ALWAYS_INLINE void RegisterServerRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:rpc_server.RegisterServerRes.message)
 }
 inline std::string* RegisterServerRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2180,7 +2388,7 @@ inline void UnregisterServerReq::_internal_set_server_type(::rpc_server::ServerT
   _impl_.server_type_ = value;
 }
 
-// string address = 2;
+// bytes address = 2;
 inline void UnregisterServerReq::clear_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.address_.ClearToEmpty();
@@ -2195,7 +2403,7 @@ inline PROTOBUF_ALWAYS_INLINE void UnregisterServerReq::set_address(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.address_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerReq.address)
 }
 inline std::string* UnregisterServerReq::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2233,7 +2441,7 @@ inline void UnregisterServerReq::set_allocated_address(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:rpc_server.UnregisterServerReq.address)
 }
 
-// string port = 3;
+// bytes port = 3;
 inline void UnregisterServerReq::clear_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.port_.ClearToEmpty();
@@ -2248,7 +2456,7 @@ inline PROTOBUF_ALWAYS_INLINE void UnregisterServerReq::set_port(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.port_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.port_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerReq.port)
 }
 inline std::string* UnregisterServerReq::mutable_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2313,7 +2521,7 @@ inline void UnregisterServerRes::_internal_set_success(bool value) {
   _impl_.success_ = value;
 }
 
-// string message = 2;
+// bytes message = 2;
 inline void UnregisterServerRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
@@ -2328,7 +2536,7 @@ inline PROTOBUF_ALWAYS_INLINE void UnregisterServerRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerRes.message)
 }
 inline std::string* UnregisterServerRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2368,150 +2576,171 @@ inline void UnregisterServerRes::set_allocated_message(std::string* value) {
 
 // -------------------------------------------------------------------
 
-// ConnectPoorReq
+// MultipleConnectPoorReq
 
-// .rpc_server.ServerType server_type = 1;
-inline void ConnectPoorReq::clear_server_type() {
+// repeated .rpc_server.ServerType server_types = 1;
+inline int MultipleConnectPoorReq::_internal_server_types_size() const {
+  return _internal_server_types().size();
+}
+inline int MultipleConnectPoorReq::server_types_size() const {
+  return _internal_server_types_size();
+}
+inline void MultipleConnectPoorReq::clear_server_types() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.server_type_ = 0;
+  _impl_.server_types_.Clear();
 }
-inline ::rpc_server::ServerType ConnectPoorReq::server_type() const {
-  // @@protoc_insertion_point(field_get:rpc_server.ConnectPoorReq.server_type)
-  return _internal_server_type();
+inline ::rpc_server::ServerType MultipleConnectPoorReq::server_types(int index) const {
+  // @@protoc_insertion_point(field_get:rpc_server.MultipleConnectPoorReq.server_types)
+  return static_cast<::rpc_server::ServerType>(_internal_server_types().Get(index));
 }
-inline void ConnectPoorReq::set_server_type(::rpc_server::ServerType value) {
-  _internal_set_server_type(value);
-  // @@protoc_insertion_point(field_set:rpc_server.ConnectPoorReq.server_type)
+inline void MultipleConnectPoorReq::set_server_types(int index, ::rpc_server::ServerType value) {
+  _internal_mutable_server_types()->Set(index, value);
+  // @@protoc_insertion_point(field_set:rpc_server.MultipleConnectPoorReq.server_types)
 }
-inline ::rpc_server::ServerType ConnectPoorReq::_internal_server_type() const {
+inline void MultipleConnectPoorReq::add_server_types(::rpc_server::ServerType value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _internal_mutable_server_types()->Add(value);
+  // @@protoc_insertion_point(field_add:rpc_server.MultipleConnectPoorReq.server_types)
+}
+inline const ::google::protobuf::RepeatedField<int>& MultipleConnectPoorReq::server_types() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:rpc_server.MultipleConnectPoorReq.server_types)
+  return _internal_server_types();
+}
+inline ::google::protobuf::RepeatedField<int>* MultipleConnectPoorReq::mutable_server_types()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:rpc_server.MultipleConnectPoorReq.server_types)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_server_types();
+}
+inline const ::google::protobuf::RepeatedField<int>& MultipleConnectPoorReq::_internal_server_types() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return static_cast<::rpc_server::ServerType>(_impl_.server_type_);
+  return _impl_.server_types_;
 }
-inline void ConnectPoorReq::_internal_set_server_type(::rpc_server::ServerType value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.server_type_ = value;
+inline ::google::protobuf::RepeatedField<int>* MultipleConnectPoorReq::_internal_mutable_server_types() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.server_types_;
 }
 
 // -------------------------------------------------------------------
 
-// ConnectPoorRes
+// MultipleConnectPoorRes
 
 // bool success = 1;
-inline void ConnectPoorRes::clear_success() {
+inline void MultipleConnectPoorRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool ConnectPoorRes::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.ConnectPoorRes.success)
+inline bool MultipleConnectPoorRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.MultipleConnectPoorRes.success)
   return _internal_success();
 }
-inline void ConnectPoorRes::set_success(bool value) {
+inline void MultipleConnectPoorRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.ConnectPoorRes.success)
+  // @@protoc_insertion_point(field_set:rpc_server.MultipleConnectPoorRes.success)
 }
-inline bool ConnectPoorRes::_internal_success() const {
+inline bool MultipleConnectPoorRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void ConnectPoorRes::_internal_set_success(bool value) {
+inline void MultipleConnectPoorRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
-// repeated .rpc_server.ConnectInfo connect_info = 2;
-inline int ConnectPoorRes::_internal_connect_info_size() const {
-  return _internal_connect_info().size();
+// repeated .rpc_server.ConnectPool connect_pools = 2;
+inline int MultipleConnectPoorRes::_internal_connect_pools_size() const {
+  return _internal_connect_pools().size();
 }
-inline int ConnectPoorRes::connect_info_size() const {
-  return _internal_connect_info_size();
+inline int MultipleConnectPoorRes::connect_pools_size() const {
+  return _internal_connect_pools_size();
 }
-inline void ConnectPoorRes::clear_connect_info() {
+inline void MultipleConnectPoorRes::clear_connect_pools() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.connect_info_.Clear();
+  _impl_.connect_pools_.Clear();
 }
-inline ::rpc_server::ConnectInfo* ConnectPoorRes::mutable_connect_info(int index)
+inline ::rpc_server::ConnectPool* MultipleConnectPoorRes::mutable_connect_pools(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:rpc_server.ConnectPoorRes.connect_info)
-  return _internal_mutable_connect_info()->Mutable(index);
+  // @@protoc_insertion_point(field_mutable:rpc_server.MultipleConnectPoorRes.connect_pools)
+  return _internal_mutable_connect_pools()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>* ConnectPoorRes::mutable_connect_info()
+inline ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectPool>* MultipleConnectPoorRes::mutable_connect_pools()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:rpc_server.ConnectPoorRes.connect_info)
+  // @@protoc_insertion_point(field_mutable_list:rpc_server.MultipleConnectPoorRes.connect_pools)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  return _internal_mutable_connect_info();
+  return _internal_mutable_connect_pools();
 }
-inline const ::rpc_server::ConnectInfo& ConnectPoorRes::connect_info(int index) const
+inline const ::rpc_server::ConnectPool& MultipleConnectPoorRes::connect_pools(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.ConnectPoorRes.connect_info)
-  return _internal_connect_info().Get(index);
+  // @@protoc_insertion_point(field_get:rpc_server.MultipleConnectPoorRes.connect_pools)
+  return _internal_connect_pools().Get(index);
 }
-inline ::rpc_server::ConnectInfo* ConnectPoorRes::add_connect_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::rpc_server::ConnectPool* MultipleConnectPoorRes::add_connect_pools() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::rpc_server::ConnectInfo* _add = _internal_mutable_connect_info()->Add();
-  // @@protoc_insertion_point(field_add:rpc_server.ConnectPoorRes.connect_info)
+  ::rpc_server::ConnectPool* _add = _internal_mutable_connect_pools()->Add();
+  // @@protoc_insertion_point(field_add:rpc_server.MultipleConnectPoorRes.connect_pools)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>& ConnectPoorRes::connect_info() const
+inline const ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectPool>& MultipleConnectPoorRes::connect_pools() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:rpc_server.ConnectPoorRes.connect_info)
-  return _internal_connect_info();
+  // @@protoc_insertion_point(field_list:rpc_server.MultipleConnectPoorRes.connect_pools)
+  return _internal_connect_pools();
 }
-inline const ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>&
-ConnectPoorRes::_internal_connect_info() const {
+inline const ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectPool>&
+MultipleConnectPoorRes::_internal_connect_pools() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.connect_info_;
+  return _impl_.connect_pools_;
 }
-inline ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>*
-ConnectPoorRes::_internal_mutable_connect_info() {
+inline ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectPool>*
+MultipleConnectPoorRes::_internal_mutable_connect_pools() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return &_impl_.connect_info_;
+  return &_impl_.connect_pools_;
 }
 
-// string message = 3;
-inline void ConnectPoorRes::clear_message() {
+// bytes message = 3;
+inline void MultipleConnectPoorRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& ConnectPoorRes::message() const
+inline const std::string& MultipleConnectPoorRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.ConnectPoorRes.message)
+  // @@protoc_insertion_point(field_get:rpc_server.MultipleConnectPoorRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ConnectPoorRes::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void MultipleConnectPoorRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.ConnectPoorRes.message)
+  _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.MultipleConnectPoorRes.message)
 }
-inline std::string* ConnectPoorRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* MultipleConnectPoorRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.ConnectPoorRes.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.MultipleConnectPoorRes.message)
   return _s;
 }
-inline const std::string& ConnectPoorRes::_internal_message() const {
+inline const std::string& MultipleConnectPoorRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void ConnectPoorRes::_internal_set_message(const std::string& value) {
+inline void MultipleConnectPoorRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* ConnectPoorRes::_internal_mutable_message() {
+inline std::string* MultipleConnectPoorRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* ConnectPoorRes::release_message() {
+inline std::string* MultipleConnectPoorRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.ConnectPoorRes.message)
+  // @@protoc_insertion_point(field_release:rpc_server.MultipleConnectPoorRes.message)
   return _impl_.message_.Release();
 }
-inline void ConnectPoorRes::set_allocated_message(std::string* value) {
+inline void MultipleConnectPoorRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2519,14 +2748,14 @@ inline void ConnectPoorRes::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.ConnectPoorRes.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.MultipleConnectPoorRes.message)
 }
 
 // -------------------------------------------------------------------
 
 // ConnectInfo
 
-// string address = 1;
+// bytes address = 1;
 inline void ConnectInfo::clear_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.address_.ClearToEmpty();
@@ -2541,7 +2770,7 @@ inline PROTOBUF_ALWAYS_INLINE void ConnectInfo::set_address(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.address_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:rpc_server.ConnectInfo.address)
 }
 inline std::string* ConnectInfo::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2604,6 +2833,82 @@ inline void ConnectInfo::_internal_set_port(::int32_t value) {
 
 // -------------------------------------------------------------------
 
+// ConnectPool
+
+// .rpc_server.ServerType server_type = 1;
+inline void ConnectPool::clear_server_type() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.server_type_ = 0;
+}
+inline ::rpc_server::ServerType ConnectPool::server_type() const {
+  // @@protoc_insertion_point(field_get:rpc_server.ConnectPool.server_type)
+  return _internal_server_type();
+}
+inline void ConnectPool::set_server_type(::rpc_server::ServerType value) {
+  _internal_set_server_type(value);
+  // @@protoc_insertion_point(field_set:rpc_server.ConnectPool.server_type)
+}
+inline ::rpc_server::ServerType ConnectPool::_internal_server_type() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return static_cast<::rpc_server::ServerType>(_impl_.server_type_);
+}
+inline void ConnectPool::_internal_set_server_type(::rpc_server::ServerType value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.server_type_ = value;
+}
+
+// repeated .rpc_server.ConnectInfo connect_info = 2;
+inline int ConnectPool::_internal_connect_info_size() const {
+  return _internal_connect_info().size();
+}
+inline int ConnectPool::connect_info_size() const {
+  return _internal_connect_info_size();
+}
+inline void ConnectPool::clear_connect_info() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.connect_info_.Clear();
+}
+inline ::rpc_server::ConnectInfo* ConnectPool::mutable_connect_info(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:rpc_server.ConnectPool.connect_info)
+  return _internal_mutable_connect_info()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>* ConnectPool::mutable_connect_info()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:rpc_server.ConnectPool.connect_info)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  return _internal_mutable_connect_info();
+}
+inline const ::rpc_server::ConnectInfo& ConnectPool::connect_info(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:rpc_server.ConnectPool.connect_info)
+  return _internal_connect_info().Get(index);
+}
+inline ::rpc_server::ConnectInfo* ConnectPool::add_connect_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::rpc_server::ConnectInfo* _add = _internal_mutable_connect_info()->Add();
+  // @@protoc_insertion_point(field_add:rpc_server.ConnectPool.connect_info)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>& ConnectPool::connect_info() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:rpc_server.ConnectPool.connect_info)
+  return _internal_connect_info();
+}
+inline const ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>&
+ConnectPool::_internal_connect_info() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.connect_info_;
+}
+inline ::google::protobuf::RepeatedPtrField<::rpc_server::ConnectInfo>*
+ConnectPool::_internal_mutable_connect_info() {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return &_impl_.connect_info_;
+}
+
+// -------------------------------------------------------------------
+
 // HeartbeatReq
 
 // .rpc_server.ServerType server_type = 1;
@@ -2629,7 +2934,7 @@ inline void HeartbeatReq::_internal_set_server_type(::rpc_server::ServerType val
   _impl_.server_type_ = value;
 }
 
-// string address = 2;
+// bytes address = 2;
 inline void HeartbeatReq::clear_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.address_.ClearToEmpty();
@@ -2644,7 +2949,7 @@ inline PROTOBUF_ALWAYS_INLINE void HeartbeatReq::set_address(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.address_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.address_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:rpc_server.HeartbeatReq.address)
 }
 inline std::string* HeartbeatReq::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2682,7 +2987,7 @@ inline void HeartbeatReq::set_allocated_address(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:rpc_server.HeartbeatReq.address)
 }
 
-// string port = 3;
+// bytes port = 3;
 inline void HeartbeatReq::clear_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.port_.ClearToEmpty();
@@ -2697,7 +3002,7 @@ inline PROTOBUF_ALWAYS_INLINE void HeartbeatReq::set_port(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.port_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.port_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:rpc_server.HeartbeatReq.port)
 }
 inline std::string* HeartbeatReq::mutable_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -2762,7 +3067,7 @@ inline void HeartbeatRes::_internal_set_success(bool value) {
   _impl_.success_ = value;
 }
 
-// string message = 2;
+// bytes message = 2;
 inline void HeartbeatRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
@@ -2777,7 +3082,7 @@ inline PROTOBUF_ALWAYS_INLINE void HeartbeatRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:rpc_server.HeartbeatRes.message)
 }
 inline std::string* HeartbeatRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {

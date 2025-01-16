@@ -4,7 +4,8 @@ GatewayServerImpl::GatewayServerImpl(LoggerManager& logger_manager_):
     server_type(rpc_server::ServerType::GATEWAY),    // 服务器类型
     logger_manager(logger_manager_),  // 日志管理器   
     central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 中心服务器存根
-    login_connection_pool(10) // 初始化登录服务器连接池，设置连接池大小为10
+    login_connection_pool(10), // 初始化登录服务器连接池，设置连接池大小为10
+    file_connection_pool(10)   // 初始化文件服务器连接池，设置连接池大小为10
 {
     
     this->Read_server_config();   // 读取配置文件并初始化服务器地址和端口
@@ -163,25 +164,42 @@ void GatewayServerImpl::Init_connection_pool()
     // 客户端
     grpc::ClientContext context;
     // 请求
-    rpc_server::ConnectPoorReq request;
-    request.set_server_type(rpc_server::ServerType::LOGIN);
+    rpc_server::MultipleConnectPoorReq req;
+    req.add_server_types(rpc_server::ServerType::LOGIN);
+    req.add_server_types(rpc_server::ServerType::FILE);
     // 响应
-    rpc_server::ConnectPoorRes response;
+    rpc_server::MultipleConnectPoorRes res;
 
-    grpc::Status status = central_stub->Get_connec_poor(&context, request ,&response);
+    grpc::Status status = central_stub->Get_connec_poor(&context, req, &res);
 
-    if(status.ok())
+    if(status.ok() && res.success())
     {
-        // 更新登录服务器连接池
-        for(const auto& server_info : response.connect_info())
+        for(const rpc_server::ConnectPool& connect_pool : *res.mutable_connect_pools())
         {
-            login_connection_pool.add_server(rpc_server::ServerType::LOGIN,server_info.address(),std::to_string(server_info.port()));
+            for(const rpc_server::ConnectInfo& conn_info : connect_pool.connect_info())
+            {
+                switch(connect_pool.server_type())
+                {
+                case rpc_server::ServerType::LOGIN:
+                {
+                    login_connection_pool.add_server(rpc_server::ServerType::LOGIN, conn_info.address(), std::to_string(conn_info.port()));
+                    break;
+                }
+                case rpc_server::ServerType::FILE:
+                {
+                    file_connection_pool.add_server(rpc_server::ServerType::FILE, conn_info.address(), std::to_string(conn_info.port()));
+                    break;
+                }
+                default:
+                break;
+                }
+            }
         }
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway server updated connection pool successfully");
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway server updated connection pools successfully");
     }
     else
     {
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->error("Failed to get connection pool information");
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->error("Failed to get connection pools information");
     }
 }
 
@@ -249,6 +267,19 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, co
 
     return grpc::Status::OK;
 }
+
+// 获取文件服务器地址
+grpc::Status GatewayServerImpl::Get_file_server_address(grpc::ServerContext* context, const rpc_server::GetFileServerAddressReq* req, rpc_server::GetFileServerAddressRes* res)
+{
+    return grpc::Status::OK;
+}
+
+// 接收客户端心跳
+grpc::Status GatewayServerImpl::Client_heartbeat(grpc::ServerContext* context, const rpc_server::ClientHeartbeatReq* req, rpc_server::ClientHeartbeatRes* res)
+{
+    return grpc::Status::OK;
+}
+
 
 /**************************************** grpc服务接口工具函数 **************************************************************************/
 // Login 方法，处理登录请求

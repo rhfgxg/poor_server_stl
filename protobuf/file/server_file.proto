@@ -3,7 +3,10 @@ package rpc_server;
 
 service FileServer
 {
-	rpc Upload (UploadReq) returns (UploadRes);   // 文件上传服务
+    rpc Upload (UploadReq) returns (UploadRes);   // 文件上传服务
+    rpc Download (DownloadReq) returns (DownloadRes); // 文件下载服务
+    rpc Delete (DeleteFileReq) returns (DeleteFileRes); // 文件删除服务
+    rpc ListFiles (ListFilesReq) returns (ListFilesRes); // 获取文件列表服务
 }
 
 // 文件上传服务请求
@@ -11,10 +14,51 @@ message UploadReq
 {
     bytes account = 1;  // 账号
     bytes file_name = 2; // 文件名
+    bytes file_data = 3; // 文件数据
 }
 // 文件上传服务响应
 message UploadRes
 {
     bool success = 1;   // 操作结果
     bytes message = 2; // 响应信息
+}
+
+// 文件下载服务请求
+message DownloadReq
+{
+    bytes account = 1;  // 账号
+    bytes file_name = 2; // 文件名
+}
+// 文件下载服务响应
+message DownloadRes
+{
+    bool success = 1;   // 操作结果
+    bytes file_data = 2; // 文件数据
+    bytes message = 3; // 响应信息
+}
+
+// 文件删除服务请求
+message DeleteFileReq
+{
+    bytes account = 1;  // 账号
+    bytes file_name = 2; // 文件名
+}
+// 文件删除服务响应
+message DeleteFileRes 
+{
+    bool success = 1;   // 操作结果
+    bytes message = 2; // 响应信息
+}
+
+// 获取文件列表服务请求
+message ListFilesReq
+{
+    bytes account = 1;  // 账号
+}
+// 获取文件列表服务响应
+message ListFilesRes
+{
+    bool success = 1;   // 操作结果
+    repeated bytes file_names = 2; // 文件名列表
+    bytes message = 3; // 响应信息
 }

@@ -19,17 +19,17 @@ include_directories(
     # 各服务器实现类
     ${CMAKE_SOURCE_DIR}/src/central
     ${CMAKE_SOURCE_DIR}/src/data
+    ${CMAKE_SOURCE_DIR}/src/file
     ${CMAKE_SOURCE_DIR}/src/gateway
     ${CMAKE_SOURCE_DIR}/src/logic
     ${CMAKE_SOURCE_DIR}/src/login
-    ${CMAKE_SOURCE_DIR}/src/file
     # proto生成的 grpc服务头文件目录
     ${CMAKE_SOURCE_DIR}/protobuf/central
     ${CMAKE_SOURCE_DIR}/protobuf/data
+    ${CMAKE_SOURCE_DIR}/protobuf/file
     ${CMAKE_SOURCE_DIR}/protobuf/gateway
     ${CMAKE_SOURCE_DIR}/protobuf/logic
     ${CMAKE_SOURCE_DIR}/protobuf/login
-    ${CMAKE_SOURCE_DIR}/protobuf/file
 )
 
 # 需要编译的源文件列表
@@ -176,10 +176,10 @@ endif()
 add_subdirectory(protobuf)
 add_subdirectory(./src/central)
 add_subdirectory(./src/data)
+add_subdirectory(./src/file)
 add_subdirectory(./src/gateway)
 add_subdirectory(./src/logic)
 add_subdirectory(./src/login)
-add_subdirectory(./src/file)
 
 # 链接第三方库
 target_link_libraries(${PROJECT_NAME} PRIVATE ${THIRD_PARTY_LIBS})

@@ -22,6 +22,58 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace rpc_server {
 
+inline constexpr GetFileServerAddressRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : address_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        port_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetFileServerAddressRes::GetFileServerAddressRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetFileServerAddressResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetFileServerAddressResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetFileServerAddressResDefaultTypeInternal() {}
+  union {
+    GetFileServerAddressRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetFileServerAddressResDefaultTypeInternal _GetFileServerAddressRes_default_instance_;
+
+inline constexpr GetFileServerAddressReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : account_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        token_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetFileServerAddressReq::GetFileServerAddressReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetFileServerAddressReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetFileServerAddressReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetFileServerAddressReqDefaultTypeInternal() {}
+  union {
+    GetFileServerAddressReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetFileServerAddressReqDefaultTypeInternal _GetFileServerAddressReq_default_instance_;
+
 inline constexpr ForwardRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : response_(
@@ -65,8 +117,57 @@ struct ForwardReqDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ForwardReqDefaultTypeInternal _ForwardReq_default_instance_;
+
+inline constexpr ClientHeartbeatRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ClientHeartbeatRes::ClientHeartbeatRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ClientHeartbeatResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ClientHeartbeatResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ClientHeartbeatResDefaultTypeInternal() {}
+  union {
+    ClientHeartbeatRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientHeartbeatResDefaultTypeInternal _ClientHeartbeatRes_default_instance_;
+
+inline constexpr ClientHeartbeatReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : account_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        token_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        address_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ClientHeartbeatReq::ClientHeartbeatReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct ClientHeartbeatReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ClientHeartbeatReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ClientHeartbeatReqDefaultTypeInternal() {}
+  union {
+    ClientHeartbeatReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientHeartbeatReqDefaultTypeInternal _ClientHeartbeatReq_default_instance_;
 }  // namespace rpc_server
-static ::_pb::Metadata file_level_metadata_server_5fgateway_2eproto[2];
+static ::_pb::Metadata file_level_metadata_server_5fgateway_2eproto[6];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_server_5fgateway_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_server_5fgateway_2eproto = nullptr;
@@ -92,42 +193,104 @@ const ::uint32_t TableStruct_server_5fgateway_2eproto::offsets[] PROTOBUF_SECTIO
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardRes, _impl_.success_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::ForwardRes, _impl_.response_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetFileServerAddressReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetFileServerAddressReq, _impl_.account_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetFileServerAddressReq, _impl_.token_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetFileServerAddressRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetFileServerAddressRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetFileServerAddressRes, _impl_.address_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetFileServerAddressRes, _impl_.port_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetFileServerAddressRes, _impl_.message_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ClientHeartbeatReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ClientHeartbeatReq, _impl_.account_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ClientHeartbeatReq, _impl_.token_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ClientHeartbeatReq, _impl_.address_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ClientHeartbeatRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ClientHeartbeatRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ClientHeartbeatRes, _impl_.message_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::rpc_server::ForwardReq)},
         {10, -1, -1, sizeof(::rpc_server::ForwardRes)},
+        {20, -1, -1, sizeof(::rpc_server::GetFileServerAddressReq)},
+        {30, -1, -1, sizeof(::rpc_server::GetFileServerAddressRes)},
+        {42, -1, -1, sizeof(::rpc_server::ClientHeartbeatReq)},
+        {53, -1, -1, sizeof(::rpc_server::ClientHeartbeatRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
     &::rpc_server::_ForwardReq_default_instance_._instance,
     &::rpc_server::_ForwardRes_default_instance_._instance,
+    &::rpc_server::_GetFileServerAddressReq_default_instance_._instance,
+    &::rpc_server::_GetFileServerAddressRes_default_instance_._instance,
+    &::rpc_server::_ClientHeartbeatReq_default_instance_._instance,
+    &::rpc_server::_ClientHeartbeatRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fgateway_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\024server_gateway.proto\022\nrpc_server\"L\n\nFo"
     "rwardReq\022-\n\014service_type\030\001 \001(\0162\027.rpc_ser"
     "ver.ServiceType\022\017\n\007payload\030\002 \001(\014\"/\n\nForw"
     "ardRes\022\017\n\007success\030\001 \001(\010\022\020\n\010response\030\002 \001("
-    "\014*\233\001\n\013ServiceType\022\r\n\tREQ_LOGIN\020\000\022\r\n\tRES_"
-    "LOGIN\020\001\022\016\n\nREQ_LOGOUT\020\002\022\016\n\nRES_LOGOUT\020\003\022"
-    "\020\n\014REQ_REGISTER\020\004\022\020\n\014RES_REGISTER\020\005\022\024\n\020R"
-    "EQ_AUTHENTICATE\020\006\022\024\n\020RES_AUTHENTICATE\020\0072"
-    "R\n\rGatewayServer\022A\n\017Request_forward\022\026.rp"
-    "c_server.ForwardReq\032\026.rpc_server.Forward"
-    "Resb\006proto3"
+    "\014\"9\n\027GetFileServerAddressReq\022\017\n\007account\030"
+    "\001 \001(\014\022\r\n\005token\030\002 \001(\014\"Z\n\027GetFileServerAdd"
+    "ressRes\022\017\n\007success\030\001 \001(\010\022\017\n\007address\030\002 \001("
+    "\014\022\014\n\004port\030\003 \001(\014\022\017\n\007message\030\004 \001(\014\"E\n\022Clie"
+    "ntHeartbeatReq\022\017\n\007account\030\001 \001(\014\022\r\n\005token"
+    "\030\002 \001(\014\022\017\n\007address\030\003 \001(\014\"6\n\022ClientHeartbe"
+    "atRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014*"
+    "\233\001\n\013ServiceType\022\r\n\tREQ_LOGIN\020\000\022\r\n\tRES_LO"
+    "GIN\020\001\022\016\n\nREQ_LOGOUT\020\002\022\016\n\nRES_LOGOUT\020\003\022\020\n"
+    "\014REQ_REGISTER\020\004\022\020\n\014RES_REGISTER\020\005\022\024\n\020REQ"
+    "_AUTHENTICATE\020\006\022\024\n\020RES_AUTHENTICATE\020\0072\213\002"
+    "\n\rGatewayServer\022A\n\017Request_forward\022\026.rpc"
+    "_server.ForwardReq\032\026.rpc_server.ForwardR"
+    "es\022c\n\027Get_file_server_address\022#.rpc_serv"
+    "er.GetFileServerAddressReq\032#.rpc_server."
+    "GetFileServerAddressRes\022R\n\020Client_heartb"
+    "eat\022\036.rpc_server.ClientHeartbeatReq\032\036.rp"
+    "c_server.ClientHeartbeatResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fgateway_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fgateway_2eproto = {
     false,
     false,
-    411,
+    875,
     descriptor_table_protodef_server_5fgateway_2eproto,
     "server_gateway.proto",
     &descriptor_table_server_5fgateway_2eproto_once,
     nullptr,
     0,
-    2,
+    6,
     schemas,
     file_default_instances,
     TableStruct_server_5fgateway_2eproto::offsets,
@@ -583,6 +746,927 @@ void ForwardRes::InternalSwap(ForwardRes* PROTOBUF_RESTRICT other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fgateway_2eproto_getter, &descriptor_table_server_5fgateway_2eproto_once,
       file_level_metadata_server_5fgateway_2eproto[1]);
+}
+// ===================================================================
+
+class GetFileServerAddressReq::_Internal {
+ public:
+};
+
+GetFileServerAddressReq::GetFileServerAddressReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.GetFileServerAddressReq)
+}
+inline PROTOBUF_NDEBUG_INLINE GetFileServerAddressReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : account_(arena, from.account_),
+        token_(arena, from.token_),
+        _cached_size_{0} {}
+
+GetFileServerAddressReq::GetFileServerAddressReq(
+    ::google::protobuf::Arena* arena,
+    const GetFileServerAddressReq& from)
+    : ::google::protobuf::Message(arena) {
+  GetFileServerAddressReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.GetFileServerAddressReq)
+}
+inline PROTOBUF_NDEBUG_INLINE GetFileServerAddressReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : account_(arena),
+        token_(arena),
+        _cached_size_{0} {}
+
+inline void GetFileServerAddressReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+GetFileServerAddressReq::~GetFileServerAddressReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.GetFileServerAddressReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetFileServerAddressReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.account_.Destroy();
+  _impl_.token_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void GetFileServerAddressReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.GetFileServerAddressReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.account_.ClearToEmpty();
+  _impl_.token_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* GetFileServerAddressReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> GetFileServerAddressReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetFileServerAddressReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bytes token = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GetFileServerAddressReq, _impl_.token_)}},
+    // bytes account = 1;
+    {::_pbi::TcParser::FastBS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetFileServerAddressReq, _impl_.account_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bytes account = 1;
+    {PROTOBUF_FIELD_OFFSET(GetFileServerAddressReq, _impl_.account_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes token = 2;
+    {PROTOBUF_FIELD_OFFSET(GetFileServerAddressReq, _impl_.token_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* GetFileServerAddressReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GetFileServerAddressReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    const std::string& _s = this->_internal_account();
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
+  }
+
+  // bytes token = 2;
+  if (!this->_internal_token().empty()) {
+    const std::string& _s = this->_internal_token();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GetFileServerAddressReq)
+  return target;
+}
+
+::size_t GetFileServerAddressReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.GetFileServerAddressReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_account());
+  }
+
+  // bytes token = 2;
+  if (!this->_internal_token().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_token());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData GetFileServerAddressReq::_class_data_ = {
+    GetFileServerAddressReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* GetFileServerAddressReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void GetFileServerAddressReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetFileServerAddressReq*>(&to_msg);
+  auto& from = static_cast<const GetFileServerAddressReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GetFileServerAddressReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_account().empty()) {
+    _this->_internal_set_account(from._internal_account());
+  }
+  if (!from._internal_token().empty()) {
+    _this->_internal_set_token(from._internal_token());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetFileServerAddressReq::CopyFrom(const GetFileServerAddressReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GetFileServerAddressReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool GetFileServerAddressReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* GetFileServerAddressReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetFileServerAddressReq::InternalSwap(GetFileServerAddressReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_, &other->_impl_.account_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.token_, &other->_impl_.token_, arena);
+}
+
+::google::protobuf::Metadata GetFileServerAddressReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fgateway_2eproto_getter, &descriptor_table_server_5fgateway_2eproto_once,
+      file_level_metadata_server_5fgateway_2eproto[2]);
+}
+// ===================================================================
+
+class GetFileServerAddressRes::_Internal {
+ public:
+};
+
+GetFileServerAddressRes::GetFileServerAddressRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.GetFileServerAddressRes)
+}
+inline PROTOBUF_NDEBUG_INLINE GetFileServerAddressRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : address_(arena, from.address_),
+        port_(arena, from.port_),
+        message_(arena, from.message_),
+        _cached_size_{0} {}
+
+GetFileServerAddressRes::GetFileServerAddressRes(
+    ::google::protobuf::Arena* arena,
+    const GetFileServerAddressRes& from)
+    : ::google::protobuf::Message(arena) {
+  GetFileServerAddressRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.GetFileServerAddressRes)
+}
+inline PROTOBUF_NDEBUG_INLINE GetFileServerAddressRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : address_(arena),
+        port_(arena),
+        message_(arena),
+        _cached_size_{0} {}
+
+inline void GetFileServerAddressRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+GetFileServerAddressRes::~GetFileServerAddressRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.GetFileServerAddressRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetFileServerAddressRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.address_.Destroy();
+  _impl_.port_.Destroy();
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void GetFileServerAddressRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.GetFileServerAddressRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.address_.ClearToEmpty();
+  _impl_.port_.ClearToEmpty();
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* GetFileServerAddressRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 0, 0, 2> GetFileServerAddressRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    4, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967280,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetFileServerAddressRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bytes message = 4;
+    {::_pbi::TcParser::FastBS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(GetFileServerAddressRes, _impl_.message_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetFileServerAddressRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(GetFileServerAddressRes, _impl_.success_)}},
+    // bytes address = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GetFileServerAddressRes, _impl_.address_)}},
+    // bytes port = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(GetFileServerAddressRes, _impl_.port_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(GetFileServerAddressRes, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bytes address = 2;
+    {PROTOBUF_FIELD_OFFSET(GetFileServerAddressRes, _impl_.address_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes port = 3;
+    {PROTOBUF_FIELD_OFFSET(GetFileServerAddressRes, _impl_.port_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes message = 4;
+    {PROTOBUF_FIELD_OFFSET(GetFileServerAddressRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* GetFileServerAddressRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GetFileServerAddressRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // bytes address = 2;
+  if (!this->_internal_address().empty()) {
+    const std::string& _s = this->_internal_address();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  // bytes port = 3;
+  if (!this->_internal_port().empty()) {
+    const std::string& _s = this->_internal_port();
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
+  }
+
+  // bytes message = 4;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    target = stream->WriteBytesMaybeAliased(4, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GetFileServerAddressRes)
+  return target;
+}
+
+::size_t GetFileServerAddressRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.GetFileServerAddressRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes address = 2;
+  if (!this->_internal_address().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_address());
+  }
+
+  // bytes port = 3;
+  if (!this->_internal_port().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_port());
+  }
+
+  // bytes message = 4;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_message());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData GetFileServerAddressRes::_class_data_ = {
+    GetFileServerAddressRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* GetFileServerAddressRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void GetFileServerAddressRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetFileServerAddressRes*>(&to_msg);
+  auto& from = static_cast<const GetFileServerAddressRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GetFileServerAddressRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_address().empty()) {
+    _this->_internal_set_address(from._internal_address());
+  }
+  if (!from._internal_port().empty()) {
+    _this->_internal_set_port(from._internal_port());
+  }
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetFileServerAddressRes::CopyFrom(const GetFileServerAddressRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GetFileServerAddressRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool GetFileServerAddressRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* GetFileServerAddressRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetFileServerAddressRes::InternalSwap(GetFileServerAddressRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.address_, &other->_impl_.address_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.port_, &other->_impl_.port_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata GetFileServerAddressRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fgateway_2eproto_getter, &descriptor_table_server_5fgateway_2eproto_once,
+      file_level_metadata_server_5fgateway_2eproto[3]);
+}
+// ===================================================================
+
+class ClientHeartbeatReq::_Internal {
+ public:
+};
+
+ClientHeartbeatReq::ClientHeartbeatReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ClientHeartbeatReq)
+}
+inline PROTOBUF_NDEBUG_INLINE ClientHeartbeatReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : account_(arena, from.account_),
+        token_(arena, from.token_),
+        address_(arena, from.address_),
+        _cached_size_{0} {}
+
+ClientHeartbeatReq::ClientHeartbeatReq(
+    ::google::protobuf::Arena* arena,
+    const ClientHeartbeatReq& from)
+    : ::google::protobuf::Message(arena) {
+  ClientHeartbeatReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.ClientHeartbeatReq)
+}
+inline PROTOBUF_NDEBUG_INLINE ClientHeartbeatReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : account_(arena),
+        token_(arena),
+        address_(arena),
+        _cached_size_{0} {}
+
+inline void ClientHeartbeatReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+ClientHeartbeatReq::~ClientHeartbeatReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.ClientHeartbeatReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ClientHeartbeatReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.account_.Destroy();
+  _impl_.token_.Destroy();
+  _impl_.address_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ClientHeartbeatReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.ClientHeartbeatReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.account_.ClearToEmpty();
+  _impl_.token_.ClearToEmpty();
+  _impl_.address_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ClientHeartbeatReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> ClientHeartbeatReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ClientHeartbeatReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // bytes account = 1;
+    {::_pbi::TcParser::FastBS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ClientHeartbeatReq, _impl_.account_)}},
+    // bytes token = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ClientHeartbeatReq, _impl_.token_)}},
+    // bytes address = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ClientHeartbeatReq, _impl_.address_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bytes account = 1;
+    {PROTOBUF_FIELD_OFFSET(ClientHeartbeatReq, _impl_.account_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes token = 2;
+    {PROTOBUF_FIELD_OFFSET(ClientHeartbeatReq, _impl_.token_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes address = 3;
+    {PROTOBUF_FIELD_OFFSET(ClientHeartbeatReq, _impl_.address_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ClientHeartbeatReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ClientHeartbeatReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    const std::string& _s = this->_internal_account();
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
+  }
+
+  // bytes token = 2;
+  if (!this->_internal_token().empty()) {
+    const std::string& _s = this->_internal_token();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  // bytes address = 3;
+  if (!this->_internal_address().empty()) {
+    const std::string& _s = this->_internal_address();
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ClientHeartbeatReq)
+  return target;
+}
+
+::size_t ClientHeartbeatReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ClientHeartbeatReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_account());
+  }
+
+  // bytes token = 2;
+  if (!this->_internal_token().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_token());
+  }
+
+  // bytes address = 3;
+  if (!this->_internal_address().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_address());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ClientHeartbeatReq::_class_data_ = {
+    ClientHeartbeatReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ClientHeartbeatReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void ClientHeartbeatReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ClientHeartbeatReq*>(&to_msg);
+  auto& from = static_cast<const ClientHeartbeatReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ClientHeartbeatReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_account().empty()) {
+    _this->_internal_set_account(from._internal_account());
+  }
+  if (!from._internal_token().empty()) {
+    _this->_internal_set_token(from._internal_token());
+  }
+  if (!from._internal_address().empty()) {
+    _this->_internal_set_address(from._internal_address());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ClientHeartbeatReq::CopyFrom(const ClientHeartbeatReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ClientHeartbeatReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ClientHeartbeatReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ClientHeartbeatReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ClientHeartbeatReq::InternalSwap(ClientHeartbeatReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_, &other->_impl_.account_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.token_, &other->_impl_.token_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.address_, &other->_impl_.address_, arena);
+}
+
+::google::protobuf::Metadata ClientHeartbeatReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fgateway_2eproto_getter, &descriptor_table_server_5fgateway_2eproto_once,
+      file_level_metadata_server_5fgateway_2eproto[4]);
+}
+// ===================================================================
+
+class ClientHeartbeatRes::_Internal {
+ public:
+};
+
+ClientHeartbeatRes::ClientHeartbeatRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.ClientHeartbeatRes)
+}
+inline PROTOBUF_NDEBUG_INLINE ClientHeartbeatRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+ClientHeartbeatRes::ClientHeartbeatRes(
+    ::google::protobuf::Arena* arena,
+    const ClientHeartbeatRes& from)
+    : ::google::protobuf::Message(arena) {
+  ClientHeartbeatRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.ClientHeartbeatRes)
+}
+inline PROTOBUF_NDEBUG_INLINE ClientHeartbeatRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void ClientHeartbeatRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+ClientHeartbeatRes::~ClientHeartbeatRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.ClientHeartbeatRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void ClientHeartbeatRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void ClientHeartbeatRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.ClientHeartbeatRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* ClientHeartbeatRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> ClientHeartbeatRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_ClientHeartbeatRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ClientHeartbeatRes, _impl_.message_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(ClientHeartbeatRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(ClientHeartbeatRes, _impl_.success_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(ClientHeartbeatRes, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bytes message = 2;
+    {PROTOBUF_FIELD_OFFSET(ClientHeartbeatRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* ClientHeartbeatRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.ClientHeartbeatRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // bytes message = 2;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.ClientHeartbeatRes)
+  return target;
+}
+
+::size_t ClientHeartbeatRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.ClientHeartbeatRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes message = 2;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_message());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData ClientHeartbeatRes::_class_data_ = {
+    ClientHeartbeatRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* ClientHeartbeatRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void ClientHeartbeatRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<ClientHeartbeatRes*>(&to_msg);
+  auto& from = static_cast<const ClientHeartbeatRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.ClientHeartbeatRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ClientHeartbeatRes::CopyFrom(const ClientHeartbeatRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.ClientHeartbeatRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool ClientHeartbeatRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* ClientHeartbeatRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void ClientHeartbeatRes::InternalSwap(ClientHeartbeatRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata ClientHeartbeatRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fgateway_2eproto_getter, &descriptor_table_server_5fgateway_2eproto_once,
+      file_level_metadata_server_5fgateway_2eproto[5]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace rpc_server

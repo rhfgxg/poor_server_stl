@@ -31,7 +31,12 @@ public:
 
     // 文件上传服务
     grpc::Status Upload(grpc::ServerContext* context, const rpc_server::UploadReq* req, rpc_server::UploadRes* res);
-
+    // 文件下载服务
+    grpc::Status Download(grpc::ServerContext* context, const rpc_server::DownloadReq* req, rpc_server::DownloadRes* res);
+    // 文件删除服务
+    grpc::Status Delete(grpc::ServerContext* context, const rpc_server::DeleteFileReq* req, rpc_server::DeleteFileRes* res);
+    // 文件列表服务
+    grpc::Status ListFiles(grpc::ServerContext* context, const rpc_server::ListFilesReq* req, rpc_server::ListFilesRes* res);
 private:
     // 初始化
     void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口

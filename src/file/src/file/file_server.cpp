@@ -195,6 +195,24 @@ grpc::Status FileServerImpl::Upload(grpc::ServerContext* context, const rpc_serv
     return grpc::Status::OK;
 }
 
+// 文件下载服务
+grpc::Status FileServerImpl::Download(grpc::ServerContext* context, const rpc_server::DownloadReq* req, rpc_server::DownloadRes* res)
+{
+    return grpc::Status::OK;
+}
+
+// 文件删除服务
+grpc::Status FileServerImpl::Delete(grpc::ServerContext* context, const rpc_server::DeleteFileReq* req, rpc_server::DeleteFileRes* res)
+{
+    return grpc::Status::OK;
+}
+
+// 文件列表服务
+grpc::Status FileServerImpl::ListFiles(grpc::ServerContext* context, const rpc_server::ListFilesReq* req, rpc_server::ListFilesRes* res)
+{
+    return grpc::Status::OK;
+}
+
 /**************************************** grpc服务接口工具函数 **************************************************************************/
 
 /******************************************** 其他工具函数 ***********************************************/

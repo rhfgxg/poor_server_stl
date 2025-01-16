@@ -17,7 +17,7 @@ service CentralServer
 {
     rpc Register_server (RegisterServerReq) returns (RegisterServerRes);    // 服务器注册
     rpc Unregister_server (UnregisterServerReq) returns (UnregisterServerRes);    // 服务器断开
-    rpc Get_connec_poor (ConnectPoorReq) returns (ConnectPoorRes);    // 获取连接池信息
+    rpc Get_connec_poor (MultipleConnectPoorReq) returns (MultipleConnectPoorRes);    // 获取多个连接池信息
     rpc Heartbeat (HeartbeatReq) returns (HeartbeatRes);    // 接收心跳包
 }
 
@@ -25,59 +25,65 @@ service CentralServer
 message RegisterServerReq
 {
     ServerType server_type = 1;  // 服务器类型
-    string address = 2;  // 服务器地址
-    string port = 3;  // 服务器端口
+    bytes address = 2;  // 服务器地址
+    bytes port = 3;  // 服务器端口
 }
 // 注册服务器响应
 message RegisterServerRes 
 {
     bool success = 1;
-    string message = 2;
+    bytes message = 2;
 }
 
 // 断开服务器连接请求
 message UnregisterServerReq 
 {
     ServerType server_type = 1;  // 服务器类型
-    string address = 2;  // 服务器地址
-    string port = 3;  // 服务器端口
+    bytes address = 2;  // 服务器地址
+    bytes port = 3;  // 服务器端口
 }
 // 断开服务器连接响应
 message UnregisterServerRes
 {
     bool success = 1;
-    string message = 2;
+    bytes message = 2;
 }
 
 // 获取连接池信息请求
-message ConnectPoorReq
+message MultipleConnectPoorReq
 {
-    ServerType server_type = 1;  // 目标服务器类型
+    repeated ServerType server_types = 1; // 请求多个服务器类型的连接池
 }
 // 获取连接池信息响应
-message ConnectPoorRes
+message MultipleConnectPoorRes
 {
     bool success = 1;
-    repeated ConnectInfo connect_info = 2;  // 连接池信息
-    string message = 3;
+    repeated ConnectPool connect_pools = 2; // 返回多个连接池
+    bytes message = 3;
 }
 // 连接信息
 message ConnectInfo
 {
-    string address = 1;  // 目标服务器地址
+    bytes address = 1;  // 目标服务器地址
     int32 port = 2;  // 目标服务器端口
+}
+// 连接池信息
+message ConnectPool
+{
+    ServerType server_type = 1;
+    repeated ConnectInfo connect_info = 2;
 }
 
 // 心跳请求
 message HeartbeatReq
 {
     ServerType server_type = 1;  // 服务器类型
-    string address = 2;  // 服务器地址
-    string port = 3;  // 服务器端口
+    bytes address = 2;  // 服务器地址
+    bytes port = 3;  // 服务器端口
 }
 // 心跳响应
 message HeartbeatRes
 {
     bool success = 1;
-    string message = 2;
+    bytes message = 2;
 }

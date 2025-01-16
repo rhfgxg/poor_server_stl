@@ -4,6 +4,7 @@
 #include "server_gateway.grpc.pb.h"
 #include "server_central.grpc.pb.h"
 #include "server_login.grpc.pb.h"
+#include "server_file.grpc.pb.h"
 #include "connection_pool.h"    // 连接池
 #include "logger_manager.h"     // 日志管理器
 
@@ -31,6 +32,10 @@ public:
 
     // 转发服务请求
     grpc::Status Request_forward(grpc::ServerContext* context, const rpc_server::ForwardReq* req, rpc_server::ForwardRes* res);
+    // 获取文件服务器地址
+    grpc::Status Get_file_server_address(grpc::ServerContext* context, const rpc_server::GetFileServerAddressReq* req, rpc_server::GetFileServerAddressRes* res);
+    // 接收客户端心跳
+    grpc::Status Client_heartbeat(grpc::ServerContext* context, const rpc_server::ClientHeartbeatReq* req, rpc_server::ClientHeartbeatRes* res);
 
 private:
     // 初始化
@@ -59,6 +64,7 @@ private:
 
     std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;  // 中心服务器的服务存根
     ConnectionPool login_connection_pool;   // 登录服务器连接池
+    ConnectionPool file_connection_pool;    // 文件服务器连接池
 
     std::vector<std::thread> thread_pool;   // 线程池
     std::queue<std::function<void()>> task_queue;    // 任务队列

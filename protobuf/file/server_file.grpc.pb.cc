@@ -23,6 +23,9 @@ namespace rpc_server {
 
 static const char* FileServer_method_names[] = {
   "/rpc_server.FileServer/Upload",
+  "/rpc_server.FileServer/Download",
+  "/rpc_server.FileServer/Delete",
+  "/rpc_server.FileServer/ListFiles",
 };
 
 std::unique_ptr< FileServer::Stub> FileServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -33,6 +36,9 @@ std::unique_ptr< FileServer::Stub> FileServer::NewStub(const std::shared_ptr< ::
 
 FileServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_Upload_(FileServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Download_(FileServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Delete_(FileServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListFiles_(FileServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status FileServer::Stub::Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::rpc_server::UploadRes* response) {
@@ -58,6 +64,75 @@ void FileServer::Stub::async::Upload(::grpc::ClientContext* context, const ::rpc
   return result;
 }
 
+::grpc::Status FileServer::Stub::Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::rpc_server::DownloadRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::DownloadReq, ::rpc_server::DownloadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Download_, context, request, response);
+}
+
+void FileServer::Stub::async::Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq* request, ::rpc_server::DownloadRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::DownloadReq, ::rpc_server::DownloadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Download_, context, request, response, std::move(f));
+}
+
+void FileServer::Stub::async::Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq* request, ::rpc_server::DownloadRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Download_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::DownloadRes>* FileServer::Stub::PrepareAsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::DownloadRes, ::rpc_server::DownloadReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Download_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::DownloadRes>* FileServer::Stub::AsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDownloadRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status FileServer::Stub::Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::rpc_server::DeleteFileRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::DeleteFileReq, ::rpc_server::DeleteFileRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Delete_, context, request, response);
+}
+
+void FileServer::Stub::async::Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq* request, ::rpc_server::DeleteFileRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::DeleteFileReq, ::rpc_server::DeleteFileRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, std::move(f));
+}
+
+void FileServer::Stub::async::Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq* request, ::rpc_server::DeleteFileRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Delete_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteFileRes>* FileServer::Stub::PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::DeleteFileRes, ::rpc_server::DeleteFileReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Delete_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteFileRes>* FileServer::Stub::AsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDeleteRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status FileServer::Stub::ListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::rpc_server::ListFilesRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::ListFilesReq, ::rpc_server::ListFilesRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ListFiles_, context, request, response);
+}
+
+void FileServer::Stub::async::ListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq* request, ::rpc_server::ListFilesRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::ListFilesReq, ::rpc_server::ListFilesRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListFiles_, context, request, response, std::move(f));
+}
+
+void FileServer::Stub::async::ListFiles(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq* request, ::rpc_server::ListFilesRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ListFiles_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::ListFilesRes>* FileServer::Stub::PrepareAsyncListFilesRaw(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::ListFilesRes, ::rpc_server::ListFilesReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ListFiles_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::ListFilesRes>* FileServer::Stub::AsyncListFilesRaw(::grpc::ClientContext* context, const ::rpc_server::ListFilesReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncListFilesRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 FileServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       FileServer_method_names[0],
@@ -69,12 +144,63 @@ FileServer::Service::Service() {
              ::rpc_server::UploadRes* resp) {
                return service->Upload(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileServer_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileServer::Service, ::rpc_server::DownloadReq, ::rpc_server::DownloadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::DownloadReq* req,
+             ::rpc_server::DownloadRes* resp) {
+               return service->Download(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileServer_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileServer::Service, ::rpc_server::DeleteFileReq, ::rpc_server::DeleteFileRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::DeleteFileReq* req,
+             ::rpc_server::DeleteFileRes* resp) {
+               return service->Delete(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileServer_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileServer::Service, ::rpc_server::ListFilesReq, ::rpc_server::ListFilesRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::ListFilesReq* req,
+             ::rpc_server::ListFilesRes* resp) {
+               return service->ListFiles(ctx, req, resp);
+             }, this)));
 }
 
 FileServer::Service::~Service() {
 }
 
 ::grpc::Status FileServer::Service::Upload(::grpc::ServerContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FileServer::Service::Download(::grpc::ServerContext* context, const ::rpc_server::DownloadReq* request, ::rpc_server::DownloadRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FileServer::Service::Delete(::grpc::ServerContext* context, const ::rpc_server::DeleteFileReq* request, ::rpc_server::DeleteFileRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status FileServer::Service::ListFiles(::grpc::ServerContext* context, const ::rpc_server::ListFilesReq* request, ::rpc_server::ListFilesRes* response) {
   (void) context;
   (void) request;
   (void) response;

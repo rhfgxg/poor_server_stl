@@ -1,13 +1,16 @@
 #include "login_server.h"
 
-
 LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_):
-    server_type(rpc_server::ServerType::LOGIN),    // 服务器类型
-    logger_manager(logger_manager_),	// 日志管理器
-    central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 链接中心服务器
-    db_connection_pool(10) // 初始化数据库服务器连接池，设置连接池大小为10
+    server_type(rpc_server::ServerType::LOGIN),
+    logger_manager(logger_manager_),
+    redis_client(),
+    central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))),
+    db_connection_pool(10)
 {
     Read_server_config();   // 读取配置文件并初始化服务器地址和端口
+
+    redis_client.get_client()->connect("127.0.0.1", 6379); // 连接Redis服务器
+    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("redis connection successful");
 
     register_server(); // 注册服务器
 
@@ -164,25 +167,35 @@ void LoginServerImpl::Init_connection_pool()
     // 客户端
     grpc::ClientContext context;
     // 请求
-    rpc_server::ConnectPoorReq request;
-    request.set_server_type(rpc_server::ServerType::DATA);
+    rpc_server::MultipleConnectPoorReq req;
+    req.add_server_types(rpc_server::ServerType::DATA);
     // 响应
-    rpc_server::ConnectPoorRes response;
+    rpc_server::MultipleConnectPoorRes res;
 
-    grpc::Status status = central_stub->Get_connec_poor(&context, request, &response);
-
-    if (status.ok())
+    grpc::Status status = central_stub->Get_connec_poor(&context, req, &res);
+    if(status.ok() && res.success())
     {
-        // 更新登录服务器连接池
-        for (const auto& server_info : response.connect_info())
+        for(const rpc_server::ConnectPool& connect_pool : *res.mutable_connect_pools())
         {
-            this->db_connection_pool.add_server(rpc_server::ServerType::DATA, server_info.address(), std::to_string(server_info.port()));
+            for(const rpc_server::ConnectInfo& conn_info : connect_pool.connect_info())
+            {
+                switch(connect_pool.server_type())
+                {
+                case rpc_server::ServerType::DATA:
+                {
+                    db_connection_pool.add_server(rpc_server::ServerType::DATA, conn_info.address(), std::to_string(conn_info.port()));
+                    break;
+                }
+                default:
+                break;
+                }
+            }
         }
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Connection pool updated successfully");
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login server updated connection pools successfully");
     }
     else
     {
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->error("Failed to retrieve connection pool information");
+        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->error("Failed to get connection pools information");
     }
 }
 

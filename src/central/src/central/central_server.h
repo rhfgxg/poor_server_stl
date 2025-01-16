@@ -3,10 +3,10 @@
 
 #include "server_central.grpc.pb.h" // 中心服务器
 #include "server_data.grpc.pb.h"    // 数据库服务器
+#include "server_file.grpc.pb.h"    // 文件服务器
 #include "server_gateway.grpc.pb.h" // 网关服务器
 #include "server_login.grpc.pb.h"   // 登录服务器
 #include "server_logic.grpc.pb.h"   // 逻辑服务器
-#include "server_file.grpc.pb.h"    // 文件服务器
 #include "connection_pool.h"    // 连接池
 #include "logger_manager.h"     // 日志管理器
 
@@ -43,7 +43,7 @@ public:
     // 服务器断开
     grpc::Status Unregister_server(grpc::ServerContext* context, const rpc_server::UnregisterServerReq* req, rpc_server::UnregisterServerRes* res);
     // 获取连接池中所有链接
-    grpc::Status Get_connec_poor(grpc::ServerContext* context, const rpc_server::ConnectPoorReq* req, rpc_server::ConnectPoorRes* res);
+    grpc::Status Get_connec_poor(grpc::ServerContext* context, const rpc_server::MultipleConnectPoorReq* req, rpc_server::MultipleConnectPoorRes* res);
     // 接收心跳包
     grpc::Status Heartbeat(grpc::ServerContext* context, const rpc_server::HeartbeatReq* req, rpc_server::HeartbeatRes* res);
 
@@ -61,8 +61,12 @@ private:    // 私有函数
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 线程池工作函数
 
+    // 执行注册服务器
+    void Handle_register_server(const rpc_server::RegisterServerReq* req, rpc_server::RegisterServerRes* res);
     // 释放连接池中服务器连接
-    void Release_server_connection(rpc_server::ServerType server_type,const std::string& address,const std::string& port);
+    void Release_server_connection(rpc_server::ServerType server_type, const std::string& address, const std::string& port);
+    // 返回连接池中的连接
+    void All_connec_poor(const rpc_server::MultipleConnectPoorReq* req, rpc_server::MultipleConnectPoorRes* res);
 
 private:    // 私有成员
     std::string server_address; // 服务器地址

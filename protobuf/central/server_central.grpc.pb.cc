@@ -87,23 +87,23 @@ void CentralServer::Stub::async::Unregister_server(::grpc::ClientContext* contex
   return result;
 }
 
-::grpc::Status CentralServer::Stub::Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::rpc_server::ConnectPoorRes* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::ConnectPoorReq, ::rpc_server::ConnectPoorRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_connec_poor_, context, request, response);
+::grpc::Status CentralServer::Stub::Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::rpc_server::MultipleConnectPoorRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::MultipleConnectPoorReq, ::rpc_server::MultipleConnectPoorRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_connec_poor_, context, request, response);
 }
 
-void CentralServer::Stub::async::Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq* request, ::rpc_server::ConnectPoorRes* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::ConnectPoorReq, ::rpc_server::ConnectPoorRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_connec_poor_, context, request, response, std::move(f));
+void CentralServer::Stub::async::Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq* request, ::rpc_server::MultipleConnectPoorRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::MultipleConnectPoorReq, ::rpc_server::MultipleConnectPoorRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_connec_poor_, context, request, response, std::move(f));
 }
 
-void CentralServer::Stub::async::Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq* request, ::rpc_server::ConnectPoorRes* response, ::grpc::ClientUnaryReactor* reactor) {
+void CentralServer::Stub::async::Get_connec_poor(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq* request, ::rpc_server::MultipleConnectPoorRes* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_connec_poor_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorRes>* CentralServer::Stub::PrepareAsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::ConnectPoorRes, ::rpc_server::ConnectPoorReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_connec_poor_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::MultipleConnectPoorRes>* CentralServer::Stub::PrepareAsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::MultipleConnectPoorRes, ::rpc_server::MultipleConnectPoorReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_connec_poor_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::ConnectPoorRes>* CentralServer::Stub::AsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::ConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::MultipleConnectPoorRes>* CentralServer::Stub::AsyncGet_connec_poorRaw(::grpc::ClientContext* context, const ::rpc_server::MultipleConnectPoorReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGet_connec_poorRaw(context, request, cq);
   result->StartCall();
@@ -157,11 +157,11 @@ CentralServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       CentralServer_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::rpc_server::ConnectPoorReq, ::rpc_server::ConnectPoorRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< CentralServer::Service, ::rpc_server::MultipleConnectPoorReq, ::rpc_server::MultipleConnectPoorRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](CentralServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::ConnectPoorReq* req,
-             ::rpc_server::ConnectPoorRes* resp) {
+             const ::rpc_server::MultipleConnectPoorReq* req,
+             ::rpc_server::MultipleConnectPoorRes* resp) {
                return service->Get_connec_poor(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
@@ -193,7 +193,7 @@ CentralServer::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status CentralServer::Service::Get_connec_poor(::grpc::ServerContext* context, const ::rpc_server::ConnectPoorReq* request, ::rpc_server::ConnectPoorRes* response) {
+::grpc::Status CentralServer::Service::Get_connec_poor(::grpc::ServerContext* context, const ::rpc_server::MultipleConnectPoorReq* request, ::rpc_server::MultipleConnectPoorRes* response) {
   (void) context;
   (void) request;
   (void) response;

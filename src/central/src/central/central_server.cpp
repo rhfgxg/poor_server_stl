@@ -124,76 +124,13 @@ grpc::Status CentralServerImpl::Register_server(grpc::ServerContext* context, co
   * 请求与响应定义在 服务器对应的 proto文件中
   */
 
-    auto task_future = this->add_async_task([this,req,res] {
-        rpc_server::ServerType server_type = req->server_type(); // 服务器类型
-        std::string address = req->address();   // 服务器地址
-        std::string port = req->port(); // 服务器端口
-
-        // 根据服务器类型，将服务器加入连接池
-        switch(server_type)
-        {
-        case rpc_server::ServerType::CENTRAL:    // 中心服务器
-        {
-            // 将链接加入连接池并记录日志
-            this->central_connection_pool.add_server(rpc_server::ServerType::CENTRAL, address, port);
-            this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}",address,port);
-            res->set_success(true);
-            res->set_message("Server registered successfully");
-            break;
-        }
-        case rpc_server::ServerType::DATA:   // 数据库服务器
-        {
-            this->data_connection_pool.add_server(rpc_server::ServerType::DATA, address, port);
-            this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully registered a server: {} {}",address,port);
-            res->set_success(true);
-            res->set_message("Server registered successfully");
-            break;
-        }
-        case rpc_server::ServerType::GATEWAY:    // 网关服务器
-        {
-            this->gateway_connection_pool.add_server(rpc_server::ServerType::GATEWAY, address, port);
-            this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully registered a server: {} {}",address,port);
-            res->set_success(true);
-            res->set_message("Server registered successfully");
-            break;
-        }
-        case rpc_server::ServerType::LOGIC:      // 逻辑服务器
-        {
-            this->logic_connection_pool.add_server(rpc_server::ServerType::LOGIC, address, port);
-            this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Logic_connection_pool: successfully registered a server: {} {}",address,port);
-            res->set_success(true);
-            res->set_message("Server registered successfully");
-            break;
-        }
-        case rpc_server::ServerType::LOGIN:      // 登录服务器
-        {
-            this->login_connection_pool.add_server(rpc_server::ServerType::LOGIN, address, port);
-            this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully registered a server: {} {}",address,port);
-            res->set_success(true);
-            res->set_message("Server registered successfully");
-            break;
-        }
-        case rpc_server::ServerType::FILE:      // 文件服务器
-        {
-            this->file_connection_pool.add_server(rpc_server::ServerType::FILE, address, port);
-            this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("File_connection_pool: successfully registered a server: {} {}", address, port);
-
-            res->set_success(true);
-            res->set_message("Server registered successfully");
-            break;
-        }
-        default:
-        {
-            res->set_success(false);
-            res->set_message("Invalid server type");
-        }
-        }
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_register_server(req, res); // 执行注册服务器
     });
 
     // 等待任务完成
     task_future.get();
 
-    
     return grpc::Status::OK;
 }
 
@@ -218,62 +155,13 @@ grpc::Status CentralServerImpl::Unregister_server(grpc::ServerContext* context, 
 }
 
 // 获取连接池中所有链接
-grpc::Status CentralServerImpl::Get_connec_poor(grpc::ServerContext* context, const rpc_server::ConnectPoorReq* req, rpc_server::ConnectPoorRes* res)
+grpc::Status CentralServerImpl::Get_connec_poor(grpc::ServerContext* context, const rpc_server::MultipleConnectPoorReq* req, rpc_server::MultipleConnectPoorRes* res)
 {
-    rpc_server::ServerType server_type = req->server_type(); // 服务器类型  
+    auto task_future = this->add_async_task([this, req, res] {
+        this->All_connec_poor(req, res);
+    });
 
-    std::unordered_map<rpc_server::ServerType, std::vector<std::pair<std::string, std::string>>> connections;
-
-    switch(server_type)
-    {
-    case rpc_server::CENTRAL:    // 中心服务器
-    {
-        // 获取中央服务器连接池信息
-        connections = central_connection_pool.get_all_connections();
-        break;
-    }
-    case rpc_server::DATA:       // 数据库服务器
-    {
-        connections = data_connection_pool.get_all_connections();
-        break;
-    }
-    case rpc_server::GATEWAY:    // 网关服务器
-    {
-        connections = gateway_connection_pool.get_all_connections();
-        break;
-    }
-    case rpc_server::LOGIC:      // 逻辑服务器    
-    {
-        connections = logic_connection_pool.get_all_connections();
-        break;
-    }
-    case rpc_server::LOGIN:      // 登录服务器    
-    {
-        connections = login_connection_pool.get_all_connections();
-        break;
-    }
-    case rpc_server::FILE:      // 文件服务器    
-    {
-        connections = file_connection_pool.get_all_connections();
-        break;
-    }
-    default:
-    {
-        res->set_success(false);
-        res->set_message("Invalid server type");
-        return grpc::Status::OK;
-    }
-    }
-
-    for(const auto& connection : connections[server_type])
-    {
-        auto* conn_info = res->add_connect_info();
-        conn_info->set_address(connection.first);
-        conn_info->set_port(std::stoi(connection.second)); // 将端口从字符串转换为整数
-    }
-
-    res->set_success(true);
-    res->set_message("Connection pool information retrieved successfully");
+    task_future.get();
     return grpc::Status::OK;
 }
 
@@ -288,9 +176,76 @@ grpc::Status CentralServerImpl::Heartbeat(grpc::ServerContext* context, const rp
 }
 
 /************************************* grpc服务接口工具函数 **********************************************/
+// 执行注册服务器
+void CentralServerImpl::Handle_register_server(const rpc_server::RegisterServerReq* req, rpc_server::RegisterServerRes* res)
+{
+    rpc_server::ServerType server_type = req->server_type(); // 服务器类型
+    std::string address = req->address();   // 服务器地址
+    std::string port = req->port(); // 服务器端口
+
+    // 根据服务器类型，将服务器加入连接池
+    switch(server_type)
+    {
+    case rpc_server::ServerType::CENTRAL:    // 中心服务器
+    {
+        // 将链接加入连接池并记录日志
+        this->central_connection_pool.add_server(rpc_server::ServerType::CENTRAL, address, port);
+        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}", address, port);
+        res->set_success(true);
+        res->set_message("Server registered successfully");
+        break;
+    }
+    case rpc_server::ServerType::DATA:   // 数据库服务器
+    {
+        this->data_connection_pool.add_server(rpc_server::ServerType::DATA, address, port);
+        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully registered a server: {} {}", address, port);
+        res->set_success(true);
+        res->set_message("Server registered successfully");
+        break;
+    }
+    case rpc_server::ServerType::GATEWAY:    // 网关服务器
+    {
+        this->gateway_connection_pool.add_server(rpc_server::ServerType::GATEWAY, address, port);
+        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully registered a server: {} {}", address, port);
+        res->set_success(true);
+        res->set_message("Server registered successfully");
+        break;
+    }
+    case rpc_server::ServerType::LOGIC:      // 逻辑服务器
+    {
+        this->logic_connection_pool.add_server(rpc_server::ServerType::LOGIC, address, port);
+        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Logic_connection_pool: successfully registered a server: {} {}", address, port);
+        res->set_success(true);
+        res->set_message("Server registered successfully");
+        break;
+    }
+    case rpc_server::ServerType::LOGIN:      // 登录服务器
+    {
+        this->login_connection_pool.add_server(rpc_server::ServerType::LOGIN, address, port);
+        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully registered a server: {} {}", address, port);
+        res->set_success(true);
+        res->set_message("Server registered successfully");
+        break;
+    }
+    case rpc_server::ServerType::FILE:      // 文件服务器
+    {
+        this->file_connection_pool.add_server(rpc_server::ServerType::FILE, address, port);
+        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("File_connection_pool: successfully registered a server: {} {}", address, port);
+        res->set_success(true);
+        res->set_message("Server registered successfully");
+        break;
+    }
+    default:
+    {
+        res->set_success(false);
+        res->set_message("Invalid server type");
+    }
+    }
+}
+
 // 释放连接池中服务器连接
 void CentralServerImpl::Release_server_connection(rpc_server::ServerType server_type, const std::string& address,const std::string& port)
-{
+{// 被 Unregister_server() 和 check_heartbeat() 调用
     // 根据服务器类型，从连接池中删除服务器
     switch(server_type)
     {
@@ -325,13 +280,75 @@ void CentralServerImpl::Release_server_connection(rpc_server::ServerType server_
         this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Login_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
-    case rpc_server::ServerType::FILE:      // 登录服务器
+    case rpc_server::ServerType::FILE:      // 文件服务器
     {
         this->file_connection_pool.remove_server(rpc_server::ServerType::FILE, address, port);
         this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("File_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     }
+}
+
+// 获取链接池中的所有链接
+void CentralServerImpl::All_connec_poor(const rpc_server::MultipleConnectPoorReq* req, rpc_server::MultipleConnectPoorRes* res)
+{
+    for(const auto& server_type : req->server_types())
+    {
+        rpc_server::ConnectPool* connect_pool = res->add_connect_pools();
+        connect_pool->set_server_type(static_cast<rpc_server::ServerType>(server_type));
+
+        std::unordered_map<rpc_server::ServerType, std::vector<std::pair<std::string, std::string>>> connections;
+
+        switch(server_type)
+        {
+        case rpc_server::CENTRAL:
+        {
+            connections = central_connection_pool.get_all_connections();
+            break;
+        }
+        case rpc_server::DATA:
+        {
+            connections = data_connection_pool.get_all_connections();
+            break;
+        }
+        case rpc_server::GATEWAY:
+        {
+            connections = gateway_connection_pool.get_all_connections();
+            break;
+        }
+        case rpc_server::LOGIC:
+        {
+            connections = logic_connection_pool.get_all_connections();
+            break;
+        }
+        case rpc_server::LOGIN:
+        {
+            connections = login_connection_pool.get_all_connections();
+            break;
+        }
+        case rpc_server::FILE:
+        {
+            connections = file_connection_pool.get_all_connections();
+            break;
+        }
+        default:
+        {
+            res->set_success(false);
+            res->set_message("Invalid server type");
+            return;
+        }
+        }
+
+        for(const auto& connection : connections[static_cast<rpc_server::ServerType>(server_type)])
+        {
+            rpc_server::ConnectInfo* conn_info = connect_pool->add_connect_info();
+            conn_info->set_address(connection.first);
+            conn_info->set_port(std::stoi(connection.second));
+        }
+    }
+
+    res->set_success(true);
+    res->set_message("Connection pools information retrieved successfully");
 }
 
 /******************************************* 定时任务 **************************************************/
