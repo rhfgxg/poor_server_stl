@@ -21,7 +21,7 @@
 class GatewayServerImpl final: public rpc_server::GatewayServer::Service
 {
 public:
-    GatewayServerImpl(LoggerManager& logger_manager_);
+    GatewayServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port);
     ~GatewayServerImpl();
 
     void register_server(); // 注册服务器
@@ -39,7 +39,6 @@ public:
 
 private:
     // 初始化
-    void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
     void Init_connection_pool();    // 初始化链接池
 
     // 多线程

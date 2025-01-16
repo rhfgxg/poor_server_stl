@@ -26,7 +26,7 @@
 class LoginServerImpl final : public rpc_server::LoginServer::Service
 {
 public:
-    LoginServerImpl(LoggerManager& logger_manager_);	// 构造函数
+    LoginServerImpl(LoggerManager& logger_manager_, const std::string address, std::string port);	// 构造函数
     ~LoginServerImpl();	// 析构函数
 
     void register_server(); // 注册服务器
@@ -40,7 +40,6 @@ public:
     grpc::Status Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateReq* req, rpc_server::AuthenticateRes* res) override;   // 令牌验证
 
 private:
-    
     void Init_connection_pool();    // 初始化链接池
 
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
@@ -55,7 +54,6 @@ private:
     void Send_heartbeat();  // 发送心跳包
 
     // 工具函数
-    void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
     std::string GenerateToken(const std::string& account);    // 生成用户 token
     bool ValidateToken(const std::string& token, const std::string& account);  // 验证 token
 private:

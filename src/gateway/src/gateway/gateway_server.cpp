@@ -1,18 +1,16 @@
 #include "gateway_server.h"
 
-GatewayServerImpl::GatewayServerImpl(LoggerManager& logger_manager_):
-    server_type(rpc_server::ServerType::GATEWAY),    // 服务器类型
-    logger_manager(logger_manager_),  // 日志管理器   
+GatewayServerImpl::GatewayServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port):
+    server_type(rpc_server::ServerType::GATEWAY),
+    server_address(address),
+    server_port(port),
+    logger_manager(logger_manager_),  
     central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 中心服务器存根
-    login_connection_pool(10), // 初始化登录服务器连接池，设置连接池大小为10
-    file_connection_pool(10)   // 初始化文件服务器连接池，设置连接池大小为10
+    login_connection_pool(10),
+    file_connection_pool(10) 
 {
-    
-    this->Read_server_config();   // 读取配置文件并初始化服务器地址和端口
+    this->register_server();
 
-    this->register_server();  // 注册服务器
-
-    // 启动定时任务，
     // 定时向中心服务器获取最新的连接池状态
     std::thread(&GatewayServerImpl::Update_connection_pool, this).detach();
     // 定时向中心服务器发送心跳包
@@ -111,8 +109,8 @@ void GatewayServerImpl::register_server()
     // 请求
     rpc_server::RegisterServerReq request;
     request.set_server_type(rpc_server::ServerType::GATEWAY);
-    request.set_address("127.0.0.1");
-    request.set_port("50051");
+    request.set_address(this->server_address);
+    request.set_port(this->server_port);
     // 响应
     rpc_server::RegisterServerRes response;
 
@@ -123,12 +121,12 @@ void GatewayServerImpl::register_server()
 
     if(status.ok() && response.success())
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server registered successfully: {} {}", "localhost", "50051");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server registered successfully: {} {}", this->server_address, this->server_port);
         this->Init_connection_pool(); // 初始化连接池
     }
     else
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Gateway server registration failed: {} {}", "localhost", "50051");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Gateway server registration failed: {} {}", this->server_address, this->server_port);
     }
 }
 
@@ -140,8 +138,8 @@ void GatewayServerImpl::unregister_server()
     // 请求
     rpc_server::UnregisterServerReq request;
     request.set_server_type(rpc_server::ServerType::GATEWAY);
-    request.set_address("localhost");
-    request.set_port("50051");
+    request.set_address(this->server_address);
+    request.set_port(this->server_port);
 
     // 响应
     rpc_server::UnregisterServerRes response;
@@ -150,11 +148,11 @@ void GatewayServerImpl::unregister_server()
 
     if(status.ok() && response.success())
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server unregistered successfully: {} {}", "localhost", "50051");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server unregistered successfully: {} {}", this->server_address, this->server_port);
     }
     else
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("ERROR：Gateway server unregistration failed: {} {}", "localhost", "50051");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("ERROR：Gateway server unregistration failed: {} {}", this->server_address, this->server_port);
     }
 }
 
@@ -327,44 +325,3 @@ grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payl
 }
 
 /******************************************** 其他工具函数 ***********************************************/
-// 读取服务器配置文件，初始化服务器地址和端口
-void GatewayServerImpl::Read_server_config()
-{
-    lua_State* L = luaL_newstate();  // 创建lua虚拟机
-    luaL_openlibs(L);   // 打开lua标准库
-
-    std::string file_url = "config/gateway_server_config.lua";  // 配置文件路径
-
-    if(luaL_dofile(L,file_url.c_str()) != LUA_OK)
-    {
-        lua_close(L);
-        throw std::runtime_error("Failed to load config file");
-    }
-
-    lua_getglobal(L,"gateway_server");
-    if(!lua_istable(L,-1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid config format");
-    }
-
-    lua_getfield(L,-1,"host");
-    if(!lua_isstring(L,-1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid host format");
-    }
-    this->server_address = lua_tostring(L,-1);
-    lua_pop(L,1);
-
-    lua_getfield(L,-1,"port");
-    if(!lua_isinteger(L,-1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid port format");
-    }
-    this->server_port = std::to_string(lua_tointeger(L,-1));
-    lua_pop(L,1);
-
-    lua_close(L);   // 关闭lua虚拟机
-}

@@ -34,7 +34,7 @@ struct HeartbeatRecord
 class CentralServerImpl final: public rpc_server::CentralServer::Service
 {
 public:
-    CentralServerImpl(LoggerManager& logger_manager_);  
+    CentralServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port);
     ~CentralServerImpl();
 
 // grpc服务接口
@@ -56,8 +56,6 @@ public:
     void check_heartbeat();
 
 private:    // 私有函数
-    void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
-
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 线程池工作函数
 

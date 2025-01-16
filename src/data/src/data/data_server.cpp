@@ -1,14 +1,14 @@
 #include "data_server.h"
 
-DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_):
-    server_type(rpc_server::ServerType::DATA),    // 服务器类型
-    logger_manager(logger_manager_),    // 日志管理器
+DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port):
+    server_type(rpc_server::ServerType::DATA),
+    server_address(address),
+    server_port(port),
+    logger_manager(logger_manager_),
     central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))) // 中心服务器存根
 {
     lua_State* L = luaL_newstate();  // 创建lua虚拟机
     luaL_openlibs(L);   // 打开lua标准库
-
-    Read_server_config(L, "config/db_server_config.lua"); // 读取服务器配置文件，初始化服务器地址和端口
 
     // 读取配置文件并初始化数据库连接池
     std::string db_uri = Read_db_config(L, "config/db_config.lua");
@@ -392,41 +392,6 @@ void DatabaseServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_ser
 }
 
 /******************************************** 其他工具函数 *****************************************************/
-// 读取服务器配置文件，初始化服务器地址和端口
-void DatabaseServerImpl::Read_server_config(lua_State* L, const std::string& file_url)
-{
-    if(luaL_dofile(L,file_url.c_str()) != LUA_OK)
-    {
-        lua_close(L);
-        throw std::runtime_error("Failed to load config file");
-    }
-
-    lua_getglobal(L,"db_server");
-    if(!lua_istable(L,-1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid config format");
-    }
-
-    lua_getfield(L,-1,"host");
-    if(!lua_isstring(L,-1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid host format");
-    }
-    this->server_address = lua_tostring(L,-1);
-    lua_pop(L,1);
-
-    lua_getfield(L,-1,"port");
-    if(!lua_isinteger(L,-1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid port format");
-    }
-    this->server_port = std::to_string(lua_tointeger(L,-1));
-    lua_pop(L,1);
-}
-
 // 读取 数据库配置配置文件，获得数据库连接字符串
 std::string DatabaseServerImpl::Read_db_config(lua_State* L, const std::string& file_url)
 {

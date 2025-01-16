@@ -20,7 +20,7 @@
 class DatabaseServerImpl final: public rpc_server::DatabaseServer::Service
 {
 public:
-    DatabaseServerImpl(LoggerManager& logger_manager_); // 参数：日志管理器，数据库连接池
+    DatabaseServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port); // 参数：日志管理器，数据库连接池
     ~DatabaseServerImpl(); // 添加析构函数声明
 
     void register_server(); // 注册服务器
@@ -40,7 +40,6 @@ public:
     grpc::Status Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res) override;
 
 private:
-    void Read_server_config(lua_State* L, const std::string& file_url);   // 读取服务器配置文件，初始化服务器地址和端口
     std::string Read_db_config(lua_State* L, const std::string& file_url); // 读取 数据库配置配置文件，获得数据库连接字符串
 
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务

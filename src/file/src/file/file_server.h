@@ -20,7 +20,7 @@
 class FileServerImpl final: public rpc_server::FileServer::Service
 {
 public:
-    FileServerImpl(LoggerManager& logger_manager_);
+    FileServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port);
     ~FileServerImpl();
 
     void register_server(); // 注册服务器
@@ -38,9 +38,6 @@ public:
     // 文件列表服务
     grpc::Status ListFiles(grpc::ServerContext* context, const rpc_server::ListFilesReq* req, rpc_server::ListFilesRes* res);
 private:
-    // 初始化
-    void Read_server_config();   // 读取服务器配置文件，初始化服务器地址和端口
-
     // 多线程
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 执行线程的任务

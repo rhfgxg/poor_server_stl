@@ -1,13 +1,12 @@
 #include "file_server.h"
 
-FileServerImpl::FileServerImpl(LoggerManager& logger_manager_):
-    server_type(rpc_server::ServerType::FILE),    // 服务器类型
-    logger_manager(logger_manager_),  // 日志管理器   
+FileServerImpl::FileServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port):
+    server_type(rpc_server::ServerType::FILE),
+    server_address(address),
+    server_port(port),
+    logger_manager(logger_manager_),   
     central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))) // 中心服务器存根
 {
-
-    this->Read_server_config();   // 读取配置文件并初始化服务器地址和端口
-
     this->register_server();  // 注册服务器
 
     // 启动定时任务
@@ -216,44 +215,3 @@ grpc::Status FileServerImpl::ListFiles(grpc::ServerContext* context, const rpc_s
 /**************************************** grpc服务接口工具函数 **************************************************************************/
 
 /******************************************** 其他工具函数 ***********************************************/
-// 读取服务器配置文件，初始化服务器地址和端口
-void FileServerImpl::Read_server_config()
-{
-    lua_State* L = luaL_newstate();  // 创建lua虚拟机
-    luaL_openlibs(L);   // 打开lua标准库
-
-    std::string file_url = "config/file_server_config.lua";  // 配置文件路径
-
-    if(luaL_dofile(L, file_url.c_str()) != LUA_OK)
-    {
-        lua_close(L);
-        throw std::runtime_error("Failed to load config file");
-    }
-
-    lua_getglobal(L, "file_server");
-    if(!lua_istable(L, -1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid config format");
-    }
-
-    lua_getfield(L, -1, "host");
-    if(!lua_isstring(L, -1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid host format");
-    }
-    this->server_address = lua_tostring(L, -1);
-    lua_pop(L, 1);
-
-    lua_getfield(L, -1, "port");
-    if(!lua_isinteger(L, -1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid port format");
-    }
-    this->server_port = std::to_string(lua_tointeger(L, -1));
-    lua_pop(L, 1);
-
-    lua_close(L);   // 关闭lua虚拟机
-}

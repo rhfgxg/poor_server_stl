@@ -1,8 +1,8 @@
 #include "./data/data_server.h"
 #include "logger_manager.h" // 引入日志管理器
 
-// 运行服务器
-void run_server(LoggerManager& logger_manager);
+void run_server(LoggerManager& logger_manager); // 运行服务器
+void Read_server_config(std::string& address, std::string& port);  // 读取配置文件，获取服务器地址和端口
 
 // 数据库服务器main函数
 int main()
@@ -23,10 +23,14 @@ int main()
 
 void run_server(LoggerManager& logger_manager)
 {// 相关注释请参考 /src/central/src/main.cpp/run_server()
-    DatabaseServerImpl db_server(logger_manager);  // 传入日志管理器和数据库连接池
+    std::string address = "0.0.0.0";    // 默认服务器地址
+    std::string port = "50052";
+    Read_server_config(address, port);  // 读取服务器配置文件，初始化服务器地址和端口
+
+    DatabaseServerImpl db_server(logger_manager, address, port);  // 传入日志管理器和数据库连接池
 
     grpc::ServerBuilder builder;
-    std::string server_address("0.0.0.0:50052");
+    std::string server_address(address + ":" + port);
     builder.AddListeningPort(server_address,grpc::InsecureServerCredentials());
     builder.RegisterService(&db_server);
 
@@ -37,4 +41,46 @@ void run_server(LoggerManager& logger_manager)
 
     server->Wait();
     db_server.stop_thread_pool();
+}
+
+// 读取服务器配置文件，初始化服务器地址和端口
+void Read_server_config(std::string& address, std::string& port)
+{
+    lua_State* L = luaL_newstate();  // 创建lua虚拟机
+    luaL_openlibs(L);   // 打开lua标准库
+
+    std::string file_url = "config/db_server_config.lua";  // 配置文件路径
+
+    if(luaL_dofile(L,file_url.c_str()) != LUA_OK)
+    {
+        lua_close(L);
+        throw std::runtime_error("Failed to load config file");
+    }
+
+    lua_getglobal(L,"db_server");
+    if(!lua_istable(L,-1))
+    {
+        lua_close(L);
+        throw std::runtime_error("Invalid config format");
+    }
+
+    lua_getfield(L,-1,"host");
+    if(!lua_isstring(L,-1))
+    {
+        lua_close(L);
+        throw std::runtime_error("Invalid host format");
+    }
+    address = lua_tostring(L,-1);
+    lua_pop(L,1);
+
+    lua_getfield(L,-1,"port");
+    if(!lua_isinteger(L,-1))
+    {
+        lua_close(L);
+        throw std::runtime_error("Invalid port format");
+    }
+    port = std::to_string(lua_tointeger(L,-1));
+    lua_pop(L,1);
+
+    lua_close(L);   // 关闭lua虚拟机
 }

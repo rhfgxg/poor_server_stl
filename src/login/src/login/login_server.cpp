@@ -1,14 +1,14 @@
 #include "login_server.h"
 
-LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_):
+LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_, const std::string address, std::string port):
     server_type(rpc_server::ServerType::LOGIN),
+    server_address(address),
+    server_port(port),
     logger_manager(logger_manager_),
     redis_client(),
     central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))),
     db_connection_pool(10)
 {
-    Read_server_config();   // 读取配置文件并初始化服务器地址和端口
-
     redis_client.get_client()->connect("127.0.0.1", 6379); // 连接Redis服务器
     logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("redis connection successful");
 
@@ -140,8 +140,8 @@ void LoginServerImpl::unregister_server()
     // 请求
     rpc_server::UnregisterServerReq request;
     request.set_server_type(rpc_server::ServerType::LOGIN);
-    request.set_address("localhost");
-    request.set_port("50053");
+    request.set_address(this->server_address);
+    request.set_port(this->server_port);
 
     // 响应
     rpc_server::UnregisterServerRes response;
@@ -153,11 +153,11 @@ void LoginServerImpl::unregister_server()
 
     if (status.ok() && response.success())
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Login server unregistered successfully: {} {}","localhost","50053");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Login server unregistered successfully: {} {}", this->server_address, this->server_port);
     }
     else
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Login server unregistration failed: {} {}","localhost","50053");
+        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Login server unregistration failed: {} {}", this->server_address, this->server_port);
     }
 }
 
@@ -369,48 +369,6 @@ void LoginServerImpl::Handle_authenticate(const rpc_server::AuthenticateReq* req
     }
 }
 /******************************************** 其他工具函数 ***********************************************/
-// 读取服务器配置文件，初始化服务器地址和端口
-void LoginServerImpl::Read_server_config()
-{
-    lua_State* L = luaL_newstate();  // 创建lua虚拟机
-    luaL_openlibs(L);   // 打开lua标准库
-
-    std::string file_url = "config/login_server_config.lua";  // 配置文件路径
-
-    if(luaL_dofile(L,file_url.c_str()) != LUA_OK)
-    {
-        lua_close(L);
-        throw std::runtime_error("Failed to load config file");
-    }
-
-    lua_getglobal(L,"login_server");
-    if(!lua_istable(L,-1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid config format");
-    }
-
-    lua_getfield(L,-1,"host");
-    if(!lua_isstring(L,-1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid host format");
-    }
-    this->server_address = lua_tostring(L,-1);
-    lua_pop(L,1);
-
-    lua_getfield(L,-1,"port");
-    if(!lua_isinteger(L,-1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid port format");
-    }
-    this->server_port = std::to_string(lua_tointeger(L,-1));
-    lua_pop(L,1);
-
-    lua_close(L);   // 关闭lua虚拟机
-}
-
 // 生成 用户token
 std::string LoginServerImpl::GenerateToken(const std::string& account)
 {
