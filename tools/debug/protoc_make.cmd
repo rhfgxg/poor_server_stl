@@ -3,11 +3,11 @@ rem 根据 proto文件，生成对应源码
 
 
 rem 设置路径常量
-set SCRIPT_DIR=%~dp0
-set PROJECT_DIR=%SCRIPT_DIR%..\..
-set PROTO_DIR=%PROJECT_DIR%\protobuf
-set PROTOC=%PROJECT_DIR%\vcpkg_installed\x64-windows\tools\protobuf\protoc.exe
-set GRPC_PLUGIN=%PROJECT_DIR%\vcpkg_installed\x64-windows\tools\grpc\grpc_cpp_plugin.exe
+set SCRIPT_DIR=%~dp0	# 脚本所在目录
+set PROJECT_DIR=%SCRIPT_DIR%..\..	# 项目根目录
+set PROTO_DIR=%PROJECT_DIR%\protobuf	# proto文件所在根目录
+set PROTOC=%PROJECT_DIR%\vcpkg_installed\x64-windows\tools\protobuf\protoc.exe	# protoc工具路径
+set GRPC_PLUGIN=%PROJECT_DIR%\vcpkg_installed\x64-windows\tools\grpc\grpc_cpp_plugin.exe	# grpc插件路径
 
 
 rem 生成 central 模块：中心模块

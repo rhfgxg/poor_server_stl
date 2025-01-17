@@ -29,16 +29,18 @@
 ## 安装包（暂无）
 
 
-# 开发环境
-文件编码及格式：文件编码使用 utf-8，行末换行符为 LF(unix)，统一使用空格而不是tab缩进（tab设为4个空格）
-cmd脚本使用 unix 格式，以免在 windows 下运行时出现错误
+# 参与项目
 
-## 操作系统
+## 项目规范
+(项目开发文档)[project_document]
+
+## 开发环境建议
+### 操作系统
 windows 10 / 11
 linux（待验证）
 
-## 编译器
-### Visual Studio 2022 配置
+### 编译器
+#### Visual Studio 2022 配置
 1. 使用 VS 参与项目时，可以先下载下面的插件
     FileEncoding
     force utf-8 （no BOM）
@@ -51,14 +53,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
 add_compile_options(/wd4828)    # 忽略utf-8相关警告
 ```
 
-## 第三方库管理工具
+### 第三方库管理工具
 vcpkg
 
-## 项目依赖及安装
+### 项目依赖及安装
 参考：[项目中使用的第三方库](project_document/library.md)
 
-
-# 文件树
+## 项目文件树，项目关键文件说明
 [文件树](tree.txt)
 
 一些关键文件说明：
@@ -73,12 +74,18 @@ src/：各模块源码文件
 tools/：工具文件
 vpckg_installed/：第三方库文件安装目录
 
+### 参与此项目，你可能需要修改的部分文件
+主要包含部分本地环境的配置修改
+注意，这些文件请不要提交到 git 仓库中，只用来本地开发              
+1. config/server_config.lua    # 服务器配置文件，可以根据需要修改，其余地方的配置会根据这个文件自动修改
+2. tools/debug/protoc_make.cmd      # 生成 proto 文件的脚本，根据自己的项目目录修改 PROTOC 和 GRPC_PLUGIN变量，在9，10行
 
-# 编译与部署
-## 编译
+
+## 编译与部署
+### 编译
 在本地环境下，使用 cmake 编译项目
 得到可执行文件，dll文件
 
-## 部署（脚本一键部署）
+### 部署（脚本一键部署）
 部署时，/config/server_config.lua文件会被脚本自动分割（每个服务器独立的配置文件）
 为了保证代码一致性，开发时，需要使用另一个脚本，将debug模式的服务器配置文件分割并复制到各个服务器目录下

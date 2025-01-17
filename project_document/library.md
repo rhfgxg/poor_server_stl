@@ -12,7 +12,7 @@
 boost库
 
 ### 线程库
-thread 库
+thread 库：标准库
 
 ### grpc：客户端与服务器，服务器之间的通信协议
 grpc库

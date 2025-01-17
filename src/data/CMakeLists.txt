@@ -33,19 +33,11 @@ target_link_libraries(${MODULE_NAME} PRIVATE
 )
 
 # 第三方库 dll列表
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(DB_DLL_FILES
-        # mysql库
-        "${VCPKG_DEBUG_BIN}/mysqlcppconn8-2-vs14.dll"
-        "${VCPKG_DEBUG_BIN}/lz4d.dll"
-    )
-else()
-    set(DB_DLL_FILES
-        # mysql库
-        "${VCPKG_DIR}/debug/bin/mysqlcppconn8-2-vs14.dll"  
-        "${VCPKG_BIN}/lz4.dll"  # lz4 库
-    )
-endif()
+set(DB_DLL_FILES
+    # mysql库
+    "${VCPKG_DEBUG_BIN}/mysqlcppconn8-2-vs14.dll"
+    "${VCPKG_DEBUG_BIN}/lz4d.dll"
+)
 
 # 复制其他dll文件到可执行文件所在目录
 foreach(DLL_FILE ${DLL_FILES})
