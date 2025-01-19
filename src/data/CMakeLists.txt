@@ -26,10 +26,26 @@ target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/inc
 
 # 链接第三方库lib
 target_link_libraries(${MODULE_NAME} PRIVATE 
-    ${THIRD_PARTY_LIBS} # 其他模块的第三方库
-    # mysql库
-    debug "${VCPKG_DEBUG_LIB}/mysqlcppconn8.lib"
-    optimized "${VCPKG_LIB}/mysqlcppconn8.lib"
+# 注释了一些暂时不需要的库
+#    absl::base
+#    absl::flags
+#    Boost::system
+#    c-ares::cares
+#    fmt::fmt
+#    OpenSSL::SSL
+#    OpenSSL::Crypto
+#    protobuf::libprotobuf
+#    re2::re2
+#    ZLIB::ZLIB
+#    upb::upb
+    gRPC::grpc++
+    lua
+    spdlog::spdlog
+    ${ADDRESS_SORTING_LIB}  # address_sorting 库
+    ${CPP_REDIS_DIR}    # cpp_redis
+    ${TACOPIE_LIB}    # tacopie 库
+
+    ${MYSQLCPPCONN_LIB}  # mysql库
 )
 
 # 第三方库 dll列表

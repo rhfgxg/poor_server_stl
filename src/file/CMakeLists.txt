@@ -23,7 +23,26 @@ add_executable(${MODULE_NAME} ${SOURCES})
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # 链接第三方库lib
-target_link_libraries(${MODULE_NAME} PRIVATE ${THIRD_PARTY_LIBS})
+target_link_libraries(${MODULE_NAME} PRIVATE 
+# 注释了一些暂时不需要的库
+#    absl::base
+#    absl::flags
+#    Boost::system
+#    c-ares::cares
+#    fmt::fmt
+#    OpenSSL::SSL
+#    OpenSSL::Crypto
+#    protobuf::libprotobuf
+#    re2::re2
+#    ZLIB::ZLIB
+#    upb::upb
+    gRPC::grpc++
+    lua
+    spdlog::spdlog
+        ${ADDRESS_SORTING_LIB}  # address_sorting 库
+    ${CPP_REDIS_DIR}    # cpp_redis
+    ${TACOPIE_LIB}    # tacopie 库
+)
 
 # 复制其他dll文件到可执行文件所在目录
 foreach(DLL_FILE ${DLL_FILES})
