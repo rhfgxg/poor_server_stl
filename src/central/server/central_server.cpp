@@ -13,16 +13,16 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_, const std::
     file_connection_pool(10)
 {
     // 连接池日志
-    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: initialized successfully, pool size: 10");
-    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: initialized successfully, pool size: 10");
-    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: initialized successfully, pool size: 10");
-    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("logic_connection_pool: initialized successfully, pool size: 10");
-    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("login_connection_pool: initialized successfully, pool size: 10");
-    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("file_connection_pool: initialized successfully, pool size: 10");
+    logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("Central_connection_pool: initialized successfully, pool size: 10");
+    logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("Data_connection_pool: initialized successfully, pool size: 10");
+    logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: initialized successfully, pool size: 10");
+    logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("logic_connection_pool: initialized successfully, pool size: 10");
+    logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("login_connection_pool: initialized successfully, pool size: 10");
+    logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("file_connection_pool: initialized successfully, pool size: 10");
 
     // 将本服务器加入中心数据库链接池
     central_connection_pool.add_server(rpc_server::ServerType::CENTRAL, this->server_address,this->server_port);
-    logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}", this->server_address, this->server_port);
+    logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}", this->server_address, this->server_port);
 
     // 启动定时任务，定时检测心跳包
     std::thread(&CentralServerImpl::check_heartbeat, this).detach();
@@ -33,7 +33,7 @@ CentralServerImpl::~CentralServerImpl()
     stop_thread_pool(); // 停止并清空线程池
 
     // 记录关闭日志
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Central_server stopped");
+    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Central_server stopped");
 
     logger_manager.cleanup();   // 停止并清理日志管理器
     // 自动清理连接池
@@ -189,7 +189,7 @@ void CentralServerImpl::Handle_register_server(const rpc_server::RegisterServerR
     {
         // 将链接加入连接池并记录日志
         this->central_connection_pool.add_server(rpc_server::ServerType::CENTRAL, address, port);
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}", address, port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("Central_connection_pool: successfully registered a server: {} {}", address, port);
         res->set_success(true);
         res->set_message("Server registered successfully");
         break;
@@ -197,7 +197,7 @@ void CentralServerImpl::Handle_register_server(const rpc_server::RegisterServerR
     case rpc_server::ServerType::DATA:   // 数据库服务器
     {
         this->data_connection_pool.add_server(rpc_server::ServerType::DATA, address, port);
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully registered a server: {} {}", address, port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("Data_connection_pool: successfully registered a server: {} {}", address, port);
         res->set_success(true);
         res->set_message("Server registered successfully");
         break;
@@ -205,7 +205,7 @@ void CentralServerImpl::Handle_register_server(const rpc_server::RegisterServerR
     case rpc_server::ServerType::GATEWAY:    // 网关服务器
     {
         this->gateway_connection_pool.add_server(rpc_server::ServerType::GATEWAY, address, port);
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully registered a server: {} {}", address, port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("Gateway_connection_pool: successfully registered a server: {} {}", address, port);
         res->set_success(true);
         res->set_message("Server registered successfully");
         break;
@@ -213,7 +213,7 @@ void CentralServerImpl::Handle_register_server(const rpc_server::RegisterServerR
     case rpc_server::ServerType::LOGIC:      // 逻辑服务器
     {
         this->logic_connection_pool.add_server(rpc_server::ServerType::LOGIC, address, port);
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Logic_connection_pool: successfully registered a server: {} {}", address, port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("Logic_connection_pool: successfully registered a server: {} {}", address, port);
         res->set_success(true);
         res->set_message("Server registered successfully");
         break;
@@ -221,7 +221,7 @@ void CentralServerImpl::Handle_register_server(const rpc_server::RegisterServerR
     case rpc_server::ServerType::LOGIN:      // 登录服务器
     {
         this->login_connection_pool.add_server(rpc_server::ServerType::LOGIN, address, port);
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully registered a server: {} {}", address, port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("Login_connection_pool: successfully registered a server: {} {}", address, port);
         res->set_success(true);
         res->set_message("Server registered successfully");
         break;
@@ -229,7 +229,7 @@ void CentralServerImpl::Handle_register_server(const rpc_server::RegisterServerR
     case rpc_server::ServerType::FILE:      // 文件服务器
     {
         this->file_connection_pool.add_server(rpc_server::ServerType::FILE, address, port);
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("File_connection_pool: successfully registered a server: {} {}", address, port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("File_connection_pool: successfully registered a server: {} {}", address, port);
         res->set_success(true);
         res->set_message("Server registered successfully");
         break;
@@ -252,37 +252,37 @@ void CentralServerImpl::Release_server_connection(rpc_server::ServerType server_
     {
         // 连接池中移除链接，并记录日志
         this->central_connection_pool.remove_server(rpc_server::ServerType::CENTRAL, address, port);
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Central_connection_pool: successfully unregistered a server: {} {}", address, port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->warn("Central_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     case rpc_server::ServerType::DATA:   // 数据库服务器
     {
         this->data_connection_pool.remove_server(rpc_server::ServerType::DATA, address, port);
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Data_connection_pool: successfully unregistered a server: {} {}", address, port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->warn("Data_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     case rpc_server::ServerType::GATEWAY:    // 网关服务器
     {
         this->gateway_connection_pool.remove_server(rpc_server::ServerType::GATEWAY, address, port);
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Gateway_connection_pool: successfully unregistered a server: {} {}", address, port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->warn("Gateway_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     case rpc_server::ServerType::LOGIC:      // 逻辑服务器
     {
         this->logic_connection_pool.remove_server(rpc_server::ServerType::LOGIC, address, port);
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Logic_connection_pool: successfully unregistered a server: {} {}", address, port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->warn("Logic_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     case rpc_server::ServerType::LOGIN:      // 登录服务器
     {
         this->login_connection_pool.remove_server(rpc_server::ServerType::LOGIN, address, port);
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("Login_connection_pool: successfully unregistered a server: {} {}", address, port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->warn("Login_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     case rpc_server::ServerType::FILE:      // 文件服务器
     {
         this->file_connection_pool.remove_server(rpc_server::ServerType::FILE, address, port);
-        this->logger_manager.getLogger(LogCategory::CONNECTION_POOL)->warn("File_connection_pool: successfully unregistered a server: {} {}", address, port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->warn("File_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
     }
@@ -364,7 +364,7 @@ void CentralServerImpl::check_heartbeat()
         {
             if(std::chrono::duration_cast<std::chrono::seconds>(now - record.second.last_heartbeat).count() > 30)  
             {// 如果心跳时间超过30秒，释放服务器连接
-                this->logger_manager.getLogger(LogCategory::HEARTBEAT)->warn("Server lost heartbeat, address {} port ()", record.second.address, record.second.port);
+                this->logger_manager.getLogger(rpc_server::LogCategory::HEARTBEAT)->warn("Server lost heartbeat, address {} port ()", record.second.address, record.second.port);
                 this->Release_server_connection(record.second.server_type, record.second.address, record.second.port);
             }
         }

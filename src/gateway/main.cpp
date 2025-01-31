@@ -19,7 +19,7 @@ int main()
     logger_manager.initialize(rpc_server::ServerType::GATEWAY);    // 传入服务器类型，创建日志文件夹
 
     // 记录启动日志
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway_server started"); // 记录启动日志：日志分类, 日志内容
+    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Gateway_server started"); // 记录启动日志：日志分类, 日志内容
 
     RunServer(logger_manager); // 运行服务器
 
@@ -41,7 +41,7 @@ void RunServer(LoggerManager& logger_manager)
     builder.RegisterService(&gateway_server); // 注册服务
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // 构建并启动服务器
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
+    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
 
     gateway_server.start_thread_pool(4); // 启动4个线程处理请求
 

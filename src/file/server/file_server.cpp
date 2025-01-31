@@ -21,7 +21,7 @@ FileServerImpl::~FileServerImpl()
     unregister_server(); // 注销服务器
 
     // 记录关闭日志
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("FileServer stopped");
+    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("FileServer stopped");
     // 停止并清理日志管理器
     logger_manager.cleanup();
 }
@@ -118,11 +118,11 @@ void FileServerImpl::register_server()
 
     if(status.ok() && res.success())
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("File server registered successfully: {} {}", this->server_address, this->server_port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("File server registered successfully: {} {}", this->server_address, this->server_port);
     }
     else
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("File server registration failed: {} {}", this->server_address, this->server_port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->error("File server registration failed: {} {}", this->server_address, this->server_port);
     }
 }
 
@@ -144,11 +144,11 @@ void FileServerImpl::unregister_server()
 
     if(status.ok() && res.success())
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("File server unregistered successfully: {} {}", this->server_address, this->server_port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("File server unregistered successfully: {} {}", this->server_address, this->server_port);
     }
     else
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("File server unregistration failed: {} {}", this->server_address, this->server_port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->error("File server unregistration failed: {} {}", this->server_address, this->server_port);
     }
 }
 
@@ -172,10 +172,10 @@ void FileServerImpl::Send_heartbeat()
 
         if(status.ok() && response.success())
         {
-            logger_manager.getLogger(LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
+            logger_manager.getLogger(rpc_server::LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
         } else
         {
-            logger_manager.getLogger(LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
+            logger_manager.getLogger(rpc_server::LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
         }
     }
 }

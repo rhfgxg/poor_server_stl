@@ -11,7 +11,7 @@ void LoggerManager::initialize(rpc_server::ServerType server_type)
     console_sink->set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%^%l%$] [%s:%#] %v");
 
     // 创建不同分类的文件日志器
-    auto create_file_logger = [&](LogCategory category, const std::string& log_type) {
+    auto create_file_logger = [&](rpc_server::LogCategory category, const std::string& log_type) {
         auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>(log_directory + "/" + log_type + "/log.log", 0, 0); // 按日期滚动
         file_sink->set_level(spdlog::level::debug);
         file_sink->set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%^%l%$] [%s:%#] %v");
@@ -23,19 +23,19 @@ void LoggerManager::initialize(rpc_server::ServerType server_type)
     };
 
     // 创建所有分类的日志器
-    create_file_logger(LogCategory::STARTUP_SHUTDOWN, "startup_shutdown");
-    create_file_logger(LogCategory::APPLICATION_ACTIVITY, "application_activity");
-    create_file_logger(LogCategory::CONNECTION_POOL, "connection_pool");
-    create_file_logger(LogCategory::SYSTEM_MONITORING, "system_monitoring");
-    create_file_logger(LogCategory::HEARTBEAT,"heartbeat");
-    create_file_logger(LogCategory::SECURITY, "security");
-    create_file_logger(LogCategory::CONFIGURATION_CHANGES, "configuration_changes");
-    create_file_logger(LogCategory::DATABASE_OPERATIONS,"database_operations");
-    create_file_logger(LogCategory::USER_ACTIVITY,"user_activity");
-    create_file_logger(LogCategory::NETWORK,"network");
+    create_file_logger(rpc_server::LogCategory::STARTUP_SHUTDOWN, "startup_shutdown");
+    create_file_logger(rpc_server::LogCategory::APPLICATION_ACTIVITY, "application_activity");
+    create_file_logger(rpc_server::LogCategory::CONNECTION_POOL, "connection_pool");
+    create_file_logger(rpc_server::LogCategory::SYSTEM_MONITORING, "system_monitoring");
+    create_file_logger(rpc_server::LogCategory::HEARTBEAT,"heartbeat");
+    create_file_logger(rpc_server::LogCategory::SECURITY, "security");
+    create_file_logger(rpc_server::LogCategory::CONFIGURATION_CHANGES, "configuration_changes");
+    create_file_logger(rpc_server::LogCategory::DATABASE_OPERATIONS,"database_operations");
+    create_file_logger(rpc_server::LogCategory::USER_ACTIVITY,"user_activity");
+    create_file_logger(rpc_server::LogCategory::NETWORK,"network");
 
     // 设置默认日志器
-    spdlog::set_default_logger(this->loggers[LogCategory::APPLICATION_ACTIVITY]);
+    spdlog::set_default_logger(this->loggers[rpc_server::LogCategory::APPLICATION_ACTIVITY]);
     spdlog::set_level(spdlog::level::debug); // 设置全局日志级别
     spdlog::flush_on(spdlog::level::info); // 设置日志刷新级别
 }
@@ -47,7 +47,7 @@ void LoggerManager::cleanup()
 }
 
 // 获取日志器
-std::shared_ptr<spdlog::logger> LoggerManager::getLogger(LogCategory category)
+std::shared_ptr<spdlog::logger> LoggerManager::getLogger(rpc_server::LogCategory category)
 {
     auto it = this->loggers.find(category);
     if(it != this->loggers.end())

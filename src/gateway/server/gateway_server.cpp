@@ -24,7 +24,7 @@ GatewayServerImpl::~GatewayServerImpl()
     unregister_server(); // 注销服务器
 
     // 记录关闭日志
-    logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("GatewayServer stopped");
+    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("GatewayServer stopped");
     // 停止并清理日志管理器
     logger_manager.cleanup();
 }
@@ -121,12 +121,12 @@ void GatewayServerImpl::register_server()
 
     if(status.ok() && response.success())
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server registered successfully: {} {}", this->server_address, this->server_port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Gateway server registered successfully: {} {}", this->server_address, this->server_port);
         this->Init_connection_pool(); // 初始化连接池
     }
     else
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("Gateway server registration failed: {} {}", this->server_address, this->server_port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->error("Gateway server registration failed: {} {}", this->server_address, this->server_port);
     }
 }
 
@@ -148,11 +148,11 @@ void GatewayServerImpl::unregister_server()
 
     if(status.ok() && response.success())
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->info("Gateway server unregistered successfully: {} {}", this->server_address, this->server_port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Gateway server unregistered successfully: {} {}", this->server_address, this->server_port);
     }
     else
     {
-        this->logger_manager.getLogger(LogCategory::STARTUP_SHUTDOWN)->error("ERROR：Gateway server unregistration failed: {} {}", this->server_address, this->server_port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->error("ERROR：Gateway server unregistration failed: {} {}", this->server_address, this->server_port);
     }
 }
 
@@ -193,11 +193,11 @@ void GatewayServerImpl::Init_connection_pool()
                 }
             }
         }
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->info("Gateway server updated connection pools successfully");
+        logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("Gateway server updated connection pools successfully");
     }
     else
     {
-        logger_manager.getLogger(LogCategory::CONNECTION_POOL)->error("Failed to get connection pools information");
+        logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->error("Failed to get connection pools information");
     }
 }
 
@@ -231,11 +231,11 @@ void GatewayServerImpl::Send_heartbeat()
 
         if(status.ok() && response.success())
         {
-            logger_manager.getLogger(LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
+            logger_manager.getLogger(rpc_server::LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
         }
         else
         {
-            logger_manager.getLogger(LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
+            logger_manager.getLogger(rpc_server::LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
         }
     }
 }
