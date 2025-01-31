@@ -1,0 +1,57 @@
+syntax = "proto3";
+package rpc_server;
+
+// 保存公共数据类型，枚举等
+
+// 服务器类型
+enum ServerType
+{
+    UNKNOWN = 0;		  // 未知
+    CENTRAL = 1;          // 中心服务器
+    DATA = 2;             // 数据服务
+    GATEWAY = 3;          // 网关服务
+    LOGIN = 4;            // 登录服务
+    LOGIC = 5;            // 逻辑服务
+    FILE = 6;             // 文件服务
+}
+
+// 服务类型：客户端与服务器通信的服务类型
+enum ServiceType
+{
+    // REQ_ 请求
+    // RES_ 响应
+    REQ_LOGIN = 0;      // 登录请求
+    RES_LOGIN = 1;      // 登录响应
+    REQ_LOGOUT = 2;     // 登出请求
+    RES_LOGOUT = 3;     // 登出响应
+    REQ_REGISTER = 4;   // 注册请求
+    RES_REGISTER = 5;   // 注册响应
+    REQ_AUTHENTICATE = 6;  // 令牌验证请求
+    RES_AUTHENTICATE = 7;  // 令牌验证响应
+}
+
+// 日志分级
+enum LogLevel
+{
+    DEBUG = 0;  // debug
+    INFO = 1;   // 正常信息
+    WARN = 2;   // 警告
+    ERROR_LEVEL = 3;    // 异常，ERROR 是宏定义，所以使用 ERROR_LEVEL代替
+    CRITICAL = 4;  // 致命错误
+    TRACE = 5;   // 跟踪
+};
+
+// 日志分类
+enum LogCategory
+{
+    STARTUP_SHUTDOWN = 0;       // 启动和关闭
+    APPLICATION_ACTIVITY = 1;   // 应用程序活动（请求、响应、调试）
+    CONNECTION_POOL = 2;        // 连接池
+    SYSTEM_MONITORING = 3;      // 系统监控（性能监控、定时任务）
+    HEARTBEAT = 4;              // 心跳
+    SECURITY = 5;               // 安全
+    CONFIGURATION_CHANGES = 6;  // 配置变更
+    DATABASE_OPERATIONS = 7;    // 数据库操作
+    USER_ACTIVITY = 8;          // 用户活动
+    NETWORK = 9;                // 网络
+};

@@ -33,8 +33,8 @@
 #include "google/protobuf/message.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
-#include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
+#include "common.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -94,44 +94,6 @@ namespace protobuf {
 }  // namespace google
 
 namespace rpc_server {
-enum ServerType : int {
-  UNKNOWN = 0,
-  CENTRAL = 1,
-  DATA = 2,
-  GATEWAY = 3,
-  LOGIN = 4,
-  LOGIC = 5,
-  FILE = 6,
-  ServerType_INT_MIN_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::min(),
-  ServerType_INT_MAX_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::max(),
-};
-
-bool ServerType_IsValid(int value);
-extern const uint32_t ServerType_internal_data_[];
-constexpr ServerType ServerType_MIN = static_cast<ServerType>(0);
-constexpr ServerType ServerType_MAX = static_cast<ServerType>(6);
-constexpr int ServerType_ARRAYSIZE = 6 + 1;
-const ::google::protobuf::EnumDescriptor*
-ServerType_descriptor();
-template <typename T>
-const std::string& ServerType_Name(T value) {
-  static_assert(std::is_same<T, ServerType>::value ||
-                    std::is_integral<T>::value,
-                "Incorrect type passed to ServerType_Name().");
-  return ServerType_Name(static_cast<ServerType>(value));
-}
-template <>
-inline const std::string& ServerType_Name(ServerType value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<ServerType_descriptor,
-                                                 0, 6>(
-      static_cast<int>(value));
-}
-inline bool ServerType_Parse(absl::string_view name, ServerType* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<ServerType>(
-      ServerType_descriptor(), name, value);
-}
 
 // ===================================================================
 
@@ -3127,19 +3089,6 @@ inline void HeartbeatRes::set_allocated_message(std::string* value) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace rpc_server
 
-
-namespace google {
-namespace protobuf {
-
-template <>
-struct is_proto_enum<::rpc_server::ServerType> : std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor<::rpc_server::ServerType>() {
-  return ::rpc_server::ServerType_descriptor();
-}
-
-}  // namespace protobuf
-}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

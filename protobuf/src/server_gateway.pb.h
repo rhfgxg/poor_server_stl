@@ -33,8 +33,8 @@
 #include "google/protobuf/message.h"
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
-#include "google/protobuf/generated_enum_reflection.h"
 #include "google/protobuf/unknown_field_set.h"
+#include "common.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -82,45 +82,6 @@ namespace protobuf {
 }  // namespace google
 
 namespace rpc_server {
-enum ServiceType : int {
-  REQ_LOGIN = 0,
-  RES_LOGIN = 1,
-  REQ_LOGOUT = 2,
-  RES_LOGOUT = 3,
-  REQ_REGISTER = 4,
-  RES_REGISTER = 5,
-  REQ_AUTHENTICATE = 6,
-  RES_AUTHENTICATE = 7,
-  ServiceType_INT_MIN_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::min(),
-  ServiceType_INT_MAX_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::max(),
-};
-
-bool ServiceType_IsValid(int value);
-extern const uint32_t ServiceType_internal_data_[];
-constexpr ServiceType ServiceType_MIN = static_cast<ServiceType>(0);
-constexpr ServiceType ServiceType_MAX = static_cast<ServiceType>(7);
-constexpr int ServiceType_ARRAYSIZE = 7 + 1;
-const ::google::protobuf::EnumDescriptor*
-ServiceType_descriptor();
-template <typename T>
-const std::string& ServiceType_Name(T value) {
-  static_assert(std::is_same<T, ServiceType>::value ||
-                    std::is_integral<T>::value,
-                "Incorrect type passed to ServiceType_Name().");
-  return ServiceType_Name(static_cast<ServiceType>(value));
-}
-template <>
-inline const std::string& ServiceType_Name(ServiceType value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<ServiceType_descriptor,
-                                                 0, 7>(
-      static_cast<int>(value));
-}
-inline bool ServiceType_Parse(absl::string_view name, ServiceType* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<ServiceType>(
-      ServiceType_descriptor(), name, value);
-}
 
 // ===================================================================
 
@@ -2069,19 +2030,6 @@ inline void ClientHeartbeatRes::set_allocated_message(std::string* value) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace rpc_server
 
-
-namespace google {
-namespace protobuf {
-
-template <>
-struct is_proto_enum<::rpc_server::ServiceType> : std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor<::rpc_server::ServiceType>() {
-  return ::rpc_server::ServiceType_descriptor();
-}
-
-}  // namespace protobuf
-}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

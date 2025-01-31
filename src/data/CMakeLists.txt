@@ -12,10 +12,12 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
     # protobuf 生成的源文件
-    ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/common.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/common.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_data.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_data.grpc.pb.cc
 )
 
 # 指定编译生成的可执行文件信息：文件名${PROJECT_NAME} ，${SOURCES} 项目所有源文件路径

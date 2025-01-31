@@ -11,18 +11,20 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
     # protobuf 生成的源文件：调用其他服务器
-    ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/central/server_central.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/data/server_data.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/file/server_file.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/file/server_file.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/gateway/server_gateway.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/gateway/server_gateway.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/logic/server_logic.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/logic/server_logic.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/login/server_login.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/login/server_login.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/common.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/common.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_data.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_data.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_file.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_file.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_gateway.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_gateway.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_logic.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_logic.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_login.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_login.grpc.pb.cc
 )
 
 # 指定编译生成的可执行文件

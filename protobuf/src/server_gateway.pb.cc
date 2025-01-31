@@ -168,7 +168,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientHeartbeatReqDefaultTypeInternal _ClientHeartbeatReq_default_instance_;
 }  // namespace rpc_server
 static ::_pb::Metadata file_level_metadata_server_5fgateway_2eproto[6];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_server_5fgateway_2eproto[1];
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_server_5fgateway_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_server_5fgateway_2eproto = nullptr;
 const ::uint32_t TableStruct_server_5fgateway_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
@@ -257,39 +258,40 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::rpc_server::_ClientHeartbeatRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fgateway_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\024server_gateway.proto\022\nrpc_server\"L\n\nFo"
-    "rwardReq\022-\n\014service_type\030\001 \001(\0162\027.rpc_ser"
-    "ver.ServiceType\022\017\n\007payload\030\002 \001(\014\"/\n\nForw"
-    "ardRes\022\017\n\007success\030\001 \001(\010\022\020\n\010response\030\002 \001("
-    "\014\"9\n\027GetFileServerAddressReq\022\017\n\007account\030"
-    "\001 \001(\014\022\r\n\005token\030\002 \001(\014\"Z\n\027GetFileServerAdd"
-    "ressRes\022\017\n\007success\030\001 \001(\010\022\017\n\007address\030\002 \001("
-    "\014\022\014\n\004port\030\003 \001(\014\022\017\n\007message\030\004 \001(\014\"E\n\022Clie"
-    "ntHeartbeatReq\022\017\n\007account\030\001 \001(\014\022\r\n\005token"
-    "\030\002 \001(\014\022\017\n\007address\030\003 \001(\014\"6\n\022ClientHeartbe"
-    "atRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014*"
-    "\233\001\n\013ServiceType\022\r\n\tREQ_LOGIN\020\000\022\r\n\tRES_LO"
-    "GIN\020\001\022\016\n\nREQ_LOGOUT\020\002\022\016\n\nRES_LOGOUT\020\003\022\020\n"
-    "\014REQ_REGISTER\020\004\022\020\n\014RES_REGISTER\020\005\022\024\n\020REQ"
-    "_AUTHENTICATE\020\006\022\024\n\020RES_AUTHENTICATE\020\0072\213\002"
-    "\n\rGatewayServer\022A\n\017Request_forward\022\026.rpc"
-    "_server.ForwardReq\032\026.rpc_server.ForwardR"
-    "es\022c\n\027Get_file_server_address\022#.rpc_serv"
-    "er.GetFileServerAddressReq\032#.rpc_server."
-    "GetFileServerAddressRes\022R\n\020Client_heartb"
-    "eat\022\036.rpc_server.ClientHeartbeatReq\032\036.rp"
-    "c_server.ClientHeartbeatResb\006proto3"
+    "\n\024server_gateway.proto\022\nrpc_server\032\014comm"
+    "on.proto\"L\n\nForwardReq\022-\n\014service_type\030\001"
+    " \001(\0162\027.rpc_server.ServiceType\022\017\n\007payload"
+    "\030\002 \001(\014\"/\n\nForwardRes\022\017\n\007success\030\001 \001(\010\022\020\n"
+    "\010response\030\002 \001(\014\"9\n\027GetFileServerAddressR"
+    "eq\022\017\n\007account\030\001 \001(\014\022\r\n\005token\030\002 \001(\014\"Z\n\027Ge"
+    "tFileServerAddressRes\022\017\n\007success\030\001 \001(\010\022\017"
+    "\n\007address\030\002 \001(\014\022\014\n\004port\030\003 \001(\014\022\017\n\007message"
+    "\030\004 \001(\014\"E\n\022ClientHeartbeatReq\022\017\n\007account\030"
+    "\001 \001(\014\022\r\n\005token\030\002 \001(\014\022\017\n\007address\030\003 \001(\014\"6\n"
+    "\022ClientHeartbeatRes\022\017\n\007success\030\001 \001(\010\022\017\n\007"
+    "message\030\002 \001(\0142\213\002\n\rGatewayServer\022A\n\017Reque"
+    "st_forward\022\026.rpc_server.ForwardReq\032\026.rpc"
+    "_server.ForwardRes\022c\n\027Get_file_server_ad"
+    "dress\022#.rpc_server.GetFileServerAddressR"
+    "eq\032#.rpc_server.GetFileServerAddressRes\022"
+    "R\n\020Client_heartbeat\022\036.rpc_server.ClientH"
+    "eartbeatReq\032\036.rpc_server.ClientHeartbeat"
+    "Resb\006proto3"
+};
+static const ::_pbi::DescriptorTable* const descriptor_table_server_5fgateway_2eproto_deps[1] =
+    {
+        &::descriptor_table_common_2eproto,
 };
 static ::absl::once_flag descriptor_table_server_5fgateway_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fgateway_2eproto = {
     false,
     false,
-    875,
+    731,
     descriptor_table_protodef_server_5fgateway_2eproto,
     "server_gateway.proto",
     &descriptor_table_server_5fgateway_2eproto_once,
-    nullptr,
-    0,
+    descriptor_table_server_5fgateway_2eproto_deps,
+    1,
     6,
     schemas,
     file_default_instances,
@@ -317,15 +319,6 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_server_5
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_server_5fgateway_2eproto(&descriptor_table_server_5fgateway_2eproto);
 namespace rpc_server {
-const ::google::protobuf::EnumDescriptor* ServiceType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_server_5fgateway_2eproto);
-  return file_level_enum_descriptors_server_5fgateway_2eproto[0];
-}
-PROTOBUF_CONSTINIT const uint32_t ServiceType_internal_data_[] = {
-    524288u, 0u, };
-bool ServiceType_IsValid(int value) {
-  return 0 <= value && value <= 7;
-}
 // ===================================================================
 
 class ForwardReq::_Internal {

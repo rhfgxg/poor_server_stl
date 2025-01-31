@@ -1,6 +1,7 @@
 #ifndef DATA_SERVICE_H
 #define DATA_SERVICE_H
 
+#include "common.grpc.pb.h" // 公共模块：包含公共数据类型，枚举
 #include "server_data.grpc.pb.h"
 #include "server_central.grpc.pb.h"
 #include "connection_pool.h"    // 连接池

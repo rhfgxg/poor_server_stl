@@ -249,7 +249,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MultipleConnectPoorResDefaultTypeInternal _MultipleConnectPoorRes_default_instance_;
 }  // namespace rpc_server
 static ::_pb::Metadata file_level_metadata_server_5fcentral_2eproto[10];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_server_5fcentral_2eproto[1];
+static constexpr const ::_pb::EnumDescriptor**
+    file_level_enum_descriptors_server_5fcentral_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_server_5fcentral_2eproto = nullptr;
 const ::uint32_t TableStruct_server_5fcentral_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
@@ -386,49 +387,51 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::rpc_server::_HeartbeatRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fcentral_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\024server_central.proto\022\nrpc_server\"_\n\021Re"
-    "gisterServerReq\022+\n\013server_type\030\001 \001(\0162\026.r"
-    "pc_server.ServerType\022\017\n\007address\030\002 \001(\014\022\014\n"
-    "\004port\030\003 \001(\014\"5\n\021RegisterServerRes\022\017\n\007succ"
-    "ess\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"a\n\023Unregister"
-    "ServerReq\022+\n\013server_type\030\001 \001(\0162\026.rpc_ser"
-    "ver.ServerType\022\017\n\007address\030\002 \001(\014\022\014\n\004port\030"
-    "\003 \001(\014\"7\n\023UnregisterServerRes\022\017\n\007success\030"
-    "\001 \001(\010\022\017\n\007message\030\002 \001(\014\"F\n\026MultipleConnec"
-    "tPoorReq\022,\n\014server_types\030\001 \003(\0162\026.rpc_ser"
-    "ver.ServerType\"j\n\026MultipleConnectPoorRes"
-    "\022\017\n\007success\030\001 \001(\010\022.\n\rconnect_pools\030\002 \003(\013"
-    "2\027.rpc_server.ConnectPool\022\017\n\007message\030\003 \001"
-    "(\014\",\n\013ConnectInfo\022\017\n\007address\030\001 \001(\014\022\014\n\004po"
-    "rt\030\002 \001(\005\"i\n\013ConnectPool\022+\n\013server_type\030\001"
-    " \001(\0162\026.rpc_server.ServerType\022-\n\014connect_"
-    "info\030\002 \003(\0132\027.rpc_server.ConnectInfo\"Z\n\014H"
-    "eartbeatReq\022+\n\013server_type\030\001 \001(\0162\026.rpc_s"
-    "erver.ServerType\022\017\n\007address\030\002 \001(\014\022\014\n\004por"
-    "t\030\003 \001(\014\"0\n\014HeartbeatRes\022\017\n\007success\030\001 \001(\010"
-    "\022\017\n\007message\030\002 \001(\014*]\n\nServerType\022\013\n\007UNKNO"
-    "WN\020\000\022\013\n\007CENTRAL\020\001\022\010\n\004DATA\020\002\022\013\n\007GATEWAY\020\003"
-    "\022\t\n\005LOGIN\020\004\022\t\n\005LOGIC\020\005\022\010\n\004FILE\020\0062\323\002\n\rCen"
-    "tralServer\022O\n\017Register_server\022\035.rpc_serv"
-    "er.RegisterServerReq\032\035.rpc_server.Regist"
-    "erServerRes\022U\n\021Unregister_server\022\037.rpc_s"
-    "erver.UnregisterServerReq\032\037.rpc_server.U"
-    "nregisterServerRes\022Y\n\017Get_connec_poor\022\"."
-    "rpc_server.MultipleConnectPoorReq\032\".rpc_"
-    "server.MultipleConnectPoorRes\022\?\n\tHeartbe"
-    "at\022\030.rpc_server.HeartbeatReq\032\030.rpc_serve"
-    "r.HeartbeatResb\006proto3"
+    "\n\024server_central.proto\022\nrpc_server\032\014comm"
+    "on.proto\"_\n\021RegisterServerReq\022+\n\013server_"
+    "type\030\001 \001(\0162\026.rpc_server.ServerType\022\017\n\007ad"
+    "dress\030\002 \001(\014\022\014\n\004port\030\003 \001(\014\"5\n\021RegisterSer"
+    "verRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014"
+    "\"a\n\023UnregisterServerReq\022+\n\013server_type\030\001"
+    " \001(\0162\026.rpc_server.ServerType\022\017\n\007address\030"
+    "\002 \001(\014\022\014\n\004port\030\003 \001(\014\"7\n\023UnregisterServerR"
+    "es\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"F\n\026"
+    "MultipleConnectPoorReq\022,\n\014server_types\030\001"
+    " \003(\0162\026.rpc_server.ServerType\"j\n\026Multiple"
+    "ConnectPoorRes\022\017\n\007success\030\001 \001(\010\022.\n\rconne"
+    "ct_pools\030\002 \003(\0132\027.rpc_server.ConnectPool\022"
+    "\017\n\007message\030\003 \001(\014\",\n\013ConnectInfo\022\017\n\007addre"
+    "ss\030\001 \001(\014\022\014\n\004port\030\002 \001(\005\"i\n\013ConnectPool\022+\n"
+    "\013server_type\030\001 \001(\0162\026.rpc_server.ServerTy"
+    "pe\022-\n\014connect_info\030\002 \003(\0132\027.rpc_server.Co"
+    "nnectInfo\"Z\n\014HeartbeatReq\022+\n\013server_type"
+    "\030\001 \001(\0162\026.rpc_server.ServerType\022\017\n\007addres"
+    "s\030\002 \001(\014\022\014\n\004port\030\003 \001(\014\"0\n\014HeartbeatRes\022\017\n"
+    "\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\0142\323\002\n\rCent"
+    "ralServer\022O\n\017Register_server\022\035.rpc_serve"
+    "r.RegisterServerReq\032\035.rpc_server.Registe"
+    "rServerRes\022U\n\021Unregister_server\022\037.rpc_se"
+    "rver.UnregisterServerReq\032\037.rpc_server.Un"
+    "registerServerRes\022Y\n\017Get_connec_poor\022\".r"
+    "pc_server.MultipleConnectPoorReq\032\".rpc_s"
+    "erver.MultipleConnectPoorRes\022\?\n\tHeartbea"
+    "t\022\030.rpc_server.HeartbeatReq\032\030.rpc_server"
+    ".HeartbeatResb\006proto3"
+};
+static const ::_pbi::DescriptorTable* const descriptor_table_server_5fcentral_2eproto_deps[1] =
+    {
+        &::descriptor_table_common_2eproto,
 };
 static ::absl::once_flag descriptor_table_server_5fcentral_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fcentral_2eproto = {
     false,
     false,
-    1262,
+    1181,
     descriptor_table_protodef_server_5fcentral_2eproto,
     "server_central.proto",
     &descriptor_table_server_5fcentral_2eproto_once,
-    nullptr,
-    0,
+    descriptor_table_server_5fcentral_2eproto_deps,
+    1,
     10,
     schemas,
     file_default_instances,
@@ -456,15 +459,6 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_server_5
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_server_5fcentral_2eproto(&descriptor_table_server_5fcentral_2eproto);
 namespace rpc_server {
-const ::google::protobuf::EnumDescriptor* ServerType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_server_5fcentral_2eproto);
-  return file_level_enum_descriptors_server_5fcentral_2eproto[0];
-}
-PROTOBUF_CONSTINIT const uint32_t ServerType_internal_data_[] = {
-    458752u, 0u, };
-bool ServerType_IsValid(int value) {
-  return 0 <= value && value <= 6;
-}
 // ===================================================================
 
 class RegisterServerReq::_Internal {

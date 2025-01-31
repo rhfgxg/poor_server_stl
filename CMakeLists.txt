@@ -29,12 +29,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src/logic
     ${CMAKE_SOURCE_DIR}/src/login
     # proto生成的 grpc服务头文件目录
-    ${CMAKE_SOURCE_DIR}/protobuf/central
-    ${CMAKE_SOURCE_DIR}/protobuf/data
-    ${CMAKE_SOURCE_DIR}/protobuf/file
-    ${CMAKE_SOURCE_DIR}/protobuf/gateway
-    ${CMAKE_SOURCE_DIR}/protobuf/logic
-    ${CMAKE_SOURCE_DIR}/protobuf/login
+    ${CMAKE_SOURCE_DIR}/protobuf/src
 )
 
 # 需要编译的源文件列表

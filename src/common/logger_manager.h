@@ -1,7 +1,7 @@
 #ifndef LOGGER_MANAGER_H
 #define LOGGER_MANAGER_H
 
-#include "server_central.grpc.pb.h" // 使用服务器类型枚举
+#include "common.grpc.pb.h" // 公共模块：包含公共数据类型，枚举
 
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
