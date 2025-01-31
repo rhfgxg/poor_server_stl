@@ -1,13 +1,13 @@
 # data数据库服务器模块，管理所有数据库相关功能，其他模块通过此模块接口访问数据库
 # 模块名
-set(MODULE_NAME data)
+set(MODULE_NAME db)
 
 # 需要编译的源文件列表
 set(SOURCES
     # 源文件
-    ${PROJECT_SOURCE_DIR}/src/data/main.cpp
-    ${PROJECT_SOURCE_DIR}/src/data/server/data_server.cpp
-    ${PROJECT_SOURCE_DIR}/src/data/server/de_connection_pool.cpp
+    ${PROJECT_SOURCE_DIR}/src/db/main.cpp
+    ${PROJECT_SOURCE_DIR}/src/db/server/db_server.cpp
+    ${PROJECT_SOURCE_DIR}/src/db/server/db_connection_pool.cpp
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
@@ -16,8 +16,8 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/protobuf/src/common.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_data.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_data.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_db.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_db.grpc.pb.cc
 )
 
 # 指定编译生成的可执行文件信息：文件名${PROJECT_NAME} ，${SOURCES} 项目所有源文件路径

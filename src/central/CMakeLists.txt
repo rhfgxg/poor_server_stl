@@ -15,8 +15,8 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/protobuf/src/common.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_data.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_data.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_db.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_db.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_file.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_file.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_gateway.pb.cc

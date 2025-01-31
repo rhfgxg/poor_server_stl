@@ -1,7 +1,7 @@
 syntax = "proto3";
 package rpc_server;
 
-service DatabaseServer
+service DBServer
 {
     rpc Create (CreateReq) returns (CreateRes);    // 增加数据服务
     rpc Read (ReadReq) returns (ReadRes);  // 查询数据服务

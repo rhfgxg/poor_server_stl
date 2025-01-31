@@ -73,9 +73,9 @@ void LoggerManager::Create_log_directory(rpc_server::ServerType server_type)
         server_name = "central_server";
         break;
     }
-    case rpc_server::DATA:
+    case rpc_server::DB:
     {
-        server_name = "data_server";
+        server_name = "db_server";
         break;
     }
     case rpc_server::GATEWAY:

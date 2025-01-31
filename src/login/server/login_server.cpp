@@ -168,7 +168,7 @@ void LoginServerImpl::Init_connection_pool()
     grpc::ClientContext context;
     // 请求
     rpc_server::MultipleConnectPoorReq req;
-    req.add_server_types(rpc_server::ServerType::DATA);
+    req.add_server_types(rpc_server::ServerType::DB);
     // 响应
     rpc_server::MultipleConnectPoorRes res;
 
@@ -181,9 +181,9 @@ void LoginServerImpl::Init_connection_pool()
             {
                 switch(connect_pool.server_type())
                 {
-                case rpc_server::ServerType::DATA:
+                case rpc_server::ServerType::DB:
                 {
-                    db_connection_pool.add_server(rpc_server::ServerType::DATA, conn_info.address(), std::to_string(conn_info.port()));
+                    db_connection_pool.add_server(rpc_server::ServerType::DB, conn_info.address(), std::to_string(conn_info.port()));
                     break;
                 }
                 default:
@@ -298,8 +298,8 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
     grpc::ClientContext client_context;
 
     // 从连接池中获取数据库服务器连接
-    auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DATA);
-    auto db_stub = rpc_server::DatabaseServer::NewStub(channel);
+    auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DB);
+    auto db_stub = rpc_server::DBServer::NewStub(channel);
 
     // 调用数据库服务器的查询服务
     grpc::Status status = db_stub->Read(&client_context, read_request, &read_response);
@@ -328,7 +328,7 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
         this->logger_manager.getLogger(rpc_server::LogCategory::APPLICATION_ACTIVITY)->info("Login failed");
     }
 
-    this->db_connection_pool.release_connection(rpc_server::ServerType::DATA, channel); // 释放数据库服务器连接
+    this->db_connection_pool.release_connection(rpc_server::ServerType::DB, channel); // 释放数据库服务器连接
 }
 
 // 注册服务

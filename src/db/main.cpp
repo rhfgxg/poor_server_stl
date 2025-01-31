@@ -1,4 +1,4 @@
-#include "./server/data_server.h"
+#include "./server/db_server.h"
 #include "logger_manager.h" // 引入日志管理器
 
 void run_server(LoggerManager& logger_manager); // 运行服务器
@@ -9,10 +9,10 @@ int main()
 {
     // 初始化日志管理器，通过引用传递实现单例模式
     LoggerManager logger_manager;
-    logger_manager.initialize(rpc_server::ServerType::DATA);    // 传入服务器类型，创建日志文件夹
+    logger_manager.initialize(rpc_server::ServerType::DB);    // 传入服务器类型，创建日志文件夹
 
     // 记录启动日志
-    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Data_server started"); // 记录启动日志：日志分类, 日志内容
+    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("DB_server started"); // 记录启动日志：日志分类, 日志内容
 
     // 启动服务器
     run_server(logger_manager); // 运行服务器
@@ -23,21 +23,22 @@ int main()
 
 void run_server(LoggerManager& logger_manager)
 {// 相关注释请参考 /src/central/src/main.cpp/run_server()
+
     std::string address = "0.0.0.0";    // 默认服务器地址
     std::string port = "50052";
     Read_server_config(address, port);  // 读取服务器配置文件，初始化服务器地址和端口
 
-    DatabaseServerImpl db_server(logger_manager, address, port);  // 传入日志管理器和数据库连接池
+    DBServerImpl db_server(logger_manager, address, port);  // 传入日志管理器和数据库连接池
 
     grpc::ServerBuilder builder;
     std::string server_address(address + ":" + port);
-    builder.AddListeningPort(server_address,grpc::InsecureServerCredentials());
+    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
     builder.RegisterService(&db_server);
 
     db_server.start_thread_pool(4);
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}",server_address);
+    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
 
     server->Wait();
     db_server.stop_thread_pool();
@@ -51,7 +52,7 @@ void Read_server_config(std::string& address, std::string& port)
 
     std::string file_url = "config/db_server_config.lua";  // 配置文件路径
 
-    if(luaL_dofile(L,file_url.c_str()) != LUA_OK)
+    if(luaL_dofile(L, file_url.c_str()) != LUA_OK)
     {
         lua_close(L);
         throw std::runtime_error("Failed to load config file");

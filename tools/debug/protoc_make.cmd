@@ -18,9 +18,9 @@ rem 生成 central 模块：中心模块
 %PROTOC% --proto_path=%PROTO_DIR% --cpp_out=%MAKE_OUT% %PROTO_DIR%\server_central.proto
 %PROTOC% --proto_path=%PROTO_DIR% --grpc_out=%MAKE_OUT% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %PROTO_DIR%\server_central.proto
 
-rem 生成 data 模块：数据库模块
-%PROTOC% --proto_path=%PROTO_DIR% --cpp_out=%MAKE_OUT% %PROTO_DIR%\server_data.proto
-%PROTOC% --proto_path=%PROTO_DIR% --grpc_out=%MAKE_OUT% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %PROTO_DIR%\server_data.proto
+rem 生成 db 模块：数据库模块
+%PROTOC% --proto_path=%PROTO_DIR% --cpp_out=%MAKE_OUT% %PROTO_DIR%\server_db.proto
+%PROTOC% --proto_path=%PROTO_DIR% --grpc_out=%MAKE_OUT% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %PROTO_DIR%\server_db.proto
 
 rem 生成 file 模块：文件服务器模块
 %PROTOC% --proto_path=%PROTO_DIR% --cpp_out=%MAKE_OUT% %PROTO_DIR%\server_file.proto

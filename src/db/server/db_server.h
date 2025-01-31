@@ -1,8 +1,8 @@
-#ifndef DATA_SERVICE_H
-#define DATA_SERVICE_H
+#ifndef DB_SERVICE_H
+#define DB_SERVICE_H
 
 #include "common.grpc.pb.h" // 公共模块：包含公共数据类型，枚举
-#include "server_data.grpc.pb.h"
+#include "server_db.grpc.pb.h"
 #include "server_central.grpc.pb.h"
 #include "connection_pool.h"    // 连接池
 #include "db_connection_pool.h" // 数据库连接池
@@ -18,11 +18,11 @@
 #include <lua.hpp>
 
 // 数据库服务实现类
-class DatabaseServerImpl final: public rpc_server::DatabaseServer::Service
+class DBServerImpl final: public rpc_server::DBServer::Service
 {
 public:
-    DatabaseServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port); // 参数：日志管理器，数据库连接池
-    ~DatabaseServerImpl(); // 添加析构函数声明
+    DBServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port); // 参数：日志管理器，数据库连接池
+    ~DBServerImpl(); // 添加析构函数声明
 
     void register_server(); // 注册服务器
     void unregister_server(); // 注销服务器
@@ -75,4 +75,4 @@ private:
     bool stop_threads = false;  // 停止线程标志
 };
 
-#endif // DATA_SERVICE_H
+#endif // DB_SERVICE_H

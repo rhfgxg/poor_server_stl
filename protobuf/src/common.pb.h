@@ -63,7 +63,7 @@ namespace rpc_server {
 enum ServerType : int {
   UNKNOWN = 0,
   CENTRAL = 1,
-  DATA = 2,
+  DB = 2,
   GATEWAY = 3,
   LOGIN = 4,
   LOGIC = 5,

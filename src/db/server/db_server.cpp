@@ -1,7 +1,7 @@
-#include "data_server.h"
+#include "db_server.h"
 
-DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port):
-    server_type(rpc_server::ServerType::DATA),
+DBServerImpl::DBServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port):
+    server_type(rpc_server::ServerType::DB),
     server_address(address),
     server_port(port),
     logger_manager(logger_manager_),
@@ -20,33 +20,33 @@ DatabaseServerImpl::DatabaseServerImpl(LoggerManager& logger_manager_, const std
 
     // 启动定时任务
     // 定时向中心服务器发送心跳包
-    std::thread(&DatabaseServerImpl::Send_heartbeat, this).detach();
+    std::thread(&DBServerImpl::Send_heartbeat, this).detach();
 }
 
-DatabaseServerImpl::~DatabaseServerImpl()
+DBServerImpl::~DBServerImpl()
 {
     stop_thread_pool(); // 停止并清空线程池
 
     unregister_server(); // 注销服务器
 
     // 记录关闭日志
-    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("DatabaseServer stopped");
+    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("DBServer stopped");
     // 停止并清理日志管理器
     logger_manager.cleanup();
 }
 
 /*************************************** 多线程工具函数 *****************************************************************/
 // 启动线程池
-void DatabaseServerImpl::start_thread_pool(int num_threads)
+void DBServerImpl::start_thread_pool(int num_threads)
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/start_thread_pool()
     for(int i = 0; i < num_threads; ++i)
     {
-        this->thread_pool.emplace_back(&DatabaseServerImpl::Worker_thread, this);
+        this->thread_pool.emplace_back(&DBServerImpl::Worker_thread, this);
     }
 }
 
 // 停止线程池
-void DatabaseServerImpl::stop_thread_pool()
+void DBServerImpl::stop_thread_pool()
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/stop_thread_pool()
     {
         std::lock_guard<std::mutex> lock(this->queue_mutex);
@@ -69,7 +69,7 @@ void DatabaseServerImpl::stop_thread_pool()
 }
 
 // 添加异步任务
-std::future<void> DatabaseServerImpl::add_async_task(std::function<void()> task)
+std::future<void> DBServerImpl::add_async_task(std::function<void()> task)
 {
     auto task_ptr = std::make_shared<std::packaged_task<void()>>(std::move(task));
     std::future<void> task_future = task_ptr->get_future();
@@ -85,7 +85,7 @@ std::future<void> DatabaseServerImpl::add_async_task(std::function<void()> task)
 }
 
 // 线程池工作函数
-void DatabaseServerImpl::Worker_thread()
+void DBServerImpl::Worker_thread()
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/worker_thread()
     while(true)
     {
@@ -110,7 +110,7 @@ void DatabaseServerImpl::Worker_thread()
 
 /*************************************** 连接池管理 *********************************************************/
 // 注册服务器
-void DatabaseServerImpl::register_server()
+void DBServerImpl::register_server()
 {
     // 创建请求
     rpc_server::RegisterServerReq request;
@@ -127,20 +127,20 @@ void DatabaseServerImpl::register_server()
 
     if(status.ok() && response.success())
     {
-        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Database server registered successfully: {} {}",this->server_address,this->server_port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("DB server registered successfully: {} {}",this->server_address,this->server_port);
     }
     else
     {
-        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->error("Database server registration failed: {} {}",this->server_address,this->server_port);
+        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->error("DB server registration failed: {} {}",this->server_address,this->server_port);
     }
 }
 
 // 注销服务器
-void DatabaseServerImpl::unregister_server()
+void DBServerImpl::unregister_server()
 {
     // 请求
     rpc_server::UnregisterServerReq request;
-    request.set_server_type(rpc_server::ServerType::DATA);
+    request.set_server_type(this->server_type);
     request.set_address(this->server_address);
     request.set_port(this->server_port);
 
@@ -164,7 +164,7 @@ void DatabaseServerImpl::unregister_server()
 
 /*************************************** 定时任务 *********************************************************/
 // 定时任务：发送心跳包
-void DatabaseServerImpl::Send_heartbeat()
+void DBServerImpl::Send_heartbeat()
 {
     while(true)
     {
@@ -174,9 +174,9 @@ void DatabaseServerImpl::Send_heartbeat()
         rpc_server::HeartbeatRes response;
         grpc::ClientContext context;
 
-        request.set_server_type(rpc_server::ServerType::DATA);
-        request.set_address("127.0.0.1"); // 设置服务器ip
-        request.set_port("50052"); // 设置服务器端口
+        request.set_server_type(rpc_server::ServerType::DB);
+        request.set_address(this->server_address); // 设置服务器ip
+        request.set_port(this->server_port); // 设置服务器端口
 
         grpc::Status status = central_stub->Heartbeat(&context,request,&response);
 
@@ -193,7 +193,7 @@ void DatabaseServerImpl::Send_heartbeat()
 
 /**************************************** grpc服务接口定义 **************************************************************************/
 // 添加
-grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const rpc_server::CreateReq* req, rpc_server::CreateRes* res)
+grpc::Status DBServerImpl::Create(grpc::ServerContext* context, const rpc_server::CreateReq* req, rpc_server::CreateRes* res)
 {
     auto task_future = this->add_async_task([this, req, res] {
         this->Handle_create(req, res);
@@ -205,7 +205,7 @@ grpc::Status DatabaseServerImpl::Create(grpc::ServerContext* context, const rpc_
 }
 
 // 查询
-grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const rpc_server::ReadReq* req, rpc_server::ReadRes* res)
+grpc::Status DBServerImpl::Read(grpc::ServerContext* context, const rpc_server::ReadReq* req, rpc_server::ReadRes* res)
 {
     auto task_future = this->add_async_task([this, req, res] {  
         this->Handle_read(req, res);
@@ -217,7 +217,7 @@ grpc::Status DatabaseServerImpl::Read(grpc::ServerContext* context, const rpc_se
 }
 
 // 更新
-grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res)
+grpc::Status DBServerImpl::Update(grpc::ServerContext* context, const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res)
 {
     auto task_future = this->add_async_task([this,req,res] {
         this->Handle_update(req, res);
@@ -229,7 +229,7 @@ grpc::Status DatabaseServerImpl::Update(grpc::ServerContext* context, const rpc_
 }
 
 // 删除
-grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res)
+grpc::Status DBServerImpl::Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res)
 {
     auto task_future = this->add_async_task([this, req, res] {
         this->Handle_delete(req, res);
@@ -243,7 +243,7 @@ grpc::Status DatabaseServerImpl::Delete(grpc::ServerContext* context, const rpc_
 /**************************************** grpc接口工具函数 **************************************************************************/
 // 处理数据库操作的函数
 // 添加
-void DatabaseServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_server::CreateRes* res)
+void DBServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_server::CreateRes* res)
 {
     // 获取数据库连接
     mysqlx::Session session = this->user_db_pool->get_connection();
@@ -256,14 +256,14 @@ void DatabaseServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_ser
     // 设置响应参数
     res->set_success(true);
     res->set_message("Create successful");
-    std::cout << "Database created successfully" << std::endl;
+    std::cout << "DB created successfully" << std::endl;
 
     // 释放数据库连接
     this->user_db_pool->release_connection(std::move(session));
 }
 
 // 查询
-void DatabaseServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadRes* res)
+void DBServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadRes* res)
 {
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
@@ -352,7 +352,7 @@ void DatabaseServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server:
 }
 
 // 更新
-void DatabaseServerImpl::Handle_update(const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res)
+void DBServerImpl::Handle_update(const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res)
 {
     // 获取数据库连接
     mysqlx::Session session = this->user_db_pool->get_connection();
@@ -372,7 +372,7 @@ void DatabaseServerImpl::Handle_update(const rpc_server::UpdateReq* req, rpc_ser
 }
 
 // 删除
-void DatabaseServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res)
+void DBServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res)
 {
     // 获取数据库连接
     mysqlx::Session session = this->user_db_pool->get_connection();
@@ -393,7 +393,7 @@ void DatabaseServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_ser
 
 /******************************************** 其他工具函数 *****************************************************/
 // 读取 数据库配置配置文件，获得数据库连接字符串
-std::string DatabaseServerImpl::Read_db_config(lua_State* L, const std::string& file_url)
+std::string DBServerImpl::Read_db_config(lua_State* L, const std::string& file_url)
 {
     if(luaL_dofile(L,file_url.c_str()) != LUA_OK) {
         std::cerr << "Error: " << lua_tostring(L,-1) << std::endl;

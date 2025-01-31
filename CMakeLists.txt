@@ -23,7 +23,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src/common
     # 各服务器实现类
     ${CMAKE_SOURCE_DIR}/src/central
-    ${CMAKE_SOURCE_DIR}/src/data
+    ${CMAKE_SOURCE_DIR}/src/db
     ${CMAKE_SOURCE_DIR}/src/file
     ${CMAKE_SOURCE_DIR}/src/gateway
     ${CMAKE_SOURCE_DIR}/src/logic
@@ -67,7 +67,7 @@ find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_LIB}")   # mysqlcppco
 # 添加每个模块，确保可以将所有变量
 add_subdirectory(protobuf)
 add_subdirectory(./src/central)
-add_subdirectory(./src/data)
+add_subdirectory(./src/db)
 add_subdirectory(./src/file)
 add_subdirectory(./src/gateway)
 add_subdirectory(./src/logic)
