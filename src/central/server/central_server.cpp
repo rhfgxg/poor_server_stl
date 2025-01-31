@@ -242,7 +242,7 @@ void CentralServerImpl::Handle_register_server(const rpc_server::RegisterServerR
     }
 }
 
-// 释放连接池中服务器连接
+// 清除连接池中服务器连接
 void CentralServerImpl::Release_server_connection(rpc_server::ServerType server_type, const std::string& address,const std::string& port)
 {// 被 Unregister_server() 和 check_heartbeat() 调用
     // 根据服务器类型，从连接池中删除服务器
@@ -364,8 +364,8 @@ void CentralServerImpl::check_heartbeat()
         {
             if(std::chrono::duration_cast<std::chrono::seconds>(now - record.second.last_heartbeat).count() > 30)  
             {// 如果心跳时间超过30秒，释放服务器连接
-                this->logger_manager.getLogger(rpc_server::LogCategory::HEARTBEAT)->warn("Server lost heartbeat, address {} port ()", record.second.address, record.second.port);
                 this->Release_server_connection(record.second.server_type, record.second.address, record.second.port);
+                this->logger_manager.getLogger(rpc_server::LogCategory::HEARTBEAT)->warn("Server lost heartbeat, address {} port ()", record.second.address, record.second.port);
             }
         }
     }

@@ -321,6 +321,7 @@ grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payl
         response->set_success(false);
     }
 
+    this->login_connection_pool.release_connection(rpc_server::ServerType::LOGIN, channel); // 释放连接
     return grpc::Status::OK;
 }
 

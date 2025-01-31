@@ -327,6 +327,8 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
         res->set_message("Login failed");
         this->logger_manager.getLogger(rpc_server::LogCategory::APPLICATION_ACTIVITY)->info("Login failed");
     }
+
+    this->db_connection_pool.release_connection(rpc_server::ServerType::DATA, channel); // 释放数据库服务器连接
 }
 
 // 注册服务
