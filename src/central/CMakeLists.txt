@@ -5,8 +5,8 @@ set(MODULE_NAME central)
 # 需要编译的源文件列表
 set(SOURCES
     # 源文件
-    ${PROJECT_SOURCE_DIR}/src/central/src/main.cpp
-    ${PROJECT_SOURCE_DIR}/src/central/src/central/central_server.cpp
+    ${PROJECT_SOURCE_DIR}/src/central/main.cpp
+    ${PROJECT_SOURCE_DIR}/src/central/server/central_server.cpp
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
@@ -68,7 +68,7 @@ set(DLL_FILES
     "${VCPKG_DEBUG_BIN}/spdlogd.dll"
     "${VCPKG_DEBUG_BIN}/lua.dll"
 )
-# 复制其他dll文件到可执行文件所在目录
+# 复制dll文件到可执行文件所在目录
 foreach(DLL_FILE ${DLL_FILES})
     add_custom_command(TARGET ${MODULE_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different

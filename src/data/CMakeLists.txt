@@ -5,9 +5,9 @@ set(MODULE_NAME data)
 # 需要编译的源文件列表
 set(SOURCES
     # 源文件
-    ${PROJECT_SOURCE_DIR}/src/data/src/main.cpp
-    ${PROJECT_SOURCE_DIR}/src/data/src/data/data_server.cpp
-    ${PROJECT_SOURCE_DIR}/src/data/src/data/de_connection_pool.cpp
+    ${PROJECT_SOURCE_DIR}/src/data/main.cpp
+    ${PROJECT_SOURCE_DIR}/src/data/server/data_server.cpp
+    ${PROJECT_SOURCE_DIR}/src/data/server/de_connection_pool.cpp
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
@@ -48,14 +48,27 @@ target_link_libraries(${MODULE_NAME} PRIVATE
     ${MYSQLCPPCONN_LIB}  # mysql库
 )
 
+
 # 第三方库 dll列表
-set(DB_DLL_FILES
+set(DLL_FILES
+    "${VCPKG_DEBUG_BIN}/boost_system-vc143-mt-gd-x64-1_85.dll"
+    "${VCPKG_DEBUG_BIN}/libprotobufd.dll"
+    "${VCPKG_DEBUG_BIN}/libprotocd.dll"
+    "${VCPKG_DEBUG_BIN}/libssl-3-x64.dll"
+    "${VCPKG_DEBUG_BIN}/libcrypto-3-x64.dll"
+    "${VCPKG_DEBUG_BIN}/abseil_dll.dll"
+    "${VCPKG_DEBUG_BIN}/zlibd1.dll"
+    "${VCPKG_DEBUG_BIN}/re2.dll"
+    "${VCPKG_DEBUG_BIN}/cares.dll"
+    "${VCPKG_DEBUG_BIN}/fmtd.dll"
+    "${VCPKG_DEBUG_BIN}/spdlogd.dll"
+    "${VCPKG_DEBUG_BIN}/lua.dll"
     # mysql库
     "${VCPKG_DEBUG_BIN}/mysqlcppconn8-2-vs14.dll"
     "${VCPKG_DEBUG_BIN}/lz4d.dll"
 )
 
-# 复制其他dll文件到可执行文件所在目录
+# 复制dll文件到可执行文件所在目录
 foreach(DLL_FILE ${DLL_FILES})
     add_custom_command(TARGET ${MODULE_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
@@ -63,14 +76,7 @@ foreach(DLL_FILE ${DLL_FILES})
         $<TARGET_FILE_DIR:${MODULE_NAME}>  # 复制到可执行文件生成目录
     )
 endforeach()
-# 复制数据库所需dll文件到可执行文件所在目录
-foreach(DB_DLL_FILE ${DB_DLL_FILES})
-    add_custom_command(TARGET ${MODULE_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${DB_DLL_FILE}"
-        $<TARGET_FILE_DIR:${MODULE_NAME}>  # 复制到可执行文件生成目录
-    )
-endforeach()
+
 
 # 安装可执行文件到 bin 目录
 install(TARGETS ${MODULE_NAME} DESTINATION bin)

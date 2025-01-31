@@ -1,4 +1,4 @@
-#include "gateway/gateway_server.h"
+#include "./server/gateway_server.h"
 #include "logger_manager.h" // 引入日志管理器
 #include <thread>
 #include <chrono>
