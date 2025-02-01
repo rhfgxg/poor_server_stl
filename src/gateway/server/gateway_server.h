@@ -37,6 +37,8 @@ public:
     grpc::Status Get_file_server_address(grpc::ServerContext* context, const rpc_server::GetFileServerAddressReq* req, rpc_server::GetFileServerAddressRes* res);
     // 接收客户端心跳
     grpc::Status Client_heartbeat(grpc::ServerContext* context, const rpc_server::ClientHeartbeatReq* req, rpc_server::ClientHeartbeatRes* res);
+    // 发送网关服务器连接池
+    grpc::Status Get_Gateway_pool(grpc::ServerContext* context, const rpc_server::GetGatewayPoolReq* req, rpc_server::GetGatewayPoolRes* res);
 
 private:
     // 初始化
@@ -46,6 +48,8 @@ private:
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 执行线程的任务
 
+    // 发送网关服务器连接池
+    grpc::Status Handle_return_gateway_poor(const rpc_server::GetGatewayPoolReq* req, rpc_server::GetGatewayPoolRes* res);
 // 处理转发请求
     // 登录服务器：登录服务
     grpc::Status Forward_to_login_service(const std::string& payload, rpc_server::ForwardRes* response);
@@ -65,6 +69,7 @@ private:
     std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;  // 中心服务器的服务存根
     ConnectionPool login_connection_pool;   // 登录服务器连接池
     ConnectionPool file_connection_pool;    // 文件服务器连接池
+    ConnectionPool gateway_connection_pool;    // 网关服务器连接池
 
     std::vector<std::thread> thread_pool;   // 线程池
     std::queue<std::function<void()>> task_queue;    // 任务队列

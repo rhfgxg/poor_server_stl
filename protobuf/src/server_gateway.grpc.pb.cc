@@ -25,6 +25,7 @@ static const char* GatewayServer_method_names[] = {
   "/rpc_server.GatewayServer/Request_forward",
   "/rpc_server.GatewayServer/Get_file_server_address",
   "/rpc_server.GatewayServer/Client_heartbeat",
+  "/rpc_server.GatewayServer/Get_gateway_pool",
 };
 
 std::unique_ptr< GatewayServer::Stub> GatewayServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -37,6 +38,7 @@ GatewayServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   : channel_(channel), rpcmethod_Request_forward_(GatewayServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Get_file_server_address_(GatewayServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Client_heartbeat_(GatewayServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Get_gateway_pool_(GatewayServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status GatewayServer::Stub::Request_forward(::grpc::ClientContext* context, const ::rpc_server::ForwardReq& request, ::rpc_server::ForwardRes* response) {
@@ -108,6 +110,29 @@ void GatewayServer::Stub::async::Client_heartbeat(::grpc::ClientContext* context
   return result;
 }
 
+::grpc::Status GatewayServer::Stub::Get_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::rpc_server::GetGatewayPoolRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::GetGatewayPoolReq, ::rpc_server::GetGatewayPoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_gateway_pool_, context, request, response);
+}
+
+void GatewayServer::Stub::async::Get_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq* request, ::rpc_server::GetGatewayPoolRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::GetGatewayPoolReq, ::rpc_server::GetGatewayPoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_gateway_pool_, context, request, response, std::move(f));
+}
+
+void GatewayServer::Stub::async::Get_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq* request, ::rpc_server::GetGatewayPoolRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_gateway_pool_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::GetGatewayPoolRes>* GatewayServer::Stub::PrepareAsyncGet_gateway_poolRaw(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::GetGatewayPoolRes, ::rpc_server::GetGatewayPoolReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_gateway_pool_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::GetGatewayPoolRes>* GatewayServer::Stub::AsyncGet_gateway_poolRaw(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGet_gateway_poolRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 GatewayServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       GatewayServer_method_names[0],
@@ -139,6 +164,16 @@ GatewayServer::Service::Service() {
              ::rpc_server::ClientHeartbeatRes* resp) {
                return service->Client_heartbeat(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      GatewayServer_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< GatewayServer::Service, ::rpc_server::GetGatewayPoolReq, ::rpc_server::GetGatewayPoolRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](GatewayServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::GetGatewayPoolReq* req,
+             ::rpc_server::GetGatewayPoolRes* resp) {
+               return service->Get_gateway_pool(ctx, req, resp);
+             }, this)));
 }
 
 GatewayServer::Service::~Service() {
@@ -159,6 +194,13 @@ GatewayServer::Service::~Service() {
 }
 
 ::grpc::Status GatewayServer::Service::Client_heartbeat(::grpc::ServerContext* context, const ::rpc_server::ClientHeartbeatReq* request, ::rpc_server::ClientHeartbeatRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status GatewayServer::Service::Get_gateway_pool(::grpc::ServerContext* context, const ::rpc_server::GetGatewayPoolReq* request, ::rpc_server::GetGatewayPoolRes* response) {
   (void) context;
   (void) request;
   (void) response;

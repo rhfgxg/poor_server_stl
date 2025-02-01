@@ -27,6 +27,7 @@
 
 namespace rpc_server {
 
+// 网关服务器
 class GatewayServer final {
  public:
   static constexpr char const* service_full_name() {
@@ -59,6 +60,14 @@ class GatewayServer final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ClientHeartbeatRes>>(PrepareAsyncClient_heartbeatRaw(context, request, cq));
     }
     // 接收客户端心跳包
+    virtual ::grpc::Status Get_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::rpc_server::GetGatewayPoolRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetGatewayPoolRes>> AsyncGet_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetGatewayPoolRes>>(AsyncGet_gateway_poolRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetGatewayPoolRes>> PrepareAsyncGet_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetGatewayPoolRes>>(PrepareAsyncGet_gateway_poolRaw(context, request, cq));
+    }
+    // 客户端获取网关服务器连接池
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -71,6 +80,9 @@ class GatewayServer final {
       virtual void Client_heartbeat(::grpc::ClientContext* context, const ::rpc_server::ClientHeartbeatReq* request, ::rpc_server::ClientHeartbeatRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Client_heartbeat(::grpc::ClientContext* context, const ::rpc_server::ClientHeartbeatReq* request, ::rpc_server::ClientHeartbeatRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 接收客户端心跳包
+      virtual void Get_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq* request, ::rpc_server::GetGatewayPoolRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Get_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq* request, ::rpc_server::GetGatewayPoolRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 客户端获取网关服务器连接池
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -82,6 +94,8 @@ class GatewayServer final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetFileServerAddressRes>* PrepareAsyncGet_file_server_addressRaw(::grpc::ClientContext* context, const ::rpc_server::GetFileServerAddressReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ClientHeartbeatRes>* AsyncClient_heartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::ClientHeartbeatReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ClientHeartbeatRes>* PrepareAsyncClient_heartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::ClientHeartbeatReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetGatewayPoolRes>* AsyncGet_gateway_poolRaw(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetGatewayPoolRes>* PrepareAsyncGet_gateway_poolRaw(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -107,6 +121,13 @@ class GatewayServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ClientHeartbeatRes>> PrepareAsyncClient_heartbeat(::grpc::ClientContext* context, const ::rpc_server::ClientHeartbeatReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ClientHeartbeatRes>>(PrepareAsyncClient_heartbeatRaw(context, request, cq));
     }
+    ::grpc::Status Get_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::rpc_server::GetGatewayPoolRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetGatewayPoolRes>> AsyncGet_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetGatewayPoolRes>>(AsyncGet_gateway_poolRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetGatewayPoolRes>> PrepareAsyncGet_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetGatewayPoolRes>>(PrepareAsyncGet_gateway_poolRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -116,6 +137,8 @@ class GatewayServer final {
       void Get_file_server_address(::grpc::ClientContext* context, const ::rpc_server::GetFileServerAddressReq* request, ::rpc_server::GetFileServerAddressRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Client_heartbeat(::grpc::ClientContext* context, const ::rpc_server::ClientHeartbeatReq* request, ::rpc_server::ClientHeartbeatRes* response, std::function<void(::grpc::Status)>) override;
       void Client_heartbeat(::grpc::ClientContext* context, const ::rpc_server::ClientHeartbeatReq* request, ::rpc_server::ClientHeartbeatRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Get_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq* request, ::rpc_server::GetGatewayPoolRes* response, std::function<void(::grpc::Status)>) override;
+      void Get_gateway_pool(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq* request, ::rpc_server::GetGatewayPoolRes* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -133,9 +156,12 @@ class GatewayServer final {
     ::grpc::ClientAsyncResponseReader< ::rpc_server::GetFileServerAddressRes>* PrepareAsyncGet_file_server_addressRaw(::grpc::ClientContext* context, const ::rpc_server::GetFileServerAddressReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::ClientHeartbeatRes>* AsyncClient_heartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::ClientHeartbeatReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::ClientHeartbeatRes>* PrepareAsyncClient_heartbeatRaw(::grpc::ClientContext* context, const ::rpc_server::ClientHeartbeatReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetGatewayPoolRes>* AsyncGet_gateway_poolRaw(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetGatewayPoolRes>* PrepareAsyncGet_gateway_poolRaw(::grpc::ClientContext* context, const ::rpc_server::GetGatewayPoolReq& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Request_forward_;
     const ::grpc::internal::RpcMethod rpcmethod_Get_file_server_address_;
     const ::grpc::internal::RpcMethod rpcmethod_Client_heartbeat_;
+    const ::grpc::internal::RpcMethod rpcmethod_Get_gateway_pool_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -149,6 +175,8 @@ class GatewayServer final {
     // 获取文件服务器地址，直连文件服务器进行文件传递
     virtual ::grpc::Status Client_heartbeat(::grpc::ServerContext* context, const ::rpc_server::ClientHeartbeatReq* request, ::rpc_server::ClientHeartbeatRes* response);
     // 接收客户端心跳包
+    virtual ::grpc::Status Get_gateway_pool(::grpc::ServerContext* context, const ::rpc_server::GetGatewayPoolReq* request, ::rpc_server::GetGatewayPoolRes* response);
+    // 客户端获取网关服务器连接池
   };
   template <class BaseClass>
   class WithAsyncMethod_Request_forward : public BaseClass {
@@ -210,7 +238,27 @@ class GatewayServer final {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Request_forward<WithAsyncMethod_Get_file_server_address<WithAsyncMethod_Client_heartbeat<Service > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Get_gateway_pool : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Get_gateway_pool() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_Get_gateway_pool() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get_gateway_pool(::grpc::ServerContext* /*context*/, const ::rpc_server::GetGatewayPoolReq* /*request*/, ::rpc_server::GetGatewayPoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet_gateway_pool(::grpc::ServerContext* context, ::rpc_server::GetGatewayPoolReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::GetGatewayPoolRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Request_forward<WithAsyncMethod_Get_file_server_address<WithAsyncMethod_Client_heartbeat<WithAsyncMethod_Get_gateway_pool<Service > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Request_forward : public BaseClass {
    private:
@@ -292,7 +340,34 @@ class GatewayServer final {
     virtual ::grpc::ServerUnaryReactor* Client_heartbeat(
       ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::ClientHeartbeatReq* /*request*/, ::rpc_server::ClientHeartbeatRes* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Request_forward<WithCallbackMethod_Get_file_server_address<WithCallbackMethod_Client_heartbeat<Service > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Get_gateway_pool : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Get_gateway_pool() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetGatewayPoolReq, ::rpc_server::GetGatewayPoolRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::GetGatewayPoolReq* request, ::rpc_server::GetGatewayPoolRes* response) { return this->Get_gateway_pool(context, request, response); }));}
+    void SetMessageAllocatorFor_Get_gateway_pool(
+        ::grpc::MessageAllocator< ::rpc_server::GetGatewayPoolReq, ::rpc_server::GetGatewayPoolRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetGatewayPoolReq, ::rpc_server::GetGatewayPoolRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Get_gateway_pool() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get_gateway_pool(::grpc::ServerContext* /*context*/, const ::rpc_server::GetGatewayPoolReq* /*request*/, ::rpc_server::GetGatewayPoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get_gateway_pool(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::GetGatewayPoolReq* /*request*/, ::rpc_server::GetGatewayPoolRes* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Request_forward<WithCallbackMethod_Get_file_server_address<WithCallbackMethod_Client_heartbeat<WithCallbackMethod_Get_gateway_pool<Service > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Request_forward : public BaseClass {
@@ -341,6 +416,23 @@ class GatewayServer final {
     }
     // disable synchronous version of this method
     ::grpc::Status Client_heartbeat(::grpc::ServerContext* /*context*/, const ::rpc_server::ClientHeartbeatReq* /*request*/, ::rpc_server::ClientHeartbeatRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Get_gateway_pool : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Get_gateway_pool() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_Get_gateway_pool() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get_gateway_pool(::grpc::ServerContext* /*context*/, const ::rpc_server::GetGatewayPoolReq* /*request*/, ::rpc_server::GetGatewayPoolRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -403,6 +495,26 @@ class GatewayServer final {
     }
     void RequestClient_heartbeat(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Get_gateway_pool : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Get_gateway_pool() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_Get_gateway_pool() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get_gateway_pool(::grpc::ServerContext* /*context*/, const ::rpc_server::GetGatewayPoolReq* /*request*/, ::rpc_server::GetGatewayPoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet_gateway_pool(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -469,6 +581,28 @@ class GatewayServer final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Client_heartbeat(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Get_gateway_pool : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Get_gateway_pool() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get_gateway_pool(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Get_gateway_pool() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get_gateway_pool(::grpc::ServerContext* /*context*/, const ::rpc_server::GetGatewayPoolReq* /*request*/, ::rpc_server::GetGatewayPoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get_gateway_pool(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -552,9 +686,36 @@ class GatewayServer final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedClient_heartbeat(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::ClientHeartbeatReq,::rpc_server::ClientHeartbeatRes>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Request_forward<WithStreamedUnaryMethod_Get_file_server_address<WithStreamedUnaryMethod_Client_heartbeat<Service > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Get_gateway_pool : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Get_gateway_pool() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::rpc_server::GetGatewayPoolReq, ::rpc_server::GetGatewayPoolRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::rpc_server::GetGatewayPoolReq, ::rpc_server::GetGatewayPoolRes>* streamer) {
+                       return this->StreamedGet_gateway_pool(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Get_gateway_pool() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Get_gateway_pool(::grpc::ServerContext* /*context*/, const ::rpc_server::GetGatewayPoolReq* /*request*/, ::rpc_server::GetGatewayPoolRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGet_gateway_pool(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::GetGatewayPoolReq,::rpc_server::GetGatewayPoolRes>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Request_forward<WithStreamedUnaryMethod_Get_file_server_address<WithStreamedUnaryMethod_Client_heartbeat<WithStreamedUnaryMethod_Get_gateway_pool<Service > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Request_forward<WithStreamedUnaryMethod_Get_file_server_address<WithStreamedUnaryMethod_Client_heartbeat<Service > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Request_forward<WithStreamedUnaryMethod_Get_file_server_address<WithStreamedUnaryMethod_Client_heartbeat<WithStreamedUnaryMethod_Get_gateway_pool<Service > > > > StreamedService;
 };
 
 }  // namespace rpc_server

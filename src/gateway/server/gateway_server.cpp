@@ -7,7 +7,8 @@ GatewayServerImpl::GatewayServerImpl(LoggerManager& logger_manager_, const std::
     logger_manager(logger_manager_),  
     central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))), // 中心服务器存根
     login_connection_pool(10),
-    file_connection_pool(10) 
+    file_connection_pool(10),
+    gateway_connection_pool(10)
 {
     this->register_server();
 
@@ -165,6 +166,7 @@ void GatewayServerImpl::Init_connection_pool()
     rpc_server::MultipleConnectPoorReq req;
     req.add_server_types(rpc_server::ServerType::LOGIN);
     req.add_server_types(rpc_server::ServerType::FILE);
+    req.add_server_types(rpc_server::ServerType::GATEWAY);
     // 响应
     rpc_server::MultipleConnectPoorRes res;
 
@@ -186,6 +188,11 @@ void GatewayServerImpl::Init_connection_pool()
                 case rpc_server::ServerType::FILE:
                 {
                     file_connection_pool.add_server(rpc_server::ServerType::FILE, conn_info.address(), std::to_string(conn_info.port()));
+                    break;
+                }
+                case rpc_server::ServerType::GATEWAY:
+                {
+                    gateway_connection_pool.add_server(rpc_server::ServerType::GATEWAY, conn_info.address(), std::to_string(conn_info.port()));
                     break;
                 }
                 default:
@@ -278,6 +285,16 @@ grpc::Status GatewayServerImpl::Client_heartbeat(grpc::ServerContext* context, c
     return grpc::Status::OK;
 }
 
+// 发送网关服务器连接池
+grpc::Status GatewayServerImpl::Get_Gateway_pool(grpc::ServerContext* context, const rpc_server::GetGatewayPoolReq* req, rpc_server::GetGatewayPoolRes* res)
+{
+    auto task_future = this->add_async_task([this, req, res] {  // 加入任务队列
+        this->Handle_return_gateway_poor(req, res);
+    });
+
+    task_future.get();
+    return grpc::Status::OK;
+}
 
 /**************************************** grpc服务接口工具函数 **************************************************************************/
 // Login 方法，处理登录请求
@@ -288,7 +305,7 @@ grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payl
 
     if(!req_out) // 如果解析失败
     {
-        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,"Failed to parse LoginRequest");
+        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse LoginRequest");
     }
 
     // 构造响应
@@ -321,8 +338,29 @@ grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payl
         response->set_success(false);
     }
 
+    this->logger_manager.getLogger(rpc_server::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: user login");
+
     this->login_connection_pool.release_connection(rpc_server::ServerType::LOGIN, channel); // 释放连接
     return grpc::Status::OK;
 }
 
+// 发送网关服务器连接池
+grpc::Status GatewayServerImpl::Handle_return_gateway_poor(const rpc_server::GetGatewayPoolReq* req, rpc_server::GetGatewayPoolRes* res)
+{
+    // 获取网关连接池中的所有连接
+    std::unordered_map<rpc_server::ServerType, std::vector<std::pair<std::string, std::string>>> connections = gateway_connection_pool.get_all_connections();
+
+    // 遍历连接池中的所有连接
+    for(const auto& connection : connections[rpc_server::ServerType::GATEWAY])
+    {
+        rpc_server::GatewayConnectInfo* conn_info = res->add_connect_info();
+        conn_info->set_address(connection.first);
+        conn_info->set_port(std::stoi(connection.second));
+    }
+
+    res->set_success(true);
+    res->set_message("Connection pools information retrieved successfully");
+
+    return grpc::Status::OK;
+}
 /******************************************** 其他工具函数 ***********************************************/
