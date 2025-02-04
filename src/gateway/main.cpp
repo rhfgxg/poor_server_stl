@@ -4,10 +4,6 @@
 void RunServer(LoggerManager& logger_manager);  // 运行服务器
 void Read_server_config(std::string& address, std::string& port);    // 读取服务器配置文件，初始化服务器地址和端口
 
-std::string test_login();  // 模拟客户端登录
-void test_register();   // 模拟客户端注册
-void test_authenticate(std::string token);    // 模拟客户端令牌验证
-
 // 网关服务器main函数
 int main()
 {
