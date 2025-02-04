@@ -139,7 +139,7 @@ void LoginServerImpl::unregister_server()
 {
     // 请求
     rpc_server::UnregisterServerReq request;
-    request.set_server_type(rpc_server::ServerType::LOGIN);
+    request.set_server_type(this->server_type);
     request.set_address(this->server_address);
     request.set_port(this->server_port);
 
@@ -221,9 +221,9 @@ void LoginServerImpl::Send_heartbeat()
         rpc_server::HeartbeatRes response;
         grpc::ClientContext context;
 
-        request.set_server_type(rpc_server::ServerType::LOGIN);
-        request.set_address("127.0.0.1"); // 设置服务器ip
-        request.set_port("50053"); // 设置服务器端口
+        request.set_server_type(this->server_type);
+        request.set_address(this->server_address);
+        request.set_port(this->server_port);
 
         grpc::Status status = central_stub->Heartbeat(&context,request,&response);
 

@@ -57,6 +57,7 @@ private:
     // 工具函数
     std::string GenerateToken(const std::string& account);    // 生成用户 token
     bool ValidateToken(const std::string& token, const std::string& account);  // 验证 token
+
 private:
     std::string server_address; // 服务器地址
     std::string server_port;    // 服务器端口
