@@ -274,6 +274,12 @@ grpc::Status GatewayServerImpl::Client_register(grpc::ServerContext* context, co
 
         this->logger_manager.getLogger(rpc_server::LogCategory::APPLICATION_ACTIVITY)->info("Client: successfully registered a server: {}", client_address);
 
+        // 将用户在线状态存储到Redis中
+        auto client = redis_client.get_client();
+        client->set(client_address + "_status", "online");
+        client->expire(client_address + "_status", 1800); // 设置30分钟过期时间
+        client->set(client_address + "_token", client_token);
+        client->expire(client_address + "_token", 1800);
     });
 
     task_future.get();

@@ -8,6 +8,7 @@
 #include "server_file.grpc.pb.h"
 #include "connection_pool.h"    // 连接池
 #include "logger_manager.h"     // 日志管理器
+#include "redis_client.h"       // Redis客户端
 
 #include <grpcpp/grpcpp.h>
 #include <thread>
@@ -67,6 +68,7 @@ private:
     rpc_server::ServerType server_type;  // 服务器类型
 
     LoggerManager& logger_manager;  // 日志管理器
+    RedisClient redis_client;    // Redis客户端
 
     std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;  // 中心服务器的服务存根
     ConnectionPool login_connection_pool;   // 登录服务器连接池

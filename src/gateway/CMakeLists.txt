@@ -9,6 +9,7 @@ set(SOURCES
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
+    ${PROJECT_SOURCE_DIR}/src/common/redis_client.cpp
     # proto生成的源文件
     ${PROJECT_SOURCE_DIR}/protobuf/src/common.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/common.grpc.pb.cc
@@ -48,8 +49,8 @@ target_link_libraries(${MODULE_NAME} PRIVATE
     lua
     spdlog::spdlog
     ${ADDRESS_SORTING_LIB}  # address_sorting 库
-    ${CPP_REDIS_DIR}    # cpp_redis
-    ${TACOPIE_LIB}    # tacopie 库
+    "${VCPKG_DEBUG_LIB}/cpp_redis.lib"    # cpp_redis
+    "${VCPKG_DEBUG_LIB}/tacopie.lib"    # tacopie 库
 )
 
 # 第三方库 dll列表

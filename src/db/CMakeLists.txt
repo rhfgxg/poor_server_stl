@@ -44,8 +44,8 @@ target_link_libraries(${MODULE_NAME} PRIVATE
     lua
     spdlog::spdlog
     ${ADDRESS_SORTING_LIB}  # address_sorting 库
-    ${CPP_REDIS_DIR}    # cpp_redis
-    ${TACOPIE_LIB}    # tacopie 库
+    "${VCPKG_DEBUG_LIB}/cpp_redis.lib"    # cpp_redis
+    "${VCPKG_DEBUG_LIB}/tacopie.lib"    # tacopie 库
 
     ${MYSQLCPPCONN_LIB}  # mysql库
 )
