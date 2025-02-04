@@ -248,6 +248,38 @@ void GatewayServerImpl::Send_heartbeat()
 }
 
 /**************************************** grpc服务接口定义 **************************************************************************/
+// 客户端注册
+grpc::Status GatewayServerImpl::Client_register(grpc::ServerContext* context, const rpc_server::ClientRegisterReq* req, rpc_server::ClientRegisterRes* res)
+{
+    auto task_future = this->add_async_task([this, context, req, res] {  // 加入任务队列
+        // 获取客户端信息
+        std::string client_address = req->address();
+
+        // 获取网关连接池中的所有连接
+        std::unordered_map<rpc_server::ServerType, std::vector<std::pair<std::string, std::string>>> connections = gateway_connection_pool.get_all_connections();
+
+        // 遍历连接池中的所有连接
+        for(const auto& connection : connections[rpc_server::ServerType::GATEWAY])
+        {
+            rpc_server::GatewayConnectInfo* conn_info = res->add_connect_info();
+            conn_info->set_address(connection.first);
+            conn_info->set_port(std::stoi(connection.second));
+        }
+
+        std::string client_token = "123456"; // 生成客户端令牌
+
+        res->set_client_token(client_token); // 设置客户端令牌
+        res->set_success(true);
+        res->set_message("Connection pools information retrieved successfully");
+
+        this->logger_manager.getLogger(rpc_server::LogCategory::APPLICATION_ACTIVITY)->info("Client: successfully registered a server: {}", client_address);
+
+    });
+
+    task_future.get();
+    return grpc::Status::OK;
+}
+
 // 服务转发接口
 grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, const rpc_server::ForwardReq* req, rpc_server::ForwardRes* res)
 {
