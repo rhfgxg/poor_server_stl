@@ -5,11 +5,11 @@ package rpc_server;
 // 战斗服务
 service BattleService {
     // 玩家操作
-    rpc PlayerAction(PlayerActionRequest) returns (PlayerActionResponse);
+    rpc Player_action(PlayerActionRequest) returns (PlayerActionResponse);
     // 获取战斗结果
-    rpc GetBattleResult(GetBattleResultRequest) returns (GetBattleResultResponse);
+    rpc Get_battle_result(GetBattleResultRequest) returns (GetBattleResultResponse);
     // 双向流式通信，用于实时同步数据
-    rpc SyncBattleState(stream SyncBattleStateRequest) returns (stream SyncBattleStateResponse);
+    rpc Sync_battle_state(stream SyncBattleStateRequest) returns (stream SyncBattleStateResponse);
 }
 
 // 玩家操作消息

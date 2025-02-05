@@ -238,6 +238,67 @@ void LogicServerImpl::Send_heartbeat()
 }
 
 /************************************ gRPC服务接口实现 ******************************************************/
+// 获取玩家收藏
+grpc::Status Get_player_collection(grpc::ServerContext* context, const rpc_server::GetPlayerCollectionReq* req, rpc_server::GetPlayerCollectionRes* res)
+{
+    return grpc::Status::OK;
+}
+
+// 更新玩家收藏
+grpc::Status Update_player_collection(grpc::ServerContext* context, const rpc_server::UpdatePlayerCollectionReq* req, rpc_server::UpdatePlayerCollectionRes* res)
+{
+    return grpc::Status::OK;
+
+}
+
+// 获取玩家成就
+grpc::Status Get_player_achievements(grpc::ServerContext* context, const rpc_server::GetPlayerAchievementsReq* req, rpc_server::GetPlayerAchievementsRes* res)
+{
+    return grpc::Status::OK;
+
+}
+
+// 更新玩家成就
+grpc::Status Update_player_achievements(grpc::ServerContext* context, const rpc_server::UpdatePlayerAchievementsReq* req, rpc_server::UpdatePlayerAchievementsRes* res)
+{
+    return grpc::Status::OK;
+
+}
+
+// 获取玩家任务
+grpc::Status Get_player_tasks(grpc::ServerContext* context, const rpc_server::GetPlayerTasksReq* req, rpc_server::GetPlayerTasksRes* res)
+{
+    return grpc::Status::OK;
+
+}
+
+// 更新玩家任务
+grpc::Status Update_player_tasks(grpc::ServerContext* context, const rpc_server::UpdatePlayerTasksReq* req, rpc_server::UpdatePlayerTasksRes* res)
+{
+    return grpc::Status::OK;
+
+}
+
+// 添加物品
+grpc::Status Add_item(grpc::ServerContext* context, const rpc_server::AddItemReq* req, rpc_server::AddItemRes* res)
+{
+    return grpc::Status::OK;
+
+}
+
+// 使用物品
+grpc::Status Use_item(grpc::ServerContext* context, const rpc_server::UseItemReq* req, rpc_server::UseItemRes* res)
+{
+    return grpc::Status::OK;
+
+}
+
+// 保存对局结果
+grpc::Status Save_battle_result(grpc::ServerContext* context, const rpc_server::SaveBattleResultReq* req, rpc_server::SaveBattleResultRes* res)
+{
+    return grpc::Status::OK;
+
+}
 
 /************************************ gRPC服务接口工具函数 **************************************************/
 

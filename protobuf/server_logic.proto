@@ -2,121 +2,140 @@
 syntax = "proto3";
 package rpc_server;
 
-service LogicServer {
+service LogicServer 
+{
     // 获取玩家收藏
-    rpc GetPlayerCollection(GetPlayerCollectionRequest) returns (GetPlayerCollectionResponse);
+    rpc Get_player_collection(GetPlayerCollectionReq) returns (GetPlayerCollectionRes);
     // 更新玩家收藏
-    rpc UpdatePlayerCollection(UpdatePlayerCollectionRequest) returns (UpdatePlayerCollectionResponse);
+    rpc Update_player_collection(UpdatePlayerCollectionReq) returns (UpdatePlayerCollectionRes);
     // 获取玩家成就
-    rpc GetPlayerAchievements(GetPlayerAchievementsRequest) returns (GetPlayerAchievementsResponse);
+    rpc Get_player_achievements(GetPlayerAchievementsReq) returns (GetPlayerAchievementsRes);
     // 更新玩家成就
-    rpc UpdatePlayerAchievements(UpdatePlayerAchievementsRequest) returns (UpdatePlayerAchievementsResponse);
+    rpc Update_player_achievements(UpdatePlayerAchievementsReq) returns (UpdatePlayerAchievementsRes);
     // 获取玩家任务
-    rpc GetPlayerTasks(GetPlayerTasksRequest) returns (GetPlayerTasksResponse);
+    rpc Get_player_tasks(GetPlayerTasksReq) returns (GetPlayerTasksRes);
     // 更新玩家任务
-    rpc UpdatePlayerTasks(UpdatePlayerTasksRequest) returns (UpdatePlayerTasksResponse);
+    rpc Update_player_tasks(UpdatePlayerTasksReq) returns (UpdatePlayerTasksRes);
     // 添加物品
-    rpc AddItem(AddItemRequest) returns (AddItemResponse);
+    rpc Add_item(AddItemReq) returns (AddItemRes);
     // 使用物品
-    rpc UseItem(UseItemRequest) returns (UseItemResponse);
+    rpc Use_item(UseItemReq) returns (UseItemRes);
     // 保存对局结果
-    rpc SaveBattleResult(SaveBattleResultRequest) returns (SaveBattleResultResponse);
+    rpc Save_battle_result(SaveBattleResultReq) returns (SaveBattleResultRes);
 }
 
 // 获取玩家收藏请求
-message GetPlayerCollectionRequest {
+message GetPlayerCollectionReq
+{
     string player_id = 1;
 }
 // 获取玩家收藏响应
-message GetPlayerCollectionResponse {
+message GetPlayerCollectionRes
+{
     string player_id = 1;
     repeated string collection = 2; // 玩家收藏的卡牌ID列表
 }
 
 // 更新玩家收藏请求
-message UpdatePlayerCollectionRequest {
+message UpdatePlayerCollectionReq
+{
     string player_id = 1;
     repeated string collection = 2; // 更新后的玩家收藏的卡牌ID列表
 }
 // 更新玩家收藏响应
-message UpdatePlayerCollectionResponse {
+message UpdatePlayerCollectionRes
+{
     bool success = 1;
     string message = 2;
 }
 
 // 获取玩家成就请求
-message GetPlayerAchievementsRequest {
+message GetPlayerAchievementsReq
+{
     string player_id = 1;
 }
 // 获取玩家成就响应
-message GetPlayerAchievementsResponse {
+message GetPlayerAchievementsRes
+{
     string player_id = 1;
     repeated string achievements = 2; // 玩家成就ID列表
 }
 
 // 更新玩家成就请求
-message UpdatePlayerAchievementsRequest {
+message UpdatePlayerAchievementsReq
+{
     string player_id = 1;
     repeated string achievements = 2; // 更新后的玩家成就ID列表
 }
 // 更新玩家成就响应
-message UpdatePlayerAchievementsResponse {
+message UpdatePlayerAchievementsRes
+{
     bool success = 1;
     string message = 2;
 }
 
 // 获取玩家任务请求
-message GetPlayerTasksRequest {
+message GetPlayerTasksReq
+{
     string player_id = 1;
 }
 // 获取玩家任务响应
-message GetPlayerTasksResponse {
+message GetPlayerTasksRes
+{
     string player_id = 1;
     repeated string tasks = 2; // 玩家任务ID列表
 }
 
 // 更新玩家任务请求
-message UpdatePlayerTasksRequest {
+message UpdatePlayerTasksReq
+{
     string player_id = 1;
     repeated string tasks = 2; // 更新后的玩家任务ID列表
 }
 // 更新玩家任务响应
-message UpdatePlayerTasksResponse {
+message UpdatePlayerTasksRes
+{
     bool success = 1;
     string message = 2;
 }
 
 // 添加物品请求
-message AddItemRequest {
+message AddItemReq
+{
     string player_id = 1;
     string item_id = 2; // 要添加的物品ID
 }
 // 添加物品响应
-message AddItemResponse {
+message AddItemRes
+{
     bool success = 1;
     string message = 2;
 }
 
 // 使用物品请求
-message UseItemRequest {
+message UseItemReq
+{
     string player_id = 1;
     string item_id = 2; // 要使用的物品ID
 }
 // 使用物品响应
-message UseItemResponse {
+message UseItemRes
+{
     bool success = 1;
     string message = 2;
 }
 
 // 保存对局结果请求
-message SaveBattleResultRequest {
+message SaveBattleResultReq
+{
     string player_id = 1;
     string opponent_id = 2;
     bool is_victory = 3; // 是否胜利
     string battle_data = 4; // 对局详细数据
 }
 // 保存对局结果响应
-message SaveBattleResultResponse {
+message SaveBattleResultRes
+{
     bool success = 1;
     string message = 2;
 }

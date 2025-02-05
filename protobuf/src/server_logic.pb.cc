@@ -21,41 +21,8 @@ namespace _pb = ::google::protobuf;
 namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace rpc_server {
-      template <typename>
-PROTOBUF_CONSTEXPR GameStateRes_StateEntry_DoNotUse::GameStateRes_StateEntry_DoNotUse(::_pbi::ConstantInitialized) {}
-struct GameStateRes_StateEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GameStateRes_StateEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GameStateRes_StateEntry_DoNotUseDefaultTypeInternal() {}
-  union {
-    GameStateRes_StateEntry_DoNotUse _instance;
-  };
-};
 
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GameStateRes_StateEntry_DoNotUseDefaultTypeInternal _GameStateRes_StateEntry_DoNotUse_default_instance_;
-
-inline constexpr GameStateReq::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : game_id_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR GameStateReq::GameStateReq(::_pbi::ConstantInitialized)
-    : _impl_(::_pbi::ConstantInitialized()) {}
-struct GameStateReqDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GameStateReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GameStateReqDefaultTypeInternal() {}
-  union {
-    GameStateReq _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GameStateReqDefaultTypeInternal _GameStateReq_default_instance_;
-
-inline constexpr GameActionRes::Impl_::Impl_(
+inline constexpr UseItemRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -64,195 +31,691 @@ inline constexpr GameActionRes::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR GameActionRes::GameActionRes(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR UseItemRes::UseItemRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct GameActionResDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GameActionResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GameActionResDefaultTypeInternal() {}
+struct UseItemResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UseItemResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UseItemResDefaultTypeInternal() {}
   union {
-    GameActionRes _instance;
+    UseItemRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GameActionResDefaultTypeInternal _GameActionRes_default_instance_;
-      template <typename>
-PROTOBUF_CONSTEXPR GameActionReq_ParametersEntry_DoNotUse::GameActionReq_ParametersEntry_DoNotUse(::_pbi::ConstantInitialized) {}
-struct GameActionReq_ParametersEntry_DoNotUseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GameActionReq_ParametersEntry_DoNotUseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GameActionReq_ParametersEntry_DoNotUseDefaultTypeInternal() {}
-  union {
-    GameActionReq_ParametersEntry_DoNotUse _instance;
-  };
-};
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UseItemResDefaultTypeInternal _UseItemRes_default_instance_;
 
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GameActionReq_ParametersEntry_DoNotUseDefaultTypeInternal _GameActionReq_ParametersEntry_DoNotUse_default_instance_;
-
-inline constexpr GameStateRes::Impl_::Impl_(
+inline constexpr UseItemReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : state_{},
-        message_(
+      : player_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        item_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UseItemReq::UseItemReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct UseItemReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UseItemReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UseItemReqDefaultTypeInternal() {}
+  union {
+    UseItemReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UseItemReqDefaultTypeInternal _UseItemReq_default_instance_;
+
+inline constexpr UpdatePlayerTasksRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         success_{false},
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR GameStateRes::GameStateRes(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR UpdatePlayerTasksRes::UpdatePlayerTasksRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct GameStateResDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GameStateResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GameStateResDefaultTypeInternal() {}
+struct UpdatePlayerTasksResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdatePlayerTasksResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdatePlayerTasksResDefaultTypeInternal() {}
   union {
-    GameStateRes _instance;
+    UpdatePlayerTasksRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GameStateResDefaultTypeInternal _GameStateRes_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdatePlayerTasksResDefaultTypeInternal _UpdatePlayerTasksRes_default_instance_;
 
-inline constexpr GameActionReq::Impl_::Impl_(
+inline constexpr UpdatePlayerTasksReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : parameters_{},
-        action_(
+      : tasks_{},
+        player_id_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR GameActionReq::GameActionReq(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR UpdatePlayerTasksReq::UpdatePlayerTasksReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct GameActionReqDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GameActionReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GameActionReqDefaultTypeInternal() {}
+struct UpdatePlayerTasksReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdatePlayerTasksReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdatePlayerTasksReqDefaultTypeInternal() {}
   union {
-    GameActionReq _instance;
+    UpdatePlayerTasksReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GameActionReqDefaultTypeInternal _GameActionReq_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdatePlayerTasksReqDefaultTypeInternal _UpdatePlayerTasksReq_default_instance_;
+
+inline constexpr UpdatePlayerCollectionRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UpdatePlayerCollectionRes::UpdatePlayerCollectionRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct UpdatePlayerCollectionResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdatePlayerCollectionResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdatePlayerCollectionResDefaultTypeInternal() {}
+  union {
+    UpdatePlayerCollectionRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdatePlayerCollectionResDefaultTypeInternal _UpdatePlayerCollectionRes_default_instance_;
+
+inline constexpr UpdatePlayerCollectionReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : collection_{},
+        player_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UpdatePlayerCollectionReq::UpdatePlayerCollectionReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct UpdatePlayerCollectionReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdatePlayerCollectionReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdatePlayerCollectionReqDefaultTypeInternal() {}
+  union {
+    UpdatePlayerCollectionReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdatePlayerCollectionReqDefaultTypeInternal _UpdatePlayerCollectionReq_default_instance_;
+
+inline constexpr UpdatePlayerAchievementsRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UpdatePlayerAchievementsRes::UpdatePlayerAchievementsRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct UpdatePlayerAchievementsResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdatePlayerAchievementsResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdatePlayerAchievementsResDefaultTypeInternal() {}
+  union {
+    UpdatePlayerAchievementsRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdatePlayerAchievementsResDefaultTypeInternal _UpdatePlayerAchievementsRes_default_instance_;
+
+inline constexpr UpdatePlayerAchievementsReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : achievements_{},
+        player_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UpdatePlayerAchievementsReq::UpdatePlayerAchievementsReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct UpdatePlayerAchievementsReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UpdatePlayerAchievementsReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UpdatePlayerAchievementsReqDefaultTypeInternal() {}
+  union {
+    UpdatePlayerAchievementsReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UpdatePlayerAchievementsReqDefaultTypeInternal _UpdatePlayerAchievementsReq_default_instance_;
+
+inline constexpr SaveBattleResultRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SaveBattleResultRes::SaveBattleResultRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SaveBattleResultResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SaveBattleResultResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SaveBattleResultResDefaultTypeInternal() {}
+  union {
+    SaveBattleResultRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SaveBattleResultResDefaultTypeInternal _SaveBattleResultRes_default_instance_;
+
+inline constexpr SaveBattleResultReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : player_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        opponent_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        battle_data_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        is_victory_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR SaveBattleResultReq::SaveBattleResultReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct SaveBattleResultReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SaveBattleResultReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SaveBattleResultReqDefaultTypeInternal() {}
+  union {
+    SaveBattleResultReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SaveBattleResultReqDefaultTypeInternal _SaveBattleResultReq_default_instance_;
+
+inline constexpr GetPlayerTasksRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : tasks_{},
+        player_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPlayerTasksRes::GetPlayerTasksRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetPlayerTasksResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPlayerTasksResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPlayerTasksResDefaultTypeInternal() {}
+  union {
+    GetPlayerTasksRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPlayerTasksResDefaultTypeInternal _GetPlayerTasksRes_default_instance_;
+
+inline constexpr GetPlayerTasksReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : player_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPlayerTasksReq::GetPlayerTasksReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetPlayerTasksReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPlayerTasksReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPlayerTasksReqDefaultTypeInternal() {}
+  union {
+    GetPlayerTasksReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPlayerTasksReqDefaultTypeInternal _GetPlayerTasksReq_default_instance_;
+
+inline constexpr GetPlayerCollectionRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : collection_{},
+        player_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPlayerCollectionRes::GetPlayerCollectionRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetPlayerCollectionResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPlayerCollectionResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPlayerCollectionResDefaultTypeInternal() {}
+  union {
+    GetPlayerCollectionRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPlayerCollectionResDefaultTypeInternal _GetPlayerCollectionRes_default_instance_;
+
+inline constexpr GetPlayerCollectionReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : player_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPlayerCollectionReq::GetPlayerCollectionReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetPlayerCollectionReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPlayerCollectionReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPlayerCollectionReqDefaultTypeInternal() {}
+  union {
+    GetPlayerCollectionReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPlayerCollectionReqDefaultTypeInternal _GetPlayerCollectionReq_default_instance_;
+
+inline constexpr GetPlayerAchievementsRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : achievements_{},
+        player_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPlayerAchievementsRes::GetPlayerAchievementsRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetPlayerAchievementsResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPlayerAchievementsResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPlayerAchievementsResDefaultTypeInternal() {}
+  union {
+    GetPlayerAchievementsRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPlayerAchievementsResDefaultTypeInternal _GetPlayerAchievementsRes_default_instance_;
+
+inline constexpr GetPlayerAchievementsReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : player_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR GetPlayerAchievementsReq::GetPlayerAchievementsReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct GetPlayerAchievementsReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetPlayerAchievementsReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetPlayerAchievementsReqDefaultTypeInternal() {}
+  union {
+    GetPlayerAchievementsReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetPlayerAchievementsReqDefaultTypeInternal _GetPlayerAchievementsReq_default_instance_;
+
+inline constexpr AddItemRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AddItemRes::AddItemRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct AddItemResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AddItemResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AddItemResDefaultTypeInternal() {}
+  union {
+    AddItemRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AddItemResDefaultTypeInternal _AddItemRes_default_instance_;
+
+inline constexpr AddItemReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : player_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        item_id_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR AddItemReq::AddItemReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct AddItemReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AddItemReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AddItemReqDefaultTypeInternal() {}
+  union {
+    AddItemReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AddItemReqDefaultTypeInternal _AddItemReq_default_instance_;
 }  // namespace rpc_server
-static ::_pb::Metadata file_level_metadata_server_5flogic_2eproto[6];
+static ::_pb::Metadata file_level_metadata_server_5flogic_2eproto[18];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_server_5flogic_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_server_5flogic_2eproto = nullptr;
 const ::uint32_t TableStruct_server_5flogic_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     protodesc_cold) = {
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionReq_ParametersEntry_DoNotUse, _has_bits_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionReq_ParametersEntry_DoNotUse, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionReq_ParametersEntry_DoNotUse, key_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionReq_ParametersEntry_DoNotUse, value_),
-    0,
-    1,
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionReq, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerCollectionReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionReq, _impl_.action_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionReq, _impl_.parameters_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerCollectionReq, _impl_.player_id_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionRes, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerCollectionRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionRes, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameActionRes, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerCollectionRes, _impl_.player_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerCollectionRes, _impl_.collection_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateReq, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerCollectionReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateReq, _impl_.game_id_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateRes_StateEntry_DoNotUse, _has_bits_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateRes_StateEntry_DoNotUse, _internal_metadata_),
-    ~0u,  // no _extensions_
-    ~0u,  // no _oneof_case_
-    ~0u,  // no _weak_field_map_
-    ~0u,  // no _inlined_string_donated_
-    ~0u,  // no _split_
-    ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateRes_StateEntry_DoNotUse, key_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateRes_StateEntry_DoNotUse, value_),
-    0,
-    1,
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerCollectionReq, _impl_.player_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerCollectionReq, _impl_.collection_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateRes, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerCollectionRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateRes, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateRes, _impl_.message_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GameStateRes, _impl_.state_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerCollectionRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerCollectionRes, _impl_.message_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerAchievementsReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerAchievementsReq, _impl_.player_id_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerAchievementsRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerAchievementsRes, _impl_.player_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerAchievementsRes, _impl_.achievements_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerAchievementsReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerAchievementsReq, _impl_.player_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerAchievementsReq, _impl_.achievements_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerAchievementsRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerAchievementsRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerAchievementsRes, _impl_.message_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerTasksReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerTasksReq, _impl_.player_id_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerTasksRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerTasksRes, _impl_.player_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::GetPlayerTasksRes, _impl_.tasks_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerTasksReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerTasksReq, _impl_.player_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerTasksReq, _impl_.tasks_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerTasksRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerTasksRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UpdatePlayerTasksRes, _impl_.message_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::AddItemReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::AddItemReq, _impl_.player_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::AddItemReq, _impl_.item_id_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::AddItemRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::AddItemRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::AddItemRes, _impl_.message_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UseItemReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UseItemReq, _impl_.player_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UseItemReq, _impl_.item_id_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UseItemRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UseItemRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UseItemRes, _impl_.message_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::SaveBattleResultReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::SaveBattleResultReq, _impl_.player_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::SaveBattleResultReq, _impl_.opponent_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::SaveBattleResultReq, _impl_.is_victory_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::SaveBattleResultReq, _impl_.battle_data_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::SaveBattleResultRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::SaveBattleResultRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::SaveBattleResultRes, _impl_.message_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, 10, -1, sizeof(::rpc_server::GameActionReq_ParametersEntry_DoNotUse)},
-        {12, -1, -1, sizeof(::rpc_server::GameActionReq)},
-        {22, -1, -1, sizeof(::rpc_server::GameActionRes)},
-        {32, -1, -1, sizeof(::rpc_server::GameStateReq)},
-        {41, 51, -1, sizeof(::rpc_server::GameStateRes_StateEntry_DoNotUse)},
-        {53, -1, -1, sizeof(::rpc_server::GameStateRes)},
+        {0, -1, -1, sizeof(::rpc_server::GetPlayerCollectionReq)},
+        {9, -1, -1, sizeof(::rpc_server::GetPlayerCollectionRes)},
+        {19, -1, -1, sizeof(::rpc_server::UpdatePlayerCollectionReq)},
+        {29, -1, -1, sizeof(::rpc_server::UpdatePlayerCollectionRes)},
+        {39, -1, -1, sizeof(::rpc_server::GetPlayerAchievementsReq)},
+        {48, -1, -1, sizeof(::rpc_server::GetPlayerAchievementsRes)},
+        {58, -1, -1, sizeof(::rpc_server::UpdatePlayerAchievementsReq)},
+        {68, -1, -1, sizeof(::rpc_server::UpdatePlayerAchievementsRes)},
+        {78, -1, -1, sizeof(::rpc_server::GetPlayerTasksReq)},
+        {87, -1, -1, sizeof(::rpc_server::GetPlayerTasksRes)},
+        {97, -1, -1, sizeof(::rpc_server::UpdatePlayerTasksReq)},
+        {107, -1, -1, sizeof(::rpc_server::UpdatePlayerTasksRes)},
+        {117, -1, -1, sizeof(::rpc_server::AddItemReq)},
+        {127, -1, -1, sizeof(::rpc_server::AddItemRes)},
+        {137, -1, -1, sizeof(::rpc_server::UseItemReq)},
+        {147, -1, -1, sizeof(::rpc_server::UseItemRes)},
+        {157, -1, -1, sizeof(::rpc_server::SaveBattleResultReq)},
+        {169, -1, -1, sizeof(::rpc_server::SaveBattleResultRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-    &::rpc_server::_GameActionReq_ParametersEntry_DoNotUse_default_instance_._instance,
-    &::rpc_server::_GameActionReq_default_instance_._instance,
-    &::rpc_server::_GameActionRes_default_instance_._instance,
-    &::rpc_server::_GameStateReq_default_instance_._instance,
-    &::rpc_server::_GameStateRes_StateEntry_DoNotUse_default_instance_._instance,
-    &::rpc_server::_GameStateRes_default_instance_._instance,
+    &::rpc_server::_GetPlayerCollectionReq_default_instance_._instance,
+    &::rpc_server::_GetPlayerCollectionRes_default_instance_._instance,
+    &::rpc_server::_UpdatePlayerCollectionReq_default_instance_._instance,
+    &::rpc_server::_UpdatePlayerCollectionRes_default_instance_._instance,
+    &::rpc_server::_GetPlayerAchievementsReq_default_instance_._instance,
+    &::rpc_server::_GetPlayerAchievementsRes_default_instance_._instance,
+    &::rpc_server::_UpdatePlayerAchievementsReq_default_instance_._instance,
+    &::rpc_server::_UpdatePlayerAchievementsRes_default_instance_._instance,
+    &::rpc_server::_GetPlayerTasksReq_default_instance_._instance,
+    &::rpc_server::_GetPlayerTasksRes_default_instance_._instance,
+    &::rpc_server::_UpdatePlayerTasksReq_default_instance_._instance,
+    &::rpc_server::_UpdatePlayerTasksRes_default_instance_._instance,
+    &::rpc_server::_AddItemReq_default_instance_._instance,
+    &::rpc_server::_AddItemRes_default_instance_._instance,
+    &::rpc_server::_UseItemReq_default_instance_._instance,
+    &::rpc_server::_UseItemRes_default_instance_._instance,
+    &::rpc_server::_SaveBattleResultReq_default_instance_._instance,
+    &::rpc_server::_SaveBattleResultRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5flogic_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\022server_logic.proto\022\nrpc_server\"\221\001\n\rGam"
-    "eActionReq\022\016\n\006action\030\001 \001(\014\022=\n\nparameters"
-    "\030\002 \003(\0132).rpc_server.GameActionReq.Parame"
-    "tersEntry\0321\n\017ParametersEntry\022\013\n\003key\030\001 \001("
-    "\t\022\r\n\005value\030\002 \001(\014:\0028\001\"1\n\rGameActionRes\022\017\n"
-    "\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"\037\n\014GameS"
-    "tateReq\022\017\n\007game_id\030\001 \001(\014\"\222\001\n\014GameStateRe"
-    "s\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\0222\n\005s"
-    "tate\030\003 \003(\0132#.rpc_server.GameStateRes.Sta"
-    "teEntry\032,\n\nStateEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005va"
-    "lue\030\002 \001(\014:\0028\0012\237\001\n\013LogicServer\022J\n\022Process"
-    "_gameAction\022\031.rpc_server.GameActionReq\032\031"
-    ".rpc_server.GameActionRes\022D\n\016Get_game_st"
-    "ate\022\030.rpc_server.GameStateReq\032\030.rpc_serv"
-    "er.GameStateResb\006proto3"
+    "\n\022server_logic.proto\022\nrpc_server\"+\n\026GetP"
+    "layerCollectionReq\022\021\n\tplayer_id\030\001 \001(\t\"\?\n"
+    "\026GetPlayerCollectionRes\022\021\n\tplayer_id\030\001 \001"
+    "(\t\022\022\n\ncollection\030\002 \003(\t\"B\n\031UpdatePlayerCo"
+    "llectionReq\022\021\n\tplayer_id\030\001 \001(\t\022\022\n\ncollec"
+    "tion\030\002 \003(\t\"=\n\031UpdatePlayerCollectionRes\022"
+    "\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"-\n\030Get"
+    "PlayerAchievementsReq\022\021\n\tplayer_id\030\001 \001(\t"
+    "\"C\n\030GetPlayerAchievementsRes\022\021\n\tplayer_i"
+    "d\030\001 \001(\t\022\024\n\014achievements\030\002 \003(\t\"F\n\033UpdateP"
+    "layerAchievementsReq\022\021\n\tplayer_id\030\001 \001(\t\022"
+    "\024\n\014achievements\030\002 \003(\t\"\?\n\033UpdatePlayerAch"
+    "ievementsRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message"
+    "\030\002 \001(\t\"&\n\021GetPlayerTasksReq\022\021\n\tplayer_id"
+    "\030\001 \001(\t\"5\n\021GetPlayerTasksRes\022\021\n\tplayer_id"
+    "\030\001 \001(\t\022\r\n\005tasks\030\002 \003(\t\"8\n\024UpdatePlayerTas"
+    "ksReq\022\021\n\tplayer_id\030\001 \001(\t\022\r\n\005tasks\030\002 \003(\t\""
+    "8\n\024UpdatePlayerTasksRes\022\017\n\007success\030\001 \001(\010"
+    "\022\017\n\007message\030\002 \001(\t\"0\n\nAddItemReq\022\021\n\tplaye"
+    "r_id\030\001 \001(\t\022\017\n\007item_id\030\002 \001(\t\".\n\nAddItemRe"
+    "s\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"0\n\nU"
+    "seItemReq\022\021\n\tplayer_id\030\001 \001(\t\022\017\n\007item_id\030"
+    "\002 \001(\t\".\n\nUseItemRes\022\017\n\007success\030\001 \001(\010\022\017\n\007"
+    "message\030\002 \001(\t\"f\n\023SaveBattleResultReq\022\021\n\t"
+    "player_id\030\001 \001(\t\022\023\n\013opponent_id\030\002 \001(\t\022\022\n\n"
+    "is_victory\030\003 \001(\010\022\023\n\013battle_data\030\004 \001(\t\"7\n"
+    "\023SaveBattleResultRes\022\017\n\007success\030\001 \001(\010\022\017\n"
+    "\007message\030\002 \001(\t2\254\006\n\013LogicServer\022_\n\025Get_pl"
+    "ayer_collection\022\".rpc_server.GetPlayerCo"
+    "llectionReq\032\".rpc_server.GetPlayerCollec"
+    "tionRes\022h\n\030Update_player_collection\022%.rp"
+    "c_server.UpdatePlayerCollectionReq\032%.rpc"
+    "_server.UpdatePlayerCollectionRes\022e\n\027Get"
+    "_player_achievements\022$.rpc_server.GetPla"
+    "yerAchievementsReq\032$.rpc_server.GetPlaye"
+    "rAchievementsRes\022n\n\032Update_player_achiev"
+    "ements\022\'.rpc_server.UpdatePlayerAchievem"
+    "entsReq\032\'.rpc_server.UpdatePlayerAchieve"
+    "mentsRes\022P\n\020Get_player_tasks\022\035.rpc_serve"
+    "r.GetPlayerTasksReq\032\035.rpc_server.GetPlay"
+    "erTasksRes\022Y\n\023Update_player_tasks\022 .rpc_"
+    "server.UpdatePlayerTasksReq\032 .rpc_server"
+    ".UpdatePlayerTasksRes\022:\n\010Add_item\022\026.rpc_"
+    "server.AddItemReq\032\026.rpc_server.AddItemRe"
+    "s\022:\n\010Use_item\022\026.rpc_server.UseItemReq\032\026."
+    "rpc_server.UseItemRes\022V\n\022Save_battle_res"
+    "ult\022\037.rpc_server.SaveBattleResultReq\032\037.r"
+    "pc_server.SaveBattleResultResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5flogic_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5flogic_2eproto = {
     false,
     false,
-    583,
+    1917,
     descriptor_table_protodef_server_5flogic_2eproto,
     "server_logic.proto",
     &descriptor_table_server_5flogic_2eproto_once,
     nullptr,
     0,
-    6,
+    18,
     schemas,
     file_default_instances,
     TableStruct_server_5flogic_2eproto::offsets,
@@ -281,78 +744,65 @@ static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_server_5flogic_2eproto(&d
 namespace rpc_server {
 // ===================================================================
 
-GameActionReq_ParametersEntry_DoNotUse::GameActionReq_ParametersEntry_DoNotUse() {}
-GameActionReq_ParametersEntry_DoNotUse::GameActionReq_ParametersEntry_DoNotUse(::google::protobuf::Arena* arena)
-    : SuperType(arena) {}
-::google::protobuf::Metadata GameActionReq_ParametersEntry_DoNotUse::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
-      file_level_metadata_server_5flogic_2eproto[0]);
-}
-// ===================================================================
-
-class GameActionReq::_Internal {
+class GetPlayerCollectionReq::_Internal {
  public:
 };
 
-GameActionReq::GameActionReq(::google::protobuf::Arena* arena)
+GetPlayerCollectionReq::GetPlayerCollectionReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.GameActionReq)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.GetPlayerCollectionReq)
 }
-inline PROTOBUF_NDEBUG_INLINE GameActionReq::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE GetPlayerCollectionReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : parameters_{visibility, arena, from.parameters_},
-        action_(arena, from.action_),
+      : player_id_(arena, from.player_id_),
         _cached_size_{0} {}
 
-GameActionReq::GameActionReq(
+GetPlayerCollectionReq::GetPlayerCollectionReq(
     ::google::protobuf::Arena* arena,
-    const GameActionReq& from)
+    const GetPlayerCollectionReq& from)
     : ::google::protobuf::Message(arena) {
-  GameActionReq* const _this = this;
+  GetPlayerCollectionReq* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.GameActionReq)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.GetPlayerCollectionReq)
 }
-inline PROTOBUF_NDEBUG_INLINE GameActionReq::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE GetPlayerCollectionReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : parameters_{visibility, arena},
-        action_(arena),
+      : player_id_(arena),
         _cached_size_{0} {}
 
-inline void GameActionReq::SharedCtor(::_pb::Arena* arena) {
+inline void GetPlayerCollectionReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-GameActionReq::~GameActionReq() {
-  // @@protoc_insertion_point(destructor:rpc_server.GameActionReq)
+GetPlayerCollectionReq::~GetPlayerCollectionReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.GetPlayerCollectionReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void GameActionReq::SharedDtor() {
+inline void GetPlayerCollectionReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.action_.Destroy();
+  _impl_.player_id_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void GameActionReq::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.GameActionReq)
+PROTOBUF_NOINLINE void GetPlayerCollectionReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.GetPlayerCollectionReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.parameters_.Clear();
-  _impl_.action_.ClearToEmpty();
+  _impl_.player_id_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GameActionReq::_InternalParse(
+const char* GetPlayerCollectionReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -360,447 +810,7 @@ const char* GameActionReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 2, 1, 43, 2> GameActionReq::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_GameActionReq_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // bytes action = 1;
-    {::_pbi::TcParser::FastBS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GameActionReq, _impl_.action_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // bytes action = 1;
-    {PROTOBUF_FIELD_OFFSET(GameActionReq, _impl_.action_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // map<string, bytes> parameters = 2;
-    {PROTOBUF_FIELD_OFFSET(GameActionReq, _impl_.parameters_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
-  }}, {{
-    {::_pbi::TcParser::GetMapAuxInfo<
-        decltype(GameActionReq()._impl_.parameters_)>(
-        1, 0, 0, 9,
-        12)},
-  }}, {{
-    "\30\0\12\0\0\0\0\0"
-    "rpc_server.GameActionReq"
-    "parameters"
-  }},
-};
-
-::uint8_t* GameActionReq::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GameActionReq)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  // bytes action = 1;
-  if (!this->_internal_action().empty()) {
-    const std::string& _s = this->_internal_action();
-    target = stream->WriteBytesMaybeAliased(1, _s, target);
-  }
-
-  // map<string, bytes> parameters = 2;
-  if (!_internal_parameters().empty()) {
-    using MapType = ::google::protobuf::Map<std::string, std::string>;
-    using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
-                                   _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_BYTES>;
-    const auto& field = _internal_parameters();
-
-    if (stream->IsSerializationDeterministic() && field.size() > 1) {
-      for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
-        target = WireHelper::InternalSerialize(
-            2, entry.first, entry.second, target, stream);
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GameActionReq.parameters");
-      }
-    } else {
-      for (const auto& entry : field) {
-        target = WireHelper::InternalSerialize(
-            2, entry.first, entry.second, target, stream);
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GameActionReq.parameters");
-      }
-    }
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GameActionReq)
-  return target;
-}
-
-::size_t GameActionReq::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.GameActionReq)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // map<string, bytes> parameters = 2;
-  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_parameters_size());
-  for (const auto& entry : _internal_parameters()) {
-    total_size += _pbi::MapEntryFuncs<std::string, std::string,
-                                   _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
-  }
-  // bytes action = 1;
-  if (!this->_internal_action().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
-                                    this->_internal_action());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::google::protobuf::Message::ClassData GameActionReq::_class_data_ = {
-    GameActionReq::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
-};
-const ::google::protobuf::Message::ClassData* GameActionReq::GetClassData() const {
-  return &_class_data_;
-}
-
-void GameActionReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<GameActionReq*>(&to_msg);
-  auto& from = static_cast<const GameActionReq&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GameActionReq)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  _this->_impl_.parameters_.MergeFrom(from._impl_.parameters_);
-  if (!from._internal_action().empty()) {
-    _this->_internal_set_action(from._internal_action());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void GameActionReq::CopyFrom(const GameActionReq& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GameActionReq)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-PROTOBUF_NOINLINE bool GameActionReq::IsInitialized() const {
-  return true;
-}
-
-::_pbi::CachedSize* GameActionReq::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void GameActionReq::InternalSwap(GameActionReq* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.parameters_.InternalSwap(&other->_impl_.parameters_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.action_, &other->_impl_.action_, arena);
-}
-
-::google::protobuf::Metadata GameActionReq::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
-      file_level_metadata_server_5flogic_2eproto[1]);
-}
-// ===================================================================
-
-class GameActionRes::_Internal {
- public:
-};
-
-GameActionRes::GameActionRes(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.GameActionRes)
-}
-inline PROTOBUF_NDEBUG_INLINE GameActionRes::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : message_(arena, from.message_),
-        _cached_size_{0} {}
-
-GameActionRes::GameActionRes(
-    ::google::protobuf::Arena* arena,
-    const GameActionRes& from)
-    : ::google::protobuf::Message(arena) {
-  GameActionRes* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  _impl_.success_ = from._impl_.success_;
-
-  // @@protoc_insertion_point(copy_constructor:rpc_server.GameActionRes)
-}
-inline PROTOBUF_NDEBUG_INLINE GameActionRes::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : message_(arena),
-        _cached_size_{0} {}
-
-inline void GameActionRes::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.success_ = {};
-}
-GameActionRes::~GameActionRes() {
-  // @@protoc_insertion_point(destructor:rpc_server.GameActionRes)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void GameActionRes::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.message_.Destroy();
-  _impl_.~Impl_();
-}
-
-PROTOBUF_NOINLINE void GameActionRes::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.GameActionRes)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.message_.ClearToEmpty();
-  _impl_.success_ = false;
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-const char* GameActionRes::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-  return ptr;
-}
-
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> GameActionRes::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_GameActionRes_default_instance_._instance,
-    ::_pbi::TcParser::GenericFallback,  // fallback
-  }, {{
-    // bytes message = 2;
-    {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GameActionRes, _impl_.message_)}},
-    // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GameActionRes, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(GameActionRes, _impl_.success_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(GameActionRes, _impl_.success_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // bytes message = 2;
-    {PROTOBUF_FIELD_OFFSET(GameActionRes, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-  }},
-};
-
-::uint8_t* GameActionRes::_InternalSerialize(
-    ::uint8_t* target,
-    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GameActionRes)
-  ::uint32_t cached_has_bits = 0;
-  (void)cached_has_bits;
-
-  // bool success = 1;
-  if (this->_internal_success() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(
-        1, this->_internal_success(), target);
-  }
-
-  // bytes message = 2;
-  if (!this->_internal_message().empty()) {
-    const std::string& _s = this->_internal_message();
-    target = stream->WriteBytesMaybeAliased(2, _s, target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target =
-        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GameActionRes)
-  return target;
-}
-
-::size_t GameActionRes::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.GameActionRes)
-  ::size_t total_size = 0;
-
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // bytes message = 2;
-  if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
-                                    this->_internal_message());
-  }
-
-  // bool success = 1;
-  if (this->_internal_success() != 0) {
-    total_size += 2;
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::google::protobuf::Message::ClassData GameActionRes::_class_data_ = {
-    GameActionRes::MergeImpl,
-    nullptr,  // OnDemandRegisterArenaDtor
-};
-const ::google::protobuf::Message::ClassData* GameActionRes::GetClassData() const {
-  return &_class_data_;
-}
-
-void GameActionRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<GameActionRes*>(&to_msg);
-  auto& from = static_cast<const GameActionRes&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GameActionRes)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_message().empty()) {
-    _this->_internal_set_message(from._internal_message());
-  }
-  if (from._internal_success() != 0) {
-    _this->_internal_set_success(from._internal_success());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void GameActionRes::CopyFrom(const GameActionRes& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GameActionRes)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-PROTOBUF_NOINLINE bool GameActionRes::IsInitialized() const {
-  return true;
-}
-
-::_pbi::CachedSize* GameActionRes::AccessCachedSize() const {
-  return &_impl_._cached_size_;
-}
-void GameActionRes::InternalSwap(GameActionRes* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
-        swap(_impl_.success_, other->_impl_.success_);
-}
-
-::google::protobuf::Metadata GameActionRes::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
-      file_level_metadata_server_5flogic_2eproto[2]);
-}
-// ===================================================================
-
-class GameStateReq::_Internal {
- public:
-};
-
-GameStateReq::GameStateReq(::google::protobuf::Arena* arena)
-    : ::google::protobuf::Message(arena) {
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.GameStateReq)
-}
-inline PROTOBUF_NDEBUG_INLINE GameStateReq::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : game_id_(arena, from.game_id_),
-        _cached_size_{0} {}
-
-GameStateReq::GameStateReq(
-    ::google::protobuf::Arena* arena,
-    const GameStateReq& from)
-    : ::google::protobuf::Message(arena) {
-  GameStateReq* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-
-  // @@protoc_insertion_point(copy_constructor:rpc_server.GameStateReq)
-}
-inline PROTOBUF_NDEBUG_INLINE GameStateReq::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : game_id_(arena),
-        _cached_size_{0} {}
-
-inline void GameStateReq::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-}
-GameStateReq::~GameStateReq() {
-  // @@protoc_insertion_point(destructor:rpc_server.GameStateReq)
-  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  SharedDtor();
-}
-inline void GameStateReq::SharedDtor() {
-  ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.game_id_.Destroy();
-  _impl_.~Impl_();
-}
-
-PROTOBUF_NOINLINE void GameStateReq::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.GameStateReq)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.game_id_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-const char* GameStateReq::_InternalParse(
-    const char* ptr, ::_pbi::ParseContext* ctx) {
-  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
-  return ptr;
-}
-
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GameStateReq::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 51, 2> GetPlayerCollectionReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -811,35 +821,40 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GameStateReq::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_GameStateReq_default_instance_._instance,
+    &_GetPlayerCollectionReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bytes game_id = 1;
-    {::_pbi::TcParser::FastBS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GameStateReq, _impl_.game_id_)}},
+    // string player_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetPlayerCollectionReq, _impl_.player_id_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // bytes game_id = 1;
-    {PROTOBUF_FIELD_OFFSET(GameStateReq, _impl_.game_id_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // string player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(GetPlayerCollectionReq, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
+    "\41\11\0\0\0\0\0\0"
+    "rpc_server.GetPlayerCollectionReq"
+    "player_id"
   }},
 };
 
-::uint8_t* GameStateReq::_InternalSerialize(
+::uint8_t* GetPlayerCollectionReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GameStateReq)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GetPlayerCollectionReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // bytes game_id = 1;
-  if (!this->_internal_game_id().empty()) {
-    const std::string& _s = this->_internal_game_id();
-    target = stream->WriteBytesMaybeAliased(1, _s, target);
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    const std::string& _s = this->_internal_player_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GetPlayerCollectionReq.player_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -847,153 +862,140 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GameStateReq::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GameStateReq)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GetPlayerCollectionReq)
   return target;
 }
 
-::size_t GameStateReq::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.GameStateReq)
+::size_t GetPlayerCollectionReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.GetPlayerCollectionReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes game_id = 1;
-  if (!this->_internal_game_id().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
-                                    this->_internal_game_id());
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_id());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData GameStateReq::_class_data_ = {
-    GameStateReq::MergeImpl,
+const ::google::protobuf::Message::ClassData GetPlayerCollectionReq::_class_data_ = {
+    GetPlayerCollectionReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* GameStateReq::GetClassData() const {
+const ::google::protobuf::Message::ClassData* GetPlayerCollectionReq::GetClassData() const {
   return &_class_data_;
 }
 
-void GameStateReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<GameStateReq*>(&to_msg);
-  auto& from = static_cast<const GameStateReq&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GameStateReq)
+void GetPlayerCollectionReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPlayerCollectionReq*>(&to_msg);
+  auto& from = static_cast<const GetPlayerCollectionReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GetPlayerCollectionReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_game_id().empty()) {
-    _this->_internal_set_game_id(from._internal_game_id());
+  if (!from._internal_player_id().empty()) {
+    _this->_internal_set_player_id(from._internal_player_id());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void GameStateReq::CopyFrom(const GameStateReq& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GameStateReq)
+void GetPlayerCollectionReq::CopyFrom(const GetPlayerCollectionReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GetPlayerCollectionReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool GameStateReq::IsInitialized() const {
+PROTOBUF_NOINLINE bool GetPlayerCollectionReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* GameStateReq::AccessCachedSize() const {
+::_pbi::CachedSize* GetPlayerCollectionReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void GameStateReq::InternalSwap(GameStateReq* PROTOBUF_RESTRICT other) {
+void GetPlayerCollectionReq::InternalSwap(GetPlayerCollectionReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.game_id_, &other->_impl_.game_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_id_, &other->_impl_.player_id_, arena);
 }
 
-::google::protobuf::Metadata GameStateReq::GetMetadata() const {
+::google::protobuf::Metadata GetPlayerCollectionReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
-      file_level_metadata_server_5flogic_2eproto[3]);
+      file_level_metadata_server_5flogic_2eproto[0]);
 }
 // ===================================================================
 
-GameStateRes_StateEntry_DoNotUse::GameStateRes_StateEntry_DoNotUse() {}
-GameStateRes_StateEntry_DoNotUse::GameStateRes_StateEntry_DoNotUse(::google::protobuf::Arena* arena)
-    : SuperType(arena) {}
-::google::protobuf::Metadata GameStateRes_StateEntry_DoNotUse::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
-      file_level_metadata_server_5flogic_2eproto[4]);
-}
-// ===================================================================
-
-class GameStateRes::_Internal {
+class GetPlayerCollectionRes::_Internal {
  public:
 };
 
-GameStateRes::GameStateRes(::google::protobuf::Arena* arena)
+GetPlayerCollectionRes::GetPlayerCollectionRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.GameStateRes)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.GetPlayerCollectionRes)
 }
-inline PROTOBUF_NDEBUG_INLINE GameStateRes::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE GetPlayerCollectionRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : state_{visibility, arena, from.state_},
-        message_(arena, from.message_),
+      : collection_{visibility, arena, from.collection_},
+        player_id_(arena, from.player_id_),
         _cached_size_{0} {}
 
-GameStateRes::GameStateRes(
+GetPlayerCollectionRes::GetPlayerCollectionRes(
     ::google::protobuf::Arena* arena,
-    const GameStateRes& from)
+    const GetPlayerCollectionRes& from)
     : ::google::protobuf::Message(arena) {
-  GameStateRes* const _this = this;
+  GetPlayerCollectionRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.GameStateRes)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.GetPlayerCollectionRes)
 }
-inline PROTOBUF_NDEBUG_INLINE GameStateRes::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE GetPlayerCollectionRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : state_{visibility, arena},
-        message_(arena),
+      : collection_{visibility, arena},
+        player_id_(arena),
         _cached_size_{0} {}
 
-inline void GameStateRes::SharedCtor(::_pb::Arena* arena) {
+inline void GetPlayerCollectionRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.success_ = {};
 }
-GameStateRes::~GameStateRes() {
-  // @@protoc_insertion_point(destructor:rpc_server.GameStateRes)
+GetPlayerCollectionRes::~GetPlayerCollectionRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.GetPlayerCollectionRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void GameStateRes::SharedDtor() {
+inline void GetPlayerCollectionRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.message_.Destroy();
+  _impl_.player_id_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void GameStateRes::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.GameStateRes)
+PROTOBUF_NOINLINE void GetPlayerCollectionRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.GetPlayerCollectionRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.state_.Clear();
-  _impl_.message_.ClearToEmpty();
-  _impl_.success_ = false;
+  _impl_.collection_.Clear();
+  _impl_.player_id_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GameStateRes::_InternalParse(
+const char* GetPlayerCollectionRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -1001,54 +1003,480 @@ const char* GameStateRes::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 1, 37, 2> GameStateRes::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 61, 2> GetPlayerCollectionRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    3, 8,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
-    1,  // num_aux_entries
-    offsetof(decltype(_table_), aux_entries),
-    &_GameStateRes_default_instance_._instance,
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetPlayerCollectionRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bytes message = 2;
-    {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GameStateRes, _impl_.message_)}},
+    // repeated string collection = 2;
+    {::_pbi::TcParser::FastUR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GetPlayerCollectionRes, _impl_.collection_)}},
+    // string player_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetPlayerCollectionRes, _impl_.player_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(GetPlayerCollectionRes, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string collection = 2;
+    {PROTOBUF_FIELD_OFFSET(GetPlayerCollectionRes, _impl_.collection_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+  }},
+  // no aux_entries
+  {{
+    "\41\11\12\0\0\0\0\0"
+    "rpc_server.GetPlayerCollectionRes"
+    "player_id"
+    "collection"
+  }},
+};
+
+::uint8_t* GetPlayerCollectionRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GetPlayerCollectionRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    const std::string& _s = this->_internal_player_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GetPlayerCollectionRes.player_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // repeated string collection = 2;
+  for (int i = 0, n = this->_internal_collection_size(); i < n; ++i) {
+    const auto& s = this->_internal_collection().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GetPlayerCollectionRes.collection");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GetPlayerCollectionRes)
+  return target;
+}
+
+::size_t GetPlayerCollectionRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.GetPlayerCollectionRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string collection = 2;
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_collection().size());
+  for (int i = 0, n = _internal_collection().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_collection().Get(i));
+  }
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData GetPlayerCollectionRes::_class_data_ = {
+    GetPlayerCollectionRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* GetPlayerCollectionRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void GetPlayerCollectionRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPlayerCollectionRes*>(&to_msg);
+  auto& from = static_cast<const GetPlayerCollectionRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GetPlayerCollectionRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_collection()->MergeFrom(from._internal_collection());
+  if (!from._internal_player_id().empty()) {
+    _this->_internal_set_player_id(from._internal_player_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPlayerCollectionRes::CopyFrom(const GetPlayerCollectionRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GetPlayerCollectionRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool GetPlayerCollectionRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* GetPlayerCollectionRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPlayerCollectionRes::InternalSwap(GetPlayerCollectionRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.collection_.InternalSwap(&other->_impl_.collection_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_id_, &other->_impl_.player_id_, arena);
+}
+
+::google::protobuf::Metadata GetPlayerCollectionRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[1]);
+}
+// ===================================================================
+
+class UpdatePlayerCollectionReq::_Internal {
+ public:
+};
+
+UpdatePlayerCollectionReq::UpdatePlayerCollectionReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UpdatePlayerCollectionReq)
+}
+inline PROTOBUF_NDEBUG_INLINE UpdatePlayerCollectionReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : collection_{visibility, arena, from.collection_},
+        player_id_(arena, from.player_id_),
+        _cached_size_{0} {}
+
+UpdatePlayerCollectionReq::UpdatePlayerCollectionReq(
+    ::google::protobuf::Arena* arena,
+    const UpdatePlayerCollectionReq& from)
+    : ::google::protobuf::Message(arena) {
+  UpdatePlayerCollectionReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UpdatePlayerCollectionReq)
+}
+inline PROTOBUF_NDEBUG_INLINE UpdatePlayerCollectionReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : collection_{visibility, arena},
+        player_id_(arena),
+        _cached_size_{0} {}
+
+inline void UpdatePlayerCollectionReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+UpdatePlayerCollectionReq::~UpdatePlayerCollectionReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.UpdatePlayerCollectionReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UpdatePlayerCollectionReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.player_id_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UpdatePlayerCollectionReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UpdatePlayerCollectionReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.collection_.Clear();
+  _impl_.player_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UpdatePlayerCollectionReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 64, 2> UpdatePlayerCollectionReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UpdatePlayerCollectionReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated string collection = 2;
+    {::_pbi::TcParser::FastUR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdatePlayerCollectionReq, _impl_.collection_)}},
+    // string player_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UpdatePlayerCollectionReq, _impl_.player_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(UpdatePlayerCollectionReq, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string collection = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdatePlayerCollectionReq, _impl_.collection_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+  }},
+  // no aux_entries
+  {{
+    "\44\11\12\0\0\0\0\0"
+    "rpc_server.UpdatePlayerCollectionReq"
+    "player_id"
+    "collection"
+  }},
+};
+
+::uint8_t* UpdatePlayerCollectionReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UpdatePlayerCollectionReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    const std::string& _s = this->_internal_player_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdatePlayerCollectionReq.player_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // repeated string collection = 2;
+  for (int i = 0, n = this->_internal_collection_size(); i < n; ++i) {
+    const auto& s = this->_internal_collection().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdatePlayerCollectionReq.collection");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UpdatePlayerCollectionReq)
+  return target;
+}
+
+::size_t UpdatePlayerCollectionReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UpdatePlayerCollectionReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string collection = 2;
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_collection().size());
+  for (int i = 0, n = _internal_collection().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_collection().Get(i));
+  }
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UpdatePlayerCollectionReq::_class_data_ = {
+    UpdatePlayerCollectionReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* UpdatePlayerCollectionReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void UpdatePlayerCollectionReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdatePlayerCollectionReq*>(&to_msg);
+  auto& from = static_cast<const UpdatePlayerCollectionReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UpdatePlayerCollectionReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_collection()->MergeFrom(from._internal_collection());
+  if (!from._internal_player_id().empty()) {
+    _this->_internal_set_player_id(from._internal_player_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UpdatePlayerCollectionReq::CopyFrom(const UpdatePlayerCollectionReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UpdatePlayerCollectionReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UpdatePlayerCollectionReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* UpdatePlayerCollectionReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UpdatePlayerCollectionReq::InternalSwap(UpdatePlayerCollectionReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.collection_.InternalSwap(&other->_impl_.collection_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_id_, &other->_impl_.player_id_, arena);
+}
+
+::google::protobuf::Metadata UpdatePlayerCollectionReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[2]);
+}
+// ===================================================================
+
+class UpdatePlayerCollectionRes::_Internal {
+ public:
+};
+
+UpdatePlayerCollectionRes::UpdatePlayerCollectionRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UpdatePlayerCollectionRes)
+}
+inline PROTOBUF_NDEBUG_INLINE UpdatePlayerCollectionRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+UpdatePlayerCollectionRes::UpdatePlayerCollectionRes(
+    ::google::protobuf::Arena* arena,
+    const UpdatePlayerCollectionRes& from)
+    : ::google::protobuf::Message(arena) {
+  UpdatePlayerCollectionRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UpdatePlayerCollectionRes)
+}
+inline PROTOBUF_NDEBUG_INLINE UpdatePlayerCollectionRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void UpdatePlayerCollectionRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+UpdatePlayerCollectionRes::~UpdatePlayerCollectionRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.UpdatePlayerCollectionRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UpdatePlayerCollectionRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UpdatePlayerCollectionRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UpdatePlayerCollectionRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UpdatePlayerCollectionRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 52, 2> UpdatePlayerCollectionRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UpdatePlayerCollectionRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string message = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdatePlayerCollectionRes, _impl_.message_)}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GameStateRes, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(GameStateRes, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdatePlayerCollectionRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UpdatePlayerCollectionRes, _impl_.success_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(GameStateRes, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(UpdatePlayerCollectionRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
-    // bytes message = 2;
-    {PROTOBUF_FIELD_OFFSET(GameStateRes, _impl_.message_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // map<string, bytes> state = 3;
-    {PROTOBUF_FIELD_OFFSET(GameStateRes, _impl_.state_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kMap)},
-  }}, {{
-    {::_pbi::TcParser::GetMapAuxInfo<
-        decltype(GameStateRes()._impl_.state_)>(
-        1, 0, 0, 9,
-        12)},
-  }}, {{
-    "\27\0\0\5\0\0\0\0"
-    "rpc_server.GameStateRes"
-    "state"
+    // string message = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdatePlayerCollectionRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\44\0\7\0\0\0\0\0"
+    "rpc_server.UpdatePlayerCollectionRes"
+    "message"
   }},
 };
 
-::uint8_t* GameStateRes::_InternalSerialize(
+::uint8_t* UpdatePlayerCollectionRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GameStateRes)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UpdatePlayerCollectionRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1059,37 +1487,12 @@ const ::_pbi::TcParseTable<1, 3, 1, 37, 2> GameStateRes::_table_ = {
         1, this->_internal_success(), target);
   }
 
-  // bytes message = 2;
+  // string message = 2;
   if (!this->_internal_message().empty()) {
     const std::string& _s = this->_internal_message();
-    target = stream->WriteBytesMaybeAliased(2, _s, target);
-  }
-
-  // map<string, bytes> state = 3;
-  if (!_internal_state().empty()) {
-    using MapType = ::google::protobuf::Map<std::string, std::string>;
-    using WireHelper = _pbi::MapEntryFuncs<std::string, std::string,
-                                   _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_BYTES>;
-    const auto& field = _internal_state();
-
-    if (stream->IsSerializationDeterministic() && field.size() > 1) {
-      for (const auto& entry : ::google::protobuf::internal::MapSorterPtr<MapType>(field)) {
-        target = WireHelper::InternalSerialize(
-            3, entry.first, entry.second, target, stream);
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GameStateRes.state");
-      }
-    } else {
-      for (const auto& entry : field) {
-        target = WireHelper::InternalSerialize(
-            3, entry.first, entry.second, target, stream);
-        ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            entry.first.data(), static_cast<int>(entry.first.length()),
- ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GameStateRes.state");
-      }
-    }
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdatePlayerCollectionRes.message");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1097,28 +1500,21 @@ const ::_pbi::TcParseTable<1, 3, 1, 37, 2> GameStateRes::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GameStateRes)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UpdatePlayerCollectionRes)
   return target;
 }
 
-::size_t GameStateRes::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.GameStateRes)
+::size_t UpdatePlayerCollectionRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UpdatePlayerCollectionRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<string, bytes> state = 3;
-  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_state_size());
-  for (const auto& entry : _internal_state()) {
-    total_size += _pbi::MapEntryFuncs<std::string, std::string,
-                                   _pbi::WireFormatLite::TYPE_STRING,
-                                   _pbi::WireFormatLite::TYPE_BYTES>::ByteSizeLong(entry.first, entry.second);
-  }
-  // bytes message = 2;
+  // string message = 2;
   if (!this->_internal_message().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                     this->_internal_message());
   }
 
@@ -1130,23 +1526,22 @@ const ::_pbi::TcParseTable<1, 3, 1, 37, 2> GameStateRes::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData GameStateRes::_class_data_ = {
-    GameStateRes::MergeImpl,
+const ::google::protobuf::Message::ClassData UpdatePlayerCollectionRes::_class_data_ = {
+    UpdatePlayerCollectionRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* GameStateRes::GetClassData() const {
+const ::google::protobuf::Message::ClassData* UpdatePlayerCollectionRes::GetClassData() const {
   return &_class_data_;
 }
 
-void GameStateRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<GameStateRes*>(&to_msg);
-  auto& from = static_cast<const GameStateRes&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GameStateRes)
+void UpdatePlayerCollectionRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdatePlayerCollectionRes*>(&to_msg);
+  auto& from = static_cast<const UpdatePlayerCollectionRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UpdatePlayerCollectionRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.state_.MergeFrom(from._impl_.state_);
   if (!from._internal_message().empty()) {
     _this->_internal_set_message(from._internal_message());
   }
@@ -1156,34 +1551,3063 @@ void GameStateRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void GameStateRes::CopyFrom(const GameStateRes& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GameStateRes)
+void UpdatePlayerCollectionRes::CopyFrom(const UpdatePlayerCollectionRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UpdatePlayerCollectionRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool GameStateRes::IsInitialized() const {
+PROTOBUF_NOINLINE bool UpdatePlayerCollectionRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* GameStateRes::AccessCachedSize() const {
+::_pbi::CachedSize* UpdatePlayerCollectionRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void GameStateRes::InternalSwap(GameStateRes* PROTOBUF_RESTRICT other) {
+void UpdatePlayerCollectionRes::InternalSwap(UpdatePlayerCollectionRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.state_.InternalSwap(&other->_impl_.state_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
         swap(_impl_.success_, other->_impl_.success_);
 }
 
-::google::protobuf::Metadata GameStateRes::GetMetadata() const {
+::google::protobuf::Metadata UpdatePlayerCollectionRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[3]);
+}
+// ===================================================================
+
+class GetPlayerAchievementsReq::_Internal {
+ public:
+};
+
+GetPlayerAchievementsReq::GetPlayerAchievementsReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.GetPlayerAchievementsReq)
+}
+inline PROTOBUF_NDEBUG_INLINE GetPlayerAchievementsReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : player_id_(arena, from.player_id_),
+        _cached_size_{0} {}
+
+GetPlayerAchievementsReq::GetPlayerAchievementsReq(
+    ::google::protobuf::Arena* arena,
+    const GetPlayerAchievementsReq& from)
+    : ::google::protobuf::Message(arena) {
+  GetPlayerAchievementsReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.GetPlayerAchievementsReq)
+}
+inline PROTOBUF_NDEBUG_INLINE GetPlayerAchievementsReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : player_id_(arena),
+        _cached_size_{0} {}
+
+inline void GetPlayerAchievementsReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+GetPlayerAchievementsReq::~GetPlayerAchievementsReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.GetPlayerAchievementsReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetPlayerAchievementsReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.player_id_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void GetPlayerAchievementsReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.GetPlayerAchievementsReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.player_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* GetPlayerAchievementsReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 53, 2> GetPlayerAchievementsReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetPlayerAchievementsReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string player_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetPlayerAchievementsReq, _impl_.player_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(GetPlayerAchievementsReq, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\43\11\0\0\0\0\0\0"
+    "rpc_server.GetPlayerAchievementsReq"
+    "player_id"
+  }},
+};
+
+::uint8_t* GetPlayerAchievementsReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GetPlayerAchievementsReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    const std::string& _s = this->_internal_player_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GetPlayerAchievementsReq.player_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GetPlayerAchievementsReq)
+  return target;
+}
+
+::size_t GetPlayerAchievementsReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.GetPlayerAchievementsReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData GetPlayerAchievementsReq::_class_data_ = {
+    GetPlayerAchievementsReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* GetPlayerAchievementsReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void GetPlayerAchievementsReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPlayerAchievementsReq*>(&to_msg);
+  auto& from = static_cast<const GetPlayerAchievementsReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GetPlayerAchievementsReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_player_id().empty()) {
+    _this->_internal_set_player_id(from._internal_player_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPlayerAchievementsReq::CopyFrom(const GetPlayerAchievementsReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GetPlayerAchievementsReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool GetPlayerAchievementsReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* GetPlayerAchievementsReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPlayerAchievementsReq::InternalSwap(GetPlayerAchievementsReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_id_, &other->_impl_.player_id_, arena);
+}
+
+::google::protobuf::Metadata GetPlayerAchievementsReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[4]);
+}
+// ===================================================================
+
+class GetPlayerAchievementsRes::_Internal {
+ public:
+};
+
+GetPlayerAchievementsRes::GetPlayerAchievementsRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.GetPlayerAchievementsRes)
+}
+inline PROTOBUF_NDEBUG_INLINE GetPlayerAchievementsRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : achievements_{visibility, arena, from.achievements_},
+        player_id_(arena, from.player_id_),
+        _cached_size_{0} {}
+
+GetPlayerAchievementsRes::GetPlayerAchievementsRes(
+    ::google::protobuf::Arena* arena,
+    const GetPlayerAchievementsRes& from)
+    : ::google::protobuf::Message(arena) {
+  GetPlayerAchievementsRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.GetPlayerAchievementsRes)
+}
+inline PROTOBUF_NDEBUG_INLINE GetPlayerAchievementsRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : achievements_{visibility, arena},
+        player_id_(arena),
+        _cached_size_{0} {}
+
+inline void GetPlayerAchievementsRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+GetPlayerAchievementsRes::~GetPlayerAchievementsRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.GetPlayerAchievementsRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetPlayerAchievementsRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.player_id_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void GetPlayerAchievementsRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.GetPlayerAchievementsRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.achievements_.Clear();
+  _impl_.player_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* GetPlayerAchievementsRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 65, 2> GetPlayerAchievementsRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetPlayerAchievementsRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated string achievements = 2;
+    {::_pbi::TcParser::FastUR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GetPlayerAchievementsRes, _impl_.achievements_)}},
+    // string player_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetPlayerAchievementsRes, _impl_.player_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(GetPlayerAchievementsRes, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string achievements = 2;
+    {PROTOBUF_FIELD_OFFSET(GetPlayerAchievementsRes, _impl_.achievements_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+  }},
+  // no aux_entries
+  {{
+    "\43\11\14\0\0\0\0\0"
+    "rpc_server.GetPlayerAchievementsRes"
+    "player_id"
+    "achievements"
+  }},
+};
+
+::uint8_t* GetPlayerAchievementsRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GetPlayerAchievementsRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    const std::string& _s = this->_internal_player_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GetPlayerAchievementsRes.player_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // repeated string achievements = 2;
+  for (int i = 0, n = this->_internal_achievements_size(); i < n; ++i) {
+    const auto& s = this->_internal_achievements().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GetPlayerAchievementsRes.achievements");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GetPlayerAchievementsRes)
+  return target;
+}
+
+::size_t GetPlayerAchievementsRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.GetPlayerAchievementsRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string achievements = 2;
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_achievements().size());
+  for (int i = 0, n = _internal_achievements().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_achievements().Get(i));
+  }
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData GetPlayerAchievementsRes::_class_data_ = {
+    GetPlayerAchievementsRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* GetPlayerAchievementsRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void GetPlayerAchievementsRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPlayerAchievementsRes*>(&to_msg);
+  auto& from = static_cast<const GetPlayerAchievementsRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GetPlayerAchievementsRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_achievements()->MergeFrom(from._internal_achievements());
+  if (!from._internal_player_id().empty()) {
+    _this->_internal_set_player_id(from._internal_player_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPlayerAchievementsRes::CopyFrom(const GetPlayerAchievementsRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GetPlayerAchievementsRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool GetPlayerAchievementsRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* GetPlayerAchievementsRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPlayerAchievementsRes::InternalSwap(GetPlayerAchievementsRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.achievements_.InternalSwap(&other->_impl_.achievements_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_id_, &other->_impl_.player_id_, arena);
+}
+
+::google::protobuf::Metadata GetPlayerAchievementsRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
       file_level_metadata_server_5flogic_2eproto[5]);
+}
+// ===================================================================
+
+class UpdatePlayerAchievementsReq::_Internal {
+ public:
+};
+
+UpdatePlayerAchievementsReq::UpdatePlayerAchievementsReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UpdatePlayerAchievementsReq)
+}
+inline PROTOBUF_NDEBUG_INLINE UpdatePlayerAchievementsReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : achievements_{visibility, arena, from.achievements_},
+        player_id_(arena, from.player_id_),
+        _cached_size_{0} {}
+
+UpdatePlayerAchievementsReq::UpdatePlayerAchievementsReq(
+    ::google::protobuf::Arena* arena,
+    const UpdatePlayerAchievementsReq& from)
+    : ::google::protobuf::Message(arena) {
+  UpdatePlayerAchievementsReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UpdatePlayerAchievementsReq)
+}
+inline PROTOBUF_NDEBUG_INLINE UpdatePlayerAchievementsReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : achievements_{visibility, arena},
+        player_id_(arena),
+        _cached_size_{0} {}
+
+inline void UpdatePlayerAchievementsReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+UpdatePlayerAchievementsReq::~UpdatePlayerAchievementsReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.UpdatePlayerAchievementsReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UpdatePlayerAchievementsReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.player_id_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UpdatePlayerAchievementsReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UpdatePlayerAchievementsReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.achievements_.Clear();
+  _impl_.player_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UpdatePlayerAchievementsReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 68, 2> UpdatePlayerAchievementsReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UpdatePlayerAchievementsReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated string achievements = 2;
+    {::_pbi::TcParser::FastUR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdatePlayerAchievementsReq, _impl_.achievements_)}},
+    // string player_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UpdatePlayerAchievementsReq, _impl_.player_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(UpdatePlayerAchievementsReq, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string achievements = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdatePlayerAchievementsReq, _impl_.achievements_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+  }},
+  // no aux_entries
+  {{
+    "\46\11\14\0\0\0\0\0"
+    "rpc_server.UpdatePlayerAchievementsReq"
+    "player_id"
+    "achievements"
+  }},
+};
+
+::uint8_t* UpdatePlayerAchievementsReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UpdatePlayerAchievementsReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    const std::string& _s = this->_internal_player_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdatePlayerAchievementsReq.player_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // repeated string achievements = 2;
+  for (int i = 0, n = this->_internal_achievements_size(); i < n; ++i) {
+    const auto& s = this->_internal_achievements().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdatePlayerAchievementsReq.achievements");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UpdatePlayerAchievementsReq)
+  return target;
+}
+
+::size_t UpdatePlayerAchievementsReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UpdatePlayerAchievementsReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string achievements = 2;
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_achievements().size());
+  for (int i = 0, n = _internal_achievements().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_achievements().Get(i));
+  }
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UpdatePlayerAchievementsReq::_class_data_ = {
+    UpdatePlayerAchievementsReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* UpdatePlayerAchievementsReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void UpdatePlayerAchievementsReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdatePlayerAchievementsReq*>(&to_msg);
+  auto& from = static_cast<const UpdatePlayerAchievementsReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UpdatePlayerAchievementsReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_achievements()->MergeFrom(from._internal_achievements());
+  if (!from._internal_player_id().empty()) {
+    _this->_internal_set_player_id(from._internal_player_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UpdatePlayerAchievementsReq::CopyFrom(const UpdatePlayerAchievementsReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UpdatePlayerAchievementsReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UpdatePlayerAchievementsReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* UpdatePlayerAchievementsReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UpdatePlayerAchievementsReq::InternalSwap(UpdatePlayerAchievementsReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.achievements_.InternalSwap(&other->_impl_.achievements_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_id_, &other->_impl_.player_id_, arena);
+}
+
+::google::protobuf::Metadata UpdatePlayerAchievementsReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[6]);
+}
+// ===================================================================
+
+class UpdatePlayerAchievementsRes::_Internal {
+ public:
+};
+
+UpdatePlayerAchievementsRes::UpdatePlayerAchievementsRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UpdatePlayerAchievementsRes)
+}
+inline PROTOBUF_NDEBUG_INLINE UpdatePlayerAchievementsRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+UpdatePlayerAchievementsRes::UpdatePlayerAchievementsRes(
+    ::google::protobuf::Arena* arena,
+    const UpdatePlayerAchievementsRes& from)
+    : ::google::protobuf::Message(arena) {
+  UpdatePlayerAchievementsRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UpdatePlayerAchievementsRes)
+}
+inline PROTOBUF_NDEBUG_INLINE UpdatePlayerAchievementsRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void UpdatePlayerAchievementsRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+UpdatePlayerAchievementsRes::~UpdatePlayerAchievementsRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.UpdatePlayerAchievementsRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UpdatePlayerAchievementsRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UpdatePlayerAchievementsRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UpdatePlayerAchievementsRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UpdatePlayerAchievementsRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 54, 2> UpdatePlayerAchievementsRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UpdatePlayerAchievementsRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string message = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdatePlayerAchievementsRes, _impl_.message_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdatePlayerAchievementsRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UpdatePlayerAchievementsRes, _impl_.success_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(UpdatePlayerAchievementsRes, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string message = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdatePlayerAchievementsRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\46\0\7\0\0\0\0\0"
+    "rpc_server.UpdatePlayerAchievementsRes"
+    "message"
+  }},
+};
+
+::uint8_t* UpdatePlayerAchievementsRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UpdatePlayerAchievementsRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdatePlayerAchievementsRes.message");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UpdatePlayerAchievementsRes)
+  return target;
+}
+
+::size_t UpdatePlayerAchievementsRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UpdatePlayerAchievementsRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_message());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UpdatePlayerAchievementsRes::_class_data_ = {
+    UpdatePlayerAchievementsRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* UpdatePlayerAchievementsRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void UpdatePlayerAchievementsRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdatePlayerAchievementsRes*>(&to_msg);
+  auto& from = static_cast<const UpdatePlayerAchievementsRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UpdatePlayerAchievementsRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UpdatePlayerAchievementsRes::CopyFrom(const UpdatePlayerAchievementsRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UpdatePlayerAchievementsRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UpdatePlayerAchievementsRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* UpdatePlayerAchievementsRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UpdatePlayerAchievementsRes::InternalSwap(UpdatePlayerAchievementsRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata UpdatePlayerAchievementsRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[7]);
+}
+// ===================================================================
+
+class GetPlayerTasksReq::_Internal {
+ public:
+};
+
+GetPlayerTasksReq::GetPlayerTasksReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.GetPlayerTasksReq)
+}
+inline PROTOBUF_NDEBUG_INLINE GetPlayerTasksReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : player_id_(arena, from.player_id_),
+        _cached_size_{0} {}
+
+GetPlayerTasksReq::GetPlayerTasksReq(
+    ::google::protobuf::Arena* arena,
+    const GetPlayerTasksReq& from)
+    : ::google::protobuf::Message(arena) {
+  GetPlayerTasksReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.GetPlayerTasksReq)
+}
+inline PROTOBUF_NDEBUG_INLINE GetPlayerTasksReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : player_id_(arena),
+        _cached_size_{0} {}
+
+inline void GetPlayerTasksReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+GetPlayerTasksReq::~GetPlayerTasksReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.GetPlayerTasksReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetPlayerTasksReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.player_id_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void GetPlayerTasksReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.GetPlayerTasksReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.player_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* GetPlayerTasksReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 46, 2> GetPlayerTasksReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetPlayerTasksReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string player_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetPlayerTasksReq, _impl_.player_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(GetPlayerTasksReq, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\34\11\0\0\0\0\0\0"
+    "rpc_server.GetPlayerTasksReq"
+    "player_id"
+  }},
+};
+
+::uint8_t* GetPlayerTasksReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GetPlayerTasksReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    const std::string& _s = this->_internal_player_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GetPlayerTasksReq.player_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GetPlayerTasksReq)
+  return target;
+}
+
+::size_t GetPlayerTasksReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.GetPlayerTasksReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData GetPlayerTasksReq::_class_data_ = {
+    GetPlayerTasksReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* GetPlayerTasksReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void GetPlayerTasksReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPlayerTasksReq*>(&to_msg);
+  auto& from = static_cast<const GetPlayerTasksReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GetPlayerTasksReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_player_id().empty()) {
+    _this->_internal_set_player_id(from._internal_player_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPlayerTasksReq::CopyFrom(const GetPlayerTasksReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GetPlayerTasksReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool GetPlayerTasksReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* GetPlayerTasksReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPlayerTasksReq::InternalSwap(GetPlayerTasksReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_id_, &other->_impl_.player_id_, arena);
+}
+
+::google::protobuf::Metadata GetPlayerTasksReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[8]);
+}
+// ===================================================================
+
+class GetPlayerTasksRes::_Internal {
+ public:
+};
+
+GetPlayerTasksRes::GetPlayerTasksRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.GetPlayerTasksRes)
+}
+inline PROTOBUF_NDEBUG_INLINE GetPlayerTasksRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : tasks_{visibility, arena, from.tasks_},
+        player_id_(arena, from.player_id_),
+        _cached_size_{0} {}
+
+GetPlayerTasksRes::GetPlayerTasksRes(
+    ::google::protobuf::Arena* arena,
+    const GetPlayerTasksRes& from)
+    : ::google::protobuf::Message(arena) {
+  GetPlayerTasksRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.GetPlayerTasksRes)
+}
+inline PROTOBUF_NDEBUG_INLINE GetPlayerTasksRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : tasks_{visibility, arena},
+        player_id_(arena),
+        _cached_size_{0} {}
+
+inline void GetPlayerTasksRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+GetPlayerTasksRes::~GetPlayerTasksRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.GetPlayerTasksRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void GetPlayerTasksRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.player_id_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void GetPlayerTasksRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.GetPlayerTasksRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.tasks_.Clear();
+  _impl_.player_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* GetPlayerTasksRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 51, 2> GetPlayerTasksRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_GetPlayerTasksRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated string tasks = 2;
+    {::_pbi::TcParser::FastUR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GetPlayerTasksRes, _impl_.tasks_)}},
+    // string player_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetPlayerTasksRes, _impl_.player_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(GetPlayerTasksRes, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string tasks = 2;
+    {PROTOBUF_FIELD_OFFSET(GetPlayerTasksRes, _impl_.tasks_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+  }},
+  // no aux_entries
+  {{
+    "\34\11\5\0\0\0\0\0"
+    "rpc_server.GetPlayerTasksRes"
+    "player_id"
+    "tasks"
+  }},
+};
+
+::uint8_t* GetPlayerTasksRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GetPlayerTasksRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    const std::string& _s = this->_internal_player_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GetPlayerTasksRes.player_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // repeated string tasks = 2;
+  for (int i = 0, n = this->_internal_tasks_size(); i < n; ++i) {
+    const auto& s = this->_internal_tasks().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.GetPlayerTasksRes.tasks");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GetPlayerTasksRes)
+  return target;
+}
+
+::size_t GetPlayerTasksRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.GetPlayerTasksRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string tasks = 2;
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_tasks().size());
+  for (int i = 0, n = _internal_tasks().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_tasks().Get(i));
+  }
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData GetPlayerTasksRes::_class_data_ = {
+    GetPlayerTasksRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* GetPlayerTasksRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void GetPlayerTasksRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<GetPlayerTasksRes*>(&to_msg);
+  auto& from = static_cast<const GetPlayerTasksRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GetPlayerTasksRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_tasks()->MergeFrom(from._internal_tasks());
+  if (!from._internal_player_id().empty()) {
+    _this->_internal_set_player_id(from._internal_player_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetPlayerTasksRes::CopyFrom(const GetPlayerTasksRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GetPlayerTasksRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool GetPlayerTasksRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* GetPlayerTasksRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void GetPlayerTasksRes::InternalSwap(GetPlayerTasksRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.tasks_.InternalSwap(&other->_impl_.tasks_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_id_, &other->_impl_.player_id_, arena);
+}
+
+::google::protobuf::Metadata GetPlayerTasksRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[9]);
+}
+// ===================================================================
+
+class UpdatePlayerTasksReq::_Internal {
+ public:
+};
+
+UpdatePlayerTasksReq::UpdatePlayerTasksReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UpdatePlayerTasksReq)
+}
+inline PROTOBUF_NDEBUG_INLINE UpdatePlayerTasksReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : tasks_{visibility, arena, from.tasks_},
+        player_id_(arena, from.player_id_),
+        _cached_size_{0} {}
+
+UpdatePlayerTasksReq::UpdatePlayerTasksReq(
+    ::google::protobuf::Arena* arena,
+    const UpdatePlayerTasksReq& from)
+    : ::google::protobuf::Message(arena) {
+  UpdatePlayerTasksReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UpdatePlayerTasksReq)
+}
+inline PROTOBUF_NDEBUG_INLINE UpdatePlayerTasksReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : tasks_{visibility, arena},
+        player_id_(arena),
+        _cached_size_{0} {}
+
+inline void UpdatePlayerTasksReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+UpdatePlayerTasksReq::~UpdatePlayerTasksReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.UpdatePlayerTasksReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UpdatePlayerTasksReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.player_id_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UpdatePlayerTasksReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UpdatePlayerTasksReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.tasks_.Clear();
+  _impl_.player_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UpdatePlayerTasksReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 54, 2> UpdatePlayerTasksReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UpdatePlayerTasksReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // repeated string tasks = 2;
+    {::_pbi::TcParser::FastUR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdatePlayerTasksReq, _impl_.tasks_)}},
+    // string player_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UpdatePlayerTasksReq, _impl_.player_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(UpdatePlayerTasksReq, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string tasks = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdatePlayerTasksReq, _impl_.tasks_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+  }},
+  // no aux_entries
+  {{
+    "\37\11\5\0\0\0\0\0"
+    "rpc_server.UpdatePlayerTasksReq"
+    "player_id"
+    "tasks"
+  }},
+};
+
+::uint8_t* UpdatePlayerTasksReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UpdatePlayerTasksReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    const std::string& _s = this->_internal_player_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdatePlayerTasksReq.player_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // repeated string tasks = 2;
+  for (int i = 0, n = this->_internal_tasks_size(); i < n; ++i) {
+    const auto& s = this->_internal_tasks().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdatePlayerTasksReq.tasks");
+    target = stream->WriteString(2, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UpdatePlayerTasksReq)
+  return target;
+}
+
+::size_t UpdatePlayerTasksReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UpdatePlayerTasksReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string tasks = 2;
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_tasks().size());
+  for (int i = 0, n = _internal_tasks().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_tasks().Get(i));
+  }
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UpdatePlayerTasksReq::_class_data_ = {
+    UpdatePlayerTasksReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* UpdatePlayerTasksReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void UpdatePlayerTasksReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdatePlayerTasksReq*>(&to_msg);
+  auto& from = static_cast<const UpdatePlayerTasksReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UpdatePlayerTasksReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_tasks()->MergeFrom(from._internal_tasks());
+  if (!from._internal_player_id().empty()) {
+    _this->_internal_set_player_id(from._internal_player_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UpdatePlayerTasksReq::CopyFrom(const UpdatePlayerTasksReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UpdatePlayerTasksReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UpdatePlayerTasksReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* UpdatePlayerTasksReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UpdatePlayerTasksReq::InternalSwap(UpdatePlayerTasksReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.tasks_.InternalSwap(&other->_impl_.tasks_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_id_, &other->_impl_.player_id_, arena);
+}
+
+::google::protobuf::Metadata UpdatePlayerTasksReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[10]);
+}
+// ===================================================================
+
+class UpdatePlayerTasksRes::_Internal {
+ public:
+};
+
+UpdatePlayerTasksRes::UpdatePlayerTasksRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UpdatePlayerTasksRes)
+}
+inline PROTOBUF_NDEBUG_INLINE UpdatePlayerTasksRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+UpdatePlayerTasksRes::UpdatePlayerTasksRes(
+    ::google::protobuf::Arena* arena,
+    const UpdatePlayerTasksRes& from)
+    : ::google::protobuf::Message(arena) {
+  UpdatePlayerTasksRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UpdatePlayerTasksRes)
+}
+inline PROTOBUF_NDEBUG_INLINE UpdatePlayerTasksRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void UpdatePlayerTasksRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+UpdatePlayerTasksRes::~UpdatePlayerTasksRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.UpdatePlayerTasksRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UpdatePlayerTasksRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UpdatePlayerTasksRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UpdatePlayerTasksRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UpdatePlayerTasksRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 47, 2> UpdatePlayerTasksRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UpdatePlayerTasksRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string message = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UpdatePlayerTasksRes, _impl_.message_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UpdatePlayerTasksRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UpdatePlayerTasksRes, _impl_.success_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(UpdatePlayerTasksRes, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string message = 2;
+    {PROTOBUF_FIELD_OFFSET(UpdatePlayerTasksRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\37\0\7\0\0\0\0\0"
+    "rpc_server.UpdatePlayerTasksRes"
+    "message"
+  }},
+};
+
+::uint8_t* UpdatePlayerTasksRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UpdatePlayerTasksRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UpdatePlayerTasksRes.message");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UpdatePlayerTasksRes)
+  return target;
+}
+
+::size_t UpdatePlayerTasksRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UpdatePlayerTasksRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_message());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UpdatePlayerTasksRes::_class_data_ = {
+    UpdatePlayerTasksRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* UpdatePlayerTasksRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void UpdatePlayerTasksRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UpdatePlayerTasksRes*>(&to_msg);
+  auto& from = static_cast<const UpdatePlayerTasksRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UpdatePlayerTasksRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UpdatePlayerTasksRes::CopyFrom(const UpdatePlayerTasksRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UpdatePlayerTasksRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UpdatePlayerTasksRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* UpdatePlayerTasksRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UpdatePlayerTasksRes::InternalSwap(UpdatePlayerTasksRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata UpdatePlayerTasksRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[11]);
+}
+// ===================================================================
+
+class AddItemReq::_Internal {
+ public:
+};
+
+AddItemReq::AddItemReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.AddItemReq)
+}
+inline PROTOBUF_NDEBUG_INLINE AddItemReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : player_id_(arena, from.player_id_),
+        item_id_(arena, from.item_id_),
+        _cached_size_{0} {}
+
+AddItemReq::AddItemReq(
+    ::google::protobuf::Arena* arena,
+    const AddItemReq& from)
+    : ::google::protobuf::Message(arena) {
+  AddItemReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.AddItemReq)
+}
+inline PROTOBUF_NDEBUG_INLINE AddItemReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : player_id_(arena),
+        item_id_(arena),
+        _cached_size_{0} {}
+
+inline void AddItemReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+AddItemReq::~AddItemReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.AddItemReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void AddItemReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.player_id_.Destroy();
+  _impl_.item_id_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void AddItemReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.AddItemReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.player_id_.ClearToEmpty();
+  _impl_.item_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* AddItemReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 46, 2> AddItemReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_AddItemReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string item_id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AddItemReq, _impl_.item_id_)}},
+    // string player_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(AddItemReq, _impl_.player_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(AddItemReq, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string item_id = 2;
+    {PROTOBUF_FIELD_OFFSET(AddItemReq, _impl_.item_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\25\11\7\0\0\0\0\0"
+    "rpc_server.AddItemReq"
+    "player_id"
+    "item_id"
+  }},
+};
+
+::uint8_t* AddItemReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.AddItemReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    const std::string& _s = this->_internal_player_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.AddItemReq.player_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string item_id = 2;
+  if (!this->_internal_item_id().empty()) {
+    const std::string& _s = this->_internal_item_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.AddItemReq.item_id");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.AddItemReq)
+  return target;
+}
+
+::size_t AddItemReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.AddItemReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_id());
+  }
+
+  // string item_id = 2;
+  if (!this->_internal_item_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_item_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData AddItemReq::_class_data_ = {
+    AddItemReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* AddItemReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void AddItemReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<AddItemReq*>(&to_msg);
+  auto& from = static_cast<const AddItemReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.AddItemReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_player_id().empty()) {
+    _this->_internal_set_player_id(from._internal_player_id());
+  }
+  if (!from._internal_item_id().empty()) {
+    _this->_internal_set_item_id(from._internal_item_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AddItemReq::CopyFrom(const AddItemReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.AddItemReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool AddItemReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* AddItemReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void AddItemReq::InternalSwap(AddItemReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_id_, &other->_impl_.player_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.item_id_, &other->_impl_.item_id_, arena);
+}
+
+::google::protobuf::Metadata AddItemReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[12]);
+}
+// ===================================================================
+
+class AddItemRes::_Internal {
+ public:
+};
+
+AddItemRes::AddItemRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.AddItemRes)
+}
+inline PROTOBUF_NDEBUG_INLINE AddItemRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+AddItemRes::AddItemRes(
+    ::google::protobuf::Arena* arena,
+    const AddItemRes& from)
+    : ::google::protobuf::Message(arena) {
+  AddItemRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.AddItemRes)
+}
+inline PROTOBUF_NDEBUG_INLINE AddItemRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void AddItemRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+AddItemRes::~AddItemRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.AddItemRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void AddItemRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void AddItemRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.AddItemRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* AddItemRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 37, 2> AddItemRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_AddItemRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string message = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(AddItemRes, _impl_.message_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(AddItemRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(AddItemRes, _impl_.success_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(AddItemRes, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string message = 2;
+    {PROTOBUF_FIELD_OFFSET(AddItemRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\25\0\7\0\0\0\0\0"
+    "rpc_server.AddItemRes"
+    "message"
+  }},
+};
+
+::uint8_t* AddItemRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.AddItemRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.AddItemRes.message");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.AddItemRes)
+  return target;
+}
+
+::size_t AddItemRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.AddItemRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_message());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData AddItemRes::_class_data_ = {
+    AddItemRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* AddItemRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void AddItemRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<AddItemRes*>(&to_msg);
+  auto& from = static_cast<const AddItemRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.AddItemRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void AddItemRes::CopyFrom(const AddItemRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.AddItemRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool AddItemRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* AddItemRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void AddItemRes::InternalSwap(AddItemRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata AddItemRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[13]);
+}
+// ===================================================================
+
+class UseItemReq::_Internal {
+ public:
+};
+
+UseItemReq::UseItemReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UseItemReq)
+}
+inline PROTOBUF_NDEBUG_INLINE UseItemReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : player_id_(arena, from.player_id_),
+        item_id_(arena, from.item_id_),
+        _cached_size_{0} {}
+
+UseItemReq::UseItemReq(
+    ::google::protobuf::Arena* arena,
+    const UseItemReq& from)
+    : ::google::protobuf::Message(arena) {
+  UseItemReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UseItemReq)
+}
+inline PROTOBUF_NDEBUG_INLINE UseItemReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : player_id_(arena),
+        item_id_(arena),
+        _cached_size_{0} {}
+
+inline void UseItemReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+UseItemReq::~UseItemReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.UseItemReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UseItemReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.player_id_.Destroy();
+  _impl_.item_id_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UseItemReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UseItemReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.player_id_.ClearToEmpty();
+  _impl_.item_id_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UseItemReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 46, 2> UseItemReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UseItemReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string item_id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UseItemReq, _impl_.item_id_)}},
+    // string player_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UseItemReq, _impl_.player_id_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(UseItemReq, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string item_id = 2;
+    {PROTOBUF_FIELD_OFFSET(UseItemReq, _impl_.item_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\25\11\7\0\0\0\0\0"
+    "rpc_server.UseItemReq"
+    "player_id"
+    "item_id"
+  }},
+};
+
+::uint8_t* UseItemReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UseItemReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    const std::string& _s = this->_internal_player_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UseItemReq.player_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string item_id = 2;
+  if (!this->_internal_item_id().empty()) {
+    const std::string& _s = this->_internal_item_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UseItemReq.item_id");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UseItemReq)
+  return target;
+}
+
+::size_t UseItemReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UseItemReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_id());
+  }
+
+  // string item_id = 2;
+  if (!this->_internal_item_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_item_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UseItemReq::_class_data_ = {
+    UseItemReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* UseItemReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void UseItemReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UseItemReq*>(&to_msg);
+  auto& from = static_cast<const UseItemReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UseItemReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_player_id().empty()) {
+    _this->_internal_set_player_id(from._internal_player_id());
+  }
+  if (!from._internal_item_id().empty()) {
+    _this->_internal_set_item_id(from._internal_item_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UseItemReq::CopyFrom(const UseItemReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UseItemReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UseItemReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* UseItemReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UseItemReq::InternalSwap(UseItemReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_id_, &other->_impl_.player_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.item_id_, &other->_impl_.item_id_, arena);
+}
+
+::google::protobuf::Metadata UseItemReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[14]);
+}
+// ===================================================================
+
+class UseItemRes::_Internal {
+ public:
+};
+
+UseItemRes::UseItemRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UseItemRes)
+}
+inline PROTOBUF_NDEBUG_INLINE UseItemRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+UseItemRes::UseItemRes(
+    ::google::protobuf::Arena* arena,
+    const UseItemRes& from)
+    : ::google::protobuf::Message(arena) {
+  UseItemRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UseItemRes)
+}
+inline PROTOBUF_NDEBUG_INLINE UseItemRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void UseItemRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+UseItemRes::~UseItemRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.UseItemRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UseItemRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UseItemRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UseItemRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UseItemRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 37, 2> UseItemRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UseItemRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string message = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UseItemRes, _impl_.message_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UseItemRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UseItemRes, _impl_.success_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(UseItemRes, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string message = 2;
+    {PROTOBUF_FIELD_OFFSET(UseItemRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\25\0\7\0\0\0\0\0"
+    "rpc_server.UseItemRes"
+    "message"
+  }},
+};
+
+::uint8_t* UseItemRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UseItemRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.UseItemRes.message");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UseItemRes)
+  return target;
+}
+
+::size_t UseItemRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UseItemRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_message());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UseItemRes::_class_data_ = {
+    UseItemRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* UseItemRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void UseItemRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UseItemRes*>(&to_msg);
+  auto& from = static_cast<const UseItemRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UseItemRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UseItemRes::CopyFrom(const UseItemRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UseItemRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UseItemRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* UseItemRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UseItemRes::InternalSwap(UseItemRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata UseItemRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[15]);
+}
+// ===================================================================
+
+class SaveBattleResultReq::_Internal {
+ public:
+};
+
+SaveBattleResultReq::SaveBattleResultReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.SaveBattleResultReq)
+}
+inline PROTOBUF_NDEBUG_INLINE SaveBattleResultReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : player_id_(arena, from.player_id_),
+        opponent_id_(arena, from.opponent_id_),
+        battle_data_(arena, from.battle_data_),
+        _cached_size_{0} {}
+
+SaveBattleResultReq::SaveBattleResultReq(
+    ::google::protobuf::Arena* arena,
+    const SaveBattleResultReq& from)
+    : ::google::protobuf::Message(arena) {
+  SaveBattleResultReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.is_victory_ = from._impl_.is_victory_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.SaveBattleResultReq)
+}
+inline PROTOBUF_NDEBUG_INLINE SaveBattleResultReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : player_id_(arena),
+        opponent_id_(arena),
+        battle_data_(arena),
+        _cached_size_{0} {}
+
+inline void SaveBattleResultReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.is_victory_ = {};
+}
+SaveBattleResultReq::~SaveBattleResultReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.SaveBattleResultReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SaveBattleResultReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.player_id_.Destroy();
+  _impl_.opponent_id_.Destroy();
+  _impl_.battle_data_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SaveBattleResultReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.SaveBattleResultReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.player_id_.ClearToEmpty();
+  _impl_.opponent_id_.ClearToEmpty();
+  _impl_.battle_data_.ClearToEmpty();
+  _impl_.is_victory_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SaveBattleResultReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 0, 70, 2> SaveBattleResultReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    4, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967280,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SaveBattleResultReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string battle_data = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(SaveBattleResultReq, _impl_.battle_data_)}},
+    // string player_id = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SaveBattleResultReq, _impl_.player_id_)}},
+    // string opponent_id = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(SaveBattleResultReq, _impl_.opponent_id_)}},
+    // bool is_victory = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(SaveBattleResultReq, _impl_.is_victory_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(SaveBattleResultReq, _impl_.is_victory_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string player_id = 1;
+    {PROTOBUF_FIELD_OFFSET(SaveBattleResultReq, _impl_.player_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string opponent_id = 2;
+    {PROTOBUF_FIELD_OFFSET(SaveBattleResultReq, _impl_.opponent_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // bool is_victory = 3;
+    {PROTOBUF_FIELD_OFFSET(SaveBattleResultReq, _impl_.is_victory_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string battle_data = 4;
+    {PROTOBUF_FIELD_OFFSET(SaveBattleResultReq, _impl_.battle_data_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\36\11\13\0\13\0\0\0"
+    "rpc_server.SaveBattleResultReq"
+    "player_id"
+    "opponent_id"
+    "battle_data"
+  }},
+};
+
+::uint8_t* SaveBattleResultReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.SaveBattleResultReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    const std::string& _s = this->_internal_player_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.SaveBattleResultReq.player_id");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string opponent_id = 2;
+  if (!this->_internal_opponent_id().empty()) {
+    const std::string& _s = this->_internal_opponent_id();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.SaveBattleResultReq.opponent_id");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // bool is_victory = 3;
+  if (this->_internal_is_victory() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        3, this->_internal_is_victory(), target);
+  }
+
+  // string battle_data = 4;
+  if (!this->_internal_battle_data().empty()) {
+    const std::string& _s = this->_internal_battle_data();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.SaveBattleResultReq.battle_data");
+    target = stream->WriteStringMaybeAliased(4, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.SaveBattleResultReq)
+  return target;
+}
+
+::size_t SaveBattleResultReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.SaveBattleResultReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string player_id = 1;
+  if (!this->_internal_player_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_player_id());
+  }
+
+  // string opponent_id = 2;
+  if (!this->_internal_opponent_id().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_opponent_id());
+  }
+
+  // string battle_data = 4;
+  if (!this->_internal_battle_data().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_battle_data());
+  }
+
+  // bool is_victory = 3;
+  if (this->_internal_is_victory() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SaveBattleResultReq::_class_data_ = {
+    SaveBattleResultReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SaveBattleResultReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void SaveBattleResultReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SaveBattleResultReq*>(&to_msg);
+  auto& from = static_cast<const SaveBattleResultReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.SaveBattleResultReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_player_id().empty()) {
+    _this->_internal_set_player_id(from._internal_player_id());
+  }
+  if (!from._internal_opponent_id().empty()) {
+    _this->_internal_set_opponent_id(from._internal_opponent_id());
+  }
+  if (!from._internal_battle_data().empty()) {
+    _this->_internal_set_battle_data(from._internal_battle_data());
+  }
+  if (from._internal_is_victory() != 0) {
+    _this->_internal_set_is_victory(from._internal_is_victory());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SaveBattleResultReq::CopyFrom(const SaveBattleResultReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.SaveBattleResultReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SaveBattleResultReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SaveBattleResultReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SaveBattleResultReq::InternalSwap(SaveBattleResultReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_id_, &other->_impl_.player_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.opponent_id_, &other->_impl_.opponent_id_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.battle_data_, &other->_impl_.battle_data_, arena);
+        swap(_impl_.is_victory_, other->_impl_.is_victory_);
+}
+
+::google::protobuf::Metadata SaveBattleResultReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[16]);
+}
+// ===================================================================
+
+class SaveBattleResultRes::_Internal {
+ public:
+};
+
+SaveBattleResultRes::SaveBattleResultRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.SaveBattleResultRes)
+}
+inline PROTOBUF_NDEBUG_INLINE SaveBattleResultRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+SaveBattleResultRes::SaveBattleResultRes(
+    ::google::protobuf::Arena* arena,
+    const SaveBattleResultRes& from)
+    : ::google::protobuf::Message(arena) {
+  SaveBattleResultRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.SaveBattleResultRes)
+}
+inline PROTOBUF_NDEBUG_INLINE SaveBattleResultRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void SaveBattleResultRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+SaveBattleResultRes::~SaveBattleResultRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.SaveBattleResultRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void SaveBattleResultRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void SaveBattleResultRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.SaveBattleResultRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* SaveBattleResultRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 46, 2> SaveBattleResultRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_SaveBattleResultRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string message = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(SaveBattleResultRes, _impl_.message_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(SaveBattleResultRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(SaveBattleResultRes, _impl_.success_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(SaveBattleResultRes, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // string message = 2;
+    {PROTOBUF_FIELD_OFFSET(SaveBattleResultRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\36\0\7\0\0\0\0\0"
+    "rpc_server.SaveBattleResultRes"
+    "message"
+  }},
+};
+
+::uint8_t* SaveBattleResultRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.SaveBattleResultRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.SaveBattleResultRes.message");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.SaveBattleResultRes)
+  return target;
+}
+
+::size_t SaveBattleResultRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.SaveBattleResultRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string message = 2;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_message());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData SaveBattleResultRes::_class_data_ = {
+    SaveBattleResultRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* SaveBattleResultRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void SaveBattleResultRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<SaveBattleResultRes*>(&to_msg);
+  auto& from = static_cast<const SaveBattleResultRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.SaveBattleResultRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void SaveBattleResultRes::CopyFrom(const SaveBattleResultRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.SaveBattleResultRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool SaveBattleResultRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* SaveBattleResultRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void SaveBattleResultRes::InternalSwap(SaveBattleResultRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata SaveBattleResultRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5flogic_2eproto_getter, &descriptor_table_server_5flogic_2eproto_once,
+      file_level_metadata_server_5flogic_2eproto[17]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace rpc_server

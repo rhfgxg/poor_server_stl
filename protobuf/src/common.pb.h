@@ -62,12 +62,16 @@ namespace protobuf {
 namespace rpc_server {
 enum ServerType : int {
   UNKNOWN = 0,
-  CENTRAL = 1,
-  DB = 2,
-  GATEWAY = 3,
-  LOGIN = 4,
-  LOGIC = 5,
-  FILE = 6,
+  BATTLE = 1,
+  CENTRAL = 2,
+  CHAT = 3,
+  DB = 4,
+  FILE = 5,
+  GATEWAY = 6,
+  LOGIC = 7,
+  LOGIN = 8,
+  MATCHING = 9,
+  STORE = 10,
   ServerType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ServerType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -77,8 +81,8 @@ enum ServerType : int {
 bool ServerType_IsValid(int value);
 extern const uint32_t ServerType_internal_data_[];
 constexpr ServerType ServerType_MIN = static_cast<ServerType>(0);
-constexpr ServerType ServerType_MAX = static_cast<ServerType>(6);
-constexpr int ServerType_ARRAYSIZE = 6 + 1;
+constexpr ServerType ServerType_MAX = static_cast<ServerType>(10);
+constexpr int ServerType_ARRAYSIZE = 10 + 1;
 const ::google::protobuf::EnumDescriptor*
 ServerType_descriptor();
 template <typename T>
@@ -91,7 +95,7 @@ const std::string& ServerType_Name(T value) {
 template <>
 inline const std::string& ServerType_Name(ServerType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<ServerType_descriptor,
-                                                 0, 6>(
+                                                 0, 10>(
       static_cast<int>(value));
 }
 inline bool ServerType_Parse(absl::string_view name, ServerType* value) {

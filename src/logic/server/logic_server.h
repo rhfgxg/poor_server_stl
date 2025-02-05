@@ -30,13 +30,30 @@ public:
     void start_thread_pool(int num_threads);    // 启动线程池
     void stop_thread_pool();    // 停止线程池
 
-    // grpc对外接口
+// grpc对外接口
+    // 获取玩家收藏
+    grpc::Status Get_player_collection(grpc::ServerContext* context, const rpc_server::GetPlayerCollectionReq* req, rpc_server::GetPlayerCollectionRes* res) override;  // 登录
+    // 更新玩家收藏
+    grpc::Status Update_player_collection(grpc::ServerContext* context, const rpc_server::UpdatePlayerCollectionReq* req, rpc_server::UpdatePlayerCollectionRes* res) override;  // 登录
+    // 获取玩家成就
+    grpc::Status Get_player_achievements(grpc::ServerContext* context, const rpc_server::GetPlayerAchievementsReq* req, rpc_server::GetPlayerAchievementsRes* res) override;  // 登录
+    // 更新玩家成就
+    grpc::Status Update_player_achievements(grpc::ServerContext* context, const rpc_server::UpdatePlayerAchievementsReq* req, rpc_server::UpdatePlayerAchievementsRes* res) override;  // 登录
+    // 获取玩家任务
+    grpc::Status Get_player_tasks(grpc::ServerContext* context, const rpc_server::GetPlayerTasksReq* req, rpc_server::GetPlayerTasksRes* res) override;  // 登录
+    // 更新玩家任务
+    grpc::Status Update_player_tasks(grpc::ServerContext* context, const rpc_server::UpdatePlayerTasksReq* req, rpc_server::UpdatePlayerTasksRes* res) override;  // 登录
+    // 添加物品
+    grpc::Status Add_item(grpc::ServerContext* context, const rpc_server::AddItemReq* req, rpc_server::AddItemRes* res) override;  // 登录
+    // 使用物品
+    grpc::Status Use_item(grpc::ServerContext* context, const rpc_server::UseItemReq* req, rpc_server::UseItemRes* res) override;  // 登录
+    // 保存对局结果
+    grpc::Status Save_battle_result(grpc::ServerContext* context, const rpc_server::SaveBattleResultReq* req, rpc_server::SaveBattleResultRes* res) override;  // 登录
 
 private:
     void Init_connection_pool();    // 初始化链接池
     void register_server(); // 注册服务器
     void unregister_server(); // 注销服务器
-
 
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 执行线程的任务

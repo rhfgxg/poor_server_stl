@@ -22,8 +22,15 @@
 namespace rpc_server {
 
 static const char* LogicServer_method_names[] = {
-  "/rpc_server.LogicServer/Process_gameAction",
-  "/rpc_server.LogicServer/Get_game_state",
+  "/rpc_server.LogicServer/Get_player_collection",
+  "/rpc_server.LogicServer/Update_player_collection",
+  "/rpc_server.LogicServer/Get_player_achievements",
+  "/rpc_server.LogicServer/Update_player_achievements",
+  "/rpc_server.LogicServer/Get_player_tasks",
+  "/rpc_server.LogicServer/Update_player_tasks",
+  "/rpc_server.LogicServer/Add_item",
+  "/rpc_server.LogicServer/Use_item",
+  "/rpc_server.LogicServer/Save_battle_result",
 };
 
 std::unique_ptr< LogicServer::Stub> LogicServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -33,52 +40,220 @@ std::unique_ptr< LogicServer::Stub> LogicServer::NewStub(const std::shared_ptr< 
 }
 
 LogicServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_Process_gameAction_(LogicServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Get_game_state_(LogicServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Get_player_collection_(LogicServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Update_player_collection_(LogicServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Get_player_achievements_(LogicServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Update_player_achievements_(LogicServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Get_player_tasks_(LogicServer_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Update_player_tasks_(LogicServer_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Add_item_(LogicServer_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Use_item_(LogicServer_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Save_battle_result_(LogicServer_method_names[8], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status LogicServer::Stub::Process_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::rpc_server::GameActionRes* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::GameActionReq, ::rpc_server::GameActionRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Process_gameAction_, context, request, response);
+::grpc::Status LogicServer::Stub::Get_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::rpc_server::GetPlayerCollectionRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::GetPlayerCollectionReq, ::rpc_server::GetPlayerCollectionRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_player_collection_, context, request, response);
 }
 
-void LogicServer::Stub::async::Process_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq* request, ::rpc_server::GameActionRes* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::GameActionReq, ::rpc_server::GameActionRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Process_gameAction_, context, request, response, std::move(f));
+void LogicServer::Stub::async::Get_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq* request, ::rpc_server::GetPlayerCollectionRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::GetPlayerCollectionReq, ::rpc_server::GetPlayerCollectionRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_player_collection_, context, request, response, std::move(f));
 }
 
-void LogicServer::Stub::async::Process_gameAction(::grpc::ClientContext* context, const ::rpc_server::GameActionReq* request, ::rpc_server::GameActionRes* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Process_gameAction_, context, request, response, reactor);
+void LogicServer::Stub::async::Get_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq* request, ::rpc_server::GetPlayerCollectionRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_player_collection_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionRes>* LogicServer::Stub::PrepareAsyncProcess_gameActionRaw(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::GameActionRes, ::rpc_server::GameActionReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Process_gameAction_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerCollectionRes>* LogicServer::Stub::PrepareAsyncGet_player_collectionRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::GetPlayerCollectionRes, ::rpc_server::GetPlayerCollectionReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_player_collection_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::GameActionRes>* LogicServer::Stub::AsyncProcess_gameActionRaw(::grpc::ClientContext* context, const ::rpc_server::GameActionReq& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerCollectionRes>* LogicServer::Stub::AsyncGet_player_collectionRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncProcess_gameActionRaw(context, request, cq);
+    this->PrepareAsyncGet_player_collectionRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status LogicServer::Stub::Get_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::rpc_server::GameStateRes* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::GameStateReq, ::rpc_server::GameStateRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_game_state_, context, request, response);
+::grpc::Status LogicServer::Stub::Update_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::rpc_server::UpdatePlayerCollectionRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::UpdatePlayerCollectionReq, ::rpc_server::UpdatePlayerCollectionRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_player_collection_, context, request, response);
 }
 
-void LogicServer::Stub::async::Get_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq* request, ::rpc_server::GameStateRes* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::GameStateReq, ::rpc_server::GameStateRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_game_state_, context, request, response, std::move(f));
+void LogicServer::Stub::async::Update_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq* request, ::rpc_server::UpdatePlayerCollectionRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::UpdatePlayerCollectionReq, ::rpc_server::UpdatePlayerCollectionRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_player_collection_, context, request, response, std::move(f));
 }
 
-void LogicServer::Stub::async::Get_game_state(::grpc::ClientContext* context, const ::rpc_server::GameStateReq* request, ::rpc_server::GameStateRes* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_game_state_, context, request, response, reactor);
+void LogicServer::Stub::async::Update_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq* request, ::rpc_server::UpdatePlayerCollectionRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_player_collection_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateRes>* LogicServer::Stub::PrepareAsyncGet_game_stateRaw(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::GameStateRes, ::rpc_server::GameStateReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_game_state_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerCollectionRes>* LogicServer::Stub::PrepareAsyncUpdate_player_collectionRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::UpdatePlayerCollectionRes, ::rpc_server::UpdatePlayerCollectionReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_player_collection_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::GameStateRes>* LogicServer::Stub::AsyncGet_game_stateRaw(::grpc::ClientContext* context, const ::rpc_server::GameStateReq& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerCollectionRes>* LogicServer::Stub::AsyncUpdate_player_collectionRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncGet_game_stateRaw(context, request, cq);
+    this->PrepareAsyncUpdate_player_collectionRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status LogicServer::Stub::Get_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::rpc_server::GetPlayerAchievementsRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::GetPlayerAchievementsReq, ::rpc_server::GetPlayerAchievementsRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_player_achievements_, context, request, response);
+}
+
+void LogicServer::Stub::async::Get_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq* request, ::rpc_server::GetPlayerAchievementsRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::GetPlayerAchievementsReq, ::rpc_server::GetPlayerAchievementsRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_player_achievements_, context, request, response, std::move(f));
+}
+
+void LogicServer::Stub::async::Get_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq* request, ::rpc_server::GetPlayerAchievementsRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_player_achievements_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerAchievementsRes>* LogicServer::Stub::PrepareAsyncGet_player_achievementsRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::GetPlayerAchievementsRes, ::rpc_server::GetPlayerAchievementsReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_player_achievements_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerAchievementsRes>* LogicServer::Stub::AsyncGet_player_achievementsRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGet_player_achievementsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status LogicServer::Stub::Update_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::rpc_server::UpdatePlayerAchievementsRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::UpdatePlayerAchievementsReq, ::rpc_server::UpdatePlayerAchievementsRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_player_achievements_, context, request, response);
+}
+
+void LogicServer::Stub::async::Update_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq* request, ::rpc_server::UpdatePlayerAchievementsRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::UpdatePlayerAchievementsReq, ::rpc_server::UpdatePlayerAchievementsRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_player_achievements_, context, request, response, std::move(f));
+}
+
+void LogicServer::Stub::async::Update_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq* request, ::rpc_server::UpdatePlayerAchievementsRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_player_achievements_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerAchievementsRes>* LogicServer::Stub::PrepareAsyncUpdate_player_achievementsRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::UpdatePlayerAchievementsRes, ::rpc_server::UpdatePlayerAchievementsReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_player_achievements_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerAchievementsRes>* LogicServer::Stub::AsyncUpdate_player_achievementsRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdate_player_achievementsRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status LogicServer::Stub::Get_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::rpc_server::GetPlayerTasksRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::GetPlayerTasksReq, ::rpc_server::GetPlayerTasksRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_player_tasks_, context, request, response);
+}
+
+void LogicServer::Stub::async::Get_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq* request, ::rpc_server::GetPlayerTasksRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::GetPlayerTasksReq, ::rpc_server::GetPlayerTasksRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_player_tasks_, context, request, response, std::move(f));
+}
+
+void LogicServer::Stub::async::Get_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq* request, ::rpc_server::GetPlayerTasksRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_player_tasks_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerTasksRes>* LogicServer::Stub::PrepareAsyncGet_player_tasksRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::GetPlayerTasksRes, ::rpc_server::GetPlayerTasksReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_player_tasks_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerTasksRes>* LogicServer::Stub::AsyncGet_player_tasksRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGet_player_tasksRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status LogicServer::Stub::Update_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::rpc_server::UpdatePlayerTasksRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::UpdatePlayerTasksReq, ::rpc_server::UpdatePlayerTasksRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Update_player_tasks_, context, request, response);
+}
+
+void LogicServer::Stub::async::Update_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq* request, ::rpc_server::UpdatePlayerTasksRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::UpdatePlayerTasksReq, ::rpc_server::UpdatePlayerTasksRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_player_tasks_, context, request, response, std::move(f));
+}
+
+void LogicServer::Stub::async::Update_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq* request, ::rpc_server::UpdatePlayerTasksRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Update_player_tasks_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerTasksRes>* LogicServer::Stub::PrepareAsyncUpdate_player_tasksRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::UpdatePlayerTasksRes, ::rpc_server::UpdatePlayerTasksReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Update_player_tasks_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerTasksRes>* LogicServer::Stub::AsyncUpdate_player_tasksRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpdate_player_tasksRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status LogicServer::Stub::Add_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::rpc_server::AddItemRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::AddItemReq, ::rpc_server::AddItemRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Add_item_, context, request, response);
+}
+
+void LogicServer::Stub::async::Add_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq* request, ::rpc_server::AddItemRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::AddItemReq, ::rpc_server::AddItemRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Add_item_, context, request, response, std::move(f));
+}
+
+void LogicServer::Stub::async::Add_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq* request, ::rpc_server::AddItemRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Add_item_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::AddItemRes>* LogicServer::Stub::PrepareAsyncAdd_itemRaw(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::AddItemRes, ::rpc_server::AddItemReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Add_item_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::AddItemRes>* LogicServer::Stub::AsyncAdd_itemRaw(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncAdd_itemRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status LogicServer::Stub::Use_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::rpc_server::UseItemRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::UseItemReq, ::rpc_server::UseItemRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Use_item_, context, request, response);
+}
+
+void LogicServer::Stub::async::Use_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq* request, ::rpc_server::UseItemRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::UseItemReq, ::rpc_server::UseItemRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Use_item_, context, request, response, std::move(f));
+}
+
+void LogicServer::Stub::async::Use_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq* request, ::rpc_server::UseItemRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Use_item_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::UseItemRes>* LogicServer::Stub::PrepareAsyncUse_itemRaw(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::UseItemRes, ::rpc_server::UseItemReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Use_item_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::UseItemRes>* LogicServer::Stub::AsyncUse_itemRaw(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUse_itemRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status LogicServer::Stub::Save_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::rpc_server::SaveBattleResultRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::SaveBattleResultReq, ::rpc_server::SaveBattleResultRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Save_battle_result_, context, request, response);
+}
+
+void LogicServer::Stub::async::Save_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq* request, ::rpc_server::SaveBattleResultRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::SaveBattleResultReq, ::rpc_server::SaveBattleResultRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Save_battle_result_, context, request, response, std::move(f));
+}
+
+void LogicServer::Stub::async::Save_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq* request, ::rpc_server::SaveBattleResultRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Save_battle_result_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::SaveBattleResultRes>* LogicServer::Stub::PrepareAsyncSave_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::SaveBattleResultRes, ::rpc_server::SaveBattleResultReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Save_battle_result_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::SaveBattleResultRes>* LogicServer::Stub::AsyncSave_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncSave_battle_resultRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -87,36 +262,155 @@ LogicServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       LogicServer_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< LogicServer::Service, ::rpc_server::GameActionReq, ::rpc_server::GameActionRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< LogicServer::Service, ::rpc_server::GetPlayerCollectionReq, ::rpc_server::GetPlayerCollectionRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](LogicServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::GameActionReq* req,
-             ::rpc_server::GameActionRes* resp) {
-               return service->Process_gameAction(ctx, req, resp);
+             const ::rpc_server::GetPlayerCollectionReq* req,
+             ::rpc_server::GetPlayerCollectionRes* resp) {
+               return service->Get_player_collection(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       LogicServer_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< LogicServer::Service, ::rpc_server::GameStateReq, ::rpc_server::GameStateRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< LogicServer::Service, ::rpc_server::UpdatePlayerCollectionReq, ::rpc_server::UpdatePlayerCollectionRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](LogicServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::GameStateReq* req,
-             ::rpc_server::GameStateRes* resp) {
-               return service->Get_game_state(ctx, req, resp);
+             const ::rpc_server::UpdatePlayerCollectionReq* req,
+             ::rpc_server::UpdatePlayerCollectionRes* resp) {
+               return service->Update_player_collection(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      LogicServer_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< LogicServer::Service, ::rpc_server::GetPlayerAchievementsReq, ::rpc_server::GetPlayerAchievementsRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](LogicServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::GetPlayerAchievementsReq* req,
+             ::rpc_server::GetPlayerAchievementsRes* resp) {
+               return service->Get_player_achievements(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      LogicServer_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< LogicServer::Service, ::rpc_server::UpdatePlayerAchievementsReq, ::rpc_server::UpdatePlayerAchievementsRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](LogicServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::UpdatePlayerAchievementsReq* req,
+             ::rpc_server::UpdatePlayerAchievementsRes* resp) {
+               return service->Update_player_achievements(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      LogicServer_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< LogicServer::Service, ::rpc_server::GetPlayerTasksReq, ::rpc_server::GetPlayerTasksRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](LogicServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::GetPlayerTasksReq* req,
+             ::rpc_server::GetPlayerTasksRes* resp) {
+               return service->Get_player_tasks(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      LogicServer_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< LogicServer::Service, ::rpc_server::UpdatePlayerTasksReq, ::rpc_server::UpdatePlayerTasksRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](LogicServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::UpdatePlayerTasksReq* req,
+             ::rpc_server::UpdatePlayerTasksRes* resp) {
+               return service->Update_player_tasks(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      LogicServer_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< LogicServer::Service, ::rpc_server::AddItemReq, ::rpc_server::AddItemRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](LogicServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::AddItemReq* req,
+             ::rpc_server::AddItemRes* resp) {
+               return service->Add_item(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      LogicServer_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< LogicServer::Service, ::rpc_server::UseItemReq, ::rpc_server::UseItemRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](LogicServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::UseItemReq* req,
+             ::rpc_server::UseItemRes* resp) {
+               return service->Use_item(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      LogicServer_method_names[8],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< LogicServer::Service, ::rpc_server::SaveBattleResultReq, ::rpc_server::SaveBattleResultRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](LogicServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::SaveBattleResultReq* req,
+             ::rpc_server::SaveBattleResultRes* resp) {
+               return service->Save_battle_result(ctx, req, resp);
              }, this)));
 }
 
 LogicServer::Service::~Service() {
 }
 
-::grpc::Status LogicServer::Service::Process_gameAction(::grpc::ServerContext* context, const ::rpc_server::GameActionReq* request, ::rpc_server::GameActionRes* response) {
+::grpc::Status LogicServer::Service::Get_player_collection(::grpc::ServerContext* context, const ::rpc_server::GetPlayerCollectionReq* request, ::rpc_server::GetPlayerCollectionRes* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status LogicServer::Service::Get_game_state(::grpc::ServerContext* context, const ::rpc_server::GameStateReq* request, ::rpc_server::GameStateRes* response) {
+::grpc::Status LogicServer::Service::Update_player_collection(::grpc::ServerContext* context, const ::rpc_server::UpdatePlayerCollectionReq* request, ::rpc_server::UpdatePlayerCollectionRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status LogicServer::Service::Get_player_achievements(::grpc::ServerContext* context, const ::rpc_server::GetPlayerAchievementsReq* request, ::rpc_server::GetPlayerAchievementsRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status LogicServer::Service::Update_player_achievements(::grpc::ServerContext* context, const ::rpc_server::UpdatePlayerAchievementsReq* request, ::rpc_server::UpdatePlayerAchievementsRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status LogicServer::Service::Get_player_tasks(::grpc::ServerContext* context, const ::rpc_server::GetPlayerTasksReq* request, ::rpc_server::GetPlayerTasksRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status LogicServer::Service::Update_player_tasks(::grpc::ServerContext* context, const ::rpc_server::UpdatePlayerTasksReq* request, ::rpc_server::UpdatePlayerTasksRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status LogicServer::Service::Add_item(::grpc::ServerContext* context, const ::rpc_server::AddItemReq* request, ::rpc_server::AddItemRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status LogicServer::Service::Use_item(::grpc::ServerContext* context, const ::rpc_server::UseItemReq* request, ::rpc_server::UseItemRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status LogicServer::Service::Save_battle_result(::grpc::ServerContext* context, const ::rpc_server::SaveBattleResultReq* request, ::rpc_server::SaveBattleResultRes* response) {
   (void) context;
   (void) request;
   (void) response;
