@@ -27,14 +27,16 @@ public:
     LogicServerImpl(LoggerManager& logger_manager_, const std::string address, std::string port);	// 构造函数
     ~LogicServerImpl();	// 析构函数
 
+    void start_thread_pool(int num_threads);    // 启动线程池
+    void stop_thread_pool();    // 停止线程池
+
     // grpc对外接口
 
 private:
     void Init_connection_pool();    // 初始化链接池
     void register_server(); // 注册服务器
     void unregister_server(); // 注销服务器
-    void start_thread_pool(int num_threads);    // 启动线程池
-    void stop_thread_pool();    // 停止线程池
+
 
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 执行线程的任务

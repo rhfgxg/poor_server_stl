@@ -26,12 +26,10 @@ public:
     GatewayServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port);
     ~GatewayServerImpl();
 
-    void register_server(); // 注册服务器
-    void unregister_server(); // 注销服务器
-
     void start_thread_pool(int num_threads);    // 启动线程池
     void stop_thread_pool();    // 停止线程池
 
+// grpc对外接口
     // 客户端注册
     grpc::Status Client_register(grpc::ServerContext* context, const rpc_server::ClientRegisterReq* req, rpc_server::ClientRegisterRes* res);
     // 接收客户端心跳
@@ -45,6 +43,8 @@ public:
 
 private:
     // 初始化
+    void register_server(); // 注册服务器
+    void unregister_server(); // 注销服务器
     void Init_connection_pool();    // 初始化链接池
 
     // 多线程

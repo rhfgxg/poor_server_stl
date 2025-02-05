@@ -24,12 +24,10 @@ public:
     FileServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port);
     ~FileServerImpl();
 
-    void register_server(); // 注册服务器
-    void unregister_server(); // 注销服务器
-
     void start_thread_pool(int num_threads);    // 启动线程池
     void stop_thread_pool();    // 停止线程池
 
+// grpc对外接口
     // 文件上传服务
     grpc::Status Upload(grpc::ServerContext* context, const rpc_server::UploadReq* req, rpc_server::UploadRes* res);
     // 文件下载服务
@@ -39,6 +37,9 @@ public:
     // 文件列表服务
     grpc::Status ListFiles(grpc::ServerContext* context, const rpc_server::ListFilesReq* req, rpc_server::ListFilesRes* res);
 private:
+    // 初始化
+    void register_server(); // 注册服务器
+    void unregister_server(); // 注销服务器
     // 多线程
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 执行线程的任务

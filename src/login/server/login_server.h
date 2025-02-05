@@ -30,17 +30,21 @@ public:
     LoginServerImpl(LoggerManager& logger_manager_, const std::string address, std::string port);	// 构造函数
     ~LoginServerImpl();	// 析构函数
 
-    void register_server(); // 注册服务器
-    void unregister_server(); // 注销服务器
-
     void start_thread_pool(int num_threads);    // 启动线程池
     void stop_thread_pool();    // 停止线程池
 
+// grpc服务接口
+    //登录
     grpc::Status Login(grpc::ServerContext* context, const rpc_server::LoginReq* req, rpc_server::LoginRes* res) override;  // 登录
+    // 注册
     grpc::Status Register(grpc::ServerContext* context, const rpc_server::RegisterReq* req, rpc_server::RegisterRes* res) override;   // 注册
+    // token校验
     grpc::Status Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateReq* req, rpc_server::AuthenticateRes* res) override;   // 令牌验证
 
 private:
+    // 初始化
+    void register_server(); // 注册服务器
+    void unregister_server(); // 注销服务器
     void Init_connection_pool();    // 初始化链接池
 
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务

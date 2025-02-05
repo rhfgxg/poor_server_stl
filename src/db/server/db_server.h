@@ -24,13 +24,10 @@ public:
     DBServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port); // 参数：日志管理器，数据库连接池
     ~DBServerImpl(); // 添加析构函数声明
 
-    void register_server(); // 注册服务器
-    void unregister_server(); // 注销服务器
-
     void start_thread_pool(int num_threads);    // 启动线程池
     void stop_thread_pool();    // 停止线程池
 
-    // 服务实现
+// grpc对外接口
     // 添加数据库记录
     grpc::Status Create(grpc::ServerContext* context, const rpc_server::CreateReq* req, rpc_server::CreateRes* res) override;
     // 读取数据库记录
@@ -41,7 +38,10 @@ public:
     grpc::Status Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res) override;
 
 private:
+    // 初始化
     std::string Read_db_config(lua_State* L, const std::string& file_url); // 读取 数据库配置配置文件，获得数据库连接字符串
+    void register_server(); // 注册服务器
+    void unregister_server(); // 注销服务器
 
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 线程池工作函数

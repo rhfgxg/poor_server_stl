@@ -38,7 +38,7 @@ public:
     CentralServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port);
     ~CentralServerImpl();
 
-// grpc服务接口
+// grpc对外接口
     // 服务器注册
     grpc::Status Register_server(grpc::ServerContext* context, const rpc_server::RegisterServerReq* req, rpc_server::RegisterServerRes* res);
     // 服务器断开
@@ -52,20 +52,22 @@ public:
     void start_thread_pool(int num_threads);    // 启动线程池
     void stop_thread_pool();    // 停止线程池
 
-// 定时任务
-    // 定时检查心跳记录
-    void check_heartbeat();
-
 private:    // 私有函数
+    // 初始化
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 线程池工作函数
 
+    // grpc工具函数
     // 执行注册服务器
     void Handle_register_server(const rpc_server::RegisterServerReq* req, rpc_server::RegisterServerRes* res);
     // 释放连接池中服务器连接
     void Release_server_connection(rpc_server::ServerType server_type, const std::string& address, const std::string& port);
     // 返回连接池中的连接
     void All_connec_poor(const rpc_server::MultipleConnectPoorReq* req, rpc_server::MultipleConnectPoorRes* res);
+
+    // 定时任务
+    // 定时检查心跳记录
+    void check_heartbeat();
 
 private:    // 私有成员
     std::string server_address; // 服务器地址
