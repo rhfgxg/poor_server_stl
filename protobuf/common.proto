@@ -1,7 +1,7 @@
+// 保存公共数据类型，枚举等
+
 syntax = "proto3";
 package rpc_server;
-
-// 保存公共数据类型，枚举等
 
 // 服务器类型
 enum ServerType

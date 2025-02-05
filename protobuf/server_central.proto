@@ -1,3 +1,4 @@
+// 中心服务器
 syntax = "proto3";
 package rpc_server;
 
