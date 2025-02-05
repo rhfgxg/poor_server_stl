@@ -27,7 +27,7 @@ static const char* LoginServer_method_names[] = {
   "/rpc_server.LoginServer/Register",
   "/rpc_server.LoginServer/Authenticate",
   "/rpc_server.LoginServer/Change_password",
-  "/rpc_server.LoginServer/Get_online_users",
+  "/rpc_server.LoginServer/Is_user_online",
 };
 
 std::unique_ptr< LoginServer::Stub> LoginServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -42,7 +42,7 @@ LoginServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   , rpcmethod_Register_(LoginServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Authenticate_(LoginServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Change_password_(LoginServer_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Get_online_users_(LoginServer_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Is_user_online_(LoginServer_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status LoginServer::Stub::Login(::grpc::ClientContext* context, const ::rpc_server::LoginReq& request, ::rpc_server::LoginRes* response) {
@@ -160,25 +160,25 @@ void LoginServer::Stub::async::Change_password(::grpc::ClientContext* context, c
   return result;
 }
 
-::grpc::Status LoginServer::Stub::Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::rpc_server::GetOnlineUsersRes* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_online_users_, context, request, response);
+::grpc::Status LoginServer::Stub::Is_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::rpc_server::IsUserOnlineRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::IsUserOnlineReq, ::rpc_server::IsUserOnlineRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Is_user_online_, context, request, response);
 }
 
-void LoginServer::Stub::async::Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_online_users_, context, request, response, std::move(f));
+void LoginServer::Stub::async::Is_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq* request, ::rpc_server::IsUserOnlineRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::IsUserOnlineReq, ::rpc_server::IsUserOnlineRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Is_user_online_, context, request, response, std::move(f));
 }
 
-void LoginServer::Stub::async::Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_online_users_, context, request, response, reactor);
+void LoginServer::Stub::async::Is_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq* request, ::rpc_server::IsUserOnlineRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Is_user_online_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>* LoginServer::Stub::PrepareAsyncGet_online_usersRaw(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::GetOnlineUsersRes, ::rpc_server::GetOnlineUsersReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_online_users_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::IsUserOnlineRes>* LoginServer::Stub::PrepareAsyncIs_user_onlineRaw(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::IsUserOnlineRes, ::rpc_server::IsUserOnlineReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Is_user_online_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>* LoginServer::Stub::AsyncGet_online_usersRaw(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::IsUserOnlineRes>* LoginServer::Stub::AsyncIs_user_onlineRaw(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncGet_online_usersRaw(context, request, cq);
+    this->PrepareAsyncIs_user_onlineRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -237,12 +237,12 @@ LoginServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       LoginServer_method_names[5],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< LoginServer::Service, ::rpc_server::IsUserOnlineReq, ::rpc_server::IsUserOnlineRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](LoginServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::GetOnlineUsersReq* req,
-             ::rpc_server::GetOnlineUsersRes* resp) {
-               return service->Get_online_users(ctx, req, resp);
+             const ::rpc_server::IsUserOnlineReq* req,
+             ::rpc_server::IsUserOnlineRes* resp) {
+               return service->Is_user_online(ctx, req, resp);
              }, this)));
 }
 
@@ -284,7 +284,7 @@ LoginServer::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status LoginServer::Service::Get_online_users(::grpc::ServerContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response) {
+::grpc::Status LoginServer::Service::Is_user_online(::grpc::ServerContext* context, const ::rpc_server::IsUserOnlineReq* request, ::rpc_server::IsUserOnlineRes* response) {
   (void) context;
   (void) request;
   (void) response;

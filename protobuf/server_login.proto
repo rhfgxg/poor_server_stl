@@ -8,7 +8,7 @@ service LoginServer
     rpc Register (RegisterReq) returns (RegisterRes);  // 注册服务
     rpc Authenticate (AuthenticateReq) returns (AuthenticateRes);  // 令牌验证服务
     rpc Change_password (ChangePasswordReq) returns (ChangePasswordRes);  // 修改密码服务
-    rpc Get_online_users (GetOnlineUsersReq) returns (GetOnlineUsersRes); // 获取在线用户列表
+    rpc Is_user_online (IsUserOnlineReq) returns (IsUserOnlineRes); // 检查用户是否在线
 }
 
 // 登录服务请求
@@ -28,7 +28,8 @@ message LoginRes
 // 登出服务请求
 message LogoutReq
 {
-    bytes token = 1;
+    bytes account = 1;  // 账号
+    bytes token = 2;
 }
 // 登出服务响应
 message LogoutRes
@@ -67,9 +68,10 @@ message AuthenticateRes
 // 修改密码服务请求
 message ChangePasswordReq
 {
-    bytes token = 1;
-    bytes old_password = 2;     // 原密码：RSA加密
-    bytes new_password = 3;     // 新密码：RSA加密
+    bytes account = 1;  // 账号
+    bytes token = 2;
+    bytes old_password = 3;     // 原密码：RSA加密
+    bytes new_password = 4;     // 新密码：RSA加密
 }
 // 修改密码服务响应
 message ChangePasswordRes
@@ -78,15 +80,13 @@ message ChangePasswordRes
     bytes message = 2;
 }
 
-// 获取在线用户列表请求
-message GetOnlineUsersReq
-{
-    bytes token = 1;
+// 检查用户是否在线请求
+message IsUserOnlineReq {
+    bytes account = 1;  // 账号
 }
-// 获取在线用户列表响应
-message GetOnlineUsersRes
-{
+// 检查用户是否在线响应
+message IsUserOnlineRes {
     bool success = 1;
     bytes message = 2;
-    repeated bytes users = 3;
+    bool is_online = 3; // 用户是否在线
 }

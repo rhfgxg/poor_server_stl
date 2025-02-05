@@ -35,11 +35,17 @@ public:
 
 // grpc服务接口
     //登录
-    grpc::Status Login(grpc::ServerContext* context, const rpc_server::LoginReq* req, rpc_server::LoginRes* res) override;  // 登录
+    grpc::Status Login(grpc::ServerContext* context, const rpc_server::LoginReq* req, rpc_server::LoginRes* res) override;
+    // 登出
+    grpc::Status Logout(grpc::ServerContext* context, const rpc_server::LogoutReq* req, rpc_server::LogoutRes* res) override;
     // 注册
-    grpc::Status Register(grpc::ServerContext* context, const rpc_server::RegisterReq* req, rpc_server::RegisterRes* res) override;   // 注册
+    grpc::Status Register(grpc::ServerContext* context, const rpc_server::RegisterReq* req, rpc_server::RegisterRes* res) override;
     // token校验
-    grpc::Status Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateReq* req, rpc_server::AuthenticateRes* res) override;   // 令牌验证
+    grpc::Status Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateReq* req, rpc_server::AuthenticateRes* res) override;
+    // 修改密码服务
+    grpc::Status Change_password(grpc::ServerContext* context, const rpc_server::ChangePasswordReq* req, rpc_server::ChangePasswordRes* res) override;
+    // 检查用户是否在线
+    grpc::Status Is_user_online(grpc::ServerContext* context, const rpc_server::IsUserOnlineReq* req, rpc_server::IsUserOnlineRes* res) override;
 
 private:
     // 初始化
@@ -51,8 +57,11 @@ private:
     void Worker_thread();   // 执行线程的任务
 
     void Handle_login(const rpc_server::LoginReq* req,rpc_server::LoginRes* res);    // 登录
+    void Handle_logout(const rpc_server::LogoutReq* req, rpc_server::LogoutRes* res);    // 登出
     void Handle_register(const rpc_server::RegisterReq* req,rpc_server::RegisterRes* res);    // 注册
     void Handle_authenticate(const rpc_server::AuthenticateReq* req,rpc_server::AuthenticateRes* res);    // 令牌验证
+    void Handle_change_password(const rpc_server::ChangePasswordReq* req, rpc_server::ChangePasswordRes* res);    // 修改密码
+    void Handle_is_user_online(const rpc_server::IsUserOnlineReq* req, rpc_server::IsUserOnlineRes* res);    // 获取在线用户列表
 
     // 定时任务：
     void Update_connection_pool();  // 更新连接池

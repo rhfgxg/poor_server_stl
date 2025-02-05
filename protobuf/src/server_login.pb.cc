@@ -95,7 +95,10 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr LogoutReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : token_(
+      : account_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        token_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
@@ -163,49 +166,49 @@ struct LoginReqDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LoginReqDefaultTypeInternal _LoginReq_default_instance_;
 
-inline constexpr GetOnlineUsersRes::Impl_::Impl_(
+inline constexpr IsUserOnlineRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : users_{},
-        message_(
+      : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         success_{false},
+        is_online_{false},
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR GetOnlineUsersRes::GetOnlineUsersRes(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR IsUserOnlineRes::IsUserOnlineRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct GetOnlineUsersResDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetOnlineUsersResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetOnlineUsersResDefaultTypeInternal() {}
+struct IsUserOnlineResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR IsUserOnlineResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~IsUserOnlineResDefaultTypeInternal() {}
   union {
-    GetOnlineUsersRes _instance;
+    IsUserOnlineRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetOnlineUsersResDefaultTypeInternal _GetOnlineUsersRes_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IsUserOnlineResDefaultTypeInternal _IsUserOnlineRes_default_instance_;
 
-inline constexpr GetOnlineUsersReq::Impl_::Impl_(
+inline constexpr IsUserOnlineReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : token_(
+      : account_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR GetOnlineUsersReq::GetOnlineUsersReq(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR IsUserOnlineReq::IsUserOnlineReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct GetOnlineUsersReqDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GetOnlineUsersReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GetOnlineUsersReqDefaultTypeInternal() {}
+struct IsUserOnlineReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR IsUserOnlineReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~IsUserOnlineReqDefaultTypeInternal() {}
   union {
-    GetOnlineUsersReq _instance;
+    IsUserOnlineReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetOnlineUsersReqDefaultTypeInternal _GetOnlineUsersReq_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 IsUserOnlineReqDefaultTypeInternal _IsUserOnlineReq_default_instance_;
 
 inline constexpr ChangePasswordRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -231,7 +234,10 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr ChangePasswordReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : token_(
+      : account_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        token_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         old_password_(
@@ -338,6 +344,7 @@ const ::uint32_t TableStruct_server_5flogin_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::LogoutReq, _impl_.account_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::LogoutReq, _impl_.token_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::rpc_server::LogoutRes, _internal_metadata_),
@@ -398,6 +405,7 @@ const ::uint32_t TableStruct_server_5flogin_2eproto::offsets[] PROTOBUF_SECTION_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::ChangePasswordReq, _impl_.account_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::ChangePasswordReq, _impl_.token_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::ChangePasswordReq, _impl_.old_password_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::ChangePasswordReq, _impl_.new_password_),
@@ -412,25 +420,25 @@ const ::uint32_t TableStruct_server_5flogin_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::rpc_server::ChangePasswordRes, _impl_.success_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::ChangePasswordRes, _impl_.message_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GetOnlineUsersReq, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::IsUserOnlineReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GetOnlineUsersReq, _impl_.token_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::IsUserOnlineReq, _impl_.account_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GetOnlineUsersRes, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::IsUserOnlineRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GetOnlineUsersRes, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GetOnlineUsersRes, _impl_.message_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::GetOnlineUsersRes, _impl_.users_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::IsUserOnlineRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::IsUserOnlineRes, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::IsUserOnlineRes, _impl_.is_online_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -438,15 +446,15 @@ static const ::_pbi::MigrationSchema
         {0, -1, -1, sizeof(::rpc_server::LoginReq)},
         {10, -1, -1, sizeof(::rpc_server::LoginRes)},
         {21, -1, -1, sizeof(::rpc_server::LogoutReq)},
-        {30, -1, -1, sizeof(::rpc_server::LogoutRes)},
-        {40, -1, -1, sizeof(::rpc_server::RegisterReq)},
-        {51, -1, -1, sizeof(::rpc_server::RegisterRes)},
-        {61, -1, -1, sizeof(::rpc_server::AuthenticateReq)},
-        {71, -1, -1, sizeof(::rpc_server::AuthenticateRes)},
-        {81, -1, -1, sizeof(::rpc_server::ChangePasswordReq)},
-        {92, -1, -1, sizeof(::rpc_server::ChangePasswordRes)},
-        {102, -1, -1, sizeof(::rpc_server::GetOnlineUsersReq)},
-        {111, -1, -1, sizeof(::rpc_server::GetOnlineUsersRes)},
+        {31, -1, -1, sizeof(::rpc_server::LogoutRes)},
+        {41, -1, -1, sizeof(::rpc_server::RegisterReq)},
+        {52, -1, -1, sizeof(::rpc_server::RegisterRes)},
+        {62, -1, -1, sizeof(::rpc_server::AuthenticateReq)},
+        {72, -1, -1, sizeof(::rpc_server::AuthenticateRes)},
+        {82, -1, -1, sizeof(::rpc_server::ChangePasswordReq)},
+        {94, -1, -1, sizeof(::rpc_server::ChangePasswordRes)},
+        {104, -1, -1, sizeof(::rpc_server::IsUserOnlineReq)},
+        {113, -1, -1, sizeof(::rpc_server::IsUserOnlineRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -460,44 +468,45 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::rpc_server::_AuthenticateRes_default_instance_._instance,
     &::rpc_server::_ChangePasswordReq_default_instance_._instance,
     &::rpc_server::_ChangePasswordRes_default_instance_._instance,
-    &::rpc_server::_GetOnlineUsersReq_default_instance_._instance,
-    &::rpc_server::_GetOnlineUsersRes_default_instance_._instance,
+    &::rpc_server::_IsUserOnlineReq_default_instance_._instance,
+    &::rpc_server::_IsUserOnlineRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5flogin_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\022server_login.proto\022\nrpc_server\"-\n\010Logi"
     "nReq\022\017\n\007account\030\001 \001(\014\022\020\n\010password\030\002 \001(\014\""
     ";\n\010LoginRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030"
-    "\002 \001(\014\022\r\n\005token\030\003 \001(\014\"\032\n\tLogoutReq\022\r\n\005tok"
-    "en\030\001 \001(\014\"-\n\tLogoutRes\022\017\n\007success\030\001 \001(\010\022\017"
-    "\n\007message\030\002 \001(\014\"A\n\013RegisterReq\022\021\n\tuser_n"
-    "ame\030\001 \001(\014\022\020\n\010password\030\002 \001(\014\022\r\n\005email\030\003 \001"
-    "(\014\"/\n\013RegisterRes\022\017\n\007success\030\001 \001(\010\022\017\n\007me"
-    "ssage\030\002 \001(\014\"1\n\017AuthenticateReq\022\017\n\007accoun"
-    "t\030\001 \001(\014\022\r\n\005token\030\002 \001(\014\"3\n\017AuthenticateRe"
-    "s\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"N\n\021C"
-    "hangePasswordReq\022\r\n\005token\030\001 \001(\014\022\024\n\014old_p"
-    "assword\030\002 \001(\014\022\024\n\014new_password\030\003 \001(\014\"5\n\021C"
-    "hangePasswordRes\022\017\n\007success\030\001 \001(\010\022\017\n\007mes"
-    "sage\030\002 \001(\014\"\"\n\021GetOnlineUsersReq\022\r\n\005token"
-    "\030\001 \001(\014\"D\n\021GetOnlineUsersRes\022\017\n\007success\030\001"
-    " \001(\010\022\017\n\007message\030\002 \001(\014\022\r\n\005users\030\003 \003(\0142\245\003\n"
-    "\013LoginServer\0223\n\005Login\022\024.rpc_server.Login"
-    "Req\032\024.rpc_server.LoginRes\0226\n\006Logout\022\025.rp"
-    "c_server.LogoutReq\032\025.rpc_server.LogoutRe"
-    "s\022<\n\010Register\022\027.rpc_server.RegisterReq\032\027"
-    ".rpc_server.RegisterRes\022H\n\014Authenticate\022"
-    "\033.rpc_server.AuthenticateReq\032\033.rpc_serve"
-    "r.AuthenticateRes\022O\n\017Change_password\022\035.r"
-    "pc_server.ChangePasswordReq\032\035.rpc_server"
-    ".ChangePasswordRes\022P\n\020Get_online_users\022\035"
-    ".rpc_server.GetOnlineUsersReq\032\035.rpc_serv"
-    "er.GetOnlineUsersResb\006proto3"
+    "\002 \001(\014\022\r\n\005token\030\003 \001(\014\"+\n\tLogoutReq\022\017\n\007acc"
+    "ount\030\001 \001(\014\022\r\n\005token\030\002 \001(\014\"-\n\tLogoutRes\022\017"
+    "\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"A\n\013Regi"
+    "sterReq\022\021\n\tuser_name\030\001 \001(\014\022\020\n\010password\030\002"
+    " \001(\014\022\r\n\005email\030\003 \001(\014\"/\n\013RegisterRes\022\017\n\007su"
+    "ccess\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"1\n\017Authenti"
+    "cateReq\022\017\n\007account\030\001 \001(\014\022\r\n\005token\030\002 \001(\014\""
+    "3\n\017AuthenticateRes\022\017\n\007success\030\001 \001(\010\022\017\n\007m"
+    "essage\030\002 \001(\014\"_\n\021ChangePasswordReq\022\017\n\007acc"
+    "ount\030\001 \001(\014\022\r\n\005token\030\002 \001(\014\022\024\n\014old_passwor"
+    "d\030\003 \001(\014\022\024\n\014new_password\030\004 \001(\014\"5\n\021ChangeP"
+    "asswordRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002"
+    " \001(\014\"\"\n\017IsUserOnlineReq\022\017\n\007account\030\001 \001(\014"
+    "\"F\n\017IsUserOnlineRes\022\017\n\007success\030\001 \001(\010\022\017\n\007"
+    "message\030\002 \001(\014\022\021\n\tis_online\030\003 \001(\0102\237\003\n\013Log"
+    "inServer\0223\n\005Login\022\024.rpc_server.LoginReq\032"
+    "\024.rpc_server.LoginRes\0226\n\006Logout\022\025.rpc_se"
+    "rver.LogoutReq\032\025.rpc_server.LogoutRes\022<\n"
+    "\010Register\022\027.rpc_server.RegisterReq\032\027.rpc"
+    "_server.RegisterRes\022H\n\014Authenticate\022\033.rp"
+    "c_server.AuthenticateReq\032\033.rpc_server.Au"
+    "thenticateRes\022O\n\017Change_password\022\035.rpc_s"
+    "erver.ChangePasswordReq\032\035.rpc_server.Cha"
+    "ngePasswordRes\022J\n\016Is_user_online\022\033.rpc_s"
+    "erver.IsUserOnlineReq\032\033.rpc_server.IsUse"
+    "rOnlineResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5flogin_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5flogin_2eproto = {
     false,
     false,
-    1108,
+    1138,
     descriptor_table_protodef_server_5flogin_2eproto,
     "server_login.proto",
     &descriptor_table_server_5flogin_2eproto_once,
@@ -992,7 +1001,8 @@ LogoutReq::LogoutReq(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE LogoutReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : token_(arena, from.token_),
+      : account_(arena, from.account_),
+        token_(arena, from.token_),
         _cached_size_{0} {}
 
 LogoutReq::LogoutReq(
@@ -1010,7 +1020,8 @@ LogoutReq::LogoutReq(
 inline PROTOBUF_NDEBUG_INLINE LogoutReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : token_(arena),
+      : account_(arena),
+        token_(arena),
         _cached_size_{0} {}
 
 inline void LogoutReq::SharedCtor(::_pb::Arena* arena) {
@@ -1023,6 +1034,7 @@ LogoutReq::~LogoutReq() {
 }
 inline void LogoutReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.account_.Destroy();
   _impl_.token_.Destroy();
   _impl_.~Impl_();
 }
@@ -1034,6 +1046,7 @@ PROTOBUF_NOINLINE void LogoutReq::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.account_.ClearToEmpty();
   _impl_.token_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -1046,27 +1059,33 @@ const char* LogoutReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> LogoutReq::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> LogoutReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967292,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
+    2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_LogoutReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bytes token = 1;
+    // bytes token = 2;
     {::_pbi::TcParser::FastBS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(LogoutReq, _impl_.token_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(LogoutReq, _impl_.token_)}},
+    // bytes account = 1;
+    {::_pbi::TcParser::FastBS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(LogoutReq, _impl_.account_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // bytes token = 1;
+    // bytes account = 1;
+    {PROTOBUF_FIELD_OFFSET(LogoutReq, _impl_.account_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes token = 2;
     {PROTOBUF_FIELD_OFFSET(LogoutReq, _impl_.token_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
@@ -1082,10 +1101,16 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> LogoutReq::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // bytes token = 1;
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    const std::string& _s = this->_internal_account();
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
+  }
+
+  // bytes token = 2;
   if (!this->_internal_token().empty()) {
     const std::string& _s = this->_internal_token();
-    target = stream->WriteBytesMaybeAliased(1, _s, target);
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1105,7 +1130,13 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> LogoutReq::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes token = 1;
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_account());
+  }
+
+  // bytes token = 2;
   if (!this->_internal_token().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_token());
@@ -1130,6 +1161,9 @@ void LogoutReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::p
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!from._internal_account().empty()) {
+    _this->_internal_set_account(from._internal_account());
+  }
   if (!from._internal_token().empty()) {
     _this->_internal_set_token(from._internal_token());
   }
@@ -1155,6 +1189,7 @@ void LogoutReq::InternalSwap(LogoutReq* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_, &other->_impl_.account_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.token_, &other->_impl_.token_, arena);
 }
 
@@ -2256,7 +2291,8 @@ ChangePasswordReq::ChangePasswordReq(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE ChangePasswordReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : token_(arena, from.token_),
+      : account_(arena, from.account_),
+        token_(arena, from.token_),
         old_password_(arena, from.old_password_),
         new_password_(arena, from.new_password_),
         _cached_size_{0} {}
@@ -2276,7 +2312,8 @@ ChangePasswordReq::ChangePasswordReq(
 inline PROTOBUF_NDEBUG_INLINE ChangePasswordReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : token_(arena),
+      : account_(arena),
+        token_(arena),
         old_password_(arena),
         new_password_(arena),
         _cached_size_{0} {}
@@ -2291,6 +2328,7 @@ ChangePasswordReq::~ChangePasswordReq() {
 }
 inline void ChangePasswordReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.account_.Destroy();
   _impl_.token_.Destroy();
   _impl_.old_password_.Destroy();
   _impl_.new_password_.Destroy();
@@ -2304,6 +2342,7 @@ PROTOBUF_NOINLINE void ChangePasswordReq::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.account_.ClearToEmpty();
   _impl_.token_.ClearToEmpty();
   _impl_.old_password_.ClearToEmpty();
   _impl_.new_password_.ClearToEmpty();
@@ -2318,40 +2357,45 @@ const char* ChangePasswordReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 0, 2> ChangePasswordReq::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 0, 0, 2> ChangePasswordReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    4,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_ChangePasswordReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // bytes token = 1;
+    // bytes new_password = 4;
     {::_pbi::TcParser::FastBS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ChangePasswordReq, _impl_.token_)}},
-    // bytes old_password = 2;
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(ChangePasswordReq, _impl_.new_password_)}},
+    // bytes account = 1;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ChangePasswordReq, _impl_.old_password_)}},
-    // bytes new_password = 3;
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(ChangePasswordReq, _impl_.account_)}},
+    // bytes token = 2;
     {::_pbi::TcParser::FastBS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ChangePasswordReq, _impl_.new_password_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(ChangePasswordReq, _impl_.token_)}},
+    // bytes old_password = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(ChangePasswordReq, _impl_.old_password_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // bytes token = 1;
+    // bytes account = 1;
+    {PROTOBUF_FIELD_OFFSET(ChangePasswordReq, _impl_.account_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes token = 2;
     {PROTOBUF_FIELD_OFFSET(ChangePasswordReq, _impl_.token_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // bytes old_password = 2;
+    // bytes old_password = 3;
     {PROTOBUF_FIELD_OFFSET(ChangePasswordReq, _impl_.old_password_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // bytes new_password = 3;
+    // bytes new_password = 4;
     {PROTOBUF_FIELD_OFFSET(ChangePasswordReq, _impl_.new_password_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
@@ -2367,22 +2411,28 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> ChangePasswordReq::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // bytes token = 1;
-  if (!this->_internal_token().empty()) {
-    const std::string& _s = this->_internal_token();
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    const std::string& _s = this->_internal_account();
     target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
-  // bytes old_password = 2;
-  if (!this->_internal_old_password().empty()) {
-    const std::string& _s = this->_internal_old_password();
+  // bytes token = 2;
+  if (!this->_internal_token().empty()) {
+    const std::string& _s = this->_internal_token();
     target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // bytes new_password = 3;
+  // bytes old_password = 3;
+  if (!this->_internal_old_password().empty()) {
+    const std::string& _s = this->_internal_old_password();
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
+  }
+
+  // bytes new_password = 4;
   if (!this->_internal_new_password().empty()) {
     const std::string& _s = this->_internal_new_password();
-    target = stream->WriteBytesMaybeAliased(3, _s, target);
+    target = stream->WriteBytesMaybeAliased(4, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2402,19 +2452,25 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> ChangePasswordReq::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes token = 1;
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_account());
+  }
+
+  // bytes token = 2;
   if (!this->_internal_token().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_token());
   }
 
-  // bytes old_password = 2;
+  // bytes old_password = 3;
   if (!this->_internal_old_password().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_old_password());
   }
 
-  // bytes new_password = 3;
+  // bytes new_password = 4;
   if (!this->_internal_new_password().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_new_password());
@@ -2439,6 +2495,9 @@ void ChangePasswordReq::MergeImpl(::google::protobuf::Message& to_msg, const ::g
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (!from._internal_account().empty()) {
+    _this->_internal_set_account(from._internal_account());
+  }
   if (!from._internal_token().empty()) {
     _this->_internal_set_token(from._internal_token());
   }
@@ -2470,6 +2529,7 @@ void ChangePasswordReq::InternalSwap(ChangePasswordReq* PROTOBUF_RESTRICT other)
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_, &other->_impl_.account_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.token_, &other->_impl_.token_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.old_password_, &other->_impl_.old_password_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.new_password_, &other->_impl_.new_password_, arena);
@@ -2692,65 +2752,65 @@ void ChangePasswordRes::InternalSwap(ChangePasswordRes* PROTOBUF_RESTRICT other)
 }
 // ===================================================================
 
-class GetOnlineUsersReq::_Internal {
+class IsUserOnlineReq::_Internal {
  public:
 };
 
-GetOnlineUsersReq::GetOnlineUsersReq(::google::protobuf::Arena* arena)
+IsUserOnlineReq::IsUserOnlineReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.GetOnlineUsersReq)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.IsUserOnlineReq)
 }
-inline PROTOBUF_NDEBUG_INLINE GetOnlineUsersReq::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE IsUserOnlineReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : token_(arena, from.token_),
+      : account_(arena, from.account_),
         _cached_size_{0} {}
 
-GetOnlineUsersReq::GetOnlineUsersReq(
+IsUserOnlineReq::IsUserOnlineReq(
     ::google::protobuf::Arena* arena,
-    const GetOnlineUsersReq& from)
+    const IsUserOnlineReq& from)
     : ::google::protobuf::Message(arena) {
-  GetOnlineUsersReq* const _this = this;
+  IsUserOnlineReq* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.GetOnlineUsersReq)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.IsUserOnlineReq)
 }
-inline PROTOBUF_NDEBUG_INLINE GetOnlineUsersReq::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE IsUserOnlineReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : token_(arena),
+      : account_(arena),
         _cached_size_{0} {}
 
-inline void GetOnlineUsersReq::SharedCtor(::_pb::Arena* arena) {
+inline void IsUserOnlineReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-GetOnlineUsersReq::~GetOnlineUsersReq() {
-  // @@protoc_insertion_point(destructor:rpc_server.GetOnlineUsersReq)
+IsUserOnlineReq::~IsUserOnlineReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.IsUserOnlineReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void GetOnlineUsersReq::SharedDtor() {
+inline void IsUserOnlineReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.token_.Destroy();
+  _impl_.account_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void GetOnlineUsersReq::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.GetOnlineUsersReq)
+PROTOBUF_NOINLINE void IsUserOnlineReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.IsUserOnlineReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.token_.ClearToEmpty();
+  _impl_.account_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetOnlineUsersReq::_InternalParse(
+const char* IsUserOnlineReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -2758,7 +2818,7 @@ const char* GetOnlineUsersReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GetOnlineUsersReq::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> IsUserOnlineReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2769,17 +2829,17 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GetOnlineUsersReq::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_GetOnlineUsersReq_default_instance_._instance,
+    &_IsUserOnlineReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bytes token = 1;
+    // bytes account = 1;
     {::_pbi::TcParser::FastBS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(GetOnlineUsersReq, _impl_.token_)}},
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(IsUserOnlineReq, _impl_.account_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // bytes token = 1;
-    {PROTOBUF_FIELD_OFFSET(GetOnlineUsersReq, _impl_.token_), 0, 0,
+    // bytes account = 1;
+    {PROTOBUF_FIELD_OFFSET(IsUserOnlineReq, _impl_.account_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
@@ -2787,16 +2847,16 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GetOnlineUsersReq::_table_ = {
   }},
 };
 
-::uint8_t* GetOnlineUsersReq::_InternalSerialize(
+::uint8_t* IsUserOnlineReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GetOnlineUsersReq)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.IsUserOnlineReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // bytes token = 1;
-  if (!this->_internal_token().empty()) {
-    const std::string& _s = this->_internal_token();
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    const std::string& _s = this->_internal_account();
     target = stream->WriteBytesMaybeAliased(1, _s, target);
   }
 
@@ -2805,143 +2865,153 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> GetOnlineUsersReq::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GetOnlineUsersReq)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.IsUserOnlineReq)
   return target;
 }
 
-::size_t GetOnlineUsersReq::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.GetOnlineUsersReq)
+::size_t IsUserOnlineReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.IsUserOnlineReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // bytes token = 1;
-  if (!this->_internal_token().empty()) {
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
-                                    this->_internal_token());
+                                    this->_internal_account());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData GetOnlineUsersReq::_class_data_ = {
-    GetOnlineUsersReq::MergeImpl,
+const ::google::protobuf::Message::ClassData IsUserOnlineReq::_class_data_ = {
+    IsUserOnlineReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* GetOnlineUsersReq::GetClassData() const {
+const ::google::protobuf::Message::ClassData* IsUserOnlineReq::GetClassData() const {
   return &_class_data_;
 }
 
-void GetOnlineUsersReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<GetOnlineUsersReq*>(&to_msg);
-  auto& from = static_cast<const GetOnlineUsersReq&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GetOnlineUsersReq)
+void IsUserOnlineReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<IsUserOnlineReq*>(&to_msg);
+  auto& from = static_cast<const IsUserOnlineReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.IsUserOnlineReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_token().empty()) {
-    _this->_internal_set_token(from._internal_token());
+  if (!from._internal_account().empty()) {
+    _this->_internal_set_account(from._internal_account());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void GetOnlineUsersReq::CopyFrom(const GetOnlineUsersReq& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GetOnlineUsersReq)
+void IsUserOnlineReq::CopyFrom(const IsUserOnlineReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.IsUserOnlineReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool GetOnlineUsersReq::IsInitialized() const {
+PROTOBUF_NOINLINE bool IsUserOnlineReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* GetOnlineUsersReq::AccessCachedSize() const {
+::_pbi::CachedSize* IsUserOnlineReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void GetOnlineUsersReq::InternalSwap(GetOnlineUsersReq* PROTOBUF_RESTRICT other) {
+void IsUserOnlineReq::InternalSwap(IsUserOnlineReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.token_, &other->_impl_.token_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_, &other->_impl_.account_, arena);
 }
 
-::google::protobuf::Metadata GetOnlineUsersReq::GetMetadata() const {
+::google::protobuf::Metadata IsUserOnlineReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5flogin_2eproto_getter, &descriptor_table_server_5flogin_2eproto_once,
       file_level_metadata_server_5flogin_2eproto[10]);
 }
 // ===================================================================
 
-class GetOnlineUsersRes::_Internal {
+class IsUserOnlineRes::_Internal {
  public:
 };
 
-GetOnlineUsersRes::GetOnlineUsersRes(::google::protobuf::Arena* arena)
+IsUserOnlineRes::IsUserOnlineRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.GetOnlineUsersRes)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.IsUserOnlineRes)
 }
-inline PROTOBUF_NDEBUG_INLINE GetOnlineUsersRes::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE IsUserOnlineRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
-      : users_{visibility, arena, from.users_},
-        message_(arena, from.message_),
+      : message_(arena, from.message_),
         _cached_size_{0} {}
 
-GetOnlineUsersRes::GetOnlineUsersRes(
+IsUserOnlineRes::IsUserOnlineRes(
     ::google::protobuf::Arena* arena,
-    const GetOnlineUsersRes& from)
+    const IsUserOnlineRes& from)
     : ::google::protobuf::Message(arena) {
-  GetOnlineUsersRes* const _this = this;
+  IsUserOnlineRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  _impl_.success_ = from._impl_.success_;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, success_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, success_),
+           offsetof(Impl_, is_online_) -
+               offsetof(Impl_, success_) +
+               sizeof(Impl_::is_online_));
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.GetOnlineUsersRes)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.IsUserOnlineRes)
 }
-inline PROTOBUF_NDEBUG_INLINE GetOnlineUsersRes::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE IsUserOnlineRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : users_{visibility, arena},
-        message_(arena),
+      : message_(arena),
         _cached_size_{0} {}
 
-inline void GetOnlineUsersRes::SharedCtor(::_pb::Arena* arena) {
+inline void IsUserOnlineRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.success_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, success_),
+           0,
+           offsetof(Impl_, is_online_) -
+               offsetof(Impl_, success_) +
+               sizeof(Impl_::is_online_));
 }
-GetOnlineUsersRes::~GetOnlineUsersRes() {
-  // @@protoc_insertion_point(destructor:rpc_server.GetOnlineUsersRes)
+IsUserOnlineRes::~IsUserOnlineRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.IsUserOnlineRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void GetOnlineUsersRes::SharedDtor() {
+inline void IsUserOnlineRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void GetOnlineUsersRes::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.GetOnlineUsersRes)
+PROTOBUF_NOINLINE void IsUserOnlineRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.IsUserOnlineRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.users_.Clear();
   _impl_.message_.ClearToEmpty();
-  _impl_.success_ = false;
+  ::memset(&_impl_.success_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.is_online_) -
+      reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.is_online_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* GetOnlineUsersRes::_InternalParse(
+const char* IsUserOnlineRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -2949,7 +3019,7 @@ const char* GetOnlineUsersRes::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 0, 2> GetOnlineUsersRes::_table_ = {
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> IsUserOnlineRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -2960,41 +3030,41 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> GetOnlineUsersRes::_table_ = {
     3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_GetOnlineUsersRes_default_instance_._instance,
+    &_IsUserOnlineRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(GetOnlineUsersRes, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(GetOnlineUsersRes, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(IsUserOnlineRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(IsUserOnlineRes, _impl_.success_)}},
     // bytes message = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(GetOnlineUsersRes, _impl_.message_)}},
-    // repeated bytes users = 3;
-    {::_pbi::TcParser::FastBR1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(GetOnlineUsersRes, _impl_.users_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(IsUserOnlineRes, _impl_.message_)}},
+    // bool is_online = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(IsUserOnlineRes, _impl_.is_online_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(IsUserOnlineRes, _impl_.is_online_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(GetOnlineUsersRes, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(IsUserOnlineRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // bytes message = 2;
-    {PROTOBUF_FIELD_OFFSET(GetOnlineUsersRes, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(IsUserOnlineRes, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // repeated bytes users = 3;
-    {PROTOBUF_FIELD_OFFSET(GetOnlineUsersRes, _impl_.users_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kBytes | ::_fl::kRepSString)},
+    // bool is_online = 3;
+    {PROTOBUF_FIELD_OFFSET(IsUserOnlineRes, _impl_.is_online_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
   }},
   // no aux_entries
   {{
   }},
 };
 
-::uint8_t* GetOnlineUsersRes::_InternalSerialize(
+::uint8_t* IsUserOnlineRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.GetOnlineUsersRes)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.IsUserOnlineRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -3011,10 +3081,11 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> GetOnlineUsersRes::_table_ = {
     target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // repeated bytes users = 3;
-  for (int i = 0, n = this->_internal_users_size(); i < n; ++i) {
-    const auto& s = this->_internal_users().Get(i);
-    target = stream->WriteBytes(3, s, target);
+  // bool is_online = 3;
+  if (this->_internal_is_online() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        3, this->_internal_is_online(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3022,24 +3093,18 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> GetOnlineUsersRes::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.GetOnlineUsersRes)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.IsUserOnlineRes)
   return target;
 }
 
-::size_t GetOnlineUsersRes::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.GetOnlineUsersRes)
+::size_t IsUserOnlineRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.IsUserOnlineRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated bytes users = 3;
-  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_users().size());
-  for (int i = 0, n = _internal_users().size(); i < n; ++i) {
-    total_size += ::google::protobuf::internal::WireFormatLite::BytesSize(
-        _internal_users().Get(i));
-  }
   // bytes message = 2;
   if (!this->_internal_message().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
@@ -3051,60 +3116,71 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> GetOnlineUsersRes::_table_ = {
     total_size += 2;
   }
 
+  // bool is_online = 3;
+  if (this->_internal_is_online() != 0) {
+    total_size += 2;
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData GetOnlineUsersRes::_class_data_ = {
-    GetOnlineUsersRes::MergeImpl,
+const ::google::protobuf::Message::ClassData IsUserOnlineRes::_class_data_ = {
+    IsUserOnlineRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* GetOnlineUsersRes::GetClassData() const {
+const ::google::protobuf::Message::ClassData* IsUserOnlineRes::GetClassData() const {
   return &_class_data_;
 }
 
-void GetOnlineUsersRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<GetOnlineUsersRes*>(&to_msg);
-  auto& from = static_cast<const GetOnlineUsersRes&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.GetOnlineUsersRes)
+void IsUserOnlineRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<IsUserOnlineRes*>(&to_msg);
+  auto& from = static_cast<const IsUserOnlineRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.IsUserOnlineRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_internal_mutable_users()->MergeFrom(from._internal_users());
   if (!from._internal_message().empty()) {
     _this->_internal_set_message(from._internal_message());
   }
   if (from._internal_success() != 0) {
     _this->_internal_set_success(from._internal_success());
   }
+  if (from._internal_is_online() != 0) {
+    _this->_internal_set_is_online(from._internal_is_online());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void GetOnlineUsersRes::CopyFrom(const GetOnlineUsersRes& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.GetOnlineUsersRes)
+void IsUserOnlineRes::CopyFrom(const IsUserOnlineRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.IsUserOnlineRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool GetOnlineUsersRes::IsInitialized() const {
+PROTOBUF_NOINLINE bool IsUserOnlineRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* GetOnlineUsersRes::AccessCachedSize() const {
+::_pbi::CachedSize* IsUserOnlineRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void GetOnlineUsersRes::InternalSwap(GetOnlineUsersRes* PROTOBUF_RESTRICT other) {
+void IsUserOnlineRes::InternalSwap(IsUserOnlineRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.users_.InternalSwap(&other->_impl_.users_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
-        swap(_impl_.success_, other->_impl_.success_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(IsUserOnlineRes, _impl_.is_online_)
+      + sizeof(IsUserOnlineRes::_impl_.is_online_)
+      - PROTOBUF_FIELD_OFFSET(IsUserOnlineRes, _impl_.success_)>(
+          reinterpret_cast<char*>(&_impl_.success_),
+          reinterpret_cast<char*>(&other->_impl_.success_));
 }
 
-::google::protobuf::Metadata GetOnlineUsersRes::GetMetadata() const {
+::google::protobuf::Metadata IsUserOnlineRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5flogin_2eproto_getter, &descriptor_table_server_5flogin_2eproto_once,
       file_level_metadata_server_5flogin_2eproto[11]);

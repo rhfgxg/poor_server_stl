@@ -252,6 +252,19 @@ grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const rpc_serv
     return grpc::Status::OK;
 }
 
+// 登出服务接口
+grpc::Status LoginServerImpl::Logout(grpc::ServerContext* context, const rpc_server::LogoutReq* req, rpc_server::LogoutRes* res)
+{
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_logout(req, res); // 查询的数据库名，表名，查询条件
+    });
+
+    // 等待任务完成
+    task_future.get();
+
+    return grpc::Status::OK;
+}
+
 // 注册服务接口
 grpc::Status LoginServerImpl::Register(grpc::ServerContext* context, const rpc_server::RegisterReq* req, rpc_server::RegisterRes* res)
 {
@@ -273,10 +286,45 @@ grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const r
     return grpc::Status::OK;
 }
 
+// 修改密码服务
+grpc::Status LoginServerImpl::Change_password(grpc::ServerContext* context, const rpc_server::ChangePasswordReq* req, rpc_server::ChangePasswordRes* res)
+{
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_change_password(req, res); // 查询的数据库名，表名，查询条件
+    });
+
+    // 等待任务完成
+    task_future.get();
+
+    return grpc::Status::OK;
+}
+
+// 获取在线用户列表
+grpc::Status LoginServerImpl::Is_user_online(grpc::ServerContext* context, const rpc_server::IsUserOnlineReq* req, rpc_server::IsUserOnlineRes* res)
+{
+    /* 返回在线用户的账号列表
+    */
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_is_user_online(req, res); // 查询的数据库名，表名，查询条件
+    });
+
+    // 等待任务完成
+    task_future.get();
+
+    return grpc::Status::OK;
+}
+
 /************************************ gRPC服务接口工具函数 **************************************************/
 // 登录服务
 void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::LoginRes* res)
 {
+    /* 登录服务
+    * 通过查询数据库，验证用户的用户名和密码
+    * 如果验证成功，生成Token
+    * 将账号和Token存储到Redis中，用于验证用户是否在线
+    * 用户退出，删除Redis中的账号和Token
+    */
+
     // 获取用户名和密码
     std::string account = req->account();
     std::string password = req->password();
@@ -309,12 +357,10 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
         // 生成Token
         std::string token = GenerateToken(account);
 
-        // 将用户在线状态存储到Redis中
+        // 将用户在线状态和token存储到Redis中
         auto client = redis_client.get_client();
-        client->set(account, "online");
+        client->set(account, token);   // 保存 key用户账号，value用户token，用于验证用户是否在线
         client->expire(account, 1800); // 设置30分钟过期时间
-        client->set(account + "_token", token);
-        client->expire(account + "_token", 1800);
 
         res->set_success(true);
         res->set_message("Login successful");
@@ -329,6 +375,26 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
     }
 
     this->db_connection_pool.release_connection(rpc_server::ServerType::DB, channel); // 释放数据库服务器连接
+}
+
+// 登出服务
+void LoginServerImpl::Handle_logout(const rpc_server::LogoutReq* req, rpc_server::LogoutRes* res)    // 登出
+{
+    /* 登出服务
+    * 删除Redis中的账号和Token，表示用户退出
+    */
+
+    // 获取账号
+    std::string account = req->account();
+    std::string token = req->token();
+
+    // 从Redis中删除用户在线状态和token
+    auto client = redis_client.get_client();
+    client->del({account});
+    client->sync_commit();
+    res->set_success(true);
+    res->set_message("Logout successful");
+    this->logger_manager.getLogger(rpc_server::LogCategory::APPLICATION_ACTIVITY)->info("Logout successful");
 }
 
 // 注册服务
@@ -353,13 +419,12 @@ void LoginServerImpl::Handle_authenticate(const rpc_server::AuthenticateReq* req
 
     // 检查用户的在线状态
     auto client = redis_client.get_client();
-    auto reply = client->exists({account});
+    auto reply = client->get(account);
     client->sync_commit();
-    if(reply.get().as_integer() == 1)
+    if(reply.get().as_string() == token)
     {
         // 延续Token的有效期
         client->expire(account, 1800);
-        client->expire(account + "_token", 1800);
 
         res->set_success(true);
         res->set_message("Token validated");
@@ -370,6 +435,37 @@ void LoginServerImpl::Handle_authenticate(const rpc_server::AuthenticateReq* req
         res->set_message("User is not online");
     }
 }
+
+// 修改密码
+void LoginServerImpl::Handle_change_password(const rpc_server::ChangePasswordReq* req, rpc_server::ChangePasswordRes* res)
+{
+
+}
+
+// 获取在线用户列表
+void LoginServerImpl::Handle_is_user_online(const rpc_server::IsUserOnlineReq* req, rpc_server::IsUserOnlineRes* res)
+{
+    // 获取账号
+    std::string account = req->account();
+
+    // 检查用户的在线状态
+    auto client = redis_client.get_client();
+    auto reply = client->exists({account});
+    client->sync_commit();
+    if(reply.get().as_integer() == 1)
+    {
+        res->set_success(true);
+        res->set_message("User is online");
+        res->set_is_online(true);
+    }
+    else
+    {
+        res->set_success(true);
+        res->set_message("User is not online");
+        res->set_is_online(false);
+    }
+}
+
 /******************************************** 其他工具函数 ***********************************************/
 // 生成 用户token
 std::string LoginServerImpl::GenerateToken(const std::string& account)

@@ -75,14 +75,14 @@ class LoginServer final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ChangePasswordRes>>(PrepareAsyncChange_passwordRaw(context, request, cq));
     }
     // 修改密码服务
-    virtual ::grpc::Status Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::rpc_server::GetOnlineUsersRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetOnlineUsersRes>> AsyncGet_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetOnlineUsersRes>>(AsyncGet_online_usersRaw(context, request, cq));
+    virtual ::grpc::Status Is_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::rpc_server::IsUserOnlineRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::IsUserOnlineRes>> AsyncIs_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::IsUserOnlineRes>>(AsyncIs_user_onlineRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetOnlineUsersRes>> PrepareAsyncGet_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetOnlineUsersRes>>(PrepareAsyncGet_online_usersRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::IsUserOnlineRes>> PrepareAsyncIs_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::IsUserOnlineRes>>(PrepareAsyncIs_user_onlineRaw(context, request, cq));
     }
-    // 获取在线用户列表
+    // 检查用户是否在线
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -101,9 +101,9 @@ class LoginServer final {
       virtual void Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 修改密码服务
-      virtual void Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 获取在线用户列表
+      virtual void Is_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq* request, ::rpc_server::IsUserOnlineRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Is_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq* request, ::rpc_server::IsUserOnlineRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 检查用户是否在线
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -119,8 +119,8 @@ class LoginServer final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::AuthenticateRes>* PrepareAsyncAuthenticateRaw(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ChangePasswordRes>* AsyncChange_passwordRaw(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::ChangePasswordRes>* PrepareAsyncChange_passwordRaw(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetOnlineUsersRes>* AsyncGet_online_usersRaw(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetOnlineUsersRes>* PrepareAsyncGet_online_usersRaw(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::IsUserOnlineRes>* AsyncIs_user_onlineRaw(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::IsUserOnlineRes>* PrepareAsyncIs_user_onlineRaw(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -160,12 +160,12 @@ class LoginServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ChangePasswordRes>> PrepareAsyncChange_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::ChangePasswordRes>>(PrepareAsyncChange_passwordRaw(context, request, cq));
     }
-    ::grpc::Status Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::rpc_server::GetOnlineUsersRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>> AsyncGet_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>>(AsyncGet_online_usersRaw(context, request, cq));
+    ::grpc::Status Is_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::rpc_server::IsUserOnlineRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::IsUserOnlineRes>> AsyncIs_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::IsUserOnlineRes>>(AsyncIs_user_onlineRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>> PrepareAsyncGet_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>>(PrepareAsyncGet_online_usersRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::IsUserOnlineRes>> PrepareAsyncIs_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::IsUserOnlineRes>>(PrepareAsyncIs_user_onlineRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
@@ -180,8 +180,8 @@ class LoginServer final {
       void Authenticate(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq* request, ::rpc_server::AuthenticateRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response, std::function<void(::grpc::Status)>) override;
       void Change_password(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response, std::function<void(::grpc::Status)>) override;
-      void Get_online_users(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Is_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq* request, ::rpc_server::IsUserOnlineRes* response, std::function<void(::grpc::Status)>) override;
+      void Is_user_online(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq* request, ::rpc_server::IsUserOnlineRes* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -203,14 +203,14 @@ class LoginServer final {
     ::grpc::ClientAsyncResponseReader< ::rpc_server::AuthenticateRes>* PrepareAsyncAuthenticateRaw(::grpc::ClientContext* context, const ::rpc_server::AuthenticateReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::ChangePasswordRes>* AsyncChange_passwordRaw(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::ChangePasswordRes>* PrepareAsyncChange_passwordRaw(::grpc::ClientContext* context, const ::rpc_server::ChangePasswordReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>* AsyncGet_online_usersRaw(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetOnlineUsersRes>* PrepareAsyncGet_online_usersRaw(::grpc::ClientContext* context, const ::rpc_server::GetOnlineUsersReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::IsUserOnlineRes>* AsyncIs_user_onlineRaw(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::IsUserOnlineRes>* PrepareAsyncIs_user_onlineRaw(::grpc::ClientContext* context, const ::rpc_server::IsUserOnlineReq& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Login_;
     const ::grpc::internal::RpcMethod rpcmethod_Logout_;
     const ::grpc::internal::RpcMethod rpcmethod_Register_;
     const ::grpc::internal::RpcMethod rpcmethod_Authenticate_;
     const ::grpc::internal::RpcMethod rpcmethod_Change_password_;
-    const ::grpc::internal::RpcMethod rpcmethod_Get_online_users_;
+    const ::grpc::internal::RpcMethod rpcmethod_Is_user_online_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -228,8 +228,8 @@ class LoginServer final {
     // 令牌验证服务
     virtual ::grpc::Status Change_password(::grpc::ServerContext* context, const ::rpc_server::ChangePasswordReq* request, ::rpc_server::ChangePasswordRes* response);
     // 修改密码服务
-    virtual ::grpc::Status Get_online_users(::grpc::ServerContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response);
-    // 获取在线用户列表
+    virtual ::grpc::Status Is_user_online(::grpc::ServerContext* context, const ::rpc_server::IsUserOnlineReq* request, ::rpc_server::IsUserOnlineRes* response);
+    // 检查用户是否在线
   };
   template <class BaseClass>
   class WithAsyncMethod_Login : public BaseClass {
@@ -332,26 +332,26 @@ class LoginServer final {
     }
   };
   template <class BaseClass>
-  class WithAsyncMethod_Get_online_users : public BaseClass {
+  class WithAsyncMethod_Is_user_online : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_Get_online_users() {
+    WithAsyncMethod_Is_user_online() {
       ::grpc::Service::MarkMethodAsync(5);
     }
-    ~WithAsyncMethod_Get_online_users() override {
+    ~WithAsyncMethod_Is_user_online() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_online_users(::grpc::ServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/) override {
+    ::grpc::Status Is_user_online(::grpc::ServerContext* /*context*/, const ::rpc_server::IsUserOnlineReq* /*request*/, ::rpc_server::IsUserOnlineRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGet_online_users(::grpc::ServerContext* context, ::rpc_server::GetOnlineUsersReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::GetOnlineUsersRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestIs_user_online(::grpc::ServerContext* context, ::rpc_server::IsUserOnlineReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::IsUserOnlineRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Login<WithAsyncMethod_Logout<WithAsyncMethod_Register<WithAsyncMethod_Authenticate<WithAsyncMethod_Change_password<WithAsyncMethod_Get_online_users<Service > > > > > > AsyncService;
+  typedef WithAsyncMethod_Login<WithAsyncMethod_Logout<WithAsyncMethod_Register<WithAsyncMethod_Authenticate<WithAsyncMethod_Change_password<WithAsyncMethod_Is_user_online<Service > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Login : public BaseClass {
    private:
@@ -488,33 +488,33 @@ class LoginServer final {
       ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::ChangePasswordReq* /*request*/, ::rpc_server::ChangePasswordRes* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithCallbackMethod_Get_online_users : public BaseClass {
+  class WithCallbackMethod_Is_user_online : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_Get_online_users() {
+    WithCallbackMethod_Is_user_online() {
       ::grpc::Service::MarkMethodCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::IsUserOnlineReq, ::rpc_server::IsUserOnlineRes>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::GetOnlineUsersReq* request, ::rpc_server::GetOnlineUsersRes* response) { return this->Get_online_users(context, request, response); }));}
-    void SetMessageAllocatorFor_Get_online_users(
-        ::grpc::MessageAllocator< ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::IsUserOnlineReq* request, ::rpc_server::IsUserOnlineRes* response) { return this->Is_user_online(context, request, response); }));}
+    void SetMessageAllocatorFor_Is_user_online(
+        ::grpc::MessageAllocator< ::rpc_server::IsUserOnlineReq, ::rpc_server::IsUserOnlineRes>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::IsUserOnlineReq, ::rpc_server::IsUserOnlineRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_Get_online_users() override {
+    ~WithCallbackMethod_Is_user_online() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_online_users(::grpc::ServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/) override {
+    ::grpc::Status Is_user_online(::grpc::ServerContext* /*context*/, const ::rpc_server::IsUserOnlineReq* /*request*/, ::rpc_server::IsUserOnlineRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* Get_online_users(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* Is_user_online(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::IsUserOnlineReq* /*request*/, ::rpc_server::IsUserOnlineRes* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Login<WithCallbackMethod_Logout<WithCallbackMethod_Register<WithCallbackMethod_Authenticate<WithCallbackMethod_Change_password<WithCallbackMethod_Get_online_users<Service > > > > > > CallbackService;
+  typedef WithCallbackMethod_Login<WithCallbackMethod_Logout<WithCallbackMethod_Register<WithCallbackMethod_Authenticate<WithCallbackMethod_Change_password<WithCallbackMethod_Is_user_online<Service > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Login : public BaseClass {
@@ -602,18 +602,18 @@ class LoginServer final {
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_Get_online_users : public BaseClass {
+  class WithGenericMethod_Is_user_online : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_Get_online_users() {
+    WithGenericMethod_Is_user_online() {
       ::grpc::Service::MarkMethodGeneric(5);
     }
-    ~WithGenericMethod_Get_online_users() override {
+    ~WithGenericMethod_Is_user_online() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_online_users(::grpc::ServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/) override {
+    ::grpc::Status Is_user_online(::grpc::ServerContext* /*context*/, const ::rpc_server::IsUserOnlineReq* /*request*/, ::rpc_server::IsUserOnlineRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -719,22 +719,22 @@ class LoginServer final {
     }
   };
   template <class BaseClass>
-  class WithRawMethod_Get_online_users : public BaseClass {
+  class WithRawMethod_Is_user_online : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_Get_online_users() {
+    WithRawMethod_Is_user_online() {
       ::grpc::Service::MarkMethodRaw(5);
     }
-    ~WithRawMethod_Get_online_users() override {
+    ~WithRawMethod_Is_user_online() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_online_users(::grpc::ServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/) override {
+    ::grpc::Status Is_user_online(::grpc::ServerContext* /*context*/, const ::rpc_server::IsUserOnlineReq* /*request*/, ::rpc_server::IsUserOnlineRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGet_online_users(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestIs_user_online(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -849,25 +849,25 @@ class LoginServer final {
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Get_online_users : public BaseClass {
+  class WithRawCallbackMethod_Is_user_online : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_Get_online_users() {
+    WithRawCallbackMethod_Is_user_online() {
       ::grpc::Service::MarkMethodRawCallback(5,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get_online_users(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Is_user_online(context, request, response); }));
     }
-    ~WithRawCallbackMethod_Get_online_users() override {
+    ~WithRawCallbackMethod_Is_user_online() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_online_users(::grpc::ServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/) override {
+    ::grpc::Status Is_user_online(::grpc::ServerContext* /*context*/, const ::rpc_server::IsUserOnlineReq* /*request*/, ::rpc_server::IsUserOnlineRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* Get_online_users(
+    virtual ::grpc::ServerUnaryReactor* Is_user_online(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1006,35 +1006,35 @@ class LoginServer final {
     virtual ::grpc::Status StreamedChange_password(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::ChangePasswordReq,::rpc_server::ChangePasswordRes>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_Get_online_users : public BaseClass {
+  class WithStreamedUnaryMethod_Is_user_online : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_Get_online_users() {
+    WithStreamedUnaryMethod_Is_user_online() {
       ::grpc::Service::MarkMethodStreamed(5,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes>(
+          ::rpc_server::IsUserOnlineReq, ::rpc_server::IsUserOnlineRes>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::GetOnlineUsersReq, ::rpc_server::GetOnlineUsersRes>* streamer) {
-                       return this->StreamedGet_online_users(context,
+                     ::rpc_server::IsUserOnlineReq, ::rpc_server::IsUserOnlineRes>* streamer) {
+                       return this->StreamedIs_user_online(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_Get_online_users() override {
+    ~WithStreamedUnaryMethod_Is_user_online() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Get_online_users(::grpc::ServerContext* /*context*/, const ::rpc_server::GetOnlineUsersReq* /*request*/, ::rpc_server::GetOnlineUsersRes* /*response*/) override {
+    ::grpc::Status Is_user_online(::grpc::ServerContext* /*context*/, const ::rpc_server::IsUserOnlineReq* /*request*/, ::rpc_server::IsUserOnlineRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGet_online_users(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::GetOnlineUsersReq,::rpc_server::GetOnlineUsersRes>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedIs_user_online(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::IsUserOnlineReq,::rpc_server::IsUserOnlineRes>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_Logout<WithStreamedUnaryMethod_Register<WithStreamedUnaryMethod_Authenticate<WithStreamedUnaryMethod_Change_password<WithStreamedUnaryMethod_Get_online_users<Service > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_Logout<WithStreamedUnaryMethod_Register<WithStreamedUnaryMethod_Authenticate<WithStreamedUnaryMethod_Change_password<WithStreamedUnaryMethod_Is_user_online<Service > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_Logout<WithStreamedUnaryMethod_Register<WithStreamedUnaryMethod_Authenticate<WithStreamedUnaryMethod_Change_password<WithStreamedUnaryMethod_Get_online_users<Service > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_Logout<WithStreamedUnaryMethod_Register<WithStreamedUnaryMethod_Authenticate<WithStreamedUnaryMethod_Change_password<WithStreamedUnaryMethod_Is_user_online<Service > > > > > > StreamedService;
 };
 
 }  // namespace rpc_server

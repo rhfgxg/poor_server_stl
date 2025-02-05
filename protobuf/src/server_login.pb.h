@@ -68,12 +68,12 @@ extern ChangePasswordReqDefaultTypeInternal _ChangePasswordReq_default_instance_
 class ChangePasswordRes;
 struct ChangePasswordResDefaultTypeInternal;
 extern ChangePasswordResDefaultTypeInternal _ChangePasswordRes_default_instance_;
-class GetOnlineUsersReq;
-struct GetOnlineUsersReqDefaultTypeInternal;
-extern GetOnlineUsersReqDefaultTypeInternal _GetOnlineUsersReq_default_instance_;
-class GetOnlineUsersRes;
-struct GetOnlineUsersResDefaultTypeInternal;
-extern GetOnlineUsersResDefaultTypeInternal _GetOnlineUsersRes_default_instance_;
+class IsUserOnlineReq;
+struct IsUserOnlineReqDefaultTypeInternal;
+extern IsUserOnlineReqDefaultTypeInternal _IsUserOnlineReq_default_instance_;
+class IsUserOnlineRes;
+struct IsUserOnlineResDefaultTypeInternal;
+extern IsUserOnlineResDefaultTypeInternal _IsUserOnlineRes_default_instance_;
 class LoginReq;
 struct LoginReqDefaultTypeInternal;
 extern LoginReqDefaultTypeInternal _LoginReq_default_instance_;
@@ -840,9 +840,26 @@ class LogoutReq final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kTokenFieldNumber = 1,
+    kAccountFieldNumber = 1,
+    kTokenFieldNumber = 2,
   };
-  // bytes token = 1;
+  // bytes account = 1;
+  void clear_account() ;
+  const std::string& account() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_account(Arg_&& arg, Args_... args);
+  std::string* mutable_account();
+  PROTOBUF_NODISCARD std::string* release_account();
+  void set_allocated_account(std::string* value);
+
+  private:
+  const std::string& _internal_account() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account(
+      const std::string& value);
+  std::string* _internal_mutable_account();
+
+  public:
+  // bytes token = 2;
   void clear_token() ;
   const std::string& token() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -864,7 +881,7 @@ class LogoutReq final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
+      1, 2, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -881,6 +898,7 @@ class LogoutReq final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr account_;
     ::google::protobuf::internal::ArenaStringPtr token_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1299,26 +1317,26 @@ class LoginReq final :
   friend struct ::TableStruct_server_5flogin_2eproto;
 };// -------------------------------------------------------------------
 
-class GetOnlineUsersRes final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GetOnlineUsersRes) */ {
+class IsUserOnlineRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.IsUserOnlineRes) */ {
  public:
-  inline GetOnlineUsersRes() : GetOnlineUsersRes(nullptr) {}
-  ~GetOnlineUsersRes() override;
+  inline IsUserOnlineRes() : IsUserOnlineRes(nullptr) {}
+  ~IsUserOnlineRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR GetOnlineUsersRes(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR IsUserOnlineRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline GetOnlineUsersRes(const GetOnlineUsersRes& from)
-      : GetOnlineUsersRes(nullptr, from) {}
-  GetOnlineUsersRes(GetOnlineUsersRes&& from) noexcept
-    : GetOnlineUsersRes() {
+  inline IsUserOnlineRes(const IsUserOnlineRes& from)
+      : IsUserOnlineRes(nullptr, from) {}
+  IsUserOnlineRes(IsUserOnlineRes&& from) noexcept
+    : IsUserOnlineRes() {
     *this = ::std::move(from);
   }
 
-  inline GetOnlineUsersRes& operator=(const GetOnlineUsersRes& from) {
+  inline IsUserOnlineRes& operator=(const IsUserOnlineRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline GetOnlineUsersRes& operator=(GetOnlineUsersRes&& from) noexcept {
+  inline IsUserOnlineRes& operator=(IsUserOnlineRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1350,20 +1368,20 @@ class GetOnlineUsersRes final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const GetOnlineUsersRes& default_instance() {
+  static const IsUserOnlineRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const GetOnlineUsersRes* internal_default_instance() {
-    return reinterpret_cast<const GetOnlineUsersRes*>(
-               &_GetOnlineUsersRes_default_instance_);
+  static inline const IsUserOnlineRes* internal_default_instance() {
+    return reinterpret_cast<const IsUserOnlineRes*>(
+               &_IsUserOnlineRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     11;
 
-  friend void swap(GetOnlineUsersRes& a, GetOnlineUsersRes& b) {
+  friend void swap(IsUserOnlineRes& a, IsUserOnlineRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(GetOnlineUsersRes* other) {
+  inline void Swap(IsUserOnlineRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -1376,7 +1394,7 @@ class GetOnlineUsersRes final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(GetOnlineUsersRes* other) {
+  void UnsafeArenaSwap(IsUserOnlineRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1384,14 +1402,14 @@ class GetOnlineUsersRes final :
 
   // implements Message ----------------------------------------------
 
-  GetOnlineUsersRes* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GetOnlineUsersRes>(arena);
+  IsUserOnlineRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<IsUserOnlineRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const GetOnlineUsersRes& from);
+  void CopyFrom(const IsUserOnlineRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const GetOnlineUsersRes& from) {
-    GetOnlineUsersRes::MergeImpl(*this, from);
+  void MergeFrom( const IsUserOnlineRes& from) {
+    IsUserOnlineRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -1409,16 +1427,16 @@ class GetOnlineUsersRes final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(GetOnlineUsersRes* other);
+  void InternalSwap(IsUserOnlineRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.GetOnlineUsersRes";
+    return "rpc_server.IsUserOnlineRes";
   }
   protected:
-  explicit GetOnlineUsersRes(::google::protobuf::Arena* arena);
-  GetOnlineUsersRes(::google::protobuf::Arena* arena, const GetOnlineUsersRes& from);
+  explicit IsUserOnlineRes(::google::protobuf::Arena* arena);
+  IsUserOnlineRes(::google::protobuf::Arena* arena, const IsUserOnlineRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -1431,38 +1449,10 @@ class GetOnlineUsersRes final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUsersFieldNumber = 3,
     kMessageFieldNumber = 2,
     kSuccessFieldNumber = 1,
+    kIsOnlineFieldNumber = 3,
   };
-  // repeated bytes users = 3;
-  int users_size() const;
-  private:
-  int _internal_users_size() const;
-
-  public:
-  void clear_users() ;
-  const std::string& users(int index) const;
-  std::string* mutable_users(int index);
-  void set_users(int index, const std::string& value);
-  void set_users(int index, std::string&& value);
-  void set_users(int index, const char* value);
-  void set_users(int index, const void* value, std::size_t size);
-  void set_users(int index, absl::string_view value);
-  std::string* add_users();
-  void add_users(const std::string& value);
-  void add_users(std::string&& value);
-  void add_users(const char* value);
-  void add_users(const void* value, std::size_t size);
-  void add_users(absl::string_view value);
-  const ::google::protobuf::RepeatedPtrField<std::string>& users() const;
-  ::google::protobuf::RepeatedPtrField<std::string>* mutable_users();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_users() const;
-  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_users();
-
-  public:
   // bytes message = 2;
   void clear_message() ;
   const std::string& message() const;
@@ -1489,7 +1479,17 @@ class GetOnlineUsersRes final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.GetOnlineUsersRes)
+  // bool is_online = 3;
+  void clear_is_online() ;
+  bool is_online() const;
+  void set_is_online(bool value);
+
+  private:
+  bool _internal_is_online() const;
+  void _internal_set_is_online(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:rpc_server.IsUserOnlineRes)
  private:
   class _Internal;
 
@@ -1512,9 +1512,9 @@ class GetOnlineUsersRes final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedPtrField<std::string> users_;
     ::google::protobuf::internal::ArenaStringPtr message_;
     bool success_;
+    bool is_online_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1522,26 +1522,26 @@ class GetOnlineUsersRes final :
   friend struct ::TableStruct_server_5flogin_2eproto;
 };// -------------------------------------------------------------------
 
-class GetOnlineUsersReq final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.GetOnlineUsersReq) */ {
+class IsUserOnlineReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.IsUserOnlineReq) */ {
  public:
-  inline GetOnlineUsersReq() : GetOnlineUsersReq(nullptr) {}
-  ~GetOnlineUsersReq() override;
+  inline IsUserOnlineReq() : IsUserOnlineReq(nullptr) {}
+  ~IsUserOnlineReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR GetOnlineUsersReq(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR IsUserOnlineReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline GetOnlineUsersReq(const GetOnlineUsersReq& from)
-      : GetOnlineUsersReq(nullptr, from) {}
-  GetOnlineUsersReq(GetOnlineUsersReq&& from) noexcept
-    : GetOnlineUsersReq() {
+  inline IsUserOnlineReq(const IsUserOnlineReq& from)
+      : IsUserOnlineReq(nullptr, from) {}
+  IsUserOnlineReq(IsUserOnlineReq&& from) noexcept
+    : IsUserOnlineReq() {
     *this = ::std::move(from);
   }
 
-  inline GetOnlineUsersReq& operator=(const GetOnlineUsersReq& from) {
+  inline IsUserOnlineReq& operator=(const IsUserOnlineReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline GetOnlineUsersReq& operator=(GetOnlineUsersReq&& from) noexcept {
+  inline IsUserOnlineReq& operator=(IsUserOnlineReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1573,20 +1573,20 @@ class GetOnlineUsersReq final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const GetOnlineUsersReq& default_instance() {
+  static const IsUserOnlineReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const GetOnlineUsersReq* internal_default_instance() {
-    return reinterpret_cast<const GetOnlineUsersReq*>(
-               &_GetOnlineUsersReq_default_instance_);
+  static inline const IsUserOnlineReq* internal_default_instance() {
+    return reinterpret_cast<const IsUserOnlineReq*>(
+               &_IsUserOnlineReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     10;
 
-  friend void swap(GetOnlineUsersReq& a, GetOnlineUsersReq& b) {
+  friend void swap(IsUserOnlineReq& a, IsUserOnlineReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(GetOnlineUsersReq* other) {
+  inline void Swap(IsUserOnlineReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -1599,7 +1599,7 @@ class GetOnlineUsersReq final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(GetOnlineUsersReq* other) {
+  void UnsafeArenaSwap(IsUserOnlineReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1607,14 +1607,14 @@ class GetOnlineUsersReq final :
 
   // implements Message ----------------------------------------------
 
-  GetOnlineUsersReq* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GetOnlineUsersReq>(arena);
+  IsUserOnlineReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<IsUserOnlineReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const GetOnlineUsersReq& from);
+  void CopyFrom(const IsUserOnlineReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const GetOnlineUsersReq& from) {
-    GetOnlineUsersReq::MergeImpl(*this, from);
+  void MergeFrom( const IsUserOnlineReq& from) {
+    IsUserOnlineReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -1632,16 +1632,16 @@ class GetOnlineUsersReq final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(GetOnlineUsersReq* other);
+  void InternalSwap(IsUserOnlineReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.GetOnlineUsersReq";
+    return "rpc_server.IsUserOnlineReq";
   }
   protected:
-  explicit GetOnlineUsersReq(::google::protobuf::Arena* arena);
-  GetOnlineUsersReq(::google::protobuf::Arena* arena, const GetOnlineUsersReq& from);
+  explicit IsUserOnlineReq(::google::protobuf::Arena* arena);
+  IsUserOnlineReq(::google::protobuf::Arena* arena, const IsUserOnlineReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -1654,25 +1654,25 @@ class GetOnlineUsersReq final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kTokenFieldNumber = 1,
+    kAccountFieldNumber = 1,
   };
-  // bytes token = 1;
-  void clear_token() ;
-  const std::string& token() const;
+  // bytes account = 1;
+  void clear_account() ;
+  const std::string& account() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_token(Arg_&& arg, Args_... args);
-  std::string* mutable_token();
-  PROTOBUF_NODISCARD std::string* release_token();
-  void set_allocated_token(std::string* value);
+  void set_account(Arg_&& arg, Args_... args);
+  std::string* mutable_account();
+  PROTOBUF_NODISCARD std::string* release_account();
+  void set_allocated_account(std::string* value);
 
   private:
-  const std::string& _internal_token() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_token(
+  const std::string& _internal_account() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account(
       const std::string& value);
-  std::string* _internal_mutable_token();
+  std::string* _internal_mutable_account();
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.GetOnlineUsersReq)
+  // @@protoc_insertion_point(class_scope:rpc_server.IsUserOnlineReq)
  private:
   class _Internal;
 
@@ -1695,7 +1695,7 @@ class GetOnlineUsersReq final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr token_;
+    ::google::protobuf::internal::ArenaStringPtr account_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2028,11 +2028,28 @@ class ChangePasswordReq final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kTokenFieldNumber = 1,
-    kOldPasswordFieldNumber = 2,
-    kNewPasswordFieldNumber = 3,
+    kAccountFieldNumber = 1,
+    kTokenFieldNumber = 2,
+    kOldPasswordFieldNumber = 3,
+    kNewPasswordFieldNumber = 4,
   };
-  // bytes token = 1;
+  // bytes account = 1;
+  void clear_account() ;
+  const std::string& account() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_account(Arg_&& arg, Args_... args);
+  std::string* mutable_account();
+  PROTOBUF_NODISCARD std::string* release_account();
+  void set_allocated_account(std::string* value);
+
+  private:
+  const std::string& _internal_account() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account(
+      const std::string& value);
+  std::string* _internal_mutable_account();
+
+  public:
+  // bytes token = 2;
   void clear_token() ;
   const std::string& token() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -2048,7 +2065,7 @@ class ChangePasswordReq final :
   std::string* _internal_mutable_token();
 
   public:
-  // bytes old_password = 2;
+  // bytes old_password = 3;
   void clear_old_password() ;
   const std::string& old_password() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -2064,7 +2081,7 @@ class ChangePasswordReq final :
   std::string* _internal_mutable_old_password();
 
   public:
-  // bytes new_password = 3;
+  // bytes new_password = 4;
   void clear_new_password() ;
   const std::string& new_password() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -2086,7 +2103,7 @@ class ChangePasswordReq final :
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
+      2, 4, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -2103,6 +2120,7 @@ class ChangePasswordReq final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr account_;
     ::google::protobuf::internal::ArenaStringPtr token_;
     ::google::protobuf::internal::ArenaStringPtr old_password_;
     ::google::protobuf::internal::ArenaStringPtr new_password_;
@@ -2764,7 +2782,60 @@ inline void LoginRes::set_allocated_token(std::string* value) {
 
 // LogoutReq
 
-// bytes token = 1;
+// bytes account = 1;
+inline void LogoutReq::clear_account() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_.ClearToEmpty();
+}
+inline const std::string& LogoutReq::account() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:rpc_server.LogoutReq.account)
+  return _internal_account();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void LogoutReq::set_account(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.LogoutReq.account)
+}
+inline std::string* LogoutReq::mutable_account() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account();
+  // @@protoc_insertion_point(field_mutable:rpc_server.LogoutReq.account)
+  return _s;
+}
+inline const std::string& LogoutReq::_internal_account() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.account_.Get();
+}
+inline void LogoutReq::_internal_set_account(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_.Set(value, GetArena());
+}
+inline std::string* LogoutReq::_internal_mutable_account() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.account_.Mutable( GetArena());
+}
+inline std::string* LogoutReq::release_account() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:rpc_server.LogoutReq.account)
+  return _impl_.account_.Release();
+}
+inline void LogoutReq::set_allocated_account(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.account_.IsDefault()) {
+          _impl_.account_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.LogoutReq.account)
+}
+
+// bytes token = 2;
 inline void LogoutReq::clear_token() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.token_.ClearToEmpty();
@@ -3334,7 +3405,60 @@ inline void AuthenticateRes::set_allocated_message(std::string* value) {
 
 // ChangePasswordReq
 
-// bytes token = 1;
+// bytes account = 1;
+inline void ChangePasswordReq::clear_account() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_.ClearToEmpty();
+}
+inline const std::string& ChangePasswordReq::account() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:rpc_server.ChangePasswordReq.account)
+  return _internal_account();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ChangePasswordReq::set_account(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.ChangePasswordReq.account)
+}
+inline std::string* ChangePasswordReq::mutable_account() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account();
+  // @@protoc_insertion_point(field_mutable:rpc_server.ChangePasswordReq.account)
+  return _s;
+}
+inline const std::string& ChangePasswordReq::_internal_account() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.account_.Get();
+}
+inline void ChangePasswordReq::_internal_set_account(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_.Set(value, GetArena());
+}
+inline std::string* ChangePasswordReq::_internal_mutable_account() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.account_.Mutable( GetArena());
+}
+inline std::string* ChangePasswordReq::release_account() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:rpc_server.ChangePasswordReq.account)
+  return _impl_.account_.Release();
+}
+inline void ChangePasswordReq::set_allocated_account(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.account_.IsDefault()) {
+          _impl_.account_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.ChangePasswordReq.account)
+}
+
+// bytes token = 2;
 inline void ChangePasswordReq::clear_token() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.token_.ClearToEmpty();
@@ -3387,7 +3511,7 @@ inline void ChangePasswordReq::set_allocated_token(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:rpc_server.ChangePasswordReq.token)
 }
 
-// bytes old_password = 2;
+// bytes old_password = 3;
 inline void ChangePasswordReq::clear_old_password() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.old_password_.ClearToEmpty();
@@ -3440,7 +3564,7 @@ inline void ChangePasswordReq::set_allocated_old_password(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:rpc_server.ChangePasswordReq.old_password)
 }
 
-// bytes new_password = 3;
+// bytes new_password = 4;
 inline void ChangePasswordReq::clear_new_password() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.new_password_.ClearToEmpty();
@@ -3575,131 +3699,131 @@ inline void ChangePasswordRes::set_allocated_message(std::string* value) {
 
 // -------------------------------------------------------------------
 
-// GetOnlineUsersReq
+// IsUserOnlineReq
 
-// bytes token = 1;
-inline void GetOnlineUsersReq::clear_token() {
+// bytes account = 1;
+inline void IsUserOnlineReq::clear_account() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.token_.ClearToEmpty();
+  _impl_.account_.ClearToEmpty();
 }
-inline const std::string& GetOnlineUsersReq::token() const
+inline const std::string& IsUserOnlineReq::account() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.GetOnlineUsersReq.token)
-  return _internal_token();
+  // @@protoc_insertion_point(field_get:rpc_server.IsUserOnlineReq.account)
+  return _internal_account();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void GetOnlineUsersReq::set_token(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void IsUserOnlineReq::set_account(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.token_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.GetOnlineUsersReq.token)
+  _impl_.account_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.IsUserOnlineReq.account)
 }
-inline std::string* GetOnlineUsersReq::mutable_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_token();
-  // @@protoc_insertion_point(field_mutable:rpc_server.GetOnlineUsersReq.token)
+inline std::string* IsUserOnlineReq::mutable_account() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account();
+  // @@protoc_insertion_point(field_mutable:rpc_server.IsUserOnlineReq.account)
   return _s;
 }
-inline const std::string& GetOnlineUsersReq::_internal_token() const {
+inline const std::string& IsUserOnlineReq::_internal_account() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.token_.Get();
+  return _impl_.account_.Get();
 }
-inline void GetOnlineUsersReq::_internal_set_token(const std::string& value) {
+inline void IsUserOnlineReq::_internal_set_account(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.token_.Set(value, GetArena());
+  _impl_.account_.Set(value, GetArena());
 }
-inline std::string* GetOnlineUsersReq::_internal_mutable_token() {
+inline std::string* IsUserOnlineReq::_internal_mutable_account() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  return _impl_.token_.Mutable( GetArena());
+  return _impl_.account_.Mutable( GetArena());
 }
-inline std::string* GetOnlineUsersReq::release_token() {
+inline std::string* IsUserOnlineReq::release_account() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.GetOnlineUsersReq.token)
-  return _impl_.token_.Release();
+  // @@protoc_insertion_point(field_release:rpc_server.IsUserOnlineReq.account)
+  return _impl_.account_.Release();
 }
-inline void GetOnlineUsersReq::set_allocated_token(std::string* value) {
+inline void IsUserOnlineReq::set_allocated_account(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.token_.SetAllocated(value, GetArena());
+  _impl_.account_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.token_.IsDefault()) {
-          _impl_.token_.Set("", GetArena());
+        if (_impl_.account_.IsDefault()) {
+          _impl_.account_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.GetOnlineUsersReq.token)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.IsUserOnlineReq.account)
 }
 
 // -------------------------------------------------------------------
 
-// GetOnlineUsersRes
+// IsUserOnlineRes
 
 // bool success = 1;
-inline void GetOnlineUsersRes::clear_success() {
+inline void IsUserOnlineRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool GetOnlineUsersRes::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.GetOnlineUsersRes.success)
+inline bool IsUserOnlineRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.IsUserOnlineRes.success)
   return _internal_success();
 }
-inline void GetOnlineUsersRes::set_success(bool value) {
+inline void IsUserOnlineRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.GetOnlineUsersRes.success)
+  // @@protoc_insertion_point(field_set:rpc_server.IsUserOnlineRes.success)
 }
-inline bool GetOnlineUsersRes::_internal_success() const {
+inline bool IsUserOnlineRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void GetOnlineUsersRes::_internal_set_success(bool value) {
+inline void IsUserOnlineRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // bytes message = 2;
-inline void GetOnlineUsersRes::clear_message() {
+inline void IsUserOnlineRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& GetOnlineUsersRes::message() const
+inline const std::string& IsUserOnlineRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.GetOnlineUsersRes.message)
+  // @@protoc_insertion_point(field_get:rpc_server.IsUserOnlineRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void GetOnlineUsersRes::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void IsUserOnlineRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.GetOnlineUsersRes.message)
+  // @@protoc_insertion_point(field_set:rpc_server.IsUserOnlineRes.message)
 }
-inline std::string* GetOnlineUsersRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* IsUserOnlineRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.GetOnlineUsersRes.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.IsUserOnlineRes.message)
   return _s;
 }
-inline const std::string& GetOnlineUsersRes::_internal_message() const {
+inline const std::string& IsUserOnlineRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void GetOnlineUsersRes::_internal_set_message(const std::string& value) {
+inline void IsUserOnlineRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* GetOnlineUsersRes::_internal_mutable_message() {
+inline std::string* IsUserOnlineRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* GetOnlineUsersRes::release_message() {
+inline std::string* IsUserOnlineRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.GetOnlineUsersRes.message)
+  // @@protoc_insertion_point(field_release:rpc_server.IsUserOnlineRes.message)
   return _impl_.message_.Release();
 }
-inline void GetOnlineUsersRes::set_allocated_message(std::string* value) {
+inline void IsUserOnlineRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -3707,108 +3831,30 @@ inline void GetOnlineUsersRes::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.GetOnlineUsersRes.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.IsUserOnlineRes.message)
 }
 
-// repeated bytes users = 3;
-inline int GetOnlineUsersRes::_internal_users_size() const {
-  return _internal_users().size();
-}
-inline int GetOnlineUsersRes::users_size() const {
-  return _internal_users_size();
-}
-inline void GetOnlineUsersRes::clear_users() {
+// bool is_online = 3;
+inline void IsUserOnlineRes::clear_is_online() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.users_.Clear();
+  _impl_.is_online_ = false;
 }
-inline std::string* GetOnlineUsersRes::add_users()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  std::string* _s = _internal_mutable_users()->Add();
-  // @@protoc_insertion_point(field_add_mutable:rpc_server.GetOnlineUsersRes.users)
-  return _s;
+inline bool IsUserOnlineRes::is_online() const {
+  // @@protoc_insertion_point(field_get:rpc_server.IsUserOnlineRes.is_online)
+  return _internal_is_online();
 }
-inline const std::string& GetOnlineUsersRes::users(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.GetOnlineUsersRes.users)
-  return _internal_users().Get(index);
+inline void IsUserOnlineRes::set_is_online(bool value) {
+  _internal_set_is_online(value);
+  // @@protoc_insertion_point(field_set:rpc_server.IsUserOnlineRes.is_online)
 }
-inline std::string* GetOnlineUsersRes::mutable_users(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:rpc_server.GetOnlineUsersRes.users)
-  return _internal_mutable_users()->Mutable(index);
-}
-inline void GetOnlineUsersRes::set_users(int index, const std::string& value) {
-  _internal_mutable_users()->Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:rpc_server.GetOnlineUsersRes.users)
-}
-inline void GetOnlineUsersRes::set_users(int index, std::string&& value) {
-  _internal_mutable_users()->Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:rpc_server.GetOnlineUsersRes.users)
-}
-inline void GetOnlineUsersRes::set_users(int index, const char* value) {
-  ABSL_DCHECK(value != nullptr);
-  _internal_mutable_users()->Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:rpc_server.GetOnlineUsersRes.users)
-}
-inline void GetOnlineUsersRes::set_users(int index, const void* value,
-                              std::size_t size) {
-  _internal_mutable_users()->Mutable(index)->assign(
-      reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:rpc_server.GetOnlineUsersRes.users)
-}
-inline void GetOnlineUsersRes::set_users(int index, absl::string_view value) {
-  _internal_mutable_users()->Mutable(index)->assign(value.data(),
-                                                     value.size());
-  // @@protoc_insertion_point(field_set_string_piece:rpc_server.GetOnlineUsersRes.users)
-}
-inline void GetOnlineUsersRes::add_users(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _internal_mutable_users()->Add()->assign(value);
-  // @@protoc_insertion_point(field_add:rpc_server.GetOnlineUsersRes.users)
-}
-inline void GetOnlineUsersRes::add_users(std::string&& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _internal_mutable_users()->Add(std::move(value));
-  // @@protoc_insertion_point(field_add:rpc_server.GetOnlineUsersRes.users)
-}
-inline void GetOnlineUsersRes::add_users(const char* value) {
-  ABSL_DCHECK(value != nullptr);
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _internal_mutable_users()->Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:rpc_server.GetOnlineUsersRes.users)
-}
-inline void GetOnlineUsersRes::add_users(const void* value, std::size_t size) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _internal_mutable_users()->Add()->assign(
-      reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:rpc_server.GetOnlineUsersRes.users)
-}
-inline void GetOnlineUsersRes::add_users(absl::string_view value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _internal_mutable_users()->Add()->assign(value.data(), value.size());
-  // @@protoc_insertion_point(field_add_string_piece:rpc_server.GetOnlineUsersRes.users)
-}
-inline const ::google::protobuf::RepeatedPtrField<std::string>&
-GetOnlineUsersRes::users() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:rpc_server.GetOnlineUsersRes.users)
-  return _internal_users();
-}
-inline ::google::protobuf::RepeatedPtrField<std::string>*
-GetOnlineUsersRes::mutable_users() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:rpc_server.GetOnlineUsersRes.users)
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  return _internal_mutable_users();
-}
-inline const ::google::protobuf::RepeatedPtrField<std::string>&
-GetOnlineUsersRes::_internal_users() const {
+inline bool IsUserOnlineRes::_internal_is_online() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.users_;
+  return _impl_.is_online_;
 }
-inline ::google::protobuf::RepeatedPtrField<std::string>*
-GetOnlineUsersRes::_internal_mutable_users() {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return &_impl_.users_;
+inline void IsUserOnlineRes::_internal_set_is_online(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.is_online_ = value;
 }
 
 #ifdef __GNUC__
