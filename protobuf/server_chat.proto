@@ -1,0 +1,11 @@
+syntax = "proto3";
+package rpc_server;
+
+service ChatServer
+{
+
+}
+
+
+
+

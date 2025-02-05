@@ -1,37 +1,123 @@
+// 逻辑服务器
 syntax = "proto3";
 package rpc_server;
 
-service LogicServer
-{
-    rpc Process_gameAction (GameActionReq) returns (GameActionRes); // 处理游戏操作
-    rpc Get_game_state (GameStateReq) returns (GameStateRes);    // 获取游戏状态
+service LogicServer {
+    // 获取玩家收藏
+    rpc GetPlayerCollection(GetPlayerCollectionRequest) returns (GetPlayerCollectionResponse);
+    // 更新玩家收藏
+    rpc UpdatePlayerCollection(UpdatePlayerCollectionRequest) returns (UpdatePlayerCollectionResponse);
+    // 获取玩家成就
+    rpc GetPlayerAchievements(GetPlayerAchievementsRequest) returns (GetPlayerAchievementsResponse);
+    // 更新玩家成就
+    rpc UpdatePlayerAchievements(UpdatePlayerAchievementsRequest) returns (UpdatePlayerAchievementsResponse);
+    // 获取玩家任务
+    rpc GetPlayerTasks(GetPlayerTasksRequest) returns (GetPlayerTasksResponse);
+    // 更新玩家任务
+    rpc UpdatePlayerTasks(UpdatePlayerTasksRequest) returns (UpdatePlayerTasksResponse);
+    // 添加物品
+    rpc AddItem(AddItemRequest) returns (AddItemResponse);
+    // 使用物品
+    rpc UseItem(UseItemRequest) returns (UseItemResponse);
+    // 保存对局结果
+    rpc SaveBattleResult(SaveBattleResultRequest) returns (SaveBattleResultResponse);
 }
 
-// 游戏操作请求
-message GameActionReq
-{
-    bytes action = 1;
-    map<string, bytes> parameters = 2;
+// 获取玩家收藏请求
+message GetPlayerCollectionRequest {
+    string player_id = 1;
 }
-// 游戏操作响应
-message GameActionRes
-{
+// 获取玩家收藏响应
+message GetPlayerCollectionResponse {
+    string player_id = 1;
+    repeated string collection = 2; // 玩家收藏的卡牌ID列表
+}
+
+// 更新玩家收藏请求
+message UpdatePlayerCollectionRequest {
+    string player_id = 1;
+    repeated string collection = 2; // 更新后的玩家收藏的卡牌ID列表
+}
+// 更新玩家收藏响应
+message UpdatePlayerCollectionResponse {
     bool success = 1;
-    bytes message = 2;
+    string message = 2;
 }
 
-// 游戏状态请求
-message GameStateReq
-{
-    bytes game_id = 1;
+// 获取玩家成就请求
+message GetPlayerAchievementsRequest {
+    string player_id = 1;
 }
-// 游戏状态响应
-message GameStateRes
-{
+// 获取玩家成就响应
+message GetPlayerAchievementsResponse {
+    string player_id = 1;
+    repeated string achievements = 2; // 玩家成就ID列表
+}
+
+// 更新玩家成就请求
+message UpdatePlayerAchievementsRequest {
+    string player_id = 1;
+    repeated string achievements = 2; // 更新后的玩家成就ID列表
+}
+// 更新玩家成就响应
+message UpdatePlayerAchievementsResponse {
     bool success = 1;
-    bytes message = 2;
-    map<string, bytes> state = 3;
+    string message = 2;
 }
 
+// 获取玩家任务请求
+message GetPlayerTasksRequest {
+    string player_id = 1;
+}
+// 获取玩家任务响应
+message GetPlayerTasksResponse {
+    string player_id = 1;
+    repeated string tasks = 2; // 玩家任务ID列表
+}
 
+// 更新玩家任务请求
+message UpdatePlayerTasksRequest {
+    string player_id = 1;
+    repeated string tasks = 2; // 更新后的玩家任务ID列表
+}
+// 更新玩家任务响应
+message UpdatePlayerTasksResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// 添加物品请求
+message AddItemRequest {
+    string player_id = 1;
+    string item_id = 2; // 要添加的物品ID
+}
+// 添加物品响应
+message AddItemResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// 使用物品请求
+message UseItemRequest {
+    string player_id = 1;
+    string item_id = 2; // 要使用的物品ID
+}
+// 使用物品响应
+message UseItemResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// 保存对局结果请求
+message SaveBattleResultRequest {
+    string player_id = 1;
+    string opponent_id = 2;
+    bool is_victory = 3; // 是否胜利
+    string battle_data = 4; // 对局详细数据
+}
+// 保存对局结果响应
+message SaveBattleResultResponse {
+    bool success = 1;
+    string message = 2;
+}
 

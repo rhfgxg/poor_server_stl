@@ -58,9 +58,13 @@ find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_LIB}")   # mysqlcppco
 
 # 添加每个模块，确保可以将所有变量
 add_subdirectory(protobuf)
+#add_subdirectory(./src/battle)
+#add_subdirectory(./src/chat)
 add_subdirectory(./src/central)
 add_subdirectory(./src/db)
 add_subdirectory(./src/file)
 add_subdirectory(./src/gateway)
 add_subdirectory(./src/logic)
 add_subdirectory(./src/login)
+#add_subdirectory(./src/matching)
+#add_subdirectory(./src/store)

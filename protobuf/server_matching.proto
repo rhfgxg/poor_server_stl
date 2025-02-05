@@ -1,1 +1,37 @@
 // 匹配服务器
+syntax = "proto3";
+package rpc_server;
+
+// 匹配服务
+service MatchingService {
+    // 玩家匹配请求
+    rpc MatchPlayer(MatchPlayerRequest) returns (MatchPlayerResponse);
+    // 取消匹配请求
+    rpc CancelMatch(CancelMatchRequest) returns (CancelMatchResponse);
+}
+
+// 玩家匹配请求消息
+message MatchPlayerRequest {
+    int32 player_id = 1;
+    string player_info = 2; // 玩家信息，例如等级、段位等
+}
+
+// 玩家匹配响应消息
+message MatchPlayerResponse {
+    bool success = 1;
+    string message = 2;
+    int32 match_id = 3; // 匹配成功后的对战ID
+    string opponent_info = 4; // 对手信息
+}
+
+// 取消匹配请求消息
+message CancelMatchRequest {
+    int32 player_id = 1;
+}
+
+// 取消匹配响应消息
+message CancelMatchResponse {
+    bool success = 1;
+    string message = 2;
+}
+

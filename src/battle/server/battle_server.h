@@ -1,10 +1,11 @@
-#ifndef LOGIC_SERVER_H
-#define LOGIC_SERVER_H
+#ifndef BATTLE_SERVER_H
+#define BATTLE_SERVER_H
 
 #include "common.grpc.pb.h" // 公共模块：包含公共数据类型，枚举
-#include "server_logic.grpc.pb.h"	// 逻辑服务
-#include "server_db.grpc.pb.h"    // 数据库服务
-#include "server_central.grpc.pb.h"	// 中心服务
+#include "server_battle.grpc.pb.h"	// 战斗服务器
+#include "server_logic.grpc.pb.h"	// 逻辑服务器
+#include "server_db.grpc.pb.h"    // 数据库服务器
+#include "server_central.grpc.pb.h"	// 中心服务器
 #include "connection_pool.h"    // 连接池
 #include "logger_manager.h"     // 日志管理器
 #include "redis_client.h"       // Redis客户端
@@ -20,21 +21,21 @@
 #include <future>
 #include <lua.hpp>
 
-// 逻辑服务器实现类
-class LogicServerImpl final: public rpc_server::LogicServer::Service
+// 战斗服务器实现类
+class BattleServerImpl final: public rpc_server::BattleServer::Service
 {
 public:
-    LogicServerImpl(LoggerManager& logger_manager_, const std::string address, std::string port);	// 构造函数
-    ~LogicServerImpl();	// 析构函数
+    BattleServerImpl(LoggerManager& logger_manager_, const std::string address, std::string port);	// 构造函数
+    ~BattleServerImpl();	// 析构函数
 
-    // grpc对外接口
+    void register_server(); // 注册服务器
+    void unregister_server(); // 注销服务器
+
+    void start_thread_pool(int num_threads);    // 启动线程池
+    void stop_thread_pool();    // 停止线程池
 
 private:
     void Init_connection_pool();    // 初始化链接池
-    void register_server(); // 注册服务器
-    void unregister_server(); // 注销服务器
-    void start_thread_pool(int num_threads);    // 启动线程池
-    void stop_thread_pool();    // 停止线程池
 
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
     void Worker_thread();   // 执行线程的任务
@@ -60,4 +61,4 @@ private:
     bool stop_threads = false;  // 停止线程标志
 };
 
-#endif // LOGIC_SERVER_H
+#endif // BATTLE_SERVER_H

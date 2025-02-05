@@ -7,12 +7,16 @@ package rpc_server;
 enum ServerType
 {
     UNKNOWN = 0;		  // 未知
-    CENTRAL = 1;          // 中心服务器
-    DB = 2;               // 数据库服务
-    GATEWAY = 3;          // 网关服务
-    LOGIN = 4;            // 登录服务
-    LOGIC = 5;            // 逻辑服务
-    FILE = 6;             // 文件服务
+    BATTLE = 1;           // 战斗服务器
+    CENTRAL = 2;          // 中心服务器
+    CHAT = 3;             // 聊天服务器
+    DB = 4;               // 数据库服务器
+    FILE = 5;             // 文件服务器
+    GATEWAY = 6;          // 网关服务器
+    LOGIC = 7;            // 逻辑服务器
+    LOGIN = 8;            // 登录服务器
+    MATCHING = 9;         // 匹配服务器
+    STORE = 10;           // 商城服务器
 }
 
 // 服务类型：客户端与服务器通信的服务类型
