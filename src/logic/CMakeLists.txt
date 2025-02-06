@@ -20,6 +20,9 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_db.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_logic.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_logic.grpc.pb.cc
+    # 逻辑服下共享数据
+    ${PROJECT_SOURCE_DIR}/src/logic/common/achievement/achievement.cpp
+    ${PROJECT_SOURCE_DIR}/src/logic/common/achievement/achievement_manager.cpp
 )
 
 # 指定编译生成的可执行文件信息：文件名${MODULE_NAME} ，${SOURCES} 项目所有源文件路径

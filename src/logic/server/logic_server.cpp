@@ -6,6 +6,7 @@ LogicServerImpl::LogicServerImpl(LoggerManager& logger_manager_, const std::stri
     server_port(port),
     logger_manager(logger_manager_),
     redis_client(),
+    achievement_manager(),
     central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))),
     db_connection_pool(10)
 {
@@ -239,67 +240,191 @@ void LogicServerImpl::Send_heartbeat()
 
 /************************************ gRPC服务接口实现 ******************************************************/
 // 获取玩家收藏
-grpc::Status Get_player_collection(grpc::ServerContext* context, const rpc_server::GetPlayerCollectionReq* req, rpc_server::GetPlayerCollectionRes* res)
+grpc::Status LogicServerImpl::Get_player_collection(grpc::ServerContext* context, const rpc_server::GetPlayerCollectionReq* req, rpc_server::GetPlayerCollectionRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_get_player_collection(req, res); 
+    });
+
+    // 等待任务完成
+    task_future.get();
+
     return grpc::Status::OK;
 }
 
 // 更新玩家收藏
-grpc::Status Update_player_collection(grpc::ServerContext* context, const rpc_server::UpdatePlayerCollectionReq* req, rpc_server::UpdatePlayerCollectionRes* res)
+grpc::Status LogicServerImpl::Update_player_collection(grpc::ServerContext* context, const rpc_server::UpdatePlayerCollectionReq* req, rpc_server::UpdatePlayerCollectionRes* res)
 {
-    return grpc::Status::OK;
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_update_player_collection(req, res);
+    });
 
+    // 等待任务完成
+    task_future.get();
+
+    return grpc::Status::OK;
 }
 
 // 获取玩家成就
-grpc::Status Get_player_achievements(grpc::ServerContext* context, const rpc_server::GetPlayerAchievementsReq* req, rpc_server::GetPlayerAchievementsRes* res)
+grpc::Status LogicServerImpl::Get_player_achievements(grpc::ServerContext* context, const rpc_server::GetPlayerAchievementsReq* req, rpc_server::GetPlayerAchievementsRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_get_player_achievements(req, res);
+    });
+
+    // 等待任务完成
+    task_future.get();
+
     return grpc::Status::OK;
 
 }
 
 // 更新玩家成就
-grpc::Status Update_player_achievements(grpc::ServerContext* context, const rpc_server::UpdatePlayerAchievementsReq* req, rpc_server::UpdatePlayerAchievementsRes* res)
+grpc::Status LogicServerImpl::Update_player_achievements(grpc::ServerContext* context, const rpc_server::UpdatePlayerAchievementsReq* req, rpc_server::UpdatePlayerAchievementsRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_update_player_achievements(req, res);
+    });
+
+    // 等待任务完成
+    task_future.get();
+
     return grpc::Status::OK;
 
 }
 
 // 获取玩家任务
-grpc::Status Get_player_tasks(grpc::ServerContext* context, const rpc_server::GetPlayerTasksReq* req, rpc_server::GetPlayerTasksRes* res)
+grpc::Status LogicServerImpl::Get_player_tasks(grpc::ServerContext* context, const rpc_server::GetPlayerTasksReq* req, rpc_server::GetPlayerTasksRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_get_player_tasks(req, res);
+    });
+
+    // 等待任务完成
+    task_future.get();
+
     return grpc::Status::OK;
 
 }
 
 // 更新玩家任务
-grpc::Status Update_player_tasks(grpc::ServerContext* context, const rpc_server::UpdatePlayerTasksReq* req, rpc_server::UpdatePlayerTasksRes* res)
+grpc::Status LogicServerImpl::Update_player_tasks(grpc::ServerContext* context, const rpc_server::UpdatePlayerTasksReq* req, rpc_server::UpdatePlayerTasksRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_update_player_tasks(req, res);
+    });
+
+    // 等待任务完成
+    task_future.get();
+
     return grpc::Status::OK;
 
 }
 
 // 添加物品
-grpc::Status Add_item(grpc::ServerContext* context, const rpc_server::AddItemReq* req, rpc_server::AddItemRes* res)
+grpc::Status LogicServerImpl::Add_item(grpc::ServerContext* context, const rpc_server::AddItemReq* req, rpc_server::AddItemRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_add_item(req, res);
+    });
+
+    // 等待任务完成
+    task_future.get();
+
     return grpc::Status::OK;
 
 }
 
 // 使用物品
-grpc::Status Use_item(grpc::ServerContext* context, const rpc_server::UseItemReq* req, rpc_server::UseItemRes* res)
+grpc::Status LogicServerImpl::Use_item(grpc::ServerContext* context, const rpc_server::UseItemReq* req, rpc_server::UseItemRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_use_item(req, res);
+    });
+
+    // 等待任务完成
+    task_future.get();
+
     return grpc::Status::OK;
 
 }
 
 // 保存对局结果
-grpc::Status Save_battle_result(grpc::ServerContext* context, const rpc_server::SaveBattleResultReq* req, rpc_server::SaveBattleResultRes* res)
+grpc::Status LogicServerImpl::Save_battle_result(grpc::ServerContext* context, const rpc_server::SaveBattleResultReq* req, rpc_server::SaveBattleResultRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_save_battle_result(req, res);
+    });
+
+    // 等待任务完成
+    task_future.get();
+
     return grpc::Status::OK;
 
 }
 
 /************************************ gRPC服务接口工具函数 **************************************************/
+// 获取玩家收藏
+void LogicServerImpl::Handle_get_player_collection(const rpc_server::GetPlayerCollectionReq* req, rpc_server::GetPlayerCollectionRes* res)
+{
+    // 用户在线校验
+    
+    // 从数据库中获取玩家收藏
+}
+
+// 更新玩家收藏
+void LogicServerImpl::Handle_update_player_collection(const rpc_server::UpdatePlayerCollectionReq* req, rpc_server::UpdatePlayerCollectionRes* res)
+{
+
+}
+
+// 获取玩家成就
+void LogicServerImpl::Handle_get_player_achievements(const rpc_server::GetPlayerAchievementsReq* req, rpc_server::GetPlayerAchievementsRes* res)
+{
+    // 返回玩家成就
+}
+
+// 更新玩家成就
+void LogicServerImpl::Handle_update_player_achievements(const rpc_server::UpdatePlayerAchievementsReq* req, rpc_server::UpdatePlayerAchievementsRes* res)
+{
+    // 遍历成就列表，更新成就
+    for(const auto& achievement_update : req->achievements())
+    {
+        // 调用成就管理器更新成就
+        // achievement_manager.update_achievement(req->player_id(), achievement_update.type(), achievement_update.value());
+    }
+    res->set_success(true);
+    res->set_message("Achievements updated successfully");
+}
+
+// 获取玩家任务
+void LogicServerImpl::Handle_get_player_tasks(const rpc_server::GetPlayerTasksReq* req, rpc_server::GetPlayerTasksRes* res)
+{
+    // 返回玩家任务
+}
+
+// 更新玩家任务
+void LogicServerImpl::Handle_update_player_tasks(const rpc_server::UpdatePlayerTasksReq* req, rpc_server::UpdatePlayerTasksRes* res)
+{
+
+}
+
+// 添加物品
+void LogicServerImpl::Handle_add_item(const rpc_server::AddItemReq* req, rpc_server::AddItemRes* res)
+{
+    // 在数据中添加物品
+}
+
+// 使用物品
+void LogicServerImpl::Handle_use_item(const rpc_server::UseItemReq* req, rpc_server::UseItemRes* res)
+{
+
+}
+
+// 保存对局结果
+void LogicServerImpl::Handle_save_battle_result(const rpc_server::SaveBattleResultReq* req, rpc_server::SaveBattleResultRes* res)
+{
+    // 对局结果结算
+}
 
 /******************************************** 其他工具函数 ***********************************************/

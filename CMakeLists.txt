@@ -22,12 +22,16 @@ include_directories(
     # 共享工具类
     ${CMAKE_SOURCE_DIR}/src/common
     # 各服务器实现类
+    ${CMAKE_SOURCE_DIR}/src/battle
     ${CMAKE_SOURCE_DIR}/src/central
+    ${CMAKE_SOURCE_DIR}/src/chat
     ${CMAKE_SOURCE_DIR}/src/db
     ${CMAKE_SOURCE_DIR}/src/file
     ${CMAKE_SOURCE_DIR}/src/gateway
     ${CMAKE_SOURCE_DIR}/src/logic
     ${CMAKE_SOURCE_DIR}/src/login
+    ${CMAKE_SOURCE_DIR}/src/matching
+    ${CMAKE_SOURCE_DIR}/src/store
     # proto生成的 grpc服务头文件目录
     ${CMAKE_SOURCE_DIR}/protobuf/src
 )

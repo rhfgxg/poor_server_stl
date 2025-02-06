@@ -22,7 +22,7 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace rpc_server {
 }  // namespace rpc_server
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2eproto[4];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2eproto[5];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_common_2eproto = nullptr;
 const ::uint32_t TableStruct_common_2eproto::offsets[1] = {};
@@ -44,13 +44,14 @@ const char descriptor_table_protodef_common_2eproto[] PROTOBUF_SECTION_VARIABLE(
     "NNECTION_POOL\020\002\022\025\n\021SYSTEM_MONITORING\020\003\022\r"
     "\n\tHEARTBEAT\020\004\022\014\n\010SECURITY\020\005\022\031\n\025CONFIGURA"
     "TION_CHANGES\020\006\022\027\n\023DATABASE_OPERATIONS\020\007\022"
-    "\021\n\rUSER_ACTIVITY\020\010\022\013\n\007NETWORK\020\tb\006proto3"
+    "\021\n\rUSER_ACTIVITY\020\010\022\013\n\007NETWORK\020\t*\037\n\017Achie"
+    "vementType\022\014\n\010USE_CARD\020\000b\006proto3"
 };
 static ::absl::once_flag descriptor_table_common_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2eproto = {
     false,
     false,
-    639,
+    672,
     descriptor_table_protodef_common_2eproto,
     "common.proto",
     &descriptor_table_common_2eproto_once,
@@ -118,6 +119,15 @@ PROTOBUF_CONSTINIT const uint32_t LogCategory_internal_data_[] = {
     655360u, 0u, };
 bool LogCategory_IsValid(int value) {
   return 0 <= value && value <= 9;
+}
+const ::google::protobuf::EnumDescriptor* AchievementType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_common_2eproto);
+  return file_level_enum_descriptors_common_2eproto[4];
+}
+PROTOBUF_CONSTINIT const uint32_t AchievementType_internal_data_[] = {
+    65536u, 0u, };
+bool AchievementType_IsValid(int value) {
+  return 0 <= value && value <= 0;
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace rpc_server

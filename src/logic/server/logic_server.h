@@ -8,6 +8,7 @@
 #include "connection_pool.h"    // 连接池
 #include "logger_manager.h"     // 日志管理器
 #include "redis_client.h"       // Redis客户端
+#include "common/achievement/achievement_manager.h"    // 成就管理器
 
 #include <grpcpp/grpcpp.h>
 #include <map>
@@ -61,6 +62,18 @@ private:
     // 定时任务：
     void Update_connection_pool();  // 更新连接池
     void Send_heartbeat();  // 发送心跳包
+
+// grpc工具函数
+    void Handle_get_player_collection(const rpc_server::GetPlayerCollectionReq* req, rpc_server::GetPlayerCollectionRes* res); // 获取玩家收藏
+    void Handle_update_player_collection(const rpc_server::UpdatePlayerCollectionReq* req, rpc_server::UpdatePlayerCollectionRes* res); // 更新玩家收藏
+    void Handle_get_player_achievements(const rpc_server::GetPlayerAchievementsReq* req, rpc_server::GetPlayerAchievementsRes* res); // 获取玩家成就
+    void Handle_update_player_achievements(const rpc_server::UpdatePlayerAchievementsReq* req, rpc_server::UpdatePlayerAchievementsRes* res); // 更新玩家成就
+    void Handle_get_player_tasks(const rpc_server::GetPlayerTasksReq* req, rpc_server::GetPlayerTasksRes* res); // 获取玩家任务
+    void Handle_update_player_tasks(const rpc_server::UpdatePlayerTasksReq* req, rpc_server::UpdatePlayerTasksRes* res); // 更新玩家任务
+    void Handle_add_item(const rpc_server::AddItemReq* req, rpc_server::AddItemRes* res); // 添加物品
+    void Handle_use_item(const rpc_server::UseItemReq* req, rpc_server::UseItemRes* res); // 使用物品
+    void Handle_save_battle_result(const rpc_server::SaveBattleResultReq* req, rpc_server::SaveBattleResultRes* res); // 保存对局结果
+
 private:
     std::string server_address; // 服务器地址
     std::string server_port;    // 服务器端口
@@ -68,6 +81,7 @@ private:
 
     LoggerManager& logger_manager;  // 日志管理器
     RedisClient redis_client;    // Redis客户端
+    AchievementManager achievement_manager; // 成就管理器
 
     std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;	// 中心服务存根
     ConnectionPool db_connection_pool;   // 数据库服务器连接池

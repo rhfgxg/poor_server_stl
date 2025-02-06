@@ -219,6 +219,38 @@ inline bool LogCategory_Parse(absl::string_view name, LogCategory* value) {
   return ::google::protobuf::internal::ParseNamedEnum<LogCategory>(
       LogCategory_descriptor(), name, value);
 }
+enum AchievementType : int {
+  USE_CARD = 0,
+  AchievementType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  AchievementType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool AchievementType_IsValid(int value);
+extern const uint32_t AchievementType_internal_data_[];
+constexpr AchievementType AchievementType_MIN = static_cast<AchievementType>(0);
+constexpr AchievementType AchievementType_MAX = static_cast<AchievementType>(0);
+constexpr int AchievementType_ARRAYSIZE = 0 + 1;
+const ::google::protobuf::EnumDescriptor*
+AchievementType_descriptor();
+template <typename T>
+const std::string& AchievementType_Name(T value) {
+  static_assert(std::is_same<T, AchievementType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to AchievementType_Name().");
+  return AchievementType_Name(static_cast<AchievementType>(value));
+}
+template <>
+inline const std::string& AchievementType_Name(AchievementType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<AchievementType_descriptor,
+                                                 0, 0>(
+      static_cast<int>(value));
+}
+inline bool AchievementType_Parse(absl::string_view name, AchievementType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<AchievementType>(
+      AchievementType_descriptor(), name, value);
+}
 
 // ===================================================================
 
@@ -270,6 +302,12 @@ struct is_proto_enum<::rpc_server::LogCategory> : std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::rpc_server::LogCategory>() {
   return ::rpc_server::LogCategory_descriptor();
+}
+template <>
+struct is_proto_enum<::rpc_server::AchievementType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::rpc_server::AchievementType>() {
+  return ::rpc_server::AchievementType_descriptor();
 }
 
 }  // namespace protobuf

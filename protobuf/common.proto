@@ -59,3 +59,9 @@ enum LogCategory
     USER_ACTIVITY = 8;          // 用户活动
     NETWORK = 9;                // 网络
 };
+
+// 成就类型
+enum AchievementType
+{
+    USE_CARD = 0;   // 使用a张牌
+};

@@ -20,25 +20,15 @@ public:
     virtual ~Card() = default;
 
     // 获取卡牌名称
-    std::string Get_name() const {
-        return card_name;
-    }
+    std::string Get_name() const;
     // 获取卡牌描述
-    std::string Get_description() const {
-        return card_description;
-    }
+    std::string Get_description() const;
     // 获取卡牌类型
-    CardType Get_type() const {
-        return card_type;
-    }
+    CardType Get_type() const;
     // 获取卡牌图片路径
-    std::string Get_img_dir() const {
-        return card_img_dir;
-    }
+    std::string Get_img_dir() const;
     // 获取卡牌费用
-    int Get_cost() const {
-        return card_cost;
-    }
+    int Get_cost() const;
 
 private:
     std::string card_name;  // 卡牌名称
