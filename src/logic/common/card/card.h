@@ -1,16 +1,9 @@
 #ifndef CARD_H
 #define CARD_H
 
-#include <string>
+#include "consts/const_card.h"  // 卡牌相关常量
 
-// 卡牌类型枚举
-enum CardType
-{
-    MINION,  // 随从
-    SPELL,   // 法术（奥秘，任务）
-    WEAPON,  // 武器
-    HERO     // 英雄（技能作为英雄的一个函数）
-};
+#include <string>
 
 // 卡牌类抽象基类
 class Card
