@@ -34,6 +34,7 @@
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
 #include "google/protobuf/unknown_field_set.h"
+#include "common.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -460,14 +461,14 @@ class UnregisterServerReq final :
   std::string* _internal_mutable_port();
 
   public:
-  // int32 server_type = 1;
+  // .rpc_server.ServerType server_type = 1;
   void clear_server_type() ;
-  ::int32_t server_type() const;
-  void set_server_type(::int32_t value);
+  ::rpc_server::ServerType server_type() const;
+  void set_server_type(::rpc_server::ServerType value);
 
   private:
-  ::int32_t _internal_server_type() const;
-  void _internal_set_server_type(::int32_t value);
+  ::rpc_server::ServerType _internal_server_type() const;
+  void _internal_set_server_type(::rpc_server::ServerType value);
 
   public:
   // @@protoc_insertion_point(class_scope:rpc_server.UnregisterServerReq)
@@ -495,7 +496,7 @@ class UnregisterServerReq final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr address_;
     ::google::protobuf::internal::ArenaStringPtr port_;
-    ::int32_t server_type_;
+    int server_type_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -864,14 +865,14 @@ class RegisterServerReq final :
   std::string* _internal_mutable_port();
 
   public:
-  // int32 server_type = 1;
+  // .rpc_server.ServerType server_type = 1;
   void clear_server_type() ;
-  ::int32_t server_type() const;
-  void set_server_type(::int32_t value);
+  ::rpc_server::ServerType server_type() const;
+  void set_server_type(::rpc_server::ServerType value);
 
   private:
-  ::int32_t _internal_server_type() const;
-  void _internal_set_server_type(::int32_t value);
+  ::rpc_server::ServerType _internal_server_type() const;
+  void _internal_set_server_type(::rpc_server::ServerType value);
 
   public:
   // @@protoc_insertion_point(class_scope:rpc_server.RegisterServerReq)
@@ -899,7 +900,7 @@ class RegisterServerReq final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr address_;
     ::google::protobuf::internal::ArenaStringPtr port_;
-    ::int32_t server_type_;
+    int server_type_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1041,22 +1042,23 @@ class MultipleConnectPoorReq final :
   enum : int {
     kServerTypesFieldNumber = 1,
   };
-  // repeated int32 server_types = 1;
+  // repeated .rpc_server.ServerType server_types = 1;
   int server_types_size() const;
   private:
   int _internal_server_types_size() const;
 
   public:
   void clear_server_types() ;
-  ::int32_t server_types(int index) const;
-  void set_server_types(int index, ::int32_t value);
-  void add_server_types(::int32_t value);
-  const ::google::protobuf::RepeatedField<::int32_t>& server_types() const;
-  ::google::protobuf::RepeatedField<::int32_t>* mutable_server_types();
+  public:
+  ::rpc_server::ServerType server_types(int index) const;
+  void set_server_types(int index, ::rpc_server::ServerType value);
+  void add_server_types(::rpc_server::ServerType value);
+  const ::google::protobuf::RepeatedField<int>& server_types() const;
+  ::google::protobuf::RepeatedField<int>* mutable_server_types();
 
   private:
-  const ::google::protobuf::RepeatedField<::int32_t>& _internal_server_types() const;
-  ::google::protobuf::RepeatedField<::int32_t>* _internal_mutable_server_types();
+  const ::google::protobuf::RepeatedField<int>& _internal_server_types() const;
+  ::google::protobuf::RepeatedField<int>* _internal_mutable_server_types();
 
   public:
   // @@protoc_insertion_point(class_scope:rpc_server.MultipleConnectPoorReq)
@@ -1082,7 +1084,7 @@ class MultipleConnectPoorReq final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedField<::int32_t> server_types_;
+    ::google::protobuf::RepeatedField<int> server_types_;
     mutable ::google::protobuf::internal::CachedSize _server_types_cached_byte_size_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1452,14 +1454,14 @@ class HeartbeatReq final :
   std::string* _internal_mutable_port();
 
   public:
-  // int32 server_type = 1;
+  // .rpc_server.ServerType server_type = 1;
   void clear_server_type() ;
-  ::int32_t server_type() const;
-  void set_server_type(::int32_t value);
+  ::rpc_server::ServerType server_type() const;
+  void set_server_type(::rpc_server::ServerType value);
 
   private:
-  ::int32_t _internal_server_type() const;
-  void _internal_set_server_type(::int32_t value);
+  ::rpc_server::ServerType _internal_server_type() const;
+  void _internal_set_server_type(::rpc_server::ServerType value);
 
   public:
   // @@protoc_insertion_point(class_scope:rpc_server.HeartbeatReq)
@@ -1487,7 +1489,7 @@ class HeartbeatReq final :
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr address_;
     ::google::protobuf::internal::ArenaStringPtr port_;
-    ::int32_t server_type_;
+    int server_type_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1841,14 +1843,14 @@ class ConnectPool final :
   ::rpc_server::ConnectInfo* add_connect_info();
   const ::google::protobuf::RepeatedPtrField< ::rpc_server::ConnectInfo >&
       connect_info() const;
-  // int32 server_type = 1;
+  // .rpc_server.ServerType server_type = 1;
   void clear_server_type() ;
-  ::int32_t server_type() const;
-  void set_server_type(::int32_t value);
+  ::rpc_server::ServerType server_type() const;
+  void set_server_type(::rpc_server::ServerType value);
 
   private:
-  ::int32_t _internal_server_type() const;
-  void _internal_set_server_type(::int32_t value);
+  ::rpc_server::ServerType _internal_server_type() const;
+  void _internal_set_server_type(::rpc_server::ServerType value);
 
   public:
   // @@protoc_insertion_point(class_scope:rpc_server.ConnectPool)
@@ -1875,7 +1877,7 @@ class ConnectPool final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::RepeatedPtrField< ::rpc_server::ConnectInfo > connect_info_;
-    ::int32_t server_type_;
+    int server_type_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2112,24 +2114,24 @@ class MultipleConnectPoorRes final :
 
 // RegisterServerReq
 
-// int32 server_type = 1;
+// .rpc_server.ServerType server_type = 1;
 inline void RegisterServerReq::clear_server_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.server_type_ = 0;
 }
-inline ::int32_t RegisterServerReq::server_type() const {
+inline ::rpc_server::ServerType RegisterServerReq::server_type() const {
   // @@protoc_insertion_point(field_get:rpc_server.RegisterServerReq.server_type)
   return _internal_server_type();
 }
-inline void RegisterServerReq::set_server_type(::int32_t value) {
+inline void RegisterServerReq::set_server_type(::rpc_server::ServerType value) {
   _internal_set_server_type(value);
   // @@protoc_insertion_point(field_set:rpc_server.RegisterServerReq.server_type)
 }
-inline ::int32_t RegisterServerReq::_internal_server_type() const {
+inline ::rpc_server::ServerType RegisterServerReq::_internal_server_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.server_type_;
+  return static_cast<::rpc_server::ServerType>(_impl_.server_type_);
 }
-inline void RegisterServerReq::_internal_set_server_type(::int32_t value) {
+inline void RegisterServerReq::_internal_set_server_type(::rpc_server::ServerType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.server_type_ = value;
@@ -2325,24 +2327,24 @@ inline void RegisterServerRes::set_allocated_message(std::string* value) {
 
 // UnregisterServerReq
 
-// int32 server_type = 1;
+// .rpc_server.ServerType server_type = 1;
 inline void UnregisterServerReq::clear_server_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.server_type_ = 0;
 }
-inline ::int32_t UnregisterServerReq::server_type() const {
+inline ::rpc_server::ServerType UnregisterServerReq::server_type() const {
   // @@protoc_insertion_point(field_get:rpc_server.UnregisterServerReq.server_type)
   return _internal_server_type();
 }
-inline void UnregisterServerReq::set_server_type(::int32_t value) {
+inline void UnregisterServerReq::set_server_type(::rpc_server::ServerType value) {
   _internal_set_server_type(value);
   // @@protoc_insertion_point(field_set:rpc_server.UnregisterServerReq.server_type)
 }
-inline ::int32_t UnregisterServerReq::_internal_server_type() const {
+inline ::rpc_server::ServerType UnregisterServerReq::_internal_server_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.server_type_;
+  return static_cast<::rpc_server::ServerType>(_impl_.server_type_);
 }
-inline void UnregisterServerReq::_internal_set_server_type(::int32_t value) {
+inline void UnregisterServerReq::_internal_set_server_type(::rpc_server::ServerType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.server_type_ = value;
@@ -2538,7 +2540,7 @@ inline void UnregisterServerRes::set_allocated_message(std::string* value) {
 
 // MultipleConnectPoorReq
 
-// repeated int32 server_types = 1;
+// repeated .rpc_server.ServerType server_types = 1;
 inline int MultipleConnectPoorReq::_internal_server_types_size() const {
   return _internal_server_types().size();
 }
@@ -2549,36 +2551,35 @@ inline void MultipleConnectPoorReq::clear_server_types() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.server_types_.Clear();
 }
-inline ::int32_t MultipleConnectPoorReq::server_types(int index) const {
+inline ::rpc_server::ServerType MultipleConnectPoorReq::server_types(int index) const {
   // @@protoc_insertion_point(field_get:rpc_server.MultipleConnectPoorReq.server_types)
-  return _internal_server_types().Get(index);
+  return static_cast<::rpc_server::ServerType>(_internal_server_types().Get(index));
 }
-inline void MultipleConnectPoorReq::set_server_types(int index, ::int32_t value) {
+inline void MultipleConnectPoorReq::set_server_types(int index, ::rpc_server::ServerType value) {
   _internal_mutable_server_types()->Set(index, value);
   // @@protoc_insertion_point(field_set:rpc_server.MultipleConnectPoorReq.server_types)
 }
-inline void MultipleConnectPoorReq::add_server_types(::int32_t value) {
+inline void MultipleConnectPoorReq::add_server_types(::rpc_server::ServerType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _internal_mutable_server_types()->Add(value);
   // @@protoc_insertion_point(field_add:rpc_server.MultipleConnectPoorReq.server_types)
 }
-inline const ::google::protobuf::RepeatedField<::int32_t>& MultipleConnectPoorReq::server_types() const
+inline const ::google::protobuf::RepeatedField<int>& MultipleConnectPoorReq::server_types() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_list:rpc_server.MultipleConnectPoorReq.server_types)
   return _internal_server_types();
 }
-inline ::google::protobuf::RepeatedField<::int32_t>* MultipleConnectPoorReq::mutable_server_types()
+inline ::google::protobuf::RepeatedField<int>* MultipleConnectPoorReq::mutable_server_types()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable_list:rpc_server.MultipleConnectPoorReq.server_types)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_server_types();
 }
-inline const ::google::protobuf::RepeatedField<::int32_t>& MultipleConnectPoorReq::_internal_server_types()
-    const {
+inline const ::google::protobuf::RepeatedField<int>& MultipleConnectPoorReq::_internal_server_types() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.server_types_;
 }
-inline ::google::protobuf::RepeatedField<::int32_t>* MultipleConnectPoorReq::_internal_mutable_server_types() {
+inline ::google::protobuf::RepeatedField<int>* MultipleConnectPoorReq::_internal_mutable_server_types() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.server_types_;
 }
@@ -2796,24 +2797,24 @@ inline void ConnectInfo::_internal_set_port(::int32_t value) {
 
 // ConnectPool
 
-// int32 server_type = 1;
+// .rpc_server.ServerType server_type = 1;
 inline void ConnectPool::clear_server_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.server_type_ = 0;
 }
-inline ::int32_t ConnectPool::server_type() const {
+inline ::rpc_server::ServerType ConnectPool::server_type() const {
   // @@protoc_insertion_point(field_get:rpc_server.ConnectPool.server_type)
   return _internal_server_type();
 }
-inline void ConnectPool::set_server_type(::int32_t value) {
+inline void ConnectPool::set_server_type(::rpc_server::ServerType value) {
   _internal_set_server_type(value);
   // @@protoc_insertion_point(field_set:rpc_server.ConnectPool.server_type)
 }
-inline ::int32_t ConnectPool::_internal_server_type() const {
+inline ::rpc_server::ServerType ConnectPool::_internal_server_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.server_type_;
+  return static_cast<::rpc_server::ServerType>(_impl_.server_type_);
 }
-inline void ConnectPool::_internal_set_server_type(::int32_t value) {
+inline void ConnectPool::_internal_set_server_type(::rpc_server::ServerType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.server_type_ = value;
@@ -2872,24 +2873,24 @@ ConnectPool::_internal_mutable_connect_info() {
 
 // HeartbeatReq
 
-// int32 server_type = 1;
+// .rpc_server.ServerType server_type = 1;
 inline void HeartbeatReq::clear_server_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.server_type_ = 0;
 }
-inline ::int32_t HeartbeatReq::server_type() const {
+inline ::rpc_server::ServerType HeartbeatReq::server_type() const {
   // @@protoc_insertion_point(field_get:rpc_server.HeartbeatReq.server_type)
   return _internal_server_type();
 }
-inline void HeartbeatReq::set_server_type(::int32_t value) {
+inline void HeartbeatReq::set_server_type(::rpc_server::ServerType value) {
   _internal_set_server_type(value);
   // @@protoc_insertion_point(field_set:rpc_server.HeartbeatReq.server_type)
 }
-inline ::int32_t HeartbeatReq::_internal_server_type() const {
+inline ::rpc_server::ServerType HeartbeatReq::_internal_server_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.server_type_;
+  return static_cast<::rpc_server::ServerType>(_impl_.server_type_);
 }
-inline void HeartbeatReq::_internal_set_server_type(::int32_t value) {
+inline void HeartbeatReq::_internal_set_server_type(::rpc_server::ServerType value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.server_type_ = value;

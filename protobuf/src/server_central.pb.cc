@@ -52,7 +52,7 @@ inline constexpr UnregisterServerReq::Impl_::Impl_(
         port_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        server_type_{0},
+        server_type_{static_cast< ::rpc_server::ServerType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -99,7 +99,7 @@ inline constexpr RegisterServerReq::Impl_::Impl_(
         port_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        server_type_{0},
+        server_type_{static_cast< ::rpc_server::ServerType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -166,7 +166,7 @@ inline constexpr HeartbeatReq::Impl_::Impl_(
         port_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        server_type_{0},
+        server_type_{static_cast< ::rpc_server::ServerType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -208,7 +208,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr ConnectPool::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : connect_info_{},
-        server_type_{0},
+        server_type_{static_cast< ::rpc_server::ServerType >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -387,44 +387,51 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::rpc_server::_HeartbeatRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fcentral_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\024server_central.proto\022\nrpc_server\"G\n\021Re"
-    "gisterServerReq\022\023\n\013server_type\030\001 \001(\005\022\017\n\007"
-    "address\030\002 \001(\014\022\014\n\004port\030\003 \001(\014\"5\n\021RegisterS"
-    "erverRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001"
-    "(\014\"I\n\023UnregisterServerReq\022\023\n\013server_type"
-    "\030\001 \001(\005\022\017\n\007address\030\002 \001(\014\022\014\n\004port\030\003 \001(\014\"7\n"
-    "\023UnregisterServerRes\022\017\n\007success\030\001 \001(\010\022\017\n"
-    "\007message\030\002 \001(\014\".\n\026MultipleConnectPoorReq"
-    "\022\024\n\014server_types\030\001 \003(\005\"j\n\026MultipleConnec"
-    "tPoorRes\022\017\n\007success\030\001 \001(\010\022.\n\rconnect_poo"
-    "ls\030\002 \003(\0132\027.rpc_server.ConnectPool\022\017\n\007mes"
-    "sage\030\003 \001(\014\",\n\013ConnectInfo\022\017\n\007address\030\001 \001"
-    "(\014\022\014\n\004port\030\002 \001(\005\"Q\n\013ConnectPool\022\023\n\013serve"
-    "r_type\030\001 \001(\005\022-\n\014connect_info\030\002 \003(\0132\027.rpc"
-    "_server.ConnectInfo\"B\n\014HeartbeatReq\022\023\n\013s"
-    "erver_type\030\001 \001(\005\022\017\n\007address\030\002 \001(\014\022\014\n\004por"
-    "t\030\003 \001(\014\"0\n\014HeartbeatRes\022\017\n\007success\030\001 \001(\010"
-    "\022\017\n\007message\030\002 \001(\0142\323\002\n\rCentralServer\022O\n\017R"
-    "egister_server\022\035.rpc_server.RegisterServ"
-    "erReq\032\035.rpc_server.RegisterServerRes\022U\n\021"
-    "Unregister_server\022\037.rpc_server.Unregiste"
-    "rServerReq\032\037.rpc_server.UnregisterServer"
-    "Res\022Y\n\017Get_connec_poor\022\".rpc_server.Mult"
-    "ipleConnectPoorReq\032\".rpc_server.Multiple"
-    "ConnectPoorRes\022\?\n\tHeartbeat\022\030.rpc_server"
-    ".HeartbeatReq\032\030.rpc_server.HeartbeatResb"
-    "\006proto3"
+    "\n\024server_central.proto\022\nrpc_server\032\014comm"
+    "on.proto\"_\n\021RegisterServerReq\022+\n\013server_"
+    "type\030\001 \001(\0162\026.rpc_server.ServerType\022\017\n\007ad"
+    "dress\030\002 \001(\014\022\014\n\004port\030\003 \001(\014\"5\n\021RegisterSer"
+    "verRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014"
+    "\"a\n\023UnregisterServerReq\022+\n\013server_type\030\001"
+    " \001(\0162\026.rpc_server.ServerType\022\017\n\007address\030"
+    "\002 \001(\014\022\014\n\004port\030\003 \001(\014\"7\n\023UnregisterServerR"
+    "es\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"F\n\026"
+    "MultipleConnectPoorReq\022,\n\014server_types\030\001"
+    " \003(\0162\026.rpc_server.ServerType\"j\n\026Multiple"
+    "ConnectPoorRes\022\017\n\007success\030\001 \001(\010\022.\n\rconne"
+    "ct_pools\030\002 \003(\0132\027.rpc_server.ConnectPool\022"
+    "\017\n\007message\030\003 \001(\014\",\n\013ConnectInfo\022\017\n\007addre"
+    "ss\030\001 \001(\014\022\014\n\004port\030\002 \001(\005\"i\n\013ConnectPool\022+\n"
+    "\013server_type\030\001 \001(\0162\026.rpc_server.ServerTy"
+    "pe\022-\n\014connect_info\030\002 \003(\0132\027.rpc_server.Co"
+    "nnectInfo\"Z\n\014HeartbeatReq\022+\n\013server_type"
+    "\030\001 \001(\0162\026.rpc_server.ServerType\022\017\n\007addres"
+    "s\030\002 \001(\014\022\014\n\004port\030\003 \001(\014\"0\n\014HeartbeatRes\022\017\n"
+    "\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\0142\323\002\n\rCent"
+    "ralServer\022O\n\017Register_server\022\035.rpc_serve"
+    "r.RegisterServerReq\032\035.rpc_server.Registe"
+    "rServerRes\022U\n\021Unregister_server\022\037.rpc_se"
+    "rver.UnregisterServerReq\032\037.rpc_server.Un"
+    "registerServerRes\022Y\n\017Get_connec_poor\022\".r"
+    "pc_server.MultipleConnectPoorReq\032\".rpc_s"
+    "erver.MultipleConnectPoorRes\022\?\n\tHeartbea"
+    "t\022\030.rpc_server.HeartbeatReq\032\030.rpc_server"
+    ".HeartbeatResb\006proto3"
+};
+static const ::_pbi::DescriptorTable* const descriptor_table_server_5fcentral_2eproto_deps[1] =
+    {
+        &::descriptor_table_common_2eproto,
 };
 static ::absl::once_flag descriptor_table_server_5fcentral_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fcentral_2eproto = {
     false,
     false,
-    1047,
+    1181,
     descriptor_table_protodef_server_5fcentral_2eproto,
     "server_central.proto",
     &descriptor_table_server_5fcentral_2eproto_once,
-    nullptr,
-    0,
+    descriptor_table_server_5fcentral_2eproto_deps,
+    1,
     10,
     schemas,
     file_default_instances,
@@ -542,7 +549,7 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RegisterServerReq::_table_ = {
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // int32 server_type = 1;
+    // .rpc_server.ServerType server_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RegisterServerReq, _impl_.server_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.server_type_)}},
     // bytes address = 2;
@@ -554,9 +561,9 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RegisterServerReq::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // int32 server_type = 1;
+    // .rpc_server.ServerType server_type = 1;
     {PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.server_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // bytes address = 2;
     {PROTOBUF_FIELD_OFFSET(RegisterServerReq, _impl_.address_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
@@ -576,11 +583,11 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RegisterServerReq::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // int32 server_type = 1;
+  // .rpc_server.ServerType server_type = 1;
   if (this->_internal_server_type() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<1>(
-            stream, this->_internal_server_type(), target);
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_server_type(), target);
   }
 
   // bytes address = 2;
@@ -624,10 +631,10 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RegisterServerReq::_table_ = {
                                     this->_internal_port());
   }
 
-  // int32 server_type = 1;
+  // .rpc_server.ServerType server_type = 1;
   if (this->_internal_server_type() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_server_type());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_server_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -682,7 +689,7 @@ void RegisterServerReq::InternalSwap(RegisterServerReq* PROTOBUF_RESTRICT other)
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.address_, &other->_impl_.address_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.port_, &other->_impl_.port_, arena);
-        swap(_impl_.server_type_, other->_impl_.server_type_);
+  swap(_impl_.server_type_, other->_impl_.server_type_);
 }
 
 ::google::protobuf::Metadata RegisterServerReq::GetMetadata() const {
@@ -990,7 +997,7 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> UnregisterServerReq::_table_ = {
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // int32 server_type = 1;
+    // .rpc_server.ServerType server_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UnregisterServerReq, _impl_.server_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.server_type_)}},
     // bytes address = 2;
@@ -1002,9 +1009,9 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> UnregisterServerReq::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // int32 server_type = 1;
+    // .rpc_server.ServerType server_type = 1;
     {PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.server_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // bytes address = 2;
     {PROTOBUF_FIELD_OFFSET(UnregisterServerReq, _impl_.address_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
@@ -1024,11 +1031,11 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> UnregisterServerReq::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // int32 server_type = 1;
+  // .rpc_server.ServerType server_type = 1;
   if (this->_internal_server_type() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<1>(
-            stream, this->_internal_server_type(), target);
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_server_type(), target);
   }
 
   // bytes address = 2;
@@ -1072,10 +1079,10 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> UnregisterServerReq::_table_ = {
                                     this->_internal_port());
   }
 
-  // int32 server_type = 1;
+  // .rpc_server.ServerType server_type = 1;
   if (this->_internal_server_type() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_server_type());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_server_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -1130,7 +1137,7 @@ void UnregisterServerReq::InternalSwap(UnregisterServerReq* PROTOBUF_RESTRICT ot
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.address_, &other->_impl_.address_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.port_, &other->_impl_.port_, arena);
-        swap(_impl_.server_type_, other->_impl_.server_type_);
+  swap(_impl_.server_type_, other->_impl_.server_type_);
 }
 
 ::google::protobuf::Metadata UnregisterServerReq::GetMetadata() const {
@@ -1431,15 +1438,15 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> MultipleConnectPoorReq::_table_ = {
     &_MultipleConnectPoorReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // repeated int32 server_types = 1;
+    // repeated .rpc_server.ServerType server_types = 1;
     {::_pbi::TcParser::FastV32P1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(MultipleConnectPoorReq, _impl_.server_types_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // repeated int32 server_types = 1;
+    // repeated .rpc_server.ServerType server_types = 1;
     {PROTOBUF_FIELD_OFFSET(MultipleConnectPoorReq, _impl_.server_types_), 0, 0,
-    (0 | ::_fl::kFcRepeated | ::_fl::kPackedInt32)},
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedOpenEnum)},
   }},
   // no aux_entries
   {{
@@ -1453,12 +1460,12 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> MultipleConnectPoorReq::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // repeated int32 server_types = 1;
+  // repeated .rpc_server.ServerType server_types = 1;
   {
-    int byte_size = _impl_._server_types_cached_byte_size_.Get();
+    std::size_t byte_size = _impl_._server_types_cached_byte_size_.Get();
     if (byte_size > 0) {
-      target = stream->WriteInt32Packed(
-          1, _internal_server_types(), byte_size, target);
+      target = stream->WriteEnumPacked(1, _internal_server_types(),
+                                       byte_size, target);
     }
   }
 
@@ -1479,18 +1486,22 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> MultipleConnectPoorReq::_table_ = {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated int32 server_types = 1;
+  // repeated .rpc_server.ServerType server_types = 1;
   {
-    std::size_t data_size = ::_pbi::WireFormatLite::Int32Size(
-        this->_internal_server_types())
-    ;
+    std::size_t data_size = 0;
+    auto count = static_cast<std::size_t>(this->_internal_server_types_size());
+
+    for (std::size_t i = 0; i < count; ++i) {
+      data_size += ::_pbi::WireFormatLite::EnumSize(
+          this->_internal_server_types().Get(static_cast<int>(i)));
+    }
+    total_size += data_size;
+    if (data_size > 0) {
+      total_size += 1;
+      total_size += ::_pbi::WireFormatLite::Int32Size(
+          static_cast<int32_t>(data_size));
+    }
     _impl_._server_types_cached_byte_size_.Set(::_pbi::ToCachedSize(data_size));
-    std::size_t tag_size = data_size == 0
-        ? 0
-        : 1 + ::_pbi::WireFormatLite::Int32Size(
-                            static_cast<int32_t>(data_size))
-    ;
-    total_size += tag_size + data_size;
   }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
@@ -2075,15 +2086,15 @@ const ::_pbi::TcParseTable<1, 2, 1, 0, 2> ConnectPool::_table_ = {
     // repeated .rpc_server.ConnectInfo connect_info = 2;
     {::_pbi::TcParser::FastMtR1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPool, _impl_.connect_info_)}},
-    // int32 server_type = 1;
+    // .rpc_server.ServerType server_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ConnectPool, _impl_.server_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(ConnectPool, _impl_.server_type_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // int32 server_type = 1;
+    // .rpc_server.ServerType server_type = 1;
     {PROTOBUF_FIELD_OFFSET(ConnectPool, _impl_.server_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // repeated .rpc_server.ConnectInfo connect_info = 2;
     {PROTOBUF_FIELD_OFFSET(ConnectPool, _impl_.connect_info_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
@@ -2100,11 +2111,11 @@ const ::_pbi::TcParseTable<1, 2, 1, 0, 2> ConnectPool::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // int32 server_type = 1;
+  // .rpc_server.ServerType server_type = 1;
   if (this->_internal_server_type() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<1>(
-            stream, this->_internal_server_type(), target);
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_server_type(), target);
   }
 
   // repeated .rpc_server.ConnectInfo connect_info = 2;
@@ -2138,10 +2149,10 @@ const ::_pbi::TcParseTable<1, 2, 1, 0, 2> ConnectPool::_table_ = {
     total_size +=
       ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
   }
-  // int32 server_type = 1;
+  // .rpc_server.ServerType server_type = 1;
   if (this->_internal_server_type() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_server_type());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_server_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -2189,7 +2200,7 @@ void ConnectPool::InternalSwap(ConnectPool* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.connect_info_.InternalSwap(&other->_impl_.connect_info_);
-        swap(_impl_.server_type_, other->_impl_.server_type_);
+  swap(_impl_.server_type_, other->_impl_.server_type_);
 }
 
 ::google::protobuf::Metadata ConnectPool::GetMetadata() const {
@@ -2287,7 +2298,7 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> HeartbeatReq::_table_ = {
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // int32 server_type = 1;
+    // .rpc_server.ServerType server_type = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(HeartbeatReq, _impl_.server_type_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.server_type_)}},
     // bytes address = 2;
@@ -2299,9 +2310,9 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> HeartbeatReq::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // int32 server_type = 1;
+    // .rpc_server.ServerType server_type = 1;
     {PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.server_type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // bytes address = 2;
     {PROTOBUF_FIELD_OFFSET(HeartbeatReq, _impl_.address_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
@@ -2321,11 +2332,11 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> HeartbeatReq::_table_ = {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // int32 server_type = 1;
+  // .rpc_server.ServerType server_type = 1;
   if (this->_internal_server_type() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<1>(
-            stream, this->_internal_server_type(), target);
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+        1, this->_internal_server_type(), target);
   }
 
   // bytes address = 2;
@@ -2369,10 +2380,10 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> HeartbeatReq::_table_ = {
                                     this->_internal_port());
   }
 
-  // int32 server_type = 1;
+  // .rpc_server.ServerType server_type = 1;
   if (this->_internal_server_type() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_server_type());
+    total_size += 1 +
+                  ::_pbi::WireFormatLite::EnumSize(this->_internal_server_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -2427,7 +2438,7 @@ void HeartbeatReq::InternalSwap(HeartbeatReq* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.address_, &other->_impl_.address_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.port_, &other->_impl_.port_, arena);
-        swap(_impl_.server_type_, other->_impl_.server_type_);
+  swap(_impl_.server_type_, other->_impl_.server_type_);
 }
 
 ::google::protobuf::Metadata HeartbeatReq::GetMetadata() const {
