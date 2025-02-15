@@ -178,7 +178,7 @@ grpc::Status CentralServerImpl::Heartbeat(grpc::ServerContext* context, const rp
 // 执行注册服务器
 void CentralServerImpl::Handle_register_server(const rpc_server::RegisterServerReq* req, rpc_server::RegisterServerRes* res)
 {
-    rpc_server::ServerType server_type = req->server_type(); // 服务器类型
+    rpc_server::ServerType server_type = req->server_type(); // 服务器类型  
     std::string address = req->address();   // 服务器地址
     std::string port = req->port(); // 服务器端口
 

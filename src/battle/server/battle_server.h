@@ -2,6 +2,7 @@
 #define BATTLE_SERVER_H
 
 #include "common.grpc.pb.h" // 公共模块：包含公共数据类型，枚举
+#include "consts/const_log.h"  // 日志类型
 #include "server_battle.grpc.pb.h"	// 战斗服务器
 #include "server_logic.grpc.pb.h"	// 逻辑服务器
 #include "server_db.grpc.pb.h"    // 数据库服务器

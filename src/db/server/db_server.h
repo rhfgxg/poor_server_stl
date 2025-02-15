@@ -2,6 +2,7 @@
 #define DB_SERVICE_H
 
 #include "common.grpc.pb.h" // 公共模块：包含公共数据类型，枚举
+#include "consts/const_log.h"  // 日志类型
 #include "server_db.grpc.pb.h"
 #include "server_central.grpc.pb.h"
 #include "connection_pool.h"    // 连接池

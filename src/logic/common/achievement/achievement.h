@@ -2,7 +2,7 @@
 #define ACHIEVEMENT_H
 
 #include "common.grpc.pb.h"
-
+#include "consts/const_achievement.h"
 // 成就类
 class Achievement
 {

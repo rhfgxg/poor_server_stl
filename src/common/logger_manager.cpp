@@ -68,27 +68,27 @@ void LoggerManager::Create_log_directory(rpc_server::ServerType server_type)
 
     switch(server_type) // 根据服务器类型设置日志文件夹名
     {
-    case rpc_server::CENTRAL:
+    case rpc_server::ServerType::CENTRAL:
     {
         server_name = "central_server";
         break;
     }
-    case rpc_server::DB:
+    case rpc_server::ServerType::DB:
     {
         server_name = "db_server";
         break;
     }
-    case rpc_server::GATEWAY:
+    case rpc_server::ServerType::GATEWAY:
     {
         server_name = "gateway_server";
         break;
     }
-    case rpc_server::LOGIN:
+    case rpc_server::ServerType::LOGIN:
     {
         server_name = "login_server";
         break;
     }
-    case rpc_server::LOGIC:
+    case rpc_server::ServerType::LOGIC:
     {
         server_name = "logic_server";
         break;

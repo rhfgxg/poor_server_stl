@@ -2,7 +2,7 @@
 syntax = "proto3";
 package rpc_server;
 
-import "common.proto";  // 引入公共数据类型：服务器类型
+import "common.proto";  // 服务器类型
 
 service CentralServer
 {

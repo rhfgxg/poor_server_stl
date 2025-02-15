@@ -3,6 +3,9 @@
 
 // 日志相关枚举
 
+namespace rpc_server
+{
+
 // 日志分级
 enum LogLevel
 {
@@ -28,6 +31,9 @@ enum LogCategory
     USER_ACTIVITY = 8,          // 用户活动
     NETWORK = 9                // 网络
 };
+
+}
+
 
 
 #endif // CONST_LOG_H

@@ -22,7 +22,7 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace rpc_server {
 }  // namespace rpc_server
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2eproto[5];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_common_2eproto[2];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_common_2eproto = nullptr;
 const ::uint32_t TableStruct_common_2eproto::offsets[1] = {};
@@ -37,21 +37,13 @@ const char descriptor_table_protodef_common_2eproto[] PROTOBUF_SECTION_VARIABLE(
     "\n\tRES_LOGIN\020\001\022\016\n\nREQ_LOGOUT\020\002\022\016\n\nRES_LOG"
     "OUT\020\003\022\020\n\014REQ_REGISTER\020\004\022\020\n\014RES_REGISTER\020"
     "\005\022\024\n\020REQ_AUTHENTICATE\020\006\022\024\n\020RES_AUTHENTIC"
-    "ATE\020\007*S\n\010LogLevel\022\t\n\005DEBUG\020\000\022\010\n\004INFO\020\001\022\010"
-    "\n\004WARN\020\002\022\017\n\013ERROR_LEVEL\020\003\022\014\n\010CRITICAL\020\004\022"
-    "\t\n\005TRACE\020\005*\332\001\n\013LogCategory\022\024\n\020STARTUP_SH"
-    "UTDOWN\020\000\022\030\n\024APPLICATION_ACTIVITY\020\001\022\023\n\017CO"
-    "NNECTION_POOL\020\002\022\025\n\021SYSTEM_MONITORING\020\003\022\r"
-    "\n\tHEARTBEAT\020\004\022\014\n\010SECURITY\020\005\022\031\n\025CONFIGURA"
-    "TION_CHANGES\020\006\022\027\n\023DATABASE_OPERATIONS\020\007\022"
-    "\021\n\rUSER_ACTIVITY\020\010\022\013\n\007NETWORK\020\t*\037\n\017Achie"
-    "vementType\022\014\n\010USE_CARD\020\000b\006proto3"
+    "ATE\020\007b\006proto3"
 };
 static ::absl::once_flag descriptor_table_common_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2eproto = {
     false,
     false,
-    672,
+    333,
     descriptor_table_protodef_common_2eproto,
     "common.proto",
     &descriptor_table_common_2eproto_once,
@@ -101,33 +93,6 @@ PROTOBUF_CONSTINIT const uint32_t ServiceType_internal_data_[] = {
     524288u, 0u, };
 bool ServiceType_IsValid(int value) {
   return 0 <= value && value <= 7;
-}
-const ::google::protobuf::EnumDescriptor* LogLevel_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_common_2eproto);
-  return file_level_enum_descriptors_common_2eproto[2];
-}
-PROTOBUF_CONSTINIT const uint32_t LogLevel_internal_data_[] = {
-    393216u, 0u, };
-bool LogLevel_IsValid(int value) {
-  return 0 <= value && value <= 5;
-}
-const ::google::protobuf::EnumDescriptor* LogCategory_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_common_2eproto);
-  return file_level_enum_descriptors_common_2eproto[3];
-}
-PROTOBUF_CONSTINIT const uint32_t LogCategory_internal_data_[] = {
-    655360u, 0u, };
-bool LogCategory_IsValid(int value) {
-  return 0 <= value && value <= 9;
-}
-const ::google::protobuf::EnumDescriptor* AchievementType_descriptor() {
-  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_common_2eproto);
-  return file_level_enum_descriptors_common_2eproto[4];
-}
-PROTOBUF_CONSTINIT const uint32_t AchievementType_internal_data_[] = {
-    65536u, 0u, };
-bool AchievementType_IsValid(int value) {
-  return 0 <= value && value <= 0;
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace rpc_server

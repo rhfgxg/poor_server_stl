@@ -3,6 +3,9 @@
 
 // 卡牌相关常量
 
+namespace rpc_server
+{
+
 // 卡牌类型枚举
 enum CardType
 {
@@ -62,6 +65,7 @@ enum Skin
     ALTERNATE = 3  // 异画
 };
 
+}
 
 #endif // !CONST_CARD_H
 
