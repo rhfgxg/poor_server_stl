@@ -29,8 +29,6 @@
 
 namespace rpc_server {
 
-// 服务器类型定义：/src/common/const_server_type.h
-//
 class CentralServer final {
  public:
   static constexpr char const* service_full_name() {

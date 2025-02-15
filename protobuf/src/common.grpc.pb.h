@@ -2,7 +2,7 @@
 // If you make any local change, they will be lost.
 // source: common.proto
 // Original file comments:
-// 保存需要与客户端共享的数据类型，枚举等
+// 保存公共数据类型，枚举等
 //
 #ifndef GRPC_common_2eproto__INCLUDED
 #define GRPC_common_2eproto__INCLUDED
