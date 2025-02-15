@@ -60,48 +60,6 @@ namespace protobuf {
 }  // namespace google
 
 namespace rpc_server {
-enum ServerType : int {
-  UNKNOWN = 0,
-  BATTLE = 1,
-  CENTRAL = 2,
-  CHAT = 3,
-  DB = 4,
-  FILE = 5,
-  GATEWAY = 6,
-  LOGIC = 7,
-  LOGIN = 8,
-  MATCHING = 9,
-  STORE = 10,
-  ServerType_INT_MIN_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::min(),
-  ServerType_INT_MAX_SENTINEL_DO_NOT_USE_ =
-      std::numeric_limits<::int32_t>::max(),
-};
-
-bool ServerType_IsValid(int value);
-extern const uint32_t ServerType_internal_data_[];
-constexpr ServerType ServerType_MIN = static_cast<ServerType>(0);
-constexpr ServerType ServerType_MAX = static_cast<ServerType>(10);
-constexpr int ServerType_ARRAYSIZE = 10 + 1;
-const ::google::protobuf::EnumDescriptor*
-ServerType_descriptor();
-template <typename T>
-const std::string& ServerType_Name(T value) {
-  static_assert(std::is_same<T, ServerType>::value ||
-                    std::is_integral<T>::value,
-                "Incorrect type passed to ServerType_Name().");
-  return ServerType_Name(static_cast<ServerType>(value));
-}
-template <>
-inline const std::string& ServerType_Name(ServerType value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<ServerType_descriptor,
-                                                 0, 10>(
-      static_cast<int>(value));
-}
-inline bool ServerType_Parse(absl::string_view name, ServerType* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<ServerType>(
-      ServerType_descriptor(), name, value);
-}
 enum ServiceType : int {
   REQ_LOGIN = 0,
   RES_LOGIN = 1,
@@ -279,12 +237,6 @@ inline bool AchievementType_Parse(absl::string_view name, AchievementType* value
 namespace google {
 namespace protobuf {
 
-template <>
-struct is_proto_enum<::rpc_server::ServerType> : std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor<::rpc_server::ServerType>() {
-  return ::rpc_server::ServerType_descriptor();
-}
 template <>
 struct is_proto_enum<::rpc_server::ServiceType> : std::true_type {};
 template <>
