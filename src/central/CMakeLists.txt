@@ -10,6 +10,7 @@ set(SOURCES
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
+    ${PROJECT_SOURCE_DIR}/src/common/redis_client.cpp
     # protobuf 生成的源文件：调用其他服务器
     ${PROJECT_SOURCE_DIR}/protobuf/src/common.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/common.grpc.pb.cc
@@ -48,8 +49,8 @@ target_link_libraries(${MODULE_NAME} PRIVATE
 #    ZLIB::ZLIB
 #    upb::upb
     gRPC::grpc++
-    lua
     spdlog::spdlog
+    ${LUA_LIB}  # lua库
     ${ADDRESS_SORTING_LIB}  # address_sorting 库
     "${VCPKG_DEBUG_LIB}/cpp_redis.lib"    # cpp_redis
     "${VCPKG_DEBUG_LIB}/tacopie.lib"    # tacopie 库
@@ -63,7 +64,7 @@ set(DLL_FILES
     "${VCPKG_DEBUG_BIN}/libssl-3-x64.dll"
     "${VCPKG_DEBUG_BIN}/libcrypto-3-x64.dll"
     "${VCPKG_DEBUG_BIN}/abseil_dll.dll"
-    "${VCPKG_DEBUG_BIN}/zlibd1.dll"
+    "${VCPKG_BIN}/zlib1.dll"
     "${VCPKG_DEBUG_BIN}/re2.dll"
     "${VCPKG_DEBUG_BIN}/cares.dll"
     "${VCPKG_DEBUG_BIN}/fmtd.dll"

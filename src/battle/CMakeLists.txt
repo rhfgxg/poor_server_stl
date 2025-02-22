@@ -17,6 +17,8 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_battle.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_db.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_db.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_logic.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_logic.grpc.pb.cc
 )
@@ -42,8 +44,8 @@ target_link_libraries(${MODULE_NAME} PRIVATE
 #    ZLIB::ZLIB
 #    upb::upb
     gRPC::grpc++
-    lua
     spdlog::spdlog
+    ${LUA_LIB}
     ${ADDRESS_SORTING_LIB}  # address_sorting 库
     "${VCPKG_DEBUG_LIB}/cpp_redis.lib"    # cpp_redis
     "${VCPKG_DEBUG_LIB}/tacopie.lib"    # tacopie 库
@@ -58,6 +60,7 @@ set(DLL_FILES
     "${VCPKG_DEBUG_BIN}/libcrypto-3-x64.dll"
     "${VCPKG_DEBUG_BIN}/abseil_dll.dll"
     "${VCPKG_DEBUG_BIN}/zlibd1.dll"
+    "${VCPKG_BIN}/zlib1.dll"
     "${VCPKG_DEBUG_BIN}/re2.dll"
     "${VCPKG_DEBUG_BIN}/cares.dll"
     "${VCPKG_DEBUG_BIN}/fmtd.dll"

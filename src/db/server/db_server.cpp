@@ -11,7 +11,7 @@ DBServerImpl::DBServerImpl(LoggerManager& logger_manager_, const std::string add
     luaL_openlibs(L);   // 打开lua标准库
 
     // 读取配置文件并初始化数据库连接池
-    std::string db_uri = Read_db_config(L, "config/db_config.lua");
+    std::string db_uri = Read_db_config(L, "config/cfg_db.lua");
     user_db_pool = std::make_unique<DBConnectionPool>(db_uri, 10);   // 初始化数据库连接池
 
     lua_close(L);   // 关闭lua虚拟机

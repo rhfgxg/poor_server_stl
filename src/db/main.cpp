@@ -50,7 +50,7 @@ void Read_server_config(std::string& address, std::string& port)
     lua_State* L = luaL_newstate();  // 创建lua虚拟机
     luaL_openlibs(L);   // 打开lua标准库
 
-    std::string file_url = "config/db_server_config.lua";  // 配置文件路径
+    std::string file_url = "config/cfg_db_server.lua";  // 配置文件路径
 
     if(luaL_dofile(L, file_url.c_str()) != LUA_OK)
     {

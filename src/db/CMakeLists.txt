@@ -41,8 +41,8 @@ target_link_libraries(${MODULE_NAME} PRIVATE
 #    ZLIB::ZLIB
 #    upb::upb
     gRPC::grpc++
-    lua
     spdlog::spdlog
+    ${LUA_LIB}
     ${ADDRESS_SORTING_LIB}  # address_sorting 库
     "${VCPKG_DEBUG_LIB}/cpp_redis.lib"    # cpp_redis
     "${VCPKG_DEBUG_LIB}/tacopie.lib"    # tacopie 库
@@ -56,10 +56,12 @@ set(DLL_FILES
     "${VCPKG_DEBUG_BIN}/boost_system-vc143-mt-gd-x64-1_85.dll"
     "${VCPKG_DEBUG_BIN}/libprotobufd.dll"
     "${VCPKG_DEBUG_BIN}/libprotocd.dll"
+    "${VCPKG_DEBUG_BIN}/libprotobuf-lited.dll"
     "${VCPKG_DEBUG_BIN}/libssl-3-x64.dll"
     "${VCPKG_DEBUG_BIN}/libcrypto-3-x64.dll"
     "${VCPKG_DEBUG_BIN}/abseil_dll.dll"
-    "${VCPKG_DEBUG_BIN}/zlibd1.dll"
+    "${VCPKG_BIN}/zlib1.dll"
+    "${VCPKG_DEBUG_BIN}/zstd.dll"
     "${VCPKG_DEBUG_BIN}/re2.dll"
     "${VCPKG_DEBUG_BIN}/cares.dll"
     "${VCPKG_DEBUG_BIN}/fmtd.dll"

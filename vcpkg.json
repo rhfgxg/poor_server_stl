@@ -2,32 +2,14 @@
   "name": "poor-server-stl",
   "version": "1.0.0",
   "dependencies": [
-    {
-      "name": "nlohmann-json"
-    },
-    {
-      "name": "mysql-connector-cpp"
-    },
-    {
-      "name": "boost"
-    },
-    {
-      "name": "grpc"
-    },
-    {
-      "name": "cpp-redis"
-    },
-    {
-      "name": "tacopie"
-    },
-    {
-      "name": "spdlog"
-    },
-    {
-      "name": "lua"
-    },
-    {
-      "name": "jwt-cpp"
-    }
+    "nlohmann-json",
+    "mysql-connector-cpp",
+    "boost",
+    "grpc",
+    "cpp-redis",
+    "tacopie",
+    "spdlog",
+    "lua",
+    "jwt-cpp"
   ]
 }

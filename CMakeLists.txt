@@ -45,7 +45,7 @@ find_package(Boost REQUIRED system)
 find_package(c-ares REQUIRED)
 find_package(fmt REQUIRED)
 find_package(gRPC REQUIRED)
-find_package(Lua REQUIRED)
+# find_package(Lua REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(Protobuf REQUIRED)
 find_package(re2 REQUIRED)
@@ -54,6 +54,7 @@ find_package(ZLIB REQUIRED)
 find_package(upb REQUIRED)
 
 # 下面的库无法使用 find_package 寻找，需要手动指定
+find_library(LUA_LIB lua PATHS "${VCPKG_LIB}")  # lua.lib
 find_library(ADDRESS_SORTING_LIB address_sorting PATHS "${VCPKG_LIB}")  # address_sorting.lib, 用于 grpc
 find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_LIB}")   # mysqlcppconn8.lib
 # 下面文件需要直接在子模块中使用路径引入
@@ -62,9 +63,9 @@ find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_LIB}")   # mysqlcppco
 
 # 添加每个模块，确保可以将所有变量
 add_subdirectory(protobuf)
-#add_subdirectory(./src/battle)
-#add_subdirectory(./src/chat)
+add_subdirectory(./src/battle)
 add_subdirectory(./src/central)
+#add_subdirectory(./src/chat)
 add_subdirectory(./src/db)
 add_subdirectory(./src/file)
 add_subdirectory(./src/gateway)

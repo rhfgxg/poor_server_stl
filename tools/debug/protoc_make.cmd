@@ -1,6 +1,6 @@
 @echo off
+chcp 65001 >nul
 rem 根据 proto文件，生成对应源码
-
 
 rem 设置路径常量
 set SCRIPT_DIR=%~dp0
@@ -16,8 +16,8 @@ rem 生成 common 模块：：包含共享数据类型，枚举的定义
 %PROTOC% --proto_path=%PROTO_DIR% --grpc_out=%MAKE_OUT% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %PROTO_DIR%\common.proto
 
 rem 生成 battle 模块：战斗服务器
-rem %PROTOC% --proto_path=%PROTO_DIR% --cpp_out=%MAKE_OUT% %PROTO_DIR%\server_battle.proto
-rem %PROTOC% --proto_path=%PROTO_DIR% --grpc_out=%MAKE_OUT% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %PROTO_DIR%\server_battle.proto
+%PROTOC% --proto_path=%PROTO_DIR% --cpp_out=%MAKE_OUT% %PROTO_DIR%\server_battle.proto
+%PROTOC% --proto_path=%PROTO_DIR% --grpc_out=%MAKE_OUT% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %PROTO_DIR%\server_battle.proto
 
 rem 生成 chat 模块：聊天服务器
 rem %PROTOC% --proto_path=%PROTO_DIR% --cpp_out=%MAKE_OUT% %PROTO_DIR%\server_chat.proto

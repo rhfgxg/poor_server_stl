@@ -7,7 +7,7 @@ db_config = {
         Password = "159357",
         poor_users = {  -- 平台用户总表
             "poor_users"    -- 用户表
-        }
+        },
         hearthstone = { -- 炉石传说模块表
             "playerdata",   -- 玩家数据
             "player_achievements_quests",   -- 成就，任务
