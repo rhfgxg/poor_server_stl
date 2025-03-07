@@ -30,7 +30,7 @@ DBServerImpl::~DBServerImpl()
     unregister_server(); // 注销服务器
 
     // 记录关闭日志
-    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("DBServer stopped");
+    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("DBServer stopped");
     // 停止并清理日志管理器
     logger_manager.cleanup();
 }
@@ -127,11 +127,11 @@ void DBServerImpl::register_server()
 
     if(status.ok() && response.success())
     {
-        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("DB server registered successfully: {} {}",this->server_address,this->server_port);
+        this->logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("DB server registered successfully: {} {}",this->server_address,this->server_port);
     }
     else
     {
-        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->error("DB server registration failed: {} {}",this->server_address,this->server_port);
+        this->logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->error("DB server registration failed: {} {}",this->server_address,this->server_port);
     }
 }
 
@@ -154,11 +154,11 @@ void DBServerImpl::unregister_server()
 
     if(status.ok() && response.success())
     {
-        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Server unregistration successful: {}", response.message());
+        this->logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Server unregistration successful: {}", response.message());
     }
     else
     {
-        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->error("Server unregistration failed:  {}",response.message());
+        this->logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->error("Server unregistration failed:  {}",response.message());
     }
 }
 
@@ -182,11 +182,11 @@ void DBServerImpl::Send_heartbeat()
 
         if(status.ok() && response.success())
         {
-            this->logger_manager.getLogger(rpc_server::LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
+            this->logger_manager.getLogger(poor::LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
         }
          else
         {
-            this->logger_manager.getLogger(rpc_server::LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
+            this->logger_manager.getLogger(poor::LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
         }
     }
 }
@@ -342,7 +342,7 @@ void DBServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadR
         }
     }
 
-    this->logger_manager.getLogger(rpc_server::LogCategory::DATABASE_OPERATIONS)->info("Database query operation successful: Database: {}", database);
+    this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->info("Database query operation successful: Database: {}", database);
 
     res->set_success(true);
     res->set_message("Query successful");
@@ -433,7 +433,7 @@ std::string DBServerImpl::Read_db_config(lua_State* L, const std::string& file_u
     lua_pop(L,1);
 
     lua_getfield(L,-1,"db_name");
-    lua_getfield(L,-1,"user_db");
+    lua_getfield(L,-1,"poor_users");
     db_name = lua_tostring(L,-1);
     lua_pop(L,2);
 

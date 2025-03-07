@@ -12,7 +12,7 @@ int main()
     logger_manager.initialize(rpc_server::ServerType::CENTRAL);    // 传入服务器类型，创建日志文件夹
 
     // 记录启动日志
-    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Central_server started");
+    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Central_server started");
 
     run_server(logger_manager); // 运行服务器
 
@@ -37,7 +37,7 @@ void run_server(LoggerManager& logger_manager)
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());  // 创建服务器
 
     // 记录监听地址
-    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
+    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
     server->Wait(); // 等待请求
 
     central_server.stop_thread_pool(); // 停止线程池

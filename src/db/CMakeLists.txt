@@ -61,6 +61,7 @@ set(DLL_FILES
     "${VCPKG_DEBUG_BIN}/libcrypto-3-x64.dll"
     "${VCPKG_DEBUG_BIN}/abseil_dll.dll"
     "${VCPKG_BIN}/zlib1.dll"
+    "${VCPKG_DEBUG_BIN}/zlibd1.dll"
     "${VCPKG_DEBUG_BIN}/zstd.dll"
     "${VCPKG_DEBUG_BIN}/re2.dll"
     "${VCPKG_DEBUG_BIN}/cares.dll"

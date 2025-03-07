@@ -3,7 +3,7 @@
 
 // 成就相关常量
 
-namespace rpc_server
+namespace poor
 {
 
 // 成就类型

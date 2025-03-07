@@ -30,10 +30,10 @@
 namespace rpc_server {
 
 // 战斗服务
-class BattleService final {
+class BattleServer final {
  public:
   static constexpr char const* service_full_name() {
-    return "rpc_server.BattleService";
+    return "rpc_server.BattleServer";
   }
   class StubInterface {
    public:
