@@ -11,7 +11,6 @@ rem 生成文件目录
 set DEBUG_OUT_DIR=%PROJECT_DIR%\out\build\x64-debug
 
 rem 子模块配置文件目录
-set BATTLE_DIR=%DEBUG_OUT_DIR%\src\battle\config
 set CENTRAL_DIR=%DEBUG_OUT_DIR%\src\central\config
 set DB_DIR=%DEBUG_OUT_DIR%\src\db\config
 set FILE_DIR=%DEBUG_OUT_DIR%\src\file\config
@@ -20,7 +19,6 @@ set LOGIC_DIR=%DEBUG_OUT_DIR%\src\logic\config
 set LOGIN_DIR=%DEBUG_OUT_DIR%\src\login\config
 
 rem 创建文件夹
-if not exist %BATTLE_DIR% mkdir %BATTLE_DIR%
 if not exist %CENTRAL_DIR% mkdir %CENTRAL_DIR%
 if not exist %DB_DIR% mkdir %DB_DIR%
 if not exist %FILE_DIR% mkdir %FILE_DIR%
@@ -29,7 +27,6 @@ if not exist %LOGIC_DIR% mkdir %LOGIC_DIR%
 if not exist %LOGIN_DIR% mkdir %LOGIN_DIR%
 
 rem 复制服务器配置文件
-copy /y %CONFIG_DIR%\cfg_battle_server.lua	%BATTLE_DIR%
 copy /y %CONFIG_DIR%\cfg_central_server.lua	%CENTRAL_DIR%
 copy /y %CONFIG_DIR%\cfg_db_server.lua		%DB_DIR%
 copy /y %CONFIG_DIR%\cfg_file_server.lua	%FILE_DIR%

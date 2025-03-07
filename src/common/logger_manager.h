@@ -23,15 +23,16 @@ public:
     void cleanup();
 
     // 获取日志器
-    std::shared_ptr<spdlog::logger> getLogger(poor::LogCategory category);
+    std::shared_ptr<spdlog::logger> getLogger(rpc_server::LogCategory category);
 
 private:
     // 创建日志文件夹
     void Create_log_directory(rpc_server::ServerType server_type);
 
 private:
-    std::unordered_map<poor::LogCategory, std::shared_ptr<spdlog::logger>> loggers;   // 日志器容器
+    std::unordered_map<rpc_server::LogCategory, std::shared_ptr<spdlog::logger>> loggers;   // 日志器容器
     std::string log_directory;  // 日志文件夹
 };
 
 #endif // LOGGER_MANAGER_H
+

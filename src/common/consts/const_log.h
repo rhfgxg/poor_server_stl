@@ -3,7 +3,7 @@
 
 // 日志相关枚举
 
-namespace poor
+namespace rpc_server
 {
 
 // 日志分级

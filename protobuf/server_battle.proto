@@ -3,7 +3,7 @@ syntax = "proto3";
 package rpc_server;
 
 // 战斗服务
-service BattleServer {
+service BattleService {
     // 玩家操作
     rpc Player_action(PlayerActionRequest) returns (PlayerActionResponse);
     // 获取战斗结果

@@ -3,7 +3,7 @@
 
 // 卡牌相关常量
 
-namespace poor
+namespace rpc_server
 {
 
 // 卡牌类型枚举
