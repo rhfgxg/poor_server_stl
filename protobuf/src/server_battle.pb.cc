@@ -324,20 +324,20 @@ const char descriptor_table_protodef_server_5fbattle_2eproto[] PROTOBUF_SECTION_
     "Request\022\021\n\tbattle_id\030\001 \001(\005\022\022\n\nstate_data"
     "\030\002 \001(\t\"O\n\027SyncBattleStateResponse\022\017\n\007suc"
     "cess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\022\022\n\nstate_dat"
-    "a\030\003 \001(\t2\243\002\n\rBattleService\022R\n\rPlayer_acti"
-    "on\022\037.rpc_server.PlayerActionRequest\032 .rp"
-    "c_server.PlayerActionResponse\022\\\n\021Get_bat"
-    "tle_result\022\".rpc_server.GetBattleResultR"
-    "equest\032#.rpc_server.GetBattleResultRespo"
-    "nse\022`\n\021Sync_battle_state\022\".rpc_server.Sy"
-    "ncBattleStateRequest\032#.rpc_server.SyncBa"
-    "ttleStateResponse(\0010\001b\006proto3"
+    "a\030\003 \001(\t2\242\002\n\014BattleServer\022R\n\rPlayer_actio"
+    "n\022\037.rpc_server.PlayerActionRequest\032 .rpc"
+    "_server.PlayerActionResponse\022\\\n\021Get_batt"
+    "le_result\022\".rpc_server.GetBattleResultRe"
+    "quest\032#.rpc_server.GetBattleResultRespon"
+    "se\022`\n\021Sync_battle_state\022\".rpc_server.Syn"
+    "cBattleStateRequest\032#.rpc_server.SyncBat"
+    "tleStateResponse(\0010\001b\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fbattle_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fbattle_2eproto = {
     false,
     false,
-    869,
+    868,
     descriptor_table_protodef_server_5fbattle_2eproto,
     "server_battle.proto",
     &descriptor_table_server_5fbattle_2eproto_once,

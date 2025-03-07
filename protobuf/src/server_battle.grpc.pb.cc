@@ -21,112 +21,112 @@
 #include <grpcpp/support/sync_stream.h>
 namespace rpc_server {
 
-static const char* BattleService_method_names[] = {
-  "/rpc_server.BattleService/Player_action",
-  "/rpc_server.BattleService/Get_battle_result",
-  "/rpc_server.BattleService/Sync_battle_state",
+static const char* BattleServer_method_names[] = {
+  "/rpc_server.BattleServer/Player_action",
+  "/rpc_server.BattleServer/Get_battle_result",
+  "/rpc_server.BattleServer/Sync_battle_state",
 };
 
-std::unique_ptr< BattleService::Stub> BattleService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
+std::unique_ptr< BattleServer::Stub> BattleServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
-  std::unique_ptr< BattleService::Stub> stub(new BattleService::Stub(channel, options));
+  std::unique_ptr< BattleServer::Stub> stub(new BattleServer::Stub(channel, options));
   return stub;
 }
 
-BattleService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_Player_action_(BattleService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Get_battle_result_(BattleService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Sync_battle_state_(BattleService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
+BattleServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
+  : channel_(channel), rpcmethod_Player_action_(BattleServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Get_battle_result_(BattleServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Sync_battle_state_(BattleServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   {}
 
-::grpc::Status BattleService::Stub::Player_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::rpc_server::PlayerActionResponse* response) {
+::grpc::Status BattleServer::Stub::Player_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::rpc_server::PlayerActionResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::rpc_server::PlayerActionRequest, ::rpc_server::PlayerActionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Player_action_, context, request, response);
 }
 
-void BattleService::Stub::async::Player_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest* request, ::rpc_server::PlayerActionResponse* response, std::function<void(::grpc::Status)> f) {
+void BattleServer::Stub::async::Player_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest* request, ::rpc_server::PlayerActionResponse* response, std::function<void(::grpc::Status)> f) {
   ::grpc::internal::CallbackUnaryCall< ::rpc_server::PlayerActionRequest, ::rpc_server::PlayerActionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Player_action_, context, request, response, std::move(f));
 }
 
-void BattleService::Stub::async::Player_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest* request, ::rpc_server::PlayerActionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void BattleServer::Stub::async::Player_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest* request, ::rpc_server::PlayerActionResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Player_action_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::PlayerActionResponse>* BattleService::Stub::PrepareAsyncPlayer_actionRaw(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::PlayerActionResponse>* BattleServer::Stub::PrepareAsyncPlayer_actionRaw(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::PlayerActionResponse, ::rpc_server::PlayerActionRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Player_action_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::PlayerActionResponse>* BattleService::Stub::AsyncPlayer_actionRaw(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::PlayerActionResponse>* BattleServer::Stub::AsyncPlayer_actionRaw(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncPlayer_actionRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status BattleService::Stub::Get_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::rpc_server::GetBattleResultResponse* response) {
+::grpc::Status BattleServer::Stub::Get_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::rpc_server::GetBattleResultResponse* response) {
   return ::grpc::internal::BlockingUnaryCall< ::rpc_server::GetBattleResultRequest, ::rpc_server::GetBattleResultResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Get_battle_result_, context, request, response);
 }
 
-void BattleService::Stub::async::Get_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest* request, ::rpc_server::GetBattleResultResponse* response, std::function<void(::grpc::Status)> f) {
+void BattleServer::Stub::async::Get_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest* request, ::rpc_server::GetBattleResultResponse* response, std::function<void(::grpc::Status)> f) {
   ::grpc::internal::CallbackUnaryCall< ::rpc_server::GetBattleResultRequest, ::rpc_server::GetBattleResultResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_battle_result_, context, request, response, std::move(f));
 }
 
-void BattleService::Stub::async::Get_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest* request, ::rpc_server::GetBattleResultResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void BattleServer::Stub::async::Get_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest* request, ::rpc_server::GetBattleResultResponse* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Get_battle_result_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::GetBattleResultResponse>* BattleService::Stub::PrepareAsyncGet_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::GetBattleResultResponse>* BattleServer::Stub::PrepareAsyncGet_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::GetBattleResultResponse, ::rpc_server::GetBattleResultRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Get_battle_result_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::GetBattleResultResponse>* BattleService::Stub::AsyncGet_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::GetBattleResultResponse>* BattleServer::Stub::AsyncGet_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncGet_battle_resultRaw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::ClientReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* BattleService::Stub::Sync_battle_stateRaw(::grpc::ClientContext* context) {
+::grpc::ClientReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* BattleServer::Stub::Sync_battle_stateRaw(::grpc::ClientContext* context) {
   return ::grpc::internal::ClientReaderWriterFactory< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>::Create(channel_.get(), rpcmethod_Sync_battle_state_, context);
 }
 
-void BattleService::Stub::async::Sync_battle_state(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::rpc_server::SyncBattleStateRequest,::rpc_server::SyncBattleStateResponse>* reactor) {
+void BattleServer::Stub::async::Sync_battle_state(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::rpc_server::SyncBattleStateRequest,::rpc_server::SyncBattleStateResponse>* reactor) {
   ::grpc::internal::ClientCallbackReaderWriterFactory< ::rpc_server::SyncBattleStateRequest,::rpc_server::SyncBattleStateResponse>::Create(stub_->channel_.get(), stub_->rpcmethod_Sync_battle_state_, context, reactor);
 }
 
-::grpc::ClientAsyncReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* BattleService::Stub::AsyncSync_battle_stateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+::grpc::ClientAsyncReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* BattleServer::Stub::AsyncSync_battle_stateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
   return ::grpc::internal::ClientAsyncReaderWriterFactory< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>::Create(channel_.get(), cq, rpcmethod_Sync_battle_state_, context, true, tag);
 }
 
-::grpc::ClientAsyncReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* BattleService::Stub::PrepareAsyncSync_battle_stateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* BattleServer::Stub::PrepareAsyncSync_battle_stateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
   return ::grpc::internal::ClientAsyncReaderWriterFactory< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>::Create(channel_.get(), cq, rpcmethod_Sync_battle_state_, context, false, nullptr);
 }
 
-BattleService::Service::Service() {
+BattleServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BattleService_method_names[0],
+      BattleServer_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BattleService::Service, ::rpc_server::PlayerActionRequest, ::rpc_server::PlayerActionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](BattleService::Service* service,
+      new ::grpc::internal::RpcMethodHandler< BattleServer::Service, ::rpc_server::PlayerActionRequest, ::rpc_server::PlayerActionResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](BattleServer::Service* service,
              ::grpc::ServerContext* ctx,
              const ::rpc_server::PlayerActionRequest* req,
              ::rpc_server::PlayerActionResponse* resp) {
                return service->Player_action(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BattleService_method_names[1],
+      BattleServer_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< BattleService::Service, ::rpc_server::GetBattleResultRequest, ::rpc_server::GetBattleResultResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
-          [](BattleService::Service* service,
+      new ::grpc::internal::RpcMethodHandler< BattleServer::Service, ::rpc_server::GetBattleResultRequest, ::rpc_server::GetBattleResultResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](BattleServer::Service* service,
              ::grpc::ServerContext* ctx,
              const ::rpc_server::GetBattleResultRequest* req,
              ::rpc_server::GetBattleResultResponse* resp) {
                return service->Get_battle_result(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      BattleService_method_names[2],
+      BattleServer_method_names[2],
       ::grpc::internal::RpcMethod::BIDI_STREAMING,
-      new ::grpc::internal::BidiStreamingHandler< BattleService::Service, ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>(
-          [](BattleService::Service* service,
+      new ::grpc::internal::BidiStreamingHandler< BattleServer::Service, ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>(
+          [](BattleServer::Service* service,
              ::grpc::ServerContext* ctx,
              ::grpc::ServerReaderWriter<::rpc_server::SyncBattleStateResponse,
              ::rpc_server::SyncBattleStateRequest>* stream) {
@@ -134,24 +134,24 @@ BattleService::Service::Service() {
              }, this)));
 }
 
-BattleService::Service::~Service() {
+BattleServer::Service::~Service() {
 }
 
-::grpc::Status BattleService::Service::Player_action(::grpc::ServerContext* context, const ::rpc_server::PlayerActionRequest* request, ::rpc_server::PlayerActionResponse* response) {
+::grpc::Status BattleServer::Service::Player_action(::grpc::ServerContext* context, const ::rpc_server::PlayerActionRequest* request, ::rpc_server::PlayerActionResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status BattleService::Service::Get_battle_result(::grpc::ServerContext* context, const ::rpc_server::GetBattleResultRequest* request, ::rpc_server::GetBattleResultResponse* response) {
+::grpc::Status BattleServer::Service::Get_battle_result(::grpc::ServerContext* context, const ::rpc_server::GetBattleResultRequest* request, ::rpc_server::GetBattleResultResponse* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status BattleService::Service::Sync_battle_state(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::rpc_server::SyncBattleStateResponse, ::rpc_server::SyncBattleStateRequest>* stream) {
+::grpc::Status BattleServer::Service::Sync_battle_state(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::rpc_server::SyncBattleStateResponse, ::rpc_server::SyncBattleStateRequest>* stream) {
   (void) context;
   (void) stream;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");

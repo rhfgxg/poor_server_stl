@@ -11,7 +11,7 @@ LogicServerImpl::LogicServerImpl(LoggerManager& logger_manager_, const std::stri
     db_connection_pool(10)
 {
     redis_client.get_client()->connect("127.0.0.1", 6379); // 连接Redis服务器
-    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("redis connection successful");
+    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("redis connection successful");
 
     register_server(); // 注册服务器
 
@@ -29,7 +29,7 @@ LogicServerImpl::~LogicServerImpl()
     unregister_server(); // 注销服务器
 
     // 记录关闭日志
-    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("LogicServer stopped");
+    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("LogicServer stopped");
     // 停止并清理日志管理器
     logger_manager.cleanup();
 }
@@ -126,11 +126,11 @@ void LogicServerImpl::register_server()
 
     if(status.ok() && response.success())
     {
-        logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Login server registered successfully: {} {}", this->server_address, this->server_port);
+        logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Login server registered successfully: {} {}", this->server_address, this->server_port);
         Init_connection_pool(); // 初始化连接池
     } else
     {
-        logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->error("Login server registration failed: {} {}", this->server_address, this->server_port);
+        logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->error("Login server registration failed: {} {}", this->server_address, this->server_port);
     }
 }
 
@@ -153,11 +153,11 @@ void LogicServerImpl::unregister_server()
 
     if(status.ok() && response.success())
     {
-        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Logic server unregistered successfully: {} {}", this->server_address, this->server_port);
+        this->logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Logic server unregistered successfully: {} {}", this->server_address, this->server_port);
     }
     else
     {
-        this->logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->error("Logic server unregistration failed: {} {}", this->server_address, this->server_port);
+        this->logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->error("Logic server unregistration failed: {} {}", this->server_address, this->server_port);
     }
 }
 
@@ -191,11 +191,11 @@ void LogicServerImpl::Init_connection_pool()
                 }
             }
         }
-        logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->info("Logic server updated connection pools successfully");
+        logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->info("Logic server updated connection pools successfully");
     }
     else
     {
-        logger_manager.getLogger(rpc_server::LogCategory::CONNECTION_POOL)->error("Failed to get connection pools information");
+        logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->error("Failed to get connection pools information");
     }
 }
 
@@ -229,11 +229,11 @@ void LogicServerImpl::Send_heartbeat()
 
         if(status.ok() && response.success())
         {
-            this->logger_manager.getLogger(rpc_server::LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
+            this->logger_manager.getLogger(poor::LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
         }
         else
         {
-            this->logger_manager.getLogger(rpc_server::LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
+            this->logger_manager.getLogger(poor::LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
         }
     }
 }

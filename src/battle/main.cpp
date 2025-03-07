@@ -9,10 +9,10 @@ int main()
 {
     // 初始化日志管理器，通过引用传递实现单例模式
     LoggerManager logger_manager;
-    logger_manager.initialize(rpc_server::ServerType::LOGIN);    // 传入服务器类型，创建日志文件夹
+    logger_manager.initialize(rpc_server::ServerType::BATTLE);    // 传入服务器类型，创建日志文件夹
 
     // 记录启动日志
-    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Login server started"); // 记录启动日志：日志分类, 日志内容
+    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Login server started"); // 记录启动日志：日志分类, 日志内容
 
     RunServer(logger_manager); // 运行服务器
 
@@ -23,7 +23,7 @@ int main()
 void RunServer(LoggerManager& logger_manager)
 {
     std::string address = "127.0.0.1";   // 默认服务器地址和端口
-    std::string port = "50054";
+    std::string port = "50056";
     Read_server_config(address, port);
 
     LogicServerImpl logic_server(logger_manager, address, port);
@@ -34,7 +34,7 @@ void RunServer(LoggerManager& logger_manager)
     builder.RegisterService(&logic_server); // 注册服务
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // 构建并启动服务器
-    logger_manager.getLogger(rpc_server::LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
+    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
 
     logic_server.start_thread_pool(4); // 启动4个线程处理请求
 
@@ -48,7 +48,7 @@ void Read_server_config(std::string& address, std::string& port)
     lua_State* L = luaL_newstate();  // 创建lua虚拟机
     luaL_openlibs(L);   // 打开lua标准库
 
-    std::string file_url = "config/cfg_logic_server.lua";  // 配置文件路径
+    std::string file_url = "config/cfg_battle_server.lua";  // 配置文件路径
 
     if(luaL_dofile(L, file_url.c_str()) != LUA_OK)
     {
@@ -56,7 +56,7 @@ void Read_server_config(std::string& address, std::string& port)
         throw std::runtime_error("Failed to load config file");
     }
 
-    lua_getglobal(L, "logic_server");
+    lua_getglobal(L, "battle_server");
     if(!lua_istable(L, -1))
     {
         lua_close(L);
