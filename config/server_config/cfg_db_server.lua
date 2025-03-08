@@ -1,4 +1,4 @@
-db_server = {
+local db_server = {
     host = "127.0.0.1",
     port = 50052
 }

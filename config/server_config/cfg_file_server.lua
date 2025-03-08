@@ -1,4 +1,4 @@
-file_server = {
+local file_server = {
     host = "127.0.0.1",
     port = 50055
 }

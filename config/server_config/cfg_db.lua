@@ -1,5 +1,5 @@
 -- 数据库列表
-db_config = {
+local db_config = {
     mysqlx = {
         Host = "127.0.0.1",
         Port = "33060", -- mysqlx协议，所以端口是 33060
