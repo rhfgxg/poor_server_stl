@@ -5,10 +5,14 @@ local db_config = {
         Port = "33060", -- mysqlx协议，所以端口是 33060
         UserName = "root",
         Password = "159357",
-        poor_users = {  -- 平台用户总表
+        DB_name = {
+            "poor_users", -- 平台用户数据库
+            "hearthstone" -- 炉石传说数据库
+        }
+        poor_users = {  -- 平台用户数据库
             "poor_users"    -- 用户表
         },
-        hearthstone = { -- 炉石传说模块表
+        hearthstone = { -- 炉石传说模块数据库
             "playerdata",   -- 玩家数据
             "player_achievements_quests",   -- 成就，任务
             "player_class_wins",    -- 职业胜场

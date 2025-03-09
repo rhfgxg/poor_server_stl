@@ -12,7 +12,7 @@ DBServerImpl::DBServerImpl(LoggerManager& logger_manager_, const std::string add
 
     // 读取配置文件并初始化数据库连接池
     std::string db_uri = Read_db_config(L, "config/cfg_db.lua");
-    user_db_pool = std::make_unique<DBConnectionPool>(db_uri, 10);   // 初始化数据库连接池
+    user_db_pool = std::make_unique<DBConnectionPool>(db_uri + "poor_users", 10);   // 初始化数据库连接池
 
     lua_close(L);   // 关闭lua虚拟机
 
@@ -395,50 +395,52 @@ void DBServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_server::D
 // 读取 数据库配置配置文件，获得数据库连接字符串
 std::string DBServerImpl::Read_db_config(lua_State* L, const std::string& file_url)
 {
-    if(luaL_dofile(L,file_url.c_str()) != LUA_OK) {
-        std::cerr << "Error: " << lua_tostring(L,-1) << std::endl;
-        lua_pop(L,1);
+    if(luaL_dofile(L, file_url.c_str()) != LUA_OK)  // 打开配置文件
+    {
+        std::cerr << "Error: " << lua_tostring(L, -1) << std::endl;
+        lua_pop(L, 1);
         return "";
     }
 
-    lua_getglobal(L,"db_config");
-    if(!lua_istable(L,-1)) {
+    lua_getglobal(L, "db_config");
+    if(!lua_istable(L, -1)) // 是否为table
+    {
         std::cerr << "Error: db_config is not a table" << std::endl;
-        lua_pop(L,1);
+        lua_pop(L, 1);
         return "";
     }
 
-    lua_getfield(L,-1,"mysqlx");
-    if(!lua_istable(L,-1)) {
+    lua_getfield(L, -1, "mysqlx");
+    if(!lua_istable(L, -1))
+    {
         std::cerr << "Error: mysqlx is not a table" << std::endl;
-        lua_pop(L,1);
+        lua_pop(L, 1);
         return "";
     }
 
-    std::string host,port,username,password,db_name;
-    lua_getfield(L,-1,"Host");
-    host = lua_tostring(L,-1);
-    lua_pop(L,1);
+    std::string host = "";
+    std::string port = "";
+    std::string username = "";
+    std::string password = "";
+    std::string db_name = "";
+    lua_getfield(L, -1, "Host");
+    host = lua_tostring(L, -1);
+    lua_pop(L, 1);
 
-    lua_getfield(L,-1,"Port");
-    port = lua_tostring(L,-1);
-    lua_pop(L,1);
+    lua_getfield(L, -1, "Port");
+    port = lua_tostring(L, -1);
+    lua_pop(L, 1);
 
-    lua_getfield(L,-1,"UserName");
-    username = lua_tostring(L,-1);
-    lua_pop(L,1);
+    lua_getfield(L, -1, "UserName");
+    username = lua_tostring(L, -1);
+    lua_pop(L, 1);
 
-    lua_getfield(L,-1,"Password");
-    password = lua_tostring(L,-1);
-    lua_pop(L,1);
+    lua_getfield(L, -1, "Password");
+    password = lua_tostring(L, -1);
+    lua_pop(L, 1);
 
-    lua_getfield(L,-1,"db_name");
-    lua_getfield(L,-1,"poor_users");
-    db_name = lua_tostring(L,-1);
-    lua_pop(L,2);
+    lua_pop(L, 2); // pop mysqlx and db_config
 
-    lua_pop(L,2); // pop mysqlx and db_config
-
-    std::string db_uri = "mysqlx://" + username + ":" + password + "@" + host + ":" + port + "/" + db_name;
+    std::string db_uri = "mysqlx://" + username + ":" + password + "@" + host + ":" + port + "/";
     return db_uri;
 }
