@@ -2,7 +2,8 @@
 
 AchievementManager::AchievementManager()
 {
-
+    // 初始化成就数据
+    Load_achievements();
 }
 
 // 从配置文件加载成就数据

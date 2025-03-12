@@ -1,4 +1,4 @@
-#include "./server/logic_server.h"
+#include "./server/battle_server.h"
 #include "logger_manager.h" // 引入日志管理器
 
 void RunServer(LoggerManager& logger_manager);// 运行服务器
@@ -12,7 +12,7 @@ int main()
     logger_manager.initialize(rpc_server::ServerType::BATTLE);    // 传入服务器类型，创建日志文件夹
 
     // 记录启动日志
-    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Login server started"); // 记录启动日志：日志分类, 日志内容
+    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Battle server started"); // 记录启动日志：日志分类, 日志内容
 
     RunServer(logger_manager); // 运行服务器
 
@@ -26,20 +26,20 @@ void RunServer(LoggerManager& logger_manager)
     std::string port = "50056";
     Read_server_config(address, port);
 
-    LogicServerImpl logic_server(logger_manager, address, port);
+    BattleServerImpl battle_server(logger_manager, address, port);
 
     grpc::ServerBuilder builder;
     std::string server_address(address + ":" + port);
     builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
-    builder.RegisterService(&logic_server); // 注册服务
+    builder.RegisterService(&battle_server); // 注册服务
 
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // 构建并启动服务器
     logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
 
-    logic_server.start_thread_pool(4); // 启动4个线程处理请求
+    battle_server.start_thread_pool(4); // 启动4个线程处理请求
 
     server->Wait(); // 等待服务器终止
-    logic_server.stop_thread_pool(); // 停止线程池
+    battle_server.stop_thread_pool(); // 停止线程池
 }
 
 // 读取服务器配置文件，初始化服务器地址和端口
