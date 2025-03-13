@@ -2,15 +2,16 @@
 
 CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port):
     server_type(rpc_server::ServerType::CENTRAL),    // 服务器类型
-    server_address(address),
-    server_port(port),
+    server_address(address),    // 服务器地址
+    server_port(port),  // 服务器端口
     logger_manager(logger_manager_),    // 日志管理器
+    battle_connection_pool(10),    // 初始化战斗服务器连接池大小为 10
     central_connection_pool(10),    // 初始化中心服务器连接池大小为 10
-    db_connection_pool(10),
-    gateway_connection_pool(10),
-    logic_connection_pool(10),
-    login_connection_pool(10),
-    file_connection_pool(10)
+    db_connection_pool(10), // 初始化数据库服务器连接池大小为 10
+    gateway_connection_pool(10),    // 初始化网关服务器连接池大小为 10
+    logic_connection_pool(10),  // 初始化逻辑服务器连接池大小为 10
+    login_connection_pool(10),  // 初始化登录服务器连接池大小为 10
+    file_connection_pool(10)   // 初始化文件服务器连接池大小为 10
 {
     // 连接池日志
     logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->info("Central_connection_pool: initialized successfully, pool size: 10");
@@ -185,6 +186,15 @@ void CentralServerImpl::Handle_register_server(const rpc_server::RegisterServerR
     // 根据服务器类型，将服务器加入连接池
     switch(server_type)
     {
+    case rpc_server::ServerType::BATTLE:   // 战斗服务器
+    {
+        // 将链接加入连接池并记录日志
+        this->battle_connection_pool.add_server(rpc_server::ServerType::BATTLE, address, port);
+        this->logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->info("Battle_connection_pool: successfully registered a server: {} {}", address, port);
+        res->set_success(true);
+        res->set_message("Server registered successfully");
+        break;
+    }
     case rpc_server::ServerType::CENTRAL:    // 中心服务器
     {
         // 将链接加入连接池并记录日志
@@ -248,6 +258,13 @@ void CentralServerImpl::Release_server_connection(rpc_server::ServerType server_
     // 根据服务器类型，从连接池中删除服务器
     switch(server_type)
     {
+    case rpc_server::ServerType::BATTLE:    // 战斗服务器
+    {
+        // 连接池中移除链接，并记录日志
+        this->battle_connection_pool.remove_server(rpc_server::ServerType::BATTLE, address, port);
+        this->logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->warn("Battle_connection_pool: successfully unregistered a server: {} {}", address, port);
+        break;
+    }
     case rpc_server::ServerType::CENTRAL:    // 中心服务器
     {
         // 连接池中移除链接，并记录日志

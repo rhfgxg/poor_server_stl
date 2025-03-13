@@ -81,6 +81,7 @@ private:    // 私有成员
     std::mutex heartbeat_mutex; // 心跳记录互斥锁
 
     // 连接池
+    ConnectionPool battle_connection_pool;
     ConnectionPool central_connection_pool;
     ConnectionPool db_connection_pool;
     ConnectionPool gateway_connection_pool;
