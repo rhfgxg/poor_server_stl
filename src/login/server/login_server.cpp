@@ -335,7 +335,7 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
     // 构造数据库查询请求
     rpc_server::ReadReq read_request;
     read_request.set_database("poor_users");
-    read_request.set_table("users");
+    read_request.set_table("poor_users");
     for(auto& it : query)
     {
         (*read_request.mutable_query())[it.first] = it.second;
