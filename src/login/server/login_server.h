@@ -10,6 +10,10 @@
 #include "logger_manager.h"     // 日志管理器
 #include "redis_client.h"       // Redis客户端
 
+#include <openssl/sha.h>
+#include <iomanip>
+#include <sstream>
+
 #include <grpcpp/grpcpp.h>
 #include <map>
 #include <string>
@@ -71,6 +75,7 @@ private:
     // 工具函数
     std::string GenerateToken(const std::string& account);    // 生成用户 token
     bool ValidateToken(const std::string& token, const std::string& account);  // 验证 token
+    std::string sha256(const std::string& str); // SHA256哈希密码加密函数
 
 private:
     std::string server_address; // 服务器地址
