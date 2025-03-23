@@ -22,7 +22,8 @@ message LoginRes
 {
     bool success = 1;   // 操作结果
     bytes message = 2; // 响应信息
-    bytes token = 3;  // 会话或令牌
+    bytes account = 3;  // 账号
+    bytes token = 4;  // 会话或令牌
 }
 
 // 登出服务请求
@@ -50,6 +51,8 @@ message RegisterRes
 {
     bool success = 1;
     bytes message = 2;
+    bytes account = 3;  // 账号
+    bytes token = 4;  // 令牌
 }
 
 // 令牌验证服务请求

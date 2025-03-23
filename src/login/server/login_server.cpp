@@ -1,4 +1,7 @@
 #include "login_server.h"
+#include <chrono>
+#include <iomanip>
+#include <sstream>
 
 LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_, const std::string address, std::string port):
     server_type(rpc_server::ServerType::LOGIN),
@@ -268,7 +271,12 @@ grpc::Status LoginServerImpl::Logout(grpc::ServerContext* context, const rpc_ser
 // 注册服务接口
 grpc::Status LoginServerImpl::Register(grpc::ServerContext* context, const rpc_server::RegisterReq* req, rpc_server::RegisterRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_register(req, res); // 查询的数据库名，表名，查询条件
+    });
 
+    // 等待任务完成
+    task_future.get();
     // 返回gRPC状态
     return grpc::Status::OK;
 }
@@ -364,6 +372,7 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
 
         res->set_success(true);
         res->set_message("Login successful");
+        res->set_account(account);
         res->set_token(token);
         this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Login successful");
     }
@@ -400,6 +409,90 @@ void LoginServerImpl::Handle_logout(const rpc_server::LogoutReq* req, rpc_server
 // 注册服务
 void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_server::RegisterRes* res)    // 注册
 {
+    /* 注册服务
+    * 在数据库中插入用户账号和密码
+    * 如果插入成功，生成Token
+    * 将账号和Token存储到Redis中，将用户在线状态设置为true
+    * 用户退出，删除Redis中的账号和Token
+    */
+
+    // 获取用户名和密码
+    std::string user_name = req->user_name();
+    std::string password = req->password();
+    std::string email = req->email();
+
+    auto now = std::chrono::system_clock::now();
+    auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now).time_since_epoch().count();
+    std::ostringstream oss;
+    oss << now_ms;
+
+    // 创建用户账号
+    std::string account = "3056078308";    // 账号
+    std::string phone_number = "13411806653";   // 手机号
+    std::string id_number = "140424200104060017";   // 身份证号
+    std::string avatar = "default.png"; // 头像路径
+    std::string registration_date = std::to_string(now_ms);    // 注册时间
+    std::string last_login_date = std::to_string(now_ms);  // 最后登录时间
+    std::string user_status = "active";  // 用户状态
+
+    // 构造插入数据
+    std::map<std::string, std::string> data = {
+        {"user_account", account},
+        {"user_name", user_name},
+        {"user_password", password},
+        {"email", email},
+        {"phone_number", phone_number},
+        {"id_number", id_number},
+        {"avatar", avatar},
+        {"registration_date", registration_date},
+        {"last_login_date", last_login_date},
+        {"user_status", user_status}
+    };
+
+    // 构造数据库插入请求
+    rpc_server::CreateReq create_req;
+    create_req.set_database("poor_users");  // 插入的数据库
+    create_req.set_table("poor_users"); // 插入的表
+    for(auto& it : data)
+    {
+        (*create_req.mutable_data())[it.first] = it.second;
+    }
+
+    // 构造响应与客户端上下文
+    rpc_server::CreateRes create_res;
+    grpc::ClientContext client_context;
+
+    // 从连接池中获取数据库服务器连接
+    auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DB);
+    auto db_stub = rpc_server::DBServer::NewStub(channel);
+
+    // 调用数据库服务器的添加服务
+    grpc::Status status = db_stub->Create(&client_context, create_req, &create_res);
+
+    if(status.ok() && create_res.success())
+    {
+        // 生成Token
+        std::string token = GenerateToken(account);
+
+        // 将用户在线状态和token存储到Redis中
+        auto client = redis_client.get_client();
+        client->set(account, token);   // 保存 key用户账号，value用户token，用于验证用户是否在线
+        client->expire(account, 1800); // 设置30分钟过期时间
+
+        res->set_success(true);
+        res->set_message("Register successful");
+        res->set_account(account);  // 设置用户账号
+        res->set_token(token);  // 设置用户token
+        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Register successful");
+    }
+    else
+    {
+        res->set_success(false);
+        res->set_message("Register failed");
+        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Register failed");
+    }
+
+    this->db_connection_pool.release_connection(rpc_server::ServerType::DB, channel); // 释放数据库服务器连接
 }
 
 // 令牌验证服务

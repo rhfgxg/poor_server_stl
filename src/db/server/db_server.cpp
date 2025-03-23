@@ -248,15 +248,40 @@ void DBServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_server::C
     // 获取数据库连接
     mysqlx::Session session = this->user_db_pool->get_connection();
 
-    // 获取请求参数
-    std::string db_name = req->database();
-    std::string tab_name = req->table();
-    // 假设数据库操作
-    // ...
-    // 设置响应参数
-    res->set_success(true);
-    res->set_message("Create successful");
-    std::cout << "DB created successfully" << std::endl;
+    try
+    {
+        // 获取请求参数
+        std::string db_name = req->database();
+        std::string tab_name = req->table();
+        const auto& data = req->data();
+
+        // 选择数据库
+        mysqlx::Table table = session.getSchema(db_name).getTable(tab_name);
+
+        // 构建插入语句
+        std::vector<std::string> columns;
+        std::vector<mysqlx::Value> values;
+        for(const auto& field : data)
+        {
+            columns.push_back(field.first);
+            values.push_back(field.second);
+        }
+
+        // 执行插入语句
+        table.insert(columns).values(values).execute();
+
+        // 设置响应
+        res->set_success(true);
+        res->set_message("Create successful");
+        this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->info("DB create successful");
+    }
+    catch(const std::exception& e)
+    {
+        // 设置响应
+        res->set_success(false);
+        res->set_message("Create failed: " + std::string(e.what()));
+        this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("DB create failed: {}", e.what());
+    }
 
     // 释放数据库连接
     this->user_db_pool->release_connection(std::move(session));
@@ -268,84 +293,83 @@ void DBServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadR
     // 获取数据库连接
     mysqlx::Session session = user_db_pool->get_connection();
 
-    // 获取请求的 query 参数
-    const std::string& database = req->database();
-    const std::string& table = req->table();
-    const auto& query = req->query();
-
-    // 选择数据库
-    mysqlx::Table tbl = session.getSchema(database).getTable(table);
-
-    // 构建查询条件
-    std::string condition;
-    for(const auto& q : query)
+    try
     {
-        if(!condition.empty())
+        // 获取请求的 query 参数
+        const std::string& db_name = req->database();
+        const std::string& tab_name = req->table();
+        const auto& query = req->query();
+
+        // 选择数据库
+        mysqlx::Table table = session.getSchema(db_name).getTable(tab_name);
+
+        // 构建查询条件
+        std::string condition;
+        for(const auto& q : query)
         {
-            condition += " AND ";
+            if(!condition.empty())
+            {
+                condition += " AND ";
+            }
+            condition += q.first + " = '" + q.second + "'";
         }
-        condition += q.first + " = '" + q.second + "'";
+
+        // 执行查询
+        mysqlx::RowResult result = table.select("*").where(condition).execute();
+
+        // 设置响应：查询结果
+        for(mysqlx::Row row : result)
+        {
+            rpc_server::Result* response_result = res->add_results();
+            for(size_t i = 0; i < row.colCount(); ++i)
+            {
+                std::string column_name = result.getColumn(i).getColumnName();
+                std::string column_value;
+                if(row[i].isNull())
+                {
+                    column_value = "NULL";
+                } else if(row[i].getType() == mysqlx::Value::Type::STRING)
+                {
+                    column_value = row[i].get<std::string>();
+                } else if(row[i].getType() == mysqlx::Value::Type::VNULL)
+                {
+                    column_value = "VNULL";
+                } else if(row[i].getType() == mysqlx::Value::Type::INT64)
+                {
+                    column_value = std::to_string(row[i].get<int64_t>());
+                } else if(row[i].getType() == mysqlx::Value::Type::UINT64)
+                {
+                    column_value = std::to_string(row[i].get<uint64_t>());
+                } else if(row[i].getType() == mysqlx::Value::Type::FLOAT)
+                {
+                    column_value = std::to_string(row[i].get<float>());
+                } else if(row[i].getType() == mysqlx::Value::Type::DOUBLE)
+                {
+                    column_value = std::to_string(row[i].get<double>());
+                } else if(row[i].getType() == mysqlx::Value::Type::BOOL)
+                {
+                    column_value = row[i].get<bool>() ? "true" : "false";
+                } else if(row[i].getType() == mysqlx::Value::Type::RAW)
+                {
+                    column_value = "Raw Data"; // 需要进一步处理原始数据
+                } else
+                {
+                    column_value = "Unsupported Type";
+                }
+                response_result->mutable_fields()->insert({column_name, column_value});
+            }
+        }
+
+        res->set_success(true);
+        res->set_message("Query successful");
+        this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->info("DB read successful");
     }
-
-    // 执行查询
-    mysqlx::RowResult result = tbl.select("*").where(condition).execute();
-
-    // 设置响应：查询结果
-    for(mysqlx::Row row : result)
+    catch(const std::exception& e)
     {
-        rpc_server::Result* response_result = res->add_results();
-        for(size_t i = 0; i < row.colCount(); ++i)
-        {
-            std::string column_name = result.getColumn(i).getColumnName();
-            std::string column_value;
-            if(row[i].isNull())
-            {
-                column_value = "NULL";
-            }
-            else if(row[i].getType() == mysqlx::Value::Type::STRING)
-            {
-                column_value = row[i].get<std::string>();
-            }
-            else if(row[i].getType() == mysqlx::Value::Type::VNULL)
-            {
-                column_value = "VNULL";
-            }
-            else if(row[i].getType() == mysqlx::Value::Type::INT64)
-            {
-                column_value = std::to_string(row[i].get<int64_t>());
-            }
-            else if(row[i].getType() == mysqlx::Value::Type::UINT64)
-            {
-                column_value = std::to_string(row[i].get<uint64_t>());
-            }
-            else if(row[i].getType() == mysqlx::Value::Type::FLOAT)
-            {
-                column_value = std::to_string(row[i].get<float>());
-            }
-            else if(row[i].getType() == mysqlx::Value::Type::DOUBLE)
-            {
-                column_value = std::to_string(row[i].get<double>());
-            }
-            else if(row[i].getType() == mysqlx::Value::Type::BOOL)
-            {
-                column_value = row[i].get<bool>() ? "true" : "false";
-            }
-            else if(row[i].getType() == mysqlx::Value::Type::RAW)
-            {
-                column_value = "Raw Data"; // 需要进一步处理原始数据
-            }
-            else
-            {
-                column_value = "Unsupported Type";
-            }
-            response_result->mutable_fields()->insert({column_name, column_value});
-        }
+        res->set_success(false);
+        res->set_message("Query failed: " + std::string(e.what()));
+        this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("DB read failed: {}", e.what());
     }
-
-    this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->info("Database query operation successful: Database: {}", database);
-
-    res->set_success(true);
-    res->set_message("Query successful");
 
     // 释放数据库连接
     this->user_db_pool->release_connection(std::move(session));
