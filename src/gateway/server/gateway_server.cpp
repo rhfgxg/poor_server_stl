@@ -294,7 +294,12 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, co
         {
         case rpc_server::ServiceType::REQ_LOGIN: // 用户登录请求
         {
-            Forward_to_login_service(req->payload(), res);  // 解析负载，并转发到登录服务
+            Forward_to_login_service(req->payload(), res);  // 解析负载，并转发到对应服务
+            break;
+        }
+        case rpc_server::ServiceType::REQ_LOGOUT:   // 用户登出请求
+        {
+            Forward_to_logout_service(req->payload(), res);
             break;
         }
         case rpc_server::ServiceType::REQ_REGISTER:    // 用户注册请求
@@ -398,7 +403,7 @@ grpc::Status GatewayServerImpl::Forward_to_register_service(const std::string& p
 
     if(!req_out) // 如果解析失败
     {
-        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse LoginRequest");
+        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse RegisterRequest");
     }
 
     // 获取连接池中的连接
@@ -415,7 +420,7 @@ grpc::Status GatewayServerImpl::Forward_to_register_service(const std::string& p
     bool res_out = register_res.SerializeToString(res->mutable_response()); // 将登录响应序列化为转发响应
     if(!res_out) // 如果序列化失败
     {
-        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize LoginResponse");
+        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize RegisterResponse");
     }
 
     if(register_res.success()) // 如果登录成功
@@ -427,7 +432,52 @@ grpc::Status GatewayServerImpl::Forward_to_register_service(const std::string& p
         res->set_success(false);
     }
 
-    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: user login");
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: user register");
+
+    this->login_connection_pool.release_connection(rpc_server::ServerType::LOGIN, channel); // 释放连接
+    return grpc::Status::OK;
+}
+
+// Logout 方法，处理登出请求
+grpc::Status GatewayServerImpl::Forward_to_logout_service(const std::string& payload, rpc_server::ForwardRes* res)
+{
+    rpc_server::LogoutReq logout_req;  // 创建注册请求对象
+    rpc_server::LogoutRes logout_res;
+    grpc::ClientContext context;
+
+    bool req_out = logout_req.ParseFromString(payload); // 将负载解析为登录请求对象
+
+    if(!req_out) // 如果解析失败
+    {
+        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse LogoutRequest");
+    }
+
+    // 获取连接池中的连接
+    auto channel = this->login_connection_pool.get_connection(rpc_server::ServerType::LOGIN);
+    auto login_stub = rpc_server::LoginServer::NewStub(channel);
+
+    grpc::Status status = login_stub->Logout(&context, logout_req, &logout_res);
+
+    if(!status.ok()) // 如果调用失败
+    {
+        return status;
+    }
+
+    bool res_out = logout_res.SerializeToString(res->mutable_response()); // 将登录响应序列化为转发响应
+    if(!res_out) // 如果序列化失败
+    {
+        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize LogoutResponse");
+    }
+
+    if(logout_res.success()) // 如果登录成功
+    {
+        res->set_success(true);    // 设置响应对象 response 的 success 字段为 true
+    } else
+    {
+        res->set_success(false);
+    }
+
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: user logout");
 
     this->login_connection_pool.release_connection(rpc_server::ServerType::LOGIN, channel); // 释放连接
     return grpc::Status::OK;

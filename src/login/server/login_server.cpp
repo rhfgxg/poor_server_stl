@@ -342,16 +342,15 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
 
     // 构造数据库查询请求
     rpc_server::ReadReq read_request;
+    rpc_server::ReadRes read_response;
+    grpc::ClientContext client_context;
+
     read_request.set_database("poor_users");
     read_request.set_table("poor_users");
     for(auto& it : query)
     {
         (*read_request.mutable_query())[it.first] = it.second;
     }
-
-    // 构造响应与客户端上下文
-    rpc_server::ReadRes read_response;
-    grpc::ClientContext client_context;
 
     // 从连接池中获取数据库服务器连接
     auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DB);
