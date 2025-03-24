@@ -10,7 +10,6 @@ service GatewayServer
     rpc Client_heartbeat (ClientHeartbeatReq) returns (ClientHeartbeatRes);    // 接收客户端心跳包
     rpc Get_gateway_pool (GetGatewayPoolReq) returns (GetGatewayPoolRes); // 获取网关服务器连接池
     rpc Request_forward (ForwardReq) returns (ForwardRes);  // 转发请求
-    rpc Get_file_server_address (GetFileServerAddressReq) returns (GetFileServerAddressRes); // 获取文件服务器地址，直连文件服务器进行文件传递
 }
 
 // 客户端注册请求
@@ -71,20 +70,4 @@ message ForwardRes
 {
     bool success = 1;
     bytes response = 2; // 响应负载
-}
-
-// 获取文件服务器地址请求
-message GetFileServerAddressReq
-{
-    bytes account = 1; // 账号
-    bytes client_token = 2;
-    bytes user_token = 3;
-}
-// 获取文件服务器地址响应
-message GetFileServerAddressRes 
-{
-    bool success = 1; // 操作结果
-    bytes address = 2; // 文件服务器地址
-    bytes port = 3; // 文件服务器端口
-    bytes message = 4; // 响应信息
 }

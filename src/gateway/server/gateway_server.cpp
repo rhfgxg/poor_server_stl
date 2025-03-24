@@ -321,12 +321,6 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, co
     return grpc::Status::OK;
 }
 
-// 获取文件服务器地址
-grpc::Status GatewayServerImpl::Get_file_server_address(grpc::ServerContext* context, const rpc_server::GetFileServerAddressReq* req, rpc_server::GetFileServerAddressRes* res)
-{
-    return grpc::Status::OK;
-}
-
 // 接收客户端心跳
 grpc::Status GatewayServerImpl::Client_heartbeat(grpc::ServerContext* context, const rpc_server::ClientHeartbeatReq* req, rpc_server::ClientHeartbeatRes* res)
 {
