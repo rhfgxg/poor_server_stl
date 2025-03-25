@@ -33,17 +33,21 @@ const char descriptor_table_protodef_common_2eproto[] PROTOBUF_SECTION_VARIABLE(
     "e\022\013\n\007UNKNOWN\020\000\022\n\n\006BATTLE\020\001\022\013\n\007CENTRAL\020\002\022"
     "\010\n\004CHAT\020\003\022\006\n\002DB\020\004\022\010\n\004FILE\020\005\022\013\n\007GATEWAY\020\006"
     "\022\t\n\005LOGIC\020\007\022\t\n\005LOGIN\020\010\022\014\n\010MATCHING\020\t\022\t\n\005"
-    "STORE\020\n*\233\001\n\013ServiceType\022\r\n\tREQ_LOGIN\020\000\022\r"
+    "STORE\020\n*\275\002\n\013ServiceType\022\r\n\tREQ_LOGIN\020\000\022\r"
     "\n\tRES_LOGIN\020\001\022\016\n\nREQ_LOGOUT\020\002\022\016\n\nRES_LOG"
     "OUT\020\003\022\020\n\014REQ_REGISTER\020\004\022\020\n\014RES_REGISTER\020"
-    "\005\022\024\n\020REQ_AUTHENTICATE\020\006\022\024\n\020RES_AUTHENTIC"
-    "ATE\020\007b\006proto3"
+    "\005\022\021\n\rREQ_HEARTBEAT\020\006\022\021\n\rRES_HEARTBEAT\020\007\022"
+    "\023\n\017REQ_FILE_UPLOAD\020\010\022\023\n\017RES_FILE_UPLOAD\020"
+    "\t\022\025\n\021REQ_FILE_DOWNLOAD\020\n\022\025\n\021RES_FILE_DOW"
+    "NLOAD\020\013\022\023\n\017REQ_FILE_DELETE\020\014\022\023\n\017RES_FILE"
+    "_DELETE\020\r\022\021\n\rREQ_FILE_LIST\020\016\022\021\n\rRES_FILE"
+    "_LIST\020\017b\006proto3"
 };
 static ::absl::once_flag descriptor_table_common_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2eproto = {
     false,
     false,
-    333,
+    495,
     descriptor_table_protodef_common_2eproto,
     "common.proto",
     &descriptor_table_common_2eproto_once,
@@ -90,9 +94,9 @@ const ::google::protobuf::EnumDescriptor* ServiceType_descriptor() {
   return file_level_enum_descriptors_common_2eproto[1];
 }
 PROTOBUF_CONSTINIT const uint32_t ServiceType_internal_data_[] = {
-    524288u, 0u, };
+    1048576u, 0u, };
 bool ServiceType_IsValid(int value) {
-  return 0 <= value && value <= 7;
+  return 0 <= value && value <= 15;
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace rpc_server

@@ -109,8 +109,16 @@ enum ServiceType : int {
   RES_LOGOUT = 3,
   REQ_REGISTER = 4,
   RES_REGISTER = 5,
-  REQ_AUTHENTICATE = 6,
-  RES_AUTHENTICATE = 7,
+  REQ_HEARTBEAT = 6,
+  RES_HEARTBEAT = 7,
+  REQ_FILE_UPLOAD = 8,
+  RES_FILE_UPLOAD = 9,
+  REQ_FILE_DOWNLOAD = 10,
+  RES_FILE_DOWNLOAD = 11,
+  REQ_FILE_DELETE = 12,
+  RES_FILE_DELETE = 13,
+  REQ_FILE_LIST = 14,
+  RES_FILE_LIST = 15,
   ServiceType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ServiceType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -120,8 +128,8 @@ enum ServiceType : int {
 bool ServiceType_IsValid(int value);
 extern const uint32_t ServiceType_internal_data_[];
 constexpr ServiceType ServiceType_MIN = static_cast<ServiceType>(0);
-constexpr ServiceType ServiceType_MAX = static_cast<ServiceType>(7);
-constexpr int ServiceType_ARRAYSIZE = 7 + 1;
+constexpr ServiceType ServiceType_MAX = static_cast<ServiceType>(15);
+constexpr int ServiceType_ARRAYSIZE = 15 + 1;
 const ::google::protobuf::EnumDescriptor*
 ServiceType_descriptor();
 template <typename T>
@@ -134,7 +142,7 @@ const std::string& ServiceType_Name(T value) {
 template <>
 inline const std::string& ServiceType_Name(ServiceType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<ServiceType_descriptor,
-                                                 0, 7>(
+                                                 0, 15>(
       static_cast<int>(value));
 }
 inline bool ServiceType_Parse(absl::string_view name, ServiceType* value) {

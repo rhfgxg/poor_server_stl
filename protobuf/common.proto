@@ -31,6 +31,14 @@ enum ServiceType
     RES_LOGOUT = 3;     // 登出响应
     REQ_REGISTER = 4;   // 注册请求
     RES_REGISTER = 5;   // 注册响应
-    REQ_AUTHENTICATE = 6;  // 令牌验证请求
-    RES_AUTHENTICATE = 7;  // 令牌验证响应
-};
+    REQ_HEARTBEAT = 6;  // 心跳请求
+    RES_HEARTBEAT = 7;  // 心跳响应
+    REQ_FILE_UPLOAD = 8;    // 文件上传请求
+    RES_FILE_UPLOAD = 9;    // 文件上传响应
+    REQ_FILE_DOWNLOAD = 10; // 文件下载请求
+    RES_FILE_DOWNLOAD = 11; // 文件下载响应
+    REQ_FILE_DELETE = 12;   // 文件删除请求
+    RES_FILE_DELETE = 13;   // 文件删除响应
+    REQ_FILE_LIST = 14;     // 获取文件列表请求
+    RES_FILE_LIST = 15;     // 获取文件列表响应
+}
