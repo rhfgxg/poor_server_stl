@@ -119,8 +119,8 @@ enum ServiceType : int {
   RES_FILE_DOWNLOAD = 13,
   REQ_FILE_DELETE = 14,
   RES_FILE_DELETE = 15,
-  REQ_GET_FILE_LIST = 16,
-  RES_GET_FILE_LIST = 17,
+  REQ_FILE_LIST = 16,
+  RES_FILE_LIST = 17,
   ServiceType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ServiceType_INT_MAX_SENTINEL_DO_NOT_USE_ =

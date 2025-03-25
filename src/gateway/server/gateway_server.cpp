@@ -307,6 +307,31 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, co
             Forward_to_register_service(req->payload(), res);
             break;
         }
+        case rpc_server::ServiceType::REQ_FILE_UPLOAD_READY:    // 文件上传准备
+        {
+            // Forward_to_file_upload_ready_service(req->payload(), res);
+            break;
+        }
+        case rpc_server::ServiceType::REQ_FILE_UPLOAD:  // 文件上传
+        {
+            // Forward_to_file_upload_service(req->payload(), res);
+            break;
+        }
+        case rpc_server::ServiceType::REQ_FILE_DOWNLOAD:    // 文件下载
+        {
+            // Forward_to_file_download_service(req->payload(), res);
+            break;
+        }
+        case rpc_server::ServiceType::REQ_FILE_DELETE:  // 文件删除
+        {
+            // Forward_to_file_delete_service(req->payload(), res);
+            break;
+        }
+        case rpc_server::ServiceType::REQ_FILE_LIST:    // 获取文件列表
+        {
+            // Forward_to_file_list_service(req->payload(), res);
+            break;
+        }
         default:    // 未知服务类型
         {
             res->set_success(false);

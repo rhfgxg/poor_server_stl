@@ -41,6 +41,6 @@ enum ServiceType
     RES_FILE_DOWNLOAD = 13;    // 文件下载响应
     REQ_FILE_DELETE = 14;    // 文件删除请求
     RES_FILE_DELETE = 15;    // 文件删除响应
-    REQ_GET_FILE_LIST = 16;    // 获取文件列表请求
-    RES_GET_FILE_LIST = 17;    // 获取文件列表响应
+    REQ_FILE_LIST = 16;    // 获取文件列表请求
+    RES_FILE_LIST = 17;    // 获取文件列表响应
 }
