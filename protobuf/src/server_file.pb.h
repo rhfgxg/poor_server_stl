@@ -74,6 +74,12 @@ extern ListFilesReqDefaultTypeInternal _ListFilesReq_default_instance_;
 class ListFilesRes;
 struct ListFilesResDefaultTypeInternal;
 extern ListFilesResDefaultTypeInternal _ListFilesRes_default_instance_;
+class UploadReadyReq;
+struct UploadReadyReqDefaultTypeInternal;
+extern UploadReadyReqDefaultTypeInternal _UploadReadyReq_default_instance_;
+class UploadReadyRes;
+struct UploadReadyResDefaultTypeInternal;
+extern UploadReadyResDefaultTypeInternal _UploadReadyRes_default_instance_;
 class UploadReq;
 struct UploadReqDefaultTypeInternal;
 extern UploadReqDefaultTypeInternal _UploadReq_default_instance_;
@@ -152,7 +158,7 @@ class UploadRes final :
                &_UploadRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    3;
 
   friend void swap(UploadRes& a, UploadRes& b) {
     a.Swap(&b);
@@ -345,7 +351,7 @@ class UploadReq final :
                &_UploadReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    2;
 
   friend void swap(UploadReq& a, UploadReq& b) {
     a.Swap(&b);
@@ -503,6 +509,446 @@ class UploadReq final :
   friend struct ::TableStruct_server_5ffile_2eproto;
 };// -------------------------------------------------------------------
 
+class UploadReadyRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UploadReadyRes) */ {
+ public:
+  inline UploadReadyRes() : UploadReadyRes(nullptr) {}
+  ~UploadReadyRes() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR UploadReadyRes(::google::protobuf::internal::ConstantInitialized);
+
+  inline UploadReadyRes(const UploadReadyRes& from)
+      : UploadReadyRes(nullptr, from) {}
+  UploadReadyRes(UploadReadyRes&& from) noexcept
+    : UploadReadyRes() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadReadyRes& operator=(const UploadReadyRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadReadyRes& operator=(UploadReadyRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UploadReadyRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UploadReadyRes* internal_default_instance() {
+    return reinterpret_cast<const UploadReadyRes*>(
+               &_UploadReadyRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(UploadReadyRes& a, UploadReadyRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadReadyRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UploadReadyRes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UploadReadyRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadReadyRes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UploadReadyRes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const UploadReadyRes& from) {
+    UploadReadyRes::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(UploadReadyRes* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "rpc_server.UploadReadyRes";
+  }
+  protected:
+  explicit UploadReadyRes(::google::protobuf::Arena* arena);
+  UploadReadyRes(::google::protobuf::Arena* arena, const UploadReadyRes& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMessageFieldNumber = 2,
+    kFileServerIpFieldNumber = 3,
+    kSuccessFieldNumber = 1,
+    kFileServerPortFieldNumber = 4,
+  };
+  // bytes message = 2;
+  void clear_message() ;
+  const std::string& message() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_message(Arg_&& arg, Args_... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* value);
+
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
+      const std::string& value);
+  std::string* _internal_mutable_message();
+
+  public:
+  // bytes file_server_ip = 3;
+  void clear_file_server_ip() ;
+  const std::string& file_server_ip() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_file_server_ip(Arg_&& arg, Args_... args);
+  std::string* mutable_file_server_ip();
+  PROTOBUF_NODISCARD std::string* release_file_server_ip();
+  void set_allocated_file_server_ip(std::string* value);
+
+  private:
+  const std::string& _internal_file_server_ip() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file_server_ip(
+      const std::string& value);
+  std::string* _internal_mutable_file_server_ip();
+
+  public:
+  // bool success = 1;
+  void clear_success() ;
+  bool success() const;
+  void set_success(bool value);
+
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+
+  public:
+  // int32 file_server_port = 4;
+  void clear_file_server_port() ;
+  ::int32_t file_server_port() const;
+  void set_file_server_port(::int32_t value);
+
+  private:
+  ::int32_t _internal_file_server_port() const;
+  void _internal_set_file_server_port(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:rpc_server.UploadReadyRes)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 4, 0,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr message_;
+    ::google::protobuf::internal::ArenaStringPtr file_server_ip_;
+    bool success_;
+    ::int32_t file_server_port_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5ffile_2eproto;
+};// -------------------------------------------------------------------
+
+class UploadReadyReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UploadReadyReq) */ {
+ public:
+  inline UploadReadyReq() : UploadReadyReq(nullptr) {}
+  ~UploadReadyReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR UploadReadyReq(::google::protobuf::internal::ConstantInitialized);
+
+  inline UploadReadyReq(const UploadReadyReq& from)
+      : UploadReadyReq(nullptr, from) {}
+  UploadReadyReq(UploadReadyReq&& from) noexcept
+    : UploadReadyReq() {
+    *this = ::std::move(from);
+  }
+
+  inline UploadReadyReq& operator=(const UploadReadyReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UploadReadyReq& operator=(UploadReadyReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UploadReadyReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UploadReadyReq* internal_default_instance() {
+    return reinterpret_cast<const UploadReadyReq*>(
+               &_UploadReadyReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(UploadReadyReq& a, UploadReadyReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UploadReadyReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UploadReadyReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UploadReadyReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UploadReadyReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UploadReadyReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const UploadReadyReq& from) {
+    UploadReadyReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(UploadReadyReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "rpc_server.UploadReadyReq";
+  }
+  protected:
+  explicit UploadReadyReq(::google::protobuf::Arena* arena);
+  UploadReadyReq(::google::protobuf::Arena* arena, const UploadReadyReq& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAccountFieldNumber = 1,
+    kTokenFieldNumber = 2,
+    kFileNameFieldNumber = 3,
+  };
+  // bytes account = 1;
+  void clear_account() ;
+  const std::string& account() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_account(Arg_&& arg, Args_... args);
+  std::string* mutable_account();
+  PROTOBUF_NODISCARD std::string* release_account();
+  void set_allocated_account(std::string* value);
+
+  private:
+  const std::string& _internal_account() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_account(
+      const std::string& value);
+  std::string* _internal_mutable_account();
+
+  public:
+  // bytes token = 2;
+  void clear_token() ;
+  const std::string& token() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_token(Arg_&& arg, Args_... args);
+  std::string* mutable_token();
+  PROTOBUF_NODISCARD std::string* release_token();
+  void set_allocated_token(std::string* value);
+
+  private:
+  const std::string& _internal_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_token(
+      const std::string& value);
+  std::string* _internal_mutable_token();
+
+  public:
+  // bytes file_name = 3;
+  void clear_file_name() ;
+  const std::string& file_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_file_name(Arg_&& arg, Args_... args);
+  std::string* mutable_file_name();
+  PROTOBUF_NODISCARD std::string* release_file_name();
+  void set_allocated_file_name(std::string* value);
+
+  private:
+  const std::string& _internal_file_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file_name(
+      const std::string& value);
+  std::string* _internal_mutable_file_name();
+
+  public:
+  // @@protoc_insertion_point(class_scope:rpc_server.UploadReadyReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 0,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr account_;
+    ::google::protobuf::internal::ArenaStringPtr token_;
+    ::google::protobuf::internal::ArenaStringPtr file_name_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5ffile_2eproto;
+};// -------------------------------------------------------------------
+
 class ListFilesRes final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.ListFilesRes) */ {
  public:
@@ -562,7 +1008,7 @@ class ListFilesRes final :
                &_ListFilesRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(ListFilesRes& a, ListFilesRes& b) {
     a.Swap(&b);
@@ -785,7 +1231,7 @@ class ListFilesReq final :
                &_ListFilesReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(ListFilesReq& a, ListFilesReq& b) {
     a.Swap(&b);
@@ -966,7 +1412,7 @@ class DownloadRes final :
                &_DownloadRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(DownloadRes& a, DownloadRes& b) {
     a.Swap(&b);
@@ -1177,7 +1623,7 @@ class DownloadReq final :
                &_DownloadReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(DownloadReq& a, DownloadReq& b) {
     a.Swap(&b);
@@ -1376,7 +1822,7 @@ class DeleteFileRes final :
                &_DeleteFileRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(DeleteFileRes& a, DeleteFileRes& b) {
     a.Swap(&b);
@@ -1569,7 +2015,7 @@ class DeleteFileReq final :
                &_DeleteFileReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(DeleteFileReq& a, DeleteFileReq& b) {
     a.Swap(&b);
@@ -1721,6 +2167,325 @@ class DeleteFileReq final :
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// UploadReadyReq
+
+// bytes account = 1;
+inline void UploadReadyReq::clear_account() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_.ClearToEmpty();
+}
+inline const std::string& UploadReadyReq::account() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyReq.account)
+  return _internal_account();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UploadReadyReq::set_account(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyReq.account)
+}
+inline std::string* UploadReadyReq::mutable_account() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_account();
+  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyReq.account)
+  return _s;
+}
+inline const std::string& UploadReadyReq::_internal_account() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.account_.Get();
+}
+inline void UploadReadyReq::_internal_set_account(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.account_.Set(value, GetArena());
+}
+inline std::string* UploadReadyReq::_internal_mutable_account() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.account_.Mutable( GetArena());
+}
+inline std::string* UploadReadyReq::release_account() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyReq.account)
+  return _impl_.account_.Release();
+}
+inline void UploadReadyReq::set_allocated_account(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.account_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.account_.IsDefault()) {
+          _impl_.account_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyReq.account)
+}
+
+// bytes token = 2;
+inline void UploadReadyReq::clear_token() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.token_.ClearToEmpty();
+}
+inline const std::string& UploadReadyReq::token() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyReq.token)
+  return _internal_token();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UploadReadyReq::set_token(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.token_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyReq.token)
+}
+inline std::string* UploadReadyReq::mutable_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_token();
+  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyReq.token)
+  return _s;
+}
+inline const std::string& UploadReadyReq::_internal_token() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.token_.Get();
+}
+inline void UploadReadyReq::_internal_set_token(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.token_.Set(value, GetArena());
+}
+inline std::string* UploadReadyReq::_internal_mutable_token() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.token_.Mutable( GetArena());
+}
+inline std::string* UploadReadyReq::release_token() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyReq.token)
+  return _impl_.token_.Release();
+}
+inline void UploadReadyReq::set_allocated_token(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.token_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.token_.IsDefault()) {
+          _impl_.token_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyReq.token)
+}
+
+// bytes file_name = 3;
+inline void UploadReadyReq::clear_file_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.file_name_.ClearToEmpty();
+}
+inline const std::string& UploadReadyReq::file_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyReq.file_name)
+  return _internal_file_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UploadReadyReq::set_file_name(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.file_name_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyReq.file_name)
+}
+inline std::string* UploadReadyReq::mutable_file_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_file_name();
+  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyReq.file_name)
+  return _s;
+}
+inline const std::string& UploadReadyReq::_internal_file_name() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.file_name_.Get();
+}
+inline void UploadReadyReq::_internal_set_file_name(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.file_name_.Set(value, GetArena());
+}
+inline std::string* UploadReadyReq::_internal_mutable_file_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.file_name_.Mutable( GetArena());
+}
+inline std::string* UploadReadyReq::release_file_name() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyReq.file_name)
+  return _impl_.file_name_.Release();
+}
+inline void UploadReadyReq::set_allocated_file_name(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.file_name_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.file_name_.IsDefault()) {
+          _impl_.file_name_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyReq.file_name)
+}
+
+// -------------------------------------------------------------------
+
+// UploadReadyRes
+
+// bool success = 1;
+inline void UploadReadyRes::clear_success() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.success_ = false;
+}
+inline bool UploadReadyRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyRes.success)
+  return _internal_success();
+}
+inline void UploadReadyRes::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyRes.success)
+}
+inline bool UploadReadyRes::_internal_success() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.success_;
+}
+inline void UploadReadyRes::_internal_set_success(bool value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.success_ = value;
+}
+
+// bytes message = 2;
+inline void UploadReadyRes::clear_message() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.message_.ClearToEmpty();
+}
+inline const std::string& UploadReadyRes::message() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyRes.message)
+  return _internal_message();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UploadReadyRes::set_message(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyRes.message)
+}
+inline std::string* UploadReadyRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyRes.message)
+  return _s;
+}
+inline const std::string& UploadReadyRes::_internal_message() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.message_.Get();
+}
+inline void UploadReadyRes::_internal_set_message(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.message_.Set(value, GetArena());
+}
+inline std::string* UploadReadyRes::_internal_mutable_message() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.message_.Mutable( GetArena());
+}
+inline std::string* UploadReadyRes::release_message() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyRes.message)
+  return _impl_.message_.Release();
+}
+inline void UploadReadyRes::set_allocated_message(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.message_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.message_.IsDefault()) {
+          _impl_.message_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyRes.message)
+}
+
+// bytes file_server_ip = 3;
+inline void UploadReadyRes::clear_file_server_ip() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.file_server_ip_.ClearToEmpty();
+}
+inline const std::string& UploadReadyRes::file_server_ip() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyRes.file_server_ip)
+  return _internal_file_server_ip();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UploadReadyRes::set_file_server_ip(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.file_server_ip_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyRes.file_server_ip)
+}
+inline std::string* UploadReadyRes::mutable_file_server_ip() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_file_server_ip();
+  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyRes.file_server_ip)
+  return _s;
+}
+inline const std::string& UploadReadyRes::_internal_file_server_ip() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.file_server_ip_.Get();
+}
+inline void UploadReadyRes::_internal_set_file_server_ip(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.file_server_ip_.Set(value, GetArena());
+}
+inline std::string* UploadReadyRes::_internal_mutable_file_server_ip() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.file_server_ip_.Mutable( GetArena());
+}
+inline std::string* UploadReadyRes::release_file_server_ip() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyRes.file_server_ip)
+  return _impl_.file_server_ip_.Release();
+}
+inline void UploadReadyRes::set_allocated_file_server_ip(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.file_server_ip_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.file_server_ip_.IsDefault()) {
+          _impl_.file_server_ip_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyRes.file_server_ip)
+}
+
+// int32 file_server_port = 4;
+inline void UploadReadyRes::clear_file_server_port() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.file_server_port_ = 0;
+}
+inline ::int32_t UploadReadyRes::file_server_port() const {
+  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyRes.file_server_port)
+  return _internal_file_server_port();
+}
+inline void UploadReadyRes::set_file_server_port(::int32_t value) {
+  _internal_set_file_server_port(value);
+  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyRes.file_server_port)
+}
+inline ::int32_t UploadReadyRes::_internal_file_server_port() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.file_server_port_;
+}
+inline void UploadReadyRes::_internal_set_file_server_port(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.file_server_port_ = value;
+}
+
 // -------------------------------------------------------------------
 
 // UploadReq

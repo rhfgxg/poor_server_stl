@@ -22,6 +22,7 @@
 namespace rpc_server {
 
 static const char* FileServer_method_names[] = {
+  "/rpc_server.FileServer/Upload_ready",
   "/rpc_server.FileServer/Upload",
   "/rpc_server.FileServer/Download",
   "/rpc_server.FileServer/Delete",
@@ -35,11 +36,35 @@ std::unique_ptr< FileServer::Stub> FileServer::NewStub(const std::shared_ptr< ::
 }
 
 FileServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_Upload_(FileServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Download_(FileServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Delete_(FileServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_ListFiles_(FileServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Upload_ready_(FileServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Upload_(FileServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Download_(FileServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Delete_(FileServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_ListFiles_(FileServer_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
+
+::grpc::Status FileServer::Stub::Upload_ready(::grpc::ClientContext* context, const ::rpc_server::UploadReadyReq& request, ::rpc_server::UploadReadyRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::UploadReadyReq, ::rpc_server::UploadReadyRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Upload_ready_, context, request, response);
+}
+
+void FileServer::Stub::async::Upload_ready(::grpc::ClientContext* context, const ::rpc_server::UploadReadyReq* request, ::rpc_server::UploadReadyRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::UploadReadyReq, ::rpc_server::UploadReadyRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Upload_ready_, context, request, response, std::move(f));
+}
+
+void FileServer::Stub::async::Upload_ready(::grpc::ClientContext* context, const ::rpc_server::UploadReadyReq* request, ::rpc_server::UploadReadyRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Upload_ready_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::UploadReadyRes>* FileServer::Stub::PrepareAsyncUpload_readyRaw(::grpc::ClientContext* context, const ::rpc_server::UploadReadyReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::UploadReadyRes, ::rpc_server::UploadReadyReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Upload_ready_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::UploadReadyRes>* FileServer::Stub::AsyncUpload_readyRaw(::grpc::ClientContext* context, const ::rpc_server::UploadReadyReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncUpload_readyRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
 
 ::grpc::Status FileServer::Stub::Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::rpc_server::UploadRes* response) {
   return ::grpc::internal::BlockingUnaryCall< ::rpc_server::UploadReq, ::rpc_server::UploadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Upload_, context, request, response);
@@ -137,6 +162,16 @@ FileServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       FileServer_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< FileServer::Service, ::rpc_server::UploadReadyReq, ::rpc_server::UploadReadyRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](FileServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::UploadReadyReq* req,
+             ::rpc_server::UploadReadyRes* resp) {
+               return service->Upload_ready(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      FileServer_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< FileServer::Service, ::rpc_server::UploadReq, ::rpc_server::UploadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](FileServer::Service* service,
              ::grpc::ServerContext* ctx,
@@ -145,7 +180,7 @@ FileServer::Service::Service() {
                return service->Upload(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      FileServer_method_names[1],
+      FileServer_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< FileServer::Service, ::rpc_server::DownloadReq, ::rpc_server::DownloadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](FileServer::Service* service,
@@ -155,7 +190,7 @@ FileServer::Service::Service() {
                return service->Download(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      FileServer_method_names[2],
+      FileServer_method_names[3],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< FileServer::Service, ::rpc_server::DeleteFileReq, ::rpc_server::DeleteFileRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](FileServer::Service* service,
@@ -165,7 +200,7 @@ FileServer::Service::Service() {
                return service->Delete(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
-      FileServer_method_names[3],
+      FileServer_method_names[4],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< FileServer::Service, ::rpc_server::ListFilesReq, ::rpc_server::ListFilesRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](FileServer::Service* service,
@@ -177,6 +212,13 @@ FileServer::Service::Service() {
 }
 
 FileServer::Service::~Service() {
+}
+
+::grpc::Status FileServer::Service::Upload_ready(::grpc::ServerContext* context, const ::rpc_server::UploadReadyReq* request, ::rpc_server::UploadReadyRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status FileServer::Service::Upload(::grpc::ServerContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response) {

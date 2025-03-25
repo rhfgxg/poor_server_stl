@@ -1,12 +1,30 @@
 syntax = "proto3";
 package rpc_server;
 
+// 文件服务
 service FileServer
 {
+    rpc Upload_ready (UploadReadyReq) returns (UploadReadyRes);   // 准备上传文件服务
     rpc Upload (UploadReq) returns (UploadRes);   // 文件上传服务
     rpc Download (DownloadReq) returns (DownloadRes); // 文件下载服务
     rpc Delete (DeleteFileReq) returns (DeleteFileRes); // 文件删除服务
     rpc ListFiles (ListFilesReq) returns (ListFilesRes); // 获取文件列表服务
+}
+
+// 准备上传文件服务请求
+message UploadReadyReq
+{
+    bytes account = 1;  // 账号
+    bytes token = 2; // 令牌
+    bytes file_name = 3; // 文件名
+}
+// 准备上传文件服务响应
+message UploadReadyRes
+{
+    bool success = 1;   // 操作结果
+    bytes message = 2; // 响应信息
+    bytes file_server_ip = 3; // 文件服务器IP
+    int32 file_server_port = 4; // 文件服务器端口
 }
 
 // 文件上传服务请求

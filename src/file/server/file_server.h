@@ -29,7 +29,9 @@ public:
     void stop_thread_pool();    // 停止线程池
 
 // grpc对外接口
-    // 文件上传服务
+    // 准备上传文件
+    grpc::Status Upload_ready(grpc::ServerContext* context, const rpc_server::UploadReadyReq* req, rpc_server::UploadReadyRes* res);
+    // 请求文件上传
     grpc::Status Upload(grpc::ServerContext* context, const rpc_server::UploadReq* req, rpc_server::UploadRes* res);
     // 文件下载服务
     grpc::Status Download(grpc::ServerContext* context, const rpc_server::DownloadReq* req, rpc_server::DownloadRes* res);
@@ -38,6 +40,13 @@ public:
     // 文件列表服务
     grpc::Status ListFiles(grpc::ServerContext* context, const rpc_server::ListFilesReq* req, rpc_server::ListFilesRes* res);
 private:
+// grpc 工具函数
+    void Handle_upload_ready(const rpc_server::UploadReadyReq* req, rpc_server::UploadReadyRes* res); // 准备上传文件
+    void Handle_upload(const rpc_server::UploadReq* req, rpc_server::UploadRes* res); // 文件上传
+    void Handle_download(const rpc_server::DownloadReq* req, rpc_server::DownloadRes* res); // 文件下载
+    void Handle_delete(const rpc_server::DeleteFileReq* req, rpc_server::DeleteFileRes* res); // 文件删除
+    void Handle_list_files(const rpc_server::ListFilesReq* req, rpc_server::ListFilesRes* res); // 文件列表
+
     // 初始化
     void register_server(); // 注册服务器
     void unregister_server(); // 注销服务器

@@ -71,6 +71,59 @@ struct UploadReqDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadReqDefaultTypeInternal _UploadReq_default_instance_;
 
+inline constexpr UploadReadyRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        file_server_ip_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        file_server_port_{0},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UploadReadyRes::UploadReadyRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct UploadReadyResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UploadReadyResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UploadReadyResDefaultTypeInternal() {}
+  union {
+    UploadReadyRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadReadyResDefaultTypeInternal _UploadReadyRes_default_instance_;
+
+inline constexpr UploadReadyReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : account_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        token_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        file_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR UploadReadyReq::UploadReadyReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct UploadReadyReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UploadReadyReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UploadReadyReqDefaultTypeInternal() {}
+  union {
+    UploadReadyReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UploadReadyReqDefaultTypeInternal _UploadReadyReq_default_instance_;
+
 inline constexpr ListFilesRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : file_names_{},
@@ -210,13 +263,36 @@ struct DeleteFileReqDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeleteFileReqDefaultTypeInternal _DeleteFileReq_default_instance_;
 }  // namespace rpc_server
-static ::_pb::Metadata file_level_metadata_server_5ffile_2eproto[8];
+static ::_pb::Metadata file_level_metadata_server_5ffile_2eproto[10];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_server_5ffile_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_server_5ffile_2eproto = nullptr;
 const ::uint32_t TableStruct_server_5ffile_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     protodesc_cold) = {
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyReq, _impl_.account_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyReq, _impl_.token_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyReq, _impl_.file_name_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyRes, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyRes, _impl_.file_server_ip_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyRes, _impl_.file_server_port_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReq, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -303,17 +379,21 @@ const ::uint32_t TableStruct_server_5ffile_2eproto::offsets[] PROTOBUF_SECTION_V
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::rpc_server::UploadReq)},
-        {11, -1, -1, sizeof(::rpc_server::UploadRes)},
-        {21, -1, -1, sizeof(::rpc_server::DownloadReq)},
-        {31, -1, -1, sizeof(::rpc_server::DownloadRes)},
-        {42, -1, -1, sizeof(::rpc_server::DeleteFileReq)},
-        {52, -1, -1, sizeof(::rpc_server::DeleteFileRes)},
-        {62, -1, -1, sizeof(::rpc_server::ListFilesReq)},
-        {71, -1, -1, sizeof(::rpc_server::ListFilesRes)},
+        {0, -1, -1, sizeof(::rpc_server::UploadReadyReq)},
+        {11, -1, -1, sizeof(::rpc_server::UploadReadyRes)},
+        {23, -1, -1, sizeof(::rpc_server::UploadReq)},
+        {34, -1, -1, sizeof(::rpc_server::UploadRes)},
+        {44, -1, -1, sizeof(::rpc_server::DownloadReq)},
+        {54, -1, -1, sizeof(::rpc_server::DownloadRes)},
+        {65, -1, -1, sizeof(::rpc_server::DeleteFileReq)},
+        {75, -1, -1, sizeof(::rpc_server::DeleteFileRes)},
+        {85, -1, -1, sizeof(::rpc_server::ListFilesReq)},
+        {94, -1, -1, sizeof(::rpc_server::ListFilesRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
+    &::rpc_server::_UploadReadyReq_default_instance_._instance,
+    &::rpc_server::_UploadReadyRes_default_instance_._instance,
     &::rpc_server::_UploadReq_default_instance_._instance,
     &::rpc_server::_UploadRes_default_instance_._instance,
     &::rpc_server::_DownloadReq_default_instance_._instance,
@@ -324,37 +404,43 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::rpc_server::_ListFilesRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5ffile_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\021server_file.proto\022\nrpc_server\"B\n\tUploa"
-    "dReq\022\017\n\007account\030\001 \001(\014\022\021\n\tfile_name\030\002 \001(\014"
-    "\022\021\n\tfile_data\030\003 \001(\014\"-\n\tUploadRes\022\017\n\007succ"
-    "ess\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"1\n\013DownloadRe"
-    "q\022\017\n\007account\030\001 \001(\014\022\021\n\tfile_name\030\002 \001(\014\"B\n"
-    "\013DownloadRes\022\017\n\007success\030\001 \001(\010\022\021\n\tfile_da"
-    "ta\030\002 \001(\014\022\017\n\007message\030\003 \001(\014\"3\n\rDeleteFileR"
-    "eq\022\017\n\007account\030\001 \001(\014\022\021\n\tfile_name\030\002 \001(\014\"1"
-    "\n\rDeleteFileRes\022\017\n\007success\030\001 \001(\010\022\017\n\007mess"
-    "age\030\002 \001(\014\"\037\n\014ListFilesReq\022\017\n\007account\030\001 \001"
-    "(\014\"D\n\014ListFilesRes\022\017\n\007success\030\001 \001(\010\022\022\n\nf"
-    "ile_names\030\002 \003(\014\022\017\n\007message\030\003 \001(\0142\203\002\n\nFil"
-    "eServer\0226\n\006Upload\022\025.rpc_server.UploadReq"
-    "\032\025.rpc_server.UploadRes\022<\n\010Download\022\027.rp"
-    "c_server.DownloadReq\032\027.rpc_server.Downlo"
-    "adRes\022>\n\006Delete\022\031.rpc_server.DeleteFileR"
-    "eq\032\031.rpc_server.DeleteFileRes\022\?\n\tListFil"
-    "es\022\030.rpc_server.ListFilesReq\032\030.rpc_serve"
-    "r.ListFilesResb\006proto3"
+    "\n\021server_file.proto\022\nrpc_server\"C\n\016Uploa"
+    "dReadyReq\022\017\n\007account\030\001 \001(\014\022\r\n\005token\030\002 \001("
+    "\014\022\021\n\tfile_name\030\003 \001(\014\"d\n\016UploadReadyRes\022\017"
+    "\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\022\026\n\016file"
+    "_server_ip\030\003 \001(\014\022\030\n\020file_server_port\030\004 \001"
+    "(\005\"B\n\tUploadReq\022\017\n\007account\030\001 \001(\014\022\021\n\tfile"
+    "_name\030\002 \001(\014\022\021\n\tfile_data\030\003 \001(\014\"-\n\tUpload"
+    "Res\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"1\n"
+    "\013DownloadReq\022\017\n\007account\030\001 \001(\014\022\021\n\tfile_na"
+    "me\030\002 \001(\014\"B\n\013DownloadRes\022\017\n\007success\030\001 \001(\010"
+    "\022\021\n\tfile_data\030\002 \001(\014\022\017\n\007message\030\003 \001(\014\"3\n\r"
+    "DeleteFileReq\022\017\n\007account\030\001 \001(\014\022\021\n\tfile_n"
+    "ame\030\002 \001(\014\"1\n\rDeleteFileRes\022\017\n\007success\030\001 "
+    "\001(\010\022\017\n\007message\030\002 \001(\014\"\037\n\014ListFilesReq\022\017\n\007"
+    "account\030\001 \001(\014\"D\n\014ListFilesRes\022\017\n\007success"
+    "\030\001 \001(\010\022\022\n\nfile_names\030\002 \003(\014\022\017\n\007message\030\003 "
+    "\001(\0142\313\002\n\nFileServer\022F\n\014Upload_ready\022\032.rpc"
+    "_server.UploadReadyReq\032\032.rpc_server.Uplo"
+    "adReadyRes\0226\n\006Upload\022\025.rpc_server.Upload"
+    "Req\032\025.rpc_server.UploadRes\022<\n\010Download\022\027"
+    ".rpc_server.DownloadReq\032\027.rpc_server.Dow"
+    "nloadRes\022>\n\006Delete\022\031.rpc_server.DeleteFi"
+    "leReq\032\031.rpc_server.DeleteFileRes\022\?\n\tList"
+    "Files\022\030.rpc_server.ListFilesReq\032\030.rpc_se"
+    "rver.ListFilesResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5ffile_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5ffile_2eproto = {
     false,
     false,
-    742,
+    985,
     descriptor_table_protodef_server_5ffile_2eproto,
     "server_file.proto",
     &descriptor_table_server_5ffile_2eproto_once,
     nullptr,
     0,
-    8,
+    10,
     schemas,
     file_default_instances,
     TableStruct_server_5ffile_2eproto::offsets,
@@ -381,6 +467,520 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_server_5
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2
 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_server_5ffile_2eproto(&descriptor_table_server_5ffile_2eproto);
 namespace rpc_server {
+// ===================================================================
+
+class UploadReadyReq::_Internal {
+ public:
+};
+
+UploadReadyReq::UploadReadyReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UploadReadyReq)
+}
+inline PROTOBUF_NDEBUG_INLINE UploadReadyReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : account_(arena, from.account_),
+        token_(arena, from.token_),
+        file_name_(arena, from.file_name_),
+        _cached_size_{0} {}
+
+UploadReadyReq::UploadReadyReq(
+    ::google::protobuf::Arena* arena,
+    const UploadReadyReq& from)
+    : ::google::protobuf::Message(arena) {
+  UploadReadyReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UploadReadyReq)
+}
+inline PROTOBUF_NDEBUG_INLINE UploadReadyReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : account_(arena),
+        token_(arena),
+        file_name_(arena),
+        _cached_size_{0} {}
+
+inline void UploadReadyReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+UploadReadyReq::~UploadReadyReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.UploadReadyReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UploadReadyReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.account_.Destroy();
+  _impl_.token_.Destroy();
+  _impl_.file_name_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UploadReadyReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UploadReadyReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.account_.ClearToEmpty();
+  _impl_.token_.ClearToEmpty();
+  _impl_.file_name_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UploadReadyReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> UploadReadyReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UploadReadyReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // bytes account = 1;
+    {::_pbi::TcParser::FastBS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyReq, _impl_.account_)}},
+    // bytes token = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyReq, _impl_.token_)}},
+    // bytes file_name = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyReq, _impl_.file_name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bytes account = 1;
+    {PROTOBUF_FIELD_OFFSET(UploadReadyReq, _impl_.account_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes token = 2;
+    {PROTOBUF_FIELD_OFFSET(UploadReadyReq, _impl_.token_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes file_name = 3;
+    {PROTOBUF_FIELD_OFFSET(UploadReadyReq, _impl_.file_name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* UploadReadyReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UploadReadyReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    const std::string& _s = this->_internal_account();
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
+  }
+
+  // bytes token = 2;
+  if (!this->_internal_token().empty()) {
+    const std::string& _s = this->_internal_token();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  // bytes file_name = 3;
+  if (!this->_internal_file_name().empty()) {
+    const std::string& _s = this->_internal_file_name();
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UploadReadyReq)
+  return target;
+}
+
+::size_t UploadReadyReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UploadReadyReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes account = 1;
+  if (!this->_internal_account().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_account());
+  }
+
+  // bytes token = 2;
+  if (!this->_internal_token().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_token());
+  }
+
+  // bytes file_name = 3;
+  if (!this->_internal_file_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_file_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UploadReadyReq::_class_data_ = {
+    UploadReadyReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* UploadReadyReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void UploadReadyReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UploadReadyReq*>(&to_msg);
+  auto& from = static_cast<const UploadReadyReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UploadReadyReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_account().empty()) {
+    _this->_internal_set_account(from._internal_account());
+  }
+  if (!from._internal_token().empty()) {
+    _this->_internal_set_token(from._internal_token());
+  }
+  if (!from._internal_file_name().empty()) {
+    _this->_internal_set_file_name(from._internal_file_name());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UploadReadyReq::CopyFrom(const UploadReadyReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UploadReadyReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UploadReadyReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* UploadReadyReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UploadReadyReq::InternalSwap(UploadReadyReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.account_, &other->_impl_.account_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.token_, &other->_impl_.token_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_name_, &other->_impl_.file_name_, arena);
+}
+
+::google::protobuf::Metadata UploadReadyReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
+      file_level_metadata_server_5ffile_2eproto[0]);
+}
+// ===================================================================
+
+class UploadReadyRes::_Internal {
+ public:
+};
+
+UploadReadyRes::UploadReadyRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.UploadReadyRes)
+}
+inline PROTOBUF_NDEBUG_INLINE UploadReadyRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : message_(arena, from.message_),
+        file_server_ip_(arena, from.file_server_ip_),
+        _cached_size_{0} {}
+
+UploadReadyRes::UploadReadyRes(
+    ::google::protobuf::Arena* arena,
+    const UploadReadyRes& from)
+    : ::google::protobuf::Message(arena) {
+  UploadReadyRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, success_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, success_),
+           offsetof(Impl_, file_server_port_) -
+               offsetof(Impl_, success_) +
+               sizeof(Impl_::file_server_port_));
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.UploadReadyRes)
+}
+inline PROTOBUF_NDEBUG_INLINE UploadReadyRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        file_server_ip_(arena),
+        _cached_size_{0} {}
+
+inline void UploadReadyRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, success_),
+           0,
+           offsetof(Impl_, file_server_port_) -
+               offsetof(Impl_, success_) +
+               sizeof(Impl_::file_server_port_));
+}
+UploadReadyRes::~UploadReadyRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.UploadReadyRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void UploadReadyRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.file_server_ip_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void UploadReadyRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.UploadReadyRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.file_server_ip_.ClearToEmpty();
+  ::memset(&_impl_.success_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.file_server_port_) -
+      reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.file_server_port_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* UploadReadyRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 4, 0, 0, 2> UploadReadyRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    4, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967280,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    4,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_UploadReadyRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // int32 file_server_port = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UploadReadyRes, _impl_.file_server_port_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_port_)}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UploadReadyRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.success_)}},
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.message_)}},
+    // bytes file_server_ip = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_ip_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bytes message = 2;
+    {PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes file_server_ip = 3;
+    {PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_ip_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // int32 file_server_port = 4;
+    {PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_port_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* UploadReadyRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.UploadReadyRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // bytes message = 2;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  // bytes file_server_ip = 3;
+  if (!this->_internal_file_server_ip().empty()) {
+    const std::string& _s = this->_internal_file_server_ip();
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
+  }
+
+  // int32 file_server_port = 4;
+  if (this->_internal_file_server_port() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
+            stream, this->_internal_file_server_port(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.UploadReadyRes)
+  return target;
+}
+
+::size_t UploadReadyRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.UploadReadyRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes message = 2;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_message());
+  }
+
+  // bytes file_server_ip = 3;
+  if (!this->_internal_file_server_ip().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_file_server_ip());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  // int32 file_server_port = 4;
+  if (this->_internal_file_server_port() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_file_server_port());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData UploadReadyRes::_class_data_ = {
+    UploadReadyRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* UploadReadyRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void UploadReadyRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<UploadReadyRes*>(&to_msg);
+  auto& from = static_cast<const UploadReadyRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.UploadReadyRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (!from._internal_file_server_ip().empty()) {
+    _this->_internal_set_file_server_ip(from._internal_file_server_ip());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  if (from._internal_file_server_port() != 0) {
+    _this->_internal_set_file_server_port(from._internal_file_server_port());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UploadReadyRes::CopyFrom(const UploadReadyRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.UploadReadyRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool UploadReadyRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* UploadReadyRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void UploadReadyRes::InternalSwap(UploadReadyRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_server_ip_, &other->_impl_.file_server_ip_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_port_)
+      + sizeof(UploadReadyRes::_impl_.file_server_port_)
+      - PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.success_)>(
+          reinterpret_cast<char*>(&_impl_.success_),
+          reinterpret_cast<char*>(&other->_impl_.success_));
+}
+
+::google::protobuf::Metadata UploadReadyRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
+      file_level_metadata_server_5ffile_2eproto[1]);
+}
 // ===================================================================
 
 class UploadReq::_Internal {
@@ -617,7 +1217,7 @@ void UploadReq::InternalSwap(UploadReq* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata UploadReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
-      file_level_metadata_server_5ffile_2eproto[0]);
+      file_level_metadata_server_5ffile_2eproto[2]);
 }
 // ===================================================================
 
@@ -827,7 +1427,7 @@ void UploadRes::InternalSwap(UploadRes* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata UploadRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
-      file_level_metadata_server_5ffile_2eproto[1]);
+      file_level_metadata_server_5ffile_2eproto[3]);
 }
 // ===================================================================
 
@@ -1038,7 +1638,7 @@ void DownloadReq::InternalSwap(DownloadReq* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata DownloadReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
-      file_level_metadata_server_5ffile_2eproto[2]);
+      file_level_metadata_server_5ffile_2eproto[4]);
 }
 // ===================================================================
 
@@ -1275,7 +1875,7 @@ void DownloadRes::InternalSwap(DownloadRes* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata DownloadRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
-      file_level_metadata_server_5ffile_2eproto[3]);
+      file_level_metadata_server_5ffile_2eproto[5]);
 }
 // ===================================================================
 
@@ -1486,7 +2086,7 @@ void DeleteFileReq::InternalSwap(DeleteFileReq* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata DeleteFileReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
-      file_level_metadata_server_5ffile_2eproto[4]);
+      file_level_metadata_server_5ffile_2eproto[6]);
 }
 // ===================================================================
 
@@ -1696,7 +2296,7 @@ void DeleteFileRes::InternalSwap(DeleteFileRes* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata DeleteFileRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
-      file_level_metadata_server_5ffile_2eproto[5]);
+      file_level_metadata_server_5ffile_2eproto[7]);
 }
 // ===================================================================
 
@@ -1881,7 +2481,7 @@ void ListFilesReq::InternalSwap(ListFilesReq* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata ListFilesReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
-      file_level_metadata_server_5ffile_2eproto[6]);
+      file_level_metadata_server_5ffile_2eproto[8]);
 }
 // ===================================================================
 
@@ -2115,7 +2715,7 @@ void ListFilesRes::InternalSwap(ListFilesRes* PROTOBUF_RESTRICT other) {
 ::google::protobuf::Metadata ListFilesRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5ffile_2eproto_getter, &descriptor_table_server_5ffile_2eproto_once,
-      file_level_metadata_server_5ffile_2eproto[7]);
+      file_level_metadata_server_5ffile_2eproto[9]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace rpc_server

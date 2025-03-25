@@ -33,12 +33,14 @@ enum ServiceType
     RES_REGISTER = 5;   // 注册响应
     REQ_HEARTBEAT = 6;  // 心跳请求
     RES_HEARTBEAT = 7;  // 心跳响应
-    REQ_FILE_UPLOAD = 8;    // 文件上传请求
-    RES_FILE_UPLOAD = 9;    // 文件上传响应
-    REQ_FILE_DOWNLOAD = 10; // 文件下载请求
-    RES_FILE_DOWNLOAD = 11; // 文件下载响应
-    REQ_FILE_DELETE = 12;   // 文件删除请求
-    RES_FILE_DELETE = 13;   // 文件删除响应
-    REQ_FILE_LIST = 14;     // 获取文件列表请求
-    RES_FILE_LIST = 15;     // 获取文件列表响应
+    REQ_FILE_UPLOAD_READY = 8;    // 准备上传文件请求（获取文件服务器直连）
+    RES_FILE_UPLOAD_READY = 9;    // 准备上传文件响应
+    REQ_FILE_UPLOAD = 10;    // 文件上传请求
+    RES_FILE_UPLOAD = 11;    // 文件上传响应
+    REQ_FILE_DOWNLOAD = 12;    // 文件下载请求
+    RES_FILE_DOWNLOAD = 13;    // 文件下载响应
+    REQ_FILE_DELETE = 14;    // 文件删除请求
+    RES_FILE_DELETE = 15;    // 文件删除响应
+    REQ_GET_FILE_LIST = 16;    // 获取文件列表请求
+    RES_GET_FILE_LIST = 17;    // 获取文件列表响应
 }

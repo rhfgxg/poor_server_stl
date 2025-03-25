@@ -181,11 +181,24 @@ void FileServerImpl::Send_heartbeat()
 }
 
 /**************************************** grpc服务接口定义 **************************************************************************/
-// 服务转发接口
+// 准备上传文件
+grpc::Status FileServerImpl::Upload_ready(grpc::ServerContext* context, const rpc_server::UploadReadyReq* req, rpc_server::UploadReadyRes* res)
+{
+    auto task_future = this->add_async_task([this, req, res] {
+        // this->Handle_upload_ready(req, res);   // 执行函数
+    });
+
+    // 等待任务完成
+    task_future.get();
+
+    return grpc::Status::OK;
+}
+
+// 文件上传服务
 grpc::Status FileServerImpl::Upload(grpc::ServerContext* context, const rpc_server::UploadReq* req, rpc_server::UploadRes* res)
 {
     auto task_future = this->add_async_task([this, req, res] {
-        // this->Handle_create(req, res);   // 执行函数
+        // this->Handle_upload(req, res);   // 执行函数
     });
 
     // 等待任务完成
@@ -197,12 +210,26 @@ grpc::Status FileServerImpl::Upload(grpc::ServerContext* context, const rpc_serv
 // 文件下载服务
 grpc::Status FileServerImpl::Download(grpc::ServerContext* context, const rpc_server::DownloadReq* req, rpc_server::DownloadRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        // this->Handle_download(req, res);   // 执行函数
+    });
+
+    // 等待任务完成
+    task_future.get();
+
     return grpc::Status::OK;
 }
 
 // 文件删除服务
 grpc::Status FileServerImpl::Delete(grpc::ServerContext* context, const rpc_server::DeleteFileReq* req, rpc_server::DeleteFileRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        // this->Handle_dalete(req, res);   // 执行函数
+    });
+
+    // 等待任务完成
+    task_future.get();
+
     return grpc::Status::OK;
 }
 
@@ -213,5 +240,23 @@ grpc::Status FileServerImpl::ListFiles(grpc::ServerContext* context, const rpc_s
 }
 
 /**************************************** grpc服务接口工具函数 **************************************************************************/
+// 准备上传文件
+void FileServerImpl::Handle_upload_ready(const rpc_server::UploadReadyReq* req, rpc_server::UploadReadyRes* res)
+{}
 
+// 文件上传
+void FileServerImpl::Handle_upload(const rpc_server::UploadReq* req, rpc_server::UploadRes* res)
+{}
+
+// 文件下载
+void FileServerImpl::Handle_download(const rpc_server::DownloadReq* req, rpc_server::DownloadRes* res)
+{}
+
+// 文件删除
+void FileServerImpl::Handle_delete(const rpc_server::DeleteFileReq* req, rpc_server::DeleteFileRes* res)
+{}
+
+// 文件列表
+void FileServerImpl::Handle_list_files(const rpc_server::ListFilesReq* req, rpc_server::ListFilesRes* res)
+{}
 /******************************************** 其他工具函数 ***********************************************/
