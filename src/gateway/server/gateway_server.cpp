@@ -309,12 +309,7 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, co
         }
         case rpc_server::ServiceType::REQ_FILE_UPLOAD_READY:    // 文件上传准备
         {
-            // Forward_to_file_upload_ready_service(req->payload(), res);
-            break;
-        }
-        case rpc_server::ServiceType::REQ_FILE_UPLOAD:  // 文件上传
-        {
-            // Forward_to_file_upload_service(req->payload(), res);
+            Forward_to_file_upload_ready_service(req->payload(), res);
             break;
         }
         case rpc_server::ServiceType::REQ_FILE_DOWNLOAD:    // 文件下载
@@ -368,35 +363,34 @@ grpc::Status GatewayServerImpl::Get_Gateway_pool(grpc::ServerContext* context, c
 grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payload, rpc_server::ForwardRes* res)
 {
     rpc_server::LoginReq login_req;  // 创建登录请求对象
+    rpc_server::LoginRes login_res;
+    grpc::ClientContext context;
+
     bool req_out = login_req.ParseFromString(payload); // 将负载解析为登录请求对象
 
     if(!req_out) // 如果解析失败
     {
-        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse LoginRequest");
+        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse LoginReq");
     }
-
-    // 构造响应
-    rpc_server::LoginRes login_response;
-    grpc::ClientContext context;
 
     // 获取连接池中的连接
     auto channel = this->login_connection_pool.get_connection(rpc_server::ServerType::LOGIN);
     auto login_stub = rpc_server::LoginServer::NewStub(channel);
 
-    grpc::Status status = login_stub->Login(&context, login_req, &login_response);
+    grpc::Status status = login_stub->Login(&context, login_req, &login_res);
 
     if(!status.ok()) // 如果调用失败
     {
         return status;
     }
 
-    bool response_out = login_response.SerializeToString(res->mutable_response()); // 将登录响应序列化为转发响应
+    bool response_out = login_res.SerializeToString(res->mutable_response()); // 将登录响应序列化为转发响应
     if(!response_out) // 如果序列化失败
     {
-        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize LoginResponse");
+        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize LoginRes");
     }
 
-    if(login_response.success()) // 如果登录成功
+    if(login_res.success()) // 如果登录成功
     {
         res->set_success(true);    // 设置响应对象 response 的 success 字段为 true
     }
@@ -422,7 +416,7 @@ grpc::Status GatewayServerImpl::Forward_to_register_service(const std::string& p
 
     if(!req_out) // 如果解析失败
     {
-        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse RegisterRequest");
+        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse RegisterReq");
     }
 
     // 获取连接池中的连接
@@ -439,7 +433,7 @@ grpc::Status GatewayServerImpl::Forward_to_register_service(const std::string& p
     bool res_out = register_res.SerializeToString(res->mutable_response()); // 将登录响应序列化为转发响应
     if(!res_out) // 如果序列化失败
     {
-        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize RegisterResponse");
+        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize RegisterRes");
     }
 
     if(register_res.success()) // 如果登录成功
@@ -468,7 +462,7 @@ grpc::Status GatewayServerImpl::Forward_to_logout_service(const std::string& pay
 
     if(!req_out) // 如果解析失败
     {
-        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse LogoutRequest");
+        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse LogoutReq");
     }
 
     // 获取连接池中的连接
@@ -485,13 +479,14 @@ grpc::Status GatewayServerImpl::Forward_to_logout_service(const std::string& pay
     bool res_out = logout_res.SerializeToString(res->mutable_response()); // 将登录响应序列化为转发响应
     if(!res_out) // 如果序列化失败
     {
-        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize LogoutResponse");
+        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize LogoutRes");
     }
 
     if(logout_res.success()) // 如果登录成功
     {
         res->set_success(true);    // 设置响应对象 response 的 success 字段为 true
-    } else
+    }
+    else
     {
         res->set_success(false);
     }
@@ -499,6 +494,51 @@ grpc::Status GatewayServerImpl::Forward_to_logout_service(const std::string& pay
     this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: user logout");
 
     this->login_connection_pool.release_connection(rpc_server::ServerType::LOGIN, channel); // 释放连接
+    return grpc::Status::OK;
+}
+
+// 文件上传准备
+grpc::Status GatewayServerImpl::Forward_to_file_upload_ready_service(const std::string& payload, rpc_server::ForwardRes* res)
+{
+    rpc_server::UploadReadyReq ready_req;  // 创建登录请求对象
+    rpc_server::UploadReadyRes ready_res;
+    grpc::ClientContext context;
+    bool req_out = ready_req.ParseFromString(payload); // 将负载解析为登录请求对象
+
+    if(!req_out) // 如果解析失败
+    {
+        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse UploadReadyReq");
+    }
+
+    // 获取连接池中的连接
+    auto channel = this->file_connection_pool.get_connection(rpc_server::ServerType::FILE);
+    auto file_stub = rpc_server::FileServer::NewStub(channel);
+
+    grpc::Status status = file_stub->Upload_ready(&context, ready_req, &ready_res);
+
+    if(!status.ok()) // 如果调用失败
+    {
+        return status;
+    }
+
+    bool response_out = ready_res.SerializeToString(res->mutable_response()); // 将登录响应序列化为转发响应
+    if(!response_out) // 如果序列化失败
+    {
+        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize UploadReadyRes");
+    }
+
+    if(ready_res.success()) // 如果响应成功
+    {
+        res->set_success(true);    // 设置响应对象 response 的 success 字段为 true
+    }
+    else
+    {
+        res->set_success(false);
+    }
+
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: file upload ready");
+
+    this->file_connection_pool.release_connection(rpc_server::ServerType::FILE, channel); // 释放连接
     return grpc::Status::OK;
 }
 

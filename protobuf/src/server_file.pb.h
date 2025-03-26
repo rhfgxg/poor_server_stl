@@ -642,9 +642,9 @@ class UploadReadyRes final :
 
   enum : int {
     kMessageFieldNumber = 2,
-    kFileServerIpFieldNumber = 3,
-    kSuccessFieldNumber = 1,
+    kFileServerAddressFieldNumber = 3,
     kFileServerPortFieldNumber = 4,
+    kSuccessFieldNumber = 1,
   };
   // bytes message = 2;
   void clear_message() ;
@@ -662,20 +662,36 @@ class UploadReadyRes final :
   std::string* _internal_mutable_message();
 
   public:
-  // bytes file_server_ip = 3;
-  void clear_file_server_ip() ;
-  const std::string& file_server_ip() const;
+  // bytes file_server_address = 3;
+  void clear_file_server_address() ;
+  const std::string& file_server_address() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_file_server_ip(Arg_&& arg, Args_... args);
-  std::string* mutable_file_server_ip();
-  PROTOBUF_NODISCARD std::string* release_file_server_ip();
-  void set_allocated_file_server_ip(std::string* value);
+  void set_file_server_address(Arg_&& arg, Args_... args);
+  std::string* mutable_file_server_address();
+  PROTOBUF_NODISCARD std::string* release_file_server_address();
+  void set_allocated_file_server_address(std::string* value);
 
   private:
-  const std::string& _internal_file_server_ip() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file_server_ip(
+  const std::string& _internal_file_server_address() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file_server_address(
       const std::string& value);
-  std::string* _internal_mutable_file_server_ip();
+  std::string* _internal_mutable_file_server_address();
+
+  public:
+  // bytes file_server_port = 4;
+  void clear_file_server_port() ;
+  const std::string& file_server_port() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_file_server_port(Arg_&& arg, Args_... args);
+  std::string* mutable_file_server_port();
+  PROTOBUF_NODISCARD std::string* release_file_server_port();
+  void set_allocated_file_server_port(std::string* value);
+
+  private:
+  const std::string& _internal_file_server_port() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_file_server_port(
+      const std::string& value);
+  std::string* _internal_mutable_file_server_port();
 
   public:
   // bool success = 1;
@@ -686,16 +702,6 @@ class UploadReadyRes final :
   private:
   bool _internal_success() const;
   void _internal_set_success(bool value);
-
-  public:
-  // int32 file_server_port = 4;
-  void clear_file_server_port() ;
-  ::int32_t file_server_port() const;
-  void set_file_server_port(::int32_t value);
-
-  private:
-  ::int32_t _internal_file_server_port() const;
-  void _internal_set_file_server_port(::int32_t value);
 
   public:
   // @@protoc_insertion_point(class_scope:rpc_server.UploadReadyRes)
@@ -722,9 +728,9 @@ class UploadReadyRes final :
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
     ::google::protobuf::internal::ArenaStringPtr message_;
-    ::google::protobuf::internal::ArenaStringPtr file_server_ip_;
+    ::google::protobuf::internal::ArenaStringPtr file_server_address_;
+    ::google::protobuf::internal::ArenaStringPtr file_server_port_;
     bool success_;
-    ::int32_t file_server_port_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2410,80 +2416,110 @@ inline void UploadReadyRes::set_allocated_message(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyRes.message)
 }
 
-// bytes file_server_ip = 3;
-inline void UploadReadyRes::clear_file_server_ip() {
+// bytes file_server_address = 3;
+inline void UploadReadyRes::clear_file_server_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.file_server_ip_.ClearToEmpty();
+  _impl_.file_server_address_.ClearToEmpty();
 }
-inline const std::string& UploadReadyRes::file_server_ip() const
+inline const std::string& UploadReadyRes::file_server_address() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyRes.file_server_ip)
-  return _internal_file_server_ip();
+  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyRes.file_server_address)
+  return _internal_file_server_address();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UploadReadyRes::set_file_server_ip(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void UploadReadyRes::set_file_server_address(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.file_server_ip_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyRes.file_server_ip)
+  _impl_.file_server_address_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyRes.file_server_address)
 }
-inline std::string* UploadReadyRes::mutable_file_server_ip() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_file_server_ip();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyRes.file_server_ip)
+inline std::string* UploadReadyRes::mutable_file_server_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_file_server_address();
+  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyRes.file_server_address)
   return _s;
 }
-inline const std::string& UploadReadyRes::_internal_file_server_ip() const {
+inline const std::string& UploadReadyRes::_internal_file_server_address() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.file_server_ip_.Get();
+  return _impl_.file_server_address_.Get();
 }
-inline void UploadReadyRes::_internal_set_file_server_ip(const std::string& value) {
+inline void UploadReadyRes::_internal_set_file_server_address(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.file_server_ip_.Set(value, GetArena());
+  _impl_.file_server_address_.Set(value, GetArena());
 }
-inline std::string* UploadReadyRes::_internal_mutable_file_server_ip() {
+inline std::string* UploadReadyRes::_internal_mutable_file_server_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  return _impl_.file_server_ip_.Mutable( GetArena());
+  return _impl_.file_server_address_.Mutable( GetArena());
 }
-inline std::string* UploadReadyRes::release_file_server_ip() {
+inline std::string* UploadReadyRes::release_file_server_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyRes.file_server_ip)
-  return _impl_.file_server_ip_.Release();
+  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyRes.file_server_address)
+  return _impl_.file_server_address_.Release();
 }
-inline void UploadReadyRes::set_allocated_file_server_ip(std::string* value) {
+inline void UploadReadyRes::set_allocated_file_server_address(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.file_server_ip_.SetAllocated(value, GetArena());
+  _impl_.file_server_address_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.file_server_ip_.IsDefault()) {
-          _impl_.file_server_ip_.Set("", GetArena());
+        if (_impl_.file_server_address_.IsDefault()) {
+          _impl_.file_server_address_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyRes.file_server_ip)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyRes.file_server_address)
 }
 
-// int32 file_server_port = 4;
+// bytes file_server_port = 4;
 inline void UploadReadyRes::clear_file_server_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.file_server_port_ = 0;
+  _impl_.file_server_port_.ClearToEmpty();
 }
-inline ::int32_t UploadReadyRes::file_server_port() const {
+inline const std::string& UploadReadyRes::file_server_port() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:rpc_server.UploadReadyRes.file_server_port)
   return _internal_file_server_port();
 }
-inline void UploadReadyRes::set_file_server_port(::int32_t value) {
-  _internal_set_file_server_port(value);
-  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyRes.file_server_port)
-}
-inline ::int32_t UploadReadyRes::_internal_file_server_port() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.file_server_port_;
-}
-inline void UploadReadyRes::_internal_set_file_server_port(::int32_t value) {
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void UploadReadyRes::set_file_server_port(Arg_&& arg,
+                                                     Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
-  _impl_.file_server_port_ = value;
+  _impl_.file_server_port_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyRes.file_server_port)
+}
+inline std::string* UploadReadyRes::mutable_file_server_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_file_server_port();
+  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyRes.file_server_port)
+  return _s;
+}
+inline const std::string& UploadReadyRes::_internal_file_server_port() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.file_server_port_.Get();
+}
+inline void UploadReadyRes::_internal_set_file_server_port(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.file_server_port_.Set(value, GetArena());
+}
+inline std::string* UploadReadyRes::_internal_mutable_file_server_port() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.file_server_port_.Mutable( GetArena());
+}
+inline std::string* UploadReadyRes::release_file_server_port() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyRes.file_server_port)
+  return _impl_.file_server_port_.Release();
+}
+inline void UploadReadyRes::set_allocated_file_server_port(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.file_server_port_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.file_server_port_.IsDefault()) {
+          _impl_.file_server_port_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyRes.file_server_port)
 }
 
 // -------------------------------------------------------------------

@@ -185,7 +185,7 @@ void FileServerImpl::Send_heartbeat()
 grpc::Status FileServerImpl::Upload_ready(grpc::ServerContext* context, const rpc_server::UploadReadyReq* req, rpc_server::UploadReadyRes* res)
 {
     auto task_future = this->add_async_task([this, req, res] {
-        // this->Handle_upload_ready(req, res);   // 执行函数
+         this->Handle_upload_ready(req, res);   // 执行函数
     });
 
     // 等待任务完成
@@ -242,7 +242,19 @@ grpc::Status FileServerImpl::ListFiles(grpc::ServerContext* context, const rpc_s
 /**************************************** grpc服务接口工具函数 **************************************************************************/
 // 准备上传文件
 void FileServerImpl::Handle_upload_ready(const rpc_server::UploadReadyReq* req, rpc_server::UploadReadyRes* res)
-{}
+{
+    std::string account = req->account();   // 用户账号
+    std::string token = req->token();   // 用户token
+    std::string file_name = req->file_name();   // 需要上传的文件名
+
+    // 返回文件服务器地址与端口
+    res->set_file_server_address(this->server_address);
+    res->set_file_server_port(this->server_port);
+
+    res->set_success(true);
+    res->set_message("Login successful");
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Upload_ready successful: {}", account);
+}
 
 // 文件上传
 void FileServerImpl::Handle_upload(const rpc_server::UploadReq* req, rpc_server::UploadRes* res)

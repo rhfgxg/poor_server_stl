@@ -76,11 +76,13 @@ inline constexpr UploadReadyRes::Impl_::Impl_(
       : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        file_server_ip_(
+        file_server_address_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        file_server_port_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         success_{false},
-        file_server_port_{0},
         _cached_size_{0} {}
 
 template <typename>
@@ -291,7 +293,7 @@ const ::uint32_t TableStruct_server_5ffile_2eproto::offsets[] PROTOBUF_SECTION_V
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyRes, _impl_.success_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyRes, _impl_.message_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyRes, _impl_.file_server_ip_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyRes, _impl_.file_server_address_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReadyRes, _impl_.file_server_port_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::rpc_server::UploadReq, _internal_metadata_),
@@ -406,35 +408,35 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_server_5ffile_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\021server_file.proto\022\nrpc_server\"C\n\016Uploa"
     "dReadyReq\022\017\n\007account\030\001 \001(\014\022\r\n\005token\030\002 \001("
-    "\014\022\021\n\tfile_name\030\003 \001(\014\"d\n\016UploadReadyRes\022\017"
-    "\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\022\026\n\016file"
-    "_server_ip\030\003 \001(\014\022\030\n\020file_server_port\030\004 \001"
-    "(\005\"B\n\tUploadReq\022\017\n\007account\030\001 \001(\014\022\021\n\tfile"
-    "_name\030\002 \001(\014\022\021\n\tfile_data\030\003 \001(\014\"-\n\tUpload"
-    "Res\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"1\n"
-    "\013DownloadReq\022\017\n\007account\030\001 \001(\014\022\021\n\tfile_na"
-    "me\030\002 \001(\014\"B\n\013DownloadRes\022\017\n\007success\030\001 \001(\010"
-    "\022\021\n\tfile_data\030\002 \001(\014\022\017\n\007message\030\003 \001(\014\"3\n\r"
-    "DeleteFileReq\022\017\n\007account\030\001 \001(\014\022\021\n\tfile_n"
-    "ame\030\002 \001(\014\"1\n\rDeleteFileRes\022\017\n\007success\030\001 "
-    "\001(\010\022\017\n\007message\030\002 \001(\014\"\037\n\014ListFilesReq\022\017\n\007"
-    "account\030\001 \001(\014\"D\n\014ListFilesRes\022\017\n\007success"
-    "\030\001 \001(\010\022\022\n\nfile_names\030\002 \003(\014\022\017\n\007message\030\003 "
-    "\001(\0142\313\002\n\nFileServer\022F\n\014Upload_ready\022\032.rpc"
-    "_server.UploadReadyReq\032\032.rpc_server.Uplo"
-    "adReadyRes\0226\n\006Upload\022\025.rpc_server.Upload"
-    "Req\032\025.rpc_server.UploadRes\022<\n\010Download\022\027"
-    ".rpc_server.DownloadReq\032\027.rpc_server.Dow"
-    "nloadRes\022>\n\006Delete\022\031.rpc_server.DeleteFi"
-    "leReq\032\031.rpc_server.DeleteFileRes\022\?\n\tList"
-    "Files\022\030.rpc_server.ListFilesReq\032\030.rpc_se"
-    "rver.ListFilesResb\006proto3"
+    "\014\022\021\n\tfile_name\030\003 \001(\014\"i\n\016UploadReadyRes\022\017"
+    "\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\022\033\n\023file"
+    "_server_address\030\003 \001(\014\022\030\n\020file_server_por"
+    "t\030\004 \001(\014\"B\n\tUploadReq\022\017\n\007account\030\001 \001(\014\022\021\n"
+    "\tfile_name\030\002 \001(\014\022\021\n\tfile_data\030\003 \001(\014\"-\n\tU"
+    "ploadRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001"
+    "(\014\"1\n\013DownloadReq\022\017\n\007account\030\001 \001(\014\022\021\n\tfi"
+    "le_name\030\002 \001(\014\"B\n\013DownloadRes\022\017\n\007success\030"
+    "\001 \001(\010\022\021\n\tfile_data\030\002 \001(\014\022\017\n\007message\030\003 \001("
+    "\014\"3\n\rDeleteFileReq\022\017\n\007account\030\001 \001(\014\022\021\n\tf"
+    "ile_name\030\002 \001(\014\"1\n\rDeleteFileRes\022\017\n\007succe"
+    "ss\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"\037\n\014ListFilesRe"
+    "q\022\017\n\007account\030\001 \001(\014\"D\n\014ListFilesRes\022\017\n\007su"
+    "ccess\030\001 \001(\010\022\022\n\nfile_names\030\002 \003(\014\022\017\n\007messa"
+    "ge\030\003 \001(\0142\313\002\n\nFileServer\022F\n\014Upload_ready\022"
+    "\032.rpc_server.UploadReadyReq\032\032.rpc_server"
+    ".UploadReadyRes\0226\n\006Upload\022\025.rpc_server.U"
+    "ploadReq\032\025.rpc_server.UploadRes\022<\n\010Downl"
+    "oad\022\027.rpc_server.DownloadReq\032\027.rpc_serve"
+    "r.DownloadRes\022>\n\006Delete\022\031.rpc_server.Del"
+    "eteFileReq\032\031.rpc_server.DeleteFileRes\022\?\n"
+    "\tListFiles\022\030.rpc_server.ListFilesReq\032\030.r"
+    "pc_server.ListFilesResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5ffile_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5ffile_2eproto = {
     false,
     false,
-    985,
+    990,
     descriptor_table_protodef_server_5ffile_2eproto,
     "server_file.proto",
     &descriptor_table_server_5ffile_2eproto_once,
@@ -720,7 +722,8 @@ inline PROTOBUF_NDEBUG_INLINE UploadReadyRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : message_(arena, from.message_),
-        file_server_ip_(arena, from.file_server_ip_),
+        file_server_address_(arena, from.file_server_address_),
+        file_server_port_(arena, from.file_server_port_),
         _cached_size_{0} {}
 
 UploadReadyRes::UploadReadyRes(
@@ -732,13 +735,7 @@ UploadReadyRes::UploadReadyRes(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, success_),
-           reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, success_),
-           offsetof(Impl_, file_server_port_) -
-               offsetof(Impl_, success_) +
-               sizeof(Impl_::file_server_port_));
+  _impl_.success_ = from._impl_.success_;
 
   // @@protoc_insertion_point(copy_constructor:rpc_server.UploadReadyRes)
 }
@@ -746,17 +743,13 @@ inline PROTOBUF_NDEBUG_INLINE UploadReadyRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : message_(arena),
-        file_server_ip_(arena),
+        file_server_address_(arena),
+        file_server_port_(arena),
         _cached_size_{0} {}
 
 inline void UploadReadyRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, success_),
-           0,
-           offsetof(Impl_, file_server_port_) -
-               offsetof(Impl_, success_) +
-               sizeof(Impl_::file_server_port_));
+  _impl_.success_ = {};
 }
 UploadReadyRes::~UploadReadyRes() {
   // @@protoc_insertion_point(destructor:rpc_server.UploadReadyRes)
@@ -766,7 +759,8 @@ UploadReadyRes::~UploadReadyRes() {
 inline void UploadReadyRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
-  _impl_.file_server_ip_.Destroy();
+  _impl_.file_server_address_.Destroy();
+  _impl_.file_server_port_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -778,10 +772,9 @@ PROTOBUF_NOINLINE void UploadReadyRes::Clear() {
   (void) cached_has_bits;
 
   _impl_.message_.ClearToEmpty();
-  _impl_.file_server_ip_.ClearToEmpty();
-  ::memset(&_impl_.success_, 0, static_cast<::size_t>(
-      reinterpret_cast<char*>(&_impl_.file_server_port_) -
-      reinterpret_cast<char*>(&_impl_.success_)) + sizeof(_impl_.file_server_port_));
+  _impl_.file_server_address_.ClearToEmpty();
+  _impl_.file_server_port_.ClearToEmpty();
+  _impl_.success_ = false;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -807,18 +800,18 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> UploadReadyRes::_table_ = {
     &_UploadReadyRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // int32 file_server_port = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(UploadReadyRes, _impl_.file_server_port_), 63>(),
-     {32, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_port_)}},
+    // bytes file_server_port = 4;
+    {::_pbi::TcParser::FastBS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_port_)}},
     // bool success = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(UploadReadyRes, _impl_.success_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.success_)}},
     // bytes message = 2;
     {::_pbi::TcParser::FastBS1,
      {18, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.message_)}},
-    // bytes file_server_ip = 3;
+    // bytes file_server_address = 3;
     {::_pbi::TcParser::FastBS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_ip_)}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_address_)}},
   }}, {{
     65535, 65535
   }}, {{
@@ -828,12 +821,12 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> UploadReadyRes::_table_ = {
     // bytes message = 2;
     {PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // bytes file_server_ip = 3;
-    {PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_ip_), 0, 0,
+    // bytes file_server_address = 3;
+    {PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_address_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // int32 file_server_port = 4;
+    // bytes file_server_port = 4;
     {PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_port_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
@@ -860,17 +853,16 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> UploadReadyRes::_table_ = {
     target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // bytes file_server_ip = 3;
-  if (!this->_internal_file_server_ip().empty()) {
-    const std::string& _s = this->_internal_file_server_ip();
+  // bytes file_server_address = 3;
+  if (!this->_internal_file_server_address().empty()) {
+    const std::string& _s = this->_internal_file_server_address();
     target = stream->WriteBytesMaybeAliased(3, _s, target);
   }
 
-  // int32 file_server_port = 4;
-  if (this->_internal_file_server_port() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::
-        WriteInt32ToArrayWithField<4>(
-            stream, this->_internal_file_server_port(), target);
+  // bytes file_server_port = 4;
+  if (!this->_internal_file_server_port().empty()) {
+    const std::string& _s = this->_internal_file_server_port();
+    target = stream->WriteBytesMaybeAliased(4, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -896,21 +888,21 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> UploadReadyRes::_table_ = {
                                     this->_internal_message());
   }
 
-  // bytes file_server_ip = 3;
-  if (!this->_internal_file_server_ip().empty()) {
+  // bytes file_server_address = 3;
+  if (!this->_internal_file_server_address().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
-                                    this->_internal_file_server_ip());
+                                    this->_internal_file_server_address());
+  }
+
+  // bytes file_server_port = 4;
+  if (!this->_internal_file_server_port().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_file_server_port());
   }
 
   // bool success = 1;
   if (this->_internal_success() != 0) {
     total_size += 2;
-  }
-
-  // int32 file_server_port = 4;
-  if (this->_internal_file_server_port() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
-        this->_internal_file_server_port());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -935,14 +927,14 @@ void UploadReadyRes::MergeImpl(::google::protobuf::Message& to_msg, const ::goog
   if (!from._internal_message().empty()) {
     _this->_internal_set_message(from._internal_message());
   }
-  if (!from._internal_file_server_ip().empty()) {
-    _this->_internal_set_file_server_ip(from._internal_file_server_ip());
+  if (!from._internal_file_server_address().empty()) {
+    _this->_internal_set_file_server_address(from._internal_file_server_address());
+  }
+  if (!from._internal_file_server_port().empty()) {
+    _this->_internal_set_file_server_port(from._internal_file_server_port());
   }
   if (from._internal_success() != 0) {
     _this->_internal_set_success(from._internal_success());
-  }
-  if (from._internal_file_server_port() != 0) {
-    _this->_internal_set_file_server_port(from._internal_file_server_port());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -967,13 +959,9 @@ void UploadReadyRes::InternalSwap(UploadReadyRes* PROTOBUF_RESTRICT other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_server_ip_, &other->_impl_.file_server_ip_, arena);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.file_server_port_)
-      + sizeof(UploadReadyRes::_impl_.file_server_port_)
-      - PROTOBUF_FIELD_OFFSET(UploadReadyRes, _impl_.success_)>(
-          reinterpret_cast<char*>(&_impl_.success_),
-          reinterpret_cast<char*>(&other->_impl_.success_));
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_server_address_, &other->_impl_.file_server_address_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.file_server_port_, &other->_impl_.file_server_port_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
 }
 
 ::google::protobuf::Metadata UploadReadyRes::GetMetadata() const {

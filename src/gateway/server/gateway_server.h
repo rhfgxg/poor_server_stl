@@ -53,11 +53,12 @@ private:
     // 发送网关服务器连接池
     grpc::Status Handle_return_gateway_poor(const rpc_server::GetGatewayPoolReq* req, rpc_server::GetGatewayPoolRes* res);
 // 处理转发请求
-    // 登录服务器：登录服务
+    // 登录服务器
     grpc::Status Forward_to_login_service(const std::string& payload, rpc_server::ForwardRes* res); // 登录
     grpc::Status Forward_to_logout_service(const std::string& payload, rpc_server::ForwardRes* res);    // 登出
     grpc::Status Forward_to_register_service(const std::string& payload, rpc_server::ForwardRes* res);  // 注册
-
+    // 文件服务器
+    grpc::Status Forward_to_file_upload_ready_service(const std::string& payload, rpc_server::ForwardRes* res); // 文件上传准备
     // 定时任务：
     void Update_connection_pool();  // 更新连接池
     void Send_heartbeat();  // 发送心跳包

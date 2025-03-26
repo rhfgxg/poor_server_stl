@@ -23,8 +23,8 @@ message UploadReadyRes
 {
     bool success = 1;   // 操作结果
     bytes message = 2; // 响应信息
-    bytes file_server_ip = 3; // 文件服务器IP
-    int32 file_server_port = 4; // 文件服务器端口
+    bytes file_server_address = 3; // 文件服务器IP
+    bytes file_server_port = 4; // 文件服务器端口
 }
 
 // 文件上传服务请求
