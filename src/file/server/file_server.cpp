@@ -211,7 +211,7 @@ grpc::Status FileServerImpl::Upload(grpc::ServerContext* context, const rpc_serv
 grpc::Status FileServerImpl::Download(grpc::ServerContext* context, const rpc_server::DownloadReq* req, rpc_server::DownloadRes* res)
 {
     auto task_future = this->add_async_task([this, req, res] {
-        // this->Handle_download(req, res);   // 执行函数
+         this->Handle_download(req, res);   // 执行函数
     });
 
     // 等待任务完成
@@ -224,7 +224,7 @@ grpc::Status FileServerImpl::Download(grpc::ServerContext* context, const rpc_se
 grpc::Status FileServerImpl::Delete(grpc::ServerContext* context, const rpc_server::DeleteFileReq* req, rpc_server::DeleteFileRes* res)
 {
     auto task_future = this->add_async_task([this, req, res] {
-        // this->Handle_dalete(req, res);   // 执行函数
+         this->Handle_delete(req, res);   // 执行函数
     });
 
     // 等待任务完成
@@ -271,11 +271,25 @@ void FileServerImpl::Handle_upload(const rpc_server::UploadReq* req, rpc_server:
 
 // 文件下载
 void FileServerImpl::Handle_download(const rpc_server::DownloadReq* req, rpc_server::DownloadRes* res)
-{}
+{
+    std::string account = req->account();   // 用户账号
+    std::string file_name = req->file_name();   // 需要上传的文件名
+
+    res->set_success(true);
+    res->set_message("successful");
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Download successful: {}", account);
+}
 
 // 文件删除
 void FileServerImpl::Handle_delete(const rpc_server::DeleteFileReq* req, rpc_server::DeleteFileRes* res)
-{}
+{
+    std::string account = req->account();   // 用户账号
+    std::string file_name = req->file_name();   // 需要上传的文件名
+
+    res->set_success(true);
+    res->set_message("successful");
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Delate successful: {}", account);
+}
 
 // 文件列表
 void FileServerImpl::Handle_list_files(const rpc_server::ListFilesReq* req, rpc_server::ListFilesRes* res)
