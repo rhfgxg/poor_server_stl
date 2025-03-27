@@ -198,7 +198,7 @@ grpc::Status FileServerImpl::Upload_ready(grpc::ServerContext* context, const rp
 grpc::Status FileServerImpl::Upload(grpc::ServerContext* context, const rpc_server::UploadReq* req, rpc_server::UploadRes* res)
 {
     auto task_future = this->add_async_task([this, req, res] {
-        // this->Handle_upload(req, res);   // 执行函数
+         this->Handle_upload(req, res);   // 执行函数
     });
 
     // 等待任务完成
@@ -252,13 +252,22 @@ void FileServerImpl::Handle_upload_ready(const rpc_server::UploadReadyReq* req, 
     res->set_file_server_port(this->server_port);
 
     res->set_success(true);
-    res->set_message("Login successful");
+    res->set_message("successful");
     this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Upload_ready successful: {}", account);
 }
 
 // 文件上传
 void FileServerImpl::Handle_upload(const rpc_server::UploadReq* req, rpc_server::UploadRes* res)
-{}
+{
+    std::string account = req->account();   // 用户账号
+    std::string file_name = req->file_name();   // 需要上传的文件名
+    // req->file_data();   // 文件数据
+
+    res->set_success(true);
+    res->set_message("successful");
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Upload successful: {}", account);
+
+}
 
 // 文件下载
 void FileServerImpl::Handle_download(const rpc_server::DownloadReq* req, rpc_server::DownloadRes* res)
