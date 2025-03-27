@@ -29,8 +29,8 @@ public:
     void stop_thread_pool();    // 停止线程池
 
 // grpc对外接口
-    // 准备上传文件
-    grpc::Status Upload_ready(grpc::ServerContext* context, const rpc_server::UploadReadyReq* req, rpc_server::UploadReadyRes* res);
+    // 文件传输准备
+    grpc::Status Transmission_ready(grpc::ServerContext* context, const rpc_server::TransmissionReadyReq* req, rpc_server::TransmissionReadyRes* res);
     // 请求文件上传
     grpc::Status Upload(grpc::ServerContext* context, const rpc_server::UploadReq* req, rpc_server::UploadRes* res);
     // 文件下载服务
@@ -41,7 +41,7 @@ public:
     grpc::Status ListFiles(grpc::ServerContext* context, const rpc_server::ListFilesReq* req, rpc_server::ListFilesRes* res);
 private:
 // grpc 工具函数
-    void Handle_upload_ready(const rpc_server::UploadReadyReq* req, rpc_server::UploadReadyRes* res); // 准备上传文件
+    void Handle_transmission_ready(const rpc_server::TransmissionReadyReq* req, rpc_server::TransmissionReadyRes* res); // 文件传输准备
     void Handle_upload(const rpc_server::UploadReq* req, rpc_server::UploadRes* res); // 文件上传
     void Handle_download(const rpc_server::DownloadReq* req, rpc_server::DownloadRes* res); // 文件下载
     void Handle_delete(const rpc_server::DeleteFileReq* req, rpc_server::DeleteFileRes* res); // 文件删除

@@ -307,9 +307,9 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, co
             Forward_to_register_service(req->payload(), res);
             break;
         }
-        case rpc_server::ServiceType::REQ_FILE_UPLOAD_READY:    // 文件上传准备
+        case rpc_server::ServiceType::REQ_FILE_TRANSMISSION_READY:    // 文件上传准备
         {
-            Forward_to_file_upload_ready_service(req->payload(), res);
+            Forward_to_file_transmission_ready_service(req->payload(), res);
             break;
         }
         case rpc_server::ServiceType::REQ_FILE_DOWNLOAD:    // 文件下载
@@ -497,11 +497,11 @@ grpc::Status GatewayServerImpl::Forward_to_logout_service(const std::string& pay
     return grpc::Status::OK;
 }
 
-// 文件上传准备
-grpc::Status GatewayServerImpl::Forward_to_file_upload_ready_service(const std::string& payload, rpc_server::ForwardRes* res)
+// 文件传输准备
+grpc::Status GatewayServerImpl::Forward_to_file_transmission_ready_service(const std::string& payload, rpc_server::ForwardRes* res)
 {
-    rpc_server::UploadReadyReq ready_req;  // 创建登录请求对象
-    rpc_server::UploadReadyRes ready_res;
+    rpc_server::TransmissionReadyReq ready_req;  // 创建登录请求对象
+    rpc_server::TransmissionReadyRes ready_res;
     grpc::ClientContext context;
     bool req_out = ready_req.ParseFromString(payload); // 将负载解析为登录请求对象
 
@@ -514,7 +514,7 @@ grpc::Status GatewayServerImpl::Forward_to_file_upload_ready_service(const std::
     auto channel = this->file_connection_pool.get_connection(rpc_server::ServerType::FILE);
     auto file_stub = rpc_server::FileServer::NewStub(channel);
 
-    grpc::Status status = file_stub->Upload_ready(&context, ready_req, &ready_res);
+    grpc::Status status = file_stub->Transmission_ready(&context, ready_req, &ready_res);
 
     if(!status.ok()) // 如果调用失败
     {

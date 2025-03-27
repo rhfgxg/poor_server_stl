@@ -33,8 +33,8 @@ enum ServiceType
     RES_REGISTER = 5;   // 注册响应
     REQ_HEARTBEAT = 6;  // 心跳请求
     RES_HEARTBEAT = 7;  // 心跳响应
-    REQ_FILE_UPLOAD_READY = 8;    // 准备上传文件请求（获取文件服务器直连）
-    RES_FILE_UPLOAD_READY = 9;    // 准备上传文件响应
+    REQ_FILE_TRANSMISSION_READY = 8;    // 文件传输准备请求（获取文件服务器直连）
+    RES_FILE_TRANSMISSION_READY = 9;    // 文件传输准备响应
     REQ_FILE_UPLOAD = 10;    // 文件上传请求
     RES_FILE_UPLOAD = 11;    // 文件上传响应
     REQ_FILE_DOWNLOAD = 12;    // 文件下载请求

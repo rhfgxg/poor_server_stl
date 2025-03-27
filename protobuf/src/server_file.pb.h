@@ -74,12 +74,12 @@ extern ListFilesReqDefaultTypeInternal _ListFilesReq_default_instance_;
 class ListFilesRes;
 struct ListFilesResDefaultTypeInternal;
 extern ListFilesResDefaultTypeInternal _ListFilesRes_default_instance_;
-class UploadReadyReq;
-struct UploadReadyReqDefaultTypeInternal;
-extern UploadReadyReqDefaultTypeInternal _UploadReadyReq_default_instance_;
-class UploadReadyRes;
-struct UploadReadyResDefaultTypeInternal;
-extern UploadReadyResDefaultTypeInternal _UploadReadyRes_default_instance_;
+class TransmissionReadyReq;
+struct TransmissionReadyReqDefaultTypeInternal;
+extern TransmissionReadyReqDefaultTypeInternal _TransmissionReadyReq_default_instance_;
+class TransmissionReadyRes;
+struct TransmissionReadyResDefaultTypeInternal;
+extern TransmissionReadyResDefaultTypeInternal _TransmissionReadyRes_default_instance_;
 class UploadReq;
 struct UploadReqDefaultTypeInternal;
 extern UploadReqDefaultTypeInternal _UploadReq_default_instance_;
@@ -509,26 +509,26 @@ class UploadReq final :
   friend struct ::TableStruct_server_5ffile_2eproto;
 };// -------------------------------------------------------------------
 
-class UploadReadyRes final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UploadReadyRes) */ {
+class TransmissionReadyRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.TransmissionReadyRes) */ {
  public:
-  inline UploadReadyRes() : UploadReadyRes(nullptr) {}
-  ~UploadReadyRes() override;
+  inline TransmissionReadyRes() : TransmissionReadyRes(nullptr) {}
+  ~TransmissionReadyRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR UploadReadyRes(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR TransmissionReadyRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline UploadReadyRes(const UploadReadyRes& from)
-      : UploadReadyRes(nullptr, from) {}
-  UploadReadyRes(UploadReadyRes&& from) noexcept
-    : UploadReadyRes() {
+  inline TransmissionReadyRes(const TransmissionReadyRes& from)
+      : TransmissionReadyRes(nullptr, from) {}
+  TransmissionReadyRes(TransmissionReadyRes&& from) noexcept
+    : TransmissionReadyRes() {
     *this = ::std::move(from);
   }
 
-  inline UploadReadyRes& operator=(const UploadReadyRes& from) {
+  inline TransmissionReadyRes& operator=(const TransmissionReadyRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline UploadReadyRes& operator=(UploadReadyRes&& from) noexcept {
+  inline TransmissionReadyRes& operator=(TransmissionReadyRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -560,20 +560,20 @@ class UploadReadyRes final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const UploadReadyRes& default_instance() {
+  static const TransmissionReadyRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const UploadReadyRes* internal_default_instance() {
-    return reinterpret_cast<const UploadReadyRes*>(
-               &_UploadReadyRes_default_instance_);
+  static inline const TransmissionReadyRes* internal_default_instance() {
+    return reinterpret_cast<const TransmissionReadyRes*>(
+               &_TransmissionReadyRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(UploadReadyRes& a, UploadReadyRes& b) {
+  friend void swap(TransmissionReadyRes& a, TransmissionReadyRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(UploadReadyRes* other) {
+  inline void Swap(TransmissionReadyRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -586,7 +586,7 @@ class UploadReadyRes final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(UploadReadyRes* other) {
+  void UnsafeArenaSwap(TransmissionReadyRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -594,14 +594,14 @@ class UploadReadyRes final :
 
   // implements Message ----------------------------------------------
 
-  UploadReadyRes* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<UploadReadyRes>(arena);
+  TransmissionReadyRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TransmissionReadyRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const UploadReadyRes& from);
+  void CopyFrom(const TransmissionReadyRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const UploadReadyRes& from) {
-    UploadReadyRes::MergeImpl(*this, from);
+  void MergeFrom( const TransmissionReadyRes& from) {
+    TransmissionReadyRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -619,16 +619,16 @@ class UploadReadyRes final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(UploadReadyRes* other);
+  void InternalSwap(TransmissionReadyRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.UploadReadyRes";
+    return "rpc_server.TransmissionReadyRes";
   }
   protected:
-  explicit UploadReadyRes(::google::protobuf::Arena* arena);
-  UploadReadyRes(::google::protobuf::Arena* arena, const UploadReadyRes& from);
+  explicit TransmissionReadyRes(::google::protobuf::Arena* arena);
+  TransmissionReadyRes(::google::protobuf::Arena* arena, const TransmissionReadyRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -704,7 +704,7 @@ class UploadReadyRes final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.UploadReadyRes)
+  // @@protoc_insertion_point(class_scope:rpc_server.TransmissionReadyRes)
  private:
   class _Internal;
 
@@ -738,26 +738,26 @@ class UploadReadyRes final :
   friend struct ::TableStruct_server_5ffile_2eproto;
 };// -------------------------------------------------------------------
 
-class UploadReadyReq final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.UploadReadyReq) */ {
+class TransmissionReadyReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.TransmissionReadyReq) */ {
  public:
-  inline UploadReadyReq() : UploadReadyReq(nullptr) {}
-  ~UploadReadyReq() override;
+  inline TransmissionReadyReq() : TransmissionReadyReq(nullptr) {}
+  ~TransmissionReadyReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR UploadReadyReq(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR TransmissionReadyReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline UploadReadyReq(const UploadReadyReq& from)
-      : UploadReadyReq(nullptr, from) {}
-  UploadReadyReq(UploadReadyReq&& from) noexcept
-    : UploadReadyReq() {
+  inline TransmissionReadyReq(const TransmissionReadyReq& from)
+      : TransmissionReadyReq(nullptr, from) {}
+  TransmissionReadyReq(TransmissionReadyReq&& from) noexcept
+    : TransmissionReadyReq() {
     *this = ::std::move(from);
   }
 
-  inline UploadReadyReq& operator=(const UploadReadyReq& from) {
+  inline TransmissionReadyReq& operator=(const TransmissionReadyReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline UploadReadyReq& operator=(UploadReadyReq&& from) noexcept {
+  inline TransmissionReadyReq& operator=(TransmissionReadyReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -789,20 +789,20 @@ class UploadReadyReq final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const UploadReadyReq& default_instance() {
+  static const TransmissionReadyReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const UploadReadyReq* internal_default_instance() {
-    return reinterpret_cast<const UploadReadyReq*>(
-               &_UploadReadyReq_default_instance_);
+  static inline const TransmissionReadyReq* internal_default_instance() {
+    return reinterpret_cast<const TransmissionReadyReq*>(
+               &_TransmissionReadyReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(UploadReadyReq& a, UploadReadyReq& b) {
+  friend void swap(TransmissionReadyReq& a, TransmissionReadyReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(UploadReadyReq* other) {
+  inline void Swap(TransmissionReadyReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -815,7 +815,7 @@ class UploadReadyReq final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(UploadReadyReq* other) {
+  void UnsafeArenaSwap(TransmissionReadyReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -823,14 +823,14 @@ class UploadReadyReq final :
 
   // implements Message ----------------------------------------------
 
-  UploadReadyReq* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<UploadReadyReq>(arena);
+  TransmissionReadyReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TransmissionReadyReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const UploadReadyReq& from);
+  void CopyFrom(const TransmissionReadyReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const UploadReadyReq& from) {
-    UploadReadyReq::MergeImpl(*this, from);
+  void MergeFrom( const TransmissionReadyReq& from) {
+    TransmissionReadyReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -848,16 +848,16 @@ class UploadReadyReq final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(UploadReadyReq* other);
+  void InternalSwap(TransmissionReadyReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.UploadReadyReq";
+    return "rpc_server.TransmissionReadyReq";
   }
   protected:
-  explicit UploadReadyReq(::google::protobuf::Arena* arena);
-  UploadReadyReq(::google::protobuf::Arena* arena, const UploadReadyReq& from);
+  explicit TransmissionReadyReq(::google::protobuf::Arena* arena);
+  TransmissionReadyReq(::google::protobuf::Arena* arena, const TransmissionReadyReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -922,7 +922,7 @@ class UploadReadyReq final :
   std::string* _internal_mutable_file_name();
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.UploadReadyReq)
+  // @@protoc_insertion_point(class_scope:rpc_server.TransmissionReadyReq)
  private:
   class _Internal;
 
@@ -2175,51 +2175,51 @@ class DeleteFileReq final :
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// UploadReadyReq
+// TransmissionReadyReq
 
 // bytes account = 1;
-inline void UploadReadyReq::clear_account() {
+inline void TransmissionReadyReq::clear_account() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.account_.ClearToEmpty();
 }
-inline const std::string& UploadReadyReq::account() const
+inline const std::string& TransmissionReadyReq::account() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyReq.account)
+  // @@protoc_insertion_point(field_get:rpc_server.TransmissionReadyReq.account)
   return _internal_account();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UploadReadyReq::set_account(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void TransmissionReadyReq::set_account(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.account_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyReq.account)
+  // @@protoc_insertion_point(field_set:rpc_server.TransmissionReadyReq.account)
 }
-inline std::string* UploadReadyReq::mutable_account() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* TransmissionReadyReq::mutable_account() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_account();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyReq.account)
+  // @@protoc_insertion_point(field_mutable:rpc_server.TransmissionReadyReq.account)
   return _s;
 }
-inline const std::string& UploadReadyReq::_internal_account() const {
+inline const std::string& TransmissionReadyReq::_internal_account() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.account_.Get();
 }
-inline void UploadReadyReq::_internal_set_account(const std::string& value) {
+inline void TransmissionReadyReq::_internal_set_account(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.account_.Set(value, GetArena());
 }
-inline std::string* UploadReadyReq::_internal_mutable_account() {
+inline std::string* TransmissionReadyReq::_internal_mutable_account() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.account_.Mutable( GetArena());
 }
-inline std::string* UploadReadyReq::release_account() {
+inline std::string* TransmissionReadyReq::release_account() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyReq.account)
+  // @@protoc_insertion_point(field_release:rpc_server.TransmissionReadyReq.account)
   return _impl_.account_.Release();
 }
-inline void UploadReadyReq::set_allocated_account(std::string* value) {
+inline void TransmissionReadyReq::set_allocated_account(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.account_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2227,52 +2227,52 @@ inline void UploadReadyReq::set_allocated_account(std::string* value) {
           _impl_.account_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyReq.account)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.TransmissionReadyReq.account)
 }
 
 // bytes token = 2;
-inline void UploadReadyReq::clear_token() {
+inline void TransmissionReadyReq::clear_token() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.token_.ClearToEmpty();
 }
-inline const std::string& UploadReadyReq::token() const
+inline const std::string& TransmissionReadyReq::token() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyReq.token)
+  // @@protoc_insertion_point(field_get:rpc_server.TransmissionReadyReq.token)
   return _internal_token();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UploadReadyReq::set_token(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void TransmissionReadyReq::set_token(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.token_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyReq.token)
+  // @@protoc_insertion_point(field_set:rpc_server.TransmissionReadyReq.token)
 }
-inline std::string* UploadReadyReq::mutable_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* TransmissionReadyReq::mutable_token() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_token();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyReq.token)
+  // @@protoc_insertion_point(field_mutable:rpc_server.TransmissionReadyReq.token)
   return _s;
 }
-inline const std::string& UploadReadyReq::_internal_token() const {
+inline const std::string& TransmissionReadyReq::_internal_token() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.token_.Get();
 }
-inline void UploadReadyReq::_internal_set_token(const std::string& value) {
+inline void TransmissionReadyReq::_internal_set_token(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.token_.Set(value, GetArena());
 }
-inline std::string* UploadReadyReq::_internal_mutable_token() {
+inline std::string* TransmissionReadyReq::_internal_mutable_token() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.token_.Mutable( GetArena());
 }
-inline std::string* UploadReadyReq::release_token() {
+inline std::string* TransmissionReadyReq::release_token() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyReq.token)
+  // @@protoc_insertion_point(field_release:rpc_server.TransmissionReadyReq.token)
   return _impl_.token_.Release();
 }
-inline void UploadReadyReq::set_allocated_token(std::string* value) {
+inline void TransmissionReadyReq::set_allocated_token(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.token_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2280,52 +2280,52 @@ inline void UploadReadyReq::set_allocated_token(std::string* value) {
           _impl_.token_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyReq.token)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.TransmissionReadyReq.token)
 }
 
 // bytes file_name = 3;
-inline void UploadReadyReq::clear_file_name() {
+inline void TransmissionReadyReq::clear_file_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.file_name_.ClearToEmpty();
 }
-inline const std::string& UploadReadyReq::file_name() const
+inline const std::string& TransmissionReadyReq::file_name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyReq.file_name)
+  // @@protoc_insertion_point(field_get:rpc_server.TransmissionReadyReq.file_name)
   return _internal_file_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UploadReadyReq::set_file_name(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void TransmissionReadyReq::set_file_name(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.file_name_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyReq.file_name)
+  // @@protoc_insertion_point(field_set:rpc_server.TransmissionReadyReq.file_name)
 }
-inline std::string* UploadReadyReq::mutable_file_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* TransmissionReadyReq::mutable_file_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_file_name();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyReq.file_name)
+  // @@protoc_insertion_point(field_mutable:rpc_server.TransmissionReadyReq.file_name)
   return _s;
 }
-inline const std::string& UploadReadyReq::_internal_file_name() const {
+inline const std::string& TransmissionReadyReq::_internal_file_name() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.file_name_.Get();
 }
-inline void UploadReadyReq::_internal_set_file_name(const std::string& value) {
+inline void TransmissionReadyReq::_internal_set_file_name(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.file_name_.Set(value, GetArena());
 }
-inline std::string* UploadReadyReq::_internal_mutable_file_name() {
+inline std::string* TransmissionReadyReq::_internal_mutable_file_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.file_name_.Mutable( GetArena());
 }
-inline std::string* UploadReadyReq::release_file_name() {
+inline std::string* TransmissionReadyReq::release_file_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyReq.file_name)
+  // @@protoc_insertion_point(field_release:rpc_server.TransmissionReadyReq.file_name)
   return _impl_.file_name_.Release();
 }
-inline void UploadReadyReq::set_allocated_file_name(std::string* value) {
+inline void TransmissionReadyReq::set_allocated_file_name(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.file_name_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2333,79 +2333,79 @@ inline void UploadReadyReq::set_allocated_file_name(std::string* value) {
           _impl_.file_name_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyReq.file_name)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.TransmissionReadyReq.file_name)
 }
 
 // -------------------------------------------------------------------
 
-// UploadReadyRes
+// TransmissionReadyRes
 
 // bool success = 1;
-inline void UploadReadyRes::clear_success() {
+inline void TransmissionReadyRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool UploadReadyRes::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyRes.success)
+inline bool TransmissionReadyRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.TransmissionReadyRes.success)
   return _internal_success();
 }
-inline void UploadReadyRes::set_success(bool value) {
+inline void TransmissionReadyRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyRes.success)
+  // @@protoc_insertion_point(field_set:rpc_server.TransmissionReadyRes.success)
 }
-inline bool UploadReadyRes::_internal_success() const {
+inline bool TransmissionReadyRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void UploadReadyRes::_internal_set_success(bool value) {
+inline void TransmissionReadyRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // bytes message = 2;
-inline void UploadReadyRes::clear_message() {
+inline void TransmissionReadyRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& UploadReadyRes::message() const
+inline const std::string& TransmissionReadyRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyRes.message)
+  // @@protoc_insertion_point(field_get:rpc_server.TransmissionReadyRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UploadReadyRes::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void TransmissionReadyRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyRes.message)
+  // @@protoc_insertion_point(field_set:rpc_server.TransmissionReadyRes.message)
 }
-inline std::string* UploadReadyRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* TransmissionReadyRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyRes.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.TransmissionReadyRes.message)
   return _s;
 }
-inline const std::string& UploadReadyRes::_internal_message() const {
+inline const std::string& TransmissionReadyRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void UploadReadyRes::_internal_set_message(const std::string& value) {
+inline void TransmissionReadyRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* UploadReadyRes::_internal_mutable_message() {
+inline std::string* TransmissionReadyRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* UploadReadyRes::release_message() {
+inline std::string* TransmissionReadyRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyRes.message)
+  // @@protoc_insertion_point(field_release:rpc_server.TransmissionReadyRes.message)
   return _impl_.message_.Release();
 }
-inline void UploadReadyRes::set_allocated_message(std::string* value) {
+inline void TransmissionReadyRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2413,52 +2413,52 @@ inline void UploadReadyRes::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyRes.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.TransmissionReadyRes.message)
 }
 
 // bytes file_server_address = 3;
-inline void UploadReadyRes::clear_file_server_address() {
+inline void TransmissionReadyRes::clear_file_server_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.file_server_address_.ClearToEmpty();
 }
-inline const std::string& UploadReadyRes::file_server_address() const
+inline const std::string& TransmissionReadyRes::file_server_address() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyRes.file_server_address)
+  // @@protoc_insertion_point(field_get:rpc_server.TransmissionReadyRes.file_server_address)
   return _internal_file_server_address();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UploadReadyRes::set_file_server_address(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void TransmissionReadyRes::set_file_server_address(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.file_server_address_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyRes.file_server_address)
+  // @@protoc_insertion_point(field_set:rpc_server.TransmissionReadyRes.file_server_address)
 }
-inline std::string* UploadReadyRes::mutable_file_server_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* TransmissionReadyRes::mutable_file_server_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_file_server_address();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyRes.file_server_address)
+  // @@protoc_insertion_point(field_mutable:rpc_server.TransmissionReadyRes.file_server_address)
   return _s;
 }
-inline const std::string& UploadReadyRes::_internal_file_server_address() const {
+inline const std::string& TransmissionReadyRes::_internal_file_server_address() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.file_server_address_.Get();
 }
-inline void UploadReadyRes::_internal_set_file_server_address(const std::string& value) {
+inline void TransmissionReadyRes::_internal_set_file_server_address(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.file_server_address_.Set(value, GetArena());
 }
-inline std::string* UploadReadyRes::_internal_mutable_file_server_address() {
+inline std::string* TransmissionReadyRes::_internal_mutable_file_server_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.file_server_address_.Mutable( GetArena());
 }
-inline std::string* UploadReadyRes::release_file_server_address() {
+inline std::string* TransmissionReadyRes::release_file_server_address() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyRes.file_server_address)
+  // @@protoc_insertion_point(field_release:rpc_server.TransmissionReadyRes.file_server_address)
   return _impl_.file_server_address_.Release();
 }
-inline void UploadReadyRes::set_allocated_file_server_address(std::string* value) {
+inline void TransmissionReadyRes::set_allocated_file_server_address(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.file_server_address_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2466,52 +2466,52 @@ inline void UploadReadyRes::set_allocated_file_server_address(std::string* value
           _impl_.file_server_address_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyRes.file_server_address)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.TransmissionReadyRes.file_server_address)
 }
 
 // bytes file_server_port = 4;
-inline void UploadReadyRes::clear_file_server_port() {
+inline void TransmissionReadyRes::clear_file_server_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.file_server_port_.ClearToEmpty();
 }
-inline const std::string& UploadReadyRes::file_server_port() const
+inline const std::string& TransmissionReadyRes::file_server_port() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.UploadReadyRes.file_server_port)
+  // @@protoc_insertion_point(field_get:rpc_server.TransmissionReadyRes.file_server_port)
   return _internal_file_server_port();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void UploadReadyRes::set_file_server_port(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void TransmissionReadyRes::set_file_server_port(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.file_server_port_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.UploadReadyRes.file_server_port)
+  // @@protoc_insertion_point(field_set:rpc_server.TransmissionReadyRes.file_server_port)
 }
-inline std::string* UploadReadyRes::mutable_file_server_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* TransmissionReadyRes::mutable_file_server_port() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_file_server_port();
-  // @@protoc_insertion_point(field_mutable:rpc_server.UploadReadyRes.file_server_port)
+  // @@protoc_insertion_point(field_mutable:rpc_server.TransmissionReadyRes.file_server_port)
   return _s;
 }
-inline const std::string& UploadReadyRes::_internal_file_server_port() const {
+inline const std::string& TransmissionReadyRes::_internal_file_server_port() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.file_server_port_.Get();
 }
-inline void UploadReadyRes::_internal_set_file_server_port(const std::string& value) {
+inline void TransmissionReadyRes::_internal_set_file_server_port(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.file_server_port_.Set(value, GetArena());
 }
-inline std::string* UploadReadyRes::_internal_mutable_file_server_port() {
+inline std::string* TransmissionReadyRes::_internal_mutable_file_server_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.file_server_port_.Mutable( GetArena());
 }
-inline std::string* UploadReadyRes::release_file_server_port() {
+inline std::string* TransmissionReadyRes::release_file_server_port() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.UploadReadyRes.file_server_port)
+  // @@protoc_insertion_point(field_release:rpc_server.TransmissionReadyRes.file_server_port)
   return _impl_.file_server_port_.Release();
 }
-inline void UploadReadyRes::set_allocated_file_server_port(std::string* value) {
+inline void TransmissionReadyRes::set_allocated_file_server_port(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.file_server_port_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -2519,7 +2519,7 @@ inline void UploadReadyRes::set_allocated_file_server_port(std::string* value) {
           _impl_.file_server_port_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.UploadReadyRes.file_server_port)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.TransmissionReadyRes.file_server_port)
 }
 
 // -------------------------------------------------------------------

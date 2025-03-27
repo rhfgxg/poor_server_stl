@@ -181,11 +181,11 @@ void FileServerImpl::Send_heartbeat()
 }
 
 /**************************************** grpc服务接口定义 **************************************************************************/
-// 准备上传文件
-grpc::Status FileServerImpl::Upload_ready(grpc::ServerContext* context, const rpc_server::UploadReadyReq* req, rpc_server::UploadReadyRes* res)
+// 文件传输准备
+grpc::Status FileServerImpl::Transmission_ready(grpc::ServerContext* context, const rpc_server::TransmissionReadyReq* req, rpc_server::TransmissionReadyRes* res)
 {
-    auto task_future = this->add_async_task([this, req, res] {
-         this->Handle_upload_ready(req, res);   // 执行函数
+    auto task_future = this->add_async_task([this, req, res] {  // 添加异步任务
+         this->Handle_transmission_ready(req, res);
     });
 
     // 等待任务完成
@@ -197,8 +197,8 @@ grpc::Status FileServerImpl::Upload_ready(grpc::ServerContext* context, const rp
 // 文件上传服务
 grpc::Status FileServerImpl::Upload(grpc::ServerContext* context, const rpc_server::UploadReq* req, rpc_server::UploadRes* res)
 {
-    auto task_future = this->add_async_task([this, req, res] {
-         this->Handle_upload(req, res);   // 执行函数
+    auto task_future = this->add_async_task([this, req, res] {  // 添加异步任务
+         this->Handle_upload(req, res);
     });
 
     // 等待任务完成
@@ -240,8 +240,8 @@ grpc::Status FileServerImpl::ListFiles(grpc::ServerContext* context, const rpc_s
 }
 
 /**************************************** grpc服务接口工具函数 **************************************************************************/
-// 准备上传文件
-void FileServerImpl::Handle_upload_ready(const rpc_server::UploadReadyReq* req, rpc_server::UploadReadyRes* res)
+// 文件传输准备
+void FileServerImpl::Handle_transmission_ready(const rpc_server::TransmissionReadyReq* req, rpc_server::TransmissionReadyRes* res)
 {
     std::string account = req->account();   // 用户账号
     std::string token = req->token();   // 用户token
@@ -253,7 +253,7 @@ void FileServerImpl::Handle_upload_ready(const rpc_server::UploadReadyReq* req, 
 
     res->set_success(true);
     res->set_message("successful");
-    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Upload_ready successful: {}", account);
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Transmission_ready successful: {}", account);
 }
 
 // 文件上传
