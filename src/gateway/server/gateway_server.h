@@ -60,6 +60,7 @@ private:
     // 文件服务器
     grpc::Status Forward_to_file_transmission_ready_service(const std::string& payload, rpc_server::ForwardRes* res); // 文件传输准备
     grpc::Status Forward_to_file_delete_service(const std::string& payload, rpc_server::ForwardRes* res);   // 文件删除
+    grpc::Status Forward_to_file_list_service(const std::string& payload, rpc_server::ForwardRes* res); // 获取文件列表
     // 定时任务：
     void Update_connection_pool();  // 更新连接池
     void Send_heartbeat();  // 发送心跳包

@@ -299,5 +299,11 @@ void FileServerImpl::Handle_delete(const rpc_server::DeleteFileReq* req, rpc_ser
 
 // 文件列表
 void FileServerImpl::Handle_list_files(const rpc_server::ListFilesReq* req, rpc_server::ListFilesRes* res)
-{}
+{
+    std::string account = req->account();   // 用户账号
+
+    res->set_success(true);
+    res->set_message("successful");
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("File_list successful: {}", account);
+}
 /******************************************** 其他工具函数 ***********************************************/

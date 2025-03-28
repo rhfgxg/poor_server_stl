@@ -330,7 +330,7 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, co
         }
         case rpc_server::ServiceType::REQ_FILE_LIST:    // 获取文件列表
         {
-            // Forward_to_file_list_service(req->payload(), res);
+             Forward_to_file_list_service(req->payload(), res);
             break;
         }
         default:    // 未知服务类型
@@ -586,6 +586,49 @@ grpc::Status GatewayServerImpl::Forward_to_file_delete_service(const std::string
     }
 
     this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: file delete");
+
+    this->file_connection_pool.release_connection(rpc_server::ServerType::FILE, channel); // 释放连接
+    return grpc::Status::OK;
+}
+
+// 文件列表
+grpc::Status GatewayServerImpl::Forward_to_file_list_service(const std::string& payload, rpc_server::ForwardRes* res)
+{
+    rpc_server::ListFilesReq list_req;  // 创建请求对象
+    rpc_server::ListFilesRes list_res;
+    grpc::ClientContext context;
+    bool req_out = list_req.ParseFromString(payload); // 将负载解析为请求数据
+    if(!req_out) // 如果解析失败
+    {
+        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse ListFilesReq");
+    }
+
+    // 获取连接池中的连接
+    auto channel = this->file_connection_pool.get_connection(rpc_server::ServerType::FILE);
+    auto file_stub = rpc_server::FileServer::NewStub(channel);
+
+    grpc::Status status = file_stub->ListFiles(&context, list_req, &list_res);
+    if(!status.ok()) // 如果调用失败
+    {
+        return status;
+    }
+
+    bool response_out = list_res.SerializeToString(res->mutable_response()); // 将登录响应序列化为转发响应
+    if(!response_out) // 如果序列化失败
+    {
+        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize ListFilesRes");
+    }
+
+    if(list_res.success()) // 如果响应成功
+    {
+        res->set_success(true);    // 设置响应对象 response 的 success 字段为 true
+    }
+    else
+    {
+        res->set_success(false);
+    }
+
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: file list");
 
     this->file_connection_pool.release_connection(rpc_server::ServerType::FILE, channel); // 释放连接
     return grpc::Status::OK;
