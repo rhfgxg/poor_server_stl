@@ -236,6 +236,12 @@ grpc::Status FileServerImpl::Delete(grpc::ServerContext* context, const rpc_serv
 // 文件列表服务
 grpc::Status FileServerImpl::ListFiles(grpc::ServerContext* context, const rpc_server::ListFilesReq* req, rpc_server::ListFilesRes* res)
 {
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_list_files(req, res);   // 执行函数
+    });
+
+    // 等待任务完成
+    task_future.get();
     return grpc::Status::OK;
 }
 
@@ -284,7 +290,7 @@ void FileServerImpl::Handle_download(const rpc_server::DownloadReq* req, rpc_ser
 void FileServerImpl::Handle_delete(const rpc_server::DeleteFileReq* req, rpc_server::DeleteFileRes* res)
 {
     std::string account = req->account();   // 用户账号
-    std::string file_name = req->file_name();   // 需要上传的文件名
+    std::string file_name = req->file_name();   // 需要删除的文件名
 
     res->set_success(true);
     res->set_message("successful");
