@@ -292,6 +292,11 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, co
     auto task_future = this->add_async_task([this,req,res] {
         switch(req->service_type()) // 根据请求的服务类型进行转发
         {
+        case rpc_server::ServiceType::REQ_REGISTER:    // 用户注册请求
+        {
+            Forward_to_register_service(req->payload(), res);
+            break;
+        }
         case rpc_server::ServiceType::REQ_LOGIN: // 用户登录请求
         {
             Forward_to_login_service(req->payload(), res);  // 解析负载，并转发到对应服务
@@ -302,9 +307,9 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context, co
             Forward_to_logout_service(req->payload(), res);
             break;
         }
-        case rpc_server::ServiceType::REQ_REGISTER:    // 用户注册请求
+        case rpc_server::ServiceType::REQ_CHANGE_PASSWORD:    // 修改密码请求
         {
-            Forward_to_register_service(req->payload(), res);
+             Forward_to_change_password_service(req->payload(), res);
             break;
         }
         case rpc_server::ServiceType::REQ_FILE_TRANSMISSION_READY:    // 文件上传准备
@@ -365,6 +370,51 @@ grpc::Status GatewayServerImpl::Get_Gateway_pool(grpc::ServerContext* context, c
 }
 
 /**************************************** grpc服务接口工具函数 **************************************************************************/
+// Register 方法，处理注册请求
+grpc::Status GatewayServerImpl::Forward_to_register_service(const std::string& payload, rpc_server::ForwardRes* res)
+{
+    rpc_server::RegisterReq register_req;  // 创建请求对象
+    rpc_server::RegisterRes register_res;
+    grpc::ClientContext context;
+
+    bool req_out = register_req.ParseFromString(payload); // 将负载解析为请求对象
+
+    if(!req_out) // 如果解析失败
+    {
+        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse RegisterReq");
+    }
+
+    // 获取连接池中的连接
+    auto channel = this->login_connection_pool.get_connection(rpc_server::ServerType::LOGIN);
+    auto login_stub = rpc_server::LoginServer::NewStub(channel);
+
+    grpc::Status status = login_stub->Register(&context, register_req, &register_res);
+
+    if(!status.ok()) // 如果调用失败
+    {
+        return status;
+    }
+
+    bool res_out = register_res.SerializeToString(res->mutable_response()); // 将登录响应序列化为转发响应
+    if(!res_out) // 如果序列化失败
+    {
+        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize RegisterRes");
+    }
+
+    if(register_res.success()) // 如果登录成功
+    {
+        res->set_success(true);    // 设置响应对象 response 的 success 字段为 true
+    } else
+    {
+        res->set_success(false);
+    }
+
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: user register");
+
+    this->login_connection_pool.release_connection(rpc_server::ServerType::LOGIN, channel); // 释放连接
+    return grpc::Status::OK;
+}
+
 // Login 方法，处理登录请求
 grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payload, rpc_server::ForwardRes* res)
 {
@@ -406,52 +456,6 @@ grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payl
     }
 
     this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: user login");
-
-    this->login_connection_pool.release_connection(rpc_server::ServerType::LOGIN, channel); // 释放连接
-    return grpc::Status::OK;
-}
-
-// Register 方法，处理注册请求
-grpc::Status GatewayServerImpl::Forward_to_register_service(const std::string& payload, rpc_server::ForwardRes* res)
-{
-    rpc_server::RegisterReq register_req;  // 创建请求对象
-    rpc_server::RegisterRes register_res;
-    grpc::ClientContext context;
-
-    bool req_out = register_req.ParseFromString(payload); // 将负载解析为请求对象
-
-    if(!req_out) // 如果解析失败
-    {
-        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse RegisterReq");
-    }
-
-    // 获取连接池中的连接
-    auto channel = this->login_connection_pool.get_connection(rpc_server::ServerType::LOGIN);
-    auto login_stub = rpc_server::LoginServer::NewStub(channel);
-
-    grpc::Status status = login_stub->Register(&context, register_req, &register_res);
-
-    if(!status.ok()) // 如果调用失败
-    {
-        return status;
-    }
-
-    bool res_out = register_res.SerializeToString(res->mutable_response()); // 将登录响应序列化为转发响应
-    if(!res_out) // 如果序列化失败
-    {
-        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize RegisterRes");
-    }
-
-    if(register_res.success()) // 如果登录成功
-    {
-        res->set_success(true);    // 设置响应对象 response 的 success 字段为 true
-    }
-    else
-    {
-        res->set_success(false);
-    }
-
-    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: user register");
 
     this->login_connection_pool.release_connection(rpc_server::ServerType::LOGIN, channel); // 释放连接
     return grpc::Status::OK;
@@ -499,6 +503,47 @@ grpc::Status GatewayServerImpl::Forward_to_logout_service(const std::string& pay
 
     this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: user logout");
 
+    this->login_connection_pool.release_connection(rpc_server::ServerType::LOGIN, channel); // 释放连接
+    return grpc::Status::OK;
+}
+
+// login服务器：修改密码
+grpc::Status GatewayServerImpl::Forward_to_change_password_service(const std::string& payload, rpc_server::ForwardRes* res)
+{
+    rpc_server::ChangePasswordReq change_password_req;  // 创建请求对象
+    rpc_server::ChangePasswordRes change_password_res;
+    grpc::ClientContext context;
+
+    bool req_out = change_password_req.ParseFromString(payload); // 将负载解析为请求对象
+    if(!req_out) // 如果解析失败
+    {
+        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "Failed to parse ChangePasswordReq");
+    }
+
+    // 获取连接池中的连接
+    auto channel = this->login_connection_pool.get_connection(rpc_server::ServerType::LOGIN);
+    auto login_stub = rpc_server::LoginServer::NewStub(channel);
+    grpc::Status status = login_stub->Change_password(&context, change_password_req, &change_password_res);
+    if(!status.ok()) // 如果调用失败
+    {
+        return status;
+    }
+
+    bool response_out = change_password_res.SerializeToString(res->mutable_response()); // 将登录响应序列化为转发响应
+    if(!response_out) // 如果序列化失败
+    {
+        return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to serialize ChangePasswordRes");
+    }
+
+    if(change_password_res.success()) // 如果响应成功
+    {
+        res->set_success(true);    // 设置响应对象 response 的 success 字段为 true
+    }
+    else
+    {
+        res->set_success(false);
+    }
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forward REQ successfully: user change password");
     this->login_connection_pool.release_connection(rpc_server::ServerType::LOGIN, channel); // 释放连接
     return grpc::Status::OK;
 }

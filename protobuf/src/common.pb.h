@@ -103,24 +103,26 @@ inline bool ServerType_Parse(absl::string_view name, ServerType* value) {
       ServerType_descriptor(), name, value);
 }
 enum ServiceType : int {
-  REQ_LOGIN = 0,
-  RES_LOGIN = 1,
-  REQ_LOGOUT = 2,
-  RES_LOGOUT = 3,
-  REQ_REGISTER = 4,
-  RES_REGISTER = 5,
-  REQ_HEARTBEAT = 6,
-  RES_HEARTBEAT = 7,
-  REQ_FILE_TRANSMISSION_READY = 8,
-  RES_FILE_TRANSMISSION_READY = 9,
-  REQ_FILE_UPLOAD = 10,
-  RES_FILE_UPLOAD = 11,
-  REQ_FILE_DOWNLOAD = 12,
-  RES_FILE_DOWNLOAD = 13,
-  REQ_FILE_DELETE = 14,
-  RES_FILE_DELETE = 15,
-  REQ_FILE_LIST = 16,
-  RES_FILE_LIST = 17,
+  REQ_REGISTER = 0,
+  RES_REGISTER = 1,
+  REQ_LOGIN = 2,
+  RES_LOGIN = 3,
+  REQ_LOGOUT = 4,
+  RES_LOGOUT = 5,
+  REQ_CHANGE_PASSWORD = 6,
+  RES_CHANGE_PASSWORD = 7,
+  REQ_HEARTBEAT = 8,
+  RES_HEARTBEAT = 9,
+  REQ_FILE_TRANSMISSION_READY = 10,
+  RES_FILE_TRANSMISSION_READY = 11,
+  REQ_FILE_UPLOAD = 12,
+  RES_FILE_UPLOAD = 13,
+  REQ_FILE_DOWNLOAD = 14,
+  RES_FILE_DOWNLOAD = 15,
+  REQ_FILE_DELETE = 16,
+  RES_FILE_DELETE = 17,
+  REQ_FILE_LIST = 18,
+  RES_FILE_LIST = 19,
   ServiceType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ServiceType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -130,8 +132,8 @@ enum ServiceType : int {
 bool ServiceType_IsValid(int value);
 extern const uint32_t ServiceType_internal_data_[];
 constexpr ServiceType ServiceType_MIN = static_cast<ServiceType>(0);
-constexpr ServiceType ServiceType_MAX = static_cast<ServiceType>(17);
-constexpr int ServiceType_ARRAYSIZE = 17 + 1;
+constexpr ServiceType ServiceType_MAX = static_cast<ServiceType>(19);
+constexpr int ServiceType_ARRAYSIZE = 19 + 1;
 const ::google::protobuf::EnumDescriptor*
 ServiceType_descriptor();
 template <typename T>
@@ -144,7 +146,7 @@ const std::string& ServiceType_Name(T value) {
 template <>
 inline const std::string& ServiceType_Name(ServiceType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<ServiceType_descriptor,
-                                                 0, 17>(
+                                                 0, 19>(
       static_cast<int>(value));
 }
 inline bool ServiceType_Parse(absl::string_view name, ServiceType* value) {

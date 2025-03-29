@@ -25,22 +25,24 @@ enum ServiceType
 {
     // REQ_ 请求
     // RES_ 响应
-    REQ_LOGIN = 0;      // 登录请求
-    RES_LOGIN = 1;      // 登录响应
-    REQ_LOGOUT = 2;     // 登出请求
-    RES_LOGOUT = 3;     // 登出响应
-    REQ_REGISTER = 4;   // 注册请求
-    RES_REGISTER = 5;   // 注册响应
-    REQ_HEARTBEAT = 6;  // 心跳请求
-    RES_HEARTBEAT = 7;  // 心跳响应
-    REQ_FILE_TRANSMISSION_READY = 8;    // 文件传输准备请求（获取文件服务器直连）
-    RES_FILE_TRANSMISSION_READY = 9;    // 文件传输准备响应
-    REQ_FILE_UPLOAD = 10;    // 文件上传请求
-    RES_FILE_UPLOAD = 11;    // 文件上传响应
-    REQ_FILE_DOWNLOAD = 12;    // 文件下载请求
-    RES_FILE_DOWNLOAD = 13;    // 文件下载响应
-    REQ_FILE_DELETE = 14;    // 文件删除请求
-    RES_FILE_DELETE = 15;    // 文件删除响应
-    REQ_FILE_LIST = 16;    // 获取文件列表请求
-    RES_FILE_LIST = 17;    // 获取文件列表响应
+    REQ_REGISTER = 0;   // 注册请求
+    RES_REGISTER = 1;   // 注册响应
+    REQ_LOGIN = 2;      // 登录请求
+    RES_LOGIN = 3;      // 登录响应
+    REQ_LOGOUT = 4;     // 登出请求
+    RES_LOGOUT = 5;     // 登出响应
+    REQ_CHANGE_PASSWORD = 6;    // 修改密码请求
+    RES_CHANGE_PASSWORD = 7;    // 修改密码响应
+    REQ_HEARTBEAT = 8;  // 心跳请求
+    RES_HEARTBEAT = 9;  // 心跳响应
+    REQ_FILE_TRANSMISSION_READY = 10;    // 文件传输准备请求（获取文件服务器直连）
+    RES_FILE_TRANSMISSION_READY = 11;    // 文件传输准备响应
+    REQ_FILE_UPLOAD = 12;    // 文件上传请求
+    RES_FILE_UPLOAD = 13;    // 文件上传响应
+    REQ_FILE_DOWNLOAD = 14;    // 文件下载请求
+    RES_FILE_DOWNLOAD = 15;    // 文件下载响应
+    REQ_FILE_DELETE = 16;    // 文件删除请求
+    RES_FILE_DELETE = 17;    // 文件删除响应
+    REQ_FILE_LIST = 18;    // 获取文件列表请求
+    RES_FILE_LIST = 19;    // 获取文件列表响应
 }

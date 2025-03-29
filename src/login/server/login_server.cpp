@@ -531,7 +531,71 @@ void LoginServerImpl::Handle_authenticate(const rpc_server::AuthenticateReq* req
 // 修改密码
 void LoginServerImpl::Handle_change_password(const rpc_server::ChangePasswordReq* req, rpc_server::ChangePasswordRes* res)
 {
+    // 获取请求数据
+    std::string account = req->account();
+    std::string token = req->token();
+    std::string old_password = req->old_password();
+    std::string new_password = req->new_password();
 
+    res->set_success(true);
+    res->set_message("Logout successful");
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Logout successful");
+
+    // 请求数据验证
+
+    //// 构造查询条件
+    //std::map<std::string, std::string> query = {{"user_account", account}, {"user_password", old_password}};
+
+    //// 构造数据库查询请求
+    //rpc_server::ReadReq read_request;
+    //rpc_server::ReadRes read_response;
+    //grpc::ClientContext client_context;
+
+    //read_request.set_database("poor_users");
+    //read_request.set_table("poor_users");
+    //for(auto& it : query)
+    //{
+    //    (*read_request.mutable_query())[it.first] = it.second;
+    //}
+
+    //// 从连接池中获取数据库服务器连接
+    //auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DB);
+    //auto db_stub = rpc_server::DBServer::NewStub(channel);
+
+    //// 调用数据库服务器的查询服务
+    //grpc::Status status = db_stub->Read(&client_context, read_request, &read_response);
+
+    //if(status.ok() && read_response.success())  // 如果原密码正确
+    //{
+    //    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("old_password ok");
+
+    //    // 构造数据库更新请求
+    //    rpc_server::UpdateReq update_req;
+    //    rpc_server::UpdateRes update_res;
+    //    grpc::Status status = db_stub->Update(&client_context, update_req, &update_res);    // 进行更新操作
+
+    //    if(status.ok() && update_res.success())
+    //    {
+    //        res->set_success(true);
+    //        res->set_message("Change password successful");
+    //        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Change password successful");
+    //    }
+    //    else
+    //    {
+    //        res->set_success(false);
+    //        res->set_message("new_password error");
+    //        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("new_password error");
+    //    }
+
+    //}
+    //else
+    //{
+    //    res->set_success(false);
+    //    res->set_message("old_password error");
+    //    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("old_password error");
+    //}
+
+    //this->db_connection_pool.release_connection(rpc_server::ServerType::DB, channel); // 释放数据库服务器连接
 }
 
 // 获取在线用户列表

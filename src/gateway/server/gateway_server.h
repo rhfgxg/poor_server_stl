@@ -54,9 +54,10 @@ private:
     grpc::Status Handle_return_gateway_poor(const rpc_server::GetGatewayPoolReq* req, rpc_server::GetGatewayPoolRes* res);
 // 处理转发请求
     // 登录服务器
+    grpc::Status Forward_to_register_service(const std::string& payload, rpc_server::ForwardRes* res);  // 注册
     grpc::Status Forward_to_login_service(const std::string& payload, rpc_server::ForwardRes* res); // 登录
     grpc::Status Forward_to_logout_service(const std::string& payload, rpc_server::ForwardRes* res);    // 登出
-    grpc::Status Forward_to_register_service(const std::string& payload, rpc_server::ForwardRes* res);  // 注册
+    grpc::Status Forward_to_change_password_service(const std::string& payload, rpc_server::ForwardRes* res);    // 修改密码
     // 文件服务器
     grpc::Status Forward_to_file_transmission_ready_service(const std::string& payload, rpc_server::ForwardRes* res); // 文件传输准备
     grpc::Status Forward_to_file_delete_service(const std::string& payload, rpc_server::ForwardRes* res);   // 文件删除
