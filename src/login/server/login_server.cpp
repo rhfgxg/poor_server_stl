@@ -36,7 +36,7 @@ LoginServerImpl::~LoginServerImpl()
     logger_manager.cleanup();
 }
 
-/************************************ 线程池工具函数 ****************************************************/
+/************************************ 线程池函数 ****************************************************/
 // 启动线程池
 void LoginServerImpl::start_thread_pool(int num_threads)
 {// 相关注释请参考 /src/central/src/central/central_server.cpp/start_thread_pool()
@@ -337,6 +337,10 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
     std::string account = req->account();
     std::string password = req->password();
 
+    // 从连接池中获取数据库服务器连接
+    auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DB);
+    auto db_stub = rpc_server::DBServer::NewStub(channel);
+
     // 构造查询条件
     std::map<std::string, std::string> query = {{"user_account", account}, {"user_password", password}};
 
@@ -352,17 +356,13 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
         (*read_request.mutable_query())[it.first] = it.second;
     }
 
-    // 从连接池中获取数据库服务器连接
-    auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DB);
-    auto db_stub = rpc_server::DBServer::NewStub(channel);
-
     // 调用数据库服务器的查询服务
     grpc::Status status = db_stub->Read(&client_context, read_request, &read_response);
 
     if(status.ok() && read_response.success())
     {
         // 生成Token
-        std::string token = GenerateToken(account);
+        std::string token = Make_token(account);
 
         // 将用户在线状态和token存储到Redis中
         auto client = redis_client.get_client();
@@ -395,6 +395,14 @@ void LoginServerImpl::Handle_logout(const rpc_server::LogoutReq* req, rpc_server
     // 获取账号
     std::string account = req->account();
     std::string token = req->token();
+
+    // 验证Token的有效性
+    if(!Validate_token(account, token))
+    {
+        res->set_success(false);
+        res->set_message("token error");
+        return;
+    }
 
     // 从Redis中删除用户在线状态和token
     auto client = redis_client.get_client();
@@ -471,7 +479,7 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
     if(status.ok() && create_res.success())
     {
         // 生成Token
-        std::string token = GenerateToken(account);
+        std::string token = Make_token(account);
 
         // 将用户在线状态和token存储到Redis中
         auto client = redis_client.get_client();
@@ -502,29 +510,16 @@ void LoginServerImpl::Handle_authenticate(const rpc_server::AuthenticateReq* req
     std::string account = req->account();
 
     // 验证Token的有效性
-    if(!ValidateToken(token, account))
+    if(Validate_token(account, token))
     {
-        res->set_success(false);
-        res->set_message("Invalid token");
-        return;
-    }
-
-    // 检查用户的在线状态
-    auto client = redis_client.get_client();
-    auto reply = client->get(account);
-    client->sync_commit();
-    if(reply.get().as_string() == token)
-    {
-        // 延续Token的有效期
-        client->expire(account, 1800);
-
         res->set_success(true);
-        res->set_message("Token validated");
+        res->set_message("token id ok");
     }
     else
     {
         res->set_success(false);
-        res->set_message("User is not online");
+        res->set_message("Invalid token");
+        return;
     }
 }
 
@@ -538,6 +533,13 @@ void LoginServerImpl::Handle_change_password(const rpc_server::ChangePasswordReq
     std::string new_password = req->new_password();
 
     // 请求数据验证
+    if(!Validate_token(account, token)) // 如果token验证失败
+    {
+        res->set_success(false);
+        res->set_message("token error");
+        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Change password error");
+        return;
+    }
 
     // 从连接池中获取数据库服务器连接
     auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DB);
@@ -576,7 +578,7 @@ void LoginServerImpl::Handle_change_password(const rpc_server::ChangePasswordReq
     {
         res->set_success(false);
         res->set_message("new_password error");
-        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("new_password error");
+        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Change password error");
     }
 
     this->db_connection_pool.release_connection(rpc_server::ServerType::DB, channel); // 释放数据库服务器连接
@@ -608,7 +610,7 @@ void LoginServerImpl::Handle_is_user_online(const rpc_server::IsUserOnlineReq* r
 
 /******************************************** 其他工具函数 ***********************************************/
 // 生成 用户token
-std::string LoginServerImpl::GenerateToken(const std::string& account)
+std::string LoginServerImpl::Make_token(const std::string& account)
 {
     auto token = jwt::create()
         .set_issuer("auth0")
@@ -622,17 +624,30 @@ std::string LoginServerImpl::GenerateToken(const std::string& account)
 }
 
 // 验证 token
-bool LoginServerImpl::ValidateToken(const std::string& token, const std::string& account)
+bool LoginServerImpl::Validate_token(const std::string& account_, const std::string& token_)
 {
     try
     {
-        auto decoded = jwt::decode(token);
+        auto decoded = jwt::decode(token_);
         auto verifier = jwt::verify()
             .allow_algorithm(jwt::algorithm::hs256{"secret"})
             .with_issuer("auth0")
-            .with_subject(account);
+            .with_subject(account_);
 
         verifier.verify(decoded);
+
+        // 检查用户的在线状态
+        auto client = redis_client.get_client();
+        auto reply = client->get(account_);
+        client->sync_commit();
+        if(reply.get().as_string() != token_)    // 没有找到token（用户不在线）
+        {
+            return false;   
+        }
+
+        // 延续Token的有效期
+        client->expire(account_, 1800);
+
         return true;
     }
     catch(const std::exception& e)
@@ -642,12 +657,12 @@ bool LoginServerImpl::ValidateToken(const std::string& token, const std::string&
 }
 
 // SHA256哈希加密函数（生成64位16进制数）
-std::string LoginServerImpl::sha256(const std::string& str) // SHA256哈希加密函数（生成64位16禁止数）
+std::string LoginServerImpl::SHA256(const std::string& str_) // SHA256哈希加密函数（生成64位16禁止数）
 {
     unsigned char hash[SHA256_DIGEST_LENGTH];
     SHA256_CTX sha256;
     SHA256_Init(&sha256);
-    SHA256_Update(&sha256, str.c_str(), str.size());
+    SHA256_Update(&sha256, str_.c_str(), str_.size());
     SHA256_Final(hash, &sha256);
 
     std::stringstream ss;

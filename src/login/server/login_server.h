@@ -73,9 +73,9 @@ private:
     void Send_heartbeat();  // 发送心跳包
 
     // 工具函数
-    std::string GenerateToken(const std::string& account);    // 生成用户 token
-    bool ValidateToken(const std::string& token, const std::string& account);  // 验证 token
-    std::string sha256(const std::string& str); // SHA256哈希密码加密函数
+    std::string Make_token(const std::string& account);    // 生成用户 token
+    bool Validate_token(const std::string& account_, const std::string& token_);  // 验证 token
+    std::string SHA256(const std::string& str); // SHA256哈希（hex编码）
 
 private:
     std::string server_address; // 服务器地址
