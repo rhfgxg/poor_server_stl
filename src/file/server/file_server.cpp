@@ -1,4 +1,5 @@
 #include "file_server.h"
+#include <fstream>
 
 FileServerImpl::FileServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port):
     server_type(rpc_server::ServerType::FILE),
@@ -197,8 +198,9 @@ grpc::Status FileServerImpl::Transmission_ready(grpc::ServerContext* context, co
 // 文件上传服务
 grpc::Status FileServerImpl::Upload(grpc::ServerContext* context, const rpc_server::UploadReq* req, rpc_server::UploadRes* res)
 {
-    auto task_future = this->add_async_task([this, req, res] {  // 添加异步任务
-         this->Handle_upload(req, res);
+    grpc::Status status;
+    auto task_future = this->add_async_task([this, &status, req, res] {  // 添加异步任务
+         status = this->Handle_upload(req, res);
     });
 
     // 等待任务完成
@@ -208,10 +210,11 @@ grpc::Status FileServerImpl::Upload(grpc::ServerContext* context, const rpc_serv
 }
 
 // 文件下载服务
-grpc::Status FileServerImpl::Download(grpc::ServerContext* context, const rpc_server::DownloadReq* req, rpc_server::DownloadRes* res)
+grpc::Status FileServerImpl::Download(grpc::ServerContext* context, const rpc_server::DownloadReq* req, grpc::ServerWriter<rpc_server::DownloadRes>* writer)
 {
-    auto task_future = this->add_async_task([this, req, res] {
-         this->Handle_download(req, res);   // 执行函数
+    grpc::Status status;
+    auto task_future = this->add_async_task([this, &status, req, writer] {
+        status = this->Handle_download(req, writer);   // 执行函数
     });
 
     // 等待任务完成
@@ -263,7 +266,7 @@ void FileServerImpl::Handle_transmission_ready(const rpc_server::TransmissionRea
 }
 
 // 文件上传
-void FileServerImpl::Handle_upload(const rpc_server::UploadReq* req, rpc_server::UploadRes* res)
+grpc::Status FileServerImpl::Handle_upload(const rpc_server::UploadReq* req, rpc_server::UploadRes* res)
 {
     std::string account = req->account();   // 用户账号
     std::string file_name = req->file_name();   // 需要上传的文件名
@@ -272,18 +275,36 @@ void FileServerImpl::Handle_upload(const rpc_server::UploadReq* req, rpc_server:
     res->set_success(true);
     res->set_message("successful");
     this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Upload successful: {}", account);
-
+    return grpc::Status::OK;
 }
 
 // 文件下载
-void FileServerImpl::Handle_download(const rpc_server::DownloadReq* req, rpc_server::DownloadRes* res)
+grpc::Status FileServerImpl::Handle_download(const rpc_server::DownloadReq* req, grpc::ServerWriter<rpc_server::DownloadRes>* writer)
 {
     std::string account = req->account();   // 用户账号
-    std::string file_name = req->file_name();   // 需要上传的文件名
+    std::string file_name = req->file_name();   // 需要下载的文件名
+    std::string file_url = "./files/" + file_name;  // 根据用户信息，拼接出文件保存的位置
 
-    res->set_success(true);
-    res->set_message("successful");
+    // 打开文件
+    std::ifstream file(file_url, std::ios::binary);
+    if(!file.is_open())
+    {
+        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->error("Failed to open file: {}", file_url);
+        return grpc::Status(grpc::StatusCode::NOT_FOUND, "File not found");
+    }
+
+    // 逐块读取文件并发送
+    char buffer[1024];
+    while(file.read(buffer, sizeof(buffer)) || file.gcount() > 0)
+    {
+        rpc_server::DownloadRes response;
+        response.set_file_data(buffer, file.gcount());
+        writer->Write(response);
+    }
+
+    file.close();
     this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Download successful: {}", account);
+    return grpc::Status::OK;
 }
 
 // 文件删除

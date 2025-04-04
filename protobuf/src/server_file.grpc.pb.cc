@@ -38,7 +38,7 @@ std::unique_ptr< FileServer::Stub> FileServer::NewStub(const std::shared_ptr< ::
 FileServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_Transmission_ready_(FileServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Upload_(FileServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Download_(FileServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Download_(FileServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_Delete_(FileServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ListFiles_(FileServer_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
@@ -89,27 +89,20 @@ void FileServer::Stub::async::Upload(::grpc::ClientContext* context, const ::rpc
   return result;
 }
 
-::grpc::Status FileServer::Stub::Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::rpc_server::DownloadRes* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::DownloadReq, ::rpc_server::DownloadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Download_, context, request, response);
+::grpc::ClientReader< ::rpc_server::DownloadRes>* FileServer::Stub::DownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request) {
+  return ::grpc::internal::ClientReaderFactory< ::rpc_server::DownloadRes>::Create(channel_.get(), rpcmethod_Download_, context, request);
 }
 
-void FileServer::Stub::async::Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq* request, ::rpc_server::DownloadRes* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::DownloadReq, ::rpc_server::DownloadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Download_, context, request, response, std::move(f));
+void FileServer::Stub::async::Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq* request, ::grpc::ClientReadReactor< ::rpc_server::DownloadRes>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::rpc_server::DownloadRes>::Create(stub_->channel_.get(), stub_->rpcmethod_Download_, context, request, reactor);
 }
 
-void FileServer::Stub::async::Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq* request, ::rpc_server::DownloadRes* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Download_, context, request, response, reactor);
+::grpc::ClientAsyncReader< ::rpc_server::DownloadRes>* FileServer::Stub::AsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::rpc_server::DownloadRes>::Create(channel_.get(), cq, rpcmethod_Download_, context, request, true, tag);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::DownloadRes>* FileServer::Stub::PrepareAsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::DownloadRes, ::rpc_server::DownloadReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Download_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::rpc_server::DownloadRes>* FileServer::Stub::AsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncDownloadRaw(context, request, cq);
-  result->StartCall();
-  return result;
+::grpc::ClientAsyncReader< ::rpc_server::DownloadRes>* FileServer::Stub::PrepareAsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::rpc_server::DownloadRes>::Create(channel_.get(), cq, rpcmethod_Download_, context, request, false, nullptr);
 }
 
 ::grpc::Status FileServer::Stub::Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq& request, ::rpc_server::DeleteFileRes* response) {
@@ -181,13 +174,13 @@ FileServer::Service::Service() {
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       FileServer_method_names[2],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< FileServer::Service, ::rpc_server::DownloadReq, ::rpc_server::DownloadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< FileServer::Service, ::rpc_server::DownloadReq, ::rpc_server::DownloadRes>(
           [](FileServer::Service* service,
              ::grpc::ServerContext* ctx,
              const ::rpc_server::DownloadReq* req,
-             ::rpc_server::DownloadRes* resp) {
-               return service->Download(ctx, req, resp);
+             ::grpc::ServerWriter<::rpc_server::DownloadRes>* writer) {
+               return service->Download(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       FileServer_method_names[3],
@@ -228,10 +221,10 @@ FileServer::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status FileServer::Service::Download(::grpc::ServerContext* context, const ::rpc_server::DownloadReq* request, ::rpc_server::DownloadRes* response) {
+::grpc::Status FileServer::Service::Download(::grpc::ServerContext* context, const ::rpc_server::DownloadReq* request, ::grpc::ServerWriter< ::rpc_server::DownloadRes>* writer) {
   (void) context;
   (void) request;
-  (void) response;
+  (void) writer;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

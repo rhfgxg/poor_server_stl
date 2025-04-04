@@ -422,22 +422,22 @@ const char descriptor_table_protodef_server_5ffile_2eproto[] PROTOBUF_SECTION_VA
     "Res\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\"\037\n"
     "\014ListFilesReq\022\017\n\007account\030\001 \001(\014\"D\n\014ListFi"
     "lesRes\022\017\n\007success\030\001 \001(\010\022\022\n\nfile_names\030\002 "
-    "\003(\014\022\017\n\007message\030\003 \001(\0142\335\002\n\nFileServer\022X\n\022T"
+    "\003(\014\022\017\n\007message\030\003 \001(\0142\337\002\n\nFileServer\022X\n\022T"
     "ransmission_ready\022 .rpc_server.Transmiss"
     "ionReadyReq\032 .rpc_server.TransmissionRea"
     "dyRes\0226\n\006Upload\022\025.rpc_server.UploadReq\032\025"
-    ".rpc_server.UploadRes\022<\n\010Download\022\027.rpc_"
+    ".rpc_server.UploadRes\022>\n\010Download\022\027.rpc_"
     "server.DownloadReq\032\027.rpc_server.Download"
-    "Res\022>\n\006Delete\022\031.rpc_server.DeleteFileReq"
-    "\032\031.rpc_server.DeleteFileRes\022\?\n\tListFiles"
-    "\022\030.rpc_server.ListFilesReq\032\030.rpc_server."
-    "ListFilesResb\006proto3"
+    "Res0\001\022>\n\006Delete\022\031.rpc_server.DeleteFileR"
+    "eq\032\031.rpc_server.DeleteFileRes\022\?\n\tListFil"
+    "es\022\030.rpc_server.ListFilesReq\032\030.rpc_serve"
+    "r.ListFilesResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5ffile_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5ffile_2eproto = {
     false,
     false,
-    1020,
+    1022,
     descriptor_table_protodef_server_5ffile_2eproto,
     "server_file.proto",
     &descriptor_table_server_5ffile_2eproto_once,

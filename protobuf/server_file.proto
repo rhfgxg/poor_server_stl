@@ -6,7 +6,7 @@ service FileServer
 {
     rpc Transmission_ready (TransmissionReadyReq) returns (TransmissionReadyRes);   // 文件传输准备服务
     rpc Upload (UploadReq) returns (UploadRes);   // 文件上传服务
-    rpc Download (DownloadReq) returns (DownloadRes); // 文件下载服务
+    rpc Download (DownloadReq) returns (stream DownloadRes); // 文件下载服务
     rpc Delete (DeleteFileReq) returns (DeleteFileRes); // 文件删除服务
     rpc ListFiles (ListFilesReq) returns (ListFilesRes); // 获取文件列表服务
 }
