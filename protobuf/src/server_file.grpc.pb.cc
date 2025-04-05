@@ -37,7 +37,7 @@ std::unique_ptr< FileServer::Stub> FileServer::NewStub(const std::shared_ptr< ::
 
 FileServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_Transmission_ready_(FileServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_Upload_(FileServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Upload_(FileServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
   , rpcmethod_Download_(FileServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_Delete_(FileServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_ListFiles_(FileServer_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
@@ -66,27 +66,20 @@ void FileServer::Stub::async::Transmission_ready(::grpc::ClientContext* context,
   return result;
 }
 
-::grpc::Status FileServer::Stub::Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::rpc_server::UploadRes* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::UploadReq, ::rpc_server::UploadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Upload_, context, request, response);
+::grpc::ClientWriter< ::rpc_server::UploadReq>* FileServer::Stub::UploadRaw(::grpc::ClientContext* context, ::rpc_server::UploadRes* response) {
+  return ::grpc::internal::ClientWriterFactory< ::rpc_server::UploadReq>::Create(channel_.get(), rpcmethod_Upload_, context, response);
 }
 
-void FileServer::Stub::async::Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::UploadReq, ::rpc_server::UploadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Upload_, context, request, response, std::move(f));
+void FileServer::Stub::async::Upload(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::ClientWriteReactor< ::rpc_server::UploadReq>* reactor) {
+  ::grpc::internal::ClientCallbackWriterFactory< ::rpc_server::UploadReq>::Create(stub_->channel_.get(), stub_->rpcmethod_Upload_, context, response, reactor);
 }
 
-void FileServer::Stub::async::Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Upload_, context, request, response, reactor);
+::grpc::ClientAsyncWriter< ::rpc_server::UploadReq>* FileServer::Stub::AsyncUploadRaw(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncWriterFactory< ::rpc_server::UploadReq>::Create(channel_.get(), cq, rpcmethod_Upload_, context, response, true, tag);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::UploadRes>* FileServer::Stub::PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::UploadRes, ::rpc_server::UploadReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Upload_, context, request);
-}
-
-::grpc::ClientAsyncResponseReader< ::rpc_server::UploadRes>* FileServer::Stub::AsyncUploadRaw(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncUploadRaw(context, request, cq);
-  result->StartCall();
-  return result;
+::grpc::ClientAsyncWriter< ::rpc_server::UploadReq>* FileServer::Stub::PrepareAsyncUploadRaw(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncWriterFactory< ::rpc_server::UploadReq>::Create(channel_.get(), cq, rpcmethod_Upload_, context, response, false, nullptr);
 }
 
 ::grpc::ClientReader< ::rpc_server::DownloadRes>* FileServer::Stub::DownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request) {
@@ -164,13 +157,13 @@ FileServer::Service::Service() {
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       FileServer_method_names[1],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< FileServer::Service, ::rpc_server::UploadReq, ::rpc_server::UploadRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      ::grpc::internal::RpcMethod::CLIENT_STREAMING,
+      new ::grpc::internal::ClientStreamingHandler< FileServer::Service, ::rpc_server::UploadReq, ::rpc_server::UploadRes>(
           [](FileServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::UploadReq* req,
+             ::grpc::ServerReader<::rpc_server::UploadReq>* reader,
              ::rpc_server::UploadRes* resp) {
-               return service->Upload(ctx, req, resp);
+               return service->Upload(ctx, reader, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       FileServer_method_names[2],
@@ -214,9 +207,9 @@ FileServer::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status FileServer::Service::Upload(::grpc::ServerContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response) {
+::grpc::Status FileServer::Service::Upload(::grpc::ServerContext* context, ::grpc::ServerReader< ::rpc_server::UploadReq>* reader, ::rpc_server::UploadRes* response) {
   (void) context;
-  (void) request;
+  (void) reader;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }

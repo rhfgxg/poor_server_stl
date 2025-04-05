@@ -196,11 +196,11 @@ grpc::Status FileServerImpl::Transmission_ready(grpc::ServerContext* context, co
 }
 
 // 文件上传服务
-grpc::Status FileServerImpl::Upload(grpc::ServerContext* context, const rpc_server::UploadReq* req, rpc_server::UploadRes* res)
+grpc::Status FileServerImpl::Upload(grpc::ServerContext* context, grpc::ServerReader<rpc_server::UploadReq>* reader, rpc_server::UploadRes* res)
 {
     grpc::Status status;
-    auto task_future = this->add_async_task([this, &status, req, res] {  // 添加异步任务
-         status = this->Handle_upload(req, res);
+    auto task_future = this->add_async_task([this, &status, reader, res] {  // 添加异步任务
+         status = this->Handle_upload(reader, res);
     });
 
     // 等待任务完成
@@ -266,15 +266,33 @@ void FileServerImpl::Handle_transmission_ready(const rpc_server::TransmissionRea
 }
 
 // 文件上传
-grpc::Status FileServerImpl::Handle_upload(const rpc_server::UploadReq* req, rpc_server::UploadRes* res)
+grpc::Status FileServerImpl::Handle_upload(grpc::ServerReader<rpc_server::UploadReq>* reader, rpc_server::UploadRes* res)
 {
-    std::string account = req->account();   // 用户账号
-    std::string file_name = req->file_name();   // 需要上传的文件名
-    // req->file_data();   // 文件数据
+    rpc_server::UploadReq request;
+    std::ofstream file;
+    bool first_chunk = true;
 
+    while(reader->Read(&request))
+    {
+        if(first_chunk)
+        {
+            std::string file_name = request.file_name();
+            std::string file_url = "./files/" + file_name;
+            file.open(file_url, std::ios::binary);
+            if(!file.is_open())
+            {
+                this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->error("Failed to open file: {}", file_url);
+                return grpc::Status(grpc::StatusCode::INTERNAL, "Failed to open file");
+            }
+            first_chunk = false;
+        }
+        file.write(request.file_data().data(), request.file_data().size());
+    }
+
+    file.close();
     res->set_success(true);
-    res->set_message("successful");
-    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Upload successful: {}", account);
+    res->set_message("Upload successful");
+    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Upload successful");
     return grpc::Status::OK;
 }
 

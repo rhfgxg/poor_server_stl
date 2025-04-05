@@ -44,12 +44,14 @@ class FileServer final {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::TransmissionReadyRes>>(PrepareAsyncTransmission_readyRaw(context, request, cq));
     }
     // 文件传输准备服务
-    virtual ::grpc::Status Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::rpc_server::UploadRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UploadRes>> AsyncUpload(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UploadRes>>(AsyncUploadRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientWriterInterface< ::rpc_server::UploadReq>> Upload(::grpc::ClientContext* context, ::rpc_server::UploadRes* response) {
+      return std::unique_ptr< ::grpc::ClientWriterInterface< ::rpc_server::UploadReq>>(UploadRaw(context, response));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UploadRes>> PrepareAsyncUpload(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UploadRes>>(PrepareAsyncUploadRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::rpc_server::UploadReq>> AsyncUpload(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::rpc_server::UploadReq>>(AsyncUploadRaw(context, response, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::rpc_server::UploadReq>> PrepareAsyncUpload(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriterInterface< ::rpc_server::UploadReq>>(PrepareAsyncUploadRaw(context, response, cq));
     }
     // 文件上传服务
     std::unique_ptr< ::grpc::ClientReaderInterface< ::rpc_server::DownloadRes>> Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request) {
@@ -84,8 +86,7 @@ class FileServer final {
       virtual void Transmission_ready(::grpc::ClientContext* context, const ::rpc_server::TransmissionReadyReq* request, ::rpc_server::TransmissionReadyRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Transmission_ready(::grpc::ClientContext* context, const ::rpc_server::TransmissionReadyReq* request, ::rpc_server::TransmissionReadyRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 文件传输准备服务
-      virtual void Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Upload(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::ClientWriteReactor< ::rpc_server::UploadReq>* reactor) = 0;
       // 文件上传服务
       virtual void Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq* request, ::grpc::ClientReadReactor< ::rpc_server::DownloadRes>* reactor) = 0;
       // 文件下载服务
@@ -102,8 +103,9 @@ class FileServer final {
    private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::TransmissionReadyRes>* AsyncTransmission_readyRaw(::grpc::ClientContext* context, const ::rpc_server::TransmissionReadyReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::TransmissionReadyRes>* PrepareAsyncTransmission_readyRaw(::grpc::ClientContext* context, const ::rpc_server::TransmissionReadyReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UploadRes>* AsyncUploadRaw(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UploadRes>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientWriterInterface< ::rpc_server::UploadReq>* UploadRaw(::grpc::ClientContext* context, ::rpc_server::UploadRes* response) = 0;
+    virtual ::grpc::ClientAsyncWriterInterface< ::rpc_server::UploadReq>* AsyncUploadRaw(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncWriterInterface< ::rpc_server::UploadReq>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientReaderInterface< ::rpc_server::DownloadRes>* DownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::rpc_server::DownloadRes>* AsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::rpc_server::DownloadRes>* PrepareAsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) = 0;
@@ -122,12 +124,14 @@ class FileServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::TransmissionReadyRes>> PrepareAsyncTransmission_ready(::grpc::ClientContext* context, const ::rpc_server::TransmissionReadyReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::TransmissionReadyRes>>(PrepareAsyncTransmission_readyRaw(context, request, cq));
     }
-    ::grpc::Status Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::rpc_server::UploadRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UploadRes>> AsyncUpload(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UploadRes>>(AsyncUploadRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientWriter< ::rpc_server::UploadReq>> Upload(::grpc::ClientContext* context, ::rpc_server::UploadRes* response) {
+      return std::unique_ptr< ::grpc::ClientWriter< ::rpc_server::UploadReq>>(UploadRaw(context, response));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UploadRes>> PrepareAsyncUpload(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UploadRes>>(PrepareAsyncUploadRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncWriter< ::rpc_server::UploadReq>> AsyncUpload(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriter< ::rpc_server::UploadReq>>(AsyncUploadRaw(context, response, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncWriter< ::rpc_server::UploadReq>> PrepareAsyncUpload(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncWriter< ::rpc_server::UploadReq>>(PrepareAsyncUploadRaw(context, response, cq));
     }
     std::unique_ptr< ::grpc::ClientReader< ::rpc_server::DownloadRes>> Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request) {
       return std::unique_ptr< ::grpc::ClientReader< ::rpc_server::DownloadRes>>(DownloadRaw(context, request));
@@ -157,8 +161,7 @@ class FileServer final {
      public:
       void Transmission_ready(::grpc::ClientContext* context, const ::rpc_server::TransmissionReadyReq* request, ::rpc_server::TransmissionReadyRes* response, std::function<void(::grpc::Status)>) override;
       void Transmission_ready(::grpc::ClientContext* context, const ::rpc_server::TransmissionReadyReq* request, ::rpc_server::TransmissionReadyRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response, std::function<void(::grpc::Status)>) override;
-      void Upload(::grpc::ClientContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Upload(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::ClientWriteReactor< ::rpc_server::UploadReq>* reactor) override;
       void Download(::grpc::ClientContext* context, const ::rpc_server::DownloadReq* request, ::grpc::ClientReadReactor< ::rpc_server::DownloadRes>* reactor) override;
       void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq* request, ::rpc_server::DeleteFileRes* response, std::function<void(::grpc::Status)>) override;
       void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteFileReq* request, ::rpc_server::DeleteFileRes* response, ::grpc::ClientUnaryReactor* reactor) override;
@@ -177,8 +180,9 @@ class FileServer final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::rpc_server::TransmissionReadyRes>* AsyncTransmission_readyRaw(::grpc::ClientContext* context, const ::rpc_server::TransmissionReadyReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::TransmissionReadyRes>* PrepareAsyncTransmission_readyRaw(::grpc::ClientContext* context, const ::rpc_server::TransmissionReadyReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::UploadRes>* AsyncUploadRaw(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::UploadRes>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, const ::rpc_server::UploadReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientWriter< ::rpc_server::UploadReq>* UploadRaw(::grpc::ClientContext* context, ::rpc_server::UploadRes* response) override;
+    ::grpc::ClientAsyncWriter< ::rpc_server::UploadReq>* AsyncUploadRaw(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncWriter< ::rpc_server::UploadReq>* PrepareAsyncUploadRaw(::grpc::ClientContext* context, ::rpc_server::UploadRes* response, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientReader< ::rpc_server::DownloadRes>* DownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request) override;
     ::grpc::ClientAsyncReader< ::rpc_server::DownloadRes>* AsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReader< ::rpc_server::DownloadRes>* PrepareAsyncDownloadRaw(::grpc::ClientContext* context, const ::rpc_server::DownloadReq& request, ::grpc::CompletionQueue* cq) override;
@@ -200,7 +204,7 @@ class FileServer final {
     virtual ~Service();
     virtual ::grpc::Status Transmission_ready(::grpc::ServerContext* context, const ::rpc_server::TransmissionReadyReq* request, ::rpc_server::TransmissionReadyRes* response);
     // 文件传输准备服务
-    virtual ::grpc::Status Upload(::grpc::ServerContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response);
+    virtual ::grpc::Status Upload(::grpc::ServerContext* context, ::grpc::ServerReader< ::rpc_server::UploadReq>* reader, ::rpc_server::UploadRes* response);
     // 文件上传服务
     virtual ::grpc::Status Download(::grpc::ServerContext* context, const ::rpc_server::DownloadReq* request, ::grpc::ServerWriter< ::rpc_server::DownloadRes>* writer);
     // 文件下载服务
@@ -241,12 +245,12 @@ class FileServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::rpc_server::UploadReq* /*request*/, ::rpc_server::UploadRes* /*response*/) override {
+    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::rpc_server::UploadReq>* /*reader*/, ::rpc_server::UploadRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpload(::grpc::ServerContext* context, ::rpc_server::UploadReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::UploadRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    void RequestUpload(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::rpc_server::UploadRes, ::rpc_server::UploadReq>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncClientStreaming(1, context, reader, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -344,25 +348,20 @@ class FileServer final {
    public:
     WithCallbackMethod_Upload() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::UploadReq, ::rpc_server::UploadRes>(
+          new ::grpc::internal::CallbackClientStreamingHandler< ::rpc_server::UploadReq, ::rpc_server::UploadRes>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::UploadReq* request, ::rpc_server::UploadRes* response) { return this->Upload(context, request, response); }));}
-    void SetMessageAllocatorFor_Upload(
-        ::grpc::MessageAllocator< ::rpc_server::UploadReq, ::rpc_server::UploadRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::UploadReq, ::rpc_server::UploadRes>*>(handler)
-              ->SetMessageAllocator(allocator);
+                   ::grpc::CallbackServerContext* context, ::rpc_server::UploadRes* response) { return this->Upload(context, response); }));
     }
     ~WithCallbackMethod_Upload() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::rpc_server::UploadReq* /*request*/, ::rpc_server::UploadRes* /*response*/) override {
+    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::rpc_server::UploadReq>* /*reader*/, ::rpc_server::UploadRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* Upload(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::UploadReq* /*request*/, ::rpc_server::UploadRes* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerReadReactor< ::rpc_server::UploadReq>* Upload(
+      ::grpc::CallbackServerContext* /*context*/, ::rpc_server::UploadRes* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_Download : public BaseClass {
@@ -471,7 +470,7 @@ class FileServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::rpc_server::UploadReq* /*request*/, ::rpc_server::UploadRes* /*response*/) override {
+    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::rpc_server::UploadReq>* /*reader*/, ::rpc_server::UploadRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -559,12 +558,12 @@ class FileServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::rpc_server::UploadReq* /*request*/, ::rpc_server::UploadRes* /*response*/) override {
+    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::rpc_server::UploadReq>* /*reader*/, ::rpc_server::UploadRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestUpload(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    void RequestUpload(::grpc::ServerContext* context, ::grpc::ServerAsyncReader< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* reader, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncClientStreaming(1, context, reader, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -656,20 +655,20 @@ class FileServer final {
    public:
     WithRawCallbackMethod_Upload() {
       ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackClientStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Upload(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, ::grpc::ByteBuffer* response) { return this->Upload(context, response); }));
     }
     ~WithRawCallbackMethod_Upload() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::rpc_server::UploadReq* /*request*/, ::rpc_server::UploadRes* /*response*/) override {
+    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, ::grpc::ServerReader< ::rpc_server::UploadReq>* /*reader*/, ::rpc_server::UploadRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* Upload(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerReadReactor< ::grpc::ByteBuffer>* Upload(
+      ::grpc::CallbackServerContext* /*context*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithRawCallbackMethod_Download : public BaseClass {
@@ -765,33 +764,6 @@ class FileServer final {
     virtual ::grpc::Status StreamedTransmission_ready(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::TransmissionReadyReq,::rpc_server::TransmissionReadyRes>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_Upload : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Upload() {
-      ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::UploadReq, ::rpc_server::UploadRes>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::UploadReq, ::rpc_server::UploadRes>* streamer) {
-                       return this->StreamedUpload(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Upload() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Upload(::grpc::ServerContext* /*context*/, const ::rpc_server::UploadReq* /*request*/, ::rpc_server::UploadRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUpload(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::UploadReq,::rpc_server::UploadRes>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
   class WithStreamedUnaryMethod_Delete : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -845,7 +817,7 @@ class FileServer final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedListFiles(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::ListFilesReq,::rpc_server::ListFilesRes>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Transmission_ready<WithStreamedUnaryMethod_Upload<WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_ListFiles<Service > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Transmission_ready<WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_ListFiles<Service > > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_Download : public BaseClass {
    private:
@@ -874,7 +846,7 @@ class FileServer final {
     virtual ::grpc::Status StreamedDownload(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::rpc_server::DownloadReq,::rpc_server::DownloadRes>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_Download<Service > SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Transmission_ready<WithStreamedUnaryMethod_Upload<WithSplitStreamingMethod_Download<WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_ListFiles<Service > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Transmission_ready<WithSplitStreamingMethod_Download<WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_ListFiles<Service > > > > StreamedService;
 };
 
 }  // namespace rpc_server

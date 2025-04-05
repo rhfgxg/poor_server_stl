@@ -32,7 +32,7 @@ public:
     // 文件传输准备
     grpc::Status Transmission_ready(grpc::ServerContext* context, const rpc_server::TransmissionReadyReq* req, rpc_server::TransmissionReadyRes* res);
     // 请求文件上传
-    grpc::Status Upload(grpc::ServerContext* context, const rpc_server::UploadReq* req, rpc_server::UploadRes* res);
+    grpc::Status Upload(grpc::ServerContext* context, grpc::ServerReader<rpc_server::UploadReq>* reader, rpc_server::UploadRes* res);
     // 文件下载服务
     grpc::Status Download(grpc::ServerContext* context, const rpc_server::DownloadReq* req, grpc::ServerWriter<rpc_server::DownloadRes>* writer);
     // 文件删除服务
@@ -42,7 +42,7 @@ public:
 private:
 // grpc 工具函数
     void Handle_transmission_ready(const rpc_server::TransmissionReadyReq* req, rpc_server::TransmissionReadyRes* res); // 文件传输准备
-    grpc::Status Handle_upload(const rpc_server::UploadReq* req, rpc_server::UploadRes* res); // 文件上传
+    grpc::Status Handle_upload(grpc::ServerReader<rpc_server::UploadReq>* reader, rpc_server::UploadRes* res); // 文件上传
     grpc::Status Handle_download(const rpc_server::DownloadReq* req, grpc::ServerWriter<rpc_server::DownloadRes>* writer); // 文件下载
     void Handle_delete(const rpc_server::DeleteFileReq* req, rpc_server::DeleteFileRes* res); // 文件删除
     void Handle_list_files(const rpc_server::ListFilesReq* req, rpc_server::ListFilesRes* res); // 文件列表
