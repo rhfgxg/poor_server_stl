@@ -420,7 +420,7 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
     * 在数据库中插入用户账号和密码
     * 如果插入成功，生成Token
     * 将账号和Token存储到Redis中，将用户在线状态设置为true
-    * 用户退出，删除Redis中的账号和Token
+    * 创建文件服务器的文件表（每个用户一个表，注册时创建）
     */
 
     // 获取用户名和密码
@@ -428,16 +428,22 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
     std::string password = req->password();
     std::string email = req->email();
 
+    // 获取当前时间戳
     auto now = std::chrono::system_clock::now();
     auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now).time_since_epoch().count();
     std::ostringstream oss;
     oss << now_ms;
 
     // 创建用户账号
-    std::string account = "3056078308";    // 账号
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<long long> dist(10000000000, 99999999999); // 使用 uuid 生成 11 位数字
+
+    // 创建用户数据
+    std::string account = std::to_string(dist(gen));   // 将用户账号转换为字符串
     std::string phone_number = "13411806653";   // 手机号
     std::string id_number = "140424200104060017";   // 身份证号
-    std::string avatar = "default.png"; // 头像路径
+    std::string avatar = "default.png"; // 头像路径（创建时使用统一的默认头像）
     std::string registration_date = std::to_string(now_ms);    // 注册时间
     std::string last_login_date = std::to_string(now_ms);  // 最后登录时间
     std::string user_status = "active";  // 用户状态
