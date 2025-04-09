@@ -469,6 +469,8 @@ class RegisterReq final :
     kUserNameFieldNumber = 1,
     kPasswordFieldNumber = 2,
     kEmailFieldNumber = 3,
+    kPhoneFieldNumber = 4,
+    kIdNumberFieldNumber = 5,
   };
   // bytes user_name = 1;
   void clear_user_name() ;
@@ -518,13 +520,45 @@ class RegisterReq final :
   std::string* _internal_mutable_email();
 
   public:
+  // bytes phone = 4;
+  void clear_phone() ;
+  const std::string& phone() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_phone(Arg_&& arg, Args_... args);
+  std::string* mutable_phone();
+  PROTOBUF_NODISCARD std::string* release_phone();
+  void set_allocated_phone(std::string* value);
+
+  private:
+  const std::string& _internal_phone() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_phone(
+      const std::string& value);
+  std::string* _internal_mutable_phone();
+
+  public:
+  // bytes id_number = 5;
+  void clear_id_number() ;
+  const std::string& id_number() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_id_number(Arg_&& arg, Args_... args);
+  std::string* mutable_id_number();
+  PROTOBUF_NODISCARD std::string* release_id_number();
+  void set_allocated_id_number(std::string* value);
+
+  private:
+  const std::string& _internal_id_number() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_id_number(
+      const std::string& value);
+  std::string* _internal_mutable_id_number();
+
+  public:
   // @@protoc_insertion_point(class_scope:rpc_server.RegisterReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
+      3, 5, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -544,6 +578,8 @@ class RegisterReq final :
     ::google::protobuf::internal::ArenaStringPtr user_name_;
     ::google::protobuf::internal::ArenaStringPtr password_;
     ::google::protobuf::internal::ArenaStringPtr email_;
+    ::google::protobuf::internal::ArenaStringPtr phone_;
+    ::google::protobuf::internal::ArenaStringPtr id_number_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -3236,6 +3272,112 @@ inline void RegisterReq::set_allocated_email(std::string* value) {
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterReq.email)
+}
+
+// bytes phone = 4;
+inline void RegisterReq::clear_phone() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.phone_.ClearToEmpty();
+}
+inline const std::string& RegisterReq::phone() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:rpc_server.RegisterReq.phone)
+  return _internal_phone();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RegisterReq::set_phone(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.phone_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.RegisterReq.phone)
+}
+inline std::string* RegisterReq::mutable_phone() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_phone();
+  // @@protoc_insertion_point(field_mutable:rpc_server.RegisterReq.phone)
+  return _s;
+}
+inline const std::string& RegisterReq::_internal_phone() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.phone_.Get();
+}
+inline void RegisterReq::_internal_set_phone(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.phone_.Set(value, GetArena());
+}
+inline std::string* RegisterReq::_internal_mutable_phone() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.phone_.Mutable( GetArena());
+}
+inline std::string* RegisterReq::release_phone() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:rpc_server.RegisterReq.phone)
+  return _impl_.phone_.Release();
+}
+inline void RegisterReq::set_allocated_phone(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.phone_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.phone_.IsDefault()) {
+          _impl_.phone_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterReq.phone)
+}
+
+// bytes id_number = 5;
+inline void RegisterReq::clear_id_number() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.id_number_.ClearToEmpty();
+}
+inline const std::string& RegisterReq::id_number() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:rpc_server.RegisterReq.id_number)
+  return _internal_id_number();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void RegisterReq::set_id_number(Arg_&& arg,
+                                                     Args_... args) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.id_number_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:rpc_server.RegisterReq.id_number)
+}
+inline std::string* RegisterReq::mutable_id_number() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_id_number();
+  // @@protoc_insertion_point(field_mutable:rpc_server.RegisterReq.id_number)
+  return _s;
+}
+inline const std::string& RegisterReq::_internal_id_number() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.id_number_.Get();
+}
+inline void RegisterReq::_internal_set_id_number(const std::string& value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.id_number_.Set(value, GetArena());
+}
+inline std::string* RegisterReq::_internal_mutable_id_number() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  return _impl_.id_number_.Mutable( GetArena());
+}
+inline std::string* RegisterReq::release_id_number() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  // @@protoc_insertion_point(field_release:rpc_server.RegisterReq.id_number)
+  return _impl_.id_number_.Release();
+}
+inline void RegisterReq::set_allocated_id_number(std::string* value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.id_number_.SetAllocated(value, GetArena());
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+        if (_impl_.id_number_.IsDefault()) {
+          _impl_.id_number_.Set("", GetArena());
+        }
+  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.RegisterReq.id_number)
 }
 
 // -------------------------------------------------------------------

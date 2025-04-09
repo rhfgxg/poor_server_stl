@@ -427,6 +427,8 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
     std::string user_name = req->user_name();
     std::string password = req->password();
     std::string email = req->email();
+    std::string phone_number = req->phone();
+    std::string id_number = req->id_number();
 
     // 获取当前时间戳
     auto now = std::chrono::system_clock::now();
@@ -439,10 +441,18 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
     std::mt19937 gen(rd());
     std::uniform_int_distribution<long long> dist(10000000000, 99999999999); // 使用 uuid 生成 11 位数字
 
+    // 检查上传数据（手机号，身份证号可选：默认为111*1）
+    if(phone_number == "" || phone_number.size() < 11)
+    {
+        phone_number = "11111111111";
+    }
+    if(id_number == "" || id_number.size() < 14)
+    {
+        id_number = "111111111111111111";
+    }
+
     // 创建用户数据
     std::string account = std::to_string(dist(gen));   // 将用户账号转换为字符串
-    std::string phone_number = "13411806653";   // 手机号
-    std::string id_number = "140424200104060017";   // 身份证号
     std::string avatar = "default.png"; // 头像路径（创建时使用统一的默认头像）
     std::string registration_date = std::to_string(now_ms);    // 注册时间
     std::string last_login_date = std::to_string(now_ms);  // 最后登录时间

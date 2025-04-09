@@ -1,0 +1,12 @@
+# 用户表（poor_users）
+- 用户id（user_id）
+- 用户账号（user_account）
+- 用户昵称（user_name）
+- 密码（password）
+- 邮箱（email）
+- 手机号（phone_number）
+- 身份证号（id_number）
+- 头像（avatar）
+- 注册日期（registration_date）
+- 最后登录日期（last_login_date）
+- 状态（status）  // 标记用户是否注销

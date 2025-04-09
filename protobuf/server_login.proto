@@ -45,6 +45,8 @@ message RegisterReq
     bytes user_name = 1;
     bytes password = 2;
     bytes email = 3;
+    bytes phone = 4;
+    bytes id_number = 5;
 }
 // 注册服务响应
 message RegisterRes

@@ -61,6 +61,12 @@ inline constexpr RegisterReq::Impl_::Impl_(
         email_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        phone_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        id_number_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
 
 template <typename>
@@ -377,6 +383,8 @@ const ::uint32_t TableStruct_server_5flogin_2eproto::offsets[] PROTOBUF_SECTION_
     PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterReq, _impl_.user_name_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterReq, _impl_.password_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterReq, _impl_.email_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterReq, _impl_.phone_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterReq, _impl_.id_number_),
     ~0u,  // no _has_bits_
     PROTOBUF_FIELD_OFFSET(::rpc_server::RegisterRes, _internal_metadata_),
     ~0u,  // no _extensions_
@@ -460,13 +468,13 @@ static const ::_pbi::MigrationSchema
         {22, -1, -1, sizeof(::rpc_server::LogoutReq)},
         {32, -1, -1, sizeof(::rpc_server::LogoutRes)},
         {42, -1, -1, sizeof(::rpc_server::RegisterReq)},
-        {53, -1, -1, sizeof(::rpc_server::RegisterRes)},
-        {65, -1, -1, sizeof(::rpc_server::AuthenticateReq)},
-        {75, -1, -1, sizeof(::rpc_server::AuthenticateRes)},
-        {85, -1, -1, sizeof(::rpc_server::ChangePasswordReq)},
-        {97, -1, -1, sizeof(::rpc_server::ChangePasswordRes)},
-        {107, -1, -1, sizeof(::rpc_server::IsUserOnlineReq)},
-        {116, -1, -1, sizeof(::rpc_server::IsUserOnlineRes)},
+        {55, -1, -1, sizeof(::rpc_server::RegisterRes)},
+        {67, -1, -1, sizeof(::rpc_server::AuthenticateReq)},
+        {77, -1, -1, sizeof(::rpc_server::AuthenticateRes)},
+        {87, -1, -1, sizeof(::rpc_server::ChangePasswordReq)},
+        {99, -1, -1, sizeof(::rpc_server::ChangePasswordRes)},
+        {109, -1, -1, sizeof(::rpc_server::IsUserOnlineReq)},
+        {118, -1, -1, sizeof(::rpc_server::IsUserOnlineRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -490,36 +498,37 @@ const char descriptor_table_protodef_server_5flogin_2eproto[] PROTOBUF_SECTION_V
     "\002 \001(\014\022\017\n\007account\030\003 \001(\014\022\r\n\005token\030\004 \001(\014\"+\n"
     "\tLogoutReq\022\017\n\007account\030\001 \001(\014\022\r\n\005token\030\002 \001"
     "(\014\"-\n\tLogoutRes\022\017\n\007success\030\001 \001(\010\022\017\n\007mess"
-    "age\030\002 \001(\014\"A\n\013RegisterReq\022\021\n\tuser_name\030\001 "
-    "\001(\014\022\020\n\010password\030\002 \001(\014\022\r\n\005email\030\003 \001(\014\"O\n\013"
-    "RegisterRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030"
-    "\002 \001(\014\022\017\n\007account\030\003 \001(\014\022\r\n\005token\030\004 \001(\014\"1\n"
-    "\017AuthenticateReq\022\017\n\007account\030\001 \001(\014\022\r\n\005tok"
-    "en\030\002 \001(\014\"3\n\017AuthenticateRes\022\017\n\007success\030\001"
-    " \001(\010\022\017\n\007message\030\002 \001(\014\"_\n\021ChangePasswordR"
-    "eq\022\017\n\007account\030\001 \001(\014\022\r\n\005token\030\002 \001(\014\022\024\n\014ol"
-    "d_password\030\003 \001(\014\022\024\n\014new_password\030\004 \001(\014\"5"
-    "\n\021ChangePasswordRes\022\017\n\007success\030\001 \001(\010\022\017\n\007"
-    "message\030\002 \001(\014\"\"\n\017IsUserOnlineReq\022\017\n\007acco"
-    "unt\030\001 \001(\014\"F\n\017IsUserOnlineRes\022\017\n\007success\030"
-    "\001 \001(\010\022\017\n\007message\030\002 \001(\014\022\021\n\tis_online\030\003 \001("
-    "\0102\237\003\n\013LoginServer\0223\n\005Login\022\024.rpc_server."
-    "LoginReq\032\024.rpc_server.LoginRes\0226\n\006Logout"
-    "\022\025.rpc_server.LogoutReq\032\025.rpc_server.Log"
-    "outRes\022<\n\010Register\022\027.rpc_server.Register"
-    "Req\032\027.rpc_server.RegisterRes\022H\n\014Authenti"
-    "cate\022\033.rpc_server.AuthenticateReq\032\033.rpc_"
-    "server.AuthenticateRes\022O\n\017Change_passwor"
-    "d\022\035.rpc_server.ChangePasswordReq\032\035.rpc_s"
-    "erver.ChangePasswordRes\022J\n\016Is_user_onlin"
-    "e\022\033.rpc_server.IsUserOnlineReq\032\033.rpc_ser"
-    "ver.IsUserOnlineResb\006proto3"
+    "age\030\002 \001(\014\"c\n\013RegisterReq\022\021\n\tuser_name\030\001 "
+    "\001(\014\022\020\n\010password\030\002 \001(\014\022\r\n\005email\030\003 \001(\014\022\r\n\005"
+    "phone\030\004 \001(\014\022\021\n\tid_number\030\005 \001(\014\"O\n\013Regist"
+    "erRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\022"
+    "\017\n\007account\030\003 \001(\014\022\r\n\005token\030\004 \001(\014\"1\n\017Authe"
+    "nticateReq\022\017\n\007account\030\001 \001(\014\022\r\n\005token\030\002 \001"
+    "(\014\"3\n\017AuthenticateRes\022\017\n\007success\030\001 \001(\010\022\017"
+    "\n\007message\030\002 \001(\014\"_\n\021ChangePasswordReq\022\017\n\007"
+    "account\030\001 \001(\014\022\r\n\005token\030\002 \001(\014\022\024\n\014old_pass"
+    "word\030\003 \001(\014\022\024\n\014new_password\030\004 \001(\014\"5\n\021Chan"
+    "gePasswordRes\022\017\n\007success\030\001 \001(\010\022\017\n\007messag"
+    "e\030\002 \001(\014\"\"\n\017IsUserOnlineReq\022\017\n\007account\030\001 "
+    "\001(\014\"F\n\017IsUserOnlineRes\022\017\n\007success\030\001 \001(\010\022"
+    "\017\n\007message\030\002 \001(\014\022\021\n\tis_online\030\003 \001(\0102\237\003\n\013"
+    "LoginServer\0223\n\005Login\022\024.rpc_server.LoginR"
+    "eq\032\024.rpc_server.LoginRes\0226\n\006Logout\022\025.rpc"
+    "_server.LogoutReq\032\025.rpc_server.LogoutRes"
+    "\022<\n\010Register\022\027.rpc_server.RegisterReq\032\027."
+    "rpc_server.RegisterRes\022H\n\014Authenticate\022\033"
+    ".rpc_server.AuthenticateReq\032\033.rpc_server"
+    ".AuthenticateRes\022O\n\017Change_password\022\035.rp"
+    "c_server.ChangePasswordReq\032\035.rpc_server."
+    "ChangePasswordRes\022J\n\016Is_user_online\022\033.rp"
+    "c_server.IsUserOnlineReq\032\033.rpc_server.Is"
+    "UserOnlineResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5flogin_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5flogin_2eproto = {
     false,
     false,
-    1187,
+    1221,
     descriptor_table_protodef_server_5flogin_2eproto,
     "server_login.proto",
     &descriptor_table_server_5flogin_2eproto_once,
@@ -1463,6 +1472,8 @@ inline PROTOBUF_NDEBUG_INLINE RegisterReq::Impl_::Impl_(
       : user_name_(arena, from.user_name_),
         password_(arena, from.password_),
         email_(arena, from.email_),
+        phone_(arena, from.phone_),
+        id_number_(arena, from.id_number_),
         _cached_size_{0} {}
 
 RegisterReq::RegisterReq(
@@ -1483,6 +1494,8 @@ inline PROTOBUF_NDEBUG_INLINE RegisterReq::Impl_::Impl_(
       : user_name_(arena),
         password_(arena),
         email_(arena),
+        phone_(arena),
+        id_number_(arena),
         _cached_size_{0} {}
 
 inline void RegisterReq::SharedCtor(::_pb::Arena* arena) {
@@ -1498,6 +1511,8 @@ inline void RegisterReq::SharedDtor() {
   _impl_.user_name_.Destroy();
   _impl_.password_.Destroy();
   _impl_.email_.Destroy();
+  _impl_.phone_.Destroy();
+  _impl_.id_number_.Destroy();
   _impl_.~Impl_();
 }
 
@@ -1511,6 +1526,8 @@ PROTOBUF_NOINLINE void RegisterReq::Clear() {
   _impl_.user_name_.ClearToEmpty();
   _impl_.password_.ClearToEmpty();
   _impl_.email_.ClearToEmpty();
+  _impl_.phone_.ClearToEmpty();
+  _impl_.id_number_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1522,15 +1539,15 @@ const char* RegisterReq::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RegisterReq::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 0, 0, 2> RegisterReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    5, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967264,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    5,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     &_RegisterReq_default_instance_._instance,
@@ -1546,6 +1563,14 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RegisterReq::_table_ = {
     // bytes email = 3;
     {::_pbi::TcParser::FastBS1,
      {26, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterReq, _impl_.email_)}},
+    // bytes phone = 4;
+    {::_pbi::TcParser::FastBS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterReq, _impl_.phone_)}},
+    // bytes id_number = 5;
+    {::_pbi::TcParser::FastBS1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(RegisterReq, _impl_.id_number_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
@@ -1557,6 +1582,12 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RegisterReq::_table_ = {
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
     // bytes email = 3;
     {PROTOBUF_FIELD_OFFSET(RegisterReq, _impl_.email_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes phone = 4;
+    {PROTOBUF_FIELD_OFFSET(RegisterReq, _impl_.phone_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes id_number = 5;
+    {PROTOBUF_FIELD_OFFSET(RegisterReq, _impl_.id_number_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
@@ -1587,6 +1618,18 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RegisterReq::_table_ = {
   if (!this->_internal_email().empty()) {
     const std::string& _s = this->_internal_email();
     target = stream->WriteBytesMaybeAliased(3, _s, target);
+  }
+
+  // bytes phone = 4;
+  if (!this->_internal_phone().empty()) {
+    const std::string& _s = this->_internal_phone();
+    target = stream->WriteBytesMaybeAliased(4, _s, target);
+  }
+
+  // bytes id_number = 5;
+  if (!this->_internal_id_number().empty()) {
+    const std::string& _s = this->_internal_id_number();
+    target = stream->WriteBytesMaybeAliased(5, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1624,6 +1667,18 @@ const ::_pbi::TcParseTable<2, 3, 0, 0, 2> RegisterReq::_table_ = {
                                     this->_internal_email());
   }
 
+  // bytes phone = 4;
+  if (!this->_internal_phone().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_phone());
+  }
+
+  // bytes id_number = 5;
+  if (!this->_internal_id_number().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_id_number());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1652,6 +1707,12 @@ void RegisterReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google:
   if (!from._internal_email().empty()) {
     _this->_internal_set_email(from._internal_email());
   }
+  if (!from._internal_phone().empty()) {
+    _this->_internal_set_phone(from._internal_phone());
+  }
+  if (!from._internal_id_number().empty()) {
+    _this->_internal_set_id_number(from._internal_id_number());
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1677,6 +1738,8 @@ void RegisterReq::InternalSwap(RegisterReq* PROTOBUF_RESTRICT other) {
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.user_name_, &other->_impl_.user_name_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.password_, &other->_impl_.password_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.email_, &other->_impl_.email_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.phone_, &other->_impl_.phone_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.id_number_, &other->_impl_.id_number_, arena);
 }
 
 ::google::protobuf::Metadata RegisterReq::GetMetadata() const {
