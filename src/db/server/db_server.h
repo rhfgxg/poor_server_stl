@@ -2,9 +2,9 @@
 #define DB_SERVICE_H
 
 #include "common.grpc.pb.h" // 公共模块：包含公共数据类型，枚举
+#include "server_db.grpc.pb.h"  // 数据库服务器
+#include "server_central.grpc.pb.h" // 中心服务器
 #include "consts/const_log.h"  // 日志类型
-#include "server_db.grpc.pb.h"
-#include "server_central.grpc.pb.h"
 #include "connection_pool.h"    // 连接池
 #include "db_connection_pool.h" // 数据库连接池
 #include "logger_manager.h"     // 日志管理器
@@ -29,15 +29,16 @@ public:
     void stop_thread_pool();    // 停止线程池
 
 // grpc对外接口
-    // 添加数据库记录
+    // 添加数据
     grpc::Status Create(grpc::ServerContext* context, const rpc_server::CreateReq* req, rpc_server::CreateRes* res) override;
-    // 读取数据库记录
+    // 查询数据
     grpc::Status Read(grpc::ServerContext* context, const rpc_server::ReadReq* req, rpc_server::ReadRes* res) override;
-    // 更新数据库记录
+    // 更新数据
     grpc::Status Update(grpc::ServerContext* context, const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res) override;
-    // 删除数据库记录
+    // 删除数据
     grpc::Status Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res) override;
-
+    // 新建表
+    grpc::Status Make_table(grpc::ServerContext* context, const rpc_server::MakeTableReq* req, rpc_server::MakeTableRes* res) override;
 private:
     // 初始化
     std::string Read_db_config(lua_State* L, const std::string& file_url); // 读取 数据库配置配置文件，获得数据库连接字符串
@@ -48,10 +49,11 @@ private:
     void Worker_thread();   // 线程池工作函数
 
     // 处理数据库操作的函数
-    void Handle_create(const rpc_server::CreateReq* req, rpc_server::CreateRes* res);
-    void Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadRes* res);
-    void Handle_update(const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res);
-    void Handle_delete(const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res);
+    void Handle_create(const rpc_server::CreateReq* req, rpc_server::CreateRes* res);   // 添加数据
+    void Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadRes* res); // 查询数据
+    void Handle_update(const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res);   // 更新数据
+    void Handle_delete(const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res);   // 删除数据
+    void Handle_make_table(const rpc_server::MakeTableReq* req, rpc_server::MakeTableRes* res);   // 新建表
 
     // 定时任务：
     void Send_heartbeat();  // 发送心跳包
@@ -64,8 +66,9 @@ private:
     LoggerManager& logger_manager;  // 日志管理器
 
     // 数据库连接池
-    std::unique_ptr<DBConnectionPool> user_db_pool; // 用户数据库
-    // 其他数据库连接池
+    std::unique_ptr<DBConnectionPool> poor_users_pool; // 用户数据库
+    std::unique_ptr<DBConnectionPool> poor_file_pool;  // 网盘数据库
+    std::unique_ptr<DBConnectionPool> hearthstone_pool;   // 炉石传说数据库
 
     std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;    // 中心服务存根
 

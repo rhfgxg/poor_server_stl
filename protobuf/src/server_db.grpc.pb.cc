@@ -26,6 +26,7 @@ static const char* DBServer_method_names[] = {
   "/rpc_server.DBServer/Read",
   "/rpc_server.DBServer/Update",
   "/rpc_server.DBServer/Delete",
+  "/rpc_server.DBServer/Make_table",
 };
 
 std::unique_ptr< DBServer::Stub> DBServer::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -39,6 +40,7 @@ DBServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, 
   , rpcmethod_Read_(DBServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Update_(DBServer_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Delete_(DBServer_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Make_table_(DBServer_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status DBServer::Stub::Create(::grpc::ClientContext* context, const ::rpc_server::CreateReq& request, ::rpc_server::CreateRes* response) {
@@ -133,6 +135,29 @@ void DBServer::Stub::async::Delete(::grpc::ClientContext* context, const ::rpc_s
   return result;
 }
 
+::grpc::Status DBServer::Stub::Make_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::rpc_server::MakeTableRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::MakeTableReq, ::rpc_server::MakeTableRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Make_table_, context, request, response);
+}
+
+void DBServer::Stub::async::Make_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq* request, ::rpc_server::MakeTableRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::MakeTableReq, ::rpc_server::MakeTableRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Make_table_, context, request, response, std::move(f));
+}
+
+void DBServer::Stub::async::Make_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq* request, ::rpc_server::MakeTableRes* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Make_table_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::MakeTableRes>* DBServer::Stub::PrepareAsyncMake_tableRaw(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::MakeTableRes, ::rpc_server::MakeTableReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Make_table_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::rpc_server::MakeTableRes>* DBServer::Stub::AsyncMake_tableRaw(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncMake_tableRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 DBServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DBServer_method_names[0],
@@ -174,6 +199,16 @@ DBServer::Service::Service() {
              ::rpc_server::DeleteRes* resp) {
                return service->Delete(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      DBServer_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< DBServer::Service, ::rpc_server::MakeTableReq, ::rpc_server::MakeTableRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](DBServer::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::rpc_server::MakeTableReq* req,
+             ::rpc_server::MakeTableRes* resp) {
+               return service->Make_table(ctx, req, resp);
+             }, this)));
 }
 
 DBServer::Service::~Service() {
@@ -201,6 +236,13 @@ DBServer::Service::~Service() {
 }
 
 ::grpc::Status DBServer::Service::Delete(::grpc::ServerContext* context, const ::rpc_server::DeleteReq* request, ::rpc_server::DeleteRes* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status DBServer::Service::Make_table(::grpc::ServerContext* context, const ::rpc_server::MakeTableReq* request, ::rpc_server::MakeTableRes* response) {
   (void) context;
   (void) request;
   (void) response;

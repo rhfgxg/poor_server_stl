@@ -12,7 +12,7 @@ DBServerImpl::DBServerImpl(LoggerManager& logger_manager_, const std::string add
 
     // 读取配置文件并初始化数据库连接池
     std::string db_uri = Read_db_config(L, "config/cfg_db.lua");
-    user_db_pool = std::make_unique<DBConnectionPool>(db_uri + "poor_users", 10);   // 初始化数据库连接池
+    poor_users_pool = std::make_unique<DBConnectionPool>(db_uri + "poor_users", 10);   // 初始化数据库连接池
 
     lua_close(L);   // 关闭lua虚拟机
 
@@ -192,7 +192,7 @@ void DBServerImpl::Send_heartbeat()
 }
 
 /**************************************** grpc服务接口定义 **************************************************************************/
-// 添加
+// 添加数据
 grpc::Status DBServerImpl::Create(grpc::ServerContext* context, const rpc_server::CreateReq* req, rpc_server::CreateRes* res)
 {
     auto task_future = this->add_async_task([this, req, res] {
@@ -204,7 +204,7 @@ grpc::Status DBServerImpl::Create(grpc::ServerContext* context, const rpc_server
     return grpc::Status::OK;
 }
 
-// 查询
+// 查询数据
 grpc::Status DBServerImpl::Read(grpc::ServerContext* context, const rpc_server::ReadReq* req, rpc_server::ReadRes* res)
 {
     auto task_future = this->add_async_task([this, req, res] {  
@@ -216,7 +216,7 @@ grpc::Status DBServerImpl::Read(grpc::ServerContext* context, const rpc_server::
     return grpc::Status::OK;
 }
 
-// 更新
+// 更新数据
 grpc::Status DBServerImpl::Update(grpc::ServerContext* context, const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res)
 {
     auto task_future = this->add_async_task([this,req,res] {
@@ -228,11 +228,23 @@ grpc::Status DBServerImpl::Update(grpc::ServerContext* context, const rpc_server
     return grpc::Status::OK;
 }
 
-// 删除
+// 删除数据
 grpc::Status DBServerImpl::Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res)
 {
     auto task_future = this->add_async_task([this, req, res] {
         this->Handle_delete(req, res);
+    });
+
+    // 等待任务完成
+    task_future.get();
+    return grpc::Status::OK;
+}
+
+// 新建表
+grpc::Status DBServerImpl::Make_table(grpc::ServerContext* context, const rpc_server::MakeTableReq* req, rpc_server::MakeTableRes* res)
+{
+    auto task_future = this->add_async_task([this, req, res] {
+        this->Handle_make_table(req, res);
     });
 
     // 等待任务完成
@@ -246,7 +258,7 @@ grpc::Status DBServerImpl::Delete(grpc::ServerContext* context, const rpc_server
 void DBServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_server::CreateRes* res)
 {
     // 获取数据库连接
-    mysqlx::Session session = this->user_db_pool->get_connection();
+    mysqlx::Session session = this->poor_users_pool->get_connection();
 
     try
     {
@@ -284,14 +296,14 @@ void DBServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_server::C
     }
 
     // 释放数据库连接
-    this->user_db_pool->release_connection(std::move(session));
+    this->poor_users_pool->release_connection(std::move(session));
 }
 
 // 查询
 void DBServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadRes* res)
 {
     // 获取数据库连接
-    mysqlx::Session session = user_db_pool->get_connection();
+    mysqlx::Session session = poor_users_pool->get_connection();
 
     try
     {
@@ -372,14 +384,14 @@ void DBServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadR
     }
 
     // 释放数据库连接
-    this->user_db_pool->release_connection(std::move(session));
+    this->poor_users_pool->release_connection(std::move(session));
 }
 
 // 更新
 void DBServerImpl::Handle_update(const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res)
 {
     // 获取数据库连接
-    mysqlx::Session session = this->user_db_pool->get_connection();
+    mysqlx::Session session = this->poor_users_pool->get_connection();
 
     try
     {
@@ -423,14 +435,14 @@ void DBServerImpl::Handle_update(const rpc_server::UpdateReq* req, rpc_server::U
     }
 
     // 释放数据库连接
-    this->user_db_pool->release_connection(std::move(session));
+    this->poor_users_pool->release_connection(std::move(session));
 }
 
 // 删除
 void DBServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res)
 {
     // 获取数据库连接
-    mysqlx::Session session = this->user_db_pool->get_connection();
+    mysqlx::Session session = this->poor_users_pool->get_connection();
 
     // 获取请求参数
     std::string db_name = req->database();
@@ -443,7 +455,108 @@ void DBServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_server::D
     std::cout << "Database delete successful" << std::endl;
 
     // 释放数据库连接
-    this->user_db_pool->release_connection(std::move(session));
+    this->poor_users_pool->release_connection(std::move(session));
+}
+
+// 新建表
+void DBServerImpl::Handle_make_table(const rpc_server::MakeTableReq* req, rpc_server::MakeTableRes* res)
+{
+    // 获取数据库连接
+    mysqlx::Session session = this->poor_users_pool->get_connection();
+    try
+    {
+        // 获取请求参数
+        std::string db_name = req->database();
+        std::string tab_name = req->table();
+
+        std::string sql = "CREATE TABLE `" + tab_name + "` (";
+
+        // 添加字段定义
+        for(const auto& field : req->fields())
+        {
+            sql += "`" + field.name() + "` " + field.type();
+            if(field.not_null())
+            {
+                sql += " NOT NULL";
+            }
+            if(!field.default_value().empty())
+            {
+                sql += " DEFAULT " + field.default_value();
+            }
+            if(field.auto_increment())
+            {
+                sql += " AUTO_INCREMENT";
+            }
+            if(!field.comment().empty())
+            {
+                sql += " COMMENT '" + field.comment() + "'";
+            }
+            sql += ",";
+        }
+
+        // 添加表级约束
+        for(const auto& constraint : req->constraints())
+        {
+            if(constraint.type() == "PRIMARY_KEY")
+            {
+                sql += "PRIMARY KEY (";
+                for(const auto& field : constraint.fields())
+                {
+                    sql += "`" + field + "`,";
+                }
+                sql.pop_back(); // 移除最后一个逗号
+                sql += "),";
+            }
+            else if(constraint.type() == "UNIQUE")
+            {
+                sql += "UNIQUE KEY `" + constraint.name() + "` (";
+                for(const auto& field : constraint.fields())
+                {
+                    sql += "`" + field + "`,";
+                }
+                sql.pop_back();
+                sql += "),";
+            }
+        }
+
+        sql.pop_back(); // 移除最后一个逗号
+        sql += ")";
+
+        // 添加表选项
+        if(!req->engine().empty())
+        {
+            sql += " ENGINE = " + req->engine();
+        }
+        if(!req->charset().empty())
+        {
+            sql += " CHARACTER SET = " + req->charset();
+        }
+        if(!req->collation().empty())
+        {
+            sql += " COLLATE = " + req->collation();
+        }
+        if(!req->table_comment().empty())
+        {
+            sql += " COMMENT = '" + req->table_comment() + "'";
+        }
+
+        sql += " ROW_FORMAT = Dynamic;";
+
+
+        // 设置响应
+        res->set_success(true);
+        res->set_message("Table created successfully");
+        this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->info("DB make table successful");
+    }
+    catch(const std::exception& e)
+    {
+        // 设置响应
+        res->set_success(false);
+        res->set_message("Create table failed: " + std::string(e.what()));
+        this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("DB make table failed: {}", e.what());
+    }
+    // 释放数据库连接
+    this->poor_users_pool->release_connection(std::move(session));
 }
 
 /******************************************** 其他工具函数 *****************************************************/

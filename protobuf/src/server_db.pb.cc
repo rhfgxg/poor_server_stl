@@ -92,6 +92,88 @@ struct ReadReq_QueryEntry_DoNotUseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadReq_QueryEntry_DoNotUseDefaultTypeInternal _ReadReq_QueryEntry_DoNotUse_default_instance_;
 
+inline constexpr MakeTableRes::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        table_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        success_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MakeTableRes::MakeTableRes(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MakeTableResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MakeTableResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MakeTableResDefaultTypeInternal() {}
+  union {
+    MakeTableRes _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MakeTableResDefaultTypeInternal _MakeTableRes_default_instance_;
+
+inline constexpr MakeTableReq_Field::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        type_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        comment_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        default_value_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        not_null_{false},
+        auto_increment_{false},
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MakeTableReq_Field::MakeTableReq_Field(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MakeTableReq_FieldDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MakeTableReq_FieldDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MakeTableReq_FieldDefaultTypeInternal() {}
+  union {
+    MakeTableReq_Field _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MakeTableReq_FieldDefaultTypeInternal _MakeTableReq_Field_default_instance_;
+
+inline constexpr MakeTableReq_Constraint::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : fields_{},
+        type_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MakeTableReq_Constraint::MakeTableReq_Constraint(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MakeTableReq_ConstraintDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MakeTableReq_ConstraintDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MakeTableReq_ConstraintDefaultTypeInternal() {}
+  union {
+    MakeTableReq_Constraint _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MakeTableReq_ConstraintDefaultTypeInternal _MakeTableReq_Constraint_default_instance_;
+
 inline constexpr DeleteRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : message_(
@@ -230,6 +312,44 @@ struct ReadReqDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadReqDefaultTypeInternal _ReadReq_default_instance_;
 
+inline constexpr MakeTableReq::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : fields_{},
+        constraints_{},
+        database_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        table_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        engine_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        charset_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        collation_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        table_comment_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MakeTableReq::MakeTableReq(::_pbi::ConstantInitialized)
+    : _impl_(::_pbi::ConstantInitialized()) {}
+struct MakeTableReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MakeTableReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MakeTableReqDefaultTypeInternal() {}
+  union {
+    MakeTableReq _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MakeTableReqDefaultTypeInternal _MakeTableReq_default_instance_;
+
 inline constexpr DeleteReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : query_{},
@@ -303,7 +423,7 @@ struct ReadResDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadResDefaultTypeInternal _ReadRes_default_instance_;
 }  // namespace rpc_server
-static ::_pb::Metadata file_level_metadata_server_5fdb_2eproto[15];
+static ::_pb::Metadata file_level_metadata_server_5fdb_2eproto[19];
 static constexpr const ::_pb::EnumDescriptor**
     file_level_enum_descriptors_server_5fdb_2eproto = nullptr;
 static constexpr const ::_pb::ServiceDescriptor**
@@ -477,6 +597,58 @@ const ::uint32_t TableStruct_server_5fdb_2eproto::offsets[] PROTOBUF_SECTION_VAR
     ~0u,  // no sizeof(Split)
     PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRes, _impl_.success_),
     PROTOBUF_FIELD_OFFSET(::rpc_server::DeleteRes, _impl_.message_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq_Field, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq_Field, _impl_.name_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq_Field, _impl_.type_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq_Field, _impl_.comment_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq_Field, _impl_.default_value_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq_Field, _impl_.not_null_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq_Field, _impl_.auto_increment_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq_Constraint, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq_Constraint, _impl_.type_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq_Constraint, _impl_.fields_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq_Constraint, _impl_.name_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq, _impl_.database_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq, _impl_.table_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq, _impl_.fields_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq, _impl_.constraints_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq, _impl_.engine_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq, _impl_.charset_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq, _impl_.collation_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableReq, _impl_.table_comment_),
+    ~0u,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableRes, _internal_metadata_),
+    ~0u,  // no _extensions_
+    ~0u,  // no _oneof_case_
+    ~0u,  // no _weak_field_map_
+    ~0u,  // no _inlined_string_donated_
+    ~0u,  // no _split_
+    ~0u,  // no sizeof(Split)
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableRes, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MakeTableRes, _impl_.table_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -496,6 +668,10 @@ static const ::_pbi::MigrationSchema
         {134, 144, -1, sizeof(::rpc_server::DeleteReq_QueryEntry_DoNotUse)},
         {146, -1, -1, sizeof(::rpc_server::DeleteReq)},
         {157, -1, -1, sizeof(::rpc_server::DeleteRes)},
+        {167, -1, -1, sizeof(::rpc_server::MakeTableReq_Field)},
+        {181, -1, -1, sizeof(::rpc_server::MakeTableReq_Constraint)},
+        {192, -1, -1, sizeof(::rpc_server::MakeTableReq)},
+        {208, -1, -1, sizeof(::rpc_server::MakeTableRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -514,6 +690,10 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::rpc_server::_DeleteReq_QueryEntry_DoNotUse_default_instance_._instance,
     &::rpc_server::_DeleteReq_default_instance_._instance,
     &::rpc_server::_DeleteRes_default_instance_._instance,
+    &::rpc_server::_MakeTableReq_Field_default_instance_._instance,
+    &::rpc_server::_MakeTableReq_Constraint_default_instance_._instance,
+    &::rpc_server::_MakeTableReq_default_instance_._instance,
+    &::rpc_server::_MakeTableRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fdb_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
     "\n\017server_db.proto\022\nrpc_server\"\210\001\n\tCreate"
@@ -541,25 +721,38 @@ const char descriptor_table_protodef_server_5fdb_2eproto[] PROTOBUF_SECTION_VARI
     "\003(\0132 .rpc_server.DeleteReq.QueryEntry\032,\n"
     "\nQueryEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014:"
     "\0028\001\"-\n\tDeleteRes\022\017\n\007success\030\001 \001(\010\022\017\n\007mes"
-    "sage\030\002 \001(\0142\344\001\n\010DBServer\0226\n\006Create\022\025.rpc_"
-    "server.CreateReq\032\025.rpc_server.CreateRes\022"
-    "0\n\004Read\022\023.rpc_server.ReadReq\032\023.rpc_serve"
-    "r.ReadRes\0226\n\006Update\022\025.rpc_server.UpdateR"
-    "eq\032\025.rpc_server.UpdateRes\0226\n\006Delete\022\025.rp"
-    "c_server.DeleteReq\032\025.rpc_server.DeleteRe"
-    "sb\006proto3"
+    "sage\030\002 \001(\014\"\225\003\n\014MakeTableReq\022\020\n\010database\030"
+    "\001 \001(\014\022\r\n\005table\030\002 \001(\014\022.\n\006fields\030\003 \003(\0132\036.r"
+    "pc_server.MakeTableReq.Field\0228\n\013constrai"
+    "nts\030\004 \003(\0132#.rpc_server.MakeTableReq.Cons"
+    "traint\022\016\n\006engine\030\005 \001(\t\022\017\n\007charset\030\006 \001(\t\022"
+    "\021\n\tcollation\030\007 \001(\t\022\025\n\rtable_comment\030\010 \001("
+    "\t\032u\n\005Field\022\014\n\004name\030\001 \001(\t\022\014\n\004type\030\002 \001(\t\022\017"
+    "\n\007comment\030\003 \001(\t\022\025\n\rdefault_value\030\004 \001(\t\022\020"
+    "\n\010not_null\030\005 \001(\010\022\026\n\016auto_increment\030\006 \001(\010"
+    "\0328\n\nConstraint\022\014\n\004type\030\001 \001(\t\022\016\n\006fields\030\002"
+    " \003(\t\022\014\n\004name\030\003 \001(\t\"\?\n\014MakeTableRes\022\017\n\007su"
+    "ccess\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\022\r\n\005table\030\003 "
+    "\001(\0142\246\002\n\010DBServer\0226\n\006Create\022\025.rpc_server."
+    "CreateReq\032\025.rpc_server.CreateRes\0220\n\004Read"
+    "\022\023.rpc_server.ReadReq\032\023.rpc_server.ReadR"
+    "es\0226\n\006Update\022\025.rpc_server.UpdateReq\032\025.rp"
+    "c_server.UpdateRes\0226\n\006Delete\022\025.rpc_serve"
+    "r.DeleteReq\032\025.rpc_server.DeleteRes\022@\n\nMa"
+    "ke_table\022\030.rpc_server.MakeTableReq\032\030.rpc"
+    "_server.MakeTableResb\006proto3"
 };
 static ::absl::once_flag descriptor_table_server_5fdb_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fdb_2eproto = {
     false,
     false,
-    1249,
+    1788,
     descriptor_table_protodef_server_5fdb_2eproto,
     "server_db.proto",
     &descriptor_table_server_5fdb_2eproto_once,
     nullptr,
     0,
-    15,
+    19,
     schemas,
     file_default_instances,
     TableStruct_server_5fdb_2eproto::offsets,
@@ -2801,6 +2994,1214 @@ void DeleteRes::InternalSwap(DeleteRes* PROTOBUF_RESTRICT other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fdb_2eproto_getter, &descriptor_table_server_5fdb_2eproto_once,
       file_level_metadata_server_5fdb_2eproto[14]);
+}
+// ===================================================================
+
+class MakeTableReq_Field::_Internal {
+ public:
+};
+
+MakeTableReq_Field::MakeTableReq_Field(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.MakeTableReq.Field)
+}
+inline PROTOBUF_NDEBUG_INLINE MakeTableReq_Field::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : name_(arena, from.name_),
+        type_(arena, from.type_),
+        comment_(arena, from.comment_),
+        default_value_(arena, from.default_value_),
+        _cached_size_{0} {}
+
+MakeTableReq_Field::MakeTableReq_Field(
+    ::google::protobuf::Arena* arena,
+    const MakeTableReq_Field& from)
+    : ::google::protobuf::Message(arena) {
+  MakeTableReq_Field* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, not_null_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, not_null_),
+           offsetof(Impl_, auto_increment_) -
+               offsetof(Impl_, not_null_) +
+               sizeof(Impl_::auto_increment_));
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.MakeTableReq.Field)
+}
+inline PROTOBUF_NDEBUG_INLINE MakeTableReq_Field::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : name_(arena),
+        type_(arena),
+        comment_(arena),
+        default_value_(arena),
+        _cached_size_{0} {}
+
+inline void MakeTableReq_Field::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, not_null_),
+           0,
+           offsetof(Impl_, auto_increment_) -
+               offsetof(Impl_, not_null_) +
+               sizeof(Impl_::auto_increment_));
+}
+MakeTableReq_Field::~MakeTableReq_Field() {
+  // @@protoc_insertion_point(destructor:rpc_server.MakeTableReq.Field)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void MakeTableReq_Field::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.name_.Destroy();
+  _impl_.type_.Destroy();
+  _impl_.comment_.Destroy();
+  _impl_.default_value_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void MakeTableReq_Field::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.MakeTableReq.Field)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.name_.ClearToEmpty();
+  _impl_.type_.ClearToEmpty();
+  _impl_.comment_.ClearToEmpty();
+  _impl_.default_value_.ClearToEmpty();
+  ::memset(&_impl_.not_null_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.auto_increment_) -
+      reinterpret_cast<char*>(&_impl_.not_null_)) + sizeof(_impl_.auto_increment_));
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* MakeTableReq_Field::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 6, 0, 66, 2> MakeTableReq_Field::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    6, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967232,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    6,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_MakeTableReq_Field_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string name = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.name_)}},
+    // string type = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.type_)}},
+    // string comment = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.comment_)}},
+    // string default_value = 4;
+    {::_pbi::TcParser::FastUS1,
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.default_value_)}},
+    // bool not_null = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(MakeTableReq_Field, _impl_.not_null_), 63>(),
+     {40, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.not_null_)}},
+    // bool auto_increment = 6;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(MakeTableReq_Field, _impl_.auto_increment_), 63>(),
+     {48, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.auto_increment_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string name = 1;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string type = 2;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string comment = 3;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.comment_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string default_value = 4;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.default_value_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // bool not_null = 5;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.not_null_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bool auto_increment = 6;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.auto_increment_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+  }},
+  // no aux_entries
+  {{
+    "\35\4\4\7\15\0\0\0"
+    "rpc_server.MakeTableReq.Field"
+    "name"
+    "type"
+    "comment"
+    "default_value"
+  }},
+};
+
+::uint8_t* MakeTableReq_Field::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.MakeTableReq.Field)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.MakeTableReq.Field.name");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // string type = 2;
+  if (!this->_internal_type().empty()) {
+    const std::string& _s = this->_internal_type();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.MakeTableReq.Field.type");
+    target = stream->WriteStringMaybeAliased(2, _s, target);
+  }
+
+  // string comment = 3;
+  if (!this->_internal_comment().empty()) {
+    const std::string& _s = this->_internal_comment();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.MakeTableReq.Field.comment");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  // string default_value = 4;
+  if (!this->_internal_default_value().empty()) {
+    const std::string& _s = this->_internal_default_value();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.MakeTableReq.Field.default_value");
+    target = stream->WriteStringMaybeAliased(4, _s, target);
+  }
+
+  // bool not_null = 5;
+  if (this->_internal_not_null() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        5, this->_internal_not_null(), target);
+  }
+
+  // bool auto_increment = 6;
+  if (this->_internal_auto_increment() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        6, this->_internal_auto_increment(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.MakeTableReq.Field)
+  return target;
+}
+
+::size_t MakeTableReq_Field::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.MakeTableReq.Field)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
+  }
+
+  // string type = 2;
+  if (!this->_internal_type().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_type());
+  }
+
+  // string comment = 3;
+  if (!this->_internal_comment().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_comment());
+  }
+
+  // string default_value = 4;
+  if (!this->_internal_default_value().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_default_value());
+  }
+
+  // bool not_null = 5;
+  if (this->_internal_not_null() != 0) {
+    total_size += 2;
+  }
+
+  // bool auto_increment = 6;
+  if (this->_internal_auto_increment() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData MakeTableReq_Field::_class_data_ = {
+    MakeTableReq_Field::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* MakeTableReq_Field::GetClassData() const {
+  return &_class_data_;
+}
+
+void MakeTableReq_Field::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<MakeTableReq_Field*>(&to_msg);
+  auto& from = static_cast<const MakeTableReq_Field&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.MakeTableReq.Field)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  if (!from._internal_type().empty()) {
+    _this->_internal_set_type(from._internal_type());
+  }
+  if (!from._internal_comment().empty()) {
+    _this->_internal_set_comment(from._internal_comment());
+  }
+  if (!from._internal_default_value().empty()) {
+    _this->_internal_set_default_value(from._internal_default_value());
+  }
+  if (from._internal_not_null() != 0) {
+    _this->_internal_set_not_null(from._internal_not_null());
+  }
+  if (from._internal_auto_increment() != 0) {
+    _this->_internal_set_auto_increment(from._internal_auto_increment());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MakeTableReq_Field::CopyFrom(const MakeTableReq_Field& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.MakeTableReq.Field)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool MakeTableReq_Field::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* MakeTableReq_Field::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void MakeTableReq_Field::InternalSwap(MakeTableReq_Field* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.type_, &other->_impl_.type_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.comment_, &other->_impl_.comment_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.default_value_, &other->_impl_.default_value_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.auto_increment_)
+      + sizeof(MakeTableReq_Field::_impl_.auto_increment_)
+      - PROTOBUF_FIELD_OFFSET(MakeTableReq_Field, _impl_.not_null_)>(
+          reinterpret_cast<char*>(&_impl_.not_null_),
+          reinterpret_cast<char*>(&other->_impl_.not_null_));
+}
+
+::google::protobuf::Metadata MakeTableReq_Field::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fdb_2eproto_getter, &descriptor_table_server_5fdb_2eproto_once,
+      file_level_metadata_server_5fdb_2eproto[15]);
+}
+// ===================================================================
+
+class MakeTableReq_Constraint::_Internal {
+ public:
+};
+
+MakeTableReq_Constraint::MakeTableReq_Constraint(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.MakeTableReq.Constraint)
+}
+inline PROTOBUF_NDEBUG_INLINE MakeTableReq_Constraint::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : fields_{visibility, arena, from.fields_},
+        type_(arena, from.type_),
+        name_(arena, from.name_),
+        _cached_size_{0} {}
+
+MakeTableReq_Constraint::MakeTableReq_Constraint(
+    ::google::protobuf::Arena* arena,
+    const MakeTableReq_Constraint& from)
+    : ::google::protobuf::Message(arena) {
+  MakeTableReq_Constraint* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.MakeTableReq.Constraint)
+}
+inline PROTOBUF_NDEBUG_INLINE MakeTableReq_Constraint::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : fields_{visibility, arena},
+        type_(arena),
+        name_(arena),
+        _cached_size_{0} {}
+
+inline void MakeTableReq_Constraint::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+MakeTableReq_Constraint::~MakeTableReq_Constraint() {
+  // @@protoc_insertion_point(destructor:rpc_server.MakeTableReq.Constraint)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void MakeTableReq_Constraint::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.type_.Destroy();
+  _impl_.name_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void MakeTableReq_Constraint::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.MakeTableReq.Constraint)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.fields_.Clear();
+  _impl_.type_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* MakeTableReq_Constraint::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 57, 2> MakeTableReq_Constraint::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_MakeTableReq_Constraint_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // string type = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq_Constraint, _impl_.type_)}},
+    // repeated string fields = 2;
+    {::_pbi::TcParser::FastUR1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq_Constraint, _impl_.fields_)}},
+    // string name = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq_Constraint, _impl_.name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string type = 1;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq_Constraint, _impl_.type_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated string fields = 2;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq_Constraint, _impl_.fields_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    // string name = 3;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq_Constraint, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\42\4\6\4\0\0\0\0"
+    "rpc_server.MakeTableReq.Constraint"
+    "type"
+    "fields"
+    "name"
+  }},
+};
+
+::uint8_t* MakeTableReq_Constraint::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.MakeTableReq.Constraint)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // string type = 1;
+  if (!this->_internal_type().empty()) {
+    const std::string& _s = this->_internal_type();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.MakeTableReq.Constraint.type");
+    target = stream->WriteStringMaybeAliased(1, _s, target);
+  }
+
+  // repeated string fields = 2;
+  for (int i = 0, n = this->_internal_fields_size(); i < n; ++i) {
+    const auto& s = this->_internal_fields().Get(i);
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.MakeTableReq.Constraint.fields");
+    target = stream->WriteString(2, s, target);
+  }
+
+  // string name = 3;
+  if (!this->_internal_name().empty()) {
+    const std::string& _s = this->_internal_name();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.MakeTableReq.Constraint.name");
+    target = stream->WriteStringMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.MakeTableReq.Constraint)
+  return target;
+}
+
+::size_t MakeTableReq_Constraint::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.MakeTableReq.Constraint)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string fields = 2;
+  total_size += 1 * ::google::protobuf::internal::FromIntSize(_internal_fields().size());
+  for (int i = 0, n = _internal_fields().size(); i < n; ++i) {
+    total_size += ::google::protobuf::internal::WireFormatLite::StringSize(
+        _internal_fields().Get(i));
+  }
+  // string type = 1;
+  if (!this->_internal_type().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_type());
+  }
+
+  // string name = 3;
+  if (!this->_internal_name().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_name());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData MakeTableReq_Constraint::_class_data_ = {
+    MakeTableReq_Constraint::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* MakeTableReq_Constraint::GetClassData() const {
+  return &_class_data_;
+}
+
+void MakeTableReq_Constraint::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<MakeTableReq_Constraint*>(&to_msg);
+  auto& from = static_cast<const MakeTableReq_Constraint&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.MakeTableReq.Constraint)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_fields()->MergeFrom(from._internal_fields());
+  if (!from._internal_type().empty()) {
+    _this->_internal_set_type(from._internal_type());
+  }
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MakeTableReq_Constraint::CopyFrom(const MakeTableReq_Constraint& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.MakeTableReq.Constraint)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool MakeTableReq_Constraint::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* MakeTableReq_Constraint::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void MakeTableReq_Constraint::InternalSwap(MakeTableReq_Constraint* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.fields_.InternalSwap(&other->_impl_.fields_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.type_, &other->_impl_.type_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+}
+
+::google::protobuf::Metadata MakeTableReq_Constraint::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fdb_2eproto_getter, &descriptor_table_server_5fdb_2eproto_once,
+      file_level_metadata_server_5fdb_2eproto[16]);
+}
+// ===================================================================
+
+class MakeTableReq::_Internal {
+ public:
+};
+
+MakeTableReq::MakeTableReq(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.MakeTableReq)
+}
+inline PROTOBUF_NDEBUG_INLINE MakeTableReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : fields_{visibility, arena, from.fields_},
+        constraints_{visibility, arena, from.constraints_},
+        database_(arena, from.database_),
+        table_(arena, from.table_),
+        engine_(arena, from.engine_),
+        charset_(arena, from.charset_),
+        collation_(arena, from.collation_),
+        table_comment_(arena, from.table_comment_),
+        _cached_size_{0} {}
+
+MakeTableReq::MakeTableReq(
+    ::google::protobuf::Arena* arena,
+    const MakeTableReq& from)
+    : ::google::protobuf::Message(arena) {
+  MakeTableReq* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.MakeTableReq)
+}
+inline PROTOBUF_NDEBUG_INLINE MakeTableReq::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : fields_{visibility, arena},
+        constraints_{visibility, arena},
+        database_(arena),
+        table_(arena),
+        engine_(arena),
+        charset_(arena),
+        collation_(arena),
+        table_comment_(arena),
+        _cached_size_{0} {}
+
+inline void MakeTableReq::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+MakeTableReq::~MakeTableReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.MakeTableReq)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void MakeTableReq::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.database_.Destroy();
+  _impl_.table_.Destroy();
+  _impl_.engine_.Destroy();
+  _impl_.charset_.Destroy();
+  _impl_.collation_.Destroy();
+  _impl_.table_comment_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void MakeTableReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.MakeTableReq)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.fields_.Clear();
+  _impl_.constraints_.Clear();
+  _impl_.database_.ClearToEmpty();
+  _impl_.table_.ClearToEmpty();
+  _impl_.engine_.ClearToEmpty();
+  _impl_.charset_.ClearToEmpty();
+  _impl_.collation_.ClearToEmpty();
+  _impl_.table_comment_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* MakeTableReq::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<3, 8, 2, 75, 2> MakeTableReq::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    8, 56,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967040,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    8,  // num_field_entries
+    2,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    &_MakeTableReq_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    // string table_comment = 8;
+    {::_pbi::TcParser::FastUS1,
+     {66, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.table_comment_)}},
+    // bytes database = 1;
+    {::_pbi::TcParser::FastBS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.database_)}},
+    // bytes table = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.table_)}},
+    // repeated .rpc_server.MakeTableReq.Field fields = 3;
+    {::_pbi::TcParser::FastMtR1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.fields_)}},
+    // repeated .rpc_server.MakeTableReq.Constraint constraints = 4;
+    {::_pbi::TcParser::FastMtR1,
+     {34, 63, 1, PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.constraints_)}},
+    // string engine = 5;
+    {::_pbi::TcParser::FastUS1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.engine_)}},
+    // string charset = 6;
+    {::_pbi::TcParser::FastUS1,
+     {50, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.charset_)}},
+    // string collation = 7;
+    {::_pbi::TcParser::FastUS1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.collation_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bytes database = 1;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.database_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes table = 2;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.table_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // repeated .rpc_server.MakeTableReq.Field fields = 3;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.fields_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .rpc_server.MakeTableReq.Constraint constraints = 4;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.constraints_), 0, 1,
+    (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string engine = 5;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.engine_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string charset = 6;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.charset_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string collation = 7;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.collation_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string table_comment = 8;
+    {PROTOBUF_FIELD_OFFSET(MakeTableReq, _impl_.table_comment_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::rpc_server::MakeTableReq_Field>()},
+    {::_pbi::TcParser::GetTable<::rpc_server::MakeTableReq_Constraint>()},
+  }}, {{
+    "\27\0\0\0\0\6\7\11\15\0\0\0\0\0\0\0"
+    "rpc_server.MakeTableReq"
+    "engine"
+    "charset"
+    "collation"
+    "table_comment"
+  }},
+};
+
+::uint8_t* MakeTableReq::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.MakeTableReq)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bytes database = 1;
+  if (!this->_internal_database().empty()) {
+    const std::string& _s = this->_internal_database();
+    target = stream->WriteBytesMaybeAliased(1, _s, target);
+  }
+
+  // bytes table = 2;
+  if (!this->_internal_table().empty()) {
+    const std::string& _s = this->_internal_table();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  // repeated .rpc_server.MakeTableReq.Field fields = 3;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_fields_size()); i < n; i++) {
+    const auto& repfield = this->_internal_fields().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // repeated .rpc_server.MakeTableReq.Constraint constraints = 4;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_constraints_size()); i < n; i++) {
+    const auto& repfield = this->_internal_constraints().Get(i);
+    target = ::google::protobuf::internal::WireFormatLite::
+        InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // string engine = 5;
+  if (!this->_internal_engine().empty()) {
+    const std::string& _s = this->_internal_engine();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.MakeTableReq.engine");
+    target = stream->WriteStringMaybeAliased(5, _s, target);
+  }
+
+  // string charset = 6;
+  if (!this->_internal_charset().empty()) {
+    const std::string& _s = this->_internal_charset();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.MakeTableReq.charset");
+    target = stream->WriteStringMaybeAliased(6, _s, target);
+  }
+
+  // string collation = 7;
+  if (!this->_internal_collation().empty()) {
+    const std::string& _s = this->_internal_collation();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.MakeTableReq.collation");
+    target = stream->WriteStringMaybeAliased(7, _s, target);
+  }
+
+  // string table_comment = 8;
+  if (!this->_internal_table_comment().empty()) {
+    const std::string& _s = this->_internal_table_comment();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "rpc_server.MakeTableReq.table_comment");
+    target = stream->WriteStringMaybeAliased(8, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.MakeTableReq)
+  return target;
+}
+
+::size_t MakeTableReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.MakeTableReq)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .rpc_server.MakeTableReq.Field fields = 3;
+  total_size += 1UL * this->_internal_fields_size();
+  for (const auto& msg : this->_internal_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  // repeated .rpc_server.MakeTableReq.Constraint constraints = 4;
+  total_size += 1UL * this->_internal_constraints_size();
+  for (const auto& msg : this->_internal_constraints()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+  }
+  // bytes database = 1;
+  if (!this->_internal_database().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_database());
+  }
+
+  // bytes table = 2;
+  if (!this->_internal_table().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_table());
+  }
+
+  // string engine = 5;
+  if (!this->_internal_engine().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_engine());
+  }
+
+  // string charset = 6;
+  if (!this->_internal_charset().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_charset());
+  }
+
+  // string collation = 7;
+  if (!this->_internal_collation().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_collation());
+  }
+
+  // string table_comment = 8;
+  if (!this->_internal_table_comment().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                    this->_internal_table_comment());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData MakeTableReq::_class_data_ = {
+    MakeTableReq::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* MakeTableReq::GetClassData() const {
+  return &_class_data_;
+}
+
+void MakeTableReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<MakeTableReq*>(&to_msg);
+  auto& from = static_cast<const MakeTableReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.MakeTableReq)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  _this->_internal_mutable_fields()->MergeFrom(
+      from._internal_fields());
+  _this->_internal_mutable_constraints()->MergeFrom(
+      from._internal_constraints());
+  if (!from._internal_database().empty()) {
+    _this->_internal_set_database(from._internal_database());
+  }
+  if (!from._internal_table().empty()) {
+    _this->_internal_set_table(from._internal_table());
+  }
+  if (!from._internal_engine().empty()) {
+    _this->_internal_set_engine(from._internal_engine());
+  }
+  if (!from._internal_charset().empty()) {
+    _this->_internal_set_charset(from._internal_charset());
+  }
+  if (!from._internal_collation().empty()) {
+    _this->_internal_set_collation(from._internal_collation());
+  }
+  if (!from._internal_table_comment().empty()) {
+    _this->_internal_set_table_comment(from._internal_table_comment());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MakeTableReq::CopyFrom(const MakeTableReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.MakeTableReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool MakeTableReq::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* MakeTableReq::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void MakeTableReq::InternalSwap(MakeTableReq* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.fields_.InternalSwap(&other->_impl_.fields_);
+  _impl_.constraints_.InternalSwap(&other->_impl_.constraints_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.database_, &other->_impl_.database_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.table_, &other->_impl_.table_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.engine_, &other->_impl_.engine_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.charset_, &other->_impl_.charset_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.collation_, &other->_impl_.collation_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.table_comment_, &other->_impl_.table_comment_, arena);
+}
+
+::google::protobuf::Metadata MakeTableReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fdb_2eproto_getter, &descriptor_table_server_5fdb_2eproto_once,
+      file_level_metadata_server_5fdb_2eproto[17]);
+}
+// ===================================================================
+
+class MakeTableRes::_Internal {
+ public:
+};
+
+MakeTableRes::MakeTableRes(::google::protobuf::Arena* arena)
+    : ::google::protobuf::Message(arena) {
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:rpc_server.MakeTableRes)
+}
+inline PROTOBUF_NDEBUG_INLINE MakeTableRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from)
+      : message_(arena, from.message_),
+        table_(arena, from.table_),
+        _cached_size_{0} {}
+
+MakeTableRes::MakeTableRes(
+    ::google::protobuf::Arena* arena,
+    const MakeTableRes& from)
+    : ::google::protobuf::Message(arena) {
+  MakeTableRes* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
+  _impl_.success_ = from._impl_.success_;
+
+  // @@protoc_insertion_point(copy_constructor:rpc_server.MakeTableRes)
+}
+inline PROTOBUF_NDEBUG_INLINE MakeTableRes::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        table_(arena),
+        _cached_size_{0} {}
+
+inline void MakeTableRes::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.success_ = {};
+}
+MakeTableRes::~MakeTableRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.MakeTableRes)
+  _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  SharedDtor();
+}
+inline void MakeTableRes::SharedDtor() {
+  ABSL_DCHECK(GetArena() == nullptr);
+  _impl_.message_.Destroy();
+  _impl_.table_.Destroy();
+  _impl_.~Impl_();
+}
+
+PROTOBUF_NOINLINE void MakeTableRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.MakeTableRes)
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _impl_.table_.ClearToEmpty();
+  _impl_.success_ = false;
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+const char* MakeTableRes::_InternalParse(
+    const char* ptr, ::_pbi::ParseContext* ctx) {
+  ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
+  return ptr;
+}
+
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 0, 2> MakeTableRes::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    &_MakeTableRes_default_instance_._instance,
+    ::_pbi::TcParser::GenericFallback,  // fallback
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // bool success = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(MakeTableRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableRes, _impl_.success_)}},
+    // bytes message = 2;
+    {::_pbi::TcParser::FastBS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableRes, _impl_.message_)}},
+    // bytes table = 3;
+    {::_pbi::TcParser::FastBS1,
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(MakeTableRes, _impl_.table_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // bool success = 1;
+    {PROTOBUF_FIELD_OFFSET(MakeTableRes, _impl_.success_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBool)},
+    // bytes message = 2;
+    {PROTOBUF_FIELD_OFFSET(MakeTableRes, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // bytes table = 3;
+    {PROTOBUF_FIELD_OFFSET(MakeTableRes, _impl_.table_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+  }},
+};
+
+::uint8_t* MakeTableRes::_InternalSerialize(
+    ::uint8_t* target,
+    ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.MakeTableRes)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(
+        1, this->_internal_success(), target);
+  }
+
+  // bytes message = 2;
+  if (!this->_internal_message().empty()) {
+    const std::string& _s = this->_internal_message();
+    target = stream->WriteBytesMaybeAliased(2, _s, target);
+  }
+
+  // bytes table = 3;
+  if (!this->_internal_table().empty()) {
+    const std::string& _s = this->_internal_table();
+    target = stream->WriteBytesMaybeAliased(3, _s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.MakeTableRes)
+  return target;
+}
+
+::size_t MakeTableRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.MakeTableRes)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes message = 2;
+  if (!this->_internal_message().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_message());
+  }
+
+  // bytes table = 3;
+  if (!this->_internal_table().empty()) {
+    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                    this->_internal_table());
+  }
+
+  // bool success = 1;
+  if (this->_internal_success() != 0) {
+    total_size += 2;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::google::protobuf::Message::ClassData MakeTableRes::_class_data_ = {
+    MakeTableRes::MergeImpl,
+    nullptr,  // OnDemandRegisterArenaDtor
+};
+const ::google::protobuf::Message::ClassData* MakeTableRes::GetClassData() const {
+  return &_class_data_;
+}
+
+void MakeTableRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<MakeTableRes*>(&to_msg);
+  auto& from = static_cast<const MakeTableRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.MakeTableRes)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  if (!from._internal_table().empty()) {
+    _this->_internal_set_table(from._internal_table());
+  }
+  if (from._internal_success() != 0) {
+    _this->_internal_set_success(from._internal_success());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MakeTableRes::CopyFrom(const MakeTableRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.MakeTableRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+PROTOBUF_NOINLINE bool MakeTableRes::IsInitialized() const {
+  return true;
+}
+
+::_pbi::CachedSize* MakeTableRes::AccessCachedSize() const {
+  return &_impl_._cached_size_;
+}
+void MakeTableRes::InternalSwap(MakeTableRes* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.table_, &other->_impl_.table_, arena);
+        swap(_impl_.success_, other->_impl_.success_);
+}
+
+::google::protobuf::Metadata MakeTableRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fdb_2eproto_getter, &descriptor_table_server_5fdb_2eproto_once,
+      file_level_metadata_server_5fdb_2eproto[18]);
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace rpc_server

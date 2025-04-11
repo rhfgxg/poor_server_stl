@@ -66,7 +66,15 @@ class DBServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteRes>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::rpc_server::DeleteReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteRes>>(PrepareAsyncDeleteRaw(context, request, cq));
     }
-    // 删除数据服务
+    // 删除数据服务(一般使用更新数据标记代替删除)
+    virtual ::grpc::Status Make_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::rpc_server::MakeTableRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MakeTableRes>> AsyncMake_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MakeTableRes>>(AsyncMake_tableRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MakeTableRes>> PrepareAsyncMake_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MakeTableRes>>(PrepareAsyncMake_tableRaw(context, request, cq));
+    }
+    // 新建表服务
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -81,7 +89,10 @@ class DBServer final {
       // 更新数据服务
       virtual void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteReq* request, ::rpc_server::DeleteRes* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteReq* request, ::rpc_server::DeleteRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 删除数据服务
+      // 删除数据服务(一般使用更新数据标记代替删除)
+      virtual void Make_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq* request, ::rpc_server::MakeTableRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Make_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq* request, ::rpc_server::MakeTableRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 新建表服务
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -95,6 +106,8 @@ class DBServer final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdateRes>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::rpc_server::UpdateReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteRes>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteReq& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::DeleteRes>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MakeTableRes>* AsyncMake_tableRaw(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MakeTableRes>* PrepareAsyncMake_tableRaw(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -127,6 +140,13 @@ class DBServer final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteRes>> PrepareAsyncDelete(::grpc::ClientContext* context, const ::rpc_server::DeleteReq& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteRes>>(PrepareAsyncDeleteRaw(context, request, cq));
     }
+    ::grpc::Status Make_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::rpc_server::MakeTableRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::MakeTableRes>> AsyncMake_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::MakeTableRes>>(AsyncMake_tableRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::MakeTableRes>> PrepareAsyncMake_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::MakeTableRes>>(PrepareAsyncMake_tableRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -138,6 +158,8 @@ class DBServer final {
       void Update(::grpc::ClientContext* context, const ::rpc_server::UpdateReq* request, ::rpc_server::UpdateRes* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteReq* request, ::rpc_server::DeleteRes* response, std::function<void(::grpc::Status)>) override;
       void Delete(::grpc::ClientContext* context, const ::rpc_server::DeleteReq* request, ::rpc_server::DeleteRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Make_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq* request, ::rpc_server::MakeTableRes* response, std::function<void(::grpc::Status)>) override;
+      void Make_table(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq* request, ::rpc_server::MakeTableRes* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -157,10 +179,13 @@ class DBServer final {
     ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdateRes>* PrepareAsyncUpdateRaw(::grpc::ClientContext* context, const ::rpc_server::UpdateReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteRes>* AsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteReq& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::rpc_server::DeleteRes>* PrepareAsyncDeleteRaw(::grpc::ClientContext* context, const ::rpc_server::DeleteReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::MakeTableRes>* AsyncMake_tableRaw(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::MakeTableRes>* PrepareAsyncMake_tableRaw(::grpc::ClientContext* context, const ::rpc_server::MakeTableReq& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Create_;
     const ::grpc::internal::RpcMethod rpcmethod_Read_;
     const ::grpc::internal::RpcMethod rpcmethod_Update_;
     const ::grpc::internal::RpcMethod rpcmethod_Delete_;
+    const ::grpc::internal::RpcMethod rpcmethod_Make_table_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -175,7 +200,9 @@ class DBServer final {
     virtual ::grpc::Status Update(::grpc::ServerContext* context, const ::rpc_server::UpdateReq* request, ::rpc_server::UpdateRes* response);
     // 更新数据服务
     virtual ::grpc::Status Delete(::grpc::ServerContext* context, const ::rpc_server::DeleteReq* request, ::rpc_server::DeleteRes* response);
-    // 删除数据服务
+    // 删除数据服务(一般使用更新数据标记代替删除)
+    virtual ::grpc::Status Make_table(::grpc::ServerContext* context, const ::rpc_server::MakeTableReq* request, ::rpc_server::MakeTableRes* response);
+    // 新建表服务
   };
   template <class BaseClass>
   class WithAsyncMethod_Create : public BaseClass {
@@ -257,7 +284,27 @@ class DBServer final {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Create<WithAsyncMethod_Read<WithAsyncMethod_Update<WithAsyncMethod_Delete<Service > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Make_table : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Make_table() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_Make_table() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Make_table(::grpc::ServerContext* /*context*/, const ::rpc_server::MakeTableReq* /*request*/, ::rpc_server::MakeTableRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestMake_table(::grpc::ServerContext* context, ::rpc_server::MakeTableReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::MakeTableRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Create<WithAsyncMethod_Read<WithAsyncMethod_Update<WithAsyncMethod_Delete<WithAsyncMethod_Make_table<Service > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Create : public BaseClass {
    private:
@@ -366,7 +413,34 @@ class DBServer final {
     virtual ::grpc::ServerUnaryReactor* Delete(
       ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::DeleteReq* /*request*/, ::rpc_server::DeleteRes* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Create<WithCallbackMethod_Read<WithCallbackMethod_Update<WithCallbackMethod_Delete<Service > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Make_table : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Make_table() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::MakeTableReq, ::rpc_server::MakeTableRes>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::MakeTableReq* request, ::rpc_server::MakeTableRes* response) { return this->Make_table(context, request, response); }));}
+    void SetMessageAllocatorFor_Make_table(
+        ::grpc::MessageAllocator< ::rpc_server::MakeTableReq, ::rpc_server::MakeTableRes>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::MakeTableReq, ::rpc_server::MakeTableRes>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Make_table() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Make_table(::grpc::ServerContext* /*context*/, const ::rpc_server::MakeTableReq* /*request*/, ::rpc_server::MakeTableRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Make_table(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::MakeTableReq* /*request*/, ::rpc_server::MakeTableRes* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Create<WithCallbackMethod_Read<WithCallbackMethod_Update<WithCallbackMethod_Delete<WithCallbackMethod_Make_table<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Create : public BaseClass {
@@ -432,6 +506,23 @@ class DBServer final {
     }
     // disable synchronous version of this method
     ::grpc::Status Delete(::grpc::ServerContext* /*context*/, const ::rpc_server::DeleteReq* /*request*/, ::rpc_server::DeleteRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Make_table : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Make_table() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_Make_table() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Make_table(::grpc::ServerContext* /*context*/, const ::rpc_server::MakeTableReq* /*request*/, ::rpc_server::MakeTableRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -514,6 +605,26 @@ class DBServer final {
     }
     void RequestDelete(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Make_table : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Make_table() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_Make_table() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Make_table(::grpc::ServerContext* /*context*/, const ::rpc_server::MakeTableReq* /*request*/, ::rpc_server::MakeTableRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestMake_table(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -602,6 +713,28 @@ class DBServer final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Delete(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Make_table : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Make_table() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Make_table(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Make_table() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Make_table(::grpc::ServerContext* /*context*/, const ::rpc_server::MakeTableReq* /*request*/, ::rpc_server::MakeTableRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Make_table(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -712,9 +845,36 @@ class DBServer final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedDelete(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::DeleteReq,::rpc_server::DeleteRes>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Read<WithStreamedUnaryMethod_Update<WithStreamedUnaryMethod_Delete<Service > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Make_table : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Make_table() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::rpc_server::MakeTableReq, ::rpc_server::MakeTableRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::rpc_server::MakeTableReq, ::rpc_server::MakeTableRes>* streamer) {
+                       return this->StreamedMake_table(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Make_table() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Make_table(::grpc::ServerContext* /*context*/, const ::rpc_server::MakeTableReq* /*request*/, ::rpc_server::MakeTableRes* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedMake_table(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::MakeTableReq,::rpc_server::MakeTableRes>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Read<WithStreamedUnaryMethod_Update<WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_Make_table<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Read<WithStreamedUnaryMethod_Update<WithStreamedUnaryMethod_Delete<Service > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Read<WithStreamedUnaryMethod_Update<WithStreamedUnaryMethod_Delete<WithStreamedUnaryMethod_Make_table<Service > > > > > StreamedService;
 };
 
 }  // namespace rpc_server

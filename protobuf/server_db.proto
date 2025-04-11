@@ -6,7 +6,8 @@ service DBServer
     rpc Create (CreateReq) returns (CreateRes);    // 增加数据服务
     rpc Read (ReadReq) returns (ReadRes);  // 查询数据服务
     rpc Update (UpdateReq) returns (UpdateRes);    // 更新数据服务
-    rpc Delete (DeleteReq) returns (DeleteRes);    // 删除数据服务
+    rpc Delete (DeleteReq) returns (DeleteRes);    // 删除数据服务(一般使用更新数据标记代替删除)
+    rpc Make_table (MakeTableReq) returns (MakeTableRes);    // 新建表服务
 }
 
 // 增加数据服务请求
@@ -70,4 +71,40 @@ message DeleteRes
 {
     bool success = 1;
     bytes message = 2;
+}
+
+// 新建表服务
+message MakeTableReq {
+    bytes database = 1; // 数据库名
+    bytes table = 2;    // 表名
+
+    // 表字段定义
+    message Field {
+        string name = 1;          // 字段名
+        string type = 2;          // 字段类型（如 int, varchar(255)）
+        string comment = 3;       // 字段注释
+        string default_value = 4; // 默认值
+        bool not_null = 5;        // 是否不允许为空
+        bool auto_increment = 6;  // 是否自增
+    }
+    repeated Field fields = 3; // 字段列表
+
+    // 表级约束
+    message Constraint {
+        string type = 1;          // 约束类型（如 PRIMARY_KEY, UNIQUE, FOREIGN_KEY）
+        repeated string fields = 2; // 约束涉及的字段
+        string name = 3;          // 约束名
+    }
+    repeated Constraint constraints = 4; // 约束列表
+
+    string engine = 5;           // 存储引擎（如 InnoDB）
+    string charset = 6;          // 字符集（如 utf8mb4）
+    string collation = 7;        // 排序规则（如 utf8mb4_0900_ai_ci）
+    string table_comment = 8;    // 表注释
+}
+message MakeTableRes
+{
+    bool success = 1;
+    bytes message = 2;
+    bytes table = 3;  // 新建表的名称
 }
