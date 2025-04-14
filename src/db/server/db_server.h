@@ -39,9 +39,10 @@ public:
     grpc::Status Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res) override;
     // 新建表
     grpc::Status Make_table(grpc::ServerContext* context, const rpc_server::MakeTableReq* req, rpc_server::MakeTableRes* res) override;
+
 private:
     // 初始化
-    std::string Read_db_config(lua_State* L, const std::string& file_url); // 读取 数据库配置配置文件，获得数据库连接字符串
+    std::string Read_db_config(lua_State* L_, const std::string& file_url_, const std::string& db_name_); // 读取 数据库配置配置文件，获得数据库连接字符串
     void register_server(); // 注册服务器
     void unregister_server(); // 注销服务器
 
@@ -57,6 +58,10 @@ private:
 
     // 定时任务：
     void Send_heartbeat();  // 发送心跳包
+
+    // 工具函数
+    std::unique_ptr<mysqlx::Session> Git_connection(const std::string& db_name); // 使用数据库名 获取 指定数据库连接池 中连接
+    void Release_connection(const std::string& db_name, std::unique_ptr<mysqlx::Session> session); // 使用数据库名 释放数据库连接
 
 private:
     std::string server_address; // 服务器地址

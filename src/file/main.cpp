@@ -46,41 +46,49 @@ void RunServer(LoggerManager& logger_manager)
 // 读取服务器配置文件，初始化服务器地址和端口
 void Read_server_config(std::string& address, std::string& port)
 {
-    lua_State* L = luaL_newstate();  // 创建lua虚拟机
-    luaL_openlibs(L);   // 打开lua标准库
-
-    std::string file_url = "config/cfg_file_server.lua";  // 配置文件路径
-
-    if(luaL_dofile(L, file_url.c_str()) != LUA_OK)
+    try
     {
-        lua_close(L);
-        throw std::runtime_error("Failed to load config file");
-    }
+        lua_State* L = luaL_newstate();  // 创建lua虚拟机
+        luaL_openlibs(L);   // 打开lua标准库
 
-    lua_getglobal(L, "file_server");
-    if(!lua_istable(L, -1))
+        std::string file_url = "config/cfg_file_server.lua";  // 配置文件路径
+
+        if(luaL_dofile(L, file_url.c_str()) != LUA_OK)
+        {
+            lua_close(L);
+            throw std::runtime_error("Failed to load config file");
+        }
+
+        // 获取返回值（配置表）
+        if(!lua_istable(L, -1))
+        {
+            lua_close(L);
+            throw std::runtime_error("Invalid config format");
+        }
+
+        lua_getfield(L, -1, "host");
+        if(!lua_isstring(L, -1))
+        {
+            lua_close(L);
+            throw std::runtime_error("Invalid host format");
+        }
+        address = lua_tostring(L, -1);
+        lua_pop(L, 1);
+
+        lua_getfield(L, -1, "port");
+        if(!lua_isinteger(L, -1))
+        {
+            lua_close(L);
+            throw std::runtime_error("Invalid port format");
+        }
+        port = std::to_string(lua_tointeger(L, -1));
+        lua_pop(L, 1);
+
+        lua_close(L);   // 关闭lua虚拟机
+    }
+    catch(const std::exception& e)
     {
-        lua_close(L);
-        throw std::runtime_error("Invalid config format");
+        std::cerr << "Error: " << e.what() << std::endl;
+        exit(EXIT_FAILURE);
     }
-
-    lua_getfield(L, -1, "host");
-    if(!lua_isstring(L, -1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid host format");
-    }
-    address = lua_tostring(L, -1);
-    lua_pop(L, 1);
-
-    lua_getfield(L, -1, "port");
-    if(!lua_isinteger(L, -1))
-    {
-        lua_close(L);
-        throw std::runtime_error("Invalid port format");
-    }
-    port = std::to_string(lua_tointeger(L, -1));
-    lua_pop(L, 1);
-
-    lua_close(L);   // 关闭lua虚拟机
 }

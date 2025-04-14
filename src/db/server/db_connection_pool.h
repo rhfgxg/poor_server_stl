@@ -12,8 +12,8 @@ public:
     DBConnectionPool(const std::string& uri, size_t pool_size);
     ~DBConnectionPool();
 
-    mysqlx::Session get_connection();   // 获取数据库连接
-    void release_connection(mysqlx::Session session);   // 释放数据库连接
+    std::unique_ptr<mysqlx::Session> Get_connection();   // 获取数据库连接
+    void Release_connection(std::unique_ptr<mysqlx::Session> session);   // 释放数据库连接
 
 private:
     std::string uri;    // 数据库连接地址

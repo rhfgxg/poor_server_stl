@@ -10,9 +10,15 @@ DBServerImpl::DBServerImpl(LoggerManager& logger_manager_, const std::string add
     lua_State* L = luaL_newstate();  // 创建lua虚拟机
     luaL_openlibs(L);   // 打开lua标准库
 
-    // 读取配置文件并初始化数据库连接池
-    std::string db_uri = Read_db_config(L, "config/cfg_db.lua");
-    poor_users_pool = std::make_unique<DBConnectionPool>(db_uri + "poor_users", 10);   // 初始化数据库连接池
+    // 读取配置文件并初始化所有数据库连接池
+    std::string db_uri = Read_db_config(L, "config/cfg_db.lua", "poor_users");
+    poor_users_pool = std::make_unique<DBConnectionPool>(db_uri, 10);   // 用户数据库连接池
+
+    db_uri = Read_db_config(L, "config/cfg_db.lua", "poor_file_hub");
+    poor_file_pool = std::make_unique<DBConnectionPool>(db_uri, 10);   // 网盘数据库连接池
+
+    db_uri = Read_db_config(L, "config/cfg_db.lua", "hearthstone");
+    hearthstone_pool = std::make_unique<DBConnectionPool>(db_uri, 10);   // 炉石数据库连接池
 
     lua_close(L);   // 关闭lua虚拟机
 
@@ -257,9 +263,6 @@ grpc::Status DBServerImpl::Make_table(grpc::ServerContext* context, const rpc_se
 // 添加
 void DBServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_server::CreateRes* res)
 {
-    // 获取数据库连接
-    mysqlx::Session session = this->poor_users_pool->get_connection();
-
     try
     {
         // 获取请求参数
@@ -267,8 +270,8 @@ void DBServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_server::C
         std::string tab_name = req->table();
         const auto& data = req->data();
 
-        // 选择数据库
-        mysqlx::Table table = session.getSchema(db_name).getTable(tab_name);
+        std::unique_ptr<mysqlx::Session> session = this->Git_connection(db_name);   // 通过数据库名获取数据库连接
+        mysqlx::Table table = session->getSchema(db_name).getTable(tab_name);   // 选择表
 
         // 构建插入语句
         std::vector<std::string> columns;
@@ -286,6 +289,9 @@ void DBServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_server::C
         res->set_success(true);
         res->set_message("Create successful");
         this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->info("DB create successful");
+
+        // 释放数据库连接
+        this->Release_connection(db_name, std::move(session));
     }
     catch(const std::exception& e)
     {
@@ -294,17 +300,11 @@ void DBServerImpl::Handle_create(const rpc_server::CreateReq* req, rpc_server::C
         res->set_message("Create failed: " + std::string(e.what()));
         this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("DB create failed: {}", e.what());
     }
-
-    // 释放数据库连接
-    this->poor_users_pool->release_connection(std::move(session));
 }
 
 // 查询
 void DBServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadRes* res)
 {
-    // 获取数据库连接
-    mysqlx::Session session = poor_users_pool->get_connection();
-
     try
     {
         // 获取请求的 query 参数
@@ -312,8 +312,8 @@ void DBServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadR
         const std::string& tab_name = req->table();
         const auto& query = req->query();
 
-        // 选择数据库
-        mysqlx::Table table = session.getSchema(db_name).getTable(tab_name);
+        std::unique_ptr<mysqlx::Session> session = this->Git_connection(db_name);   // 通过数据库名获取数据库连接
+        mysqlx::Table table = session->getSchema(db_name).getTable(tab_name);   // 选择表
 
         // 构建查询条件
         std::string condition;
@@ -375,6 +375,9 @@ void DBServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadR
         res->set_success(true);
         res->set_message("Query successful");
         this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->info("DB read successful");
+
+        // 释放数据库连接
+        this->Release_connection(db_name, std::move(session));
     }
     catch(const std::exception& e)
     {
@@ -382,17 +385,11 @@ void DBServerImpl::Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadR
         res->set_message("Query failed: " + std::string(e.what()));
         this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("DB read failed: {}", e.what());
     }
-
-    // 释放数据库连接
-    this->poor_users_pool->release_connection(std::move(session));
 }
 
 // 更新
 void DBServerImpl::Handle_update(const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res)
 {
-    // 获取数据库连接
-    mysqlx::Session session = this->poor_users_pool->get_connection();
-
     try
     {
         // 获取请求参数
@@ -401,8 +398,9 @@ void DBServerImpl::Handle_update(const rpc_server::UpdateReq* req, rpc_server::U
         const auto& query = req->query();
         const auto& data = req->data();
 
-        // 选择数据库
-        mysqlx::Table table = session.getSchema(db_name).getTable(tab_name);
+        std::unique_ptr<mysqlx::Session> session = this->Git_connection(db_name);   // 通过数据库名获取数据库连接
+        mysqlx::Table table = session->getSchema(db_name).getTable(tab_name);   // 选择表
+
         // 构建查询条件
         std::string condition;
         for(const auto& q : query)
@@ -425,6 +423,9 @@ void DBServerImpl::Handle_update(const rpc_server::UpdateReq* req, rpc_server::U
         res->set_success(true);
         res->set_message("Update successful");
         this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->info("DB update successful");
+
+        // 释放数据库连接
+        this->Release_connection(db_name, std::move(session));
     }
     catch(const std::exception& e)
     {
@@ -433,20 +434,18 @@ void DBServerImpl::Handle_update(const rpc_server::UpdateReq* req, rpc_server::U
         res->set_message("Update failed: " + std::string(e.what()));
         this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("DB update failed: {}", e.what());
     }
-
-    // 释放数据库连接
-    this->poor_users_pool->release_connection(std::move(session));
 }
 
 // 删除
 void DBServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res)
 {
-    // 获取数据库连接
-    mysqlx::Session session = this->poor_users_pool->get_connection();
-
     // 获取请求参数
     std::string db_name = req->database();
     std::string tab_name = req->table();
+
+    std::unique_ptr<mysqlx::Session> session = this->Git_connection(db_name);   // 通过数据库名获取数据库连接
+    mysqlx::Table table = session->getSchema(db_name).getTable(tab_name);   // 选择表
+
     // 假设数据库操作
     // ...
     // 设置响应参数
@@ -455,22 +454,22 @@ void DBServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_server::D
     std::cout << "Database delete successful" << std::endl;
 
     // 释放数据库连接
-    this->poor_users_pool->release_connection(std::move(session));
+    this->Release_connection(db_name, std::move(session));
 }
 
 // 新建表
 void DBServerImpl::Handle_make_table(const rpc_server::MakeTableReq* req, rpc_server::MakeTableRes* res)
 {
-    // 获取数据库连接
-    mysqlx::Session session = this->poor_users_pool->get_connection();
     try
     {
         // 获取请求参数
         std::string db_name = req->database();
         std::string tab_name = req->table();
 
-        std::string sql = "CREATE TABLE `" + tab_name + "` (";
+        std::unique_ptr<mysqlx::Session> session = this->Git_connection(db_name);   // 通过数据库名获取数据库连接
 
+        // 拼接建表语句
+        std::string sql = "CREATE TABLE `" + tab_name + "` (";
         // 添加字段定义
         for(const auto& field : req->fields())
         {
@@ -493,7 +492,6 @@ void DBServerImpl::Handle_make_table(const rpc_server::MakeTableReq* req, rpc_se
             }
             sql += ",";
         }
-
         // 添加表级约束
         for(const auto& constraint : req->constraints())
         {
@@ -518,10 +516,8 @@ void DBServerImpl::Handle_make_table(const rpc_server::MakeTableReq* req, rpc_se
                 sql += "),";
             }
         }
-
         sql.pop_back(); // 移除最后一个逗号
         sql += ")";
-
         // 添加表选项
         if(!req->engine().empty())
         {
@@ -539,14 +535,16 @@ void DBServerImpl::Handle_make_table(const rpc_server::MakeTableReq* req, rpc_se
         {
             sql += " COMMENT = '" + req->table_comment() + "'";
         }
-
         sql += " ROW_FORMAT = Dynamic;";
 
+        // 执行建表语句
+        session->sql(sql).execute();
 
-        // 设置响应
         res->set_success(true);
         res->set_message("Table created successfully");
         this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->info("DB make table successful");
+
+        this->Release_connection(db_name, std::move(session));
     }
     catch(const std::exception& e)
     {
@@ -555,60 +553,120 @@ void DBServerImpl::Handle_make_table(const rpc_server::MakeTableReq* req, rpc_se
         res->set_message("Create table failed: " + std::string(e.what()));
         this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("DB make table failed: {}", e.what());
     }
-    // 释放数据库连接
-    this->poor_users_pool->release_connection(std::move(session));
 }
 
 /******************************************** 其他工具函数 *****************************************************/
-// 读取 数据库配置配置文件，获得数据库连接字符串
-std::string DBServerImpl::Read_db_config(lua_State* L, const std::string& file_url)
+// 读取 数据库配置配置文件，获得指定数据库的连接字符串
+std::string DBServerImpl::Read_db_config(lua_State* L_, const std::string& file_url_, const std::string& db_name_)
 {
-    if(luaL_dofile(L, file_url.c_str()) != LUA_OK)  // 打开配置文件
+    // 加载 Lua 配置文件
+    if(luaL_dofile(L_, file_url_.c_str()) != LUA_OK)
     {
-        std::cerr << "Error: " << lua_tostring(L, -1) << std::endl;
-        lua_pop(L, 1);
+        this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("Failed to load Lua file: {}", lua_tostring(L_, -1));
+        lua_pop(L_, 1);
         return "";
     }
 
-    lua_getglobal(L, "db_config");
-    if(!lua_istable(L, -1)) // 是否为table
+    // 获取返回值（配置表）
+    if(!lua_istable(L_, -1))
     {
-        std::cerr << "Error: db_config is not a table" << std::endl;
-        lua_pop(L, 1);
+        this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("db_config is not a table in {}", file_url_);
+        lua_pop(L_, 1);
         return "";
     }
 
-    lua_getfield(L, -1, "mysqlx");
-    if(!lua_istable(L, -1))
+    // 获取 "mysqlx" 表
+    lua_getfield(L_, -1, "mysqlx");
+    if(!lua_istable(L_, -1))
     {
-        std::cerr << "Error: mysqlx is not a table" << std::endl;
-        lua_pop(L, 1);
+        this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("mysqlx is not defined in {}", file_url_);
+        lua_pop(L_, 1); // Pop db_config
         return "";
     }
 
-    std::string host = "";
-    std::string port = "";
-    std::string username = "";
-    std::string password = "";
-    std::string db_name = "";
-    lua_getfield(L, -1, "Host");
-    host = lua_tostring(L, -1);
-    lua_pop(L, 1);
 
-    lua_getfield(L, -1, "Port");
-    port = lua_tostring(L, -1);
-    lua_pop(L, 1);
+    // 获取指定数据库配置
+    lua_getfield(L_, -1, db_name_.c_str());
+    if(!lua_istable(L_, -1))
+    {
+        this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("Database {} is not defined in {}", db_name_, file_url_);
+        lua_pop(L_, 2); // Pop db_name_ and db_config
+        return "";
+    }
 
-    lua_getfield(L, -1, "UserName");
-    username = lua_tostring(L, -1);
-    lua_pop(L, 1);
+    // 提取字段
+    auto get_field = [&](const char* field_name) -> std::string
+    {
+        lua_getfield(L_, -1, field_name);
+        if(!lua_isstring(L_, -1))
+        {
+            this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->warn("Field {} is missing or invalid for database {}", field_name, db_name_);
+            lua_pop(L_, 1);
+            return "";
+        }
+        std::string value = lua_tostring(L_, -1);
+        lua_pop(L_, 1);
+        return value;
+    };
 
-    lua_getfield(L, -1, "Password");
-    password = lua_tostring(L, -1);
-    lua_pop(L, 1);
+    std::string host = get_field("host");
+    std::string port = get_field("port");
+    std::string username = get_field("user_name");
+    std::string password = get_field("password");
 
-    lua_pop(L, 2); // pop mysqlx and db_config
+    // 检查必需字段是否存在
+    if(host.empty() || port.empty() || username.empty() || password.empty())
+    {
+        this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("Incomplete configuration for database {}", db_name_);
+        lua_pop(L_, 2); // Pop db_name_ and db_config
+        return "";
+    }
 
-    std::string db_uri = "mysqlx://" + username + ":" + password + "@" + host + ":" + port + "/";
+    // 构造连接字符串
+    std::string db_uri = "mysqlx://" + username + ":" + password + "@" + host + ":" + port + "/" + db_name_;
+
+    lua_pop(L_, 2); // Pop db_name_ and db_config
     return db_uri;
+}
+
+// 获取数据库连接
+std::unique_ptr<mysqlx::Session> DBServerImpl::Git_connection(const std::string& db_name)
+{
+    if(db_name == "poor_users")
+    {
+        return this->poor_users_pool->Get_connection();
+    }
+    else if(db_name == "poor_file_hub")
+    {
+        return this->poor_file_pool->Get_connection();
+    }
+    else if(db_name == "hearthstone")
+    {
+        return this->hearthstone_pool->Get_connection();
+    }
+    else
+    {
+        throw std::runtime_error("Unknown database name: " + db_name);
+    }
+}
+
+// 释放数据库连接
+void DBServerImpl::Release_connection(const std::string& db_name, std::unique_ptr<mysqlx::Session> session)
+{
+    if(db_name == "poor_users")
+    {
+        this->poor_users_pool->Release_connection(std::move(session));
+    }
+    else if(db_name == "poor_file_hub")
+    {
+        this->poor_file_pool->Release_connection(std::move(session));
+    }
+    else if(db_name == "hearthstone")
+    {
+        this->hearthstone_pool->Release_connection(std::move(session));
+    }
+    else
+    {
+        throw std::runtime_error("Unknown database name: " + db_name);
+    }
 }

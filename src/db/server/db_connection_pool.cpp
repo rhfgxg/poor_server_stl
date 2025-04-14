@@ -36,22 +36,22 @@ DBConnectionPool::~DBConnectionPool()
 }
 
 // 获取数据库连接
-mysqlx::Session DBConnectionPool::get_connection()
+std::unique_ptr<mysqlx::Session> DBConnectionPool::Get_connection()
 {
-    std::unique_lock<std::mutex> lock(this->pool_mutex);  // 加锁
-    pool_cv.wait(lock,[this] {
+    std::unique_lock<std::mutex> lock(this->pool_mutex);
+    pool_cv.wait(lock, [this] {
         return !this->pool.empty();
-    });    // 等待连接池不为空
+    });
 
-    mysqlx::Session session = std::move(this->pool.front());  // 获取数据库连接
-    this->pool.pop(); // 弹出连接
+    auto session = std::make_unique<mysqlx::Session>(std::move(this->pool.front()));
+    this->pool.pop();
     return session;
 }
 
 // 释放数据库连接
-void DBConnectionPool::release_connection(mysqlx::Session session)
+void DBConnectionPool::Release_connection(std::unique_ptr<mysqlx::Session> session)
 {
-    std::lock_guard<std::mutex> lock(this->pool_mutex);   // 加锁
-    this->pool.push(std::move(session));  // 释放数据库连接
-    this->pool_cv.notify_one();   // 通知有新的连接
+    std::lock_guard<std::mutex> lock(this->pool_mutex);
+    this->pool.push(std::move(*session));
+    this->pool_cv.notify_one();
 }

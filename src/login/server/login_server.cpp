@@ -688,3 +688,9 @@ std::string LoginServerImpl::SHA256(const std::string& str_) // SHA256哈希加�
     }
     return ss.str();
 }
+
+// 创建文件表
+void Create_file_table(const std::string& account)
+{
+
+}
