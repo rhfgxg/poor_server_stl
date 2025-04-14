@@ -38,7 +38,7 @@ public:
     // 删除数据
     grpc::Status Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res) override;
     // 新建表
-    grpc::Status Make_table(grpc::ServerContext* context, const rpc_server::MakeTableReq* req, rpc_server::MakeTableRes* res) override;
+    grpc::Status Create_table(grpc::ServerContext* context, const rpc_server::CreateTableReq* req, rpc_server::CreateTableRes* res) override;
 
 private:
     // 初始化
@@ -54,7 +54,7 @@ private:
     void Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadRes* res); // 查询数据
     void Handle_update(const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res);   // 更新数据
     void Handle_delete(const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res);   // 删除数据
-    void Handle_make_table(const rpc_server::MakeTableReq* req, rpc_server::MakeTableRes* res);   // 新建表
+    void Handle_create_table(const rpc_server::CreateTableReq* req, rpc_server::CreateTableRes* res);   // 新建表
 
     // 定时任务：
     void Send_heartbeat();  // 发送心跳包

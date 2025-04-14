@@ -68,6 +68,18 @@ extern CreateReq_DataEntry_DoNotUseDefaultTypeInternal _CreateReq_DataEntry_DoNo
 class CreateRes;
 struct CreateResDefaultTypeInternal;
 extern CreateResDefaultTypeInternal _CreateRes_default_instance_;
+class CreateTableReq;
+struct CreateTableReqDefaultTypeInternal;
+extern CreateTableReqDefaultTypeInternal _CreateTableReq_default_instance_;
+class CreateTableReq_Constraint;
+struct CreateTableReq_ConstraintDefaultTypeInternal;
+extern CreateTableReq_ConstraintDefaultTypeInternal _CreateTableReq_Constraint_default_instance_;
+class CreateTableReq_Field;
+struct CreateTableReq_FieldDefaultTypeInternal;
+extern CreateTableReq_FieldDefaultTypeInternal _CreateTableReq_Field_default_instance_;
+class CreateTableRes;
+struct CreateTableResDefaultTypeInternal;
+extern CreateTableResDefaultTypeInternal _CreateTableRes_default_instance_;
 class DeleteReq;
 struct DeleteReqDefaultTypeInternal;
 extern DeleteReqDefaultTypeInternal _DeleteReq_default_instance_;
@@ -77,18 +89,6 @@ extern DeleteReq_QueryEntry_DoNotUseDefaultTypeInternal _DeleteReq_QueryEntry_Do
 class DeleteRes;
 struct DeleteResDefaultTypeInternal;
 extern DeleteResDefaultTypeInternal _DeleteRes_default_instance_;
-class MakeTableReq;
-struct MakeTableReqDefaultTypeInternal;
-extern MakeTableReqDefaultTypeInternal _MakeTableReq_default_instance_;
-class MakeTableReq_Constraint;
-struct MakeTableReq_ConstraintDefaultTypeInternal;
-extern MakeTableReq_ConstraintDefaultTypeInternal _MakeTableReq_Constraint_default_instance_;
-class MakeTableReq_Field;
-struct MakeTableReq_FieldDefaultTypeInternal;
-extern MakeTableReq_FieldDefaultTypeInternal _MakeTableReq_Field_default_instance_;
-class MakeTableRes;
-struct MakeTableResDefaultTypeInternal;
-extern MakeTableResDefaultTypeInternal _MakeTableRes_default_instance_;
 class ReadReq;
 struct ReadReqDefaultTypeInternal;
 extern ReadReqDefaultTypeInternal _ReadReq_default_instance_;
@@ -434,705 +434,6 @@ class ReadReq_QueryEntry_DoNotUse final
 };
 // -------------------------------------------------------------------
 
-class MakeTableRes final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.MakeTableRes) */ {
- public:
-  inline MakeTableRes() : MakeTableRes(nullptr) {}
-  ~MakeTableRes() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR MakeTableRes(::google::protobuf::internal::ConstantInitialized);
-
-  inline MakeTableRes(const MakeTableRes& from)
-      : MakeTableRes(nullptr, from) {}
-  MakeTableRes(MakeTableRes&& from) noexcept
-    : MakeTableRes() {
-    *this = ::std::move(from);
-  }
-
-  inline MakeTableRes& operator=(const MakeTableRes& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MakeTableRes& operator=(MakeTableRes&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MakeTableRes& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const MakeTableRes* internal_default_instance() {
-    return reinterpret_cast<const MakeTableRes*>(
-               &_MakeTableRes_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    18;
-
-  friend void swap(MakeTableRes& a, MakeTableRes& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(MakeTableRes* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MakeTableRes* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MakeTableRes* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MakeTableRes>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const MakeTableRes& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const MakeTableRes& from) {
-    MakeTableRes::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(MakeTableRes* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "rpc_server.MakeTableRes";
-  }
-  protected:
-  explicit MakeTableRes(::google::protobuf::Arena* arena);
-  MakeTableRes(::google::protobuf::Arena* arena, const MakeTableRes& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kMessageFieldNumber = 2,
-    kTableFieldNumber = 3,
-    kSuccessFieldNumber = 1,
-  };
-  // bytes message = 2;
-  void clear_message() ;
-  const std::string& message() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_message(Arg_&& arg, Args_... args);
-  std::string* mutable_message();
-  PROTOBUF_NODISCARD std::string* release_message();
-  void set_allocated_message(std::string* value);
-
-  private:
-  const std::string& _internal_message() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
-      const std::string& value);
-  std::string* _internal_mutable_message();
-
-  public:
-  // bytes table = 3;
-  void clear_table() ;
-  const std::string& table() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_table(Arg_&& arg, Args_... args);
-  std::string* mutable_table();
-  PROTOBUF_NODISCARD std::string* release_table();
-  void set_allocated_table(std::string* value);
-
-  private:
-  const std::string& _internal_table() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_table(
-      const std::string& value);
-  std::string* _internal_mutable_table();
-
-  public:
-  // bool success = 1;
-  void clear_success() ;
-  bool success() const;
-  void set_success(bool value);
-
-  private:
-  bool _internal_success() const;
-  void _internal_set_success(bool value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:rpc_server.MakeTableRes)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
-      0, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr message_;
-    ::google::protobuf::internal::ArenaStringPtr table_;
-    bool success_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_server_5fdb_2eproto;
-};// -------------------------------------------------------------------
-
-class MakeTableReq_Field final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.MakeTableReq.Field) */ {
- public:
-  inline MakeTableReq_Field() : MakeTableReq_Field(nullptr) {}
-  ~MakeTableReq_Field() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR MakeTableReq_Field(::google::protobuf::internal::ConstantInitialized);
-
-  inline MakeTableReq_Field(const MakeTableReq_Field& from)
-      : MakeTableReq_Field(nullptr, from) {}
-  MakeTableReq_Field(MakeTableReq_Field&& from) noexcept
-    : MakeTableReq_Field() {
-    *this = ::std::move(from);
-  }
-
-  inline MakeTableReq_Field& operator=(const MakeTableReq_Field& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MakeTableReq_Field& operator=(MakeTableReq_Field&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MakeTableReq_Field& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const MakeTableReq_Field* internal_default_instance() {
-    return reinterpret_cast<const MakeTableReq_Field*>(
-               &_MakeTableReq_Field_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    15;
-
-  friend void swap(MakeTableReq_Field& a, MakeTableReq_Field& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(MakeTableReq_Field* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MakeTableReq_Field* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MakeTableReq_Field* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MakeTableReq_Field>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const MakeTableReq_Field& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const MakeTableReq_Field& from) {
-    MakeTableReq_Field::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(MakeTableReq_Field* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "rpc_server.MakeTableReq.Field";
-  }
-  protected:
-  explicit MakeTableReq_Field(::google::protobuf::Arena* arena);
-  MakeTableReq_Field(::google::protobuf::Arena* arena, const MakeTableReq_Field& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kNameFieldNumber = 1,
-    kTypeFieldNumber = 2,
-    kCommentFieldNumber = 3,
-    kDefaultValueFieldNumber = 4,
-    kNotNullFieldNumber = 5,
-    kAutoIncrementFieldNumber = 6,
-  };
-  // string name = 1;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
-
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
-
-  public:
-  // string type = 2;
-  void clear_type() ;
-  const std::string& type() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_type(Arg_&& arg, Args_... args);
-  std::string* mutable_type();
-  PROTOBUF_NODISCARD std::string* release_type();
-  void set_allocated_type(std::string* value);
-
-  private:
-  const std::string& _internal_type() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(
-      const std::string& value);
-  std::string* _internal_mutable_type();
-
-  public:
-  // string comment = 3;
-  void clear_comment() ;
-  const std::string& comment() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_comment(Arg_&& arg, Args_... args);
-  std::string* mutable_comment();
-  PROTOBUF_NODISCARD std::string* release_comment();
-  void set_allocated_comment(std::string* value);
-
-  private:
-  const std::string& _internal_comment() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_comment(
-      const std::string& value);
-  std::string* _internal_mutable_comment();
-
-  public:
-  // string default_value = 4;
-  void clear_default_value() ;
-  const std::string& default_value() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_default_value(Arg_&& arg, Args_... args);
-  std::string* mutable_default_value();
-  PROTOBUF_NODISCARD std::string* release_default_value();
-  void set_allocated_default_value(std::string* value);
-
-  private:
-  const std::string& _internal_default_value() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_default_value(
-      const std::string& value);
-  std::string* _internal_mutable_default_value();
-
-  public:
-  // bool not_null = 5;
-  void clear_not_null() ;
-  bool not_null() const;
-  void set_not_null(bool value);
-
-  private:
-  bool _internal_not_null() const;
-  void _internal_set_not_null(bool value);
-
-  public:
-  // bool auto_increment = 6;
-  void clear_auto_increment() ;
-  bool auto_increment() const;
-  void set_auto_increment(bool value);
-
-  private:
-  bool _internal_auto_increment() const;
-  void _internal_set_auto_increment(bool value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:rpc_server.MakeTableReq.Field)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      3, 6, 0,
-      66, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr name_;
-    ::google::protobuf::internal::ArenaStringPtr type_;
-    ::google::protobuf::internal::ArenaStringPtr comment_;
-    ::google::protobuf::internal::ArenaStringPtr default_value_;
-    bool not_null_;
-    bool auto_increment_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_server_5fdb_2eproto;
-};// -------------------------------------------------------------------
-
-class MakeTableReq_Constraint final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.MakeTableReq.Constraint) */ {
- public:
-  inline MakeTableReq_Constraint() : MakeTableReq_Constraint(nullptr) {}
-  ~MakeTableReq_Constraint() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR MakeTableReq_Constraint(::google::protobuf::internal::ConstantInitialized);
-
-  inline MakeTableReq_Constraint(const MakeTableReq_Constraint& from)
-      : MakeTableReq_Constraint(nullptr, from) {}
-  MakeTableReq_Constraint(MakeTableReq_Constraint&& from) noexcept
-    : MakeTableReq_Constraint() {
-    *this = ::std::move(from);
-  }
-
-  inline MakeTableReq_Constraint& operator=(const MakeTableReq_Constraint& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MakeTableReq_Constraint& operator=(MakeTableReq_Constraint&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MakeTableReq_Constraint& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const MakeTableReq_Constraint* internal_default_instance() {
-    return reinterpret_cast<const MakeTableReq_Constraint*>(
-               &_MakeTableReq_Constraint_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    16;
-
-  friend void swap(MakeTableReq_Constraint& a, MakeTableReq_Constraint& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(MakeTableReq_Constraint* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MakeTableReq_Constraint* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MakeTableReq_Constraint* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MakeTableReq_Constraint>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const MakeTableReq_Constraint& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const MakeTableReq_Constraint& from) {
-    MakeTableReq_Constraint::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(MakeTableReq_Constraint* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "rpc_server.MakeTableReq.Constraint";
-  }
-  protected:
-  explicit MakeTableReq_Constraint(::google::protobuf::Arena* arena);
-  MakeTableReq_Constraint(::google::protobuf::Arena* arena, const MakeTableReq_Constraint& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kFieldsFieldNumber = 2,
-    kTypeFieldNumber = 1,
-    kNameFieldNumber = 3,
-  };
-  // repeated string fields = 2;
-  int fields_size() const;
-  private:
-  int _internal_fields_size() const;
-
-  public:
-  void clear_fields() ;
-  const std::string& fields(int index) const;
-  std::string* mutable_fields(int index);
-  void set_fields(int index, const std::string& value);
-  void set_fields(int index, std::string&& value);
-  void set_fields(int index, const char* value);
-  void set_fields(int index, const char* value, std::size_t size);
-  void set_fields(int index, absl::string_view value);
-  std::string* add_fields();
-  void add_fields(const std::string& value);
-  void add_fields(std::string&& value);
-  void add_fields(const char* value);
-  void add_fields(const char* value, std::size_t size);
-  void add_fields(absl::string_view value);
-  const ::google::protobuf::RepeatedPtrField<std::string>& fields() const;
-  ::google::protobuf::RepeatedPtrField<std::string>* mutable_fields();
-
-  private:
-  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_fields() const;
-  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_fields();
-
-  public:
-  // string type = 1;
-  void clear_type() ;
-  const std::string& type() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_type(Arg_&& arg, Args_... args);
-  std::string* mutable_type();
-  PROTOBUF_NODISCARD std::string* release_type();
-  void set_allocated_type(std::string* value);
-
-  private:
-  const std::string& _internal_type() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(
-      const std::string& value);
-  std::string* _internal_mutable_type();
-
-  public:
-  // string name = 3;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
-
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
-
-  public:
-  // @@protoc_insertion_point(class_scope:rpc_server.MakeTableReq.Constraint)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 0,
-      57, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedPtrField<std::string> fields_;
-    ::google::protobuf::internal::ArenaStringPtr type_;
-    ::google::protobuf::internal::ArenaStringPtr name_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_server_5fdb_2eproto;
-};// -------------------------------------------------------------------
-
 class DeleteRes final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.DeleteRes) */ {
  public:
@@ -1353,6 +654,705 @@ class DeleteReq_QueryEntry_DoNotUse final
   friend struct ::TableStruct_server_5fdb_2eproto;
 };
 // -------------------------------------------------------------------
+
+class CreateTableRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CreateTableRes) */ {
+ public:
+  inline CreateTableRes() : CreateTableRes(nullptr) {}
+  ~CreateTableRes() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CreateTableRes(::google::protobuf::internal::ConstantInitialized);
+
+  inline CreateTableRes(const CreateTableRes& from)
+      : CreateTableRes(nullptr, from) {}
+  CreateTableRes(CreateTableRes&& from) noexcept
+    : CreateTableRes() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateTableRes& operator=(const CreateTableRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateTableRes& operator=(CreateTableRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateTableRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateTableRes* internal_default_instance() {
+    return reinterpret_cast<const CreateTableRes*>(
+               &_CreateTableRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(CreateTableRes& a, CreateTableRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateTableRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateTableRes* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateTableRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateTableRes>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CreateTableRes& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CreateTableRes& from) {
+    CreateTableRes::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(CreateTableRes* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "rpc_server.CreateTableRes";
+  }
+  protected:
+  explicit CreateTableRes(::google::protobuf::Arena* arena);
+  CreateTableRes(::google::protobuf::Arena* arena, const CreateTableRes& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMessageFieldNumber = 2,
+    kTableFieldNumber = 3,
+    kSuccessFieldNumber = 1,
+  };
+  // bytes message = 2;
+  void clear_message() ;
+  const std::string& message() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_message(Arg_&& arg, Args_... args);
+  std::string* mutable_message();
+  PROTOBUF_NODISCARD std::string* release_message();
+  void set_allocated_message(std::string* value);
+
+  private:
+  const std::string& _internal_message() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_message(
+      const std::string& value);
+  std::string* _internal_mutable_message();
+
+  public:
+  // bytes table = 3;
+  void clear_table() ;
+  const std::string& table() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_table(Arg_&& arg, Args_... args);
+  std::string* mutable_table();
+  PROTOBUF_NODISCARD std::string* release_table();
+  void set_allocated_table(std::string* value);
+
+  private:
+  const std::string& _internal_table() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_table(
+      const std::string& value);
+  std::string* _internal_mutable_table();
+
+  public:
+  // bool success = 1;
+  void clear_success() ;
+  bool success() const;
+  void set_success(bool value);
+
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:rpc_server.CreateTableRes)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 0,
+      0, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr message_;
+    ::google::protobuf::internal::ArenaStringPtr table_;
+    bool success_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5fdb_2eproto;
+};// -------------------------------------------------------------------
+
+class CreateTableReq_Field final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CreateTableReq.Field) */ {
+ public:
+  inline CreateTableReq_Field() : CreateTableReq_Field(nullptr) {}
+  ~CreateTableReq_Field() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CreateTableReq_Field(::google::protobuf::internal::ConstantInitialized);
+
+  inline CreateTableReq_Field(const CreateTableReq_Field& from)
+      : CreateTableReq_Field(nullptr, from) {}
+  CreateTableReq_Field(CreateTableReq_Field&& from) noexcept
+    : CreateTableReq_Field() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateTableReq_Field& operator=(const CreateTableReq_Field& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateTableReq_Field& operator=(CreateTableReq_Field&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateTableReq_Field& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateTableReq_Field* internal_default_instance() {
+    return reinterpret_cast<const CreateTableReq_Field*>(
+               &_CreateTableReq_Field_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(CreateTableReq_Field& a, CreateTableReq_Field& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateTableReq_Field* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateTableReq_Field* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateTableReq_Field* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateTableReq_Field>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CreateTableReq_Field& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CreateTableReq_Field& from) {
+    CreateTableReq_Field::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(CreateTableReq_Field* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "rpc_server.CreateTableReq.Field";
+  }
+  protected:
+  explicit CreateTableReq_Field(::google::protobuf::Arena* arena);
+  CreateTableReq_Field(::google::protobuf::Arena* arena, const CreateTableReq_Field& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kTypeFieldNumber = 2,
+    kCommentFieldNumber = 3,
+    kDefaultValueFieldNumber = 4,
+    kNotNullFieldNumber = 5,
+    kAutoIncrementFieldNumber = 6,
+  };
+  // string name = 1;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // string type = 2;
+  void clear_type() ;
+  const std::string& type() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_type(Arg_&& arg, Args_... args);
+  std::string* mutable_type();
+  PROTOBUF_NODISCARD std::string* release_type();
+  void set_allocated_type(std::string* value);
+
+  private:
+  const std::string& _internal_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(
+      const std::string& value);
+  std::string* _internal_mutable_type();
+
+  public:
+  // string comment = 3;
+  void clear_comment() ;
+  const std::string& comment() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_comment(Arg_&& arg, Args_... args);
+  std::string* mutable_comment();
+  PROTOBUF_NODISCARD std::string* release_comment();
+  void set_allocated_comment(std::string* value);
+
+  private:
+  const std::string& _internal_comment() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_comment(
+      const std::string& value);
+  std::string* _internal_mutable_comment();
+
+  public:
+  // string default_value = 4;
+  void clear_default_value() ;
+  const std::string& default_value() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_default_value(Arg_&& arg, Args_... args);
+  std::string* mutable_default_value();
+  PROTOBUF_NODISCARD std::string* release_default_value();
+  void set_allocated_default_value(std::string* value);
+
+  private:
+  const std::string& _internal_default_value() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_default_value(
+      const std::string& value);
+  std::string* _internal_mutable_default_value();
+
+  public:
+  // bool not_null = 5;
+  void clear_not_null() ;
+  bool not_null() const;
+  void set_not_null(bool value);
+
+  private:
+  bool _internal_not_null() const;
+  void _internal_set_not_null(bool value);
+
+  public:
+  // bool auto_increment = 6;
+  void clear_auto_increment() ;
+  bool auto_increment() const;
+  void set_auto_increment(bool value);
+
+  private:
+  bool _internal_auto_increment() const;
+  void _internal_set_auto_increment(bool value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:rpc_server.CreateTableReq.Field)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 6, 0,
+      68, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr type_;
+    ::google::protobuf::internal::ArenaStringPtr comment_;
+    ::google::protobuf::internal::ArenaStringPtr default_value_;
+    bool not_null_;
+    bool auto_increment_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5fdb_2eproto;
+};// -------------------------------------------------------------------
+
+class CreateTableReq_Constraint final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CreateTableReq.Constraint) */ {
+ public:
+  inline CreateTableReq_Constraint() : CreateTableReq_Constraint(nullptr) {}
+  ~CreateTableReq_Constraint() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CreateTableReq_Constraint(::google::protobuf::internal::ConstantInitialized);
+
+  inline CreateTableReq_Constraint(const CreateTableReq_Constraint& from)
+      : CreateTableReq_Constraint(nullptr, from) {}
+  CreateTableReq_Constraint(CreateTableReq_Constraint&& from) noexcept
+    : CreateTableReq_Constraint() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateTableReq_Constraint& operator=(const CreateTableReq_Constraint& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateTableReq_Constraint& operator=(CreateTableReq_Constraint&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateTableReq_Constraint& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateTableReq_Constraint* internal_default_instance() {
+    return reinterpret_cast<const CreateTableReq_Constraint*>(
+               &_CreateTableReq_Constraint_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(CreateTableReq_Constraint& a, CreateTableReq_Constraint& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateTableReq_Constraint* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateTableReq_Constraint* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateTableReq_Constraint* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateTableReq_Constraint>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CreateTableReq_Constraint& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CreateTableReq_Constraint& from) {
+    CreateTableReq_Constraint::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(CreateTableReq_Constraint* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "rpc_server.CreateTableReq.Constraint";
+  }
+  protected:
+  explicit CreateTableReq_Constraint(::google::protobuf::Arena* arena);
+  CreateTableReq_Constraint(::google::protobuf::Arena* arena, const CreateTableReq_Constraint& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFieldsFieldNumber = 2,
+    kTypeFieldNumber = 1,
+    kNameFieldNumber = 3,
+  };
+  // repeated string fields = 2;
+  int fields_size() const;
+  private:
+  int _internal_fields_size() const;
+
+  public:
+  void clear_fields() ;
+  const std::string& fields(int index) const;
+  std::string* mutable_fields(int index);
+  void set_fields(int index, const std::string& value);
+  void set_fields(int index, std::string&& value);
+  void set_fields(int index, const char* value);
+  void set_fields(int index, const char* value, std::size_t size);
+  void set_fields(int index, absl::string_view value);
+  std::string* add_fields();
+  void add_fields(const std::string& value);
+  void add_fields(std::string&& value);
+  void add_fields(const char* value);
+  void add_fields(const char* value, std::size_t size);
+  void add_fields(absl::string_view value);
+  const ::google::protobuf::RepeatedPtrField<std::string>& fields() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* mutable_fields();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<std::string>& _internal_fields() const;
+  ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_fields();
+
+  public:
+  // string type = 1;
+  void clear_type() ;
+  const std::string& type() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_type(Arg_&& arg, Args_... args);
+  std::string* mutable_type();
+  PROTOBUF_NODISCARD std::string* release_type();
+  void set_allocated_type(std::string* value);
+
+  private:
+  const std::string& _internal_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(
+      const std::string& value);
+  std::string* _internal_mutable_type();
+
+  public:
+  // string name = 3;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
+
+  public:
+  // @@protoc_insertion_point(class_scope:rpc_server.CreateTableReq.Constraint)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 0,
+      59, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField<std::string> fields_;
+    ::google::protobuf::internal::ArenaStringPtr type_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5fdb_2eproto;
+};// -------------------------------------------------------------------
 
 class CreateRes final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CreateRes) */ {
@@ -2219,320 +2219,6 @@ class ReadReq final :
   friend struct ::TableStruct_server_5fdb_2eproto;
 };// -------------------------------------------------------------------
 
-class MakeTableReq final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.MakeTableReq) */ {
- public:
-  inline MakeTableReq() : MakeTableReq(nullptr) {}
-  ~MakeTableReq() override;
-  template<typename = void>
-  explicit PROTOBUF_CONSTEXPR MakeTableReq(::google::protobuf::internal::ConstantInitialized);
-
-  inline MakeTableReq(const MakeTableReq& from)
-      : MakeTableReq(nullptr, from) {}
-  MakeTableReq(MakeTableReq&& from) noexcept
-    : MakeTableReq() {
-    *this = ::std::move(from);
-  }
-
-  inline MakeTableReq& operator=(const MakeTableReq& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MakeTableReq& operator=(MakeTableReq&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetArena() == from.GetArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MakeTableReq& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const MakeTableReq* internal_default_instance() {
-    return reinterpret_cast<const MakeTableReq*>(
-               &_MakeTableReq_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    17;
-
-  friend void swap(MakeTableReq& a, MakeTableReq& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(MakeTableReq* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() != nullptr &&
-        GetArena() == other->GetArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetArena() == other->GetArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MakeTableReq* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MakeTableReq* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MakeTableReq>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const MakeTableReq& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const MakeTableReq& from) {
-    MakeTableReq::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  ::size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
-  void SharedCtor(::google::protobuf::Arena* arena);
-  void SharedDtor();
-  void InternalSwap(MakeTableReq* other);
-
-  private:
-  friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() {
-    return "rpc_server.MakeTableReq";
-  }
-  protected:
-  explicit MakeTableReq(::google::protobuf::Arena* arena);
-  MakeTableReq(::google::protobuf::Arena* arena, const MakeTableReq& from);
-  public:
-
-  static const ClassData _class_data_;
-  const ::google::protobuf::Message::ClassData*GetClassData() const final;
-
-  ::google::protobuf::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  using Field = MakeTableReq_Field;
-  using Constraint = MakeTableReq_Constraint;
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kFieldsFieldNumber = 3,
-    kConstraintsFieldNumber = 4,
-    kDatabaseFieldNumber = 1,
-    kTableFieldNumber = 2,
-    kEngineFieldNumber = 5,
-    kCharsetFieldNumber = 6,
-    kCollationFieldNumber = 7,
-    kTableCommentFieldNumber = 8,
-  };
-  // repeated .rpc_server.MakeTableReq.Field fields = 3;
-  int fields_size() const;
-  private:
-  int _internal_fields_size() const;
-
-  public:
-  void clear_fields() ;
-  ::rpc_server::MakeTableReq_Field* mutable_fields(int index);
-  ::google::protobuf::RepeatedPtrField< ::rpc_server::MakeTableReq_Field >*
-      mutable_fields();
-  private:
-  const ::google::protobuf::RepeatedPtrField<::rpc_server::MakeTableReq_Field>& _internal_fields() const;
-  ::google::protobuf::RepeatedPtrField<::rpc_server::MakeTableReq_Field>* _internal_mutable_fields();
-  public:
-  const ::rpc_server::MakeTableReq_Field& fields(int index) const;
-  ::rpc_server::MakeTableReq_Field* add_fields();
-  const ::google::protobuf::RepeatedPtrField< ::rpc_server::MakeTableReq_Field >&
-      fields() const;
-  // repeated .rpc_server.MakeTableReq.Constraint constraints = 4;
-  int constraints_size() const;
-  private:
-  int _internal_constraints_size() const;
-
-  public:
-  void clear_constraints() ;
-  ::rpc_server::MakeTableReq_Constraint* mutable_constraints(int index);
-  ::google::protobuf::RepeatedPtrField< ::rpc_server::MakeTableReq_Constraint >*
-      mutable_constraints();
-  private:
-  const ::google::protobuf::RepeatedPtrField<::rpc_server::MakeTableReq_Constraint>& _internal_constraints() const;
-  ::google::protobuf::RepeatedPtrField<::rpc_server::MakeTableReq_Constraint>* _internal_mutable_constraints();
-  public:
-  const ::rpc_server::MakeTableReq_Constraint& constraints(int index) const;
-  ::rpc_server::MakeTableReq_Constraint* add_constraints();
-  const ::google::protobuf::RepeatedPtrField< ::rpc_server::MakeTableReq_Constraint >&
-      constraints() const;
-  // bytes database = 1;
-  void clear_database() ;
-  const std::string& database() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_database(Arg_&& arg, Args_... args);
-  std::string* mutable_database();
-  PROTOBUF_NODISCARD std::string* release_database();
-  void set_allocated_database(std::string* value);
-
-  private:
-  const std::string& _internal_database() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_database(
-      const std::string& value);
-  std::string* _internal_mutable_database();
-
-  public:
-  // bytes table = 2;
-  void clear_table() ;
-  const std::string& table() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_table(Arg_&& arg, Args_... args);
-  std::string* mutable_table();
-  PROTOBUF_NODISCARD std::string* release_table();
-  void set_allocated_table(std::string* value);
-
-  private:
-  const std::string& _internal_table() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_table(
-      const std::string& value);
-  std::string* _internal_mutable_table();
-
-  public:
-  // string engine = 5;
-  void clear_engine() ;
-  const std::string& engine() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_engine(Arg_&& arg, Args_... args);
-  std::string* mutable_engine();
-  PROTOBUF_NODISCARD std::string* release_engine();
-  void set_allocated_engine(std::string* value);
-
-  private:
-  const std::string& _internal_engine() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_engine(
-      const std::string& value);
-  std::string* _internal_mutable_engine();
-
-  public:
-  // string charset = 6;
-  void clear_charset() ;
-  const std::string& charset() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_charset(Arg_&& arg, Args_... args);
-  std::string* mutable_charset();
-  PROTOBUF_NODISCARD std::string* release_charset();
-  void set_allocated_charset(std::string* value);
-
-  private:
-  const std::string& _internal_charset() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_charset(
-      const std::string& value);
-  std::string* _internal_mutable_charset();
-
-  public:
-  // string collation = 7;
-  void clear_collation() ;
-  const std::string& collation() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_collation(Arg_&& arg, Args_... args);
-  std::string* mutable_collation();
-  PROTOBUF_NODISCARD std::string* release_collation();
-  void set_allocated_collation(std::string* value);
-
-  private:
-  const std::string& _internal_collation() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_collation(
-      const std::string& value);
-  std::string* _internal_mutable_collation();
-
-  public:
-  // string table_comment = 8;
-  void clear_table_comment() ;
-  const std::string& table_comment() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_table_comment(Arg_&& arg, Args_... args);
-  std::string* mutable_table_comment();
-  PROTOBUF_NODISCARD std::string* release_table_comment();
-  void set_allocated_table_comment(std::string* value);
-
-  private:
-  const std::string& _internal_table_comment() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_table_comment(
-      const std::string& value);
-  std::string* _internal_mutable_table_comment();
-
-  public:
-  // @@protoc_insertion_point(class_scope:rpc_server.MakeTableReq)
- private:
-  class _Internal;
-
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      3, 8, 2,
-      75, 2>
-      _table_;
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-
-        inline explicit constexpr Impl_(
-            ::google::protobuf::internal::ConstantInitialized) noexcept;
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena);
-        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                              ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::RepeatedPtrField< ::rpc_server::MakeTableReq_Field > fields_;
-    ::google::protobuf::RepeatedPtrField< ::rpc_server::MakeTableReq_Constraint > constraints_;
-    ::google::protobuf::internal::ArenaStringPtr database_;
-    ::google::protobuf::internal::ArenaStringPtr table_;
-    ::google::protobuf::internal::ArenaStringPtr engine_;
-    ::google::protobuf::internal::ArenaStringPtr charset_;
-    ::google::protobuf::internal::ArenaStringPtr collation_;
-    ::google::protobuf::internal::ArenaStringPtr table_comment_;
-    mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_server_5fdb_2eproto;
-};// -------------------------------------------------------------------
-
 class DeleteReq final :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.DeleteReq) */ {
  public:
@@ -2746,6 +2432,320 @@ class DeleteReq final :
         query_;
     ::google::protobuf::internal::ArenaStringPtr database_;
     ::google::protobuf::internal::ArenaStringPtr table_;
+    mutable ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_server_5fdb_2eproto;
+};// -------------------------------------------------------------------
+
+class CreateTableReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CreateTableReq) */ {
+ public:
+  inline CreateTableReq() : CreateTableReq(nullptr) {}
+  ~CreateTableReq() override;
+  template<typename = void>
+  explicit PROTOBUF_CONSTEXPR CreateTableReq(::google::protobuf::internal::ConstantInitialized);
+
+  inline CreateTableReq(const CreateTableReq& from)
+      : CreateTableReq(nullptr, from) {}
+  CreateTableReq(CreateTableReq&& from) noexcept
+    : CreateTableReq() {
+    *this = ::std::move(from);
+  }
+
+  inline CreateTableReq& operator=(const CreateTableReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CreateTableReq& operator=(CreateTableReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetArena() == from.GetArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CreateTableReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CreateTableReq* internal_default_instance() {
+    return reinterpret_cast<const CreateTableReq*>(
+               &_CreateTableReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(CreateTableReq& a, CreateTableReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CreateTableReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() != nullptr &&
+        GetArena() == other->GetArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetArena() == other->GetArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CreateTableReq* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CreateTableReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CreateTableReq>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const CreateTableReq& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom( const CreateTableReq& from) {
+    CreateTableReq::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  ::size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::google::protobuf::internal::ParseContext* ctx) final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target, ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
+  void SharedCtor(::google::protobuf::Arena* arena);
+  void SharedDtor();
+  void InternalSwap(CreateTableReq* other);
+
+  private:
+  friend class ::google::protobuf::internal::AnyMetadata;
+  static ::absl::string_view FullMessageName() {
+    return "rpc_server.CreateTableReq";
+  }
+  protected:
+  explicit CreateTableReq(::google::protobuf::Arena* arena);
+  CreateTableReq(::google::protobuf::Arena* arena, const CreateTableReq& from);
+  public:
+
+  static const ClassData _class_data_;
+  const ::google::protobuf::Message::ClassData*GetClassData() const final;
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  using Field = CreateTableReq_Field;
+  using Constraint = CreateTableReq_Constraint;
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFieldsFieldNumber = 3,
+    kConstraintsFieldNumber = 4,
+    kDatabaseFieldNumber = 1,
+    kTableFieldNumber = 2,
+    kEngineFieldNumber = 5,
+    kCharsetFieldNumber = 6,
+    kCollationFieldNumber = 7,
+    kTableCommentFieldNumber = 8,
+  };
+  // repeated .rpc_server.CreateTableReq.Field fields = 3;
+  int fields_size() const;
+  private:
+  int _internal_fields_size() const;
+
+  public:
+  void clear_fields() ;
+  ::rpc_server::CreateTableReq_Field* mutable_fields(int index);
+  ::google::protobuf::RepeatedPtrField< ::rpc_server::CreateTableReq_Field >*
+      mutable_fields();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::rpc_server::CreateTableReq_Field>& _internal_fields() const;
+  ::google::protobuf::RepeatedPtrField<::rpc_server::CreateTableReq_Field>* _internal_mutable_fields();
+  public:
+  const ::rpc_server::CreateTableReq_Field& fields(int index) const;
+  ::rpc_server::CreateTableReq_Field* add_fields();
+  const ::google::protobuf::RepeatedPtrField< ::rpc_server::CreateTableReq_Field >&
+      fields() const;
+  // repeated .rpc_server.CreateTableReq.Constraint constraints = 4;
+  int constraints_size() const;
+  private:
+  int _internal_constraints_size() const;
+
+  public:
+  void clear_constraints() ;
+  ::rpc_server::CreateTableReq_Constraint* mutable_constraints(int index);
+  ::google::protobuf::RepeatedPtrField< ::rpc_server::CreateTableReq_Constraint >*
+      mutable_constraints();
+  private:
+  const ::google::protobuf::RepeatedPtrField<::rpc_server::CreateTableReq_Constraint>& _internal_constraints() const;
+  ::google::protobuf::RepeatedPtrField<::rpc_server::CreateTableReq_Constraint>* _internal_mutable_constraints();
+  public:
+  const ::rpc_server::CreateTableReq_Constraint& constraints(int index) const;
+  ::rpc_server::CreateTableReq_Constraint* add_constraints();
+  const ::google::protobuf::RepeatedPtrField< ::rpc_server::CreateTableReq_Constraint >&
+      constraints() const;
+  // bytes database = 1;
+  void clear_database() ;
+  const std::string& database() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_database(Arg_&& arg, Args_... args);
+  std::string* mutable_database();
+  PROTOBUF_NODISCARD std::string* release_database();
+  void set_allocated_database(std::string* value);
+
+  private:
+  const std::string& _internal_database() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_database(
+      const std::string& value);
+  std::string* _internal_mutable_database();
+
+  public:
+  // bytes table = 2;
+  void clear_table() ;
+  const std::string& table() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_table(Arg_&& arg, Args_... args);
+  std::string* mutable_table();
+  PROTOBUF_NODISCARD std::string* release_table();
+  void set_allocated_table(std::string* value);
+
+  private:
+  const std::string& _internal_table() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_table(
+      const std::string& value);
+  std::string* _internal_mutable_table();
+
+  public:
+  // string engine = 5;
+  void clear_engine() ;
+  const std::string& engine() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_engine(Arg_&& arg, Args_... args);
+  std::string* mutable_engine();
+  PROTOBUF_NODISCARD std::string* release_engine();
+  void set_allocated_engine(std::string* value);
+
+  private:
+  const std::string& _internal_engine() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_engine(
+      const std::string& value);
+  std::string* _internal_mutable_engine();
+
+  public:
+  // string charset = 6;
+  void clear_charset() ;
+  const std::string& charset() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_charset(Arg_&& arg, Args_... args);
+  std::string* mutable_charset();
+  PROTOBUF_NODISCARD std::string* release_charset();
+  void set_allocated_charset(std::string* value);
+
+  private:
+  const std::string& _internal_charset() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_charset(
+      const std::string& value);
+  std::string* _internal_mutable_charset();
+
+  public:
+  // string collation = 7;
+  void clear_collation() ;
+  const std::string& collation() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_collation(Arg_&& arg, Args_... args);
+  std::string* mutable_collation();
+  PROTOBUF_NODISCARD std::string* release_collation();
+  void set_allocated_collation(std::string* value);
+
+  private:
+  const std::string& _internal_collation() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_collation(
+      const std::string& value);
+  std::string* _internal_mutable_collation();
+
+  public:
+  // string table_comment = 8;
+  void clear_table_comment() ;
+  const std::string& table_comment() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_table_comment(Arg_&& arg, Args_... args);
+  std::string* mutable_table_comment();
+  PROTOBUF_NODISCARD std::string* release_table_comment();
+  void set_allocated_table_comment(std::string* value);
+
+  private:
+  const std::string& _internal_table_comment() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_table_comment(
+      const std::string& value);
+  std::string* _internal_mutable_table_comment();
+
+  public:
+  // @@protoc_insertion_point(class_scope:rpc_server.CreateTableReq)
+ private:
+  class _Internal;
+
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 8, 2,
+      77, 2>
+      _table_;
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+
+        inline explicit constexpr Impl_(
+            ::google::protobuf::internal::ConstantInitialized) noexcept;
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena);
+        inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                              ::google::protobuf::Arena* arena, const Impl_& from);
+    ::google::protobuf::RepeatedPtrField< ::rpc_server::CreateTableReq_Field > fields_;
+    ::google::protobuf::RepeatedPtrField< ::rpc_server::CreateTableReq_Constraint > constraints_;
+    ::google::protobuf::internal::ArenaStringPtr database_;
+    ::google::protobuf::internal::ArenaStringPtr table_;
+    ::google::protobuf::internal::ArenaStringPtr engine_;
+    ::google::protobuf::internal::ArenaStringPtr charset_;
+    ::google::protobuf::internal::ArenaStringPtr collation_;
+    ::google::protobuf::internal::ArenaStringPtr table_comment_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4193,51 +4193,51 @@ inline void DeleteRes::set_allocated_message(std::string* value) {
 
 // -------------------------------------------------------------------
 
-// MakeTableReq_Field
+// CreateTableReq_Field
 
 // string name = 1;
-inline void MakeTableReq_Field::clear_name() {
+inline void CreateTableReq_Field::clear_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.name_.ClearToEmpty();
 }
-inline const std::string& MakeTableReq_Field::name() const
+inline const std::string& CreateTableReq_Field::name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.Field.name)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.Field.name)
   return _internal_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableReq_Field::set_name(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableReq_Field::set_name(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.Field.name)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.Field.name)
 }
-inline std::string* MakeTableReq_Field::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableReq_Field::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.Field.name)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.Field.name)
   return _s;
 }
-inline const std::string& MakeTableReq_Field::_internal_name() const {
+inline const std::string& CreateTableReq_Field::_internal_name() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.name_.Get();
 }
-inline void MakeTableReq_Field::_internal_set_name(const std::string& value) {
+inline void CreateTableReq_Field::_internal_set_name(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.name_.Set(value, GetArena());
 }
-inline std::string* MakeTableReq_Field::_internal_mutable_name() {
+inline std::string* CreateTableReq_Field::_internal_mutable_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.name_.Mutable( GetArena());
 }
-inline std::string* MakeTableReq_Field::release_name() {
+inline std::string* CreateTableReq_Field::release_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableReq.Field.name)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableReq.Field.name)
   return _impl_.name_.Release();
 }
-inline void MakeTableReq_Field::set_allocated_name(std::string* value) {
+inline void CreateTableReq_Field::set_allocated_name(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.name_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4245,52 +4245,52 @@ inline void MakeTableReq_Field::set_allocated_name(std::string* value) {
           _impl_.name_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableReq.Field.name)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableReq.Field.name)
 }
 
 // string type = 2;
-inline void MakeTableReq_Field::clear_type() {
+inline void CreateTableReq_Field::clear_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.type_.ClearToEmpty();
 }
-inline const std::string& MakeTableReq_Field::type() const
+inline const std::string& CreateTableReq_Field::type() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.Field.type)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.Field.type)
   return _internal_type();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableReq_Field::set_type(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableReq_Field::set_type(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.type_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.Field.type)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.Field.type)
 }
-inline std::string* MakeTableReq_Field::mutable_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableReq_Field::mutable_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_type();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.Field.type)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.Field.type)
   return _s;
 }
-inline const std::string& MakeTableReq_Field::_internal_type() const {
+inline const std::string& CreateTableReq_Field::_internal_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.type_.Get();
 }
-inline void MakeTableReq_Field::_internal_set_type(const std::string& value) {
+inline void CreateTableReq_Field::_internal_set_type(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.type_.Set(value, GetArena());
 }
-inline std::string* MakeTableReq_Field::_internal_mutable_type() {
+inline std::string* CreateTableReq_Field::_internal_mutable_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.type_.Mutable( GetArena());
 }
-inline std::string* MakeTableReq_Field::release_type() {
+inline std::string* CreateTableReq_Field::release_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableReq.Field.type)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableReq.Field.type)
   return _impl_.type_.Release();
 }
-inline void MakeTableReq_Field::set_allocated_type(std::string* value) {
+inline void CreateTableReq_Field::set_allocated_type(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.type_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4298,52 +4298,52 @@ inline void MakeTableReq_Field::set_allocated_type(std::string* value) {
           _impl_.type_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableReq.Field.type)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableReq.Field.type)
 }
 
 // string comment = 3;
-inline void MakeTableReq_Field::clear_comment() {
+inline void CreateTableReq_Field::clear_comment() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.comment_.ClearToEmpty();
 }
-inline const std::string& MakeTableReq_Field::comment() const
+inline const std::string& CreateTableReq_Field::comment() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.Field.comment)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.Field.comment)
   return _internal_comment();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableReq_Field::set_comment(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableReq_Field::set_comment(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.comment_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.Field.comment)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.Field.comment)
 }
-inline std::string* MakeTableReq_Field::mutable_comment() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableReq_Field::mutable_comment() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_comment();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.Field.comment)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.Field.comment)
   return _s;
 }
-inline const std::string& MakeTableReq_Field::_internal_comment() const {
+inline const std::string& CreateTableReq_Field::_internal_comment() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.comment_.Get();
 }
-inline void MakeTableReq_Field::_internal_set_comment(const std::string& value) {
+inline void CreateTableReq_Field::_internal_set_comment(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.comment_.Set(value, GetArena());
 }
-inline std::string* MakeTableReq_Field::_internal_mutable_comment() {
+inline std::string* CreateTableReq_Field::_internal_mutable_comment() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.comment_.Mutable( GetArena());
 }
-inline std::string* MakeTableReq_Field::release_comment() {
+inline std::string* CreateTableReq_Field::release_comment() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableReq.Field.comment)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableReq.Field.comment)
   return _impl_.comment_.Release();
 }
-inline void MakeTableReq_Field::set_allocated_comment(std::string* value) {
+inline void CreateTableReq_Field::set_allocated_comment(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.comment_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4351,52 +4351,52 @@ inline void MakeTableReq_Field::set_allocated_comment(std::string* value) {
           _impl_.comment_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableReq.Field.comment)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableReq.Field.comment)
 }
 
 // string default_value = 4;
-inline void MakeTableReq_Field::clear_default_value() {
+inline void CreateTableReq_Field::clear_default_value() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.default_value_.ClearToEmpty();
 }
-inline const std::string& MakeTableReq_Field::default_value() const
+inline const std::string& CreateTableReq_Field::default_value() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.Field.default_value)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.Field.default_value)
   return _internal_default_value();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableReq_Field::set_default_value(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableReq_Field::set_default_value(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.default_value_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.Field.default_value)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.Field.default_value)
 }
-inline std::string* MakeTableReq_Field::mutable_default_value() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableReq_Field::mutable_default_value() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_default_value();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.Field.default_value)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.Field.default_value)
   return _s;
 }
-inline const std::string& MakeTableReq_Field::_internal_default_value() const {
+inline const std::string& CreateTableReq_Field::_internal_default_value() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.default_value_.Get();
 }
-inline void MakeTableReq_Field::_internal_set_default_value(const std::string& value) {
+inline void CreateTableReq_Field::_internal_set_default_value(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.default_value_.Set(value, GetArena());
 }
-inline std::string* MakeTableReq_Field::_internal_mutable_default_value() {
+inline std::string* CreateTableReq_Field::_internal_mutable_default_value() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.default_value_.Mutable( GetArena());
 }
-inline std::string* MakeTableReq_Field::release_default_value() {
+inline std::string* CreateTableReq_Field::release_default_value() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableReq.Field.default_value)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableReq.Field.default_value)
   return _impl_.default_value_.Release();
 }
-inline void MakeTableReq_Field::set_allocated_default_value(std::string* value) {
+inline void CreateTableReq_Field::set_allocated_default_value(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.default_value_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4404,50 +4404,50 @@ inline void MakeTableReq_Field::set_allocated_default_value(std::string* value) 
           _impl_.default_value_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableReq.Field.default_value)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableReq.Field.default_value)
 }
 
 // bool not_null = 5;
-inline void MakeTableReq_Field::clear_not_null() {
+inline void CreateTableReq_Field::clear_not_null() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.not_null_ = false;
 }
-inline bool MakeTableReq_Field::not_null() const {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.Field.not_null)
+inline bool CreateTableReq_Field::not_null() const {
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.Field.not_null)
   return _internal_not_null();
 }
-inline void MakeTableReq_Field::set_not_null(bool value) {
+inline void CreateTableReq_Field::set_not_null(bool value) {
   _internal_set_not_null(value);
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.Field.not_null)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.Field.not_null)
 }
-inline bool MakeTableReq_Field::_internal_not_null() const {
+inline bool CreateTableReq_Field::_internal_not_null() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.not_null_;
 }
-inline void MakeTableReq_Field::_internal_set_not_null(bool value) {
+inline void CreateTableReq_Field::_internal_set_not_null(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.not_null_ = value;
 }
 
 // bool auto_increment = 6;
-inline void MakeTableReq_Field::clear_auto_increment() {
+inline void CreateTableReq_Field::clear_auto_increment() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.auto_increment_ = false;
 }
-inline bool MakeTableReq_Field::auto_increment() const {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.Field.auto_increment)
+inline bool CreateTableReq_Field::auto_increment() const {
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.Field.auto_increment)
   return _internal_auto_increment();
 }
-inline void MakeTableReq_Field::set_auto_increment(bool value) {
+inline void CreateTableReq_Field::set_auto_increment(bool value) {
   _internal_set_auto_increment(value);
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.Field.auto_increment)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.Field.auto_increment)
 }
-inline bool MakeTableReq_Field::_internal_auto_increment() const {
+inline bool CreateTableReq_Field::_internal_auto_increment() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.auto_increment_;
 }
-inline void MakeTableReq_Field::_internal_set_auto_increment(bool value) {
+inline void CreateTableReq_Field::_internal_set_auto_increment(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.auto_increment_ = value;
@@ -4455,51 +4455,51 @@ inline void MakeTableReq_Field::_internal_set_auto_increment(bool value) {
 
 // -------------------------------------------------------------------
 
-// MakeTableReq_Constraint
+// CreateTableReq_Constraint
 
 // string type = 1;
-inline void MakeTableReq_Constraint::clear_type() {
+inline void CreateTableReq_Constraint::clear_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.type_.ClearToEmpty();
 }
-inline const std::string& MakeTableReq_Constraint::type() const
+inline const std::string& CreateTableReq_Constraint::type() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.Constraint.type)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.Constraint.type)
   return _internal_type();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableReq_Constraint::set_type(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableReq_Constraint::set_type(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.type_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.Constraint.type)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.Constraint.type)
 }
-inline std::string* MakeTableReq_Constraint::mutable_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableReq_Constraint::mutable_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_type();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.Constraint.type)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.Constraint.type)
   return _s;
 }
-inline const std::string& MakeTableReq_Constraint::_internal_type() const {
+inline const std::string& CreateTableReq_Constraint::_internal_type() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.type_.Get();
 }
-inline void MakeTableReq_Constraint::_internal_set_type(const std::string& value) {
+inline void CreateTableReq_Constraint::_internal_set_type(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.type_.Set(value, GetArena());
 }
-inline std::string* MakeTableReq_Constraint::_internal_mutable_type() {
+inline std::string* CreateTableReq_Constraint::_internal_mutable_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.type_.Mutable( GetArena());
 }
-inline std::string* MakeTableReq_Constraint::release_type() {
+inline std::string* CreateTableReq_Constraint::release_type() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableReq.Constraint.type)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableReq.Constraint.type)
   return _impl_.type_.Release();
 }
-inline void MakeTableReq_Constraint::set_allocated_type(std::string* value) {
+inline void CreateTableReq_Constraint::set_allocated_type(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.type_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4507,153 +4507,153 @@ inline void MakeTableReq_Constraint::set_allocated_type(std::string* value) {
           _impl_.type_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableReq.Constraint.type)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableReq.Constraint.type)
 }
 
 // repeated string fields = 2;
-inline int MakeTableReq_Constraint::_internal_fields_size() const {
+inline int CreateTableReq_Constraint::_internal_fields_size() const {
   return _internal_fields().size();
 }
-inline int MakeTableReq_Constraint::fields_size() const {
+inline int CreateTableReq_Constraint::fields_size() const {
   return _internal_fields_size();
 }
-inline void MakeTableReq_Constraint::clear_fields() {
+inline void CreateTableReq_Constraint::clear_fields() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.fields_.Clear();
 }
-inline std::string* MakeTableReq_Constraint::add_fields()
+inline std::string* CreateTableReq_Constraint::add_fields()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   std::string* _s = _internal_mutable_fields()->Add();
-  // @@protoc_insertion_point(field_add_mutable:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_add_mutable:rpc_server.CreateTableReq.Constraint.fields)
   return _s;
 }
-inline const std::string& MakeTableReq_Constraint::fields(int index) const
+inline const std::string& CreateTableReq_Constraint::fields(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.Constraint.fields)
   return _internal_fields().Get(index);
 }
-inline std::string* MakeTableReq_Constraint::mutable_fields(int index)
+inline std::string* CreateTableReq_Constraint::mutable_fields(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.Constraint.fields)
   return _internal_mutable_fields()->Mutable(index);
 }
-inline void MakeTableReq_Constraint::set_fields(int index, const std::string& value) {
+inline void CreateTableReq_Constraint::set_fields(int index, const std::string& value) {
   _internal_mutable_fields()->Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.Constraint.fields)
 }
-inline void MakeTableReq_Constraint::set_fields(int index, std::string&& value) {
+inline void CreateTableReq_Constraint::set_fields(int index, std::string&& value) {
   _internal_mutable_fields()->Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.Constraint.fields)
 }
-inline void MakeTableReq_Constraint::set_fields(int index, const char* value) {
+inline void CreateTableReq_Constraint::set_fields(int index, const char* value) {
   ABSL_DCHECK(value != nullptr);
   _internal_mutable_fields()->Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_set_char:rpc_server.CreateTableReq.Constraint.fields)
 }
-inline void MakeTableReq_Constraint::set_fields(int index, const char* value,
+inline void CreateTableReq_Constraint::set_fields(int index, const char* value,
                               std::size_t size) {
   _internal_mutable_fields()->Mutable(index)->assign(
       reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_set_pointer:rpc_server.CreateTableReq.Constraint.fields)
 }
-inline void MakeTableReq_Constraint::set_fields(int index, absl::string_view value) {
+inline void CreateTableReq_Constraint::set_fields(int index, absl::string_view value) {
   _internal_mutable_fields()->Mutable(index)->assign(value.data(),
                                                      value.size());
-  // @@protoc_insertion_point(field_set_string_piece:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_set_string_piece:rpc_server.CreateTableReq.Constraint.fields)
 }
-inline void MakeTableReq_Constraint::add_fields(const std::string& value) {
+inline void CreateTableReq_Constraint::add_fields(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _internal_mutable_fields()->Add()->assign(value);
-  // @@protoc_insertion_point(field_add:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_add:rpc_server.CreateTableReq.Constraint.fields)
 }
-inline void MakeTableReq_Constraint::add_fields(std::string&& value) {
+inline void CreateTableReq_Constraint::add_fields(std::string&& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _internal_mutable_fields()->Add(std::move(value));
-  // @@protoc_insertion_point(field_add:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_add:rpc_server.CreateTableReq.Constraint.fields)
 }
-inline void MakeTableReq_Constraint::add_fields(const char* value) {
+inline void CreateTableReq_Constraint::add_fields(const char* value) {
   ABSL_DCHECK(value != nullptr);
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _internal_mutable_fields()->Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_add_char:rpc_server.CreateTableReq.Constraint.fields)
 }
-inline void MakeTableReq_Constraint::add_fields(const char* value, std::size_t size) {
+inline void CreateTableReq_Constraint::add_fields(const char* value, std::size_t size) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _internal_mutable_fields()->Add()->assign(
       reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_add_pointer:rpc_server.CreateTableReq.Constraint.fields)
 }
-inline void MakeTableReq_Constraint::add_fields(absl::string_view value) {
+inline void CreateTableReq_Constraint::add_fields(absl::string_view value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _internal_mutable_fields()->Add()->assign(value.data(), value.size());
-  // @@protoc_insertion_point(field_add_string_piece:rpc_server.MakeTableReq.Constraint.fields)
+  // @@protoc_insertion_point(field_add_string_piece:rpc_server.CreateTableReq.Constraint.fields)
 }
 inline const ::google::protobuf::RepeatedPtrField<std::string>&
-MakeTableReq_Constraint::fields() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:rpc_server.MakeTableReq.Constraint.fields)
+CreateTableReq_Constraint::fields() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:rpc_server.CreateTableReq.Constraint.fields)
   return _internal_fields();
 }
 inline ::google::protobuf::RepeatedPtrField<std::string>*
-MakeTableReq_Constraint::mutable_fields() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:rpc_server.MakeTableReq.Constraint.fields)
+CreateTableReq_Constraint::mutable_fields() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:rpc_server.CreateTableReq.Constraint.fields)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_fields();
 }
 inline const ::google::protobuf::RepeatedPtrField<std::string>&
-MakeTableReq_Constraint::_internal_fields() const {
+CreateTableReq_Constraint::_internal_fields() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.fields_;
 }
 inline ::google::protobuf::RepeatedPtrField<std::string>*
-MakeTableReq_Constraint::_internal_mutable_fields() {
+CreateTableReq_Constraint::_internal_mutable_fields() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.fields_;
 }
 
 // string name = 3;
-inline void MakeTableReq_Constraint::clear_name() {
+inline void CreateTableReq_Constraint::clear_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.name_.ClearToEmpty();
 }
-inline const std::string& MakeTableReq_Constraint::name() const
+inline const std::string& CreateTableReq_Constraint::name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.Constraint.name)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.Constraint.name)
   return _internal_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableReq_Constraint::set_name(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableReq_Constraint::set_name(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.Constraint.name)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.Constraint.name)
 }
-inline std::string* MakeTableReq_Constraint::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableReq_Constraint::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.Constraint.name)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.Constraint.name)
   return _s;
 }
-inline const std::string& MakeTableReq_Constraint::_internal_name() const {
+inline const std::string& CreateTableReq_Constraint::_internal_name() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.name_.Get();
 }
-inline void MakeTableReq_Constraint::_internal_set_name(const std::string& value) {
+inline void CreateTableReq_Constraint::_internal_set_name(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.name_.Set(value, GetArena());
 }
-inline std::string* MakeTableReq_Constraint::_internal_mutable_name() {
+inline std::string* CreateTableReq_Constraint::_internal_mutable_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.name_.Mutable( GetArena());
 }
-inline std::string* MakeTableReq_Constraint::release_name() {
+inline std::string* CreateTableReq_Constraint::release_name() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableReq.Constraint.name)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableReq.Constraint.name)
   return _impl_.name_.Release();
 }
-inline void MakeTableReq_Constraint::set_allocated_name(std::string* value) {
+inline void CreateTableReq_Constraint::set_allocated_name(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.name_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4661,56 +4661,56 @@ inline void MakeTableReq_Constraint::set_allocated_name(std::string* value) {
           _impl_.name_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableReq.Constraint.name)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableReq.Constraint.name)
 }
 
 // -------------------------------------------------------------------
 
-// MakeTableReq
+// CreateTableReq
 
 // bytes database = 1;
-inline void MakeTableReq::clear_database() {
+inline void CreateTableReq::clear_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.ClearToEmpty();
 }
-inline const std::string& MakeTableReq::database() const
+inline const std::string& CreateTableReq::database() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.database)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.database)
   return _internal_database();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableReq::set_database(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableReq::set_database(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.database)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.database)
 }
-inline std::string* MakeTableReq::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableReq::mutable_database() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_database();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.database)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.database)
   return _s;
 }
-inline const std::string& MakeTableReq::_internal_database() const {
+inline const std::string& CreateTableReq::_internal_database() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.database_.Get();
 }
-inline void MakeTableReq::_internal_set_database(const std::string& value) {
+inline void CreateTableReq::_internal_set_database(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.database_.Set(value, GetArena());
 }
-inline std::string* MakeTableReq::_internal_mutable_database() {
+inline std::string* CreateTableReq::_internal_mutable_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.database_.Mutable( GetArena());
 }
-inline std::string* MakeTableReq::release_database() {
+inline std::string* CreateTableReq::release_database() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableReq.database)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableReq.database)
   return _impl_.database_.Release();
 }
-inline void MakeTableReq::set_allocated_database(std::string* value) {
+inline void CreateTableReq::set_allocated_database(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.database_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4718,52 +4718,52 @@ inline void MakeTableReq::set_allocated_database(std::string* value) {
           _impl_.database_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableReq.database)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableReq.database)
 }
 
 // bytes table = 2;
-inline void MakeTableReq::clear_table() {
+inline void CreateTableReq::clear_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.ClearToEmpty();
 }
-inline const std::string& MakeTableReq::table() const
+inline const std::string& CreateTableReq::table() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.table)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.table)
   return _internal_table();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableReq::set_table(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableReq::set_table(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.table)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.table)
 }
-inline std::string* MakeTableReq::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableReq::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_table();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.table)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.table)
   return _s;
 }
-inline const std::string& MakeTableReq::_internal_table() const {
+inline const std::string& CreateTableReq::_internal_table() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.table_.Get();
 }
-inline void MakeTableReq::_internal_set_table(const std::string& value) {
+inline void CreateTableReq::_internal_set_table(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.Set(value, GetArena());
 }
-inline std::string* MakeTableReq::_internal_mutable_table() {
+inline std::string* CreateTableReq::_internal_mutable_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.table_.Mutable( GetArena());
 }
-inline std::string* MakeTableReq::release_table() {
+inline std::string* CreateTableReq::release_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableReq.table)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableReq.table)
   return _impl_.table_.Release();
 }
-inline void MakeTableReq::set_allocated_table(std::string* value) {
+inline void CreateTableReq::set_allocated_table(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4771,150 +4771,150 @@ inline void MakeTableReq::set_allocated_table(std::string* value) {
           _impl_.table_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableReq.table)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableReq.table)
 }
 
-// repeated .rpc_server.MakeTableReq.Field fields = 3;
-inline int MakeTableReq::_internal_fields_size() const {
+// repeated .rpc_server.CreateTableReq.Field fields = 3;
+inline int CreateTableReq::_internal_fields_size() const {
   return _internal_fields().size();
 }
-inline int MakeTableReq::fields_size() const {
+inline int CreateTableReq::fields_size() const {
   return _internal_fields_size();
 }
-inline void MakeTableReq::clear_fields() {
+inline void CreateTableReq::clear_fields() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.fields_.Clear();
 }
-inline ::rpc_server::MakeTableReq_Field* MakeTableReq::mutable_fields(int index)
+inline ::rpc_server::CreateTableReq_Field* CreateTableReq::mutable_fields(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.fields)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.fields)
   return _internal_mutable_fields()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::rpc_server::MakeTableReq_Field>* MakeTableReq::mutable_fields()
+inline ::google::protobuf::RepeatedPtrField<::rpc_server::CreateTableReq_Field>* CreateTableReq::mutable_fields()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:rpc_server.MakeTableReq.fields)
+  // @@protoc_insertion_point(field_mutable_list:rpc_server.CreateTableReq.fields)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_fields();
 }
-inline const ::rpc_server::MakeTableReq_Field& MakeTableReq::fields(int index) const
+inline const ::rpc_server::CreateTableReq_Field& CreateTableReq::fields(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.fields)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.fields)
   return _internal_fields().Get(index);
 }
-inline ::rpc_server::MakeTableReq_Field* MakeTableReq::add_fields() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::rpc_server::CreateTableReq_Field* CreateTableReq::add_fields() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::rpc_server::MakeTableReq_Field* _add = _internal_mutable_fields()->Add();
-  // @@protoc_insertion_point(field_add:rpc_server.MakeTableReq.fields)
+  ::rpc_server::CreateTableReq_Field* _add = _internal_mutable_fields()->Add();
+  // @@protoc_insertion_point(field_add:rpc_server.CreateTableReq.fields)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::rpc_server::MakeTableReq_Field>& MakeTableReq::fields() const
+inline const ::google::protobuf::RepeatedPtrField<::rpc_server::CreateTableReq_Field>& CreateTableReq::fields() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:rpc_server.MakeTableReq.fields)
+  // @@protoc_insertion_point(field_list:rpc_server.CreateTableReq.fields)
   return _internal_fields();
 }
-inline const ::google::protobuf::RepeatedPtrField<::rpc_server::MakeTableReq_Field>&
-MakeTableReq::_internal_fields() const {
+inline const ::google::protobuf::RepeatedPtrField<::rpc_server::CreateTableReq_Field>&
+CreateTableReq::_internal_fields() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.fields_;
 }
-inline ::google::protobuf::RepeatedPtrField<::rpc_server::MakeTableReq_Field>*
-MakeTableReq::_internal_mutable_fields() {
+inline ::google::protobuf::RepeatedPtrField<::rpc_server::CreateTableReq_Field>*
+CreateTableReq::_internal_mutable_fields() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.fields_;
 }
 
-// repeated .rpc_server.MakeTableReq.Constraint constraints = 4;
-inline int MakeTableReq::_internal_constraints_size() const {
+// repeated .rpc_server.CreateTableReq.Constraint constraints = 4;
+inline int CreateTableReq::_internal_constraints_size() const {
   return _internal_constraints().size();
 }
-inline int MakeTableReq::constraints_size() const {
+inline int CreateTableReq::constraints_size() const {
   return _internal_constraints_size();
 }
-inline void MakeTableReq::clear_constraints() {
+inline void CreateTableReq::clear_constraints() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.constraints_.Clear();
 }
-inline ::rpc_server::MakeTableReq_Constraint* MakeTableReq::mutable_constraints(int index)
+inline ::rpc_server::CreateTableReq_Constraint* CreateTableReq::mutable_constraints(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.constraints)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.constraints)
   return _internal_mutable_constraints()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::rpc_server::MakeTableReq_Constraint>* MakeTableReq::mutable_constraints()
+inline ::google::protobuf::RepeatedPtrField<::rpc_server::CreateTableReq_Constraint>* CreateTableReq::mutable_constraints()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:rpc_server.MakeTableReq.constraints)
+  // @@protoc_insertion_point(field_mutable_list:rpc_server.CreateTableReq.constraints)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   return _internal_mutable_constraints();
 }
-inline const ::rpc_server::MakeTableReq_Constraint& MakeTableReq::constraints(int index) const
+inline const ::rpc_server::CreateTableReq_Constraint& CreateTableReq::constraints(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.constraints)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.constraints)
   return _internal_constraints().Get(index);
 }
-inline ::rpc_server::MakeTableReq_Constraint* MakeTableReq::add_constraints() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::rpc_server::CreateTableReq_Constraint* CreateTableReq::add_constraints() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ::rpc_server::MakeTableReq_Constraint* _add = _internal_mutable_constraints()->Add();
-  // @@protoc_insertion_point(field_add:rpc_server.MakeTableReq.constraints)
+  ::rpc_server::CreateTableReq_Constraint* _add = _internal_mutable_constraints()->Add();
+  // @@protoc_insertion_point(field_add:rpc_server.CreateTableReq.constraints)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::rpc_server::MakeTableReq_Constraint>& MakeTableReq::constraints() const
+inline const ::google::protobuf::RepeatedPtrField<::rpc_server::CreateTableReq_Constraint>& CreateTableReq::constraints() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:rpc_server.MakeTableReq.constraints)
+  // @@protoc_insertion_point(field_list:rpc_server.CreateTableReq.constraints)
   return _internal_constraints();
 }
-inline const ::google::protobuf::RepeatedPtrField<::rpc_server::MakeTableReq_Constraint>&
-MakeTableReq::_internal_constraints() const {
+inline const ::google::protobuf::RepeatedPtrField<::rpc_server::CreateTableReq_Constraint>&
+CreateTableReq::_internal_constraints() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.constraints_;
 }
-inline ::google::protobuf::RepeatedPtrField<::rpc_server::MakeTableReq_Constraint>*
-MakeTableReq::_internal_mutable_constraints() {
+inline ::google::protobuf::RepeatedPtrField<::rpc_server::CreateTableReq_Constraint>*
+CreateTableReq::_internal_mutable_constraints() {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return &_impl_.constraints_;
 }
 
 // string engine = 5;
-inline void MakeTableReq::clear_engine() {
+inline void CreateTableReq::clear_engine() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.engine_.ClearToEmpty();
 }
-inline const std::string& MakeTableReq::engine() const
+inline const std::string& CreateTableReq::engine() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.engine)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.engine)
   return _internal_engine();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableReq::set_engine(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableReq::set_engine(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.engine_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.engine)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.engine)
 }
-inline std::string* MakeTableReq::mutable_engine() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableReq::mutable_engine() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_engine();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.engine)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.engine)
   return _s;
 }
-inline const std::string& MakeTableReq::_internal_engine() const {
+inline const std::string& CreateTableReq::_internal_engine() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.engine_.Get();
 }
-inline void MakeTableReq::_internal_set_engine(const std::string& value) {
+inline void CreateTableReq::_internal_set_engine(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.engine_.Set(value, GetArena());
 }
-inline std::string* MakeTableReq::_internal_mutable_engine() {
+inline std::string* CreateTableReq::_internal_mutable_engine() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.engine_.Mutable( GetArena());
 }
-inline std::string* MakeTableReq::release_engine() {
+inline std::string* CreateTableReq::release_engine() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableReq.engine)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableReq.engine)
   return _impl_.engine_.Release();
 }
-inline void MakeTableReq::set_allocated_engine(std::string* value) {
+inline void CreateTableReq::set_allocated_engine(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.engine_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4922,52 +4922,52 @@ inline void MakeTableReq::set_allocated_engine(std::string* value) {
           _impl_.engine_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableReq.engine)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableReq.engine)
 }
 
 // string charset = 6;
-inline void MakeTableReq::clear_charset() {
+inline void CreateTableReq::clear_charset() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.charset_.ClearToEmpty();
 }
-inline const std::string& MakeTableReq::charset() const
+inline const std::string& CreateTableReq::charset() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.charset)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.charset)
   return _internal_charset();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableReq::set_charset(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableReq::set_charset(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.charset_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.charset)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.charset)
 }
-inline std::string* MakeTableReq::mutable_charset() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableReq::mutable_charset() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_charset();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.charset)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.charset)
   return _s;
 }
-inline const std::string& MakeTableReq::_internal_charset() const {
+inline const std::string& CreateTableReq::_internal_charset() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.charset_.Get();
 }
-inline void MakeTableReq::_internal_set_charset(const std::string& value) {
+inline void CreateTableReq::_internal_set_charset(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.charset_.Set(value, GetArena());
 }
-inline std::string* MakeTableReq::_internal_mutable_charset() {
+inline std::string* CreateTableReq::_internal_mutable_charset() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.charset_.Mutable( GetArena());
 }
-inline std::string* MakeTableReq::release_charset() {
+inline std::string* CreateTableReq::release_charset() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableReq.charset)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableReq.charset)
   return _impl_.charset_.Release();
 }
-inline void MakeTableReq::set_allocated_charset(std::string* value) {
+inline void CreateTableReq::set_allocated_charset(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.charset_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -4975,52 +4975,52 @@ inline void MakeTableReq::set_allocated_charset(std::string* value) {
           _impl_.charset_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableReq.charset)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableReq.charset)
 }
 
 // string collation = 7;
-inline void MakeTableReq::clear_collation() {
+inline void CreateTableReq::clear_collation() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.collation_.ClearToEmpty();
 }
-inline const std::string& MakeTableReq::collation() const
+inline const std::string& CreateTableReq::collation() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.collation)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.collation)
   return _internal_collation();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableReq::set_collation(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableReq::set_collation(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.collation_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.collation)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.collation)
 }
-inline std::string* MakeTableReq::mutable_collation() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableReq::mutable_collation() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_collation();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.collation)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.collation)
   return _s;
 }
-inline const std::string& MakeTableReq::_internal_collation() const {
+inline const std::string& CreateTableReq::_internal_collation() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.collation_.Get();
 }
-inline void MakeTableReq::_internal_set_collation(const std::string& value) {
+inline void CreateTableReq::_internal_set_collation(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.collation_.Set(value, GetArena());
 }
-inline std::string* MakeTableReq::_internal_mutable_collation() {
+inline std::string* CreateTableReq::_internal_mutable_collation() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.collation_.Mutable( GetArena());
 }
-inline std::string* MakeTableReq::release_collation() {
+inline std::string* CreateTableReq::release_collation() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableReq.collation)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableReq.collation)
   return _impl_.collation_.Release();
 }
-inline void MakeTableReq::set_allocated_collation(std::string* value) {
+inline void CreateTableReq::set_allocated_collation(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.collation_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -5028,52 +5028,52 @@ inline void MakeTableReq::set_allocated_collation(std::string* value) {
           _impl_.collation_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableReq.collation)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableReq.collation)
 }
 
 // string table_comment = 8;
-inline void MakeTableReq::clear_table_comment() {
+inline void CreateTableReq::clear_table_comment() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_comment_.ClearToEmpty();
 }
-inline const std::string& MakeTableReq::table_comment() const
+inline const std::string& CreateTableReq::table_comment() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableReq.table_comment)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableReq.table_comment)
   return _internal_table_comment();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableReq::set_table_comment(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableReq::set_table_comment(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_comment_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableReq.table_comment)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableReq.table_comment)
 }
-inline std::string* MakeTableReq::mutable_table_comment() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableReq::mutable_table_comment() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_table_comment();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableReq.table_comment)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableReq.table_comment)
   return _s;
 }
-inline const std::string& MakeTableReq::_internal_table_comment() const {
+inline const std::string& CreateTableReq::_internal_table_comment() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.table_comment_.Get();
 }
-inline void MakeTableReq::_internal_set_table_comment(const std::string& value) {
+inline void CreateTableReq::_internal_set_table_comment(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_comment_.Set(value, GetArena());
 }
-inline std::string* MakeTableReq::_internal_mutable_table_comment() {
+inline std::string* CreateTableReq::_internal_mutable_table_comment() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.table_comment_.Mutable( GetArena());
 }
-inline std::string* MakeTableReq::release_table_comment() {
+inline std::string* CreateTableReq::release_table_comment() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableReq.table_comment)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableReq.table_comment)
   return _impl_.table_comment_.Release();
 }
-inline void MakeTableReq::set_allocated_table_comment(std::string* value) {
+inline void CreateTableReq::set_allocated_table_comment(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_comment_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -5081,79 +5081,79 @@ inline void MakeTableReq::set_allocated_table_comment(std::string* value) {
           _impl_.table_comment_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableReq.table_comment)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableReq.table_comment)
 }
 
 // -------------------------------------------------------------------
 
-// MakeTableRes
+// CreateTableRes
 
 // bool success = 1;
-inline void MakeTableRes::clear_success() {
+inline void CreateTableRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool MakeTableRes::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableRes.success)
+inline bool CreateTableRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableRes.success)
   return _internal_success();
 }
-inline void MakeTableRes::set_success(bool value) {
+inline void CreateTableRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableRes.success)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableRes.success)
 }
-inline bool MakeTableRes::_internal_success() const {
+inline bool CreateTableRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void MakeTableRes::_internal_set_success(bool value) {
+inline void CreateTableRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // bytes message = 2;
-inline void MakeTableRes::clear_message() {
+inline void CreateTableRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& MakeTableRes::message() const
+inline const std::string& CreateTableRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableRes.message)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableRes::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableRes.message)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableRes.message)
 }
-inline std::string* MakeTableRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableRes.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableRes.message)
   return _s;
 }
-inline const std::string& MakeTableRes::_internal_message() const {
+inline const std::string& CreateTableRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void MakeTableRes::_internal_set_message(const std::string& value) {
+inline void CreateTableRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* MakeTableRes::_internal_mutable_message() {
+inline std::string* CreateTableRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* MakeTableRes::release_message() {
+inline std::string* CreateTableRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableRes.message)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableRes.message)
   return _impl_.message_.Release();
 }
-inline void MakeTableRes::set_allocated_message(std::string* value) {
+inline void CreateTableRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -5161,52 +5161,52 @@ inline void MakeTableRes::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableRes.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableRes.message)
 }
 
 // bytes table = 3;
-inline void MakeTableRes::clear_table() {
+inline void CreateTableRes::clear_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.ClearToEmpty();
 }
-inline const std::string& MakeTableRes::table() const
+inline const std::string& CreateTableRes::table() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MakeTableRes.table)
+  // @@protoc_insertion_point(field_get:rpc_server.CreateTableRes.table)
   return _internal_table();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MakeTableRes::set_table(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CreateTableRes::set_table(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MakeTableRes.table)
+  // @@protoc_insertion_point(field_set:rpc_server.CreateTableRes.table)
 }
-inline std::string* MakeTableRes::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CreateTableRes::mutable_table() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_table();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MakeTableRes.table)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CreateTableRes.table)
   return _s;
 }
-inline const std::string& MakeTableRes::_internal_table() const {
+inline const std::string& CreateTableRes::_internal_table() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.table_.Get();
 }
-inline void MakeTableRes::_internal_set_table(const std::string& value) {
+inline void CreateTableRes::_internal_set_table(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.table_.Set(value, GetArena());
 }
-inline std::string* MakeTableRes::_internal_mutable_table() {
+inline std::string* CreateTableRes::_internal_mutable_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.table_.Mutable( GetArena());
 }
-inline std::string* MakeTableRes::release_table() {
+inline std::string* CreateTableRes::release_table() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MakeTableRes.table)
+  // @@protoc_insertion_point(field_release:rpc_server.CreateTableRes.table)
   return _impl_.table_.Release();
 }
-inline void MakeTableRes::set_allocated_table(std::string* value) {
+inline void CreateTableRes::set_allocated_table(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.table_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -5214,7 +5214,7 @@ inline void MakeTableRes::set_allocated_table(std::string* value) {
           _impl_.table_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MakeTableRes.table)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CreateTableRes.table)
 }
 
 #ifdef __GNUC__

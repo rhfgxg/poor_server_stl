@@ -76,6 +76,7 @@ private:
     std::string Make_token(const std::string& account);    // 生成用户 token
     bool Validate_token(const std::string& account_, const std::string& token_);  // 验证 token
     std::string SHA256(const std::string& str); // SHA256哈希（hex编码）
+    void Create_file_table(const std::string& account); // 创建文件表
 
 private:
     std::string server_address; // 服务器地址

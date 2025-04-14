@@ -247,10 +247,10 @@ grpc::Status DBServerImpl::Delete(grpc::ServerContext* context, const rpc_server
 }
 
 // 新建表
-grpc::Status DBServerImpl::Make_table(grpc::ServerContext* context, const rpc_server::MakeTableReq* req, rpc_server::MakeTableRes* res)
+grpc::Status DBServerImpl::Create_table(grpc::ServerContext* context, const rpc_server::CreateTableReq* req, rpc_server::CreateTableRes* res)
 {
     auto task_future = this->add_async_task([this, req, res] {
-        this->Handle_make_table(req, res);
+        this->Handle_create_table(req, res);
     });
 
     // 等待任务完成
@@ -458,7 +458,7 @@ void DBServerImpl::Handle_delete(const rpc_server::DeleteReq* req, rpc_server::D
 }
 
 // 新建表
-void DBServerImpl::Handle_make_table(const rpc_server::MakeTableReq* req, rpc_server::MakeTableRes* res)
+void DBServerImpl::Handle_create_table(const rpc_server::CreateTableReq* req, rpc_server::CreateTableRes* res)
 {
     try
     {

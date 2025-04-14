@@ -7,7 +7,7 @@ service DBServer
     rpc Read (ReadReq) returns (ReadRes);  // 查询数据服务
     rpc Update (UpdateReq) returns (UpdateRes);    // 更新数据服务
     rpc Delete (DeleteReq) returns (DeleteRes);    // 删除数据服务(一般使用更新数据标记代替删除)
-    rpc Make_table (MakeTableReq) returns (MakeTableRes);    // 新建表服务
+    rpc Create_table (CreateTableReq) returns (CreateTableRes);    // 新建表服务
 }
 
 // 增加数据服务请求
@@ -74,7 +74,7 @@ message DeleteRes
 }
 
 // 新建表服务
-message MakeTableReq {
+message CreateTableReq {
     bytes database = 1; // 数据库名
     bytes table = 2;    // 表名
 
@@ -102,7 +102,7 @@ message MakeTableReq {
     string collation = 7;        // 排序规则（如 utf8mb4_0900_ai_ci）
     string table_comment = 8;    // 表注释
 }
-message MakeTableRes
+message CreateTableRes
 {
     bool success = 1;
     bytes message = 2;

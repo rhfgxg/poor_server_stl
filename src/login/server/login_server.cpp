@@ -502,6 +502,8 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
         client->set(account, token);   // 保存 key用户账号，value用户token，用于验证用户是否在线
         client->expire(account, 1800); // 设置30分钟过期时间
 
+        Create_file_table(account); // 为用户创建文件表
+
         res->set_success(true);
         res->set_message("Register successful");
         res->set_account(account);  // 设置用户账号
@@ -689,8 +691,116 @@ std::string LoginServerImpl::SHA256(const std::string& str_) // SHA256哈希加�
     return ss.str();
 }
 
-// 创建文件表
-void Create_file_table(const std::string& account)
+// 为用户创建文件表
+void LoginServerImpl::Create_file_table(const std::string& account)
 {
+    /* 函数解释
+     * 用来在网盘数据库中，为单每个用户创建对应文件表
+     * 参数：传入用户账号
+     * 创建的表名使用 file_ 拼接 用户账号
+     */
 
+    try
+    {
+        // 构造表名
+        std::string table_name = "file_" + account;
+
+        // 构造字段定义
+        std::vector<rpc_server::CreateTableReq::Field> fields;
+
+        // 用户ID字段
+        rpc_server::CreateTableReq::Field user_id_field;
+        user_id_field.set_name("user_id");
+        user_id_field.set_type("BIGINT");
+        user_id_field.set_not_null(true);
+        user_id_field.set_comment("关联 user_info 表的 id 字段");
+        fields.push_back(user_id_field);
+
+        // 原始文件名字段
+        rpc_server::CreateTableReq::Field original_name_field;
+        original_name_field.set_name("original_file_name");
+        original_name_field.set_type("VARCHAR(255)");
+        original_name_field.set_not_null(true);
+        original_name_field.set_comment("原始文件名");
+        fields.push_back(original_name_field);
+
+        // 文件大小字段
+        rpc_server::CreateTableReq::Field file_size_field;
+        file_size_field.set_name("file_size");
+        file_size_field.set_type("BIGINT");
+        file_size_field.set_not_null(true);
+        file_size_field.set_comment("文件大小");
+        fields.push_back(file_size_field);
+
+        // 文件哈希值字段
+        rpc_server::CreateTableReq::Field file_hash_field;
+        file_hash_field.set_name("file_hash");
+        file_hash_field.set_type("VARCHAR(64)");
+        file_hash_field.set_not_null(true);
+        file_hash_field.set_comment("文件哈希值");
+        fields.push_back(file_hash_field);
+
+        // 服务器保存文件名字段
+        rpc_server::CreateTableReq::Field server_file_name_field;
+        server_file_name_field.set_name("server_file_name");
+        server_file_name_field.set_type("VARCHAR(255)");
+        server_file_name_field.set_not_null(true);
+        server_file_name_field.set_comment("服务器保存的文件名");
+        fields.push_back(server_file_name_field);
+
+        // 文件上传时间字段
+        rpc_server::CreateTableReq::Field upload_time_field;
+        upload_time_field.set_name("upload_time");
+        upload_time_field.set_type("DATETIME");
+        upload_time_field.set_not_null(true);
+        upload_time_field.set_comment("文件上传时间");
+        fields.push_back(upload_time_field);
+
+        // 构造主键约束
+        rpc_server::CreateTableReq::Constraint primary_key_constraint;
+        primary_key_constraint.set_type("PRIMARY_KEY");
+        primary_key_constraint.add_fields("user_id");
+        primary_key_constraint.add_fields("server_file_name");
+
+        // 构造建表请求
+        rpc_server::CreateTableReq create_table_req;
+        create_table_req.set_database("poor_file_hub");
+        create_table_req.set_table(table_name);
+        for(const auto& field : fields)
+        {
+            *create_table_req.add_fields() = field;
+        }
+        *create_table_req.add_constraints() = primary_key_constraint;
+        create_table_req.set_engine("InnoDB");
+        create_table_req.set_charset("utf8mb4");
+        create_table_req.set_collation("utf8mb4_general_ci");
+        create_table_req.set_table_comment("用户文件表");
+
+        // 构造响应与客户端上下文
+        rpc_server::CreateTableRes create_table_res;
+        grpc::ClientContext client_context;
+
+        // 从连接池中获取数据库服务器连接
+        auto channel = db_connection_pool.get_connection(rpc_server::ServerType::DB);
+        auto db_stub = rpc_server::DBServer::NewStub(channel);
+
+        // 调用数据库服务器的建表服务
+        grpc::Status status = db_stub->Create_table(&client_context, create_table_req, &create_table_res);
+
+        if(status.ok() && create_table_res.success())
+        {
+            this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->info("Table {} created successfully in poor_file_hub", table_name);
+        }
+        else
+        {
+            logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("Failed to create table {}: {}", table_name, create_table_res.message());
+        }
+
+        // 释放数据库服务器连接
+        db_connection_pool.release_connection(rpc_server::ServerType::DB, channel);
+    }
+    catch(const std::exception& e)
+    {
+        logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("Exception in Create_file_table: {}", e.what());
+    }
 }
