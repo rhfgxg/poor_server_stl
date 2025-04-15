@@ -694,27 +694,20 @@ std::string LoginServerImpl::SHA256(const std::string& str_) // SHA256哈希加�
 // 为用户创建文件表
 void LoginServerImpl::Create_file_table(const std::string& account)
 {
-    /* 函数解释
-     * 用来在网盘数据库中，为单每个用户创建对应文件表
-     * 参数：传入用户账号
-     * 创建的表名使用 file_ 拼接 用户账号
-     */
-
     try
     {
         // 构造表名
         std::string table_name = "file_" + account;
 
         // 构造字段定义
-        std::vector<rpc_server::CreateTableReq::Field> fields;
-
+        std::vector<rpc_server::CreateTableReq::Field> fields;  // 字段容器
         // 用户ID字段
-        rpc_server::CreateTableReq::Field user_id_field;
-        user_id_field.set_name("user_id");
-        user_id_field.set_type("BIGINT");
-        user_id_field.set_not_null(true);
-        user_id_field.set_comment("关联 user_info 表的 id 字段");
-        fields.push_back(user_id_field);
+        rpc_server::CreateTableReq::Field user_id_field;    // 字段
+        user_id_field.set_name("user_id");  // 字段名
+        user_id_field.set_type("BIGINT");   // 字段类型
+        user_id_field.set_not_null(true);   // 非空
+        user_id_field.set_comment("关联 user_info 表的 id 字段"); // 注释
+        fields.push_back(user_id_field);    // 添加字段
 
         // 原始文件名字段
         rpc_server::CreateTableReq::Field original_name_field;
@@ -748,19 +741,26 @@ void LoginServerImpl::Create_file_table(const std::string& account)
         server_file_name_field.set_comment("服务器保存的文件名");
         fields.push_back(server_file_name_field);
 
-        // 文件上传时间字段
+        // 文件上传时间字段（时间戳）
         rpc_server::CreateTableReq::Field upload_time_field;
         upload_time_field.set_name("upload_time");
-        upload_time_field.set_type("DATETIME");
+        upload_time_field.set_type("VARCHAR(20)");
         upload_time_field.set_not_null(true);
-        upload_time_field.set_comment("文件上传时间");
+        upload_time_field.set_comment("文件上传时间（毫秒时间戳）");
         fields.push_back(upload_time_field);
+
+        // 文件状态字段（枚举类型：上传中，缺损，正常）
+        rpc_server::CreateTableReq::Field status_field;
+        status_field.set_name("status");
+        status_field.set_type("ENUM('upload_ing', 'coloboma', 'normal')"); // 定义枚举类型
+        status_field.set_not_null(true);
+        status_field.set_comment("文件状态：上传中，缺损，正常");
+        fields.push_back(status_field);
 
         // 构造主键约束
         rpc_server::CreateTableReq::Constraint primary_key_constraint;
         primary_key_constraint.set_type("PRIMARY_KEY");
         primary_key_constraint.add_fields("user_id");
-        primary_key_constraint.add_fields("server_file_name");
 
         // 构造建表请求
         rpc_server::CreateTableReq create_table_req;
