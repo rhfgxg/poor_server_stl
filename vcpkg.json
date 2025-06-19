@@ -1,6 +1,4 @@
 {
-  "name": "poor-server-stl",
-  "version": "1.0.0",
   "dependencies": [
     "abseil",
     "nlohmann-json",
@@ -12,5 +10,7 @@
     "spdlog",
     "lua",
     "jwt-cpp"
-  ]
+  ],
+  "name": "poor-server-stl",
+  "version": "1.0.0"
 }
