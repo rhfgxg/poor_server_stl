@@ -2,6 +2,7 @@
   "name": "poor-server-stl",
   "version": "1.0.0",
   "dependencies": [
+    "abseil",
     "nlohmann-json",
     "mysql-connector-cpp",
     "boost",

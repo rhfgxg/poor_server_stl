@@ -12,7 +12,7 @@ set(VCPKG_DEBUG_LIB "${CMAKE_PREFIX_PATH}/debug/lib")
 set(VCPKG_DEBUG_BIN "${CMAKE_PREFIX_PATH}/debug/bin")
 # 设置 vcpkg 工具链文件路径
 if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)    # 防止环境中定义了此变量
-    set(CMAKE_TOOLCHAIN_FILE "D:/opt/tools/cpp/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+    set(CMAKE_TOOLCHAIN_FILE "D:/Opt/scoop/apps/vcpkg/current/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
 endif()
 
 

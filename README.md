@@ -81,6 +81,21 @@ vpckg_installed/：第三方库文件安装目录
 1. config/server_config.lua    # 服务器配置文件，可以根据需要修改，其余地方的配置会根据这个文件自动修改
 2. tools/debug/protoc_make.cmd      # 生成 proto 文件的脚本，根据自己的项目目录修改 PROTOC 和 GRPC_PLUGIN变量，在9，10行
 
+## 运行项目（vs2022）
+使用 vs2022 打开项目文件夹
+
+打开终端，运行项目脚本
+```
+复制配置文件到生成目录
+./tools/debug/copy_config.cmd
+
+使用 vcpkg 安装项目所需的第三方库（清单模式，所需库列表在 vcpkg.json 文件中）
+vcpkg install
+
+编译 proto 文件
+./tools/debug/protoc_make.cmd
+
+```
 
 ## 编译与部署
 ### 编译
