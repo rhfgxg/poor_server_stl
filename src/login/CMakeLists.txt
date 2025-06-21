@@ -45,7 +45,6 @@ target_link_libraries(${MODULE_NAME} PRIVATE
     gRPC::grpc++
     spdlog::spdlog
     ${LUA_LIB}
-    ${ADDRESS_SORTING_LIB}  # address_sorting 库
     "${VCPKG_DEBUG_LIB}/cpp_redis.lib"    # cpp_redis
     "${VCPKG_DEBUG_LIB}/tacopie.lib"    # tacopie 库
 )

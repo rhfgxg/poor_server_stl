@@ -10,7 +10,7 @@ if(WIN32)
     set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows")
     # 其他 Windows 下的设置
     if(NOT DEFINED CMAKE_TOOLCHAIN_FILE) # vcpkg.cmke 工具路径
-        set(CMAKE_TOOLCHAIN_FILE "D:/Opt/scoop/apps/vcpkg/current/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+        set(CMAKE_TOOLCHAIN_FILE "D:/Opt/ide/vs2022/vs2022/VC/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
     endif()
 else()
     set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux")
@@ -18,7 +18,7 @@ else()
         set(CMAKE_TOOLCHAIN_FILE "/home/m1341/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
     endif()
 endif()
-
+# 设置 vcpkg 安装第三方库文件路径
 set(VCPKG_INCLUDE "${CMAKE_PREFIX_PATH}/include")
 set(VCPKG_LIB "${CMAKE_PREFIX_PATH}/lib")
 set(VCPKG_BIN "${CMAKE_PREFIX_PATH}/bin")
@@ -68,7 +68,6 @@ find_package(upb REQUIRED)
 
 # 下面的库无法使用 find_package 寻找，需要手动指定
 find_library(LUA_LIB lua PATHS "${VCPKG_LIB}")  # lua.lib
-find_library(ADDRESS_SORTING_LIB address_sorting PATHS "${VCPKG_LIB}")  # address_sorting.lib, 用于 grpc
 find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_LIB}")   # mysqlcppconn8.lib
 # 下面文件需要直接在子模块中使用路径引入
 # "${VCPKG_DEBUG_LIB}/cpp_redis.lib"    # cpp_redis
