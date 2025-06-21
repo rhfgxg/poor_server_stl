@@ -18,12 +18,11 @@
       "buildRoot": "${projectDir}\\out\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeExecutable": "cmake",
-      "cmakeCommandArgs": "",
+      "cmakeCommandArgs": "-DCMAKE_TOOLCHAIN_FILE=/home/m1341/vcpkg/scripts/buildsystems/vcpkg.cmake",
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
-      "inheritEnvironments": [ "linux_clang_x64" ],
-      "wslPath": "${defaultWSLPath}",
-      "variables": []
+      "inheritEnvironments": [ "linux_x64" ],
+      "wslPath": "${defaultWSLPath}"
     }
   ]
 }

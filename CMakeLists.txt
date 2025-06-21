@@ -4,17 +4,26 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # 定义常量
 project("poor_server_stl" VERSION 1.0)
-set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows")
+
+# 设置 vcpkg 工具链文件路径
+if(WIN32)
+    set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows")
+    # 其他 Windows 下的设置
+    if(NOT DEFINED CMAKE_TOOLCHAIN_FILE) # vcpkg.cmke 工具路径
+        set(CMAKE_TOOLCHAIN_FILE "D:/Opt/scoop/apps/vcpkg/current/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+    endif()
+else()
+    set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux")
+    if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+        set(CMAKE_TOOLCHAIN_FILE "/home/m1341/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+    endif()
+endif()
+
 set(VCPKG_INCLUDE "${CMAKE_PREFIX_PATH}/include")
 set(VCPKG_LIB "${CMAKE_PREFIX_PATH}/lib")
 set(VCPKG_BIN "${CMAKE_PREFIX_PATH}/bin")
 set(VCPKG_DEBUG_LIB "${CMAKE_PREFIX_PATH}/debug/lib")
 set(VCPKG_DEBUG_BIN "${CMAKE_PREFIX_PATH}/debug/bin")
-# 设置 vcpkg 工具链文件路径
-if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)    # 防止环境中定义了此变量
-    set(CMAKE_TOOLCHAIN_FILE "D:/Opt/scoop/apps/vcpkg/current/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
-endif()
-
 
 # 包含头文件的目录，在子模块中生效
 include_directories(
@@ -37,7 +46,11 @@ include_directories(
 )
 
 # 设置编译选项
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4244 /wd4251 /wd4828 /utf-8")   # 忽略警告，使用utf-8编码
+if(MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4244 /wd4251 /wd4828 /utf-8")
+else()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fPIC")
+endif()
 
 # 自动寻找第三方库 lib列表
 find_package(absl REQUIRED)
