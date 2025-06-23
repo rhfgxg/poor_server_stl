@@ -12,7 +12,7 @@ local db_config = {
             }
         },
 
-        ["hearthstone"] = { -- 炉石传说模块数据库
+        ["poor_hearthstone"] = { -- 炉石传说模块数据库
             ["host"] = "127.0.0.1",
             ["port"] = "33060",
             ["user_name"] = "root",
@@ -26,7 +26,7 @@ local db_config = {
             }
         },
 
-        ["poor_file_hub"] = {  -- 网盘数据库
+        ["poor_net_disk"] = {  -- 网盘数据库
             ["host"] = "127.0.0.1",
             ["port"] = "33060",
             ["user_name"] = "root",

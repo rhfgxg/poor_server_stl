@@ -33,7 +33,7 @@
 # 参与项目
 
 ## 项目规范
-(项目开发文档)[project_document]
+[项目开发文档](project_document)
 
 ## 开发环境建议
 ### 操作系统

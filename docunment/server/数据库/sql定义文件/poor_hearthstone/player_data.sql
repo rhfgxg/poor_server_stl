@@ -20,8 +20,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for playerdata
 -- ----------------------------
-DROP TABLE IF EXISTS `playerdata`;
-CREATE TABLE `playerdata`  (
+DROP TABLE IF EXISTS `player_data`;
+CREATE TABLE `player_data`  (
   `player_id` int NOT NULL AUTO_INCREMENT COMMENT '玩家ID',
   `user_id` int NOT NULL COMMENT '用户ID',
   `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '昵称',
