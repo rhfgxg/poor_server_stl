@@ -58,7 +58,6 @@ find_package(Boost REQUIRED system)
 find_package(c-ares REQUIRED)
 find_package(fmt REQUIRED)
 find_package(gRPC REQUIRED)
-# find_package(Lua REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(Protobuf REQUIRED)
 find_package(re2 REQUIRED)
@@ -67,11 +66,10 @@ find_package(ZLIB REQUIRED)
 find_package(upb REQUIRED)
 
 # 下面的库无法使用 find_package 寻找，需要手动指定
+find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_LIB}")
 find_library(LUA_LIB lua PATHS "${VCPKG_LIB}")  # lua.lib
 find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_LIB}")   # mysqlcppconn8.lib
-# 下面文件需要直接在子模块中使用路径引入
-# "${VCPKG_DEBUG_LIB}/cpp_redis.lib"    # cpp_redis
-# "${VCPKG_DEBUG_LIB}/tacopie.lib"    # tacopie 库
+find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_LIB}")  # tacopie.lib
 
 # 添加每个模块，确保可以将所有变量
 add_subdirectory(protobuf)

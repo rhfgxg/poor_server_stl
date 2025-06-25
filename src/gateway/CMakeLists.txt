@@ -46,10 +46,10 @@ target_link_libraries(${MODULE_NAME} PRIVATE
 #    ZLIB::ZLIB
 #    upb::upb
     gRPC::grpc++
-    ${LUA_LIB}
     spdlog::spdlog
-    "${VCPKG_DEBUG_LIB}/cpp_redis.lib"    # cpp_redis
-    "${VCPKG_DEBUG_LIB}/tacopie.lib"    # tacopie 库
+    ${LUA_LIB}
+    ${TACOPIE_LIB}
+    ${CPPREDIS_LIB}
 )
 
 # 第三方库 dll列表
