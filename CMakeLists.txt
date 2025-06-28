@@ -1,36 +1,32 @@
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required(VERSION 3.8)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# 定义常量
 project("poor_server_stl" VERSION 1.0)
 
-# 设置 vcpkg 工具链文件路径
+# 平台相关的 vcpkg 路径设置
 if(WIN32)
     set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-windows")
-    # 其他 Windows 下的设置
-    if(NOT DEFINED CMAKE_TOOLCHAIN_FILE) # vcpkg.cmke 工具路径
-        set(CMAKE_TOOLCHAIN_FILE "D:/Opt/ide/vs2022/vs2022/VC/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
-    endif()
 else()
-    set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/vcpkg_installed/x64-linux")
     if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-        set(CMAKE_TOOLCHAIN_FILE "/home/m1341/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+        if(DEFINED ENV{VCPKG_ROOT})
+            set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+            set(CMAKE_PREFIX_PATH "$ENV{VCPKG_ROOT}/installed/x64-linux")
+        endif()
     endif()
 endif()
-# 设置 vcpkg 安装第三方库文件路径
+
+# vcpkg 相关路径变量
 set(VCPKG_INCLUDE "${CMAKE_PREFIX_PATH}/include")
 set(VCPKG_LIB "${CMAKE_PREFIX_PATH}/lib")
 set(VCPKG_BIN "${CMAKE_PREFIX_PATH}/bin")
 set(VCPKG_DEBUG_LIB "${CMAKE_PREFIX_PATH}/debug/lib")
 set(VCPKG_DEBUG_BIN "${CMAKE_PREFIX_PATH}/debug/bin")
 
-# 包含头文件的目录，在子模块中生效
+# 头文件目录
 include_directories(
-    ${VCPKG_INCLUDE}     # 第三方库的头文件所在目录
-    # 共享工具类
+    ${VCPKG_INCLUDE}
     ${CMAKE_SOURCE_DIR}/src/common
-    # 各服务器实现类
     ${CMAKE_SOURCE_DIR}/src/battle
     ${CMAKE_SOURCE_DIR}/src/central
     ${CMAKE_SOURCE_DIR}/src/chat
@@ -41,18 +37,17 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src/login
     ${CMAKE_SOURCE_DIR}/src/matching
     ${CMAKE_SOURCE_DIR}/src/store
-    # proto生成的 grpc服务头文件目录
     ${CMAKE_SOURCE_DIR}/protobuf/src
 )
 
-# 设置编译选项
+# 编译选项
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4244 /wd4251 /wd4828 /utf-8")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -fPIC")
 endif()
 
-# 自动寻找第三方库 lib列表
+# 自动查找第三方库
 find_package(absl REQUIRED)
 find_package(Boost REQUIRED system)
 find_package(c-ares REQUIRED)
@@ -65,21 +60,28 @@ find_package(spdlog REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(upb REQUIRED)
 
-# 下面的库无法使用 find_package 寻找，需要手动指定
-find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_LIB}")
-find_library(LUA_LIB lua PATHS "${VCPKG_LIB}")  # lua.lib
-find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_LIB}")   # mysqlcppconn8.lib
-find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_LIB}")  # tacopie.lib
+# 仅 find_package 找不到的库用 find_library
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")   # 根据调试模式选择对应版本
+    find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_DEBUG_LIB}" NO_DEFAULT_PATH)
+    find_library(LUA_LIB lua PATHS "${VCPKG_DEBUG_LIB}")
+    find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_DEBUG_LIB}")
+    find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_DEBUG_LIB}" NO_DEFAULT_PATH)
+else()
+    find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_LIB}")
+    find_library(LUA_LIB lua PATHS "${VCPKG_LIB}")
+    find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_LIB}")
+    find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_LIB}")
+endif()
 
-# 添加每个模块，确保可以将所有变量
+# 添加子模块
 add_subdirectory(protobuf)
-add_subdirectory(./src/battle)
-add_subdirectory(./src/central)
-#add_subdirectory(./src/chat)
-add_subdirectory(./src/db)
-add_subdirectory(./src/file)
-add_subdirectory(./src/gateway)
-add_subdirectory(./src/logic)
-add_subdirectory(./src/login)
-#add_subdirectory(./src/matching)
-#add_subdirectory(./src/store)
+add_subdirectory(src/battle)
+add_subdirectory(src/central)
+#add_subdirectory(src/chat)
+add_subdirectory(src/db)
+add_subdirectory(src/file)
+add_subdirectory(src/gateway)
+add_subdirectory(src/logic)
+add_subdirectory(src/login)
+#add_subdirectory(src/matching)
+#add_subdirectory(src/store)
