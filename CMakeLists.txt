@@ -61,17 +61,33 @@ find_package(ZLIB REQUIRED)
 find_package(upb REQUIRED)
 
 # 仅 find_package 找不到的库用 find_library
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")   # 根据调试模式选择对应版本
-    find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_DEBUG_LIB}" NO_DEFAULT_PATH)
-    find_library(LUA_LIB lua PATHS "${VCPKG_DEBUG_LIB}")
-    find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_DEBUG_LIB}")
-    find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_DEBUG_LIB}" NO_DEFAULT_PATH)
+if(WIN32)
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")   # 根据调试模式选择对应版本
+        find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_DEBUG_LIB}" NO_DEFAULT_PATH)
+        find_library(LUA_LIB lua PATHS "${VCPKG_DEBUG_LIB}")
+        find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_DEBUG_LIB}")
+        find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_DEBUG_LIB}" NO_DEFAULT_PATH)
+    else()
+        find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_LIB}")
+        find_library(LUA_LIB lua PATHS "${VCPKG_LIB}")
+        find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_LIB}")
+        find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_LIB}")
+    endif()
 else()
-    find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_LIB}")
-    find_library(LUA_LIB lua PATHS "${VCPKG_LIB}")
-    find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_LIB}")
-    find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_LIB}")
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")   # 根据调试模式选择对应版本
+        find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_DEBUG_LIB}")
+        find_library(LUA_LIB lua PATHS "${VCPKG_DEBUG_LIB}")
+        find_library(MYSQLCPPCONN_LIB mysqlcppconnx-static PATHS "${VCPKG_DEBUG_LIB}" NO_DEFAULT_PATH)
+        find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_DEBUG_LIB}")
+    else()
+        find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_LIB}")
+        find_library(LUA_LIB lua PATHS "${VCPKG_LIB}")
+        find_library(MYSQLCPPCONN_LIB mysqlcppconnx-static PATHS "${VCPKG_LIB}" NO_DEFAULT_PATH)
+        find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_LIB}")
+    endif()
 endif()
+
+message(STATUS "MYSQLCPPCONN_LIB: ${MYSQLCPPCONN_LIB}")
 
 # 添加子模块
 add_subdirectory(protobuf)
