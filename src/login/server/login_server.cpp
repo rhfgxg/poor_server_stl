@@ -430,7 +430,7 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
     std::string phone_number = req->phone();
     std::string id_number = req->id_number();
 
-    // 获取当前时间戳
+    // 获取当前时间戳（毫秒）
     auto now = std::chrono::system_clock::now();
     auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now).time_since_epoch().count();
     std::ostringstream oss;
