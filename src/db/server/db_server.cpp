@@ -14,10 +14,10 @@ DBServerImpl::DBServerImpl(LoggerManager& logger_manager_, const std::string add
     std::string db_uri = Read_db_config(L, "config/cfg_db.lua", "poor_users");
     poor_users_pool = std::make_unique<DBConnectionPool>(db_uri, 10);   // 用户数据库连接池
 
-    db_uri = Read_db_config(L, "config/cfg_db.lua", "poor_file_hub");
+    db_uri = Read_db_config(L, "config/cfg_db.lua", "poor_net_disk");
     poor_file_pool = std::make_unique<DBConnectionPool>(db_uri, 10);   // 网盘数据库连接池
 
-    db_uri = Read_db_config(L, "config/cfg_db.lua", "hearthstone");
+    db_uri = Read_db_config(L, "config/cfg_db.lua", "poor_hearthstone");
     hearthstone_pool = std::make_unique<DBConnectionPool>(db_uri, 10);   // 炉石数据库连接池
 
     lua_close(L);   // 关闭lua虚拟机
