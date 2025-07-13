@@ -48,8 +48,8 @@ rem 生成 login 模块：登录服务器
 %PROTOC% --proto_path=%PROTO_DIR% --grpc_out=%MAKE_OUT% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %PROTO_DIR%\server_login.proto
 
 rem 生成 matching 模块：匹配服务器
-rem %PROTOC% --proto_path=%PROTO_DIR% --cpp_out=%MAKE_OUT% %PROTO_DIR%\server_matching.proto
-rem %PROTOC% --proto_path=%PROTO_DIR% --grpc_out=%MAKE_OUT% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %PROTO_DIR%\server_matching.proto
+%PROTOC% --proto_path=%PROTO_DIR% --cpp_out=%MAKE_OUT% %PROTO_DIR%\server_matching.proto
+%PROTOC% --proto_path=%PROTO_DIR% --grpc_out=%MAKE_OUT% --plugin=protoc-gen-grpc=%GRPC_PLUGIN% %PROTO_DIR%\server_matching.proto
 
 rem 生成 store 模块：商城服务器
 rem %PROTOC% --proto_path=%PROTO_DIR% --cpp_out=%MAKE_OUT% %PROTO_DIR%\server_store.proto

@@ -1,36 +1,27 @@
-# central中心服务器模块，管理所有模块的交互，RPC调用
-# 模块名
-set(MODULE_NAME central)                                                                         
+# matching 匹配服务器，管理对局匹配和排队
+set(MODULE_NAME matching) # 模块名
 
 # 需要编译的源文件列表
 set(SOURCES
     # 源文件
-    ${PROJECT_SOURCE_DIR}/src/central/main.cpp
-    ${PROJECT_SOURCE_DIR}/src/central/server/central_server.cpp
+    ${PROJECT_SOURCE_DIR}/src/matching/main.cpp
+    ${PROJECT_SOURCE_DIR}/src/matching/server/matching_server.cpp
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
     ${PROJECT_SOURCE_DIR}/src/common/redis_client.cpp
-    # protobuf 生成的源文件：调用其他服务器
+    # protobuf 生成的源文件
     ${PROJECT_SOURCE_DIR}/protobuf/src/common.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/common.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_battle.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/src/server_battle.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_db.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_db.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_file.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_file.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_gateway.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_gateway.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_logic.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_logic.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_login.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_login.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_matching.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/src/server_matching.grpc.pb.cc
 )
 
-# 指定编译生成的可执行文件
+# 指定编译生成的可执行文件信息：文件名${MODULE_NAME} ，${SOURCES} 项目所有源文件路径
 add_executable(${MODULE_NAME} ${SOURCES})
 
 # 向其他模块提供接口，将一些公共头文件指定为 PUBLIC，其他模块可以访问
@@ -66,6 +57,7 @@ if(WIN32)
         "${VCPKG_DEBUG_BIN}/libssl-3-x64.dll"
         "${VCPKG_DEBUG_BIN}/libcrypto-3-x64.dll"
         "${VCPKG_DEBUG_BIN}/abseil_dll.dll"
+        "${VCPKG_DEBUG_BIN}/zlibd1.dll"
         "${VCPKG_BIN}/zlib1.dll"
         "${VCPKG_DEBUG_BIN}/re2.dll"
         "${VCPKG_DEBUG_BIN}/cares.dll"

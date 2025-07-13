@@ -6,12 +6,13 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_, const std::
     server_port(port),  // 服务器端口
     logger_manager(logger_manager_),    // 日志管理器
     battle_connection_pool(10),    // 初始化战斗服务器连接池大小为 10
-    central_connection_pool(10),    // 初始化中心服务器连接池大小为 10
-    db_connection_pool(10), // 初始化数据库服务器连接池大小为 10
-    gateway_connection_pool(10),    // 初始化网关服务器连接池大小为 10
-    logic_connection_pool(10),  // 初始化逻辑服务器连接池大小为 10
-    login_connection_pool(10),  // 初始化登录服务器连接池大小为 10
-    file_connection_pool(10)   // 初始化文件服务器连接池大小为 10
+    central_connection_pool(10),    // 中心服务器
+    db_connection_pool(10), // 数据库服务器
+    gateway_connection_pool(10),    // 网关服务器
+    logic_connection_pool(10),  // 逻辑服务器
+    login_connection_pool(10),  // 登录服务器
+    file_connection_pool(10),   // 文件服务器
+    matching_connection_pool(10)    // 匹配服务器
 {
     // 连接池日志
     logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->info("Central_connection_pool: initialized successfully, pool size: 10");
@@ -20,6 +21,7 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_, const std::
     logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->info("logic_connection_pool: initialized successfully, pool size: 10");
     logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->info("login_connection_pool: initialized successfully, pool size: 10");
     logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->info("file_connection_pool: initialized successfully, pool size: 10");
+    logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->info("matching_connection_pool: initialized successfully, pool size: 10");
 
     // 将本服务器加入中心数据库链接池
     central_connection_pool.add_server(rpc_server::ServerType::CENTRAL, this->server_address,this->server_port);
@@ -244,6 +246,14 @@ void CentralServerImpl::Handle_register_server(const rpc_server::RegisterServerR
         res->set_message("Server registered successfully");
         break;
     }
+    case rpc_server::ServerType::MATCHING:  // 匹配服务器
+    {
+        this->matching_connection_pool.add_server(rpc_server::ServerType::MATCHING, address, port);
+        this->logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->info("Matching_connection_pool: successfully registered a server: {} {}", address, port);
+        res->set_success(true);
+        res->set_message("Server registered successfully");
+        break;
+    }
     default:
     {
         res->set_success(false);
@@ -302,6 +312,12 @@ void CentralServerImpl::Release_server_connection(rpc_server::ServerType server_
         this->logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->warn("File_connection_pool: successfully unregistered a server: {} {}", address, port);
         break;
     }
+    case rpc_server::ServerType::MATCHING:  // 匹配服务器
+    {
+        this->matching_connection_pool.remove_server(rpc_server::ServerType::MATCHING, address, port);
+        this->logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->warn("Matching_connection_pool: successfully unregistered a server: {} {}", address, port);
+        break;
+    }
     }
 }
 
@@ -345,6 +361,11 @@ void CentralServerImpl::All_connec_poor(const rpc_server::MultipleConnectPoorReq
         case rpc_server::FILE:
         {
             connections = file_connection_pool.get_all_connections();
+            break;
+        }
+        case rpc_server::MATCHING:
+        {
+            connections = matching_connection_pool.get_all_connections();
             break;
         }
         default:

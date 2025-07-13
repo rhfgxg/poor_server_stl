@@ -18,6 +18,7 @@ set FILE_DIR=%DEBUG_OUT_DIR%\src\file\config
 set GATEWAY_DIR=%DEBUG_OUT_DIR%\src\gateway\config
 set LOGIC_DIR=%DEBUG_OUT_DIR%\src\logic\config
 set LOGIN_DIR=%DEBUG_OUT_DIR%\src\login\config
+set MATCHING_DIR=%DEBUG_OUT_DIR%\src\matching\config
 
 rem 创建文件夹
 if not exist %BATTLE_DIR% mkdir %BATTLE_DIR%
@@ -27,6 +28,7 @@ if not exist %FILE_DIR% mkdir %FILE_DIR%
 if not exist %GATEWAY_DIR% mkdir %GATEWAY_DIR%
 if not exist %LOGIC_DIR% mkdir %LOGIC_DIR%
 if not exist %LOGIN_DIR% mkdir %LOGIN_DIR%
+if not exist %MATCHING_DIR% mkdir %MATCHING_DIR%
 
 rem 复制服务器配置文件
 copy /y %CONFIG_DIR%\cfg_battle_server.lua	%BATTLE_DIR%
@@ -36,6 +38,7 @@ copy /y %CONFIG_DIR%\cfg_file_server.lua	%FILE_DIR%
 copy /y %CONFIG_DIR%\cfg_gateway_server.lua %GATEWAY_DIR%
 copy /y %CONFIG_DIR%\cfg_logic_server.lua	%LOGIC_DIR%
 copy /y %CONFIG_DIR%\cfg_login_server.lua	%LOGIN_DIR%
+copy /y %CONFIG_DIR%\cfg_matching_server.lua %MATCHING_DIR%
 
 rem 复制数据库配置文件
 copy /y %CONFIG_DIR%\cfg_db.lua %DB_DIR%
