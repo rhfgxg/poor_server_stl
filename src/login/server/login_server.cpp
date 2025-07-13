@@ -330,7 +330,8 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
     * 通过查询数据库，验证用户的用户名和密码
     * 如果验证成功，生成Token
     * 将账号和Token存储到Redis中，用于验证用户是否在线
-    * 用户退出，删除Redis中的账号和Token
+    * 更新数据库中的最后登录时间
+    * 用户退出时，删除Redis中的账号和Token
     */
 
     // 获取用户名和密码
