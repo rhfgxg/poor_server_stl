@@ -7,7 +7,7 @@ BattleServerImpl::BattleServerImpl(LoggerManager& logger_manager_, const std::st
     logger_manager(logger_manager_),
     redis_client(),
     central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))),
-    db_connection_pool(10)
+    logic_connection_pool(10)
 {
     redis_client.get_client()->connect("127.0.0.1", 6379); // 连接Redis服务器
     logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("redis connection successful");
@@ -182,7 +182,7 @@ void BattleServerImpl::Init_connection_pool()
                 {
                 case rpc_server::ServerType::LOGIC:
                 {
-                    db_connection_pool.add_server(rpc_server::ServerType::LOGIC, conn_info.address(), std::to_string(conn_info.port()));
+                    logic_connection_pool.add_server(rpc_server::ServerType::LOGIC, conn_info.address(), std::to_string(conn_info.port()));
                     break;
                 }
                 default:

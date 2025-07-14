@@ -5,7 +5,6 @@
 #include "consts/const_log.h"  // 日志类型
 #include "server_battle.grpc.pb.h"	// 战斗服务器
 #include "server_central.grpc.pb.h"	// 中心服务器
-#include "server_db.grpc.pb.h"    // 数据库服务器
 #include "server_logic.grpc.pb.h"	// 逻辑服务器
 #include "connection_pool.h"    // 连接池
 #include "logger_manager.h"     // 日志管理器
@@ -53,7 +52,7 @@ private:
     RedisClient redis_client;    // Redis客户端
 
     std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;	// 中心服务存根
-    ConnectionPool db_connection_pool;   // 数据库服务器连接池
+    ConnectionPool logic_connection_pool;   // 逻辑服务器连接池
 
     std::vector<std::thread> thread_pool;   // 线程池
     std::queue<std::function<void()>> task_queue;    // 任务队列
