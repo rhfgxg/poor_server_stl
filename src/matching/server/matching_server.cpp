@@ -7,7 +7,8 @@ MatchingServerImpl::MatchingServerImpl(LoggerManager& logger_manager_, const std
     logger_manager(logger_manager_),
     redis_client(),
     central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))),
-    db_connection_pool(10)
+    battle_connection_pool(10),
+    login_connection_pool(10)
 {
     redis_client.get_client()->connect("127.0.0.1", 6379); // 连接Redis服务器
     logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("redis connection successful");
@@ -180,9 +181,14 @@ void MatchingServerImpl::Init_connection_pool()
             {
                 switch(connect_pool.server_type())
                 {
-                case rpc_server::ServerType::LOGIC:
+                case rpc_server::ServerType::LOGIN:
                 {
-                    db_connection_pool.add_server(rpc_server::ServerType::LOGIC, conn_info.address(), std::to_string(conn_info.port()));
+                    login_connection_pool.add_server(rpc_server::ServerType::LOGIN, conn_info.address(), std::to_string(conn_info.port()));
+                    break;
+                }
+                case rpc_server::ServerType::BATTLE:
+                {
+                    battle_connection_pool.add_server(rpc_server::ServerType::BATTLE, conn_info.address(), std::to_string(conn_info.port()));
                     break;
                 }
                 default:
