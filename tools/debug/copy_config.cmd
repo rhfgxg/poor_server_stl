@@ -6,7 +6,7 @@ rem 配置文件复制到 可执行文件同级的 /config 中
 set SCRIPT_DIR=%~dp0
 set PROJECT_DIR=%SCRIPT_DIR%..\..
 rem 配置文件目录
-set CONFIG_DIR=%PROJECT_DIR%\config\server_config
+set CONFIG_DIR=%PROJECT_DIR%\config\cpp\cfg_server
 rem 生成文件目录
 set DEBUG_OUT_DIR=%PROJECT_DIR%\out\build\x64-debug
 
