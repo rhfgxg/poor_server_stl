@@ -56,18 +56,18 @@ struct TableStruct_server_5fmatching_2eproto {
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_server_5fmatching_2eproto;
 namespace rpc_server {
-class CancelMatchRequest;
-struct CancelMatchRequestDefaultTypeInternal;
-extern CancelMatchRequestDefaultTypeInternal _CancelMatchRequest_default_instance_;
-class CancelMatchResponse;
-struct CancelMatchResponseDefaultTypeInternal;
-extern CancelMatchResponseDefaultTypeInternal _CancelMatchResponse_default_instance_;
-class MatchPlayerRequest;
-struct MatchPlayerRequestDefaultTypeInternal;
-extern MatchPlayerRequestDefaultTypeInternal _MatchPlayerRequest_default_instance_;
-class MatchPlayerResponse;
-struct MatchPlayerResponseDefaultTypeInternal;
-extern MatchPlayerResponseDefaultTypeInternal _MatchPlayerResponse_default_instance_;
+class CancelMatchReq;
+struct CancelMatchReqDefaultTypeInternal;
+extern CancelMatchReqDefaultTypeInternal _CancelMatchReq_default_instance_;
+class CancelMatchRes;
+struct CancelMatchResDefaultTypeInternal;
+extern CancelMatchResDefaultTypeInternal _CancelMatchRes_default_instance_;
+class MatchPlayerReq;
+struct MatchPlayerReqDefaultTypeInternal;
+extern MatchPlayerReqDefaultTypeInternal _MatchPlayerReq_default_instance_;
+class MatchPlayerRes;
+struct MatchPlayerResDefaultTypeInternal;
+extern MatchPlayerResDefaultTypeInternal _MatchPlayerRes_default_instance_;
 }  // namespace rpc_server
 namespace google {
 namespace protobuf {
@@ -81,26 +81,26 @@ namespace rpc_server {
 
 // -------------------------------------------------------------------
 
-class MatchPlayerResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.MatchPlayerResponse) */ {
+class MatchPlayerRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.MatchPlayerRes) */ {
  public:
-  inline MatchPlayerResponse() : MatchPlayerResponse(nullptr) {}
-  ~MatchPlayerResponse() override;
+  inline MatchPlayerRes() : MatchPlayerRes(nullptr) {}
+  ~MatchPlayerRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR MatchPlayerResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR MatchPlayerRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline MatchPlayerResponse(const MatchPlayerResponse& from)
-      : MatchPlayerResponse(nullptr, from) {}
-  MatchPlayerResponse(MatchPlayerResponse&& from) noexcept
-    : MatchPlayerResponse() {
+  inline MatchPlayerRes(const MatchPlayerRes& from)
+      : MatchPlayerRes(nullptr, from) {}
+  MatchPlayerRes(MatchPlayerRes&& from) noexcept
+    : MatchPlayerRes() {
     *this = ::std::move(from);
   }
 
-  inline MatchPlayerResponse& operator=(const MatchPlayerResponse& from) {
+  inline MatchPlayerRes& operator=(const MatchPlayerRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline MatchPlayerResponse& operator=(MatchPlayerResponse&& from) noexcept {
+  inline MatchPlayerRes& operator=(MatchPlayerRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -132,20 +132,20 @@ class MatchPlayerResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const MatchPlayerResponse& default_instance() {
+  static const MatchPlayerRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const MatchPlayerResponse* internal_default_instance() {
-    return reinterpret_cast<const MatchPlayerResponse*>(
-               &_MatchPlayerResponse_default_instance_);
+  static inline const MatchPlayerRes* internal_default_instance() {
+    return reinterpret_cast<const MatchPlayerRes*>(
+               &_MatchPlayerRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(MatchPlayerResponse& a, MatchPlayerResponse& b) {
+  friend void swap(MatchPlayerRes& a, MatchPlayerRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(MatchPlayerResponse* other) {
+  inline void Swap(MatchPlayerRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -158,7 +158,7 @@ class MatchPlayerResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(MatchPlayerResponse* other) {
+  void UnsafeArenaSwap(MatchPlayerRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -166,14 +166,14 @@ class MatchPlayerResponse final :
 
   // implements Message ----------------------------------------------
 
-  MatchPlayerResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MatchPlayerResponse>(arena);
+  MatchPlayerRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MatchPlayerRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const MatchPlayerResponse& from);
+  void CopyFrom(const MatchPlayerRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const MatchPlayerResponse& from) {
-    MatchPlayerResponse::MergeImpl(*this, from);
+  void MergeFrom( const MatchPlayerRes& from) {
+    MatchPlayerRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -191,16 +191,16 @@ class MatchPlayerResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(MatchPlayerResponse* other);
+  void InternalSwap(MatchPlayerRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.MatchPlayerResponse";
+    return "rpc_server.MatchPlayerRes";
   }
   protected:
-  explicit MatchPlayerResponse(::google::protobuf::Arena* arena);
-  MatchPlayerResponse(::google::protobuf::Arena* arena, const MatchPlayerResponse& from);
+  explicit MatchPlayerRes(::google::protobuf::Arena* arena);
+  MatchPlayerRes(::google::protobuf::Arena* arena, const MatchPlayerRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -214,9 +214,10 @@ class MatchPlayerResponse final :
 
   enum : int {
     kMessageFieldNumber = 2,
-    kOpponentInfoFieldNumber = 4,
+    kOpponentInfoFieldNumber = 5,
     kSuccessFieldNumber = 1,
-    kMatchIdFieldNumber = 3,
+    kStatusFieldNumber = 3,
+    kMatchIdFieldNumber = 4,
   };
   // bytes message = 2;
   void clear_message() ;
@@ -234,7 +235,7 @@ class MatchPlayerResponse final :
   std::string* _internal_mutable_message();
 
   public:
-  // bytes opponent_info = 4;
+  // bytes opponent_info = 5;
   void clear_opponent_info() ;
   const std::string& opponent_info() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -260,7 +261,17 @@ class MatchPlayerResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // int32 match_id = 3;
+  // int32 status = 3;
+  void clear_status() ;
+  ::int32_t status() const;
+  void set_status(::int32_t value);
+
+  private:
+  ::int32_t _internal_status() const;
+  void _internal_set_status(::int32_t value);
+
+  public:
+  // int32 match_id = 4;
   void clear_match_id() ;
   ::int32_t match_id() const;
   void set_match_id(::int32_t value);
@@ -270,13 +281,13 @@ class MatchPlayerResponse final :
   void _internal_set_match_id(::int32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.MatchPlayerResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.MatchPlayerRes)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 0,
+      3, 5, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -296,6 +307,7 @@ class MatchPlayerResponse final :
     ::google::protobuf::internal::ArenaStringPtr message_;
     ::google::protobuf::internal::ArenaStringPtr opponent_info_;
     bool success_;
+    ::int32_t status_;
     ::int32_t match_id_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -304,26 +316,26 @@ class MatchPlayerResponse final :
   friend struct ::TableStruct_server_5fmatching_2eproto;
 };// -------------------------------------------------------------------
 
-class MatchPlayerRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.MatchPlayerRequest) */ {
+class MatchPlayerReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.MatchPlayerReq) */ {
  public:
-  inline MatchPlayerRequest() : MatchPlayerRequest(nullptr) {}
-  ~MatchPlayerRequest() override;
+  inline MatchPlayerReq() : MatchPlayerReq(nullptr) {}
+  ~MatchPlayerReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR MatchPlayerRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR MatchPlayerReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline MatchPlayerRequest(const MatchPlayerRequest& from)
-      : MatchPlayerRequest(nullptr, from) {}
-  MatchPlayerRequest(MatchPlayerRequest&& from) noexcept
-    : MatchPlayerRequest() {
+  inline MatchPlayerReq(const MatchPlayerReq& from)
+      : MatchPlayerReq(nullptr, from) {}
+  MatchPlayerReq(MatchPlayerReq&& from) noexcept
+    : MatchPlayerReq() {
     *this = ::std::move(from);
   }
 
-  inline MatchPlayerRequest& operator=(const MatchPlayerRequest& from) {
+  inline MatchPlayerReq& operator=(const MatchPlayerReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline MatchPlayerRequest& operator=(MatchPlayerRequest&& from) noexcept {
+  inline MatchPlayerReq& operator=(MatchPlayerReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -355,20 +367,20 @@ class MatchPlayerRequest final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const MatchPlayerRequest& default_instance() {
+  static const MatchPlayerReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const MatchPlayerRequest* internal_default_instance() {
-    return reinterpret_cast<const MatchPlayerRequest*>(
-               &_MatchPlayerRequest_default_instance_);
+  static inline const MatchPlayerReq* internal_default_instance() {
+    return reinterpret_cast<const MatchPlayerReq*>(
+               &_MatchPlayerReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(MatchPlayerRequest& a, MatchPlayerRequest& b) {
+  friend void swap(MatchPlayerReq& a, MatchPlayerReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(MatchPlayerRequest* other) {
+  inline void Swap(MatchPlayerReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -381,7 +393,7 @@ class MatchPlayerRequest final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(MatchPlayerRequest* other) {
+  void UnsafeArenaSwap(MatchPlayerReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -389,14 +401,14 @@ class MatchPlayerRequest final :
 
   // implements Message ----------------------------------------------
 
-  MatchPlayerRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MatchPlayerRequest>(arena);
+  MatchPlayerReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MatchPlayerReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const MatchPlayerRequest& from);
+  void CopyFrom(const MatchPlayerReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const MatchPlayerRequest& from) {
-    MatchPlayerRequest::MergeImpl(*this, from);
+  void MergeFrom( const MatchPlayerReq& from) {
+    MatchPlayerReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -414,16 +426,16 @@ class MatchPlayerRequest final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(MatchPlayerRequest* other);
+  void InternalSwap(MatchPlayerReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.MatchPlayerRequest";
+    return "rpc_server.MatchPlayerReq";
   }
   protected:
-  explicit MatchPlayerRequest(::google::protobuf::Arena* arena);
-  MatchPlayerRequest(::google::protobuf::Arena* arena, const MatchPlayerRequest& from);
+  explicit MatchPlayerReq(::google::protobuf::Arena* arena);
+  MatchPlayerReq(::google::protobuf::Arena* arena, const MatchPlayerReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -436,25 +448,8 @@ class MatchPlayerRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPlayerInfoFieldNumber = 2,
     kPlayerIdFieldNumber = 1,
   };
-  // bytes player_info = 2;
-  void clear_player_info() ;
-  const std::string& player_info() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_player_info(Arg_&& arg, Args_... args);
-  std::string* mutable_player_info();
-  PROTOBUF_NODISCARD std::string* release_player_info();
-  void set_allocated_player_info(std::string* value);
-
-  private:
-  const std::string& _internal_player_info() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_player_info(
-      const std::string& value);
-  std::string* _internal_mutable_player_info();
-
-  public:
   // int32 player_id = 1;
   void clear_player_id() ;
   ::int32_t player_id() const;
@@ -465,13 +460,13 @@ class MatchPlayerRequest final :
   void _internal_set_player_id(::int32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.MatchPlayerRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.MatchPlayerReq)
  private:
   class _Internal;
 
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
+      0, 1, 0,
       0, 2>
       _table_;
   friend class ::google::protobuf::MessageLite;
@@ -488,7 +483,6 @@ class MatchPlayerRequest final :
                               ::google::protobuf::Arena* arena);
         inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                               ::google::protobuf::Arena* arena, const Impl_& from);
-    ::google::protobuf::internal::ArenaStringPtr player_info_;
     ::int32_t player_id_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -497,26 +491,26 @@ class MatchPlayerRequest final :
   friend struct ::TableStruct_server_5fmatching_2eproto;
 };// -------------------------------------------------------------------
 
-class CancelMatchResponse final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CancelMatchResponse) */ {
+class CancelMatchRes final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CancelMatchRes) */ {
  public:
-  inline CancelMatchResponse() : CancelMatchResponse(nullptr) {}
-  ~CancelMatchResponse() override;
+  inline CancelMatchRes() : CancelMatchRes(nullptr) {}
+  ~CancelMatchRes() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR CancelMatchResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR CancelMatchRes(::google::protobuf::internal::ConstantInitialized);
 
-  inline CancelMatchResponse(const CancelMatchResponse& from)
-      : CancelMatchResponse(nullptr, from) {}
-  CancelMatchResponse(CancelMatchResponse&& from) noexcept
-    : CancelMatchResponse() {
+  inline CancelMatchRes(const CancelMatchRes& from)
+      : CancelMatchRes(nullptr, from) {}
+  CancelMatchRes(CancelMatchRes&& from) noexcept
+    : CancelMatchRes() {
     *this = ::std::move(from);
   }
 
-  inline CancelMatchResponse& operator=(const CancelMatchResponse& from) {
+  inline CancelMatchRes& operator=(const CancelMatchRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline CancelMatchResponse& operator=(CancelMatchResponse&& from) noexcept {
+  inline CancelMatchRes& operator=(CancelMatchRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -548,20 +542,20 @@ class CancelMatchResponse final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const CancelMatchResponse& default_instance() {
+  static const CancelMatchRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const CancelMatchResponse* internal_default_instance() {
-    return reinterpret_cast<const CancelMatchResponse*>(
-               &_CancelMatchResponse_default_instance_);
+  static inline const CancelMatchRes* internal_default_instance() {
+    return reinterpret_cast<const CancelMatchRes*>(
+               &_CancelMatchRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     3;
 
-  friend void swap(CancelMatchResponse& a, CancelMatchResponse& b) {
+  friend void swap(CancelMatchRes& a, CancelMatchRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(CancelMatchResponse* other) {
+  inline void Swap(CancelMatchRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -574,7 +568,7 @@ class CancelMatchResponse final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(CancelMatchResponse* other) {
+  void UnsafeArenaSwap(CancelMatchRes* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -582,14 +576,14 @@ class CancelMatchResponse final :
 
   // implements Message ----------------------------------------------
 
-  CancelMatchResponse* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<CancelMatchResponse>(arena);
+  CancelMatchRes* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CancelMatchRes>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const CancelMatchResponse& from);
+  void CopyFrom(const CancelMatchRes& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const CancelMatchResponse& from) {
-    CancelMatchResponse::MergeImpl(*this, from);
+  void MergeFrom( const CancelMatchRes& from) {
+    CancelMatchRes::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -607,16 +601,16 @@ class CancelMatchResponse final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(CancelMatchResponse* other);
+  void InternalSwap(CancelMatchRes* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.CancelMatchResponse";
+    return "rpc_server.CancelMatchRes";
   }
   protected:
-  explicit CancelMatchResponse(::google::protobuf::Arena* arena);
-  CancelMatchResponse(::google::protobuf::Arena* arena, const CancelMatchResponse& from);
+  explicit CancelMatchRes(::google::protobuf::Arena* arena);
+  CancelMatchRes(::google::protobuf::Arena* arena, const CancelMatchRes& from);
   public:
 
   static const ClassData _class_data_;
@@ -658,7 +652,7 @@ class CancelMatchResponse final :
   void _internal_set_success(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.CancelMatchResponse)
+  // @@protoc_insertion_point(class_scope:rpc_server.CancelMatchRes)
  private:
   class _Internal;
 
@@ -690,26 +684,26 @@ class CancelMatchResponse final :
   friend struct ::TableStruct_server_5fmatching_2eproto;
 };// -------------------------------------------------------------------
 
-class CancelMatchRequest final :
-    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CancelMatchRequest) */ {
+class CancelMatchReq final :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:rpc_server.CancelMatchReq) */ {
  public:
-  inline CancelMatchRequest() : CancelMatchRequest(nullptr) {}
-  ~CancelMatchRequest() override;
+  inline CancelMatchReq() : CancelMatchReq(nullptr) {}
+  ~CancelMatchReq() override;
   template<typename = void>
-  explicit PROTOBUF_CONSTEXPR CancelMatchRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR CancelMatchReq(::google::protobuf::internal::ConstantInitialized);
 
-  inline CancelMatchRequest(const CancelMatchRequest& from)
-      : CancelMatchRequest(nullptr, from) {}
-  CancelMatchRequest(CancelMatchRequest&& from) noexcept
-    : CancelMatchRequest() {
+  inline CancelMatchReq(const CancelMatchReq& from)
+      : CancelMatchReq(nullptr, from) {}
+  CancelMatchReq(CancelMatchReq&& from) noexcept
+    : CancelMatchReq() {
     *this = ::std::move(from);
   }
 
-  inline CancelMatchRequest& operator=(const CancelMatchRequest& from) {
+  inline CancelMatchReq& operator=(const CancelMatchReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline CancelMatchRequest& operator=(CancelMatchRequest&& from) noexcept {
+  inline CancelMatchReq& operator=(CancelMatchReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetArena() == from.GetArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -741,20 +735,20 @@ class CancelMatchRequest final :
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const CancelMatchRequest& default_instance() {
+  static const CancelMatchReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const CancelMatchRequest* internal_default_instance() {
-    return reinterpret_cast<const CancelMatchRequest*>(
-               &_CancelMatchRequest_default_instance_);
+  static inline const CancelMatchReq* internal_default_instance() {
+    return reinterpret_cast<const CancelMatchReq*>(
+               &_CancelMatchReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(CancelMatchRequest& a, CancelMatchRequest& b) {
+  friend void swap(CancelMatchReq& a, CancelMatchReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(CancelMatchRequest* other) {
+  inline void Swap(CancelMatchReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetArena() != nullptr &&
@@ -767,7 +761,7 @@ class CancelMatchRequest final :
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(CancelMatchRequest* other) {
+  void UnsafeArenaSwap(CancelMatchReq* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -775,14 +769,14 @@ class CancelMatchRequest final :
 
   // implements Message ----------------------------------------------
 
-  CancelMatchRequest* New(::google::protobuf::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<CancelMatchRequest>(arena);
+  CancelMatchReq* New(::google::protobuf::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CancelMatchReq>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const CancelMatchRequest& from);
+  void CopyFrom(const CancelMatchReq& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom( const CancelMatchRequest& from) {
-    CancelMatchRequest::MergeImpl(*this, from);
+  void MergeFrom( const CancelMatchReq& from) {
+    CancelMatchReq::MergeImpl(*this, from);
   }
   private:
   static void MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg);
@@ -800,16 +794,16 @@ class CancelMatchRequest final :
   ::google::protobuf::internal::CachedSize* AccessCachedSize() const final;
   void SharedCtor(::google::protobuf::Arena* arena);
   void SharedDtor();
-  void InternalSwap(CancelMatchRequest* other);
+  void InternalSwap(CancelMatchReq* other);
 
   private:
   friend class ::google::protobuf::internal::AnyMetadata;
   static ::absl::string_view FullMessageName() {
-    return "rpc_server.CancelMatchRequest";
+    return "rpc_server.CancelMatchReq";
   }
   protected:
-  explicit CancelMatchRequest(::google::protobuf::Arena* arena);
-  CancelMatchRequest(::google::protobuf::Arena* arena, const CancelMatchRequest& from);
+  explicit CancelMatchReq(::google::protobuf::Arena* arena);
+  CancelMatchReq(::google::protobuf::Arena* arena, const CancelMatchReq& from);
   public:
 
   static const ClassData _class_data_;
@@ -834,7 +828,7 @@ class CancelMatchRequest final :
   void _internal_set_player_id(::int32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:rpc_server.CancelMatchRequest)
+  // @@protoc_insertion_point(class_scope:rpc_server.CancelMatchReq)
  private:
   class _Internal;
 
@@ -879,154 +873,101 @@ class CancelMatchRequest final :
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// MatchPlayerRequest
+// MatchPlayerReq
 
 // int32 player_id = 1;
-inline void MatchPlayerRequest::clear_player_id() {
+inline void MatchPlayerReq::clear_player_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.player_id_ = 0;
 }
-inline ::int32_t MatchPlayerRequest::player_id() const {
-  // @@protoc_insertion_point(field_get:rpc_server.MatchPlayerRequest.player_id)
+inline ::int32_t MatchPlayerReq::player_id() const {
+  // @@protoc_insertion_point(field_get:rpc_server.MatchPlayerReq.player_id)
   return _internal_player_id();
 }
-inline void MatchPlayerRequest::set_player_id(::int32_t value) {
+inline void MatchPlayerReq::set_player_id(::int32_t value) {
   _internal_set_player_id(value);
-  // @@protoc_insertion_point(field_set:rpc_server.MatchPlayerRequest.player_id)
+  // @@protoc_insertion_point(field_set:rpc_server.MatchPlayerReq.player_id)
 }
-inline ::int32_t MatchPlayerRequest::_internal_player_id() const {
+inline ::int32_t MatchPlayerReq::_internal_player_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.player_id_;
 }
-inline void MatchPlayerRequest::_internal_set_player_id(::int32_t value) {
+inline void MatchPlayerReq::_internal_set_player_id(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.player_id_ = value;
 }
 
-// bytes player_info = 2;
-inline void MatchPlayerRequest::clear_player_info() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.player_info_.ClearToEmpty();
-}
-inline const std::string& MatchPlayerRequest::player_info() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MatchPlayerRequest.player_info)
-  return _internal_player_info();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MatchPlayerRequest::set_player_info(Arg_&& arg,
-                                                     Args_... args) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.player_info_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MatchPlayerRequest.player_info)
-}
-inline std::string* MatchPlayerRequest::mutable_player_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_player_info();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MatchPlayerRequest.player_info)
-  return _s;
-}
-inline const std::string& MatchPlayerRequest::_internal_player_info() const {
-  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
-  return _impl_.player_info_.Get();
-}
-inline void MatchPlayerRequest::_internal_set_player_info(const std::string& value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  _impl_.player_info_.Set(value, GetArena());
-}
-inline std::string* MatchPlayerRequest::_internal_mutable_player_info() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  ;
-  return _impl_.player_info_.Mutable( GetArena());
-}
-inline std::string* MatchPlayerRequest::release_player_info() {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MatchPlayerRequest.player_info)
-  return _impl_.player_info_.Release();
-}
-inline void MatchPlayerRequest::set_allocated_player_info(std::string* value) {
-  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  _impl_.player_info_.SetAllocated(value, GetArena());
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-        if (_impl_.player_info_.IsDefault()) {
-          _impl_.player_info_.Set("", GetArena());
-        }
-  #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MatchPlayerRequest.player_info)
-}
-
 // -------------------------------------------------------------------
 
-// MatchPlayerResponse
+// MatchPlayerRes
 
 // bool success = 1;
-inline void MatchPlayerResponse::clear_success() {
+inline void MatchPlayerRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool MatchPlayerResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.MatchPlayerResponse.success)
+inline bool MatchPlayerRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.MatchPlayerRes.success)
   return _internal_success();
 }
-inline void MatchPlayerResponse::set_success(bool value) {
+inline void MatchPlayerRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.MatchPlayerResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.MatchPlayerRes.success)
 }
-inline bool MatchPlayerResponse::_internal_success() const {
+inline bool MatchPlayerRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void MatchPlayerResponse::_internal_set_success(bool value) {
+inline void MatchPlayerRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // bytes message = 2;
-inline void MatchPlayerResponse::clear_message() {
+inline void MatchPlayerRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& MatchPlayerResponse::message() const
+inline const std::string& MatchPlayerRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MatchPlayerResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.MatchPlayerRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MatchPlayerResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void MatchPlayerRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MatchPlayerResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.MatchPlayerRes.message)
 }
-inline std::string* MatchPlayerResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* MatchPlayerRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MatchPlayerResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.MatchPlayerRes.message)
   return _s;
 }
-inline const std::string& MatchPlayerResponse::_internal_message() const {
+inline const std::string& MatchPlayerRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void MatchPlayerResponse::_internal_set_message(const std::string& value) {
+inline void MatchPlayerRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* MatchPlayerResponse::_internal_mutable_message() {
+inline std::string* MatchPlayerRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* MatchPlayerResponse::release_message() {
+inline std::string* MatchPlayerRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MatchPlayerResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.MatchPlayerRes.message)
   return _impl_.message_.Release();
 }
-inline void MatchPlayerResponse::set_allocated_message(std::string* value) {
+inline void MatchPlayerRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1034,75 +975,98 @@ inline void MatchPlayerResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MatchPlayerResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.MatchPlayerRes.message)
 }
 
-// int32 match_id = 3;
-inline void MatchPlayerResponse::clear_match_id() {
+// int32 status = 3;
+inline void MatchPlayerRes::clear_status() {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  _impl_.status_ = 0;
+}
+inline ::int32_t MatchPlayerRes::status() const {
+  // @@protoc_insertion_point(field_get:rpc_server.MatchPlayerRes.status)
+  return _internal_status();
+}
+inline void MatchPlayerRes::set_status(::int32_t value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:rpc_server.MatchPlayerRes.status)
+}
+inline ::int32_t MatchPlayerRes::_internal_status() const {
+  PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
+  return _impl_.status_;
+}
+inline void MatchPlayerRes::_internal_set_status(::int32_t value) {
+  PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
+  ;
+  _impl_.status_ = value;
+}
+
+// int32 match_id = 4;
+inline void MatchPlayerRes::clear_match_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.match_id_ = 0;
 }
-inline ::int32_t MatchPlayerResponse::match_id() const {
-  // @@protoc_insertion_point(field_get:rpc_server.MatchPlayerResponse.match_id)
+inline ::int32_t MatchPlayerRes::match_id() const {
+  // @@protoc_insertion_point(field_get:rpc_server.MatchPlayerRes.match_id)
   return _internal_match_id();
 }
-inline void MatchPlayerResponse::set_match_id(::int32_t value) {
+inline void MatchPlayerRes::set_match_id(::int32_t value) {
   _internal_set_match_id(value);
-  // @@protoc_insertion_point(field_set:rpc_server.MatchPlayerResponse.match_id)
+  // @@protoc_insertion_point(field_set:rpc_server.MatchPlayerRes.match_id)
 }
-inline ::int32_t MatchPlayerResponse::_internal_match_id() const {
+inline ::int32_t MatchPlayerRes::_internal_match_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.match_id_;
 }
-inline void MatchPlayerResponse::_internal_set_match_id(::int32_t value) {
+inline void MatchPlayerRes::_internal_set_match_id(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.match_id_ = value;
 }
 
-// bytes opponent_info = 4;
-inline void MatchPlayerResponse::clear_opponent_info() {
+// bytes opponent_info = 5;
+inline void MatchPlayerRes::clear_opponent_info() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.opponent_info_.ClearToEmpty();
 }
-inline const std::string& MatchPlayerResponse::opponent_info() const
+inline const std::string& MatchPlayerRes::opponent_info() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.MatchPlayerResponse.opponent_info)
+  // @@protoc_insertion_point(field_get:rpc_server.MatchPlayerRes.opponent_info)
   return _internal_opponent_info();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void MatchPlayerResponse::set_opponent_info(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void MatchPlayerRes::set_opponent_info(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.opponent_info_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.MatchPlayerResponse.opponent_info)
+  // @@protoc_insertion_point(field_set:rpc_server.MatchPlayerRes.opponent_info)
 }
-inline std::string* MatchPlayerResponse::mutable_opponent_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* MatchPlayerRes::mutable_opponent_info() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_opponent_info();
-  // @@protoc_insertion_point(field_mutable:rpc_server.MatchPlayerResponse.opponent_info)
+  // @@protoc_insertion_point(field_mutable:rpc_server.MatchPlayerRes.opponent_info)
   return _s;
 }
-inline const std::string& MatchPlayerResponse::_internal_opponent_info() const {
+inline const std::string& MatchPlayerRes::_internal_opponent_info() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.opponent_info_.Get();
 }
-inline void MatchPlayerResponse::_internal_set_opponent_info(const std::string& value) {
+inline void MatchPlayerRes::_internal_set_opponent_info(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.opponent_info_.Set(value, GetArena());
 }
-inline std::string* MatchPlayerResponse::_internal_mutable_opponent_info() {
+inline std::string* MatchPlayerRes::_internal_mutable_opponent_info() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.opponent_info_.Mutable( GetArena());
 }
-inline std::string* MatchPlayerResponse::release_opponent_info() {
+inline std::string* MatchPlayerRes::release_opponent_info() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.MatchPlayerResponse.opponent_info)
+  // @@protoc_insertion_point(field_release:rpc_server.MatchPlayerRes.opponent_info)
   return _impl_.opponent_info_.Release();
 }
-inline void MatchPlayerResponse::set_allocated_opponent_info(std::string* value) {
+inline void MatchPlayerRes::set_allocated_opponent_info(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.opponent_info_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1110,31 +1074,31 @@ inline void MatchPlayerResponse::set_allocated_opponent_info(std::string* value)
           _impl_.opponent_info_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.MatchPlayerResponse.opponent_info)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.MatchPlayerRes.opponent_info)
 }
 
 // -------------------------------------------------------------------
 
-// CancelMatchRequest
+// CancelMatchReq
 
 // int32 player_id = 1;
-inline void CancelMatchRequest::clear_player_id() {
+inline void CancelMatchReq::clear_player_id() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.player_id_ = 0;
 }
-inline ::int32_t CancelMatchRequest::player_id() const {
-  // @@protoc_insertion_point(field_get:rpc_server.CancelMatchRequest.player_id)
+inline ::int32_t CancelMatchReq::player_id() const {
+  // @@protoc_insertion_point(field_get:rpc_server.CancelMatchReq.player_id)
   return _internal_player_id();
 }
-inline void CancelMatchRequest::set_player_id(::int32_t value) {
+inline void CancelMatchReq::set_player_id(::int32_t value) {
   _internal_set_player_id(value);
-  // @@protoc_insertion_point(field_set:rpc_server.CancelMatchRequest.player_id)
+  // @@protoc_insertion_point(field_set:rpc_server.CancelMatchReq.player_id)
 }
-inline ::int32_t CancelMatchRequest::_internal_player_id() const {
+inline ::int32_t CancelMatchReq::_internal_player_id() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.player_id_;
 }
-inline void CancelMatchRequest::_internal_set_player_id(::int32_t value) {
+inline void CancelMatchReq::_internal_set_player_id(::int32_t value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.player_id_ = value;
@@ -1142,74 +1106,74 @@ inline void CancelMatchRequest::_internal_set_player_id(::int32_t value) {
 
 // -------------------------------------------------------------------
 
-// CancelMatchResponse
+// CancelMatchRes
 
 // bool success = 1;
-inline void CancelMatchResponse::clear_success() {
+inline void CancelMatchRes::clear_success() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.success_ = false;
 }
-inline bool CancelMatchResponse::success() const {
-  // @@protoc_insertion_point(field_get:rpc_server.CancelMatchResponse.success)
+inline bool CancelMatchRes::success() const {
+  // @@protoc_insertion_point(field_get:rpc_server.CancelMatchRes.success)
   return _internal_success();
 }
-inline void CancelMatchResponse::set_success(bool value) {
+inline void CancelMatchRes::set_success(bool value) {
   _internal_set_success(value);
-  // @@protoc_insertion_point(field_set:rpc_server.CancelMatchResponse.success)
+  // @@protoc_insertion_point(field_set:rpc_server.CancelMatchRes.success)
 }
-inline bool CancelMatchResponse::_internal_success() const {
+inline bool CancelMatchRes::_internal_success() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.success_;
 }
-inline void CancelMatchResponse::_internal_set_success(bool value) {
+inline void CancelMatchRes::_internal_set_success(bool value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.success_ = value;
 }
 
 // bytes message = 2;
-inline void CancelMatchResponse::clear_message() {
+inline void CancelMatchRes::clear_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.ClearToEmpty();
 }
-inline const std::string& CancelMatchResponse::message() const
+inline const std::string& CancelMatchRes::message() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:rpc_server.CancelMatchResponse.message)
+  // @@protoc_insertion_point(field_get:rpc_server.CancelMatchRes.message)
   return _internal_message();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void CancelMatchResponse::set_message(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void CancelMatchRes::set_message(Arg_&& arg,
                                                      Args_... args) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:rpc_server.CancelMatchResponse.message)
+  // @@protoc_insertion_point(field_set:rpc_server.CancelMatchRes.message)
 }
-inline std::string* CancelMatchResponse::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* CancelMatchRes::mutable_message() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:rpc_server.CancelMatchResponse.message)
+  // @@protoc_insertion_point(field_mutable:rpc_server.CancelMatchRes.message)
   return _s;
 }
-inline const std::string& CancelMatchResponse::_internal_message() const {
+inline const std::string& CancelMatchRes::_internal_message() const {
   PROTOBUF_TSAN_READ(&_impl_._tsan_detect_race);
   return _impl_.message_.Get();
 }
-inline void CancelMatchResponse::_internal_set_message(const std::string& value) {
+inline void CancelMatchRes::_internal_set_message(const std::string& value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   _impl_.message_.Set(value, GetArena());
 }
-inline std::string* CancelMatchResponse::_internal_mutable_message() {
+inline std::string* CancelMatchRes::_internal_mutable_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ;
   return _impl_.message_.Mutable( GetArena());
 }
-inline std::string* CancelMatchResponse::release_message() {
+inline std::string* CancelMatchRes::release_message() {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
-  // @@protoc_insertion_point(field_release:rpc_server.CancelMatchResponse.message)
+  // @@protoc_insertion_point(field_release:rpc_server.CancelMatchRes.message)
   return _impl_.message_.Release();
 }
-inline void CancelMatchResponse::set_allocated_message(std::string* value) {
+inline void CancelMatchRes::set_allocated_message(std::string* value) {
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   _impl_.message_.SetAllocated(value, GetArena());
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
@@ -1217,7 +1181,7 @@ inline void CancelMatchResponse::set_allocated_message(std::string* value) {
           _impl_.message_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:rpc_server.CancelMatchResponse.message)
+  // @@protoc_insertion_point(field_set_allocated:rpc_server.CancelMatchRes.message)
 }
 
 #ifdef __GNUC__

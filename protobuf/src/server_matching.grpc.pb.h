@@ -38,65 +38,68 @@ class MatchingServer final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::rpc_server::MatchPlayerResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MatchPlayerResponse>> AsyncMatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MatchPlayerResponse>>(AsyncMatchPlayerRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientReaderInterface< ::rpc_server::MatchPlayerRes>> MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request) {
+      return std::unique_ptr< ::grpc::ClientReaderInterface< ::rpc_server::MatchPlayerRes>>(MatchPlayerRaw(context, request));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MatchPlayerResponse>> PrepareAsyncMatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MatchPlayerResponse>>(PrepareAsyncMatchPlayerRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::rpc_server::MatchPlayerRes>> AsyncMatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::rpc_server::MatchPlayerRes>>(AsyncMatchPlayerRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::rpc_server::MatchPlayerRes>> PrepareAsyncMatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::rpc_server::MatchPlayerRes>>(PrepareAsyncMatchPlayerRaw(context, request, cq));
     }
     // 玩家匹配请求
-    virtual ::grpc::Status CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::rpc_server::CancelMatchResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CancelMatchResponse>> AsyncCancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CancelMatchResponse>>(AsyncCancelMatchRaw(context, request, cq));
+    virtual ::grpc::Status CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::rpc_server::CancelMatchRes* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CancelMatchRes>> AsyncCancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CancelMatchRes>>(AsyncCancelMatchRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CancelMatchResponse>> PrepareAsyncCancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CancelMatchResponse>>(PrepareAsyncCancelMatchRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CancelMatchRes>> PrepareAsyncCancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CancelMatchRes>>(PrepareAsyncCancelMatchRaw(context, request, cq));
     }
     // 取消匹配请求
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest* request, ::rpc_server::MatchPlayerResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest* request, ::rpc_server::MatchPlayerResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq* request, ::grpc::ClientReadReactor< ::rpc_server::MatchPlayerRes>* reactor) = 0;
       // 玩家匹配请求
-      virtual void CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest* request, ::rpc_server::CancelMatchResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest* request, ::rpc_server::CancelMatchResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq* request, ::rpc_server::CancelMatchRes* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq* request, ::rpc_server::CancelMatchRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       // 取消匹配请求
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MatchPlayerResponse>* AsyncMatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::MatchPlayerResponse>* PrepareAsyncMatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CancelMatchResponse>* AsyncCancelMatchRaw(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CancelMatchResponse>* PrepareAsyncCancelMatchRaw(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderInterface< ::rpc_server::MatchPlayerRes>* MatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::rpc_server::MatchPlayerRes>* AsyncMatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::rpc_server::MatchPlayerRes>* PrepareAsyncMatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CancelMatchRes>* AsyncCancelMatchRaw(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::CancelMatchRes>* PrepareAsyncCancelMatchRaw(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::rpc_server::MatchPlayerResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::MatchPlayerResponse>> AsyncMatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::MatchPlayerResponse>>(AsyncMatchPlayerRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientReader< ::rpc_server::MatchPlayerRes>> MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request) {
+      return std::unique_ptr< ::grpc::ClientReader< ::rpc_server::MatchPlayerRes>>(MatchPlayerRaw(context, request));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::MatchPlayerResponse>> PrepareAsyncMatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::MatchPlayerResponse>>(PrepareAsyncMatchPlayerRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::rpc_server::MatchPlayerRes>> AsyncMatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::rpc_server::MatchPlayerRes>>(AsyncMatchPlayerRaw(context, request, cq, tag));
     }
-    ::grpc::Status CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::rpc_server::CancelMatchResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchResponse>> AsyncCancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchResponse>>(AsyncCancelMatchRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::rpc_server::MatchPlayerRes>> PrepareAsyncMatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::rpc_server::MatchPlayerRes>>(PrepareAsyncMatchPlayerRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchResponse>> PrepareAsyncCancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchResponse>>(PrepareAsyncCancelMatchRaw(context, request, cq));
+    ::grpc::Status CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::rpc_server::CancelMatchRes* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchRes>> AsyncCancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchRes>>(AsyncCancelMatchRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchRes>> PrepareAsyncCancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchRes>>(PrepareAsyncCancelMatchRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest* request, ::rpc_server::MatchPlayerResponse* response, std::function<void(::grpc::Status)>) override;
-      void MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest* request, ::rpc_server::MatchPlayerResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest* request, ::rpc_server::CancelMatchResponse* response, std::function<void(::grpc::Status)>) override;
-      void CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest* request, ::rpc_server::CancelMatchResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq* request, ::grpc::ClientReadReactor< ::rpc_server::MatchPlayerRes>* reactor) override;
+      void CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq* request, ::rpc_server::CancelMatchRes* response, std::function<void(::grpc::Status)>) override;
+      void CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq* request, ::rpc_server::CancelMatchRes* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -108,10 +111,11 @@ class MatchingServer final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::MatchPlayerResponse>* AsyncMatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::MatchPlayerResponse>* PrepareAsyncMatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchResponse>* AsyncCancelMatchRaw(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchResponse>* PrepareAsyncCancelMatchRaw(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReader< ::rpc_server::MatchPlayerRes>* MatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request) override;
+    ::grpc::ClientAsyncReader< ::rpc_server::MatchPlayerRes>* AsyncMatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReader< ::rpc_server::MatchPlayerRes>* PrepareAsyncMatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchRes>* AsyncCancelMatchRaw(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchRes>* PrepareAsyncCancelMatchRaw(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_MatchPlayer_;
     const ::grpc::internal::RpcMethod rpcmethod_CancelMatch_;
   };
@@ -121,9 +125,9 @@ class MatchingServer final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status MatchPlayer(::grpc::ServerContext* context, const ::rpc_server::MatchPlayerRequest* request, ::rpc_server::MatchPlayerResponse* response);
+    virtual ::grpc::Status MatchPlayer(::grpc::ServerContext* context, const ::rpc_server::MatchPlayerReq* request, ::grpc::ServerWriter< ::rpc_server::MatchPlayerRes>* writer);
     // 玩家匹配请求
-    virtual ::grpc::Status CancelMatch(::grpc::ServerContext* context, const ::rpc_server::CancelMatchRequest* request, ::rpc_server::CancelMatchResponse* response);
+    virtual ::grpc::Status CancelMatch(::grpc::ServerContext* context, const ::rpc_server::CancelMatchReq* request, ::rpc_server::CancelMatchRes* response);
     // 取消匹配请求
   };
   template <class BaseClass>
@@ -138,12 +142,12 @@ class MatchingServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status MatchPlayer(::grpc::ServerContext* /*context*/, const ::rpc_server::MatchPlayerRequest* /*request*/, ::rpc_server::MatchPlayerResponse* /*response*/) override {
+    ::grpc::Status MatchPlayer(::grpc::ServerContext* /*context*/, const ::rpc_server::MatchPlayerReq* /*request*/, ::grpc::ServerWriter< ::rpc_server::MatchPlayerRes>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestMatchPlayer(::grpc::ServerContext* context, ::rpc_server::MatchPlayerRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::MatchPlayerResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    void RequestMatchPlayer(::grpc::ServerContext* context, ::rpc_server::MatchPlayerReq* request, ::grpc::ServerAsyncWriter< ::rpc_server::MatchPlayerRes>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -158,11 +162,11 @@ class MatchingServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CancelMatch(::grpc::ServerContext* /*context*/, const ::rpc_server::CancelMatchRequest* /*request*/, ::rpc_server::CancelMatchResponse* /*response*/) override {
+    ::grpc::Status CancelMatch(::grpc::ServerContext* /*context*/, const ::rpc_server::CancelMatchReq* /*request*/, ::rpc_server::CancelMatchRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestCancelMatch(::grpc::ServerContext* context, ::rpc_server::CancelMatchRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::CancelMatchResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestCancelMatch(::grpc::ServerContext* context, ::rpc_server::CancelMatchReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::CancelMatchRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -174,25 +178,20 @@ class MatchingServer final {
    public:
     WithCallbackMethod_MatchPlayer() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::MatchPlayerRequest, ::rpc_server::MatchPlayerResponse>(
+          new ::grpc::internal::CallbackServerStreamingHandler< ::rpc_server::MatchPlayerReq, ::rpc_server::MatchPlayerRes>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::MatchPlayerRequest* request, ::rpc_server::MatchPlayerResponse* response) { return this->MatchPlayer(context, request, response); }));}
-    void SetMessageAllocatorFor_MatchPlayer(
-        ::grpc::MessageAllocator< ::rpc_server::MatchPlayerRequest, ::rpc_server::MatchPlayerResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::MatchPlayerRequest, ::rpc_server::MatchPlayerResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::MatchPlayerReq* request) { return this->MatchPlayer(context, request); }));
     }
     ~WithCallbackMethod_MatchPlayer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status MatchPlayer(::grpc::ServerContext* /*context*/, const ::rpc_server::MatchPlayerRequest* /*request*/, ::rpc_server::MatchPlayerResponse* /*response*/) override {
+    ::grpc::Status MatchPlayer(::grpc::ServerContext* /*context*/, const ::rpc_server::MatchPlayerReq* /*request*/, ::grpc::ServerWriter< ::rpc_server::MatchPlayerRes>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* MatchPlayer(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::MatchPlayerRequest* /*request*/, ::rpc_server::MatchPlayerResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerWriteReactor< ::rpc_server::MatchPlayerRes>* MatchPlayer(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::MatchPlayerReq* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_CancelMatch : public BaseClass {
@@ -201,25 +200,25 @@ class MatchingServer final {
    public:
     WithCallbackMethod_CancelMatch() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::CancelMatchRequest, ::rpc_server::CancelMatchResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::CancelMatchReq, ::rpc_server::CancelMatchRes>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::CancelMatchRequest* request, ::rpc_server::CancelMatchResponse* response) { return this->CancelMatch(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::CancelMatchReq* request, ::rpc_server::CancelMatchRes* response) { return this->CancelMatch(context, request, response); }));}
     void SetMessageAllocatorFor_CancelMatch(
-        ::grpc::MessageAllocator< ::rpc_server::CancelMatchRequest, ::rpc_server::CancelMatchResponse>* allocator) {
+        ::grpc::MessageAllocator< ::rpc_server::CancelMatchReq, ::rpc_server::CancelMatchRes>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::CancelMatchRequest, ::rpc_server::CancelMatchResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::CancelMatchReq, ::rpc_server::CancelMatchRes>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_CancelMatch() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CancelMatch(::grpc::ServerContext* /*context*/, const ::rpc_server::CancelMatchRequest* /*request*/, ::rpc_server::CancelMatchResponse* /*response*/) override {
+    ::grpc::Status CancelMatch(::grpc::ServerContext* /*context*/, const ::rpc_server::CancelMatchReq* /*request*/, ::rpc_server::CancelMatchRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* CancelMatch(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::CancelMatchRequest* /*request*/, ::rpc_server::CancelMatchResponse* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::CancelMatchReq* /*request*/, ::rpc_server::CancelMatchRes* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_MatchPlayer<WithCallbackMethod_CancelMatch<Service > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -235,7 +234,7 @@ class MatchingServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status MatchPlayer(::grpc::ServerContext* /*context*/, const ::rpc_server::MatchPlayerRequest* /*request*/, ::rpc_server::MatchPlayerResponse* /*response*/) override {
+    ::grpc::Status MatchPlayer(::grpc::ServerContext* /*context*/, const ::rpc_server::MatchPlayerReq* /*request*/, ::grpc::ServerWriter< ::rpc_server::MatchPlayerRes>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -252,7 +251,7 @@ class MatchingServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CancelMatch(::grpc::ServerContext* /*context*/, const ::rpc_server::CancelMatchRequest* /*request*/, ::rpc_server::CancelMatchResponse* /*response*/) override {
+    ::grpc::Status CancelMatch(::grpc::ServerContext* /*context*/, const ::rpc_server::CancelMatchReq* /*request*/, ::rpc_server::CancelMatchRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -269,12 +268,12 @@ class MatchingServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status MatchPlayer(::grpc::ServerContext* /*context*/, const ::rpc_server::MatchPlayerRequest* /*request*/, ::rpc_server::MatchPlayerResponse* /*response*/) override {
+    ::grpc::Status MatchPlayer(::grpc::ServerContext* /*context*/, const ::rpc_server::MatchPlayerReq* /*request*/, ::grpc::ServerWriter< ::rpc_server::MatchPlayerRes>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestMatchPlayer(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    void RequestMatchPlayer(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(0, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -289,7 +288,7 @@ class MatchingServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CancelMatch(::grpc::ServerContext* /*context*/, const ::rpc_server::CancelMatchRequest* /*request*/, ::rpc_server::CancelMatchResponse* /*response*/) override {
+    ::grpc::Status CancelMatch(::grpc::ServerContext* /*context*/, const ::rpc_server::CancelMatchReq* /*request*/, ::rpc_server::CancelMatchRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -304,20 +303,20 @@ class MatchingServer final {
    public:
     WithRawCallbackMethod_MatchPlayer() {
       ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->MatchPlayer(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const::grpc::ByteBuffer* request) { return this->MatchPlayer(context, request); }));
     }
     ~WithRawCallbackMethod_MatchPlayer() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status MatchPlayer(::grpc::ServerContext* /*context*/, const ::rpc_server::MatchPlayerRequest* /*request*/, ::rpc_server::MatchPlayerResponse* /*response*/) override {
+    ::grpc::Status MatchPlayer(::grpc::ServerContext* /*context*/, const ::rpc_server::MatchPlayerReq* /*request*/, ::grpc::ServerWriter< ::rpc_server::MatchPlayerRes>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* MatchPlayer(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* MatchPlayer(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithRawCallbackMethod_CancelMatch : public BaseClass {
@@ -334,39 +333,12 @@ class MatchingServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status CancelMatch(::grpc::ServerContext* /*context*/, const ::rpc_server::CancelMatchRequest* /*request*/, ::rpc_server::CancelMatchResponse* /*response*/) override {
+    ::grpc::Status CancelMatch(::grpc::ServerContext* /*context*/, const ::rpc_server::CancelMatchReq* /*request*/, ::rpc_server::CancelMatchRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* CancelMatch(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_MatchPlayer : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_MatchPlayer() {
-      ::grpc::Service::MarkMethodStreamed(0,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::MatchPlayerRequest, ::rpc_server::MatchPlayerResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::MatchPlayerRequest, ::rpc_server::MatchPlayerResponse>* streamer) {
-                       return this->StreamedMatchPlayer(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_MatchPlayer() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status MatchPlayer(::grpc::ServerContext* /*context*/, const ::rpc_server::MatchPlayerRequest* /*request*/, ::rpc_server::MatchPlayerResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedMatchPlayer(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::MatchPlayerRequest,::rpc_server::MatchPlayerResponse>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_CancelMatch : public BaseClass {
@@ -376,10 +348,10 @@ class MatchingServer final {
     WithStreamedUnaryMethod_CancelMatch() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::CancelMatchRequest, ::rpc_server::CancelMatchResponse>(
+          ::rpc_server::CancelMatchReq, ::rpc_server::CancelMatchRes>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::CancelMatchRequest, ::rpc_server::CancelMatchResponse>* streamer) {
+                     ::rpc_server::CancelMatchReq, ::rpc_server::CancelMatchRes>* streamer) {
                        return this->StreamedCancelMatch(context,
                          streamer);
                   }));
@@ -388,16 +360,43 @@ class MatchingServer final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status CancelMatch(::grpc::ServerContext* /*context*/, const ::rpc_server::CancelMatchRequest* /*request*/, ::rpc_server::CancelMatchResponse* /*response*/) override {
+    ::grpc::Status CancelMatch(::grpc::ServerContext* /*context*/, const ::rpc_server::CancelMatchReq* /*request*/, ::rpc_server::CancelMatchRes* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedCancelMatch(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::CancelMatchRequest,::rpc_server::CancelMatchResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedCancelMatch(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::CancelMatchReq,::rpc_server::CancelMatchRes>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_MatchPlayer<WithStreamedUnaryMethod_CancelMatch<Service > > StreamedUnaryService;
-  typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_MatchPlayer<WithStreamedUnaryMethod_CancelMatch<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_CancelMatch<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithSplitStreamingMethod_MatchPlayer : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithSplitStreamingMethod_MatchPlayer() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::SplitServerStreamingHandler<
+          ::rpc_server::MatchPlayerReq, ::rpc_server::MatchPlayerRes>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
+                     ::rpc_server::MatchPlayerReq, ::rpc_server::MatchPlayerRes>* streamer) {
+                       return this->StreamedMatchPlayer(context,
+                         streamer);
+                  }));
+    }
+    ~WithSplitStreamingMethod_MatchPlayer() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status MatchPlayer(::grpc::ServerContext* /*context*/, const ::rpc_server::MatchPlayerReq* /*request*/, ::grpc::ServerWriter< ::rpc_server::MatchPlayerRes>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with split streamed
+    virtual ::grpc::Status StreamedMatchPlayer(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::rpc_server::MatchPlayerReq,::rpc_server::MatchPlayerRes>* server_split_streamer) = 0;
+  };
+  typedef WithSplitStreamingMethod_MatchPlayer<Service > SplitStreamedService;
+  typedef WithSplitStreamingMethod_MatchPlayer<WithStreamedUnaryMethod_CancelMatch<Service > > StreamedService;
 };
 
 }  // namespace rpc_server

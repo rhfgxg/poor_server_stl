@@ -154,8 +154,7 @@ void MatchingServerImpl::unregister_server()
     if(status.ok() && response.success())
     {
         this->logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Matching server unregistered successfully: {} {}", this->server_address, this->server_port);
-    }
-    else
+    } else
     {
         this->logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->error("Matching server unregistration failed: {} {}", this->server_address, this->server_port);
     }
@@ -244,7 +243,52 @@ void MatchingServerImpl::Send_heartbeat()
 }
 
 /************************************ gRPC服务接口实现 ******************************************************/
+// 请求匹配
+grpc::Status MatchingServerImpl::MatchPlayer(grpc::ServerContext* context, const rpc_server::MatchPlayerReq* req, grpc::ServerWriter<rpc_server::MatchPlayerRes>* writer)
+{
+    // 1. 通过逻辑服接口获取玩家信息（伪代码，需根据实际逻辑服接口实现）
+    PlayerInfo info;
+    info.player_id = req->player_id();
+    // 假设通过RPC或连接池获取段位和分数
 
+    // 2. 加入匹配队列
+    {
+        std::lock_guard<std::mutex> lock(match_mutex);
+        match_queues[info.rank].push_back(info);
+    }
+
+    // 3. 这里应有匹配逻辑，匹配成功后填充res
+    // 这里只做示例，实际应有异步/条件变量等待
+    rpc_server::MatchPlayerRes res;
+    res.set_success(true);
+
+    writer->Write(res);
+
+    return grpc::Status::OK;
+}
+
+// 取消匹配
+grpc::Status MatchingServerImpl::CancelMatch(grpc::ServerContext* context, const rpc_server::CancelMatchReq* req, rpc_server::CancelMatchRes* res)
+{
+    std::lock_guard<std::mutex> lock(match_mutex);
+    for(auto& [rank, queue] : match_queues)
+    {
+        auto it = std::find_if(queue.begin(), queue.end(),[&](const PlayerInfo& p) {
+            return true;    
+        });
+
+        if(it != queue.end())
+        {
+            queue.erase(it);
+            res->set_success(true);
+            res->set_message("已取消匹配");
+            return grpc::Status::OK;
+        }
+    }
+    res->set_success(false);
+    res->set_message("未找到匹配中的玩家");
+    return grpc::Status::OK;
+}
 /************************************ gRPC服务接口工具函数 **************************************************/
 
 /******************************************** 其他工具函数 ***********************************************/

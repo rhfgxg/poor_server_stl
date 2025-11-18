@@ -22,6 +22,15 @@
 #include <future>
 #include <lua.hpp>
 
+// 玩家数据
+struct PlayerInfo
+{
+    std::string player_id;
+    int rank;
+    int score;
+    // 其他需要的信息
+};
+
 // 战斗服务器实现类
 class MatchingServerImpl final: public rpc_server::MatchingServer::Service
 {
@@ -35,7 +44,14 @@ public:
     void start_thread_pool(int num_threads);    // 启动线程池
     void stop_thread_pool();    // 停止线程池
 
+// grpc服务接口
+    grpc::Status MatchPlayer(grpc::ServerContext* context, const rpc_server::MatchPlayerReq* req, grpc::ServerWriter<rpc_server::MatchPlayerRes>* writer) override;    // 请求匹配
+    grpc::Status CancelMatch(grpc::ServerContext* context, const rpc_server::CancelMatchReq* req, rpc_server::CancelMatchRes* res) ;    // 取消匹配
+
 private:
+    MatchingServerImpl(MatchingServerImpl const&) = delete; // 禁止拷贝构造
+    MatchingServerImpl& operator=(MatchingServerImpl const&) = delete; // 禁止拷贝赋值
+
     void Init_connection_pool();    // 初始化链接池
 
     std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
@@ -61,6 +77,9 @@ private:
     std::mutex queue_mutex; // 任务队列互斥锁
     std::condition_variable queue_cv;   // 任务队列条件变量
     bool stop_threads = false;  // 停止线程标志
+
+    std::unordered_map<int, std::list<PlayerInfo>> match_queues;    // 匹配队列，key为段位，value为玩家信息列表
+    std::mutex match_mutex; // 匹配队列互斥锁
 };
 
 #endif // MATCHING_SERVER_H

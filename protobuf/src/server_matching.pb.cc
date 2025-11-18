@@ -22,7 +22,7 @@ namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
 namespace rpc_server {
 
-inline constexpr MatchPlayerResponse::Impl_::Impl_(
+inline constexpr MatchPlayerRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -31,46 +31,44 @@ inline constexpr MatchPlayerResponse::Impl_::Impl_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         success_{false},
+        status_{0},
         match_id_{0},
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR MatchPlayerResponse::MatchPlayerResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR MatchPlayerRes::MatchPlayerRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct MatchPlayerResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MatchPlayerResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MatchPlayerResponseDefaultTypeInternal() {}
+struct MatchPlayerResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MatchPlayerResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MatchPlayerResDefaultTypeInternal() {}
   union {
-    MatchPlayerResponse _instance;
+    MatchPlayerRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MatchPlayerResponseDefaultTypeInternal _MatchPlayerResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MatchPlayerResDefaultTypeInternal _MatchPlayerRes_default_instance_;
 
-inline constexpr MatchPlayerRequest::Impl_::Impl_(
+inline constexpr MatchPlayerReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : player_info_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        player_id_{0},
+      : player_id_{0},
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR MatchPlayerRequest::MatchPlayerRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR MatchPlayerReq::MatchPlayerReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct MatchPlayerRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MatchPlayerRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MatchPlayerRequestDefaultTypeInternal() {}
+struct MatchPlayerReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MatchPlayerReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MatchPlayerReqDefaultTypeInternal() {}
   union {
-    MatchPlayerRequest _instance;
+    MatchPlayerReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MatchPlayerRequestDefaultTypeInternal _MatchPlayerRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MatchPlayerReqDefaultTypeInternal _MatchPlayerReq_default_instance_;
 
-inline constexpr CancelMatchResponse::Impl_::Impl_(
+inline constexpr CancelMatchRes::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : message_(
             &::google::protobuf::internal::fixed_address_empty_string,
@@ -79,37 +77,37 @@ inline constexpr CancelMatchResponse::Impl_::Impl_(
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR CancelMatchResponse::CancelMatchResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR CancelMatchRes::CancelMatchRes(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct CancelMatchResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CancelMatchResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CancelMatchResponseDefaultTypeInternal() {}
+struct CancelMatchResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CancelMatchResDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CancelMatchResDefaultTypeInternal() {}
   union {
-    CancelMatchResponse _instance;
+    CancelMatchRes _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CancelMatchResponseDefaultTypeInternal _CancelMatchResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CancelMatchResDefaultTypeInternal _CancelMatchRes_default_instance_;
 
-inline constexpr CancelMatchRequest::Impl_::Impl_(
+inline constexpr CancelMatchReq::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : player_id_{0},
         _cached_size_{0} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR CancelMatchRequest::CancelMatchRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR CancelMatchReq::CancelMatchReq(::_pbi::ConstantInitialized)
     : _impl_(::_pbi::ConstantInitialized()) {}
-struct CancelMatchRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CancelMatchRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CancelMatchRequestDefaultTypeInternal() {}
+struct CancelMatchReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CancelMatchReqDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CancelMatchReqDefaultTypeInternal() {}
   union {
-    CancelMatchRequest _instance;
+    CancelMatchReq _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CancelMatchRequestDefaultTypeInternal _CancelMatchRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CancelMatchReqDefaultTypeInternal _CancelMatchReq_default_instance_;
 }  // namespace rpc_server
 static ::_pb::Metadata file_level_metadata_server_5fmatching_2eproto[4];
 static constexpr const ::_pb::EnumDescriptor**
@@ -119,81 +117,81 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t TableStruct_server_5fmatching_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
     protodesc_cold) = {
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerRequest, _impl_.player_id_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerRequest, _impl_.player_info_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerReq, _impl_.player_id_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerResponse, _impl_.message_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerResponse, _impl_.match_id_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerResponse, _impl_.opponent_info_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerRes, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerRes, _impl_.status_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerRes, _impl_.match_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::MatchPlayerRes, _impl_.opponent_info_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CancelMatchRequest, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CancelMatchReq, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CancelMatchRequest, _impl_.player_id_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CancelMatchReq, _impl_.player_id_),
     ~0u,  // no _has_bits_
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CancelMatchResponse, _internal_metadata_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CancelMatchRes, _internal_metadata_),
     ~0u,  // no _extensions_
     ~0u,  // no _oneof_case_
     ~0u,  // no _weak_field_map_
     ~0u,  // no _inlined_string_donated_
     ~0u,  // no _split_
     ~0u,  // no sizeof(Split)
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CancelMatchResponse, _impl_.success_),
-    PROTOBUF_FIELD_OFFSET(::rpc_server::CancelMatchResponse, _impl_.message_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CancelMatchRes, _impl_.success_),
+    PROTOBUF_FIELD_OFFSET(::rpc_server::CancelMatchRes, _impl_.message_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::rpc_server::MatchPlayerRequest)},
-        {10, -1, -1, sizeof(::rpc_server::MatchPlayerResponse)},
-        {22, -1, -1, sizeof(::rpc_server::CancelMatchRequest)},
-        {31, -1, -1, sizeof(::rpc_server::CancelMatchResponse)},
+        {0, -1, -1, sizeof(::rpc_server::MatchPlayerReq)},
+        {9, -1, -1, sizeof(::rpc_server::MatchPlayerRes)},
+        {22, -1, -1, sizeof(::rpc_server::CancelMatchReq)},
+        {31, -1, -1, sizeof(::rpc_server::CancelMatchRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-    &::rpc_server::_MatchPlayerRequest_default_instance_._instance,
-    &::rpc_server::_MatchPlayerResponse_default_instance_._instance,
-    &::rpc_server::_CancelMatchRequest_default_instance_._instance,
-    &::rpc_server::_CancelMatchResponse_default_instance_._instance,
+    &::rpc_server::_MatchPlayerReq_default_instance_._instance,
+    &::rpc_server::_MatchPlayerRes_default_instance_._instance,
+    &::rpc_server::_CancelMatchReq_default_instance_._instance,
+    &::rpc_server::_CancelMatchRes_default_instance_._instance,
 };
 const char descriptor_table_protodef_server_5fmatching_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\025server_matching.proto\022\nrpc_server\"<\n\022M"
-    "atchPlayerRequest\022\021\n\tplayer_id\030\001 \001(\005\022\023\n\013"
-    "player_info\030\002 \001(\014\"`\n\023MatchPlayerResponse"
-    "\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002 \001(\014\022\020\n\010ma"
-    "tch_id\030\003 \001(\005\022\025\n\ropponent_info\030\004 \001(\014\"\'\n\022C"
-    "ancelMatchRequest\022\021\n\tplayer_id\030\001 \001(\005\"7\n\023"
-    "CancelMatchResponse\022\017\n\007success\030\001 \001(\010\022\017\n\007"
-    "message\030\002 \001(\0142\260\001\n\016MatchingServer\022N\n\013Matc"
-    "hPlayer\022\036.rpc_server.MatchPlayerRequest\032"
-    "\037.rpc_server.MatchPlayerResponse\022N\n\013Canc"
-    "elMatch\022\036.rpc_server.CancelMatchRequest\032"
-    "\037.rpc_server.CancelMatchResponseb\006proto3"
+    "\n\025server_matching.proto\022\nrpc_server\"#\n\016M"
+    "atchPlayerReq\022\021\n\tplayer_id\030\001 \001(\005\"k\n\016Matc"
+    "hPlayerRes\022\017\n\007success\030\001 \001(\010\022\017\n\007message\030\002"
+    " \001(\014\022\016\n\006status\030\003 \001(\005\022\020\n\010match_id\030\004 \001(\005\022\025"
+    "\n\ropponent_info\030\005 \001(\014\"#\n\016CancelMatchReq\022"
+    "\021\n\tplayer_id\030\001 \001(\005\"2\n\016CancelMatchRes\022\017\n\007"
+    "success\030\001 \001(\010\022\017\n\007message\030\002 \001(\0142\240\001\n\016Match"
+    "ingServer\022G\n\013MatchPlayer\022\032.rpc_server.Ma"
+    "tchPlayerReq\032\032.rpc_server.MatchPlayerRes"
+    "0\001\022E\n\013CancelMatch\022\032.rpc_server.CancelMat"
+    "chReq\032\032.rpc_server.CancelMatchResb\006proto"
+    "3"
 };
 static ::absl::once_flag descriptor_table_server_5fmatching_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fmatching_2eproto = {
     false,
     false,
-    480,
+    441,
     descriptor_table_protodef_server_5fmatching_2eproto,
     "server_matching.proto",
     &descriptor_table_server_5fmatching_2eproto_once,
@@ -228,68 +226,51 @@ static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_server_5fmatching_2eproto
 namespace rpc_server {
 // ===================================================================
 
-class MatchPlayerRequest::_Internal {
+class MatchPlayerReq::_Internal {
  public:
 };
 
-MatchPlayerRequest::MatchPlayerRequest(::google::protobuf::Arena* arena)
+MatchPlayerReq::MatchPlayerReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.MatchPlayerRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.MatchPlayerReq)
 }
-inline PROTOBUF_NDEBUG_INLINE MatchPlayerRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from)
-      : player_info_(arena, from.player_info_),
-        _cached_size_{0} {}
-
-MatchPlayerRequest::MatchPlayerRequest(
-    ::google::protobuf::Arena* arena,
-    const MatchPlayerRequest& from)
-    : ::google::protobuf::Message(arena) {
-  MatchPlayerRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
-  _impl_.player_id_ = from._impl_.player_id_;
-
-  // @@protoc_insertion_point(copy_constructor:rpc_server.MatchPlayerRequest)
+MatchPlayerReq::MatchPlayerReq(
+    ::google::protobuf::Arena* arena, const MatchPlayerReq& from)
+    : MatchPlayerReq(arena) {
+  MergeFrom(from);
 }
-inline PROTOBUF_NDEBUG_INLINE MatchPlayerRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE MatchPlayerReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : player_info_(arena),
-        _cached_size_{0} {}
+      : _cached_size_{0} {}
 
-inline void MatchPlayerRequest::SharedCtor(::_pb::Arena* arena) {
+inline void MatchPlayerReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.player_id_ = {};
 }
-MatchPlayerRequest::~MatchPlayerRequest() {
-  // @@protoc_insertion_point(destructor:rpc_server.MatchPlayerRequest)
+MatchPlayerReq::~MatchPlayerReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.MatchPlayerReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void MatchPlayerRequest::SharedDtor() {
+inline void MatchPlayerReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
-  _impl_.player_info_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void MatchPlayerRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.MatchPlayerRequest)
+PROTOBUF_NOINLINE void MatchPlayerReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.MatchPlayerReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.player_info_.ClearToEmpty();
   _impl_.player_id_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* MatchPlayerRequest::_InternalParse(
+const char* MatchPlayerReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -297,45 +278,39 @@ const char* MatchPlayerRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> MatchPlayerRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> MatchPlayerReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
+    1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
+    4294967294,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
+    1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_MatchPlayerRequest_default_instance_._instance,
+    &_MatchPlayerReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bytes player_info = 2;
-    {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MatchPlayerRequest, _impl_.player_info_)}},
     // int32 player_id = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MatchPlayerRequest, _impl_.player_id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MatchPlayerRequest, _impl_.player_id_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MatchPlayerReq, _impl_.player_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MatchPlayerReq, _impl_.player_id_)}},
   }}, {{
     65535, 65535
   }}, {{
     // int32 player_id = 1;
-    {PROTOBUF_FIELD_OFFSET(MatchPlayerRequest, _impl_.player_id_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(MatchPlayerReq, _impl_.player_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // bytes player_info = 2;
-    {PROTOBUF_FIELD_OFFSET(MatchPlayerRequest, _impl_.player_info_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
   }},
 };
 
-::uint8_t* MatchPlayerRequest::_InternalSerialize(
+::uint8_t* MatchPlayerReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.MatchPlayerRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.MatchPlayerReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -346,34 +321,22 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> MatchPlayerRequest::_table_ = {
             stream, this->_internal_player_id(), target);
   }
 
-  // bytes player_info = 2;
-  if (!this->_internal_player_info().empty()) {
-    const std::string& _s = this->_internal_player_info();
-    target = stream->WriteBytesMaybeAliased(2, _s, target);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.MatchPlayerRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.MatchPlayerReq)
   return target;
 }
 
-::size_t MatchPlayerRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.MatchPlayerRequest)
+::size_t MatchPlayerReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.MatchPlayerReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
-
-  // bytes player_info = 2;
-  if (!this->_internal_player_info().empty()) {
-    total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
-                                    this->_internal_player_info());
-  }
 
   // int32 player_id = 1;
   if (this->_internal_player_id() != 0) {
@@ -384,82 +347,76 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> MatchPlayerRequest::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData MatchPlayerRequest::_class_data_ = {
-    MatchPlayerRequest::MergeImpl,
+const ::google::protobuf::Message::ClassData MatchPlayerReq::_class_data_ = {
+    MatchPlayerReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* MatchPlayerRequest::GetClassData() const {
+const ::google::protobuf::Message::ClassData* MatchPlayerReq::GetClassData() const {
   return &_class_data_;
 }
 
-void MatchPlayerRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<MatchPlayerRequest*>(&to_msg);
-  auto& from = static_cast<const MatchPlayerRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.MatchPlayerRequest)
+void MatchPlayerReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<MatchPlayerReq*>(&to_msg);
+  auto& from = static_cast<const MatchPlayerReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.MatchPlayerReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_player_info().empty()) {
-    _this->_internal_set_player_info(from._internal_player_info());
-  }
   if (from._internal_player_id() != 0) {
     _this->_internal_set_player_id(from._internal_player_id());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void MatchPlayerRequest::CopyFrom(const MatchPlayerRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.MatchPlayerRequest)
+void MatchPlayerReq::CopyFrom(const MatchPlayerReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.MatchPlayerReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool MatchPlayerRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool MatchPlayerReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* MatchPlayerRequest::AccessCachedSize() const {
+::_pbi::CachedSize* MatchPlayerReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void MatchPlayerRequest::InternalSwap(MatchPlayerRequest* PROTOBUF_RESTRICT other) {
+void MatchPlayerReq::InternalSwap(MatchPlayerReq* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.player_info_, &other->_impl_.player_info_, arena);
         swap(_impl_.player_id_, other->_impl_.player_id_);
 }
 
-::google::protobuf::Metadata MatchPlayerRequest::GetMetadata() const {
+::google::protobuf::Metadata MatchPlayerReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fmatching_2eproto_getter, &descriptor_table_server_5fmatching_2eproto_once,
       file_level_metadata_server_5fmatching_2eproto[0]);
 }
 // ===================================================================
 
-class MatchPlayerResponse::_Internal {
+class MatchPlayerRes::_Internal {
  public:
 };
 
-MatchPlayerResponse::MatchPlayerResponse(::google::protobuf::Arena* arena)
+MatchPlayerRes::MatchPlayerRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.MatchPlayerResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.MatchPlayerRes)
 }
-inline PROTOBUF_NDEBUG_INLINE MatchPlayerResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE MatchPlayerRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : message_(arena, from.message_),
         opponent_info_(arena, from.opponent_info_),
         _cached_size_{0} {}
 
-MatchPlayerResponse::MatchPlayerResponse(
+MatchPlayerRes::MatchPlayerRes(
     ::google::protobuf::Arena* arena,
-    const MatchPlayerResponse& from)
+    const MatchPlayerRes& from)
     : ::google::protobuf::Message(arena) {
-  MatchPlayerResponse* const _this = this;
+  MatchPlayerRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -472,16 +429,16 @@ MatchPlayerResponse::MatchPlayerResponse(
                offsetof(Impl_, success_) +
                sizeof(Impl_::match_id_));
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.MatchPlayerResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.MatchPlayerRes)
 }
-inline PROTOBUF_NDEBUG_INLINE MatchPlayerResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE MatchPlayerRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : message_(arena),
         opponent_info_(arena),
         _cached_size_{0} {}
 
-inline void MatchPlayerResponse::SharedCtor(::_pb::Arena* arena) {
+inline void MatchPlayerRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, success_),
@@ -490,20 +447,20 @@ inline void MatchPlayerResponse::SharedCtor(::_pb::Arena* arena) {
                offsetof(Impl_, success_) +
                sizeof(Impl_::match_id_));
 }
-MatchPlayerResponse::~MatchPlayerResponse() {
-  // @@protoc_insertion_point(destructor:rpc_server.MatchPlayerResponse)
+MatchPlayerRes::~MatchPlayerRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.MatchPlayerRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void MatchPlayerResponse::SharedDtor() {
+inline void MatchPlayerRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
   _impl_.opponent_info_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void MatchPlayerResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.MatchPlayerResponse)
+PROTOBUF_NOINLINE void MatchPlayerRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.MatchPlayerRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -517,7 +474,7 @@ PROTOBUF_NOINLINE void MatchPlayerResponse::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* MatchPlayerResponse::_InternalParse(
+const char* MatchPlayerRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -525,46 +482,55 @@ const char* MatchPlayerResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 0, 0, 2> MatchPlayerResponse::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 0, 0, 2> MatchPlayerRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    4, 24,  // max_field_number, fast_idx_mask
+    5, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967264,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
+    5,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_MatchPlayerResponse_default_instance_._instance,
+    &_MatchPlayerRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
-    // bytes opponent_info = 4;
-    {::_pbi::TcParser::FastBS1,
-     {34, 63, 0, PROTOBUF_FIELD_OFFSET(MatchPlayerResponse, _impl_.opponent_info_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(MatchPlayerResponse, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MatchPlayerResponse, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(MatchPlayerRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(MatchPlayerRes, _impl_.success_)}},
     // bytes message = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MatchPlayerResponse, _impl_.message_)}},
-    // int32 match_id = 3;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MatchPlayerResponse, _impl_.match_id_), 63>(),
-     {24, 63, 0, PROTOBUF_FIELD_OFFSET(MatchPlayerResponse, _impl_.match_id_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(MatchPlayerRes, _impl_.message_)}},
+    // int32 status = 3;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MatchPlayerRes, _impl_.status_), 63>(),
+     {24, 63, 0, PROTOBUF_FIELD_OFFSET(MatchPlayerRes, _impl_.status_)}},
+    // int32 match_id = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(MatchPlayerRes, _impl_.match_id_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(MatchPlayerRes, _impl_.match_id_)}},
+    // bytes opponent_info = 5;
+    {::_pbi::TcParser::FastBS1,
+     {42, 63, 0, PROTOBUF_FIELD_OFFSET(MatchPlayerRes, _impl_.opponent_info_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(MatchPlayerResponse, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(MatchPlayerRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // bytes message = 2;
-    {PROTOBUF_FIELD_OFFSET(MatchPlayerResponse, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(MatchPlayerRes, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // int32 match_id = 3;
-    {PROTOBUF_FIELD_OFFSET(MatchPlayerResponse, _impl_.match_id_), 0, 0,
+    // int32 status = 3;
+    {PROTOBUF_FIELD_OFFSET(MatchPlayerRes, _impl_.status_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // bytes opponent_info = 4;
-    {PROTOBUF_FIELD_OFFSET(MatchPlayerResponse, _impl_.opponent_info_), 0, 0,
+    // int32 match_id = 4;
+    {PROTOBUF_FIELD_OFFSET(MatchPlayerRes, _impl_.match_id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // bytes opponent_info = 5;
+    {PROTOBUF_FIELD_OFFSET(MatchPlayerRes, _impl_.opponent_info_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
@@ -572,10 +538,10 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> MatchPlayerResponse::_table_ = {
   }},
 };
 
-::uint8_t* MatchPlayerResponse::_InternalSerialize(
+::uint8_t* MatchPlayerRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.MatchPlayerResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.MatchPlayerRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -592,17 +558,24 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> MatchPlayerResponse::_table_ = {
     target = stream->WriteBytesMaybeAliased(2, _s, target);
   }
 
-  // int32 match_id = 3;
-  if (this->_internal_match_id() != 0) {
+  // int32 status = 3;
+  if (this->_internal_status() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::
         WriteInt32ToArrayWithField<3>(
+            stream, this->_internal_status(), target);
+  }
+
+  // int32 match_id = 4;
+  if (this->_internal_match_id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::
+        WriteInt32ToArrayWithField<4>(
             stream, this->_internal_match_id(), target);
   }
 
-  // bytes opponent_info = 4;
+  // bytes opponent_info = 5;
   if (!this->_internal_opponent_info().empty()) {
     const std::string& _s = this->_internal_opponent_info();
-    target = stream->WriteBytesMaybeAliased(4, _s, target);
+    target = stream->WriteBytesMaybeAliased(5, _s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -610,12 +583,12 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> MatchPlayerResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.MatchPlayerResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.MatchPlayerRes)
   return target;
 }
 
-::size_t MatchPlayerResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.MatchPlayerResponse)
+::size_t MatchPlayerRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.MatchPlayerRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -628,7 +601,7 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> MatchPlayerResponse::_table_ = {
                                     this->_internal_message());
   }
 
-  // bytes opponent_info = 4;
+  // bytes opponent_info = 5;
   if (!this->_internal_opponent_info().empty()) {
     total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                     this->_internal_opponent_info());
@@ -639,7 +612,13 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> MatchPlayerResponse::_table_ = {
     total_size += 2;
   }
 
-  // int32 match_id = 3;
+  // int32 status = 3;
+  if (this->_internal_status() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+        this->_internal_status());
+  }
+
+  // int32 match_id = 4;
   if (this->_internal_match_id() != 0) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
         this->_internal_match_id());
@@ -648,18 +627,18 @@ const ::_pbi::TcParseTable<2, 4, 0, 0, 2> MatchPlayerResponse::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData MatchPlayerResponse::_class_data_ = {
-    MatchPlayerResponse::MergeImpl,
+const ::google::protobuf::Message::ClassData MatchPlayerRes::_class_data_ = {
+    MatchPlayerRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* MatchPlayerResponse::GetClassData() const {
+const ::google::protobuf::Message::ClassData* MatchPlayerRes::GetClassData() const {
   return &_class_data_;
 }
 
-void MatchPlayerResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<MatchPlayerResponse*>(&to_msg);
-  auto& from = static_cast<const MatchPlayerResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.MatchPlayerResponse)
+void MatchPlayerRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<MatchPlayerRes*>(&to_msg);
+  auto& from = static_cast<const MatchPlayerRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.MatchPlayerRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -673,27 +652,30 @@ void MatchPlayerResponse::MergeImpl(::google::protobuf::Message& to_msg, const :
   if (from._internal_success() != 0) {
     _this->_internal_set_success(from._internal_success());
   }
+  if (from._internal_status() != 0) {
+    _this->_internal_set_status(from._internal_status());
+  }
   if (from._internal_match_id() != 0) {
     _this->_internal_set_match_id(from._internal_match_id());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void MatchPlayerResponse::CopyFrom(const MatchPlayerResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.MatchPlayerResponse)
+void MatchPlayerRes::CopyFrom(const MatchPlayerRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.MatchPlayerRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool MatchPlayerResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool MatchPlayerRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* MatchPlayerResponse::AccessCachedSize() const {
+::_pbi::CachedSize* MatchPlayerRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void MatchPlayerResponse::InternalSwap(MatchPlayerResponse* PROTOBUF_RESTRICT other) {
+void MatchPlayerRes::InternalSwap(MatchPlayerRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -701,55 +683,55 @@ void MatchPlayerResponse::InternalSwap(MatchPlayerResponse* PROTOBUF_RESTRICT ot
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.opponent_info_, &other->_impl_.opponent_info_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MatchPlayerResponse, _impl_.match_id_)
-      + sizeof(MatchPlayerResponse::_impl_.match_id_)
-      - PROTOBUF_FIELD_OFFSET(MatchPlayerResponse, _impl_.success_)>(
+      PROTOBUF_FIELD_OFFSET(MatchPlayerRes, _impl_.match_id_)
+      + sizeof(MatchPlayerRes::_impl_.match_id_)
+      - PROTOBUF_FIELD_OFFSET(MatchPlayerRes, _impl_.success_)>(
           reinterpret_cast<char*>(&_impl_.success_),
           reinterpret_cast<char*>(&other->_impl_.success_));
 }
 
-::google::protobuf::Metadata MatchPlayerResponse::GetMetadata() const {
+::google::protobuf::Metadata MatchPlayerRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fmatching_2eproto_getter, &descriptor_table_server_5fmatching_2eproto_once,
       file_level_metadata_server_5fmatching_2eproto[1]);
 }
 // ===================================================================
 
-class CancelMatchRequest::_Internal {
+class CancelMatchReq::_Internal {
  public:
 };
 
-CancelMatchRequest::CancelMatchRequest(::google::protobuf::Arena* arena)
+CancelMatchReq::CancelMatchReq(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.CancelMatchRequest)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.CancelMatchReq)
 }
-CancelMatchRequest::CancelMatchRequest(
-    ::google::protobuf::Arena* arena, const CancelMatchRequest& from)
-    : CancelMatchRequest(arena) {
+CancelMatchReq::CancelMatchReq(
+    ::google::protobuf::Arena* arena, const CancelMatchReq& from)
+    : CancelMatchReq(arena) {
   MergeFrom(from);
 }
-inline PROTOBUF_NDEBUG_INLINE CancelMatchRequest::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE CancelMatchReq::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0} {}
 
-inline void CancelMatchRequest::SharedCtor(::_pb::Arena* arena) {
+inline void CancelMatchReq::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.player_id_ = {};
 }
-CancelMatchRequest::~CancelMatchRequest() {
-  // @@protoc_insertion_point(destructor:rpc_server.CancelMatchRequest)
+CancelMatchReq::~CancelMatchReq() {
+  // @@protoc_insertion_point(destructor:rpc_server.CancelMatchReq)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void CancelMatchRequest::SharedDtor() {
+inline void CancelMatchReq::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void CancelMatchRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.CancelMatchRequest)
+PROTOBUF_NOINLINE void CancelMatchReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.CancelMatchReq)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -759,7 +741,7 @@ PROTOBUF_NOINLINE void CancelMatchRequest::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* CancelMatchRequest::_InternalParse(
+const char* CancelMatchReq::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -767,7 +749,7 @@ const char* CancelMatchRequest::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 0, 2> CancelMatchRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 0, 2> CancelMatchReq::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -778,17 +760,17 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> CancelMatchRequest::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_CancelMatchRequest_default_instance_._instance,
+    &_CancelMatchReq_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // int32 player_id = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CancelMatchRequest, _impl_.player_id_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(CancelMatchRequest, _impl_.player_id_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CancelMatchReq, _impl_.player_id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(CancelMatchReq, _impl_.player_id_)}},
   }}, {{
     65535, 65535
   }}, {{
     // int32 player_id = 1;
-    {PROTOBUF_FIELD_OFFSET(CancelMatchRequest, _impl_.player_id_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(CancelMatchReq, _impl_.player_id_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
   }},
   // no aux_entries
@@ -796,10 +778,10 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> CancelMatchRequest::_table_ = {
   }},
 };
 
-::uint8_t* CancelMatchRequest::_InternalSerialize(
+::uint8_t* CancelMatchReq::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.CancelMatchRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.CancelMatchReq)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -815,12 +797,12 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> CancelMatchRequest::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.CancelMatchRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.CancelMatchReq)
   return target;
 }
 
-::size_t CancelMatchRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.CancelMatchRequest)
+::size_t CancelMatchReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.CancelMatchReq)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -836,18 +818,18 @@ const ::_pbi::TcParseTable<0, 1, 0, 0, 2> CancelMatchRequest::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData CancelMatchRequest::_class_data_ = {
-    CancelMatchRequest::MergeImpl,
+const ::google::protobuf::Message::ClassData CancelMatchReq::_class_data_ = {
+    CancelMatchReq::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* CancelMatchRequest::GetClassData() const {
+const ::google::protobuf::Message::ClassData* CancelMatchReq::GetClassData() const {
   return &_class_data_;
 }
 
-void CancelMatchRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<CancelMatchRequest*>(&to_msg);
-  auto& from = static_cast<const CancelMatchRequest&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.CancelMatchRequest)
+void CancelMatchReq::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<CancelMatchReq*>(&to_msg);
+  auto& from = static_cast<const CancelMatchReq&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.CancelMatchReq)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -858,84 +840,84 @@ void CancelMatchRequest::MergeImpl(::google::protobuf::Message& to_msg, const ::
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void CancelMatchRequest::CopyFrom(const CancelMatchRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.CancelMatchRequest)
+void CancelMatchReq::CopyFrom(const CancelMatchReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.CancelMatchReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool CancelMatchRequest::IsInitialized() const {
+PROTOBUF_NOINLINE bool CancelMatchReq::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* CancelMatchRequest::AccessCachedSize() const {
+::_pbi::CachedSize* CancelMatchReq::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void CancelMatchRequest::InternalSwap(CancelMatchRequest* PROTOBUF_RESTRICT other) {
+void CancelMatchReq::InternalSwap(CancelMatchReq* PROTOBUF_RESTRICT other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
         swap(_impl_.player_id_, other->_impl_.player_id_);
 }
 
-::google::protobuf::Metadata CancelMatchRequest::GetMetadata() const {
+::google::protobuf::Metadata CancelMatchReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fmatching_2eproto_getter, &descriptor_table_server_5fmatching_2eproto_once,
       file_level_metadata_server_5fmatching_2eproto[2]);
 }
 // ===================================================================
 
-class CancelMatchResponse::_Internal {
+class CancelMatchRes::_Internal {
  public:
 };
 
-CancelMatchResponse::CancelMatchResponse(::google::protobuf::Arena* arena)
+CancelMatchRes::CancelMatchRes(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:rpc_server.CancelMatchResponse)
+  // @@protoc_insertion_point(arena_constructor:rpc_server.CancelMatchRes)
 }
-inline PROTOBUF_NDEBUG_INLINE CancelMatchResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE CancelMatchRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from)
       : message_(arena, from.message_),
         _cached_size_{0} {}
 
-CancelMatchResponse::CancelMatchResponse(
+CancelMatchRes::CancelMatchRes(
     ::google::protobuf::Arena* arena,
-    const CancelMatchResponse& from)
+    const CancelMatchRes& from)
     : ::google::protobuf::Message(arena) {
-  CancelMatchResponse* const _this = this;
+  CancelMatchRes* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_);
   _impl_.success_ = from._impl_.success_;
 
-  // @@protoc_insertion_point(copy_constructor:rpc_server.CancelMatchResponse)
+  // @@protoc_insertion_point(copy_constructor:rpc_server.CancelMatchRes)
 }
-inline PROTOBUF_NDEBUG_INLINE CancelMatchResponse::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE CancelMatchRes::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : message_(arena),
         _cached_size_{0} {}
 
-inline void CancelMatchResponse::SharedCtor(::_pb::Arena* arena) {
+inline void CancelMatchRes::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.success_ = {};
 }
-CancelMatchResponse::~CancelMatchResponse() {
-  // @@protoc_insertion_point(destructor:rpc_server.CancelMatchResponse)
+CancelMatchRes::~CancelMatchRes() {
+  // @@protoc_insertion_point(destructor:rpc_server.CancelMatchRes)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
-inline void CancelMatchResponse::SharedDtor() {
+inline void CancelMatchRes::SharedDtor() {
   ABSL_DCHECK(GetArena() == nullptr);
   _impl_.message_.Destroy();
   _impl_.~Impl_();
 }
 
-PROTOBUF_NOINLINE void CancelMatchResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:rpc_server.CancelMatchResponse)
+PROTOBUF_NOINLINE void CancelMatchRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:rpc_server.CancelMatchRes)
   PROTOBUF_TSAN_WRITE(&_impl_._tsan_detect_race);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -946,7 +928,7 @@ PROTOBUF_NOINLINE void CancelMatchResponse::Clear() {
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
-const char* CancelMatchResponse::_InternalParse(
+const char* CancelMatchRes::_InternalParse(
     const char* ptr, ::_pbi::ParseContext* ctx) {
   ptr = ::_pbi::TcParser::ParseLoop(this, ptr, ctx, &_table_.header);
   return ptr;
@@ -954,7 +936,7 @@ const char* CancelMatchResponse::_InternalParse(
 
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CancelMatchResponse::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CancelMatchRes::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -965,23 +947,23 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CancelMatchResponse::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    &_CancelMatchResponse_default_instance_._instance,
+    &_CancelMatchRes_default_instance_._instance,
     ::_pbi::TcParser::GenericFallback,  // fallback
   }, {{
     // bytes message = 2;
     {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(CancelMatchResponse, _impl_.message_)}},
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(CancelMatchRes, _impl_.message_)}},
     // bool success = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(CancelMatchResponse, _impl_.success_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(CancelMatchResponse, _impl_.success_)}},
+    {::_pbi::TcParser::SingularVarintNoZag1<bool, offsetof(CancelMatchRes, _impl_.success_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(CancelMatchRes, _impl_.success_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bool success = 1;
-    {PROTOBUF_FIELD_OFFSET(CancelMatchResponse, _impl_.success_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(CancelMatchRes, _impl_.success_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBool)},
     // bytes message = 2;
-    {PROTOBUF_FIELD_OFFSET(CancelMatchResponse, _impl_.message_), 0, 0,
+    {PROTOBUF_FIELD_OFFSET(CancelMatchRes, _impl_.message_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
@@ -989,10 +971,10 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CancelMatchResponse::_table_ = {
   }},
 };
 
-::uint8_t* CancelMatchResponse::_InternalSerialize(
+::uint8_t* CancelMatchRes::_InternalSerialize(
     ::uint8_t* target,
     ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.CancelMatchResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:rpc_server.CancelMatchRes)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1014,12 +996,12 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CancelMatchResponse::_table_ = {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.CancelMatchResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:rpc_server.CancelMatchRes)
   return target;
 }
 
-::size_t CancelMatchResponse::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:rpc_server.CancelMatchResponse)
+::size_t CancelMatchRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:rpc_server.CancelMatchRes)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -1040,18 +1022,18 @@ const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CancelMatchResponse::_table_ = {
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::google::protobuf::Message::ClassData CancelMatchResponse::_class_data_ = {
-    CancelMatchResponse::MergeImpl,
+const ::google::protobuf::Message::ClassData CancelMatchRes::_class_data_ = {
+    CancelMatchRes::MergeImpl,
     nullptr,  // OnDemandRegisterArenaDtor
 };
-const ::google::protobuf::Message::ClassData* CancelMatchResponse::GetClassData() const {
+const ::google::protobuf::Message::ClassData* CancelMatchRes::GetClassData() const {
   return &_class_data_;
 }
 
-void CancelMatchResponse::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
-  auto* const _this = static_cast<CancelMatchResponse*>(&to_msg);
-  auto& from = static_cast<const CancelMatchResponse&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.CancelMatchResponse)
+void CancelMatchRes::MergeImpl(::google::protobuf::Message& to_msg, const ::google::protobuf::Message& from_msg) {
+  auto* const _this = static_cast<CancelMatchRes*>(&to_msg);
+  auto& from = static_cast<const CancelMatchRes&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:rpc_server.CancelMatchRes)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1065,21 +1047,21 @@ void CancelMatchResponse::MergeImpl(::google::protobuf::Message& to_msg, const :
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void CancelMatchResponse::CopyFrom(const CancelMatchResponse& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.CancelMatchResponse)
+void CancelMatchRes::CopyFrom(const CancelMatchRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:rpc_server.CancelMatchRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-PROTOBUF_NOINLINE bool CancelMatchResponse::IsInitialized() const {
+PROTOBUF_NOINLINE bool CancelMatchRes::IsInitialized() const {
   return true;
 }
 
-::_pbi::CachedSize* CancelMatchResponse::AccessCachedSize() const {
+::_pbi::CachedSize* CancelMatchRes::AccessCachedSize() const {
   return &_impl_._cached_size_;
 }
-void CancelMatchResponse::InternalSwap(CancelMatchResponse* PROTOBUF_RESTRICT other) {
+void CancelMatchRes::InternalSwap(CancelMatchRes* PROTOBUF_RESTRICT other) {
   using std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -1088,7 +1070,7 @@ void CancelMatchResponse::InternalSwap(CancelMatchResponse* PROTOBUF_RESTRICT ot
         swap(_impl_.success_, other->_impl_.success_);
 }
 
-::google::protobuf::Metadata CancelMatchResponse::GetMetadata() const {
+::google::protobuf::Metadata CancelMatchRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fmatching_2eproto_getter, &descriptor_table_server_5fmatching_2eproto_once,
       file_level_metadata_server_5fmatching_2eproto[3]);

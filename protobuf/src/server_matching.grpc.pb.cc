@@ -33,50 +33,43 @@ std::unique_ptr< MatchingServer::Stub> MatchingServer::NewStub(const std::shared
 }
 
 MatchingServer::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_MatchPlayer_(MatchingServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_MatchPlayer_(MatchingServer_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_CancelMatch_(MatchingServer_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status MatchingServer::Stub::MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::rpc_server::MatchPlayerResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::MatchPlayerRequest, ::rpc_server::MatchPlayerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_MatchPlayer_, context, request, response);
+::grpc::ClientReader< ::rpc_server::MatchPlayerRes>* MatchingServer::Stub::MatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request) {
+  return ::grpc::internal::ClientReaderFactory< ::rpc_server::MatchPlayerRes>::Create(channel_.get(), rpcmethod_MatchPlayer_, context, request);
 }
 
-void MatchingServer::Stub::async::MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest* request, ::rpc_server::MatchPlayerResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::MatchPlayerRequest, ::rpc_server::MatchPlayerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MatchPlayer_, context, request, response, std::move(f));
+void MatchingServer::Stub::async::MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq* request, ::grpc::ClientReadReactor< ::rpc_server::MatchPlayerRes>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::rpc_server::MatchPlayerRes>::Create(stub_->channel_.get(), stub_->rpcmethod_MatchPlayer_, context, request, reactor);
 }
 
-void MatchingServer::Stub::async::MatchPlayer(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest* request, ::rpc_server::MatchPlayerResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_MatchPlayer_, context, request, response, reactor);
+::grpc::ClientAsyncReader< ::rpc_server::MatchPlayerRes>* MatchingServer::Stub::AsyncMatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::rpc_server::MatchPlayerRes>::Create(channel_.get(), cq, rpcmethod_MatchPlayer_, context, request, true, tag);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::MatchPlayerResponse>* MatchingServer::Stub::PrepareAsyncMatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::MatchPlayerResponse, ::rpc_server::MatchPlayerRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_MatchPlayer_, context, request);
+::grpc::ClientAsyncReader< ::rpc_server::MatchPlayerRes>* MatchingServer::Stub::PrepareAsyncMatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::rpc_server::MatchPlayerRes>::Create(channel_.get(), cq, rpcmethod_MatchPlayer_, context, request, false, nullptr);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::MatchPlayerResponse>* MatchingServer::Stub::AsyncMatchPlayerRaw(::grpc::ClientContext* context, const ::rpc_server::MatchPlayerRequest& request, ::grpc::CompletionQueue* cq) {
-  auto* result =
-    this->PrepareAsyncMatchPlayerRaw(context, request, cq);
-  result->StartCall();
-  return result;
+::grpc::Status MatchingServer::Stub::CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::rpc_server::CancelMatchRes* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::CancelMatchReq, ::rpc_server::CancelMatchRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CancelMatch_, context, request, response);
 }
 
-::grpc::Status MatchingServer::Stub::CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::rpc_server::CancelMatchResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::rpc_server::CancelMatchRequest, ::rpc_server::CancelMatchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CancelMatch_, context, request, response);
+void MatchingServer::Stub::async::CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq* request, ::rpc_server::CancelMatchRes* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::rpc_server::CancelMatchReq, ::rpc_server::CancelMatchRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CancelMatch_, context, request, response, std::move(f));
 }
 
-void MatchingServer::Stub::async::CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest* request, ::rpc_server::CancelMatchResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::rpc_server::CancelMatchRequest, ::rpc_server::CancelMatchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CancelMatch_, context, request, response, std::move(f));
-}
-
-void MatchingServer::Stub::async::CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest* request, ::rpc_server::CancelMatchResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+void MatchingServer::Stub::async::CancelMatch(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq* request, ::rpc_server::CancelMatchRes* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CancelMatch_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchResponse>* MatchingServer::Stub::PrepareAsyncCancelMatchRaw(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::CancelMatchResponse, ::rpc_server::CancelMatchRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CancelMatch_, context, request);
+::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchRes>* MatchingServer::Stub::PrepareAsyncCancelMatchRaw(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::rpc_server::CancelMatchRes, ::rpc_server::CancelMatchReq, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CancelMatch_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchResponse>* MatchingServer::Stub::AsyncCancelMatchRaw(::grpc::ClientContext* context, const ::rpc_server::CancelMatchRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::rpc_server::CancelMatchRes>* MatchingServer::Stub::AsyncCancelMatchRaw(::grpc::ClientContext* context, const ::rpc_server::CancelMatchReq& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncCancelMatchRaw(context, request, cq);
   result->StartCall();
@@ -86,22 +79,22 @@ void MatchingServer::Stub::async::CancelMatch(::grpc::ClientContext* context, co
 MatchingServer::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MatchingServer_method_names[0],
-      ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MatchingServer::Service, ::rpc_server::MatchPlayerRequest, ::rpc_server::MatchPlayerResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< MatchingServer::Service, ::rpc_server::MatchPlayerReq, ::rpc_server::MatchPlayerRes>(
           [](MatchingServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::MatchPlayerRequest* req,
-             ::rpc_server::MatchPlayerResponse* resp) {
-               return service->MatchPlayer(ctx, req, resp);
+             const ::rpc_server::MatchPlayerReq* req,
+             ::grpc::ServerWriter<::rpc_server::MatchPlayerRes>* writer) {
+               return service->MatchPlayer(ctx, req, writer);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MatchingServer_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< MatchingServer::Service, ::rpc_server::CancelMatchRequest, ::rpc_server::CancelMatchResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< MatchingServer::Service, ::rpc_server::CancelMatchReq, ::rpc_server::CancelMatchRes, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](MatchingServer::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::rpc_server::CancelMatchRequest* req,
-             ::rpc_server::CancelMatchResponse* resp) {
+             const ::rpc_server::CancelMatchReq* req,
+             ::rpc_server::CancelMatchRes* resp) {
                return service->CancelMatch(ctx, req, resp);
              }, this)));
 }
@@ -109,14 +102,14 @@ MatchingServer::Service::Service() {
 MatchingServer::Service::~Service() {
 }
 
-::grpc::Status MatchingServer::Service::MatchPlayer(::grpc::ServerContext* context, const ::rpc_server::MatchPlayerRequest* request, ::rpc_server::MatchPlayerResponse* response) {
+::grpc::Status MatchingServer::Service::MatchPlayer(::grpc::ServerContext* context, const ::rpc_server::MatchPlayerReq* request, ::grpc::ServerWriter< ::rpc_server::MatchPlayerRes>* writer) {
   (void) context;
   (void) request;
-  (void) response;
+  (void) writer;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status MatchingServer::Service::CancelMatch(::grpc::ServerContext* context, const ::rpc_server::CancelMatchRequest* request, ::rpc_server::CancelMatchResponse* response) {
+::grpc::Status MatchingServer::Service::CancelMatch(::grpc::ServerContext* context, const ::rpc_server::CancelMatchReq* request, ::rpc_server::CancelMatchRes* response) {
   (void) context;
   (void) request;
   (void) response;

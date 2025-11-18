@@ -86,11 +86,13 @@ message ChangePasswordRes
 }
 
 // 检查用户是否在线请求
-message IsUserOnlineReq {
+message IsUserOnlineReq
+{
     bytes account = 1;  // 账号
 }
 // 检查用户是否在线响应
-message IsUserOnlineRes {
+message IsUserOnlineRes
+{
     bool success = 1;
     bytes message = 2;
     bool is_online = 3; // 用户是否在线
