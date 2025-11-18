@@ -11,18 +11,18 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
     ${PROJECT_SOURCE_DIR}/src/common/redis_client.cpp
     # proto生成的源文件
-    ${PROJECT_SOURCE_DIR}/protobuf/src/common.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/common.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_gateway.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_gateway.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_logic.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_logic.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_login.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_login.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_file.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_file.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/common.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/common.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_central.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_central.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_gateway.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_gateway.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_logic.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_logic.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_login.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_login.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_file.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_file.grpc.pb.cc
 )
 
 # 指定编译生成的可执行文件信息：文件名${MODULE_NAME} ，${SOURCES} 项目所有源文件路径

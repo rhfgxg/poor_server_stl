@@ -27,17 +27,15 @@ set(VCPKG_DEBUG_BIN "${CMAKE_PREFIX_PATH}/debug/bin")
 include_directories(
     ${VCPKG_INCLUDE}
     ${CMAKE_SOURCE_DIR}/src/common
-    ${CMAKE_SOURCE_DIR}/src/battle
     ${CMAKE_SOURCE_DIR}/src/central
     ${CMAKE_SOURCE_DIR}/src/chat
     ${CMAKE_SOURCE_DIR}/src/db
     ${CMAKE_SOURCE_DIR}/src/file
     ${CMAKE_SOURCE_DIR}/src/gateway
-    ${CMAKE_SOURCE_DIR}/src/logic
     ${CMAKE_SOURCE_DIR}/src/login
     ${CMAKE_SOURCE_DIR}/src/matching
     ${CMAKE_SOURCE_DIR}/src/store
-    ${CMAKE_SOURCE_DIR}/protobuf/src
+    ${CMAKE_SOURCE_DIR}/protobuf/cpp/src
 )
 
 # 编译选项
@@ -90,14 +88,10 @@ endif()
 message(STATUS "MYSQLCPPCONN_LIB: ${MYSQLCPPCONN_LIB}")
 
 # 添加子模块
-add_subdirectory(protobuf)
-add_subdirectory(src/battle)
+add_subdirectory(protobuf/cpp)
 add_subdirectory(src/central)
-#add_subdirectory(src/chat)
 add_subdirectory(src/db)
 add_subdirectory(src/file)
 add_subdirectory(src/gateway)
-add_subdirectory(src/logic)
 add_subdirectory(src/login)
 add_subdirectory(src/matching)
-#add_subdirectory(src/store)

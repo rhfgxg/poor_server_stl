@@ -7,9 +7,14 @@
 │  .editorconfig    VS 配置文件，可以设置文件编码格式为 utf-8（其他ide可忽略）
 │                         
 ├─config	项目配置文件
-│      DB_config.json	数据库配置文件：数据库名，表名，端口
-│      gateway_config.json	各服务器配置文件：地址，端口
-│        
+│  ├─c++    c++ 的配置文件
+│  │  ├─DB_config.json	数据库配置文件：数据库名，表名，端口
+│  │  └─gateway_config.json	各服务器配置文件：地址，端口
+│  │
+│  └─skynet skynet的配置文件
+│     ├─
+│
+│
 ├─out   VS编译生成文件夹
 │  ├─build
 │  │   └─x64-Debug

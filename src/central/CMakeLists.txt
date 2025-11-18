@@ -12,22 +12,22 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
     ${PROJECT_SOURCE_DIR}/src/common/redis_client.cpp
     # protobuf 生成的源文件：调用其他服务器
-    ${PROJECT_SOURCE_DIR}/protobuf/src/common.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/common.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_central.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_db.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_db.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_file.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_file.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_gateway.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_gateway.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_logic.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_logic.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_login.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_login.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_matching.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/src/server_matching.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/common.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/common.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_central.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_central.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_db.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_db.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_file.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_file.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_gateway.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_gateway.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_logic.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_logic.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_login.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_login.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_matching.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_matching.grpc.pb.cc
 )
 
 # 指定编译生成的可执行文件

@@ -1,0 +1,55 @@
+// 战斗服务器
+syntax = "proto3";
+package rpc_server;
+
+// 战斗服务
+service BattleServer {
+    // 玩家操作
+    rpc Player_action(PlayerActionRequest) returns (PlayerActionResponse);
+    // 获取战斗结果
+    rpc Get_battle_result(GetBattleResultRequest) returns (GetBattleResultResponse);
+    // 双向流式通信，用于实时同步数据
+    rpc Sync_battle_state(stream SyncBattleStateRequest) returns (stream SyncBattleStateResponse);
+}
+
+// 玩家操作消息
+message PlayerAction {
+    int32 player_id = 1;
+    string action_type = 2;
+    string action_data = 3;
+}
+
+// 对战结果消息
+message BattleResult {
+    int32 winner_id = 1;
+    int32 loser_id = 2;
+    string result_data = 3;
+}
+
+// 请求和响应消息
+message PlayerActionRequest {
+    PlayerAction action = 1;
+}
+message PlayerActionResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message GetBattleResultRequest {
+    int32 battle_id = 1;
+}
+message GetBattleResultResponse {
+    BattleResult result = 1;
+}
+
+// 同步局内信息请求
+message SyncBattleStateRequest {
+    int32 battle_id = 1;
+    string state_data = 2; // 更新后的游戏状态数据
+}
+message SyncBattleStateResponse {
+    bool success = 1;
+    string message = 2;
+    string state_data = 3; // 同步后的游戏状态数据
+}
+
