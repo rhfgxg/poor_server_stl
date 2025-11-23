@@ -34,8 +34,9 @@
 # VisualStudio config
 /.vs/
 
-# VisualStudio bliud
+# bliud
 /out/
+/build/
 
 # vcpkg out
 /vcpkg_installed/
