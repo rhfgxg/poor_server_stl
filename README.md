@@ -74,12 +74,19 @@ vcpkg_json：第三方库文件列表
 .editorconfig：VS 配置文件，设置文件编码格式为 utf-8（不使用 VS 可以忽略）
 
 config/：系统配置文件
-projrct_document/：项目文档
-protobuf/：各模块 grpc通信 proto协议文件
-src/：c++源码
-skynet_src/: skynet框架源码，实现逻辑服务器和对战服务器等
+docunment/：项目文档
+  └── skynet/：Skynet Protobuf 集成文档（⭐ 新增）
+protobuf/：各模块通信 proto协议文件
+  ├── cpp/：C++ 服务器 gRPC proto 文件
+  └── skynet/：Skynet 服务器 proto 文件（⭐ 新增）
+src/：C++ 源码
+skynet_src/：Skynet 框架源码，实现逻辑服务器和战斗服务器等
+  ├── lualib/proto.lua：Protobuf 辅助库（⭐ 新增）
+  └── service/：Skynet 服务（logic, battle）（⭐ 新增）
 tools/：工具文件
-vpckg_installed/：第三方库文件安装目录
+  ├── generate_proto_desc.ps1：生成 Skynet proto descriptor（⭐ 新增）
+  └── generate_proto_desc.sh：Linux 版本（⭐ 新增）
+vcpkg_installed/：第三方库文件安装目录
 
 ### 参与此项目，你可能需要修改的部分文件
 主要包含部分本地环境的配置修改
@@ -102,7 +109,50 @@ vcpkg install
 编译 proto 文件
 ./tools/debug/protoc_make.cmd
 
+生成 Skynet proto descriptor 文件（⭐ 新增）
+./tools/generate_proto_desc.ps1
+
 ```
+
+## Skynet Protobuf 集成（⭐ 新增）
+
+本项目已集成 Skynet 与 Protobuf，用于实现逻辑服务器和战斗服务器。
+
+### 快速开始
+```powershell
+# 1. 安装 lua-protobuf
+luarocks install lua-protobuf
+# 复制 protobuf.dll 到 skynet_src/luaclib/
+
+# 2. 生成 descriptor 文件
+.\tools\generate_proto_desc.ps1
+
+# 3. 测试集成
+cd skynet_src
+lua test_proto.lua
+```
+
+### 文档
+- **快速开始**: `docunment/skynet/QUICKSTART.md`
+- **详细文档**: `docunment/skynet/README_proto.md`
+- **项目结构**: `docunment/skynet/PROJECT_STRUCTURE.md`
+- **文档索引**: `docunment/skynet/README.md`
+
+### 目录结构
+```
+protobuf/skynet/          # Skynet proto 文件
+├── *.proto               # Proto 定义
+└── src/*.pb              # 生成的 descriptor
+
+skynet_src/
+├── lualib/proto.lua      # Protobuf 辅助库
+├── service/
+│   ├── logic/            # 逻辑服务器
+│   └── battle/           # 战斗服务器
+└── test_proto.lua        # 测试脚本
+```
+
+详见：[Skynet 文档索引](docunment/skynet/README.md)
 
 ## 编译与部署
 ### 编译
