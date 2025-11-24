@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package skynet_test;
+
+// 测试消息 - 用于验证 Skynet protobuf 集成
+message TestRequest {
+    int32 id = 1;
+    string message = 2;
+}
+
+message TestResponse {
+    bool success = 1;
+    string result = 2;
+}
+
+// 玩家信息
+message PlayerInfo {
+    int64 user_id = 1;
+    string username = 2;
+    int32 level = 3;
+    int64 exp = 4;
+}
+
+// 测试嵌套消息
+message ComplexMessage {
+    int32 count = 1;
+    repeated PlayerInfo players = 2;
+    map<string, int32> scores = 3;
+}

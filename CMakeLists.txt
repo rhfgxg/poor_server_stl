@@ -14,6 +14,13 @@ else()
             set(CMAKE_PREFIX_PATH "$ENV{VCPKG_ROOT}/installed/x64-linux")
         endif()
     endif()
+    # 同时设置 build 目录下的 vcpkg_installed 路径
+    if(EXISTS "${CMAKE_SOURCE_DIR}/build/vcpkg_installed/x64-linux")
+        set(CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/build/vcpkg_installed/x64-linux" ${CMAKE_PREFIX_PATH})
+    endif()
+    if(EXISTS "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-linux")
+        set(CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-linux" ${CMAKE_PREFIX_PATH})
+    endif()
 endif()
 
 # vcpkg 相关路径变量
@@ -72,15 +79,22 @@ if(WIN32)
         find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_LIB}")
     endif()
 else()
+    # Linux 环境下的库查找
     if(CMAKE_BUILD_TYPE STREQUAL "Debug")   # 根据调试模式选择对应版本
         find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_DEBUG_LIB}")
         find_library(LUA_LIB lua PATHS "${VCPKG_DEBUG_LIB}")
-        find_library(MYSQLCPPCONN_LIB mysqlcppconnx-static PATHS "${VCPKG_DEBUG_LIB}" NO_DEFAULT_PATH)
+        # 修复：Linux 下 MySQL 库名为 mysqlcppconn8-static
+        find_library(MYSQLCPPCONN_LIB mysqlcppconn8-static 
+            PATHS "${VCPKG_DEBUG_LIB}" "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-linux/debug/lib"
+            NO_DEFAULT_PATH)
         find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_DEBUG_LIB}")
     else()
         find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_LIB}")
         find_library(LUA_LIB lua PATHS "${VCPKG_LIB}")
-        find_library(MYSQLCPPCONN_LIB mysqlcppconnx-static PATHS "${VCPKG_LIB}" NO_DEFAULT_PATH)
+        # 修复：Linux 下 MySQL 库名为 mysqlcppconn8-static
+        find_library(MYSQLCPPCONN_LIB mysqlcppconn8-static 
+            PATHS "${VCPKG_LIB}" "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-linux/lib"
+            NO_DEFAULT_PATH)
         find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_LIB}")
     endif()
 endif()

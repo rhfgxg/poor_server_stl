@@ -4,6 +4,8 @@
 #include <mysqlx/xdevapi.h> // mysql
 #include <queue>
 #include <mutex>
+#include <condition_variable>  // std::condition_variable
+#include <memory>              // std::unique_ptr
 
 // 数据库连接池类
 class DBConnectionPool

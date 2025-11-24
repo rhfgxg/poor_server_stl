@@ -32,6 +32,7 @@ add_executable(${MODULE_NAME} ${SOURCES})
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # 链接第三方库lib
+# 注意：库的链接顺序很重要！依赖关系：cpp_redis -> tacopie
 target_link_libraries(${MODULE_NAME} PRIVATE
 # 注释了一些暂时不需要的库
 #    absl::base
@@ -48,8 +49,8 @@ target_link_libraries(${MODULE_NAME} PRIVATE
     gRPC::grpc++
     spdlog::spdlog
     ${LUA_LIB}
-    ${TACOPIE_LIB}
-    ${CPPREDIS_LIB}
+    ${CPPREDIS_LIB}  # cpp_redis 依赖 tacopie，所以要放在前面
+    ${TACOPIE_LIB}   # tacopie 放在后面
 )
 
 # 第三方库 dll列表
