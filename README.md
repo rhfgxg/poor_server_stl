@@ -206,8 +206,6 @@ poor_server_stl/
 │   ├── generate_proto_desc.ps1  # Proto descriptor 生成
 │   └── debug/              # 调试脚本
 │
-├── Dockerfile              # Docker 镜像构建
-├── docker-compose.yml      # Docker 服务编排
 ├── vcpkg.json              # 依赖包清单
 └── CMakeLists.txt          # CMake 构建配置
 ---

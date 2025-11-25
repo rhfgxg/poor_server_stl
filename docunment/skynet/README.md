@@ -13,8 +13,7 @@
 ### 想了解项目结构？
 👉 **[项目结构说明](PROJECT_STRUCTURE.md)** - 完整的目录组织
 
-### 想知道更新了什么？
-👉 **[重组总结](REORGANIZATION_SUMMARY.md)** - 最新的目录结构调整
+
 
 ## 📚 文档列表
 
@@ -23,9 +22,7 @@
 | **[QUICKSTART.md](QUICKSTART.md)** | 快速开始，安装和测试 | 新手 |
 | **[README_proto.md](README_proto.md)** | Protobuf 详细文档 | 开发者 |
 | **[PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)** | 项目目录结构 | 所有人 |
-| **[INTEGRATION_SUMMARY.md](INTEGRATION_SUMMARY.md)** | 集成总结和下一步 | 项目负责人 |
-| **[REORGANIZATION_SUMMARY.md](REORGANIZATION_SUMMARY.md)** | 目录重组说明 | 维护者 |
-| **[DIRECTORY_STRUCTURE_UPDATE.md](DIRECTORY_STRUCTURE_UPDATE.md)** | 历史更新记录 | 参考 |
+
 
 ## 🎯 常见任务
 
