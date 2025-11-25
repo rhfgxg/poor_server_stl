@@ -1,15 +1,19 @@
 {
   "configurations": [
     {
-      "name": "x64-Debug",
+      "name": "WSL-GCC-Release",
       "generator": "Ninja",
-      "configurationType": "Debug",
-      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "configurationType": "Release",
       "buildRoot": "${projectDir}\\out\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
-      "cmakeCommandArgs": "",
+      "cmakeExecutable": "cmake",
+      "cmakeCommandArgs": "-DCMAKE_TOOLCHAIN_FILE=/home/m1341/vcpkg/scripts/buildsystems/vcpkg.cmake",
       "buildCommandArgs": "",
-      "ctestCommandArgs": ""
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "linux_x64" ],
+      "wslPath": "${defaultWSLPath}",
+      "intelliSenseMode": "linux-gcc-x64",
+      "variables": []
     },
     {
       "name": "WSL-GCC-Debug",
@@ -22,7 +26,9 @@
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "linux_x64" ],
-      "wslPath": "${defaultWSLPath}"
+      "wslPath": "${defaultWSLPath}",
+      "intelliSenseMode": "linux-gcc-x64",
+      "variables": []
     }
   ]
 }
