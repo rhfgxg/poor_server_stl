@@ -1,0 +1,253 @@
+version: '3.8'
+
+# Poor Server STL - Docker Compose 配置
+# 包含游戏服务器、MySQL、Redis 等所有服务
+
+services:
+  # ==================== 数据库服务 ====================
+  
+  # MySQL 数据库
+  mysql:
+    image: mysql:8.0
+    container_name: poor_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root123456}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-gamedb}
+      MYSQL_USER: ${MYSQL_USER:-gameuser}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-gamepass123}
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+      - "33060:33060"  # MySQL X Protocol
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d  # 初始化 SQL 脚本
+      - ./docker/mysql/conf:/etc/mysql/conf.d  # 自定义配置
+    networks:
+      - game_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-authentication-plugin=mysql_native_password
+
+  # Redis 缓存
+  redis:
+    image: redis:7-alpine
+    container_name: poor_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf  # 自定义配置
+    networks:
+      - game_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: redis-server /usr/local/etc/redis/redis.conf
+
+  # ==================== 游戏服务器 ====================
+  
+  # Central 中心服务器
+  central:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: poor-server:latest
+    container_name: poor_central
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      WAIT_FOR_SERVICES: "true"
+    ports:
+      - "50051:50051"
+    networks:
+      - game_network
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config:ro
+    command: ["central"]
+
+  # DB 数据库服务器
+  db:
+    image: poor-server:latest
+    container_name: poor_db
+    restart: unless-stopped
+    depends_on:
+      central:
+        condition: service_started
+      mysql:
+        condition: service_healthy
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      WAIT_FOR_SERVICES: "true"
+    ports:
+      - "50052:50052"
+    networks:
+      - game_network
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config:ro
+    command: ["db"]
+
+  # Login 登录服务器
+  login:
+    image: poor-server:latest
+    container_name: poor_login
+    restart: unless-stopped
+    depends_on:
+      - central
+      - redis
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      WAIT_FOR_SERVICES: "true"
+    ports:
+      - "50053:50053"
+    networks:
+      - game_network
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config:ro
+    command: ["login"]
+
+  # Gateway 网关服务器
+  gateway:
+    image: poor-server:latest
+    container_name: poor_gateway
+    restart: unless-stopped
+    depends_on:
+      - central
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      WAIT_FOR_SERVICES: "true"
+    ports:
+      - "50054:50054"
+      - "8080:8080"  # 如果有 HTTP 接口
+    networks:
+      - game_network
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config:ro
+    command: ["gateway"]
+
+  # File 文件服务器
+  file:
+    image: poor-server:latest
+    container_name: poor_file
+    restart: unless-stopped
+    depends_on:
+      - central
+      - redis
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      WAIT_FOR_SERVICES: "true"
+    ports:
+      - "50055:50055"
+    networks:
+      - game_network
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config:ro
+      - file_storage:/app/data  # 文件存储
+    command: ["file"]
+
+  # Matching 匹配服务器
+  matching:
+    image: poor-server:latest
+    container_name: poor_matching
+    restart: unless-stopped
+    depends_on:
+      - central
+      - redis
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      WAIT_FOR_SERVICES: "true"
+    ports:
+      - "50056:50056"
+    networks:
+      - game_network
+    volumes:
+      - ./logs:/app/logs
+      - ./config:/app/config:ro
+    command: ["matching"]
+
+  # ==================== 监控服务（可选）====================
+  
+  # Redis 监控面板
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: poor_redis_ui
+    restart: unless-stopped
+    depends_on:
+      - redis
+    environment:
+      REDIS_HOSTS: local:redis:6379
+    ports:
+      - "8081:8081"
+    networks:
+      - game_network
+
+  # MySQL 管理工具
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: poor_mysql_ui
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 100M
+    ports:
+      - "8082:80"
+    networks:
+      - game_network
+
+# ==================== 网络配置 ====================
+networks:
+  game_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+# ==================== 数据卷配置 ====================
+volumes:
+  mysql_data:
+    driver: local
+  redis_data:
+    driver: local
+  file_storage:
+    driver: local
