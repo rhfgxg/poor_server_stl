@@ -1,164 +1,405 @@
-# poor_server_stl 项目介绍
-本项目主要使用c++ 实现一个服务器框架
-可能会混有部分lua脚本，实现配置文件的热更新
-在 tools 文件夹下，会有一些工具脚本，用来辅助开发
+# Poor Server STL
 
-## 项目目的：实现并学习下面功能：
-1. 架构设计：
-- 分布式，主从服务器架构设计
-- 多数据库设计
-- 服务器间通信与调用：RPC
-- 通用数据通信协议：protobuf
-- 多线程，异步任务
-- 日志系统 
-- 使用lua作为配置文件
-- 使用 lua (skynet)作为逻辑服务器和对战服务器等，以此实现复杂逻辑实现的简化
+> 🎮 基于 C++ 的分布式游戏服务器框架，集成 Skynet + Protobuf，支持炉石传说卡牌游戏和网盘功能
 
-2. 功能实现：
-- 游戏：炉石传说
-- 网盘：文件上传下载，断点续传
-- 网盘：图片预览，压缩等
+[![C++17](https://img.shields.io/badge/C++-17-blue.svg?style=flat&logo=c%2B%2B)](https://en.cppreference.com/w/cpp/17)
+[![CMake](https://img.shields.io/badge/CMake-3.8+-064F8C?style=flat&logo=cmake)](https://cmake.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-lightgrey.svg)](https://github.com/rhfgxg/poor_server_stl)
 
-3. 性能优化：
-- 使用服务器，数据库连接池，减少连接创建销毁开销
-- 使用对象池，减少对象创建销毁开销
-- 使用多级缓存（内存，redis，数据库），提升数据访问速度，减少数据库访问压力
+---
 
+## 📚 目录
 
-# 安装说明
-## 源码编译
-```
+- [项目简介](#项目简介)
+- [核心特性](#核心特性)
+- [快速开始](#快速开始)
+- [项目架构](#项目架构)
+- [开发环境](#开发环境)
+- [项目文档](#项目文档)
+- [参与贡献](#参与贡献)
+- [许可证](#许可证)
+
+---
+
+## 🎯 项目简介
+
+Poor Server STL 是一个现代化的 C++ 游戏服务器框架，旨在学习和实践分布式系统、微服务架构、高性能网络编程等技术。
+
+### 项目目标
+
+#### 1. 架构设计与技术实践
+- ✅ **分布式架构** - 主从服务器，微服务化设计
+- ✅ **RPC 通信** - 基于 gRPC 的服务间通信
+- ✅ **Protobuf 协议** - 高效的数据序列化
+- ✅ **多线程与异步** - 高并发处理能力
+- ✅ **日志系统** - 完善的日志记录和追踪
+- ✅ **Lua 集成** - 配置热更新，逻辑脚本化
+- ✅ **Skynet 框架** - 逻辑服务器和战斗服务器
+
+#### 2. 功能实现
+- 🎮 **炉石传说** - 卡牌游戏核心玩法
+- 📁 **网盘系统** - 文件上传下载、断点续传、图片预览压缩
+
+#### 3. 性能优化
+- ⚡ **连接池** - 服务器和数据库连接池
+- 🔄 **对象池** - 减少对象创建销毁开销
+- 💾 **多级缓存** - 内存 → Redis → 数据库
+
+---
+
+## ✨ 核心特性
+
+### 🏗️ 分布式架构
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│   Gateway   │────▶│   Central   │────▶│   Database  │
+│   网关服务器 │     │   中心服务器 │     │   数据库服务 │
+└─────────────┘     └─────────────┘     └─────────────┘
+       │                   │                    │
+       │            ┌──────┴──────┐            │
+       │            │             │            │
+       ▼            ▼             ▼            ▼
+┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐
+│  Login   │  │  Logic   │  │  Battle  │  │   File   │
+│登录服务器 │  │逻辑服务器 │  │战斗服务器 │  │文件服务器 │
+└──────────┘  └──────────┘  └──────────┘  └──────────┘
+### 🚀 技术栈
+
+| 技术 | 说明 |
+|------|------|
+| **C++17** | 现代 C++ 特性 |
+| **CMake + Ninja** | 跨平台构建系统 |
+| **gRPC + Protobuf** | RPC 框架和序列化 |
+| **Skynet** | Lua 游戏服务器框架 |
+| **MySQL** | 关系型数据库 |
+| **Redis** | 缓存和会话存储 |
+| **vcpkg** | C++ 包管理器 |
+| **Docker** | 容器化部署 |
+
+---
+
+## 🚀 快速开始
+
+### 方式 1: Docker 快速部署（推荐）⭐
+
+**耗时：15 分钟**
+# 1. 克隆项目
 git clone https://github.com/rhfgxg/poor_server_stl.git
-```
+cd poor_server_stl
 
-## 可执行文件（暂无）
+# 2. 启动所有服务（MySQL, Redis, 游戏服务器等）
+docker compose up -d
 
+# 3. 查看服务状态
+docker compose ps
 
-# 参与项目
+# ✅ 完成！所有服务已启动
+**详细文档**: [Docker 快速部署指南](docunment/项目配置与运行/docker/README.md)
 
-## 项目规范
-[项目开发文档](project_document)
+---
 
-## 开发环境建议
-### 操作系统
-windows 10 / 11
-linux（待验证）
+### 方式 2: 传统开发环境
 
-### 编译器
-#### Visual Studio 2022 配置
-1. 使用 VS 参与项目时，建议先下载下面的插件
-    FileEncoding
-    force utf-8 （no BOM）
-用来设置文件编码为 utf-8 无 BOM
-2. 使用配置文件 .editorconfig 来设置默认文件编码格式
-3. 同时将默认换行符设置为 LF
-4. CMakeLists 文件添加编译选项
-```cmake
-# 设置编译选项
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
-add_compile_options(/wd4828)    # 忽略utf-8相关警告
-```
+#### Windows (Visual Studio 2022)
+# 1. 克隆项目
+git clone https://github.com/rhfgxg/poor_server_stl.git
+cd poor_server_stl
 
-### 第三方库管理工具
-vcpkg
-
-### 项目依赖及安装
-参考：[项目中使用的第三方库](project_document/library.md)
-
-## 项目文件树，项目关键文件说明
-[文件树](tree.txt)
-
-一些关键文件说明：
-tree.txt：文件树（包含其他文件的详细介绍）
-vcpkg_json：第三方库文件列表
-.editorconfig：VS 配置文件，设置文件编码格式为 utf-8（不使用 VS 可以忽略）
-
-config/：系统配置文件
-docunment/：项目文档
-  └── skynet/：Skynet Protobuf 集成文档（⭐ 新增）
-protobuf/：各模块通信 proto协议文件
-  ├── cpp/：C++ 服务器 gRPC proto 文件
-  └── skynet/：Skynet 服务器 proto 文件（⭐ 新增）
-src/：C++ 源码
-skynet_src/：Skynet 框架源码，实现逻辑服务器和战斗服务器等
-  ├── lualib/proto.lua：Protobuf 辅助库（⭐ 新增）
-  └── service/：Skynet 服务（logic, battle）（⭐ 新增）
-tools/：工具文件
-  ├── generate_proto_desc.ps1：生成 Skynet proto descriptor（⭐ 新增）
-  └── generate_proto_desc.sh：Linux 版本（⭐ 新增）
-vcpkg_installed/：第三方库文件安装目录
-
-### 参与此项目，你可能需要修改的部分文件
-主要包含部分本地环境的配置修改
-注意，这些文件请不要提交到 git 仓库中，只用来本地开发              
-1. config/server_config.lua    # 服务器配置文件，可以根据需要修改，其余地方的配置会根据这个文件自动修改
-2. tools/debug/protoc_make.cmd      # 生成 proto 文件的脚本，根据自己的项目目录修改 PROTOC 和 GRPC_PLUGIN变量，在9，10行
-
-
-## 运行项目（vs2022）
-使用 vs2022 打开项目文件夹
-
-打开终端，运行项目脚本
-```
-复制配置文件到生成目录
-./tools/debug/copy_config.cmd
-
-使用 vcpkg 安装项目所需的第三方库（清单模式，所需库列表在 vcpkg.json 文件中）
+# 2. 安装依赖
 vcpkg install
 
-编译 proto 文件
-./tools/debug/protoc_make.cmd
-
-生成 Skynet proto descriptor 文件（⭐ 新增）
-./tools/generate_proto_desc.ps1
-
-```
-
-## Skynet Protobuf 集成（⭐ 新增）
-
-本项目已集成 Skynet 与 Protobuf，用于实现逻辑服务器和战斗服务器。
-
-### 快速开始
-```powershell
-# 1. 安装 lua-protobuf
-luarocks install lua-protobuf
-# 复制 protobuf.dll 到 skynet_src/luaclib/
-
-# 2. 生成 descriptor 文件
+# 3. 生成 Protobuf 文件
+.\tools\debug\protoc_make.cmd
 .\tools\generate_proto_desc.ps1
 
-# 3. 测试集成
-cd skynet_src
-lua test_proto.lua
-```
+# 4. 编译项目
+cmake -B build -G "Visual Studio 17 2022"
+cmake --build build --config Release
 
-### 文档
-- **快速开始**: `docunment/skynet/QUICKSTART.md`
-- **详细文档**: `docunment/skynet/README_proto.md`
-- **项目结构**: `docunment/skynet/PROJECT_STRUCTURE.md`
-- **文档索引**: `docunment/skynet/README.md`
+# 5. 复制配置文件
+.\tools\debug\copy_config.cmd
+#### Linux / WSL2
+# 1. 克隆项目
+git clone https://github.com/rhfgxg/poor_server_stl.git
+cd poor_server_stl
+
+# 2. 安装依赖
+sudo apt install build-essential cmake ninja-build
+~/vcpkg/vcpkg install
+
+# 3. 生成 Protobuf 文件
+bash tools/debug/wsl/proto_make_cpp.sh
+bash tools/generate_proto_desc.sh
+
+# 4. 编译项目
+cmake -B build -G Ninja
+ninja -C build
+
+# 5. 复制配置文件
+bash tools/debug/wsl/copy_config.sh
+**详细文档**: 
+- [Windows 环境配置](docunment/项目配置与运行/windows开发工具与环境配置.md)
+- [Linux/WSL2 环境配置](docunment/项目配置与运行/linux开发工具与环境配置.md)
+
+---
+
+## 🏗️ 项目架构
+
+### 服务器模块
+
+| 服务器 | 端口 | 功能 | 技术栈 |
+|--------|------|------|--------|
+| **Central** | 50051 | 中心服务器，服务注册与发现 | C++ + gRPC |
+| **Gateway** | 50054 | 网关，客户端连接入口 | C++ + gRPC |
+| **Login** | 50053 | 登录认证，JWT Token | C++ + gRPC |
+| **DB** | 50052 | 数据库代理，数据持久化 | C++ + MySQL |
+| **Logic** | - | 游戏逻辑服务器 | Skynet + Lua |
+| **Battle** | - | 战斗服务器，帧同步 | Skynet + Lua |
+| **File** | 50055 | 文件上传下载，网盘功能 | C++ + gRPC |
+| **Matching** | 50056 | 匹配服务器，玩家匹配 | C++ + gRPC |
+
+### 数据库设计
+
+- **poor_users** - 用户账号、登录、权限
+- **hearthstone** - 炉石传说游戏数据
+- **poor_file** - 网盘文件存储
+
+**详细文档**: [数据库设计](docunment/server/数据库/数据库总览.md)
 
 ### 目录结构
-```
-protobuf/skynet/          # Skynet proto 文件
-├── *.proto               # Proto 定义
-└── src/*.pb              # 生成的 descriptor
+poor_server_stl/
+├── src/                    # C++ 服务器源码
+│   ├── central/            # 中心服务器
+│   ├── gateway/            # 网关服务器
+│   ├── login/              # 登录服务器
+│   ├── db/                 # 数据库服务器
+│   ├── file/               # 文件服务器
+│   ├── matching/           # 匹配服务器
+│   └── common/             # 公共库
+│
+├── skynet_src/             # Skynet 服务器源码
+│   ├── lualib/             # Lua 库
+│   │   └── proto.lua       # Protobuf 辅助库
+│   └── service/            # Skynet 服务
+│       ├── logic/          # 逻辑服务器
+│       └── battle/         # 战斗服务器
+│
+├── protobuf/               # Protobuf 协议定义
+│   ├── cpp/                # C++ gRPC 协议
+│   │   ├── *.proto
+│   │   └── src/            # 生成的代码
+│   └── skynet/             # Skynet 协议
+│       ├── *.proto
+│       └── src/            # 生成的 descriptor
+│
+├── config/                 # 配置文件
+│   └── server_config.lua   # 服务器配置
+│
+├── docunment/              # 项目文档
+│   ├── README.md           # 文档中心
+│   ├── server/             # 服务器架构文档
+│   ├── skynet/             # Skynet 学习文档
+│   └── 项目配置与运行/      # 环境配置文档
+│       └── docker/         # Docker 部署文档
+│
+├── tools/                  # 工具脚本
+│   ├── generate_proto_desc.ps1  # Proto descriptor 生成
+│   └── debug/              # 调试脚本
+│
+├── Dockerfile              # Docker 镜像构建
+├── docker-compose.yml      # Docker 服务编排
+├── vcpkg.json              # 依赖包清单
+└── CMakeLists.txt          # CMake 构建配置
+---
 
-skynet_src/
-├── lualib/proto.lua      # Protobuf 辅助库
-├── service/
-│   ├── logic/            # 逻辑服务器
-│   └── battle/           # 战斗服务器
-└── test_proto.lua        # 测试脚本
-```
+## 🛠️ 开发环境
 
-详见：[Skynet 文档索引](docunment/skynet/README.md)
+### 系统要求
 
-## 编译与部署
-### 编译
-在本地环境下，使用 cmake 编译项目
-得到可执行文件，dll文件
+| 项目 | 最低要求 | 推荐配置 |
+|------|---------|---------|
+| **操作系统** | Windows 10 / Ubuntu 20.04 | Windows 11 / Ubuntu 22.04 |
+| **CPU** | 4 核 | 8 核+ |
+| **内存** | 8 GB | 16 GB+ |
+| **磁盘** | 20 GB | 50 GB+ SSD |
 
-### 部署（脚本一键部署）
-部署时，/config/server_config.lua文件会被脚本自动分割（每个服务器独立的配置文件）
-为了保证代码一致性，开发时，需要使用另一个脚本，将debug模式的服务器配置文件分割并复制到各个服务器目录下
+### 开发工具
+
+#### Windows
+- **Visual Studio 2022** - IDE 和编译器
+- **vcpkg** - C++ 包管理器
+- **Docker Desktop** - 容器化（可选）
+- **MySQL 8.0+** - 数据库
+- **Redis 7.0+** - 缓存
+
+#### Linux
+- **GCC 11+ / Clang 13+** - 编译器
+- **CMake 3.8+** - 构建工具
+- **Ninja** - 构建系统
+- **vcpkg** - 包管理器
+- **Docker** - 容器化（可选）
+
+### 第三方库
+
+完整依赖列表见 [vcpkg.json](vcpkg.json)
+
+**核心库：**
+- gRPC + Protobuf - RPC 框架
+- MySQL Connector C++ - 数据库驱动
+- cpp_redis - Redis 客户端
+- nlohmann/json - JSON 处理
+- spdlog - 日志库
+- jwt-cpp - JWT 认证
+- OpenSSL - 加密库
+- Boost - C++ 工具库
+
+**详细文档**: [第三方库说明](docunment/server/library.md)
+
+---
+
+## 📖 项目文档
+
+### 📚 完整文档导航
+
+**[→ 文档中心](docunment/README.md)** - 所有文档的总索引（推荐从这里开始）
+
+### 快速链接
+
+#### 🚀 快速开始
+- [环境配置总览](docunment/项目配置与运行/README.md) - 选择适合你的配置方式
+- [Docker 快速部署](docunment/项目配置与运行/docker/README.md) - 15 分钟快速开始
+- [编译运行指南](docunment/项目配置与运行/编译及运行项目.md) - 传统方式编译
+
+#### 🏗️ 架构设计
+- [服务器架构](docunment/server/readme.md) - 分布式架构设计
+- [服务器模型](docunment/server/model.md) - 各服务器职责
+- [数据库设计](docunment/server/数据库/数据库总览.md) - 多数据库架构
+
+#### 🌙 Skynet 学习
+- [Skynet 文档导航](docunment/skynet/README_skynet.md) - Skynet 学习路线
+- [Skynet 快速入门](docunment/skynet/skynet_quickstart.md) - 2-3 小时入门
+- [Skynet Protobuf 集成](docunment/skynet/QUICKSTART.md) - Protobuf 使用
+
+#### 🐋 Docker 专题
+- [Docker 环境配置](docunment/项目配置与运行/docker/Docker_环境配置指南.md) - Docker Desktop 安装
+- [Docker 能保存什么](docunment/项目配置与运行/docker/Docker_能保存什么.md) - 理解 Docker 原理
+- [Docker 部署指南](docunment/项目配置与运行/docker/Docker_部署指南.md) - 实战部署
+- [Docker 快速参考](docunment/项目配置与运行/docker/Docker_快速参考.md) - 命令速查
+
+#### 📝 开发规范
+- [C++ 代码规范](docunment/layout/cpp_layout.md) - 命名、格式、注释
+- [C++ 安全指南](docunment/layout/cpp_security.md) - 安全最佳实践
+- [编码格式规范](docunment/layout/layout.md) - 文件编码要求
+
+---
+
+## 🤝 参与贡献
+
+欢迎任何形式的贡献！
+
+### 贡献方式
+
+1. **Fork 项目** - 点击右上角 Fork 按钮
+2. **创建分支** - `git checkout -b feature/amazing-feature`
+3. **提交代码** - `git commit -m 'Add some amazing feature'`
+4. **推送分支** - `git push origin feature/amazing-feature`
+5. **发起 PR** - 在 GitHub 上发起 Pull Request
+
+### 开发规范
+
+- ✅ 遵循 [C++ 代码规范](docunment/layout/cpp_layout.md)
+- ✅ 添加必要的注释和文档
+- ✅ 确保代码通过编译
+- ✅ 编写单元测试（如适用）
+- ✅ 提交信息清晰明确
+
+### 需要帮助的领域
+
+- 📝 完善文档和示例
+- 🐛 修复 Bug
+- ✨ 实现新功能
+- 🎨 优化代码和架构
+- 🧪 编写测试用例
+- 🌍 多语言支持
+
+---
+
+## 📝 开发笔记
+
+### 配置文件修改
+
+开发时可能需要修改这些文件（请勿提交到 Git）：
+
+1. **config/server_config.lua** - 服务器配置
+2. **tools/debug/protoc_make.cmd** - Proto 生成脚本（修改第 9-10 行的路径）
+
+### 文件编码要求
+
+- **编码**: UTF-8 (无 BOM)
+- **换行符**: LF (Linux 风格)
+- **VS 插件**: FileEncoding + Force UTF-8 (No BOM)
+
+### 生成 Protobuf 文件
+# Windows
+.\tools\debug\protoc_make.cmd           # C++ gRPC 代码
+.\tools\generate_proto_desc.ps1         # Skynet descriptor
+
+# Linux/WSL2
+bash tools/debug/wsl/proto_make_cpp.sh  # C++ gRPC 代码
+bash tools/generate_proto_desc.sh       # Skynet descriptor
+---
+
+## 📊 项目状态
+
+- ✅ **架构设计** - 已完成分布式架构设计
+- ✅ **C++ 服务器** - 核心服务器已实现
+- ✅ **Skynet 集成** - Protobuf 集成完成
+- ✅ **Docker 支持** - 容器化部署就绪
+- 🚧 **游戏功能** - 炉石传说玩法开发中
+- 🚧 **网盘功能** - 文件服务开发中
+- 📝 **文档完善** - 持续更新中
+
+---
+
+## 🔗 相关链接
+
+- **GitHub**: [rhfgxg/poor_server_stl](https://github.com/rhfgxg/poor_server_stl)
+- **文档中心**: [docunment/README.md](docunment/README.md)
+- **问题反馈**: [GitHub Issues](https://github.com/rhfgxg/poor_server_stl/issues)
+
+### 技术资源
+
+- [gRPC 官方文档](https://grpc.io/docs/)
+- [Protobuf 官方文档](https://protobuf.dev/)
+- [Skynet GitHub](https://github.com/cloudwu/skynet)
+- [vcpkg 文档](https://vcpkg.io/en/getting-started.html)
+- [Docker 官方文档](https://docs.docker.com/)
+
+---
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
+
+---
+
+## 💖 致谢
+
+感谢所有为这个项目做出贡献的开发者！
+
+特别感谢：
+- [Skynet](https://github.com/cloudwu/skynet) - 优秀的 Lua 游戏服务器框架
+- [gRPC](https://grpc.io/) - 高性能 RPC 框架
+- [vcpkg](https://vcpkg.io/) - C++ 包管理器
+
+---
+
+<div align="center">
+
+**如果这个项目对你有帮助，请给一个 ⭐ Star！**
+
+**[快速开始](docunment/项目配置与运行/docker/README.md)** · 
+**[完整文档](docunment/README.md)** · 
+**[报告问题](https://github.com/rhfgxg/poor_server_stl/issues)**
+
+</div>
