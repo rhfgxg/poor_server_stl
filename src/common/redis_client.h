@@ -6,8 +6,8 @@
 
 // Windows 平台需要这些头文件来处理 WinSock
 #ifdef _WIN32
-#include <  .h>
-#include <WS2tcpip.h>
+    #include <WinSock2.h>
+    #include <WS2tcpip.h>
 #endif
 
 // 工具类，封装redis链接，防止 windows 下的一个异常
