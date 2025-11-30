@@ -1,246 +1,246 @@
-# Docker ¿ìËÙ²Î¿¼ - Poor Server STL
+# Docker å¿«é€Ÿå‚è€ƒ - Poor Server STL
 
-Ò»Ò³Ö½ËÙ²é±í£¬°üº¬×î³£ÓÃµÄ Docker ÃüÁî¡£
+ä¸€é¡µçº¸é€ŸæŸ¥è¡¨ï¼ŒåŒ…å«æœ€å¸¸ç”¨çš„ Docker å‘½ä»¤ã€‚
 
 ---
 
-## ?? ¿ìËÙ¿ªÊ¼
+## ?? å¿«é€Ÿå¼€å§‹
 
 ```bash
-# Ò»¼üÆô¶¯ËùÓĞ·şÎñ
+# ä¸€é”®å¯åŠ¨æ‰€æœ‰æœåŠ¡
 docker compose up -d
 
-# ²é¿´×´Ì¬
+# æŸ¥çœ‹çŠ¶æ€
 docker compose ps
 
-# ²é¿´ÈÕÖ¾
+# æŸ¥çœ‹æ—¥å¿—
 docker compose logs -f
 
-# Í£Ö¹ËùÓĞ·şÎñ
+# åœæ­¢æ‰€æœ‰æœåŠ¡
 docker compose down
 ```
 
 ---
 
-## ?? Docker Compose ³£ÓÃÃüÁî
+## ?? Docker Compose å¸¸ç”¨å‘½ä»¤
 
-| ÃüÁî | ËµÃ÷ |
+| å‘½ä»¤ | è¯´æ˜ |
 |------|------|
-| `docker compose up -d` | ºóÌ¨Æô¶¯ËùÓĞ·şÎñ |
-| `docker compose down` | Í£Ö¹²¢É¾³ıËùÓĞÈİÆ÷ |
-| `docker compose ps` | ²é¿´·şÎñ×´Ì¬ |
-| `docker compose logs -f [service]` | ²é¿´ÈÕÖ¾ |
-| `docker compose restart [service]` | ÖØÆô·şÎñ |
-| `docker compose build` | ÖØĞÂ¹¹½¨¾µÏñ |
-| `docker compose up -d --build` | ÖØ½¨²¢Æô¶¯ |
-| `docker compose exec [service] bash` | ½øÈëÈİÆ÷ Shell |
-| `docker compose stop` | Í£Ö¹·şÎñ |
-| `docker compose start` | Æô¶¯·şÎñ |
+| `docker compose up -d` | åå°å¯åŠ¨æ‰€æœ‰æœåŠ¡ |
+| `docker compose down` | åœæ­¢å¹¶åˆ é™¤æ‰€æœ‰å®¹å™¨ |
+| `docker compose ps` | æŸ¥çœ‹æœåŠ¡çŠ¶æ€ |
+| `docker compose logs -f [service]` | æŸ¥çœ‹æ—¥å¿— |
+| `docker compose restart [service]` | é‡å¯æœåŠ¡ |
+| `docker compose build` | é‡æ–°æ„å»ºé•œåƒ |
+| `docker compose up -d --build` | é‡å»ºå¹¶å¯åŠ¨ |
+| `docker compose exec [service] bash` | è¿›å…¥å®¹å™¨ Shell |
+| `docker compose stop` | åœæ­¢æœåŠ¡ |
+| `docker compose start` | å¯åŠ¨æœåŠ¡ |
 
 ---
 
-## ?? Docker »ù´¡ÃüÁî
+## ?? Docker åŸºç¡€å‘½ä»¤
 
-### ÈİÆ÷¹ÜÀí
+### å®¹å™¨ç®¡ç†
 
 ```bash
-# ²é¿´ÔËĞĞµÄÈİÆ÷
+# æŸ¥çœ‹è¿è¡Œçš„å®¹å™¨
 docker ps
 
-# ²é¿´ËùÓĞÈİÆ÷
+# æŸ¥çœ‹æ‰€æœ‰å®¹å™¨
 docker ps -a
 
-# Æô¶¯/Í£Ö¹/ÖØÆôÈİÆ÷
+# å¯åŠ¨/åœæ­¢/é‡å¯å®¹å™¨
 docker start <container>
 docker stop <container>
 docker restart <container>
 
-# É¾³ıÈİÆ÷
+# åˆ é™¤å®¹å™¨
 docker rm <container>
-docker rm -f <container>  # Ç¿ÖÆÉ¾³ı
+docker rm -f <container>  # å¼ºåˆ¶åˆ é™¤
 
-# ½øÈëÈİÆ÷
+# è¿›å…¥å®¹å™¨
 docker exec -it <container> bash
 docker exec <container> <command>
 
-# ²é¿´ÈÕÖ¾
+# æŸ¥çœ‹æ—¥å¿—
 docker logs <container>
-docker logs -f <container>  # ÊµÊ±¸ú×Ù
-docker logs --tail 100 <container>  # ×îºó100ĞĞ
+docker logs -f <container>  # å®æ—¶è·Ÿè¸ª
+docker logs --tail 100 <container>  # æœ€å100è¡Œ
 ```
 
-### ¾µÏñ¹ÜÀí
+### é•œåƒç®¡ç†
 
 ```bash
-# ÁĞ³ö¾µÏñ
+# åˆ—å‡ºé•œåƒ
 docker images
 
-# ¹¹½¨¾µÏñ
+# æ„å»ºé•œåƒ
 docker build -t <name>:<tag> .
 
-# É¾³ı¾µÏñ
+# åˆ é™¤é•œåƒ
 docker rmi <image>
 
-# À­È¡/ÍÆËÍ¾µÏñ
+# æ‹‰å–/æ¨é€é•œåƒ
 docker pull <image>
 docker push <image>
 
-# ¸ø¾µÏñ´ò±êÇ©
+# ç»™é•œåƒæ‰“æ ‡ç­¾
 docker tag <source> <target>
 ```
 
-### ×ÊÔ´ÇåÀí
+### èµ„æºæ¸…ç†
 
 ```bash
-# É¾³ıÍ£Ö¹µÄÈİÆ÷
+# åˆ é™¤åœæ­¢çš„å®¹å™¨
 docker container prune
 
-# É¾³ıÎ´Ê¹ÓÃµÄ¾µÏñ
+# åˆ é™¤æœªä½¿ç”¨çš„é•œåƒ
 docker image prune
 
-# É¾³ıÎ´Ê¹ÓÃµÄ¾í
+# åˆ é™¤æœªä½¿ç”¨çš„å·
 docker volume prune
 
-# ÇåÀíËùÓĞÎ´Ê¹ÓÃ×ÊÔ´
+# æ¸…ç†æ‰€æœ‰æœªä½¿ç”¨èµ„æº
 docker system prune -a
 ```
 
 ---
 
-## ?? µ÷ÊÔÃüÁî
+## ?? è°ƒè¯•å‘½ä»¤
 
 ```bash
-# ²é¿´ÈİÆ÷ÏêÏ¸ĞÅÏ¢
+# æŸ¥çœ‹å®¹å™¨è¯¦ç»†ä¿¡æ¯
 docker inspect <container>
 
-# ²é¿´ÈİÆ÷½ø³Ì
+# æŸ¥çœ‹å®¹å™¨è¿›ç¨‹
 docker top <container>
 
-# ²é¿´ÈİÆ÷×ÊÔ´Ê¹ÓÃ
+# æŸ¥çœ‹å®¹å™¨èµ„æºä½¿ç”¨
 docker stats
 
-# ²é¿´ÈİÆ÷ÎÄ¼şÏµÍ³±ä»¯
+# æŸ¥çœ‹å®¹å™¨æ–‡ä»¶ç³»ç»Ÿå˜åŒ–
 docker diff <container>
 
-# ´ÓÈİÆ÷¸´ÖÆÎÄ¼ş
+# ä»å®¹å™¨å¤åˆ¶æ–‡ä»¶
 docker cp <container>:/path/to/file ./local/path
 docker cp ./local/file <container>:/path/to/file
 ```
 
 ---
 
-## ?? ÍøÂçÃüÁî
+## ?? ç½‘ç»œå‘½ä»¤
 
 ```bash
-# ÁĞ³öÍøÂç
+# åˆ—å‡ºç½‘ç»œ
 docker network ls
 
-# ²é¿´ÍøÂçÏêÇé
+# æŸ¥çœ‹ç½‘ç»œè¯¦æƒ…
 docker network inspect <network>
 
-# ´´½¨ÍøÂç
+# åˆ›å»ºç½‘ç»œ
 docker network create <network>
 
-# Á¬½Ó/¶Ï¿ªÈİÆ÷
+# è¿æ¥/æ–­å¼€å®¹å™¨
 docker network connect <network> <container>
 docker network disconnect <network> <container>
 ```
 
 ---
 
-## ?? Êı¾İ¾íÃüÁî
+## ?? æ•°æ®å·å‘½ä»¤
 
 ```bash
-# ÁĞ³öÊı¾İ¾í
+# åˆ—å‡ºæ•°æ®å·
 docker volume ls
 
-# ²é¿´Êı¾İ¾íÏêÇé
+# æŸ¥çœ‹æ•°æ®å·è¯¦æƒ…
 docker volume inspect <volume>
 
-# ´´½¨Êı¾İ¾í
+# åˆ›å»ºæ•°æ®å·
 docker volume create <volume>
 
-# É¾³ıÊı¾İ¾í
+# åˆ é™¤æ•°æ®å·
 docker volume rm <volume>
 
-# ±¸·İÊı¾İ¾í
+# å¤‡ä»½æ•°æ®å·
 docker run --rm -v <volume>:/data -v $(pwd):/backup \
   ubuntu tar czf /backup/backup.tar.gz /data
 ```
 
 ---
 
-## ?? ÏîÄ¿ÌØ¶¨ÃüÁî
+## ?? é¡¹ç›®ç‰¹å®šå‘½ä»¤
 
-### ·şÎñ¹ÜÀí
+### æœåŠ¡ç®¡ç†
 
 ```bash
-# Æô¶¯ÌØ¶¨·şÎñ
+# å¯åŠ¨ç‰¹å®šæœåŠ¡
 docker compose up -d central
 docker compose up -d mysql redis
 
-# ²é¿´ÌØ¶¨·şÎñÈÕÖ¾
+# æŸ¥çœ‹ç‰¹å®šæœåŠ¡æ—¥å¿—
 docker compose logs -f central
 docker compose logs -f gateway
 
-# ÖØÆôÌØ¶¨·şÎñ
+# é‡å¯ç‰¹å®šæœåŠ¡
 docker compose restart central
 
-# À©Õ¹·şÎñÊµÀı
+# æ‰©å±•æœåŠ¡å®ä¾‹
 docker compose up -d --scale gateway=3
 ```
 
-### Êı¾İ¿â²Ù×÷
+### æ•°æ®åº“æ“ä½œ
 
 ```bash
-# Á¬½Ó MySQL
+# è¿æ¥ MySQL
 docker compose exec mysql mysql -u root -p
 
-# Á¬½Ó Redis
+# è¿æ¥ Redis
 docker compose exec redis redis-cli
 
-# ±¸·İ MySQL
+# å¤‡ä»½ MySQL
 docker compose exec mysql mysqldump -u root -p gamedb > backup.sql
 
-# »Ö¸´ MySQL
+# æ¢å¤ MySQL
 docker compose exec -T mysql mysql -u root -p gamedb < backup.sql
 ```
 
-### ¼à¿ØºÍ¹ÜÀí
+### ç›‘æ§å’Œç®¡ç†
 
 ```bash
-# Redis ¹ÜÀí½çÃæ
-# ä¯ÀÀÆ÷·ÃÎÊ: http://localhost:8081
+# Redis ç®¡ç†ç•Œé¢
+# æµè§ˆå™¨è®¿é—®: http://localhost:8081
 
 # phpMyAdmin
-# ä¯ÀÀÆ÷·ÃÎÊ: http://localhost:8082
+# æµè§ˆå™¨è®¿é—®: http://localhost:8082
 ```
 
 ---
 
-## ?? ³£¼ûÎÊÌâ¿ìËÙĞŞ¸´
+## ?? å¸¸è§é—®é¢˜å¿«é€Ÿä¿®å¤
 
-| ÎÊÌâ | ½â¾öÃüÁî |
+| é—®é¢˜ | è§£å†³å‘½ä»¤ |
 |------|---------|
-| ¶Ë¿Ú±»Õ¼ÓÃ | `docker compose down` È»ºóĞŞ¸Ä¶Ë¿Ú |
-| ÈİÆ÷Ò»Ö±ÖØÆô | `docker logs <container>` ²é¿´´íÎó |
-| ´ÅÅÌ¿Õ¼ä²»×ã | `docker system prune -a` |
-| ÍøÂçÁ¬½ÓÎÊÌâ | `docker network inspect game_network` |
-| Êı¾İ¿âÁ¬½ÓÊ§°Ü | µÈ´ı½¡¿µ¼ì²é: `docker compose ps` |
-| ÖØĞÂ¹¹½¨¾µÏñ | `docker compose up -d --build` |
+| ç«¯å£è¢«å ç”¨ | `docker compose down` ç„¶åä¿®æ”¹ç«¯å£ |
+| å®¹å™¨ä¸€ç›´é‡å¯ | `docker logs <container>` æŸ¥çœ‹é”™è¯¯ |
+| ç£ç›˜ç©ºé—´ä¸è¶³ | `docker system prune -a` |
+| ç½‘ç»œè¿æ¥é—®é¢˜ | `docker network inspect game_network` |
+| æ•°æ®åº“è¿æ¥å¤±è´¥ | ç­‰å¾…å¥åº·æ£€æŸ¥: `docker compose ps` |
+| é‡æ–°æ„å»ºé•œåƒ | `docker compose up -d --build` |
 
 ---
 
-## ?? ½¡¿µ¼ì²é
+## ?? å¥åº·æ£€æŸ¥
 
 ```bash
-# ²é¿´·şÎñ½¡¿µ×´Ì¬
+# æŸ¥çœ‹æœåŠ¡å¥åº·çŠ¶æ€
 docker compose ps
 
-# ²é¿´ÈİÆ÷½¡¿µ¼ì²éÈÕÖ¾
+# æŸ¥çœ‹å®¹å™¨å¥åº·æ£€æŸ¥æ—¥å¿—
 docker inspect --format='{{json .State.Health}}' <container> | jq
 
-# ÊÖ¶¯Ö´ĞĞ½¡¿µ¼ì²é
+# æ‰‹åŠ¨æ‰§è¡Œå¥åº·æ£€æŸ¥
 docker compose exec central pgrep -x central
 docker compose exec redis redis-cli ping
 docker compose exec mysql mysqladmin ping
@@ -248,78 +248,78 @@ docker compose exec mysql mysqladmin ping
 
 ---
 
-## ?? ÈÕÖ¾¹ÜÀí
+## ?? æ—¥å¿—ç®¡ç†
 
 ```bash
-# ²é¿´ËùÓĞ·şÎñÈÕÖ¾
+# æŸ¥çœ‹æ‰€æœ‰æœåŠ¡æ—¥å¿—
 docker compose logs
 
-# ÊµÊ±¸ú×ÙËùÓĞÈÕÖ¾
+# å®æ—¶è·Ÿè¸ªæ‰€æœ‰æ—¥å¿—
 docker compose logs -f
 
-# ²é¿´ÌØ¶¨·şÎñ×î½üÈÕÖ¾
+# æŸ¥çœ‹ç‰¹å®šæœåŠ¡æœ€è¿‘æ—¥å¿—
 docker compose logs --tail=50 central
 
-# °´Ê±¼ä¹ıÂËÈÕÖ¾
+# æŒ‰æ—¶é—´è¿‡æ»¤æ—¥å¿—
 docker compose logs --since 30m central
 
-# µ¼³öÈÕÖ¾
+# å¯¼å‡ºæ—¥å¿—
 docker compose logs > logs.txt
 ```
 
 ---
 
-## ?? ½ô¼±²Ù×÷
+## ?? ç´§æ€¥æ“ä½œ
 
 ```bash
-# Á¢¼´Í£Ö¹ËùÓĞ·şÎñ
+# ç«‹å³åœæ­¢æ‰€æœ‰æœåŠ¡
 docker compose kill
 
-# Ç¿ÖÆÉ¾³ıËùÓĞÈİÆ÷
+# å¼ºåˆ¶åˆ é™¤æ‰€æœ‰å®¹å™¨
 docker compose rm -f
 
-# ÍêÈ«ÖØÖÃ£¨Î£ÏÕ£¡£©
-docker compose down -v  # É¾³ıÊı¾İ¾í
-docker system prune -a  # ÇåÀíËùÓĞ×ÊÔ´
+# å®Œå…¨é‡ç½®ï¼ˆå±é™©ï¼ï¼‰
+docker compose down -v  # åˆ é™¤æ•°æ®å·
+docker system prune -a  # æ¸…ç†æ‰€æœ‰èµ„æº
 ```
 
 ---
 
-## ?? »·¾³±äÁ¿
+## ?? ç¯å¢ƒå˜é‡
 
 ```bash
-# ²é¿´ÈİÆ÷»·¾³±äÁ¿
+# æŸ¥çœ‹å®¹å™¨ç¯å¢ƒå˜é‡
 docker compose exec central env
 
-# ÔËĞĞÊ±ÉèÖÃ»·¾³±äÁ¿
+# è¿è¡Œæ—¶è®¾ç½®ç¯å¢ƒå˜é‡
 docker compose run -e DEBUG=true central
 
-# Ê¹ÓÃ .env ÎÄ¼ş
-# ´´½¨ .env ÎÄ¼şºó£¬docker compose »á×Ô¶¯¼ÓÔØ
+# ä½¿ç”¨ .env æ–‡ä»¶
+# åˆ›å»º .env æ–‡ä»¶åï¼Œdocker compose ä¼šè‡ªåŠ¨åŠ è½½
 ```
 
 ---
 
-## ?? ÓĞÓÃµÄÁ´½Ó
+## ?? æœ‰ç”¨çš„é“¾æ¥
 
-- Docker ¹Ù·½ÎÄµµ: https://docs.docker.com/
+- Docker å®˜æ–¹æ–‡æ¡£: https://docs.docker.com/
 - Docker Hub: https://hub.docker.com/
-- Docker Compose ÎÄµµ: https://docs.docker.com/compose/
+- Docker Compose æ–‡æ¡£: https://docs.docker.com/compose/
 
 ---
 
-**ÌáÊ¾£º** 
-- Ê¹ÓÃ `--help` ²é¿´ÃüÁîÏêÏ¸°ïÖú£¬Èç `docker compose --help`
-- ´ó¶àÊıÃüÁîÖ§³Ö¼òĞ´£¬Èç `docker ps` µÈÍ¬ÓÚ `docker container ls`
-- ÉÆÓÃ Tab ¼ü×Ô¶¯²¹È«ÈİÆ÷ÃûºÍ¾µÏñÃû
+**æç¤ºï¼š** 
+- ä½¿ç”¨ `--help` æŸ¥çœ‹å‘½ä»¤è¯¦ç»†å¸®åŠ©ï¼Œå¦‚ `docker compose --help`
+- å¤§å¤šæ•°å‘½ä»¤æ”¯æŒç®€å†™ï¼Œå¦‚ `docker ps` ç­‰åŒäº `docker container ls`
+- å–„ç”¨ Tab é”®è‡ªåŠ¨è¡¥å…¨å®¹å™¨åå’Œé•œåƒå
 
 ---
 
-**¿ì½İ¼ü£º**
-- `Ctrl+C` - Í£Ö¹ÊµÊ±ÈÕÖ¾Êä³ö
-- `Ctrl+D` - ÍË³öÈİÆ÷ Shell
-- `Ctrl+P, Ctrl+Q` - ·ÖÀëÈİÆ÷µ«±£³ÖÔËĞĞ
+**å¿«æ·é”®ï¼š**
+- `Ctrl+C` - åœæ­¢å®æ—¶æ—¥å¿—è¾“å‡º
+- `Ctrl+D` - é€€å‡ºå®¹å™¨ Shell
+- `Ctrl+P, Ctrl+Q` - åˆ†ç¦»å®¹å™¨ä½†ä¿æŒè¿è¡Œ
 
 ---
 
-**×îºó¸üĞÂ£º** 2024-11-25
+**æœ€åæ›´æ–°ï¼š** 2024-11-25

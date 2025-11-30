@@ -1,140 +1,140 @@
-# Docker ²¿ÊğÖ¸ÄÏ - Poor Server STL
+# Docker éƒ¨ç½²æŒ‡å— - Poor Server STL
 
-±¾ÎÄµµÏêÏ¸½éÉÜÈçºÎÊ¹ÓÃ Docker ÈİÆ÷»¯²¿Êğ Poor Server STL ÓÎÏ··şÎñÆ÷¡£
-
----
-
-## ?? Ä¿Â¼
-
-1. [¿ìËÙ¿ªÊ¼](#¿ìËÙ¿ªÊ¼)
-2. [Ê¹ÓÃ Docker Compose](#Ê¹ÓÃ-docker-compose)
-3. [µ¥¶ÀÊ¹ÓÃ Docker](#µ¥¶ÀÊ¹ÓÃ-docker)
-4. [ÅäÖÃËµÃ÷](#ÅäÖÃËµÃ÷)
-5. [³£ÓÃÃüÁî](#³£ÓÃÃüÁî)
-6. [¹ÊÕÏÅÅ²é](#¹ÊÕÏÅÅ²é)
+æœ¬æ–‡æ¡£è¯¦ç»†ä»‹ç»å¦‚ä½•ä½¿ç”¨ Docker å®¹å™¨åŒ–éƒ¨ç½² Poor Server STL æ¸¸æˆæœåŠ¡å™¨ã€‚
 
 ---
 
-## ?? ¿ìËÙ¿ªÊ¼
+## ?? ç›®å½•
 
-### Ç°ÌáÌõ¼ş
+1. [å¿«é€Ÿå¼€å§‹](#å¿«é€Ÿå¼€å§‹)
+2. [ä½¿ç”¨ Docker Compose](#ä½¿ç”¨-docker-compose)
+3. [å•ç‹¬ä½¿ç”¨ Docker](#å•ç‹¬ä½¿ç”¨-docker)
+4. [é…ç½®è¯´æ˜](#é…ç½®è¯´æ˜)
+5. [å¸¸ç”¨å‘½ä»¤](#å¸¸ç”¨å‘½ä»¤)
+6. [æ•…éšœæ’æŸ¥](#æ•…éšœæ’æŸ¥)
 
-- ? ÒÑ°²×° Docker Desktop£¨²Î¼û [Docker_»·¾³ÅäÖÃÖ¸ÄÏ.md](./Docker_»·¾³ÅäÖÃÖ¸ÄÏ.md)£©
-- ? Docker Compose ÒÑ°²×°£¨Docker Desktop ×Ô´ø£©
-- ? ÏîÄ¿´úÂëÒÑ¿ËÂ¡µ½±¾µØ
+---
 
-### Ò»¼üÆô¶¯£¨ÍÆ¼ö£©
+## ?? å¿«é€Ÿå¼€å§‹
+
+### å‰ææ¡ä»¶
+
+- ? å·²å®‰è£… Docker Desktopï¼ˆå‚è§ [Docker_ç¯å¢ƒé…ç½®æŒ‡å—.md](./Docker_ç¯å¢ƒé…ç½®æŒ‡å—.md)ï¼‰
+- ? Docker Compose å·²å®‰è£…ï¼ˆDocker Desktop è‡ªå¸¦ï¼‰
+- ? é¡¹ç›®ä»£ç å·²å…‹éš†åˆ°æœ¬åœ°
+
+### ä¸€é”®å¯åŠ¨ï¼ˆæ¨èï¼‰
 
 ```bash
-# 1. ½øÈëÏîÄ¿Ä¿Â¼
+# 1. è¿›å…¥é¡¹ç›®ç›®å½•
 cd /mnt/d/Project/cpp/poor/poor_server_stl
 
-# 2. ¹¹½¨²¢Æô¶¯ËùÓĞ·şÎñ
+# 2. æ„å»ºå¹¶å¯åŠ¨æ‰€æœ‰æœåŠ¡
 docker compose up -d
 
-# 3. ²é¿´·şÎñ×´Ì¬
+# 3. æŸ¥çœ‹æœåŠ¡çŠ¶æ€
 docker compose ps
 
-# 4. ²é¿´ÈÕÖ¾
+# 4. æŸ¥çœ‹æ—¥å¿—
 docker compose logs -f
 ```
 
-**¾ÍÊÇÕâÃ´¼òµ¥£¡** ËùÓĞ·şÎñ£¨°üÀ¨ MySQL¡¢Redis¡¢ÓÎÏ··şÎñÆ÷£©¶¼»á×Ô¶¯Æô¶¯¡£
+**å°±æ˜¯è¿™ä¹ˆç®€å•ï¼** æ‰€æœ‰æœåŠ¡ï¼ˆåŒ…æ‹¬ MySQLã€Redisã€æ¸¸æˆæœåŠ¡å™¨ï¼‰éƒ½ä¼šè‡ªåŠ¨å¯åŠ¨ã€‚
 
 ---
 
-## ?? Ê¹ÓÃ Docker Compose£¨ÍÆ¼ö£©
+## ?? ä½¿ç”¨ Docker Composeï¼ˆæ¨èï¼‰
 
-Docker Compose ¿ÉÒÔÒ»´ÎĞÔ¹ÜÀí¶à¸öÈİÆ÷¡£
+Docker Compose å¯ä»¥ä¸€æ¬¡æ€§ç®¡ç†å¤šä¸ªå®¹å™¨ã€‚
 
-### »ù±¾ÃüÁî
+### åŸºæœ¬å‘½ä»¤
 
 ```bash
-# Æô¶¯ËùÓĞ·şÎñ£¨ºóÌ¨ÔËĞĞ£©
+# å¯åŠ¨æ‰€æœ‰æœåŠ¡ï¼ˆåå°è¿è¡Œï¼‰
 docker compose up -d
 
-# Æô¶¯ËùÓĞ·şÎñ£¨Ç°Ì¨ÔËĞĞ£¬¿ÉÒÔ¿´µ½ÈÕÖ¾£©
+# å¯åŠ¨æ‰€æœ‰æœåŠ¡ï¼ˆå‰å°è¿è¡Œï¼Œå¯ä»¥çœ‹åˆ°æ—¥å¿—ï¼‰
 docker compose up
 
-# Í£Ö¹ËùÓĞ·şÎñ
+# åœæ­¢æ‰€æœ‰æœåŠ¡
 docker compose stop
 
-# Í£Ö¹²¢É¾³ıËùÓĞÈİÆ÷
+# åœæ­¢å¹¶åˆ é™¤æ‰€æœ‰å®¹å™¨
 docker compose down
 
-# Í£Ö¹²¢É¾³ıÈİÆ÷¡¢ÍøÂç¡¢Êı¾İ¾í
+# åœæ­¢å¹¶åˆ é™¤å®¹å™¨ã€ç½‘ç»œã€æ•°æ®å·
 docker compose down -v
 
-# ÖØÆôËùÓĞ·şÎñ
+# é‡å¯æ‰€æœ‰æœåŠ¡
 docker compose restart
 
-# ²é¿´·şÎñ×´Ì¬
+# æŸ¥çœ‹æœåŠ¡çŠ¶æ€
 docker compose ps
 
-# ²é¿´ÈÕÖ¾
+# æŸ¥çœ‹æ—¥å¿—
 docker compose logs
 
-# ÊµÊ±¸ú×ÙÈÕÖ¾
+# å®æ—¶è·Ÿè¸ªæ—¥å¿—
 docker compose logs -f
 
-# ²é¿´ÌØ¶¨·şÎñµÄÈÕÖ¾
+# æŸ¥çœ‹ç‰¹å®šæœåŠ¡çš„æ—¥å¿—
 docker compose logs -f central
 docker compose logs -f gateway
 ```
 
-### Æô¶¯ÌØ¶¨·şÎñ
+### å¯åŠ¨ç‰¹å®šæœåŠ¡
 
 ```bash
-# Ö»Æô¶¯ MySQL ºÍ Redis
+# åªå¯åŠ¨ MySQL å’Œ Redis
 docker compose up -d mysql redis
 
-# Ö»Æô¶¯ÓÎÏ··şÎñÆ÷£¨²»°üÀ¨Êı¾İ¿â£©
+# åªå¯åŠ¨æ¸¸æˆæœåŠ¡å™¨ï¼ˆä¸åŒ…æ‹¬æ•°æ®åº“ï¼‰
 docker compose up -d central db login gateway file matching
 
-# Æô¶¯µ¥¸ö·şÎñ
+# å¯åŠ¨å•ä¸ªæœåŠ¡
 docker compose up -d central
 ```
 
-### ÖØĞÂ¹¹½¨¾µÏñ
+### é‡æ–°æ„å»ºé•œåƒ
 
 ```bash
-# ÖØĞÂ¹¹½¨ËùÓĞ¾µÏñ
+# é‡æ–°æ„å»ºæ‰€æœ‰é•œåƒ
 docker compose build
 
-# ÖØĞÂ¹¹½¨²¢Æô¶¯
+# é‡æ–°æ„å»ºå¹¶å¯åŠ¨
 docker compose up -d --build
 
-# ÖØĞÂ¹¹½¨ÌØ¶¨·şÎñ
+# é‡æ–°æ„å»ºç‰¹å®šæœåŠ¡
 docker compose build central
 ```
 
-### À©Õ¹·şÎñ£¨¸ºÔØ¾ùºâ£©
+### æ‰©å±•æœåŠ¡ï¼ˆè´Ÿè½½å‡è¡¡ï¼‰
 
 ```bash
-# Æô¶¯ 3 ¸ö gateway ÊµÀı
+# å¯åŠ¨ 3 ä¸ª gateway å®ä¾‹
 docker compose up -d --scale gateway=3
 
-# Æô¶¯ 2 ¸ö matching ÊµÀı
+# å¯åŠ¨ 2 ä¸ª matching å®ä¾‹
 docker compose up -d --scale matching=2
 ```
 
 ---
 
-## ?? µ¥¶ÀÊ¹ÓÃ Docker
+## ?? å•ç‹¬ä½¿ç”¨ Docker
 
-Èç¹û²»Ê¹ÓÃ Docker Compose£¬¿ÉÒÔµ¥¶ÀÔËĞĞÈİÆ÷¡£
+å¦‚æœä¸ä½¿ç”¨ Docker Composeï¼Œå¯ä»¥å•ç‹¬è¿è¡Œå®¹å™¨ã€‚
 
-### 1. ¹¹½¨¾µÏñ
+### 1. æ„å»ºé•œåƒ
 
 ```bash
-# ¹¹½¨ÓÎÏ··şÎñÆ÷¾µÏñ
+# æ„å»ºæ¸¸æˆæœåŠ¡å™¨é•œåƒ
 docker build -t poor-server:latest .
 
-# ¹¹½¨²¢Ö¸¶¨±êÇ©
+# æ„å»ºå¹¶æŒ‡å®šæ ‡ç­¾
 docker build -t poor-server:v1.0 -t poor-server:latest .
 ```
 
-### 2. Æô¶¯ MySQL
+### 2. å¯åŠ¨ MySQL
 
 ```bash
 docker run -d \
@@ -149,7 +149,7 @@ docker run -d \
   mysql:8.0
 ```
 
-### 3. Æô¶¯ Redis
+### 3. å¯åŠ¨ Redis
 
 ```bash
 docker run -d \
@@ -159,17 +159,17 @@ docker run -d \
   redis:7-alpine
 ```
 
-### 4. Æô¶¯ÓÎÏ··şÎñÆ÷
+### 4. å¯åŠ¨æ¸¸æˆæœåŠ¡å™¨
 
 ```bash
-# ´´½¨ÍøÂç
+# åˆ›å»ºç½‘ç»œ
 docker network create game_network
 
-# Á¬½Ó MySQL ºÍ Redis µ½ÍøÂç
+# è¿æ¥ MySQL å’Œ Redis åˆ°ç½‘ç»œ
 docker network connect game_network poor_mysql
 docker network connect game_network poor_redis
 
-# Æô¶¯ Central ·şÎñ
+# å¯åŠ¨ Central æœåŠ¡
 docker run -d \
   --name poor_central \
   --network game_network \
@@ -179,7 +179,7 @@ docker run -d \
   -v $(pwd)/logs:/app/logs \
   poor-server:latest central
 
-# Æô¶¯ÆäËû·şÎñ£¨ÀàËÆ£©
+# å¯åŠ¨å…¶ä»–æœåŠ¡ï¼ˆç±»ä¼¼ï¼‰
 docker run -d --name poor_db --network game_network -p 50052:50052 poor-server:latest db
 docker run -d --name poor_login --network game_network -p 50053:50053 poor-server:latest login
 docker run -d --name poor_gateway --network game_network -p 50054:50054 poor-server:latest gateway
@@ -189,279 +189,279 @@ docker run -d --name poor_matching --network game_network -p 50056:50056 poor-se
 
 ---
 
-## ?? ÅäÖÃËµÃ÷
+## ?? é…ç½®è¯´æ˜
 
-### »·¾³±äÁ¿
+### ç¯å¢ƒå˜é‡
 
-Docker Compose Ê¹ÓÃ»·¾³±äÁ¿À´ÅäÖÃ·şÎñ¡£´´½¨ `.env` ÎÄ¼ş£º
+Docker Compose ä½¿ç”¨ç¯å¢ƒå˜é‡æ¥é…ç½®æœåŠ¡ã€‚åˆ›å»º `.env` æ–‡ä»¶ï¼š
 
 ```bash
-# .env ÎÄ¼ş
+# .env æ–‡ä»¶
 
-# MySQL ÅäÖÃ
+# MySQL é…ç½®
 MYSQL_ROOT_PASSWORD=your_root_password
 MYSQL_DATABASE=gamedb
 MYSQL_USER=gameuser
 MYSQL_PASSWORD=your_game_password
 
-# Redis ÅäÖÃ
+# Redis é…ç½®
 REDIS_PASSWORD=your_redis_password
 
-# ·şÎñÆ÷ÅäÖÃ
+# æœåŠ¡å™¨é…ç½®
 SERVER_ENVIRONMENT=production
 LOG_LEVEL=info
 ```
 
-### ¶Ë¿ÚÓ³Éä
+### ç«¯å£æ˜ å°„
 
-Ä¬ÈÏ¶Ë¿ÚÓ³Éä£º
+é»˜è®¤ç«¯å£æ˜ å°„ï¼š
 
-| ·şÎñ | ÈİÆ÷¶Ë¿Ú | Ö÷»ú¶Ë¿Ú | ËµÃ÷ |
+| æœåŠ¡ | å®¹å™¨ç«¯å£ | ä¸»æœºç«¯å£ | è¯´æ˜ |
 |------|---------|---------|------|
-| MySQL | 3306 | 3306 | MySQL ±ê×¼¶Ë¿Ú |
+| MySQL | 3306 | 3306 | MySQL æ ‡å‡†ç«¯å£ |
 | MySQL X | 33060 | 33060 | MySQL X Protocol |
-| Redis | 6379 | 6379 | Redis ¶Ë¿Ú |
-| Central | 50051 | 50051 | ÖĞĞÄ·şÎñÆ÷ |
-| DB | 50052 | 50052 | Êı¾İ¿â·şÎñÆ÷ |
-| Login | 50053 | 50053 | µÇÂ¼·şÎñÆ÷ |
-| Gateway | 50054 | 50054 | Íø¹Ø·şÎñÆ÷ |
-| File | 50055 | 50055 | ÎÄ¼ş·şÎñÆ÷ |
-| Matching | 50056 | 50056 | Æ¥Åä·şÎñÆ÷ |
-| Redis UI | 8081 | 8081 | Redis ¹ÜÀíÃæ°å |
-| phpMyAdmin | 80 | 8082 | MySQL ¹ÜÀíÃæ°å |
+| Redis | 6379 | 6379 | Redis ç«¯å£ |
+| Central | 50051 | 50051 | ä¸­å¿ƒæœåŠ¡å™¨ |
+| DB | 50052 | 50052 | æ•°æ®åº“æœåŠ¡å™¨ |
+| Login | 50053 | 50053 | ç™»å½•æœåŠ¡å™¨ |
+| Gateway | 50054 | 50054 | ç½‘å…³æœåŠ¡å™¨ |
+| File | 50055 | 50055 | æ–‡ä»¶æœåŠ¡å™¨ |
+| Matching | 50056 | 50056 | åŒ¹é…æœåŠ¡å™¨ |
+| Redis UI | 8081 | 8081 | Redis ç®¡ç†é¢æ¿ |
+| phpMyAdmin | 80 | 8082 | MySQL ç®¡ç†é¢æ¿ |
 
-ĞŞ¸Ä¶Ë¿Ú£ºÔÚ `docker-compose.yml` ÖĞĞŞ¸Ä `ports` ÅäÖÃ¡£
+ä¿®æ”¹ç«¯å£ï¼šåœ¨ `docker-compose.yml` ä¸­ä¿®æ”¹ `ports` é…ç½®ã€‚
 
-### Êı¾İ³Ö¾Ã»¯
+### æ•°æ®æŒä¹…åŒ–
 
-Docker Compose Ê¹ÓÃÊı¾İ¾íÀ´³Ö¾Ã»¯Êı¾İ£º
+Docker Compose ä½¿ç”¨æ•°æ®å·æ¥æŒä¹…åŒ–æ•°æ®ï¼š
 
 ```yaml
 volumes:
-  mysql_data:      # MySQL Êı¾İ
-  redis_data:      # Redis Êı¾İ
-  file_storage:    # ÎÄ¼ş´æ´¢
+  mysql_data:      # MySQL æ•°æ®
+  redis_data:      # Redis æ•°æ®
+  file_storage:    # æ–‡ä»¶å­˜å‚¨
 ```
 
-**²é¿´Êı¾İ¾í£º**
+**æŸ¥çœ‹æ•°æ®å·ï¼š**
 
 ```bash
 docker volume ls
 
-# ²é¿´Êı¾İ¾íÏêÏ¸ĞÅÏ¢
+# æŸ¥çœ‹æ•°æ®å·è¯¦ç»†ä¿¡æ¯
 docker volume inspect poor_server_stl_mysql_data
 
-# ±¸·İÊı¾İ¾í
+# å¤‡ä»½æ•°æ®å·
 docker run --rm -v poor_server_stl_mysql_data:/data -v $(pwd):/backup \
   ubuntu tar czf /backup/mysql_backup.tar.gz /data
 ```
 
 ---
 
-## ?? ³£ÓÃÃüÁî
+## ?? å¸¸ç”¨å‘½ä»¤
 
-### ²é¿´ÈİÆ÷×´Ì¬
+### æŸ¥çœ‹å®¹å™¨çŠ¶æ€
 
 ```bash
-# ²é¿´ËùÓĞÔËĞĞµÄÈİÆ÷
+# æŸ¥çœ‹æ‰€æœ‰è¿è¡Œçš„å®¹å™¨
 docker ps
 
-# ²é¿´ËùÓĞÈİÆ÷£¨°üÀ¨Í£Ö¹µÄ£©
+# æŸ¥çœ‹æ‰€æœ‰å®¹å™¨ï¼ˆåŒ…æ‹¬åœæ­¢çš„ï¼‰
 docker ps -a
 
-# ²é¿´ÈİÆ÷ÏêÏ¸ĞÅÏ¢
+# æŸ¥çœ‹å®¹å™¨è¯¦ç»†ä¿¡æ¯
 docker inspect poor_central
 
-# ²é¿´ÈİÆ÷×ÊÔ´Ê¹ÓÃÇé¿ö
+# æŸ¥çœ‹å®¹å™¨èµ„æºä½¿ç”¨æƒ…å†µ
 docker stats
 
-# ²é¿´ÈİÆ÷ÊµÊ±ÈÕÖ¾
+# æŸ¥çœ‹å®¹å™¨å®æ—¶æ—¥å¿—
 docker logs -f poor_central
 ```
 
-### ½øÈëÈİÆ÷
+### è¿›å…¥å®¹å™¨
 
 ```bash
-# ½øÈëÈİÆ÷ Shell
+# è¿›å…¥å®¹å™¨ Shell
 docker exec -it poor_central bash
 
-# ÔÚÈİÆ÷ÖĞÖ´ĞĞÃüÁî
+# åœ¨å®¹å™¨ä¸­æ‰§è¡Œå‘½ä»¤
 docker exec poor_central ps aux
 docker exec poor_central ls -la /app/bin
 ```
 
-### µ÷ÊÔÈİÆ÷
+### è°ƒè¯•å®¹å™¨
 
 ```bash
-# ²é¿´ÈİÆ÷ÈÕÖ¾
+# æŸ¥çœ‹å®¹å™¨æ—¥å¿—
 docker logs poor_central
 
-# ²é¿´×îºó 100 ĞĞÈÕÖ¾
+# æŸ¥çœ‹æœ€å 100 è¡Œæ—¥å¿—
 docker logs --tail 100 poor_central
 
-# ²é¿´ÈİÆ÷½ø³Ì
+# æŸ¥çœ‹å®¹å™¨è¿›ç¨‹
 docker top poor_central
 
-# ²é¿´ÈİÆ÷ÎÄ¼şÏµÍ³±ä»¯
+# æŸ¥çœ‹å®¹å™¨æ–‡ä»¶ç³»ç»Ÿå˜åŒ–
 docker diff poor_central
 
-# µ¼³öÈİÆ÷Îª¾µÏñ
+# å¯¼å‡ºå®¹å™¨ä¸ºé•œåƒ
 docker commit poor_central poor-server:snapshot
 ```
 
-### ÍøÂç¹ÜÀí
+### ç½‘ç»œç®¡ç†
 
 ```bash
-# ²é¿´ÍøÂç
+# æŸ¥çœ‹ç½‘ç»œ
 docker network ls
 
-# ²é¿´ÍøÂçÏêÏ¸ĞÅÏ¢
+# æŸ¥çœ‹ç½‘ç»œè¯¦ç»†ä¿¡æ¯
 docker network inspect game_network
 
-# Á¬½ÓÈİÆ÷µ½ÍøÂç
+# è¿æ¥å®¹å™¨åˆ°ç½‘ç»œ
 docker network connect game_network my_container
 
-# ¶Ï¿ªÈİÆ÷ÍøÂç
+# æ–­å¼€å®¹å™¨ç½‘ç»œ
 docker network disconnect game_network my_container
 ```
 
-### ÇåÀí×ÊÔ´
+### æ¸…ç†èµ„æº
 
 ```bash
-# Í£Ö¹ËùÓĞÈİÆ÷
+# åœæ­¢æ‰€æœ‰å®¹å™¨
 docker stop $(docker ps -aq)
 
-# É¾³ıËùÓĞÍ£Ö¹µÄÈİÆ÷
+# åˆ é™¤æ‰€æœ‰åœæ­¢çš„å®¹å™¨
 docker container prune
 
-# É¾³ıÎ´Ê¹ÓÃµÄ¾µÏñ
+# åˆ é™¤æœªä½¿ç”¨çš„é•œåƒ
 docker image prune
 
-# É¾³ıÎ´Ê¹ÓÃµÄÊı¾İ¾í
+# åˆ é™¤æœªä½¿ç”¨çš„æ•°æ®å·
 docker volume prune
 
-# ÇåÀíËùÓĞÎ´Ê¹ÓÃµÄ×ÊÔ´£¨Î£ÏÕ£¡£©
+# æ¸…ç†æ‰€æœ‰æœªä½¿ç”¨çš„èµ„æºï¼ˆå±é™©ï¼ï¼‰
 docker system prune -a --volumes
 ```
 
 ---
 
-## ?? ¹ÊÕÏÅÅ²é
+## ?? æ•…éšœæ’æŸ¥
 
-### ÎÊÌâ 1£ºÈİÆ÷ÎŞ·¨Æô¶¯
+### é—®é¢˜ 1ï¼šå®¹å™¨æ— æ³•å¯åŠ¨
 
-**Ö¢×´£º** ÈİÆ÷Ò»Æô¶¯¾ÍÍË³ö
+**ç—‡çŠ¶ï¼š** å®¹å™¨ä¸€å¯åŠ¨å°±é€€å‡º
 
-**ÅÅ²é²½Öè£º**
+**æ’æŸ¥æ­¥éª¤ï¼š**
 
 ```bash
-# 1. ²é¿´ÈİÆ÷ÈÕÖ¾
+# 1. æŸ¥çœ‹å®¹å™¨æ—¥å¿—
 docker logs poor_central
 
-# 2. ²é¿´ÈİÆ÷ÍË³ö´úÂë
+# 2. æŸ¥çœ‹å®¹å™¨é€€å‡ºä»£ç 
 docker ps -a
 
-# 3. ³¢ÊÔÒÔ½»»¥Ä£Ê½ÔËĞĞ
+# 3. å°è¯•ä»¥äº¤äº’æ¨¡å¼è¿è¡Œ
 docker run -it --rm poor-server:latest bash
 
-# 4. ¼ì²éÒÀÀµ·şÎñÊÇ·ñÔËĞĞ
+# 4. æ£€æŸ¥ä¾èµ–æœåŠ¡æ˜¯å¦è¿è¡Œ
 docker compose ps
 ```
 
-### ÎÊÌâ 2£ºÎŞ·¨Á¬½Óµ½ MySQL/Redis
+### é—®é¢˜ 2ï¼šæ— æ³•è¿æ¥åˆ° MySQL/Redis
 
-**Ö¢×´£º** ·şÎñÆô¶¯ºó±¨Êı¾İ¿âÁ¬½Ó´íÎó
+**ç—‡çŠ¶ï¼š** æœåŠ¡å¯åŠ¨åæŠ¥æ•°æ®åº“è¿æ¥é”™è¯¯
 
-**½â¾ö·½·¨£º**
+**è§£å†³æ–¹æ³•ï¼š**
 
 ```bash
-# 1. ¼ì²é MySQL ÊÇ·ñ½¡¿µ
+# 1. æ£€æŸ¥ MySQL æ˜¯å¦å¥åº·
 docker inspect poor_mysql | grep -i health
 
-# 2. ÊÖ¶¯²âÊÔÁ¬½Ó
+# 2. æ‰‹åŠ¨æµ‹è¯•è¿æ¥
 docker exec poor_central ping mysql
 docker exec poor_central redis-cli -h redis ping
 
-# 3. ²é¿´ÍøÂçÅäÖÃ
+# 3. æŸ¥çœ‹ç½‘ç»œé…ç½®
 docker network inspect game_network
 
-# 4. µÈ´ı·şÎñ¾ÍĞ÷ºóÔÙÆô¶¯
+# 4. ç­‰å¾…æœåŠ¡å°±ç»ªåå†å¯åŠ¨
 docker compose up -d mysql redis
-# µÈ´ı 30 Ãë
+# ç­‰å¾… 30 ç§’
 sleep 30
 docker compose up -d central db login gateway file matching
 ```
 
-### ÎÊÌâ 3£º¶Ë¿Ú³åÍ»
+### é—®é¢˜ 3ï¼šç«¯å£å†²çª
 
-**Ö¢×´£º** `Bind for 0.0.0.0:3306 failed: port is already allocated`
+**ç—‡çŠ¶ï¼š** `Bind for 0.0.0.0:3306 failed: port is already allocated`
 
-**½â¾ö·½·¨£º**
+**è§£å†³æ–¹æ³•ï¼š**
 
 ```bash
-# 1. ²é¿´¶Ë¿ÚÕ¼ÓÃ
+# 1. æŸ¥çœ‹ç«¯å£å ç”¨
 netstat -ano | findstr :3306  # Windows
 lsof -i :3306  # Linux/Mac
 
-# 2. ĞŞ¸Ä docker-compose.yml ÖĞµÄ¶Ë¿ÚÓ³Éä
+# 2. ä¿®æ”¹ docker-compose.yml ä¸­çš„ç«¯å£æ˜ å°„
 # ports:
-#   - "13306:3306"  # Ê¹ÓÃÖ÷»úµÄ 13306 ¶Ë¿Ú
+#   - "13306:3306"  # ä½¿ç”¨ä¸»æœºçš„ 13306 ç«¯å£
 
-# 3. »òÕßÍ£Ö¹Õ¼ÓÃ¶Ë¿ÚµÄ·şÎñ
+# 3. æˆ–è€…åœæ­¢å ç”¨ç«¯å£çš„æœåŠ¡
 ```
 
-### ÎÊÌâ 4£º´ÅÅÌ¿Õ¼ä²»×ã
+### é—®é¢˜ 4ï¼šç£ç›˜ç©ºé—´ä¸è¶³
 
-**Ö¢×´£º** `no space left on device`
+**ç—‡çŠ¶ï¼š** `no space left on device`
 
-**½â¾ö·½·¨£º**
+**è§£å†³æ–¹æ³•ï¼š**
 
 ```bash
-# ²é¿´ Docker ´ÅÅÌÊ¹ÓÃ
+# æŸ¥çœ‹ Docker ç£ç›˜ä½¿ç”¨
 docker system df
 
-# ÇåÀíÎ´Ê¹ÓÃµÄ×ÊÔ´
+# æ¸…ç†æœªä½¿ç”¨çš„èµ„æº
 docker system prune -a
 
-# É¾³ıÌØ¶¨¾µÏñ
+# åˆ é™¤ç‰¹å®šé•œåƒ
 docker rmi poor-server:old-version
 
-# É¾³ıĞü¿Õ¾µÏñ
+# åˆ é™¤æ‚¬ç©ºé•œåƒ
 docker image prune
 ```
 
-### ÎÊÌâ 5£º¹¹½¨¾µÏñÊ§°Ü
+### é—®é¢˜ 5ï¼šæ„å»ºé•œåƒå¤±è´¥
 
-**Ö¢×´£º** `docker build` Ê§°Ü
+**ç—‡çŠ¶ï¼š** `docker build` å¤±è´¥
 
-**½â¾ö·½·¨£º**
+**è§£å†³æ–¹æ³•ï¼š**
 
 ```bash
-# 1. ²é¿´ÏêÏ¸¹¹½¨ÈÕÖ¾
+# 1. æŸ¥çœ‹è¯¦ç»†æ„å»ºæ—¥å¿—
 docker build --no-cache --progress=plain -t poor-server:latest .
 
-# 2. ¼ì²é Dockerfile Óï·¨
-# 3. È·±£ÍøÂçÁ¬½ÓÕı³££¨ÏÂÔØÒÀÀµ£©
-# 4. Ôö¼Ó Docker ×ÊÔ´ÏŞÖÆ£¨ÄÚ´æ¡¢CPU£©
+# 2. æ£€æŸ¥ Dockerfile è¯­æ³•
+# 3. ç¡®ä¿ç½‘ç»œè¿æ¥æ­£å¸¸ï¼ˆä¸‹è½½ä¾èµ–ï¼‰
+# 4. å¢åŠ  Docker èµ„æºé™åˆ¶ï¼ˆå†…å­˜ã€CPUï¼‰
 ```
 
 ---
 
-## ?? Éú²ú»·¾³²¿Êğ½¨Òé
+## ?? ç”Ÿäº§ç¯å¢ƒéƒ¨ç½²å»ºè®®
 
-### 1. Ê¹ÓÃ Docker Secrets ¹ÜÀíÃô¸ĞĞÅÏ¢
+### 1. ä½¿ç”¨ Docker Secrets ç®¡ç†æ•æ„Ÿä¿¡æ¯
 
 ```bash
-# ´´½¨ÃÜÔ¿
+# åˆ›å»ºå¯†é’¥
 echo "my_secret_password" | docker secret create mysql_root_password -
 
-# ÔÚ docker-compose.yml ÖĞÊ¹ÓÃ
+# åœ¨ docker-compose.yml ä¸­ä½¿ç”¨
 secrets:
   mysql_root_password:
     external: true
 ```
 
-### 2. ÆôÓÃÈÕÖ¾ÂÖ×ª
+### 2. å¯ç”¨æ—¥å¿—è½®è½¬
 
 ```yaml
 services:
@@ -473,7 +473,7 @@ services:
         max-file: "3"
 ```
 
-### 3. ÅäÖÃ½¡¿µ¼ì²é
+### 3. é…ç½®å¥åº·æ£€æŸ¥
 
 ```yaml
 healthcheck:
@@ -484,7 +484,7 @@ healthcheck:
   start_period: 40s
 ```
 
-### 4. Ê¹ÓÃ·´Ïò´úÀí£¨Nginx£©
+### 4. ä½¿ç”¨åå‘ä»£ç†ï¼ˆNginxï¼‰
 
 ```yaml
 services:
@@ -499,22 +499,22 @@ services:
 
 ---
 
-## ?? ÏÂÒ»²½Ñ§Ï°
+## ?? ä¸‹ä¸€æ­¥å­¦ä¹ 
 
-1. **Docker ÍøÂçÉîÈë** - ÁË½â bridge¡¢host¡¢overlay ÍøÂç
-2. **Docker ¾í¹ÜÀí** - Êı¾İ³Ö¾Ã»¯ºÍ±¸·İ
-3. **Docker Swarm** - ÈİÆ÷±àÅÅºÍ¼¯Èº¹ÜÀí
-4. **Kubernetes** - Éú²ú¼¶ÈİÆ÷±àÅÅÆ½Ì¨
-
----
-
-## ?? Ïà¹Ø×ÊÔ´
-
-- [Dockerfile](../Dockerfile) - ¾µÏñ¹¹½¨ÅäÖÃ
-- [docker-compose.yml](../docker-compose.yml) - ·şÎñ±àÅÅÅäÖÃ
-- [entrypoint.sh](../docker/entrypoint.sh) - ÈİÆ÷Æô¶¯½Å±¾
-- [Docker »·¾³ÅäÖÃÖ¸ÄÏ](./Docker_»·¾³ÅäÖÃÖ¸ÄÏ.md)
+1. **Docker ç½‘ç»œæ·±å…¥** - äº†è§£ bridgeã€hostã€overlay ç½‘ç»œ
+2. **Docker å·ç®¡ç†** - æ•°æ®æŒä¹…åŒ–å’Œå¤‡ä»½
+3. **Docker Swarm** - å®¹å™¨ç¼–æ’å’Œé›†ç¾¤ç®¡ç†
+4. **Kubernetes** - ç”Ÿäº§çº§å®¹å™¨ç¼–æ’å¹³å°
 
 ---
 
-**×îºó¸üĞÂ£º** 2024-11-25
+## ?? ç›¸å…³èµ„æº
+
+- [Dockerfile](../Dockerfile) - é•œåƒæ„å»ºé…ç½®
+- [docker-compose.yml](../docker-compose.yml) - æœåŠ¡ç¼–æ’é…ç½®
+- [entrypoint.sh](../docker/entrypoint.sh) - å®¹å™¨å¯åŠ¨è„šæœ¬
+- [Docker ç¯å¢ƒé…ç½®æŒ‡å—](./Docker_ç¯å¢ƒé…ç½®æŒ‡å—.md)
+
+---
+
+**æœ€åæ›´æ–°ï¼š** 2024-11-25

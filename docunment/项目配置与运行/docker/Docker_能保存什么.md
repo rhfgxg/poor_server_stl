@@ -1,31 +1,31 @@
-# Docker ÄÜ±£´æÊ²Ã´£¿ÍêÕû½âÎö
+# Docker èƒ½ä¿å­˜ä»€ä¹ˆï¼Ÿå®Œæ•´è§£æž
 
-±¾ÎÄµµÏêÏ¸ËµÃ÷ Docker ÄÜ±£´æÄÄÐ©»·¾³ÄÚÈÝ£¬ÒÔ¼°ÄÄÐ©ÄÚÈÝÎÞ·¨±£´æ£¨ÐèÒª¶îÍâÅäÖÃ£©¡£
-
----
-
-## ?? Ä¿Â¼
-
-1. [Docker ÄÜ±£´æµÄÄÚÈÝ](#docker-ÄÜ±£´æµÄÄÚÈÝ)
-2. [Docker ÎÞ·¨±£´æµÄÄÚÈÝ](#docker-ÎÞ·¨±£´æµÄÄÚÈÝ)
-3. [ÐÂ»·¾³ÅäÖÃ Docker ºóµÄÍêÕû²½Öè](#ÐÂ»·¾³ÅäÖÃ-docker-ºóµÄÍêÕû²½Öè)
-4. [Êµ¼Ê°¸Àý£ºPoor Server STL ÏîÄ¿](#Êµ¼Ê°¸Àýpoor-server-stl-ÏîÄ¿)
+æœ¬æ–‡æ¡£è¯¦ç»†è¯´æ˜Ž Docker èƒ½ä¿å­˜å“ªäº›çŽ¯å¢ƒå†…å®¹ï¼Œä»¥åŠå“ªäº›å†…å®¹æ— æ³•ä¿å­˜ï¼ˆéœ€è¦é¢å¤–é…ç½®ï¼‰ã€‚
 
 ---
 
-## ? Docker ÄÜ±£´æµÄÄÚÈÝ
+## ?? ç›®å½•
 
-### 1. **²Ù×÷ÏµÍ³»·¾³**
+1. [Docker èƒ½ä¿å­˜çš„å†…å®¹](#docker-èƒ½ä¿å­˜çš„å†…å®¹)
+2. [Docker æ— æ³•ä¿å­˜çš„å†…å®¹](#docker-æ— æ³•ä¿å­˜çš„å†…å®¹)
+3. [æ–°çŽ¯å¢ƒé…ç½® Docker åŽçš„å®Œæ•´æ­¥éª¤](#æ–°çŽ¯å¢ƒé…ç½®-docker-åŽçš„å®Œæ•´æ­¥éª¤)
+4. [å®žé™…æ¡ˆä¾‹ï¼šPoor Server STL é¡¹ç›®](#å®žé™…æ¡ˆä¾‹poor-server-stl-é¡¹ç›®)
 
-**ÄÜ±£´æ£º**
+---
+
+## ? Docker èƒ½ä¿å­˜çš„å†…å®¹
+
+### 1. **æ“ä½œç³»ç»ŸçŽ¯å¢ƒ**
+
+**èƒ½ä¿å­˜ï¼š**
 ```dockerfile
 FROM ubuntu:22.04
-# ? ¾«È·µÄ Ubuntu °æ±¾
-# ? ÏµÍ³¼Ü¹¹£¨x64, arm64£©
-# ? »ù´¡ÏµÍ³ÎÄ¼þºÍÅäÖÃ
+# ? ç²¾ç¡®çš„ Ubuntu ç‰ˆæœ¬
+# ? ç³»ç»Ÿæž¶æž„ï¼ˆx64, arm64ï¼‰
+# ? åŸºç¡€ç³»ç»Ÿæ–‡ä»¶å’Œé…ç½®
 ```
 
-**Ê¾Àý£º**
+**ç¤ºä¾‹ï¼š**
 - Ubuntu 22.04, 20.04, 18.04
 - Debian 11, 10
 - Alpine Linux
@@ -33,46 +33,46 @@ FROM ubuntu:22.04
 
 ---
 
-### 2. **±àÒëÆ÷ºÍ¿ª·¢¹¤¾ß**
+### 2. **ç¼–è¯‘å™¨å’Œå¼€å‘å·¥å…·**
 
-**ÄÜ±£´æ£º**
+**èƒ½ä¿å­˜ï¼š**
 ```dockerfile
 RUN apt-get install -y \
-    gcc-11=11.4.0-1ubuntu1~22.04 \     # ? ¾«È·µÄ GCC °æ±¾
-    g++-11=11.4.0-1ubuntu1~22.04 \      # ? ¾«È·µÄ G++ °æ±¾
-    cmake=3.22.1-1ubuntu1.22.04.2 \     # ? ¾«È·µÄ CMake °æ±¾
-    ninja-build \                        # ? Ninja ¹¹½¨¹¤¾ß
+    gcc-11=11.4.0-1ubuntu1~22.04 \     # ? ç²¾ç¡®çš„ GCC ç‰ˆæœ¬
+    g++-11=11.4.0-1ubuntu1~22.04 \      # ? ç²¾ç¡®çš„ G++ ç‰ˆæœ¬
+    cmake=3.22.1-1ubuntu1.22.04.2 \     # ? ç²¾ç¡®çš„ CMake ç‰ˆæœ¬
+    ninja-build \                        # ? Ninja æž„å»ºå·¥å…·
     git \                                # ? Git
     make \                               # ? Make
-    clang                                # ? Clang ±àÒëÆ÷
+    clang                                # ? Clang ç¼–è¯‘å™¨
 ```
 
-**ÄãµÄÏîÄ¿°üº¬£º**
+**ä½ çš„é¡¹ç›®åŒ…å«ï¼š**
 - ? GCC 11
-- ? CMake 3.28.3£¨»òÖ¸¶¨°æ±¾£©
+- ? CMake 3.28.3ï¼ˆæˆ–æŒ‡å®šç‰ˆæœ¬ï¼‰
 - ? Ninja
-- ? ËùÓÐ±àÒë¹¤¾ßÁ´
+- ? æ‰€æœ‰ç¼–è¯‘å·¥å…·é“¾
 
 ---
 
-### 3. **µÚÈý·½¿â£¨vcpkg °²×°µÄ¿â£©**
+### 3. **ç¬¬ä¸‰æ–¹åº“ï¼ˆvcpkg å®‰è£…çš„åº“ï¼‰**
 
-**ÍêÈ«¿ÉÒÔ±£´æ£¡ÕâÊÇÖØµã£¡**
+**å®Œå…¨å¯ä»¥ä¿å­˜ï¼è¿™æ˜¯é‡ç‚¹ï¼**
 
 ```dockerfile
-# ·½Ê½ 1: °²×° vcpkg ²¢ÔÚ¹¹½¨Ê±°²×°ÒÀÀµ
+# æ–¹å¼ 1: å®‰è£… vcpkg å¹¶åœ¨æž„å»ºæ—¶å®‰è£…ä¾èµ–
 WORKDIR /opt
 RUN git clone https://github.com/microsoft/vcpkg.git && \
     cd vcpkg && ./bootstrap-vcpkg.sh
 
-# ¸´ÖÆ vcpkg.json£¨¶¨ÒåÁËËùÓÐÒÀÀµ£©
+# å¤åˆ¶ vcpkg.jsonï¼ˆå®šä¹‰äº†æ‰€æœ‰ä¾èµ–ï¼‰
 COPY vcpkg.json /app/
 
-# °²×°ËùÓÐµÚÈý·½¿â
+# å®‰è£…æ‰€æœ‰ç¬¬ä¸‰æ–¹åº“
 RUN /opt/vcpkg/vcpkg install --triplet=x64-linux
 ```
 
-**ÄãµÄÏîÄ¿ËùÓÐµÚÈý·½¿â¶¼»á±»±£´æ£º**
+**ä½ çš„é¡¹ç›®æ‰€æœ‰ç¬¬ä¸‰æ–¹åº“éƒ½ä¼šè¢«ä¿å­˜ï¼š**
 - ? gRPC
 - ? Protobuf
 - ? MySQL Connector C++
@@ -83,89 +83,89 @@ RUN /opt/vcpkg/vcpkg install --triplet=x64-linux
 - ? spdlog
 - ? jwt-cpp
 - ? OpenSSL
-- ? Boost ¿â
-- ? **ËùÓÐ vcpkg.json ÖÐ¶¨ÒåµÄ¿â**
+- ? Boost åº“
+- ? **æ‰€æœ‰ vcpkg.json ä¸­å®šä¹‰çš„åº“**
 
-**ÓÅÊÆ£º**
-- ? °æ±¾ÍêÈ«Ò»ÖÂ£¨vcpkg.json Ëø¶¨°æ±¾£©
-- ? ×Ô¶¯°²×°£¬ÎÞÐèÊÖ¶¯ÅäÖÃ
-- ? ¿çÆ½Ì¨Ò»ÖÂÐÔ
+**ä¼˜åŠ¿ï¼š**
+- ? ç‰ˆæœ¬å®Œå…¨ä¸€è‡´ï¼ˆvcpkg.json é”å®šç‰ˆæœ¬ï¼‰
+- ? è‡ªåŠ¨å®‰è£…ï¼Œæ— éœ€æ‰‹åŠ¨é…ç½®
+- ? è·¨å¹³å°ä¸€è‡´æ€§
 
 ---
 
-### 4. **ÏµÍ³¿âºÍÔËÐÐÊ±ÒÀÀµ**
+### 4. **ç³»ç»Ÿåº“å’Œè¿è¡Œæ—¶ä¾èµ–**
 
-**ÄÜ±£´æ£º**
+**èƒ½ä¿å­˜ï¼š**
 ```dockerfile
 RUN apt-get install -y \
-    libstdc++6 \           # ? C++ ±ê×¼¿â
-    libssl3 \              # ? OpenSSL ÔËÐÐÊ±
-    libmysqlclient21 \     # ? MySQL ¿Í»§¶Ë¿â
-    liblua5.3-0            # ? Lua ÔËÐÐÊ±
+    libstdc++6 \           # ? C++ æ ‡å‡†åº“
+    libssl3 \              # ? OpenSSL è¿è¡Œæ—¶
+    libmysqlclient21 \     # ? MySQL å®¢æˆ·ç«¯åº“
+    liblua5.3-0            # ? Lua è¿è¡Œæ—¶
 ```
 
 ---
 
-### 5. **ÏîÄ¿´úÂëºÍ±àÒë²úÎï**
+### 5. **é¡¹ç›®ä»£ç å’Œç¼–è¯‘äº§ç‰©**
 
-**ÄÜ±£´æ£º**
+**èƒ½ä¿å­˜ï¼š**
 ```dockerfile
-# ¸´ÖÆÏîÄ¿Ô´´úÂë
+# å¤åˆ¶é¡¹ç›®æºä»£ç 
 COPY . /app
 
-# ±àÒëÏîÄ¿
+# ç¼–è¯‘é¡¹ç›®
 RUN mkdir build && cd build && \
     cmake -G Ninja \
     -DCMAKE_TOOLCHAIN_FILE=/opt/vcpkg/scripts/buildsystems/vcpkg.cmake \
     .. && ninja
 
-# ? Ô´´úÂë
-# ? ±àÒëºÃµÄ¿ÉÖ´ÐÐÎÄ¼þ
-# ? CMake ÅäÖÃ
-# ? ËùÓÐÏîÄ¿ÎÄ¼þ
+# ? æºä»£ç 
+# ? ç¼–è¯‘å¥½çš„å¯æ‰§è¡Œæ–‡ä»¶
+# ? CMake é…ç½®
+# ? æ‰€æœ‰é¡¹ç›®æ–‡ä»¶
 ```
 
 ---
 
-### 6. **ÅäÖÃÎÄ¼þ**
+### 6. **é…ç½®æ–‡ä»¶**
 
-**ÄÜ±£´æ£º**
+**èƒ½ä¿å­˜ï¼š**
 ```dockerfile
-# ¸´ÖÆÅäÖÃÎÄ¼þ
+# å¤åˆ¶é…ç½®æ–‡ä»¶
 COPY config/ /app/config/
 
-# ? ·þÎñÆ÷ÅäÖÃÎÄ¼þ£¨.lua, .json, .xml£©
-# ? Êý¾Ý¿âÅäÖÃ
-# ? ÈÕÖ¾ÅäÖÃ
-# ? ËùÓÐ¾²Ì¬ÅäÖÃ
+# ? æœåŠ¡å™¨é…ç½®æ–‡ä»¶ï¼ˆ.lua, .json, .xmlï¼‰
+# ? æ•°æ®åº“é…ç½®
+# ? æ—¥å¿—é…ç½®
+# ? æ‰€æœ‰é™æ€é…ç½®
 ```
 
-**ÄãµÄÏîÄ¿£º**
+**ä½ çš„é¡¹ç›®ï¼š**
 - ? `config/cpp/cfg_server/*.lua`
-- ? ËùÓÐÅäÖÃÎÄ¼þ
+- ? æ‰€æœ‰é…ç½®æ–‡ä»¶
 
 ---
 
-### 7. **»·¾³±äÁ¿**
+### 7. **çŽ¯å¢ƒå˜é‡**
 
-**ÄÜ±£´æ£º**
+**èƒ½ä¿å­˜ï¼š**
 ```dockerfile
 ENV TZ=Asia/Shanghai \
     LANG=C.UTF-8 \
     PATH=/app/bin:$PATH \
     LD_LIBRARY_PATH=/app/lib
 
-# ? ËùÓÐ»·¾³±äÁ¿
-# ? Ê±ÇøÉèÖÃ
-# ? ÓïÑÔÉèÖÃ
-# ? Â·¾¶ÅäÖÃ
+# ? æ‰€æœ‰çŽ¯å¢ƒå˜é‡
+# ? æ—¶åŒºè®¾ç½®
+# ? è¯­è¨€è®¾ç½®
+# ? è·¯å¾„é…ç½®
 ```
 
 ---
 
-### 8. **ÍøÂçÅäÖÃ£¨ÈÝÆ÷¼¶±ð£©**
+### 8. **ç½‘ç»œé…ç½®ï¼ˆå®¹å™¨çº§åˆ«ï¼‰**
 
-**ÄÜ±£´æ£º**
+**èƒ½ä¿å­˜ï¼š**
 ```yaml
 # docker-compose.yml
 networks:
@@ -175,38 +175,38 @@ networks:
       config:
         - subnet: 172.20.0.0/16
 
-# ? ÈÝÆ÷ÍøÂçÍØÆË
-# ? ·þÎñÖ®¼äµÄÁ¬½Ó¹ØÏµ
-# ? ¶Ë¿ÚÓ³Éä
+# ? å®¹å™¨ç½‘ç»œæ‹“æ‰‘
+# ? æœåŠ¡ä¹‹é—´çš„è¿žæŽ¥å…³ç³»
+# ? ç«¯å£æ˜ å°„
 ```
 
 ---
 
-### 9. **Æô¶¯½Å±¾ºÍ×Ô¶¯»¯ÅäÖÃ**
+### 9. **å¯åŠ¨è„šæœ¬å’Œè‡ªåŠ¨åŒ–é…ç½®**
 
-**ÄÜ±£´æ£º**
+**èƒ½ä¿å­˜ï¼š**
 ```dockerfile
 COPY docker/entrypoint.sh /app/
 RUN chmod +x /app/entrypoint.sh
 
 ENTRYPOINT ["/app/entrypoint.sh"]
 
-# ? Æô¶¯½Å±¾
-# ? ³õÊ¼»¯Âß¼­
-# ? ½¡¿µ¼ì²é½Å±¾
+# ? å¯åŠ¨è„šæœ¬
+# ? åˆå§‹åŒ–é€»è¾‘
+# ? å¥åº·æ£€æŸ¥è„šæœ¬
 ```
 
 ---
 
-## ? Docker ÎÞ·¨±£´æµÄÄÚÈÝ£¨ÐèÒª¶îÍâÅäÖÃ£©
+## ? Docker æ— æ³•ä¿å­˜çš„å†…å®¹ï¼ˆéœ€è¦é¢å¤–é…ç½®ï¼‰
 
-### 1. **Êý¾Ý¿âÊý¾Ý**
+### 1. **æ•°æ®åº“æ•°æ®**
 
-**ÎÞ·¨Ö±½Ó±£´æÔÚ¾µÏñÖÐ£¡**
+**æ— æ³•ç›´æŽ¥ä¿å­˜åœ¨é•œåƒä¸­ï¼**
 
-**Ô­Òò£º** Êý¾ÝÊÇ¶¯Ì¬µÄ£¬²»Ó¦¸Ã´ò°üµ½¾µÏñÖÐ¡£
+**åŽŸå› ï¼š** æ•°æ®æ˜¯åŠ¨æ€çš„ï¼Œä¸åº”è¯¥æ‰“åŒ…åˆ°é•œåƒä¸­ã€‚
 
-**½â¾ö·½°¸£º** Ê¹ÓÃ Docker Êý¾Ý¾í
+**è§£å†³æ–¹æ¡ˆï¼š** ä½¿ç”¨ Docker æ•°æ®å·
 
 ```yaml
 # docker-compose.yml
@@ -214,77 +214,77 @@ services:
   mysql:
     image: mysql:8.0
     volumes:
-      - mysql_data:/var/lib/mysql  # ? Êý¾Ý¾í³Ö¾Ã»¯
+      - mysql_data:/var/lib/mysql  # ? æ•°æ®å·æŒä¹…åŒ–
 
 volumes:
-  mysql_data:  # Êý¾Ý¾í¶¨Òå
+  mysql_data:  # æ•°æ®å·å®šä¹‰
 ```
 
-**ÐÂ»·¾³ÐèÒª£º**
+**æ–°çŽ¯å¢ƒéœ€è¦ï¼š**
 ```bash
-# 1. µ¼ÈëÊý¾Ý¿â½á¹¹
+# 1. å¯¼å…¥æ•°æ®åº“ç»“æž„
 docker compose exec mysql mysql -u root -p < schema.sql
 
-# 2. »òÕßµ¼ÈëÍêÕû±¸·Ý
+# 2. æˆ–è€…å¯¼å…¥å®Œæ•´å¤‡ä»½
 docker compose exec mysql mysql -u root -p < backup.sql
 ```
 
 ---
 
-### 2. **Redis Êý¾Ý**
+### 2. **Redis æ•°æ®**
 
-**ÎÞ·¨Ö±½Ó±£´æ£¡**
+**æ— æ³•ç›´æŽ¥ä¿å­˜ï¼**
 
-**½â¾ö·½°¸£º** Ê¹ÓÃÊý¾Ý¾í + ±¸·Ý
+**è§£å†³æ–¹æ¡ˆï¼š** ä½¿ç”¨æ•°æ®å· + å¤‡ä»½
 
 ```yaml
 services:
   redis:
     image: redis:7-alpine
     volumes:
-      - redis_data:/data  # ? Êý¾Ý¾í
+      - redis_data:/data  # ? æ•°æ®å·
 ```
 
-**ÐÂ»·¾³ÐèÒª£º**
+**æ–°çŽ¯å¢ƒéœ€è¦ï¼š**
 ```bash
-# Redis Í¨³£ÊÇ»º´æ£¬¿ÉÒÔÎª¿ÕÆô¶¯
-# Èç¹ûÐèÒª»Ö¸´Êý¾Ý£º
+# Redis é€šå¸¸æ˜¯ç¼“å­˜ï¼Œå¯ä»¥ä¸ºç©ºå¯åŠ¨
+# å¦‚æžœéœ€è¦æ¢å¤æ•°æ®ï¼š
 docker cp dump.rdb poor_redis:/data/
 docker compose restart redis
 ```
 
 ---
 
-### 3. **Íâ²¿·þÎñÁ¬½ÓÐÅÏ¢£¨Ãô¸ÐÊý¾Ý£©**
+### 3. **å¤–éƒ¨æœåŠ¡è¿žæŽ¥ä¿¡æ¯ï¼ˆæ•æ„Ÿæ•°æ®ï¼‰**
 
-**²»Ó¦¸Ã±£´æÔÚ¾µÏñÖÐ£¡**
+**ä¸åº”è¯¥ä¿å­˜åœ¨é•œåƒä¸­ï¼**
 
-**°üÀ¨£º**
-- ? Êý¾Ý¿âÃÜÂë
-- ? API ÃÜÔ¿
-- ? Ö¤ÊéË½Ô¿
-- ? µÚÈý·½·þÎñÆ¾Ö¤
+**åŒ…æ‹¬ï¼š**
+- ? æ•°æ®åº“å¯†ç 
+- ? API å¯†é’¥
+- ? è¯ä¹¦ç§é’¥
+- ? ç¬¬ä¸‰æ–¹æœåŠ¡å‡­è¯
 
-**½â¾ö·½°¸£º** Ê¹ÓÃ»·¾³±äÁ¿»ò Docker Secrets
+**è§£å†³æ–¹æ¡ˆï¼š** ä½¿ç”¨çŽ¯å¢ƒå˜é‡æˆ– Docker Secrets
 
 ```yaml
 # docker-compose.yml
 services:
   central:
     environment:
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}  # ´Ó .env ¶ÁÈ¡
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}  # ä»Ž .env è¯»å–
       API_KEY: ${API_KEY}
 ```
 
 ```bash
-# .env ÎÄ¼þ£¨²»ÒªÌá½»µ½ Git£¡£©
+# .env æ–‡ä»¶ï¼ˆä¸è¦æäº¤åˆ° Gitï¼ï¼‰
 MYSQL_PASSWORD=your_password
 API_KEY=your_api_key
 ```
 
-**ÐÂ»·¾³ÐèÒª£º**
+**æ–°çŽ¯å¢ƒéœ€è¦ï¼š**
 ```bash
-# 1. ´´½¨ .env ÎÄ¼þ
+# 1. åˆ›å»º .env æ–‡ä»¶
 cat > .env <<EOF
 MYSQL_ROOT_PASSWORD=your_password
 MYSQL_DATABASE=gamedb
@@ -292,85 +292,85 @@ MYSQL_USER=gameuser
 MYSQL_PASSWORD=game_password
 EOF
 
-# 2. »òÊ¹ÓÃ Docker Secrets£¨Éú²ú»·¾³£©
+# 2. æˆ–ä½¿ç”¨ Docker Secretsï¼ˆç”Ÿäº§çŽ¯å¢ƒï¼‰
 echo "my_password" | docker secret create mysql_password -
 ```
 
 ---
 
-### 4. **ÈÕÖ¾ÎÄ¼þ**
+### 4. **æ—¥å¿—æ–‡ä»¶**
 
-**²»Ó¦¸Ã±£´æÔÚ¾µÏñÖÐ£¡**
+**ä¸åº”è¯¥ä¿å­˜åœ¨é•œåƒä¸­ï¼**
 
-**½â¾ö·½°¸£º** Ê¹ÓÃÊý¾Ý¾í»òÖ÷»ú¹ÒÔØ
+**è§£å†³æ–¹æ¡ˆï¼š** ä½¿ç”¨æ•°æ®å·æˆ–ä¸»æœºæŒ‚è½½
 
 ```yaml
 services:
   central:
     volumes:
-      - ./logs:/app/logs  # ? ÈÕÖ¾´æ´¢ÔÚÖ÷»ú
+      - ./logs:/app/logs  # ? æ—¥å¿—å­˜å‚¨åœ¨ä¸»æœº
 ```
 
-**ÐÂ»·¾³ÐèÒª£º**
+**æ–°çŽ¯å¢ƒéœ€è¦ï¼š**
 ```bash
-# ´´½¨ÈÕÖ¾Ä¿Â¼
+# åˆ›å»ºæ—¥å¿—ç›®å½•
 mkdir -p logs
-chmod 777 logs  # »òÊÊµ±µÄÈ¨ÏÞ
+chmod 777 logs  # æˆ–é€‚å½“çš„æƒé™
 ```
 
 ---
 
-### 5. **ÓÃ»§ÉÏ´«µÄÎÄ¼þ**
+### 5. **ç”¨æˆ·ä¸Šä¼ çš„æ–‡ä»¶**
 
-**²»Ó¦¸Ã±£´æÔÚ¾µÏñÖÐ£¡**
+**ä¸åº”è¯¥ä¿å­˜åœ¨é•œåƒä¸­ï¼**
 
-**½â¾ö·½°¸£º** Ê¹ÓÃÊý¾Ý¾í
+**è§£å†³æ–¹æ¡ˆï¼š** ä½¿ç”¨æ•°æ®å·
 
 ```yaml
 services:
   file:
     volumes:
-      - file_storage:/app/data  # ? ÎÄ¼þ´æ´¢
+      - file_storage:/app/data  # ? æ–‡ä»¶å­˜å‚¨
 ```
 
-**ÐÂ»·¾³ÐèÒª£º**
+**æ–°çŽ¯å¢ƒéœ€è¦ï¼š**
 ```bash
-# Èç¹ûÐèÒªÇ¨ÒÆÎÄ¼þ£º
+# å¦‚æžœéœ€è¦è¿ç§»æ–‡ä»¶ï¼š
 docker cp /path/to/files poor_file:/app/data/
 ```
 
 ---
 
-### 6. **Ö÷»úÏà¹ØÅäÖÃ**
+### 6. **ä¸»æœºç›¸å…³é…ç½®**
 
-**ÎÞ·¨±£´æ£º**
-- ? Ö÷»ú IP µØÖ·
-- ? Ö÷»ú¶Ë¿Ú£¨¿ÉÄÜ³åÍ»£©
-- ? Ö÷»úÎÄ¼þÂ·¾¶
-- ? Ö÷»úÍøÂçÅäÖÃ
+**æ— æ³•ä¿å­˜ï¼š**
+- ? ä¸»æœº IP åœ°å€
+- ? ä¸»æœºç«¯å£ï¼ˆå¯èƒ½å†²çªï¼‰
+- ? ä¸»æœºæ–‡ä»¶è·¯å¾„
+- ? ä¸»æœºç½‘ç»œé…ç½®
 
-**ÐÂ»·¾³ÐèÒª£º**
+**æ–°çŽ¯å¢ƒéœ€è¦ï¼š**
 ```bash
-# ¸ù¾ÝÊµ¼ÊÇé¿öÐÞ¸Ä docker-compose.yml
+# æ ¹æ®å®žé™…æƒ…å†µä¿®æ”¹ docker-compose.yml
 ports:
-  - "13306:3306"  # Èç¹û 3306 ±»Õ¼ÓÃ
+  - "13306:3306"  # å¦‚æžœ 3306 è¢«å ç”¨
   
 volumes:
-  - /new/path/logs:/app/logs  # Ê¹ÓÃÐÂµÄÖ÷»úÂ·¾¶
+  - /new/path/logs:/app/logs  # ä½¿ç”¨æ–°çš„ä¸»æœºè·¯å¾„
 ```
 
 ---
 
-### 7. **Íâ²¿ÒÀÀµ·þÎñ**
+### 7. **å¤–éƒ¨ä¾èµ–æœåŠ¡**
 
-**ÎÞ·¨°üº¬ÔÚ¾µÏñÖÐ£º**
-- ? Windows µÄ MySQL£¨Íâ²¿·þÎñ£©
-- ? ÔÆ·þÎñ£¨AWS, Azure£©
-- ? µÚÈý·½ API ·þÎñ
+**æ— æ³•åŒ…å«åœ¨é•œåƒä¸­ï¼š**
+- ? Windows çš„ MySQLï¼ˆå¤–éƒ¨æœåŠ¡ï¼‰
+- ? äº‘æœåŠ¡ï¼ˆAWS, Azureï¼‰
+- ? ç¬¬ä¸‰æ–¹ API æœåŠ¡
 
-**ÐÂ»·¾³ÐèÒª£º**
+**æ–°çŽ¯å¢ƒéœ€è¦ï¼š**
 ```bash
-# ÅäÖÃÍâ²¿·þÎñÁ¬½Ó
+# é…ç½®å¤–éƒ¨æœåŠ¡è¿žæŽ¥
 environment:
   MYSQL_HOST: host.docker.internal  # Windows MySQL
   EXTERNAL_API: https://api.example.com
@@ -378,65 +378,65 @@ environment:
 
 ---
 
-## ?? ÐÂ»·¾³ÅäÖÃ Docker ºóµÄÍêÕû²½Öè
+## ?? æ–°çŽ¯å¢ƒé…ç½® Docker åŽçš„å®Œæ•´æ­¥éª¤
 
-### Ç°ÌáÌõ¼þ
+### å‰ææ¡ä»¶
 
-1. ? ÒÑ°²×° Docker Desktop
-2. ? ÒÑ¿ËÂ¡ÏîÄ¿´úÂë
+1. ? å·²å®‰è£… Docker Desktop
+2. ? å·²å…‹éš†é¡¹ç›®ä»£ç 
 
-### ÍêÕû²½Öè
+### å®Œæ•´æ­¥éª¤
 
-#### **²½Öè 1£º¿ËÂ¡ÏîÄ¿**
+#### **æ­¥éª¤ 1ï¼šå…‹éš†é¡¹ç›®**
 
 ```bash
 git clone https://github.com/your-team/poor_server_stl.git
 cd poor_server_stl
 ```
 
-#### **²½Öè 2£ºÅäÖÃ»·¾³±äÁ¿£¨±ØÐè£©**
+#### **æ­¥éª¤ 2ï¼šé…ç½®çŽ¯å¢ƒå˜é‡ï¼ˆå¿…éœ€ï¼‰**
 
 ```bash
-# ´´½¨ .env ÎÄ¼þ
+# åˆ›å»º .env æ–‡ä»¶
 cat > .env <<EOF
-# MySQL ÅäÖÃ
+# MySQL é…ç½®
 MYSQL_ROOT_PASSWORD=root123456
 MYSQL_DATABASE=gamedb
 MYSQL_USER=gameuser
 MYSQL_PASSWORD=gamepass123
 
-# Redis ÅäÖÃ£¨¿ÉÑ¡£©
+# Redis é…ç½®ï¼ˆå¯é€‰ï¼‰
 REDIS_PASSWORD=
 
-# ·þÎñÆ÷ÅäÖÃ
+# æœåŠ¡å™¨é…ç½®
 SERVER_ENVIRONMENT=development
 LOG_LEVEL=debug
 EOF
 ```
 
-**ÖØÒª£º** `.env` ÎÄ¼þ²»ÒªÌá½»µ½ Git£¡
+**é‡è¦ï¼š** `.env` æ–‡ä»¶ä¸è¦æäº¤åˆ° Gitï¼
 
-#### **²½Öè 3£º´´½¨±ØÒªµÄÄ¿Â¼£¨¿ÉÑ¡£©**
+#### **æ­¥éª¤ 3ï¼šåˆ›å»ºå¿…è¦çš„ç›®å½•ï¼ˆå¯é€‰ï¼‰**
 
 ```bash
-# ´´½¨ÈÕÖ¾Ä¿Â¼
+# åˆ›å»ºæ—¥å¿—ç›®å½•
 mkdir -p logs
 
-# ´´½¨Êý¾Ý±¸·ÝÄ¿Â¼
+# åˆ›å»ºæ•°æ®å¤‡ä»½ç›®å½•
 mkdir -p backups
 ```
 
-#### **²½Öè 4£ºÆô¶¯ËùÓÐ·þÎñ**
+#### **æ­¥éª¤ 4ï¼šå¯åŠ¨æ‰€æœ‰æœåŠ¡**
 
 ```bash
-# Ò»¼üÆô¶¯
+# ä¸€é”®å¯åŠ¨
 docker compose up -d
 
-# ²é¿´Æô¶¯×´Ì¬
+# æŸ¥çœ‹å¯åŠ¨çŠ¶æ€
 docker compose ps
 ```
 
-**Ô¤ÆÚÊä³ö£º**
+**é¢„æœŸè¾“å‡ºï¼š**
 ```
 NAME            IMAGE                  STATUS
 poor_central    poor-server:latest     Up 30 seconds
@@ -447,27 +447,27 @@ poor_mysql      mysql:8.0              Up 1 minute (healthy)
 poor_redis      redis:7-alpine         Up 1 minute (healthy)
 ```
 
-#### **²½Öè 5£º³õÊ¼»¯Êý¾Ý¿â£¨±ØÐè£©**
+#### **æ­¥éª¤ 5ï¼šåˆå§‹åŒ–æ•°æ®åº“ï¼ˆå¿…éœ€ï¼‰**
 
 ```bash
-# 1. µÈ´ý MySQL ÍêÈ«Æô¶¯
+# 1. ç­‰å¾… MySQL å®Œå…¨å¯åŠ¨
 docker compose exec mysql mysqladmin ping -h localhost --wait=30
 
-# 2. ´´½¨Êý¾Ý¿â±í½á¹¹
-docker compose exec mysql mysql -u root -p${MYSQL_ROOT_PASSWORD} gamedb < docunment/server/Êý¾Ý¿â/sql¶¨ÒåÎÄ¼þ/schema.sql
+# 2. åˆ›å»ºæ•°æ®åº“è¡¨ç»“æž„
+docker compose exec mysql mysql -u root -p${MYSQL_ROOT_PASSWORD} gamedb < docunment/server/æ•°æ®åº“/sqlå®šä¹‰æ–‡ä»¶/schema.sql
 
-# »òÕßÊÖ¶¯´´½¨
+# æˆ–è€…æ‰‹åŠ¨åˆ›å»º
 docker compose exec mysql mysql -u root -p${MYSQL_ROOT_PASSWORD}
 ```
 
-**SQL Ê¾Àý£º**
+**SQL ç¤ºä¾‹ï¼š**
 ```sql
--- ´´½¨±ØÒªµÄÊý¾Ý±í
+-- åˆ›å»ºå¿…è¦çš„æ•°æ®è¡¨
 CREATE DATABASE IF NOT EXISTS gamedb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE gamedb;
 
--- ´´½¨ÓÃ»§±í
+-- åˆ›å»ºç”¨æˆ·è¡¨
 CREATE TABLE IF NOT EXISTS users (
     user_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -475,118 +475,118 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- ÆäËû±í...
+-- å…¶ä»–è¡¨...
 ```
 
-#### **²½Öè 6£ºÑéÖ¤·þÎñ**
+#### **æ­¥éª¤ 6ï¼šéªŒè¯æœåŠ¡**
 
 ```bash
-# 1. ¼ì²éËùÓÐÈÝÆ÷×´Ì¬
+# 1. æ£€æŸ¥æ‰€æœ‰å®¹å™¨çŠ¶æ€
 docker compose ps
 
-# 2. ¼ì²éÈÕÖ¾
+# 2. æ£€æŸ¥æ—¥å¿—
 docker compose logs -f central
 
-# 3. ²âÊÔ Redis Á¬½Ó
+# 3. æµ‹è¯• Redis è¿žæŽ¥
 docker compose exec redis redis-cli ping
-# Êä³ö: PONG
+# è¾“å‡º: PONG
 
-# 4. ²âÊÔ MySQL Á¬½Ó
+# 4. æµ‹è¯• MySQL è¿žæŽ¥
 docker compose exec mysql mysql -u root -p${MYSQL_ROOT_PASSWORD} -e "SHOW DATABASES;"
 ```
 
-#### **²½Öè 7£º²âÊÔ·þÎñÆ÷Á¬½Ó**
+#### **æ­¥éª¤ 7ï¼šæµ‹è¯•æœåŠ¡å™¨è¿žæŽ¥**
 
 ```bash
-# Ê¹ÓÃ¿Í»§¶Ë²âÊÔÁ¬½Ó£¨¸ù¾ÝÄãµÄÏîÄ¿£©
-# ÀýÈç£ºtelnet »ò gRPC ¿Í»§¶Ë
+# ä½¿ç”¨å®¢æˆ·ç«¯æµ‹è¯•è¿žæŽ¥ï¼ˆæ ¹æ®ä½ çš„é¡¹ç›®ï¼‰
+# ä¾‹å¦‚ï¼štelnet æˆ– gRPC å®¢æˆ·ç«¯
 
-# ²é¿´·þÎñÆ÷¶Ë¿Ú
+# æŸ¥çœ‹æœåŠ¡å™¨ç«¯å£
 docker compose ps
 ```
 
 ---
 
-## ?? Êµ¼Ê°¸Àý£ºPoor Server STL ÏîÄ¿
+## ?? å®žé™…æ¡ˆä¾‹ï¼šPoor Server STL é¡¹ç›®
 
-### **Docker ±£´æÁËÊ²Ã´£¿**
+### **Docker ä¿å­˜äº†ä»€ä¹ˆï¼Ÿ**
 
-#### ? **ÍêÕû±£´æµÄÄÚÈÝ**
-
-```
-1. ¿ª·¢»·¾³
-   ©À©¤ Ubuntu 22.04
-   ©À©¤ GCC 11.4
-   ©À©¤ CMake 3.28.3
-   ©À©¤ Ninja
-   ©¸©¤ Git
-
-2. ËùÓÐµÚÈý·½¿â£¨Í¨¹ý vcpkg£©
-   ©À©¤ gRPC
-   ©À©¤ Protobuf
-   ©À©¤ MySQL Connector C++
-   ©À©¤ cpp_redis + tacopie
-   ©À©¤ nlohmann-json
-   ©À©¤ lua
-   ©À©¤ spdlog
-   ©À©¤ jwt-cpp
-   ©À©¤ OpenSSL
-   ©¸©¤ Boost ¿â
-
-3. ÏîÄ¿´úÂë
-   ©À©¤ ËùÓÐÔ´´úÂë
-   ©À©¤ ±àÒëºÃµÄ¿ÉÖ´ÐÐÎÄ¼þ
-   ©¸©¤ ÅäÖÃÎÄ¼þÄ£°å
-
-4. ÔËÐÐÊ±»·¾³
-   ©À©¤ MySQL 8.0 ¾µÏñ
-   ©À©¤ Redis 7.0 ¾µÏñ
-   ©¸©¤ ÍøÂçÅäÖÃ
-
-5. Æô¶¯½Å±¾
-   ©À©¤ entrypoint.sh
-   ©¸©¤ ·þÎñ¹ÜÀí½Å±¾
-```
-
-#### ? **ÐèÒª¶îÍâÅäÖÃµÄÄÚÈÝ**
+#### ? **å®Œæ•´ä¿å­˜çš„å†…å®¹**
 
 ```
-1. Ãô¸ÐÐÅÏ¢£¨±ØÐëÊÖ¶¯ÅäÖÃ£©
-   ©À©¤ Êý¾Ý¿âÃÜÂë ¡ú ´´½¨ .env ÎÄ¼þ
-   ©À©¤ API ÃÜÔ¿ ¡ú ´´½¨ .env ÎÄ¼þ
-   ©¸©¤ Ö¤Êé ¡ú ÊÖ¶¯µ¼Èë
+1. å¼€å‘çŽ¯å¢ƒ
+   â”œâ”€ Ubuntu 22.04
+   â”œâ”€ GCC 11.4
+   â”œâ”€ CMake 3.28.3
+   â”œâ”€ Ninja
+   â””â”€ Git
 
-2. Êý¾Ý¿âÊý¾Ý£¨ÐèÒª³õÊ¼»¯£©
-   ©À©¤ Êý¾Ý¿â½á¹¹ ¡ú ÔËÐÐ SQL ½Å±¾
-   ©¸©¤ ³õÊ¼Êý¾Ý ¡ú µ¼ÈëÊý¾ÝÎÄ¼þ
+2. æ‰€æœ‰ç¬¬ä¸‰æ–¹åº“ï¼ˆé€šè¿‡ vcpkgï¼‰
+   â”œâ”€ gRPC
+   â”œâ”€ Protobuf
+   â”œâ”€ MySQL Connector C++
+   â”œâ”€ cpp_redis + tacopie
+   â”œâ”€ nlohmann-json
+   â”œâ”€ lua
+   â”œâ”€ spdlog
+   â”œâ”€ jwt-cpp
+   â”œâ”€ OpenSSL
+   â””â”€ Boost åº“
 
-3. ³Ö¾Ã»¯Êý¾Ý£¨Ê¹ÓÃÊý¾Ý¾í£©
-   ©À©¤ MySQL Êý¾Ý ¡ú Êý¾Ý¾í×Ô¶¯´´½¨
-   ©À©¤ Redis Êý¾Ý ¡ú Êý¾Ý¾í×Ô¶¯´´½¨
-   ©¸©¤ ÈÕÖ¾ÎÄ¼þ ¡ú Ö÷»ú¹ÒÔØ
+3. é¡¹ç›®ä»£ç 
+   â”œâ”€ æ‰€æœ‰æºä»£ç 
+   â”œâ”€ ç¼–è¯‘å¥½çš„å¯æ‰§è¡Œæ–‡ä»¶
+   â””â”€ é…ç½®æ–‡ä»¶æ¨¡æ¿
 
-4. Ö÷»úÌØ¶¨ÅäÖÃ£¨¿ÉÄÜÐèÒªµ÷Õû£©
-   ©À©¤ ¶Ë¿ÚÓ³Éä ¡ú ¸ù¾ÝÖ÷»úÇé¿öÐÞ¸Ä
-   ©¸©¤ ÎÄ¼þÂ·¾¶ ¡ú ¸ù¾ÝÖ÷»úÇé¿öÐÞ¸Ä
+4. è¿è¡Œæ—¶çŽ¯å¢ƒ
+   â”œâ”€ MySQL 8.0 é•œåƒ
+   â”œâ”€ Redis 7.0 é•œåƒ
+   â””â”€ ç½‘ç»œé…ç½®
+
+5. å¯åŠ¨è„šæœ¬
+   â”œâ”€ entrypoint.sh
+   â””â”€ æœåŠ¡ç®¡ç†è„šæœ¬
+```
+
+#### ? **éœ€è¦é¢å¤–é…ç½®çš„å†…å®¹**
+
+```
+1. æ•æ„Ÿä¿¡æ¯ï¼ˆå¿…é¡»æ‰‹åŠ¨é…ç½®ï¼‰
+   â”œâ”€ æ•°æ®åº“å¯†ç  â†’ åˆ›å»º .env æ–‡ä»¶
+   â”œâ”€ API å¯†é’¥ â†’ åˆ›å»º .env æ–‡ä»¶
+   â””â”€ è¯ä¹¦ â†’ æ‰‹åŠ¨å¯¼å…¥
+
+2. æ•°æ®åº“æ•°æ®ï¼ˆéœ€è¦åˆå§‹åŒ–ï¼‰
+   â”œâ”€ æ•°æ®åº“ç»“æž„ â†’ è¿è¡Œ SQL è„šæœ¬
+   â””â”€ åˆå§‹æ•°æ® â†’ å¯¼å…¥æ•°æ®æ–‡ä»¶
+
+3. æŒä¹…åŒ–æ•°æ®ï¼ˆä½¿ç”¨æ•°æ®å·ï¼‰
+   â”œâ”€ MySQL æ•°æ® â†’ æ•°æ®å·è‡ªåŠ¨åˆ›å»º
+   â”œâ”€ Redis æ•°æ® â†’ æ•°æ®å·è‡ªåŠ¨åˆ›å»º
+   â””â”€ æ—¥å¿—æ–‡ä»¶ â†’ ä¸»æœºæŒ‚è½½
+
+4. ä¸»æœºç‰¹å®šé…ç½®ï¼ˆå¯èƒ½éœ€è¦è°ƒæ•´ï¼‰
+   â”œâ”€ ç«¯å£æ˜ å°„ â†’ æ ¹æ®ä¸»æœºæƒ…å†µä¿®æ”¹
+   â””â”€ æ–‡ä»¶è·¯å¾„ â†’ æ ¹æ®ä¸»æœºæƒ…å†µä¿®æ”¹
 ```
 
 ---
 
-### **ÐÂÈËÅäÖÃÍêÕûÇåµ¥**
+### **æ–°äººé…ç½®å®Œæ•´æ¸…å•**
 
-#### **Ç°ÖÃ×¼±¸£¨5 ·ÖÖÓ£©**
+#### **å‰ç½®å‡†å¤‡ï¼ˆ5 åˆ†é’Ÿï¼‰**
 
-- [ ] °²×° Docker Desktop
-- [ ] ¿ËÂ¡ÏîÄ¿´úÂë
-- [ ] °²×° Git£¨Èç¹ûÃ»ÓÐ£©
+- [ ] å®‰è£… Docker Desktop
+- [ ] å…‹éš†é¡¹ç›®ä»£ç 
+- [ ] å®‰è£… Gitï¼ˆå¦‚æžœæ²¡æœ‰ï¼‰
 
-#### **»·¾³ÅäÖÃ£¨5 ·ÖÖÓ£©**
+#### **çŽ¯å¢ƒé…ç½®ï¼ˆ5 åˆ†é’Ÿï¼‰**
 
 ```bash
-# 1. ½øÈëÏîÄ¿Ä¿Â¼
+# 1. è¿›å…¥é¡¹ç›®ç›®å½•
 cd poor_server_stl
 
-# 2. ´´½¨ .env ÎÄ¼þ
+# 2. åˆ›å»º .env æ–‡ä»¶
 cat > .env <<EOF
 MYSQL_ROOT_PASSWORD=root123456
 MYSQL_DATABASE=gamedb
@@ -594,115 +594,115 @@ MYSQL_USER=gameuser
 MYSQL_PASSWORD=gamepass123
 EOF
 
-# 3. Æô¶¯·þÎñ
+# 3. å¯åŠ¨æœåŠ¡
 docker compose up -d
 ```
 
-#### **Êý¾Ý¿â³õÊ¼»¯£¨5 ·ÖÖÓ£©**
+#### **æ•°æ®åº“åˆå§‹åŒ–ï¼ˆ5 åˆ†é’Ÿï¼‰**
 
 ```bash
-# 1. µÈ´ý MySQL Æô¶¯
+# 1. ç­‰å¾… MySQL å¯åŠ¨
 sleep 30
 
-# 2. ´´½¨Êý¾Ý¿â±í
+# 2. åˆ›å»ºæ•°æ®åº“è¡¨
 docker compose exec -T mysql mysql -u root -proot123456 gamedb < schema.sql
 
-# »òÊÖ¶¯´´½¨
+# æˆ–æ‰‹åŠ¨åˆ›å»º
 docker compose exec mysql mysql -u root -proot123456
-# È»ºóÖ´ÐÐ CREATE TABLE ... Óï¾ä
+# ç„¶åŽæ‰§è¡Œ CREATE TABLE ... è¯­å¥
 ```
 
-#### **ÑéÖ¤£¨2 ·ÖÖÓ£©**
+#### **éªŒè¯ï¼ˆ2 åˆ†é’Ÿï¼‰**
 
 ```bash
-# 1. ¼ì²é·þÎñ×´Ì¬
+# 1. æ£€æŸ¥æœåŠ¡çŠ¶æ€
 docker compose ps
 
-# 2. ²é¿´ÈÕÖ¾
+# 2. æŸ¥çœ‹æ—¥å¿—
 docker compose logs -f
 
-# 3. ²âÊÔÁ¬½Ó
-# ¸ù¾ÝÄãµÄ¿Í»§¶Ë²âÊÔ
+# 3. æµ‹è¯•è¿žæŽ¥
+# æ ¹æ®ä½ çš„å®¢æˆ·ç«¯æµ‹è¯•
 ```
 
-**×ÜºÄÊ±£ºÔ¼ 15-20 ·ÖÖÓ**£¨vs ´«Í³·½Ê½µÄ 2-3 Ìì£©
+**æ€»è€—æ—¶ï¼šçº¦ 15-20 åˆ†é’Ÿ**ï¼ˆvs ä¼ ç»Ÿæ–¹å¼çš„ 2-3 å¤©ï¼‰
 
 ---
 
-## ?? ÐÂ»·¾³ÅäÖÃ¼ì²éÇåµ¥
+## ?? æ–°çŽ¯å¢ƒé…ç½®æ£€æŸ¥æ¸…å•
 
-### Docker »·¾³
+### Docker çŽ¯å¢ƒ
 
-- [ ] Docker Desktop ÒÑ°²×°²¢ÔËÐÐ
-- [ ] Docker Compose ¿ÉÓÃ
-- [ ] Docker °æ±¾ ¡Ý 20.10
+- [ ] Docker Desktop å·²å®‰è£…å¹¶è¿è¡Œ
+- [ ] Docker Compose å¯ç”¨
+- [ ] Docker ç‰ˆæœ¬ â‰¥ 20.10
 
-### ÏîÄ¿ÎÄ¼þ
+### é¡¹ç›®æ–‡ä»¶
 
-- [ ] ÒÑ¿ËÂ¡ÏîÄ¿´úÂë
-- [ ] ¿ÉÒÔ·ÃÎÊ `Dockerfile` ºÍ `docker-compose.yml`
-- [ ] ÓÐÍøÂçÁ¬½Ó£¨Ê×´Î¹¹½¨ÐèÒªÏÂÔØ¾µÏñ£©
+- [ ] å·²å…‹éš†é¡¹ç›®ä»£ç 
+- [ ] å¯ä»¥è®¿é—® `Dockerfile` å’Œ `docker-compose.yml`
+- [ ] æœ‰ç½‘ç»œè¿žæŽ¥ï¼ˆé¦–æ¬¡æž„å»ºéœ€è¦ä¸‹è½½é•œåƒï¼‰
 
-### ÅäÖÃÎÄ¼þ
+### é…ç½®æ–‡ä»¶
 
-- [ ] ÒÑ´´½¨ `.env` ÎÄ¼þ
-- [ ] ÒÑÅäÖÃÊý¾Ý¿âÃÜÂë
-- [ ] ÒÑÅäÖÃËùÓÐ±ØÐèµÄ»·¾³±äÁ¿
+- [ ] å·²åˆ›å»º `.env` æ–‡ä»¶
+- [ ] å·²é…ç½®æ•°æ®åº“å¯†ç 
+- [ ] å·²é…ç½®æ‰€æœ‰å¿…éœ€çš„çŽ¯å¢ƒå˜é‡
 
-### Êý¾Ý¿â
+### æ•°æ®åº“
 
-- [ ] ÒÑ×¼±¸ SQL ³õÊ¼»¯½Å±¾
-- [ ] ÁË½âÊý¾Ý¿â±í½á¹¹
-- [ ] ÓÐ²âÊÔÊý¾Ý£¨¿ÉÑ¡£©
+- [ ] å·²å‡†å¤‡ SQL åˆå§‹åŒ–è„šæœ¬
+- [ ] äº†è§£æ•°æ®åº“è¡¨ç»“æž„
+- [ ] æœ‰æµ‹è¯•æ•°æ®ï¼ˆå¯é€‰ï¼‰
 
-### ¶Ë¿Ú
+### ç«¯å£
 
-- [ ] È·ÈÏ¶Ë¿Ú²»³åÍ»£¨3306, 6379, 50051-50056, 8080-8082£©
-- [ ] ÈçÓÐ³åÍ»£¬ÐÞ¸Ä `docker-compose.yml` ÖÐµÄ¶Ë¿ÚÓ³Éä
+- [ ] ç¡®è®¤ç«¯å£ä¸å†²çªï¼ˆ3306, 6379, 50051-50056, 8080-8082ï¼‰
+- [ ] å¦‚æœ‰å†²çªï¼Œä¿®æ”¹ `docker-compose.yml` ä¸­çš„ç«¯å£æ˜ å°„
 
-### ´æ´¢
+### å­˜å‚¨
 
-- [ ] ÓÐ×ã¹»´ÅÅÌ¿Õ¼ä£¨ÖÁÉÙ 10GB£©
-- [ ] ´´½¨±ØÒªµÄÄ¿Â¼£¨logs, backups£©
+- [ ] æœ‰è¶³å¤Ÿç£ç›˜ç©ºé—´ï¼ˆè‡³å°‘ 10GBï¼‰
+- [ ] åˆ›å»ºå¿…è¦çš„ç›®å½•ï¼ˆlogs, backupsï¼‰
 
 ---
 
-## ?? ×Ü½á
+## ?? æ€»ç»“
 
-### **Docker ±£´æµÄÄÚÈÝ**
+### **Docker ä¿å­˜çš„å†…å®¹**
 
-| Àà±ð | ÄÚÈÝ | ±£´æ·½Ê½ |
+| ç±»åˆ« | å†…å®¹ | ä¿å­˜æ–¹å¼ |
 |------|------|---------|
-| **²Ù×÷ÏµÍ³** | Ubuntu 22.04 | ? Dockerfile |
-| **±àÒë¹¤¾ß** | GCC, CMake, Ninja | ? Dockerfile |
-| **µÚÈý·½¿â** | vcpkg ËùÓÐÒÀÀµ | ? Dockerfile + vcpkg.json |
-| **ÏîÄ¿´úÂë** | Ô´´úÂë + ¿ÉÖ´ÐÐÎÄ¼þ | ? Dockerfile |
-| **ÅäÖÃÄ£°å** | .lua ÅäÖÃÎÄ¼þ | ? Dockerfile |
-| **ÔËÐÐÊ±»·¾³** | MySQL, Redis ¾µÏñ | ? docker-compose.yml |
-| **ÍøÂçÅäÖÃ** | ·þÎñÁ¬½Ó¹ØÏµ | ? docker-compose.yml |
+| **æ“ä½œç³»ç»Ÿ** | Ubuntu 22.04 | ? Dockerfile |
+| **ç¼–è¯‘å·¥å…·** | GCC, CMake, Ninja | ? Dockerfile |
+| **ç¬¬ä¸‰æ–¹åº“** | vcpkg æ‰€æœ‰ä¾èµ– | ? Dockerfile + vcpkg.json |
+| **é¡¹ç›®ä»£ç ** | æºä»£ç  + å¯æ‰§è¡Œæ–‡ä»¶ | ? Dockerfile |
+| **é…ç½®æ¨¡æ¿** | .lua é…ç½®æ–‡ä»¶ | ? Dockerfile |
+| **è¿è¡Œæ—¶çŽ¯å¢ƒ** | MySQL, Redis é•œåƒ | ? docker-compose.yml |
+| **ç½‘ç»œé…ç½®** | æœåŠ¡è¿žæŽ¥å…³ç³» | ? docker-compose.yml |
 
-### **ÐèÒª¶îÍâÅäÖÃµÄÄÚÈÝ**
+### **éœ€è¦é¢å¤–é…ç½®çš„å†…å®¹**
 
-| Àà±ð | ÄÚÈÝ | ÅäÖÃ·½Ê½ |
+| ç±»åˆ« | å†…å®¹ | é…ç½®æ–¹å¼ |
 |------|------|---------|
-| **Ãô¸ÐÐÅÏ¢** | ÃÜÂë¡¢ÃÜÔ¿ | ? .env ÎÄ¼þ£¨ÊÖ¶¯´´½¨£© |
-| **Êý¾Ý¿âÊý¾Ý** | ±í½á¹¹¡¢Êý¾Ý | ? SQL ½Å±¾£¨ÊÖ¶¯Ö´ÐÐ£© |
-| **³Ö¾Ã»¯Êý¾Ý** | MySQL/Redis Êý¾Ý | ?? Êý¾Ý¾í£¨×Ô¶¯´´½¨£© |
-| **ÈÕÖ¾ÎÄ¼þ** | ÔËÐÐÈÕÖ¾ | ?? Ö÷»ú¹ÒÔØ£¨×Ô¶¯£© |
-| **ÓÃ»§ÎÄ¼þ** | ÉÏ´«ÎÄ¼þ | ?? Êý¾Ý¾í£¨×Ô¶¯´´½¨£© |
+| **æ•æ„Ÿä¿¡æ¯** | å¯†ç ã€å¯†é’¥ | ? .env æ–‡ä»¶ï¼ˆæ‰‹åŠ¨åˆ›å»ºï¼‰ |
+| **æ•°æ®åº“æ•°æ®** | è¡¨ç»“æž„ã€æ•°æ® | ? SQL è„šæœ¬ï¼ˆæ‰‹åŠ¨æ‰§è¡Œï¼‰ |
+| **æŒä¹…åŒ–æ•°æ®** | MySQL/Redis æ•°æ® | ?? æ•°æ®å·ï¼ˆè‡ªåŠ¨åˆ›å»ºï¼‰ |
+| **æ—¥å¿—æ–‡ä»¶** | è¿è¡Œæ—¥å¿— | ?? ä¸»æœºæŒ‚è½½ï¼ˆè‡ªåŠ¨ï¼‰ |
+| **ç”¨æˆ·æ–‡ä»¶** | ä¸Šä¼ æ–‡ä»¶ | ?? æ•°æ®å·ï¼ˆè‡ªåŠ¨åˆ›å»ºï¼‰ |
 
-**Í¼Àý£º**
-- ? = ÍêÈ«×Ô¶¯»¯£¬ÎÞÐèÅäÖÃ
-- ?? = ²¿·Ö×Ô¶¯»¯£¬¿ÉÄÜÐèÒªµ÷Õû
-- ? = ÐèÒªÊÖ¶¯ÅäÖÃ
+**å›¾ä¾‹ï¼š**
+- ? = å®Œå…¨è‡ªåŠ¨åŒ–ï¼Œæ— éœ€é…ç½®
+- ?? = éƒ¨åˆ†è‡ªåŠ¨åŒ–ï¼Œå¯èƒ½éœ€è¦è°ƒæ•´
+- ? = éœ€è¦æ‰‹åŠ¨é…ç½®
 
 ---
 
-### **ÐÂ»·¾³ 3 ²½×ß**
+### **æ–°çŽ¯å¢ƒ 3 æ­¥èµ°**
 
 ```bash
-# ²½Öè 1: Æô¶¯£¨5 ·ÖÖÓ£©
-git clone <ÏîÄ¿µØÖ·>
+# æ­¥éª¤ 1: å¯åŠ¨ï¼ˆ5 åˆ†é’Ÿï¼‰
+git clone <é¡¹ç›®åœ°å€>
 cd poor_server_stl
 cat > .env <<EOF
 MYSQL_ROOT_PASSWORD=root123456
@@ -710,18 +710,18 @@ MYSQL_DATABASE=gamedb
 EOF
 docker compose up -d
 
-# ²½Öè 2: ³õÊ¼»¯Êý¾Ý¿â£¨5 ·ÖÖÓ£©
+# æ­¥éª¤ 2: åˆå§‹åŒ–æ•°æ®åº“ï¼ˆ5 åˆ†é’Ÿï¼‰
 docker compose exec -T mysql mysql -u root -proot123456 gamedb < schema.sql
 
-# ²½Öè 3: ÑéÖ¤£¨2 ·ÖÖÓ£©
+# æ­¥éª¤ 3: éªŒè¯ï¼ˆ2 åˆ†é’Ÿï¼‰
 docker compose ps
 docker compose logs -f
 
-# Íê³É£¡
+# å®Œæˆï¼
 ```
 
 ---
 
-**Docker ½«ÄãµÄ»·¾³ÅäÖÃ´Ó "ºÚÄ§·¨" ±ä³ÉÁË "Èý²½¸ã¶¨"£¡** ???
+**Docker å°†ä½ çš„çŽ¯å¢ƒé…ç½®ä»Ž "é»‘é­”æ³•" å˜æˆäº† "ä¸‰æ­¥æžå®š"ï¼** ???
 
-ÓÐÁËÕâ·ÝÎÄµµ£¬ÐÂÈËÅäÖÃ»·¾³½«±äµÃÎÞ±È¼òµ¥¡£ËùÓÐ¸´ÔÓµÄ»·¾³ÒÀÀµ¶¼±» Docker ÓÅÑÅµØ½â¾öÁË£¡
+æœ‰äº†è¿™ä»½æ–‡æ¡£ï¼Œæ–°äººé…ç½®çŽ¯å¢ƒå°†å˜å¾—æ— æ¯”ç®€å•ã€‚æ‰€æœ‰å¤æ‚çš„çŽ¯å¢ƒä¾èµ–éƒ½è¢« Docker ä¼˜é›…åœ°è§£å†³äº†ï¼

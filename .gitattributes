@@ -1,0 +1,88 @@
+# Git 换行符和编码配置
+# 防止跨平台开发时的编码和换行符混乱
+
+# 自动检测文本文件并进行换行符规范化
+* text=auto
+
+# 源代码文件 - 强制使用 LF
+*.cpp text eol=lf
+*.h text eol=lf
+*.hpp text eol=lf
+*.c text eol=lf
+*.cc text eol=lf
+*.cxx text eol=lf
+*.hxx text eol=lf
+*.inl text eol=lf
+
+# Lua 文件
+*.lua text eol=lf
+
+# CMake 文件
+CMakeLists.txt text eol=lf
+*.cmake text eol=lf
+
+# Protobuf 文件
+*.proto text eol=lf
+
+# 配置文件
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.ini text eol=lf
+*.conf text eol=lf
+
+# 文档文件
+*.md text eol=lf
+*.txt text eol=lf
+*.rst text eol=lf
+
+# Shell 脚本（必须 LF）
+*.sh text eol=lf
+
+# Windows 脚本（必须 CRLF）
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Makefile（必须 LF）
+Makefile text eol=lf
+*.mk text eol=lf
+
+# 二进制文件 - 不进行换行符转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.flv binary
+*.fla binary
+*.swf binary
+*.gz binary
+*.zip binary
+*.7z binary
+*.ttf binary
+*.eot binary
+*.woff binary
+*.woff2 binary
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.a binary
+*.lib binary
+*.o binary
+*.obj binary
+*.pyc binary
+*.pyd binary
+*.db binary
+*.sqlite binary
+*.pdf binary
+
+# 导出忽略文件（减小归档大小）
+.gitattributes export-ignore
+.gitignore export-ignore
+.editorconfig export-ignore

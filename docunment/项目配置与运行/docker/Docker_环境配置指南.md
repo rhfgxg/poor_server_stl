@@ -1,116 +1,116 @@
-# Docker »·¾³ÅäÖÃÖ¸ÄÏ
+# Docker ç¯å¢ƒé…ç½®æŒ‡å—
 
-±¾ÎÄµµ½éÉÜÈçºÎÔÚ Windows + WSL2 »·¾³ÏÂÅäÖÃ Docker£¬ÓÃÓÚÈİÆ÷»¯²¿Êğ poor_server_stl ÏîÄ¿¡£
-
----
-
-## ?? Ä¿Â¼
-
-1. [°²×° Docker Desktop](#°²×°-docker-desktop)
-2. [ÑéÖ¤°²×°](#ÑéÖ¤°²×°)
-3. [Docker »ù´¡ÃüÁî](#docker-»ù´¡ÃüÁî)
-4. [ÏîÄ¿ÈİÆ÷»¯](#ÏîÄ¿ÈİÆ÷»¯)
+æœ¬æ–‡æ¡£ä»‹ç»å¦‚ä½•åœ¨ Windows + WSL2 ç¯å¢ƒä¸‹é…ç½® Dockerï¼Œç”¨äºå®¹å™¨åŒ–éƒ¨ç½² poor_server_stl é¡¹ç›®ã€‚
 
 ---
 
-## ?? °²×° Docker Desktop
+## ?? ç›®å½•
 
-### ²½Öè 1£ºÏÂÔØ Docker Desktop
+1. [å®‰è£… Docker Desktop](#å®‰è£…-docker-desktop)
+2. [éªŒè¯å®‰è£…](#éªŒè¯å®‰è£…)
+3. [Docker åŸºç¡€å‘½ä»¤](#docker-åŸºç¡€å‘½ä»¤)
+4. [é¡¹ç›®å®¹å™¨åŒ–](#é¡¹ç›®å®¹å™¨åŒ–)
 
-·ÃÎÊ¹Ù·½ÍøÕ¾ÏÂÔØ£º
-- ¹ÙÍø£ºhttps://www.docker.com/products/docker-desktop/
-- Ö±½ÓÏÂÔØ£ºhttps://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
+---
 
-### ²½Öè 2£ºÏµÍ³ÒªÇó
+## ?? å®‰è£… Docker Desktop
 
-- Windows 10/11 ×¨Òµ°æ¡¢ÆóÒµ°æ»ò½ÌÓı°æ£¨ĞèÒª Hyper-V£©
-- »òÕß Windows 10/11 ¼ÒÍ¥°æ + WSL2£¨ÍÆ¼ö£©
-- ÖÁÉÙ 4GB RAM
-- ÆôÓÃ BIOS ĞéÄâ»¯
+### æ­¥éª¤ 1ï¼šä¸‹è½½ Docker Desktop
 
-### ²½Öè 3£º°²×°Ç°×¼±¸
+è®¿é—®å®˜æ–¹ç½‘ç«™ä¸‹è½½ï¼š
+- å®˜ç½‘ï¼šhttps://www.docker.com/products/docker-desktop/
+- ç›´æ¥ä¸‹è½½ï¼šhttps://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe
 
-**È·±£ WSL2 ÒÑ°²×°²¢¸üĞÂ£º**
+### æ­¥éª¤ 2ï¼šç³»ç»Ÿè¦æ±‚
+
+- Windows 10/11 ä¸“ä¸šç‰ˆã€ä¼ä¸šç‰ˆæˆ–æ•™è‚²ç‰ˆï¼ˆéœ€è¦ Hyper-Vï¼‰
+- æˆ–è€… Windows 10/11 å®¶åº­ç‰ˆ + WSL2ï¼ˆæ¨èï¼‰
+- è‡³å°‘ 4GB RAM
+- å¯ç”¨ BIOS è™šæ‹ŸåŒ–
+
+### æ­¥éª¤ 3ï¼šå®‰è£…å‰å‡†å¤‡
+
+**ç¡®ä¿ WSL2 å·²å®‰è£…å¹¶æ›´æ–°ï¼š**
 
 ```powershell
-# ÒÔ¹ÜÀíÔ±Éí·İÔËĞĞ PowerShell
+# ä»¥ç®¡ç†å‘˜èº«ä»½è¿è¡Œ PowerShell
 
-# ¼ì²é WSL °æ±¾
+# æ£€æŸ¥ WSL ç‰ˆæœ¬
 wsl --version
 
-# Èç¹ûĞèÒª£¬¸üĞÂ WSL
+# å¦‚æœéœ€è¦ï¼Œæ›´æ–° WSL
 wsl --update
 
-# ÉèÖÃ WSL2 ÎªÄ¬ÈÏ°æ±¾
+# è®¾ç½® WSL2 ä¸ºé»˜è®¤ç‰ˆæœ¬
 wsl --set-default-version 2
 ```
 
-### ²½Öè 4£º°²×° Docker Desktop
+### æ­¥éª¤ 4ï¼šå®‰è£… Docker Desktop
 
-1. ÔËĞĞÏÂÔØµÄ°²×°³ÌĞò
-2. Ñ¡Ôñ "Use WSL 2 instead of Hyper-V"£¨ÍÆ¼ö£©
-3. °´ÕÕÏòµ¼Íê³É°²×°
-4. ÖØÆô¼ÆËã»ú
+1. è¿è¡Œä¸‹è½½çš„å®‰è£…ç¨‹åº
+2. é€‰æ‹© "Use WSL 2 instead of Hyper-V"ï¼ˆæ¨èï¼‰
+3. æŒ‰ç…§å‘å¯¼å®Œæˆå®‰è£…
+4. é‡å¯è®¡ç®—æœº
 
-### ²½Öè 5£ºÅäÖÃ Docker Desktop
+### æ­¥éª¤ 5ï¼šé…ç½® Docker Desktop
 
-°²×°ºóÊ×´ÎÆô¶¯£º
+å®‰è£…åé¦–æ¬¡å¯åŠ¨ï¼š
 
-1. **½ÓÊÜ·şÎñÌõ¿î**
-2. **µÇÂ¼ Docker Hub**£¨¿ÉÑ¡£¬½¨Òé×¢²áÒ»¸öÃâ·ÑÕËºÅ£©
-3. **ÉèÖÃ ¡ú Resources ¡ú WSL Integration**
-   - ÆôÓÃ "Enable integration with my default WSL distro"
-   - ¹´Ñ¡ÄãµÄ Ubuntu WSL2 ·¢ĞĞ°æ
+1. **æ¥å—æœåŠ¡æ¡æ¬¾**
+2. **ç™»å½• Docker Hub**ï¼ˆå¯é€‰ï¼Œå»ºè®®æ³¨å†Œä¸€ä¸ªå…è´¹è´¦å·ï¼‰
+3. **è®¾ç½® â†’ Resources â†’ WSL Integration**
+   - å¯ç”¨ "Enable integration with my default WSL distro"
+   - å‹¾é€‰ä½ çš„ Ubuntu WSL2 å‘è¡Œç‰ˆ
 
-4. **ÉèÖÃ ¡ú Resources ¡ú Advanced**£¨¿ÉÑ¡ÓÅ»¯£©
+4. **è®¾ç½® â†’ Resources â†’ Advanced**ï¼ˆå¯é€‰ä¼˜åŒ–ï¼‰
    ```
-   CPUs: 4-6 ºË£¨¸ù¾İÄãµÄ CPU£©
-   Memory: 4-8 GB£¨¸ù¾İÄãµÄÄÚ´æ£©
+   CPUs: 4-6 æ ¸ï¼ˆæ ¹æ®ä½ çš„ CPUï¼‰
+   Memory: 4-8 GBï¼ˆæ ¹æ®ä½ çš„å†…å­˜ï¼‰
    Swap: 1-2 GB
    Disk image size: 60 GB+
    ```
 
-5. **Ó¦ÓÃ²¢ÖØÆô**
+5. **åº”ç”¨å¹¶é‡å¯**
 
 ---
 
-## ? ÑéÖ¤°²×°
+## ? éªŒè¯å®‰è£…
 
-### ÔÚ PowerShell ÖĞÑéÖ¤
+### åœ¨ PowerShell ä¸­éªŒè¯
 
 ```powershell
-# ¼ì²é Docker °æ±¾
+# æ£€æŸ¥ Docker ç‰ˆæœ¬
 docker --version
-# Êä³öÊ¾Àı: Docker version 24.0.7, build afdd53b
+# è¾“å‡ºç¤ºä¾‹: Docker version 24.0.7, build afdd53b
 
-# ¼ì²é Docker Compose °æ±¾
+# æ£€æŸ¥ Docker Compose ç‰ˆæœ¬
 docker compose version
-# Êä³öÊ¾Àı: Docker Compose version v2.23.0
+# è¾“å‡ºç¤ºä¾‹: Docker Compose version v2.23.0
 
-# ÔËĞĞ²âÊÔÈİÆ÷
+# è¿è¡Œæµ‹è¯•å®¹å™¨
 docker run hello-world
 ```
 
-### ÔÚ WSL2 ÖĞÑéÖ¤
+### åœ¨ WSL2 ä¸­éªŒè¯
 
 ```bash
-# Æô¶¯ WSL2
+# å¯åŠ¨ WSL2
 wsl
 
-# ¼ì²é Docker
+# æ£€æŸ¥ Docker
 docker --version
 
-# ÔËĞĞ²âÊÔÈİÆ÷
+# è¿è¡Œæµ‹è¯•å®¹å™¨
 docker run hello-world
 
-# ²é¿´ÔËĞĞµÄÈİÆ÷
+# æŸ¥çœ‹è¿è¡Œçš„å®¹å™¨
 docker ps
 
-# ²é¿´ËùÓĞÈİÆ÷£¨°üÀ¨Í£Ö¹µÄ£©
+# æŸ¥çœ‹æ‰€æœ‰å®¹å™¨ï¼ˆåŒ…æ‹¬åœæ­¢çš„ï¼‰
 docker ps -a
 ```
 
-**Ô¤ÆÚÊä³ö£º**
+**é¢„æœŸè¾“å‡ºï¼š**
 ```
 CONTAINER ID   IMAGE         COMMAND    CREATED         STATUS                     PORTS     NAMES
 abc123def456   hello-world   "/hello"   2 minutes ago   Exited (0) 2 minutes ago             amazing_name
@@ -118,199 +118,199 @@ abc123def456   hello-world   "/hello"   2 minutes ago   Exited (0) 2 minutes ago
 
 ---
 
-## ?? Docker »ù´¡ÃüÁî
+## ?? Docker åŸºç¡€å‘½ä»¤
 
-### ¾µÏñ¹ÜÀí
+### é•œåƒç®¡ç†
 
 ```bash
-# ËÑË÷¾µÏñ
+# æœç´¢é•œåƒ
 docker search ubuntu
 
-# À­È¡¾µÏñ
+# æ‹‰å–é•œåƒ
 docker pull ubuntu:22.04
 
-# ÁĞ³ö±¾µØ¾µÏñ
+# åˆ—å‡ºæœ¬åœ°é•œåƒ
 docker images
 
-# É¾³ı¾µÏñ
+# åˆ é™¤é•œåƒ
 docker rmi ubuntu:22.04
 
-# ¹¹½¨¾µÏñ
+# æ„å»ºé•œåƒ
 docker build -t myapp:latest .
 
-# ¸ø¾µÏñ´ò±êÇ©
+# ç»™é•œåƒæ‰“æ ‡ç­¾
 docker tag myapp:latest myapp:v1.0
 ```
 
-### ÈİÆ÷¹ÜÀí
+### å®¹å™¨ç®¡ç†
 
 ```bash
-# ÔËĞĞÈİÆ÷
+# è¿è¡Œå®¹å™¨
 docker run -it ubuntu:22.04 bash
-docker run -d -p 8080:80 nginx  # ºóÌ¨ÔËĞĞ£¬¶Ë¿ÚÓ³Éä
+docker run -d -p 8080:80 nginx  # åå°è¿è¡Œï¼Œç«¯å£æ˜ å°„
 
-# ÁĞ³öÔËĞĞÖĞµÄÈİÆ÷
+# åˆ—å‡ºè¿è¡Œä¸­çš„å®¹å™¨
 docker ps
 
-# ÁĞ³öËùÓĞÈİÆ÷
+# åˆ—å‡ºæ‰€æœ‰å®¹å™¨
 docker ps -a
 
-# Í£Ö¹ÈİÆ÷
+# åœæ­¢å®¹å™¨
 docker stop <container_id>
 
-# Æô¶¯ÒÑÍ£Ö¹µÄÈİÆ÷
+# å¯åŠ¨å·²åœæ­¢çš„å®¹å™¨
 docker start <container_id>
 
-# ÖØÆôÈİÆ÷
+# é‡å¯å®¹å™¨
 docker restart <container_id>
 
-# É¾³ıÈİÆ÷
+# åˆ é™¤å®¹å™¨
 docker rm <container_id>
 
-# ½øÈëÔËĞĞÖĞµÄÈİÆ÷
+# è¿›å…¥è¿è¡Œä¸­çš„å®¹å™¨
 docker exec -it <container_id> bash
 
-# ²é¿´ÈİÆ÷ÈÕÖ¾
+# æŸ¥çœ‹å®¹å™¨æ—¥å¿—
 docker logs <container_id>
-docker logs -f <container_id>  # ³ÖĞøÊä³öÈÕÖ¾
+docker logs -f <container_id>  # æŒç»­è¾“å‡ºæ—¥å¿—
 
-# ²é¿´ÈİÆ÷×ÊÔ´Ê¹ÓÃ
+# æŸ¥çœ‹å®¹å™¨èµ„æºä½¿ç”¨
 docker stats
 ```
 
-### Êı¾İ¹ÜÀí
+### æ•°æ®ç®¡ç†
 
 ```bash
-# ´´½¨Êı¾İ¾í
+# åˆ›å»ºæ•°æ®å·
 docker volume create mydata
 
-# ÁĞ³öÊı¾İ¾í
+# åˆ—å‡ºæ•°æ®å·
 docker volume ls
 
-# É¾³ıÊı¾İ¾í
+# åˆ é™¤æ•°æ®å·
 docker volume rm mydata
 
-# Ê¹ÓÃÊı¾İ¾íÔËĞĞÈİÆ÷
+# ä½¿ç”¨æ•°æ®å·è¿è¡Œå®¹å™¨
 docker run -v mydata:/data ubuntu:22.04
 ```
 
-### ÍøÂç¹ÜÀí
+### ç½‘ç»œç®¡ç†
 
 ```bash
-# ÁĞ³öÍøÂç
+# åˆ—å‡ºç½‘ç»œ
 docker network ls
 
-# ´´½¨ÍøÂç
+# åˆ›å»ºç½‘ç»œ
 docker network create mynetwork
 
-# ÔÚÖ¸¶¨ÍøÂçÖĞÔËĞĞÈİÆ÷
+# åœ¨æŒ‡å®šç½‘ç»œä¸­è¿è¡Œå®¹å™¨
 docker run --network mynetwork ubuntu:22.04
 
-# É¾³ıÍøÂç
+# åˆ é™¤ç½‘ç»œ
 docker network rm mynetwork
 ```
 
-### ÇåÀíÃüÁî
+### æ¸…ç†å‘½ä»¤
 
 ```bash
-# É¾³ıËùÓĞÍ£Ö¹µÄÈİÆ÷
+# åˆ é™¤æ‰€æœ‰åœæ­¢çš„å®¹å™¨
 docker container prune
 
-# É¾³ıËùÓĞÎ´Ê¹ÓÃµÄ¾µÏñ
+# åˆ é™¤æ‰€æœ‰æœªä½¿ç”¨çš„é•œåƒ
 docker image prune
 
-# É¾³ıËùÓĞÎ´Ê¹ÓÃµÄÊı¾İ¾í
+# åˆ é™¤æ‰€æœ‰æœªä½¿ç”¨çš„æ•°æ®å·
 docker volume prune
 
-# ÇåÀíËùÓĞÎ´Ê¹ÓÃµÄ×ÊÔ´
+# æ¸…ç†æ‰€æœ‰æœªä½¿ç”¨çš„èµ„æº
 docker system prune -a
 ```
 
 ---
 
-## ?? ÏîÄ¿ÈİÆ÷»¯
+## ?? é¡¹ç›®å®¹å™¨åŒ–
 
-½ÓÏÂÀ´½«ÔÚµ¥¶ÀµÄÎÄµµÖĞÏêÏ¸½éÉÜÈçºÎÈİÆ÷»¯ poor_server_stl ÏîÄ¿¡£
+æ¥ä¸‹æ¥å°†åœ¨å•ç‹¬çš„æ–‡æ¡£ä¸­è¯¦ç»†ä»‹ç»å¦‚ä½•å®¹å™¨åŒ– poor_server_stl é¡¹ç›®ã€‚
 
-²Î¼û£º
-- [Docker_²¿ÊğÖ¸ÄÏ.md](./Docker_²¿ÊğÖ¸ÄÏ.md) - ÈçºÎ½«ÏîÄ¿ÈİÆ÷»¯
-- [Dockerfile Ïê½â](./Dockerfile) - ÏîÄ¿µÄ Dockerfile ÅäÖÃ
+å‚è§ï¼š
+- [Docker_éƒ¨ç½²æŒ‡å—.md](./Docker_éƒ¨ç½²æŒ‡å—.md) - å¦‚ä½•å°†é¡¹ç›®å®¹å™¨åŒ–
+- [Dockerfile è¯¦è§£](./Dockerfile) - é¡¹ç›®çš„ Dockerfile é…ç½®
 
 ---
 
-## ?? ³£¼ûÎÊÌâ
+## ?? å¸¸è§é—®é¢˜
 
-### Q: Docker Desktop Æô¶¯Ê§°Ü
+### Q: Docker Desktop å¯åŠ¨å¤±è´¥
 
-**A: ¼ì²éÒÔÏÂ¼¸µã**
+**A: æ£€æŸ¥ä»¥ä¸‹å‡ ç‚¹**
 
-1. **WSL2 ÊÇ·ñÕıÈ·°²×°**
+1. **WSL2 æ˜¯å¦æ­£ç¡®å®‰è£…**
    ```powershell
    wsl --status
    ```
 
-2. **ĞéÄâ»¯ÊÇ·ñÆôÓÃ**
-   - ÖØÆôµçÄÔ£¬½øÈë BIOS
-   - ÆôÓÃ Intel VT-x »ò AMD-V
+2. **è™šæ‹ŸåŒ–æ˜¯å¦å¯ç”¨**
+   - é‡å¯ç”µè„‘ï¼Œè¿›å…¥ BIOS
+   - å¯ç”¨ Intel VT-x æˆ– AMD-V
 
-3. **²é¿´ Docker ÈÕÖ¾**
+3. **æŸ¥çœ‹ Docker æ—¥å¿—**
    ```
-   C:\Users\ÄãµÄÓÃ»§Ãû\AppData\Local\Docker\log.txt
+   C:\Users\ä½ çš„ç”¨æˆ·å\AppData\Local\Docker\log.txt
    ```
 
-### Q: "WSL 2 installation is incomplete" ´íÎó
+### Q: "WSL 2 installation is incomplete" é”™è¯¯
 
-**A: °²×° WSL2 Linux ÄÚºË¸üĞÂ°ü**
+**A: å®‰è£… WSL2 Linux å†…æ ¸æ›´æ–°åŒ…**
 
-ÏÂÔØ²¢°²×°£ºhttps://aka.ms/wsl2kernel
+ä¸‹è½½å¹¶å®‰è£…ï¼šhttps://aka.ms/wsl2kernel
 
-### Q: Docker ÈİÆ÷ÎŞ·¨·ÃÎÊÍøÂç
+### Q: Docker å®¹å™¨æ— æ³•è®¿é—®ç½‘ç»œ
 
-**A: ÖØÖÃ Docker ÍøÂç**
+**A: é‡ç½® Docker ç½‘ç»œ**
 
 ```bash
 docker network prune
 docker restart
 ```
 
-### Q: ÈİÆ÷ÄÚÎŞ·¨·ÃÎÊ Windows ÎÄ¼ş
+### Q: å®¹å™¨å†…æ— æ³•è®¿é—® Windows æ–‡ä»¶
 
-**A: Ê¹ÓÃ WSL2 Â·¾¶¹ÒÔØ**
+**A: ä½¿ç”¨ WSL2 è·¯å¾„æŒ‚è½½**
 
 ```bash
-# ´íÎó·½Ê½
+# é”™è¯¯æ–¹å¼
 docker run -v D:/Project:/app ...
 
-# ÕıÈ··½Ê½
+# æ­£ç¡®æ–¹å¼
 docker run -v /mnt/d/Project:/app ...
 ```
 
 ---
 
-## ?? Ñ§Ï°×ÊÔ´
+## ?? å­¦ä¹ èµ„æº
 
-### ¹Ù·½ÎÄµµ
-- Docker ¹Ù·½ÎÄµµ£ºhttps://docs.docker.com/
-- Docker Hub£ºhttps://hub.docker.com/
+### å®˜æ–¹æ–‡æ¡£
+- Docker å®˜æ–¹æ–‡æ¡£ï¼šhttps://docs.docker.com/
+- Docker Hubï¼šhttps://hub.docker.com/
 
-### ÍÆ¼ö½Ì³Ì
-- Docker ÈëÃÅµ½Êµ¼ù£ºhttps://yeasy.gitbook.io/docker_practice/
-- Docker ¹Ù·½ÈëÃÅ½Ì³Ì£ºhttps://docs.docker.com/get-started/
+### æ¨èæ•™ç¨‹
+- Docker å…¥é—¨åˆ°å®è·µï¼šhttps://yeasy.gitbook.io/docker_practice/
+- Docker å®˜æ–¹å…¥é—¨æ•™ç¨‹ï¼šhttps://docs.docker.com/get-started/
 
-### ÊÓÆµ½Ì³Ì
-- Docker ´ÓÈëÃÅµ½¾«Í¨£¨BÕ¾£©
-- Docker ÊµÕ½½Ì³Ì£¨YouTube£©
-
----
-
-## ?? ÏÂÒ»²½
-
-°²×°Íê³Éºó£¬²Î¿¼ÒÔÏÂÎÄµµ¼ÌĞøÑ§Ï°£º
-
-1. **´´½¨µÚÒ»¸ö Dockerfile** - [Dockerfile_ÈëÃÅ.md](./Dockerfile_ÈëÃÅ.md)
-2. **Ê¹ÓÃ Docker Compose** - [Docker_Compose_Ö¸ÄÏ.md](./Docker_Compose_Ö¸ÄÏ.md)
-3. **²¿ÊğÓÎÏ··şÎñÆ÷** - [Docker_²¿ÊğÖ¸ÄÏ.md](./Docker_²¿ÊğÖ¸ÄÏ.md)
+### è§†é¢‘æ•™ç¨‹
+- Docker ä»å…¥é—¨åˆ°ç²¾é€šï¼ˆBç«™ï¼‰
+- Docker å®æˆ˜æ•™ç¨‹ï¼ˆYouTubeï¼‰
 
 ---
 
-**×îºó¸üĞÂ£º** 2024-11-25
+## ?? ä¸‹ä¸€æ­¥
+
+å®‰è£…å®Œæˆåï¼Œå‚è€ƒä»¥ä¸‹æ–‡æ¡£ç»§ç»­å­¦ä¹ ï¼š
+
+1. **åˆ›å»ºç¬¬ä¸€ä¸ª Dockerfile** - [Dockerfile_å…¥é—¨.md](./Dockerfile_å…¥é—¨.md)
+2. **ä½¿ç”¨ Docker Compose** - [Docker_Compose_æŒ‡å—.md](./Docker_Compose_æŒ‡å—.md)
+3. **éƒ¨ç½²æ¸¸æˆæœåŠ¡å™¨** - [Docker_éƒ¨ç½²æŒ‡å—.md](./Docker_éƒ¨ç½²æŒ‡å—.md)
+
+---
+
+**æœ€åæ›´æ–°ï¼š** 2024-11-25

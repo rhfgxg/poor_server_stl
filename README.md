@@ -80,6 +80,42 @@ Poor Server STL 是一个现代化的 C++ 游戏服务器框架，旨在学习�
 
 ## 🚀 快速开始
 
+### ⚠️ 重要：首次设置代码规范（必须）
+
+克隆项目后，**请先完成以下步骤**以确保代码格式统一：
+
+```powershell
+# Windows
+cd poor_server_stl
+
+# 1. 统一现有文件编码和换行符（首次必须运行）
+.\tools\debug\windows\fix_encoding_and_lineendings.ps1
+
+# 2. 安装 Git 提交前检查（强烈推荐）
+.\tools\debug\windows\install_git_hooks.ps1
+```
+
+```bash
+# Linux / WSL
+cd poor_server_stl
+
+# 1. 统一现有文件编码和换行符（首次必须运行）
+bash tools/debug/linux/fix_encoding_and_lineendings.sh
+
+# 2. 安装 Git 提交前检查（强烈推荐）
+bash tools/debug/linux/install_git_hooks.sh
+```
+
+**为什么需要这一步？**
+- ✅ 统一所有文件为 UTF-8 无 BOM 编码
+- ✅ 统一换行符为 LF（Linux 标准）
+- ✅ 防止提交不规范的代码到仓库
+- ✅ 避免跨平台协作时的编码冲突
+
+**详细说明**: [编码规范快速指南](docunment/layout/ENCODING_QUICKSTART.md)
+
+---
+
 ### 方式 1: Docker 快速部署（推荐）⭐
 
 **耗时：15 分钟**
@@ -295,21 +331,104 @@ poor_server_stl/
 
 欢迎任何形式的贡献！
 
-### 贡献方式
+**→ [完整贡献指南 (中文)](CONTRIBUTING_ZH.md) | [Contributing Guide (English)](CONTRIBUTING.md)**
+
+### 📋 贡献前准备（必读）
+
+**首次贡献者请务必完成以下设置：**
+
+1. **安装代码规范工具**（自动化检查）
+   ```powershell
+   # Windows
+   .\tools\debug\windows\install_git_hooks.ps1
+   
+   # Linux/WSL
+   bash tools/debug/linux/install_git_hooks.sh
+   ```
+
+2. **修复现有文件格式**（如果有编码问题）
+   ```powershell
+   # Windows
+   .\tools\debug\windows\fix_encoding_and_lineendings.ps1
+   
+   # Linux/WSL
+   bash tools/debug/linux/fix_encoding_and_lineendings.sh
+   ```
+
+**详细指南**: 
+- [完整贡献指南 (CONTRIBUTING.md)](CONTRIBUTING.md)
+- [编码规范文档](docunment/layout/ENCODING_QUICKSTART.md)
+
+---
+
+### 贡献流程
 
 1. **Fork 项目** - 点击右上角 Fork 按钮
-2. **创建分支** - `git checkout -b feature/amazing-feature`
-3. **提交代码** - `git commit -m 'Add some amazing feature'`
-4. **推送分支** - `git push origin feature/amazing-feature`
-5. **发起 PR** - 在 GitHub 上发起 Pull Request
+2. **克隆到本地** - `git clone https://github.com/YOUR_USERNAME/poor_server_stl.git`
+3. **设置代码规范** - 运行上述准备步骤
+4. **创建分支** - `git checkout -b feature/amazing-feature`
+5. **开发代码** - 遵循项目规范
+6. **提交代码** - `git commit -m 'feat: add some amazing feature'`
+7. **推送分支** - `git push origin feature/amazing-feature`
+8. **发起 PR** - 在 GitHub 上发起 Pull Request
+
+### 代码规范检查清单 ✅
+
+提交前请确认：
+
+- [ ] 所有文件使用 **UTF-8 无 BOM** 编码
+- [ ] 所有文件使用 **LF** 换行符（Windows 脚本除外）
+- [ ] 代码遵循 [C++ 代码规范](docunment/layout/cpp_layout.md)
+- [ ] 添加了必要的注释和文档
+- [ ] 代码通过编译，无警告
+- [ ] 提交信息清晰（使用 [约定式提交](https://www.conventionalcommits.org/zh-hans/)）
+
+**提示**: 如果安装了 Git hook，不符合规范的代码会被自动拒绝提交！
+
+---
 
 ### 开发规范
 
 - ✅ 遵循 [C++ 代码规范](docunment/layout/cpp_layout.md)
+- ✅ 遵循 [C++ 安全指南](docunment/layout/cpp_security.md)
+- ✅ 遵循 [文件编码规范](docunment/layout/layout.md)
 - ✅ 添加必要的注释和文档
 - ✅ 确保代码通过编译
 - ✅ 编写单元测试（如适用）
 - ✅ 提交信息清晰明确
+
+### 提交信息规范
+
+使用 [约定式提交](https://www.conventionalcommits.org/zh-hans/) 格式：
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+**类型 (type)**:
+- `feat`: 新功能
+- `fix`: 修复 Bug
+- `docs`: 文档更新
+- `style`: 代码格式（不影响功能）
+- `refactor`: 重构
+- `perf`: 性能优化
+- `test`: 测试相关
+- `chore`: 构建/工具相关
+
+**示例**:
+```
+feat(gateway): add connection pool for client connections
+
+- Implement connection pool with configurable size
+- Add connection timeout handling
+- Update documentation
+
+Closes #123
+```
 
 ### 需要帮助的领域
 
@@ -319,85 +438,4 @@ poor_server_stl/
 - 🎨 优化代码和架构
 - 🧪 编写测试用例
 - 🌍 多语言支持
-
----
-
-## 📝 开发笔记
-
-### 配置文件修改
-
-开发时可能需要修改这些文件（请勿提交到 Git）：
-
-1. **config/server_config.lua** - 服务器配置
-2. **tools/debug/protoc_make.cmd** - Proto 生成脚本（修改第 9-10 行的路径）
-
-### 文件编码要求
-
-- **编码**: UTF-8 (无 BOM)
-- **换行符**: LF (Linux 风格)
-- **VS 插件**: FileEncoding + Force UTF-8 (No BOM)
-
-### 生成 Protobuf 文件
-# Windows
-.\tools\debug\protoc_make.cmd           # C++ gRPC 代码
-.\tools\generate_proto_desc.ps1         # Skynet descriptor
-
-# Linux/WSL2
-bash tools/debug/wsl/proto_make_cpp.sh  # C++ gRPC 代码
-bash tools/generate_proto_desc.sh       # Skynet descriptor
----
-
-## 📊 项目状态
-
-- ✅ **架构设计** - 已完成分布式架构设计
-- ✅ **C++ 服务器** - 核心服务器已实现
-- ✅ **Skynet 集成** - Protobuf 集成完成
-- ✅ **Docker 支持** - 容器化部署就绪
-- 🚧 **游戏功能** - 炉石传说玩法开发中
-- 🚧 **网盘功能** - 文件服务开发中
-- 📝 **文档完善** - 持续更新中
-
----
-
-## 🔗 相关链接
-
-- **GitHub**: [rhfgxg/poor_server_stl](https://github.com/rhfgxg/poor_server_stl)
-- **文档中心**: [docunment/README.md](docunment/README.md)
-- **问题反馈**: [GitHub Issues](https://github.com/rhfgxg/poor_server_stl/issues)
-
-### 技术资源
-
-- [gRPC 官方文档](https://grpc.io/docs/)
-- [Protobuf 官方文档](https://protobuf.dev/)
-- [Skynet GitHub](https://github.com/cloudwu/skynet)
-- [vcpkg 文档](https://vcpkg.io/en/getting-started.html)
-- [Docker 官方文档](https://docs.docker.com/)
-
----
-
-## 📄 许可证
-
-本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
-
----
-
-## 💖 致谢
-
-感谢所有为这个项目做出贡献的开发者！
-
-特别感谢：
-- [Skynet](https://github.com/cloudwu/skynet) - 优秀的 Lua 游戏服务器框架
-- [gRPC](https://grpc.io/) - 高性能 RPC 框架
-- [vcpkg](https://vcpkg.io/) - C++ 包管理器
-
----
-
-<div align="center">
-
-**如果这个项目对你有帮助，请给一个 ⭐ Star！**
-
-**[快速开始](docunment/项目配置与运行/docker/README.md)** · 
-**[完整文档](docunment/README.md)** · 
-**[报告问题](https://github.com/rhfgxg/poor_server_stl/issues)**
-
-</div>
+- 🔧 改进开发工具

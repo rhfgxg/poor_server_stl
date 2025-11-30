@@ -1,6 +1,23 @@
-# Visual Studio 生成了具有 C++ 设置的 .editorconfig 文件。
+# EditorConfig 配置文件 - Poor Server STL
+# 统一代码格式，防止编码和换行符混乱
+# 文档: https://editorconfig.org
+
 root = true
 
+# ============================================
+# 全局默认设置（所有文件的兜底规则）
+# ============================================
+[*]
+charset = utf-8                    # 默认 UTF-8 无 BOM
+end_of_line = lf                   # 默认 LF (Linux 风格)
+trim_trailing_whitespace = true    # 删除行尾空格
+insert_final_newline = true        # 文件末尾插入空行
+indent_style = space               # 使用空格缩进
+indent_size = 4                    # 默认 4 空格
+
+# ============================================
+# C++ 文件（项目核心语言）
+# ============================================
 [*.{c++,cc,cpp,cppm,cxx,h,h++,hh,hpp,hxx,inl,ipp,ixx,tlh,tli}]
 
 # Visual C++ 代码样式设置
@@ -88,3 +105,91 @@ trim_trailing_whitespace = true     # 删除文件末尾空格
 insert_final_newline = true         # 末尾插入新行
 indent_style = space                # 以空格代替 tab
 indent_size = 4                     # 代替 tab 的空格数量
+
+# ============================================
+# Lua 文件（Skynet 服务器）
+# ============================================
+[*.lua]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
+
+# ============================================
+# 构建和配置文件
+# ============================================
+
+# CMake 文件
+[{CMakeLists.txt,*.cmake}]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
+
+# Protobuf 协议（Google 风格指南推荐 2 空格）
+[*.proto]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2                    # 覆盖默认的 4
+
+# JSON 配置
+[*.json]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2                    # JSON 常用 2 空格
+
+# YAML 配置（Docker Compose 等）
+[*.{yml,yaml}]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2                    # YAML 强制 2 空格
+
+# ============================================
+# 文档和脚本
+# ============================================
+
+# Markdown 文档
+[*.md]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false   # Markdown 两个空格表示换行
+
+# Shell 脚本（Linux/WSL/Git Bash）
+[*.sh]
+charset = utf-8
+end_of_line = lf                   # Shell 脚本必须 LF
+indent_style = space
+indent_size = 4
+
+# ============================================
+# Windows 平台特殊文件
+# ============================================
+
+# Batch 脚本（Windows 命令行）
+[*.{cmd,bat}]
+charset = utf-8
+end_of_line = crlf                 # Windows 需要 CRLF
+indent_style = space
+indent_size = 4
+
+# PowerShell 脚本
+[*.ps1]
+charset = utf-8-bom                # PowerShell 推荐 BOM
+end_of_line = crlf                 # Windows 需要 CRLF
+indent_style = space
+indent_size = 4
+
+# ============================================
+# 特殊文件类型
+# ============================================
+
+# Makefile（历史原因必须使用 tab）
+[{Makefile,*.mk}]
+charset = utf-8
+end_of_line = lf
+indent_style = tab                 # 覆盖默认的 space

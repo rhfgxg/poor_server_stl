@@ -1,12 +1,12 @@
 version: '3.8'
 
-# Poor Server STL - Docker Compose ÅäÖÃ
-# °üº¬ÓÎÏ··şÎñÆ÷¡¢MySQL¡¢Redis µÈËùÓĞ·şÎñ
+# Poor Server STL - Docker Compose é…ç½®
+# åŒ…å«æ¸¸æˆæœåŠ¡å™¨ã€MySQLã€Redis ç­‰æ‰€æœ‰æœåŠ¡
 
 services:
-  # ==================== Êı¾İ¿â·şÎñ ====================
+  # ==================== æ•°æ®åº“æœåŠ¡ ====================
   
-  # MySQL Êı¾İ¿â
+  # MySQL æ•°æ®åº“
   mysql:
     image: mysql:8.0
     container_name: poor_mysql
@@ -22,8 +22,8 @@ services:
       - "33060:33060"  # MySQL X Protocol
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./docker/mysql/init:/docker-entrypoint-initdb.d  # ³õÊ¼»¯ SQL ½Å±¾
-      - ./docker/mysql/conf:/etc/mysql/conf.d  # ×Ô¶¨ÒåÅäÖÃ
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d  # åˆå§‹åŒ– SQL è„šæœ¬
+      - ./docker/mysql/conf:/etc/mysql/conf.d  # è‡ªå®šä¹‰é…ç½®
     networks:
       - game_network
     healthcheck:
@@ -36,7 +36,7 @@ services:
       - --collation-server=utf8mb4_unicode_ci
       - --default-authentication-plugin=mysql_native_password
 
-  # Redis »º´æ
+  # Redis ç¼“å­˜
   redis:
     image: redis:7-alpine
     container_name: poor_redis
@@ -45,7 +45,7 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
-      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf  # ×Ô¶¨ÒåÅäÖÃ
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf  # è‡ªå®šä¹‰é…ç½®
     networks:
       - game_network
     healthcheck:
@@ -55,9 +55,9 @@ services:
       retries: 5
     command: redis-server /usr/local/etc/redis/redis.conf
 
-  # ==================== ÓÎÏ··şÎñÆ÷ ====================
+  # ==================== æ¸¸æˆæœåŠ¡å™¨ ====================
   
-  # Central ÖĞĞÄ·şÎñÆ÷
+  # Central ä¸­å¿ƒæœåŠ¡å™¨
   central:
     build:
       context: .
@@ -85,7 +85,7 @@ services:
       - ./config:/app/config:ro
     command: ["central"]
 
-  # DB Êı¾İ¿â·şÎñÆ÷
+  # DB æ•°æ®åº“æœåŠ¡å™¨
   db:
     image: poor-server:latest
     container_name: poor_db
@@ -110,7 +110,7 @@ services:
       - ./config:/app/config:ro
     command: ["db"]
 
-  # Login µÇÂ¼·şÎñÆ÷
+  # Login ç™»å½•æœåŠ¡å™¨
   login:
     image: poor-server:latest
     container_name: poor_login
@@ -133,7 +133,7 @@ services:
       - ./config:/app/config:ro
     command: ["login"]
 
-  # Gateway Íø¹Ø·şÎñÆ÷
+  # Gateway ç½‘å…³æœåŠ¡å™¨
   gateway:
     image: poor-server:latest
     container_name: poor_gateway
@@ -148,7 +148,7 @@ services:
       WAIT_FOR_SERVICES: "true"
     ports:
       - "50054:50054"
-      - "8080:8080"  # Èç¹ûÓĞ HTTP ½Ó¿Ú
+      - "8080:8080"  # å¦‚æœæœ‰ HTTP æ¥å£
     networks:
       - game_network
     volumes:
@@ -156,7 +156,7 @@ services:
       - ./config:/app/config:ro
     command: ["gateway"]
 
-  # File ÎÄ¼ş·şÎñÆ÷
+  # File æ–‡ä»¶æœåŠ¡å™¨
   file:
     image: poor-server:latest
     container_name: poor_file
@@ -177,10 +177,10 @@ services:
     volumes:
       - ./logs:/app/logs
       - ./config:/app/config:ro
-      - file_storage:/app/data  # ÎÄ¼ş´æ´¢
+      - file_storage:/app/data  # æ–‡ä»¶å­˜å‚¨
     command: ["file"]
 
-  # Matching Æ¥Åä·şÎñÆ÷
+  # Matching åŒ¹é…æœåŠ¡å™¨
   matching:
     image: poor-server:latest
     container_name: poor_matching
@@ -203,9 +203,9 @@ services:
       - ./config:/app/config:ro
     command: ["matching"]
 
-  # ==================== ¼à¿Ø·şÎñ£¨¿ÉÑ¡£©====================
+  # ==================== ç›‘æ§æœåŠ¡ï¼ˆå¯é€‰ï¼‰====================
   
-  # Redis ¼à¿ØÃæ°å
+  # Redis ç›‘æ§é¢æ¿
   redis-commander:
     image: rediscommander/redis-commander:latest
     container_name: poor_redis_ui
@@ -219,7 +219,7 @@ services:
     networks:
       - game_network
 
-  # MySQL ¹ÜÀí¹¤¾ß
+  # MySQL ç®¡ç†å·¥å…·
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: poor_mysql_ui
@@ -235,7 +235,7 @@ services:
     networks:
       - game_network
 
-# ==================== ÍøÂçÅäÖÃ ====================
+# ==================== ç½‘ç»œé…ç½® ====================
 networks:
   game_network:
     driver: bridge
@@ -243,7 +243,7 @@ networks:
       config:
         - subnet: 172.20.0.0/16
 
-# ==================== Êı¾İ¾íÅäÖÃ ====================
+# ==================== æ•°æ®å·é…ç½® ====================
 volumes:
   mysql_data:
     driver: local
