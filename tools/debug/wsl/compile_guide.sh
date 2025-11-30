@@ -229,17 +229,25 @@ echo ""
 print_step "5" "选择编译模式"
 echo ""
 echo "1) Debug   - 调试模式（包含调试信息）"
-echo "2) Release - 发布模式（优化性能）"
+echo "2) Release - 发布模式（优化性能）✨ 推荐"
 echo ""
-read -p "请选择编译模式 (1/2，默认为1): " -n 1 -r
+print_warning "注意：WSL 环境下推荐使用 Release 模式"
+print_info "原因：Debug 模式可能因 MySQL Connector 的 protobuf 冲突导致链接失败"
+print_info "详情参考：docunment/项目配置与运行/WSL_编译已知问题.md"
+echo ""
+read -p "请选择编译模式 (1/2，默认为2): " -n 1 -r
 echo ""
 
-BUILD_TYPE="Debug"
-if [[ $REPLY == "2" ]]; then
+BUILD_TYPE="Release"
+if [[ $REPLY == "1" ]]; then
+    BUILD_TYPE="Debug"
+    print_warning "已选择 Debug 模式"
+    print_info "如遇到 protobuf 符号冲突错误，请使用 Release 模式"
+else
     BUILD_TYPE="Release"
+    print_success "已选择 Release 模式（推荐）"
 fi
 
-print_info "选择的编译模式: $BUILD_TYPE"
 echo ""
 
 # 步骤 6: 编译项目

@@ -167,12 +167,16 @@ sudo apt install build-essential cmake ninja-build
 bash tools/debug/wsl/proto_make_cpp.sh
 bash tools/generate_proto_desc.sh
 
-# 4. 编译项目
-cmake -B build -G Ninja
+# 4. 编译项目（推荐使用 Release 模式）
+cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_TOOLCHAIN_FILE=~/vcpkg/scripts/buildsystems/vcpkg.cmake
 ninja -C build
 
 # 5. 复制配置文件
 bash tools/debug/wsl/copy_config.sh
+
+# 或使用交互式编译指南（推荐）
+bash tools/debug/wsl/compile_guide.sh
 **详细文档**: 
 - [Windows 环境配置](docunment/项目配置与运行/windows开发工具与环境配置.md)
 - [Linux/WSL2 环境配置](docunment/项目配置与运行/linux开发工具与环境配置.md)

@@ -26,29 +26,23 @@ add_executable(${MODULE_NAME} ${SOURCES})
 # 向其他模块提供接口，将一些公共头文件指定为 PUBLIC，其他模块可以访问
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+# Debug 模式下添加链接器选项，解决 MySQL Connector 的 protobuf 符号冲突
+# MySQL Connector C++ 静态库内置 Release 版 protobuf-lite
+# 与 vcpkg 的 Debug 版 protobuf 冲突，允许多重定义来解决
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_link_options(${MODULE_NAME} PRIVATE "-Wl,--allow-multiple-definition")
+endif()
+
 # 链接第三方库lib
 # 注意：库的链接顺序很重要！
-# - cpp_redis 依赖 tacopie
-# - MySQL 库依赖 resolv (Linux)
+# MySQL Connector 包含 protobuf-lite，需要先链接
 target_link_libraries(${MODULE_NAME} PRIVATE 
-# 注释了一些暂时不需要的库
-#    absl::base
-#    absl::flags
-#    Boost::system
-#    c-ares::cares
-#    fmt::fmt
-#    OpenSSL::SSL
-#    OpenSSL::Crypto
-#    protobuf::libprotobuf
-#    re2::re2
-#    ZLIB::ZLIB
-#    upb::upb
-    gRPC::grpc++
+    ${MYSQLCPPCONN_LIB}  # MySQL 库（包含 protobuf-lite）先链接
+    gRPC::grpc++          # gRPC 依赖 protobuf
     spdlog::spdlog
     ${LUA_LIB}
-    ${CPPREDIS_LIB}      # cpp_redis 依赖 tacopie，所以要放在前面
-    ${TACOPIE_LIB}       # tacopie 放在后面
-    ${MYSQLCPPCONN_LIB}  # mysql库
+    ${CPPREDIS_LIB}       # cpp_redis 依赖 tacopie
+    ${TACOPIE_LIB}
 )
 
 # Linux 下 MySQL 需要链接 resolv 库
