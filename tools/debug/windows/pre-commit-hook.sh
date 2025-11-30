@@ -7,7 +7,12 @@ echo "Checking file encoding and line endings..."
 # File extensions to check
 EXTENSIONS="cpp|h|hpp|cc|cxx|hxx|c|inl|lua|cmake|proto|json|yaml|yml|md"
 
-# Get files to be committed (exclude files in .gitignore)
+# Files to skip (even if tracked by Git)
+SKIP_FILES=(
+    "CMakeSettings.json"
+)
+
+# Get files to be committed
 FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "\\.($EXTENSIONS)$")
 
 if [ -z "$FILES" ]; then
@@ -20,6 +25,20 @@ HAS_ERROR=0
 for FILE in $FILES; do
     # Skip if file doesn't exist
     if [ ! -f "$FILE" ]; then
+        continue
+    fi
+    
+    # Skip files in SKIP_FILES list
+    SKIP=0
+    for SKIP_FILE in "${SKIP_FILES[@]}"; do
+        if [[ "$FILE" == *"$SKIP_FILE"* ]]; then
+            echo "SKIP: $FILE (in skip list)"
+            SKIP=1
+            break
+        fi
+    done
+    
+    if [ $SKIP -eq 1 ]; then
         continue
     fi
     
