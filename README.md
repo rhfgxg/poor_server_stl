@@ -2,7 +2,7 @@
 
 > 🎮 基于 C++ 的分布式游戏服务器框架，集成 Skynet + Protobuf，支持炉石传说卡牌游戏和网盘功能
 
-[![C++17](https://img.shields.io/badge/C++-17-blue.svg?style=flat&logo=c%2B%2B)](https://en.cppreference.com/w/cpp/17)
+[![C++20](https://img.shields.io/badge/C++-20-blue.svg?style=flat&logo=c%2B%2B)](https://en.cppreference.com/w/cpp/20)
 [![CMake](https://img.shields.io/badge/CMake-3.8+-064F8C?style=flat&logo=cmake)](https://cmake.org/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-lightgrey.svg)](https://github.com/rhfgxg/poor_server_stl)
@@ -67,7 +67,7 @@ Poor Server STL 是一个现代化的 C++ 游戏服务器框架，旨在学习�
 
 | 技术 | 说明 |
 |------|------|
-| **C++17** | 现代 C++ 特性 |
+| **C++20** | 现代 C++ 特性 |
 | **CMake + Ninja** | 跨平台构建系统 |
 | **gRPC + Protobuf** | RPC 框架和序列化 |
 | **Skynet** | Lua 游戏服务器框架 |
