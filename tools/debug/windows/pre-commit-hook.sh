@@ -7,7 +7,7 @@ echo "Checking file encoding and line endings..."
 # File extensions to check
 EXTENSIONS="cpp|h|hpp|cc|cxx|hxx|c|inl|lua|cmake|proto|json|yaml|yml|md"
 
-# Get files to be committed
+# Get files to be committed (exclude files in .gitignore)
 FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "\\.($EXTENSIONS)$")
 
 if [ -z "$FILES" ]; then
@@ -18,7 +18,13 @@ fi
 HAS_ERROR=0
 
 for FILE in $FILES; do
+    # Skip if file doesn't exist
     if [ ! -f "$FILE" ]; then
+        continue
+    fi
+    
+    # Skip if file is in .gitignore
+    if git check-ignore -q "$FILE"; then
         continue
     fi
     
