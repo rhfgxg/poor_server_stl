@@ -94,13 +94,11 @@ generate_proto_module() {
 
 # 生成各模块代码
 generate_proto_module "common" "包含共享数据类型，枚举的定义"
-generate_proto_module "server_battle" "战斗服务器"
 generate_proto_module "server_chat" "聊天服务器" "true"
 generate_proto_module "server_central" "中心服务器"
 generate_proto_module "server_db" "数据库服务器"
 generate_proto_module "server_file" "文件服务器"
 generate_proto_module "server_gateway" "网关服务器"
-generate_proto_module "server_logic" "逻辑服务器"
 generate_proto_module "server_login" "登录服务器"
 generate_proto_module "server_matching" "匹配服务器"
 generate_proto_module "server_store" "商城服务器" "true"

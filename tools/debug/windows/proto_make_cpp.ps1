@@ -1,4 +1,4 @@
-# Generate C++ Protobuf and gRPC code
+﻿# Generate C++ Protobuf and gRPC code
 # 根据 proto 文件，生成 C++ 对应源码
 
 # 设置路径常量
@@ -85,13 +85,11 @@ function Generate-ProtoModule {
 
 # 生成各模块代码
 Generate-ProtoModule "common" "包含共享数据类型，枚举的定义"
-Generate-ProtoModule "server_battle" "战斗服务器"
 Generate-ProtoModule "server_chat" "聊天服务器" -IsCommented $true
 Generate-ProtoModule "server_central" "中心服务器"
 Generate-ProtoModule "server_db" "数据库服务器"
 Generate-ProtoModule "server_file" "文件服务器"
 Generate-ProtoModule "server_gateway" "网关服务器"
-Generate-ProtoModule "server_logic" "逻辑服务器"
 Generate-ProtoModule "server_login" "登录服务器"
 Generate-ProtoModule "server_matching" "匹配服务器"
 Generate-ProtoModule "server_store" "商城服务器" -IsCommented $true

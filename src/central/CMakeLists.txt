@@ -24,8 +24,6 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_file.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_gateway.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_gateway.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_logic.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_logic.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_login.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_login.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_matching.pb.cc
