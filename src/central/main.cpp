@@ -1,94 +1,97 @@
 #include "./server/central_server.h"
-#include "logger_manager.h" // 引入日志管理器
+#include "logger_manager.h"
+#include <iostream>
+#include <lua.hpp>
 
-void run_server(LoggerManager& logger_manager); // 运行服务器
-void Read_server_config(std::string& address, std::string& port);  // 读取配置文件，获取服务器地址和端口
+void run_server(LoggerManager& logger_manager);
 
-// 中心服务器main函数
+/**
+ * @brief 中心服务器主函数
+ */
 int main()
 {
-    // 初始化日志管理器，通过引用传递实现单例模式
-    LoggerManager logger_manager;
-    logger_manager.initialize(rpc_server::ServerType::CENTRAL);    // 传入服务器类型，创建日志文件夹
+    try
+    {
+        // 初始化日志管理器
+        LoggerManager logger_manager;
+        logger_manager.initialize(rpc_server::ServerType::CENTRAL);
 
-    // 记录启动日志
-    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Central_server started");
+        logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Central_server starting...");
 
-    run_server(logger_manager); // 运行服务器
+        // 运行服务器
+        run_server(logger_manager);
 
-    return 0;
+        return EXIT_SUCCESS;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Fatal error in main: " << e.what() << std::endl;
+        return EXIT_FAILURE;
+    }
 }
 
 void run_server(LoggerManager& logger_manager)
 {
-    std::string address = "0.0.0.0";    // 默认服务器地址
+    // 读取配置文件
+
+    // 默认地址和端口
+    std::string address = "0.0.0.0";
     std::string port = "50050";
-    Read_server_config(address, port);  // 读取服务器配置文件，初始化服务器地址和端口
-
-    CentralServerImpl central_server(logger_manager, address, port);   // 传入日志管理器
-
-    grpc::ServerBuilder builder;
-    std::string server_address(address + ":" + port);
-    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials()); // 添加监听端口
-    builder.RegisterService(&central_server); // 注册服务
-
-    central_server.start_thread_pool(4); // 启动4个线程处理请求
-
-    std::unique_ptr<grpc::Server> server(builder.BuildAndStart());  // 创建服务器
-
-    // 记录监听地址
-    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
-    server->Wait(); // 等待请求
-
-    central_server.stop_thread_pool(); // 停止线程池
-}
-
-// 读取服务器配置文件，初始化服务器地址和端口
-void Read_server_config(std::string& address, std::string& port)
-{
+    
     try
     {
-        lua_State* L = luaL_newstate();  // 创建lua虚拟机
-        luaL_openlibs(L);   // 打开lua标准库
+        lua_State* L = luaL_newstate();
+        luaL_openlibs(L);
 
-        std::string file_url = "config/cfg_central_server.lua";  // 配置文件路径
-
-        if(luaL_dofile(L, file_url.c_str()) != LUA_OK)
+        if (luaL_dofile(L, "config/cfg_central_server.lua") == LUA_OK)
         {
-            lua_close(L);
-            throw std::runtime_error("Failed to load config file");
-        }
+            if (lua_istable(L, -1))
+            {
+                lua_getfield(L, -1, "host");
+                if (lua_isstring(L, -1))
+                {
+                    address = lua_tostring(L, -1);
+                }
+                lua_pop(L, 1);
 
-        // 获取返回值（配置表）
-        if(!lua_istable(L, -1))
-        {
-            lua_close(L);
-            throw std::runtime_error("Invalid config format");
+                lua_getfield(L, -1, "port");
+                if (lua_isinteger(L, -1))
+                {
+                    port = std::to_string(lua_tointeger(L, -1));
+                }
+                lua_pop(L, 1);
+            }
         }
-
-        lua_getfield(L, -1, "host");
-        if(!lua_isstring(L, -1))
-        {
-            lua_close(L);
-            throw std::runtime_error("Invalid host format");
-        }
-        address = lua_tostring(L, -1);
-        lua_pop(L, 1);
-
-        lua_getfield(L, -1, "port");
-        if(!lua_isinteger(L, -1))
-        {
-            lua_close(L);
-            throw std::runtime_error("Invalid port format");
-        }
-        port = std::to_string(lua_tointeger(L, -1));
-        lua_pop(L, 1);
-
-        lua_close(L);   // 关闭lua虚拟机
+        lua_close(L);
     }
-    catch(const std::exception& e)
+    catch (const std::exception& e)
     {
-        std::cerr << "Error: " << e.what() << std::endl;
-        exit(EXIT_FAILURE);
+        logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->warn(
+            "Failed to read config, using defaults: {}", e.what());
     }
+
+    // 创建服务器实例（BaseServer 会自动初始化线程池）
+    CentralServerImpl central_server(logger_manager, address, port);
+
+    // 启动服务器（BaseServer 会自动启动线程池、注册等）
+    if (!central_server.start())
+    {
+        logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->error("Failed to start server");
+        return;
+    }
+
+    // 构建并启动 gRPC 服务器
+    grpc::ServerBuilder builder;
+    std::string server_address = address + ":" + port;
+    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
+    builder.RegisterService(&central_server);
+
+    std::unique_ptr<grpc::Server> grpc_server(builder.BuildAndStart());
+    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Listening on: {}", server_address);
+
+    // 等待服务器关闭
+    grpc_server->Wait();
+
+    // 停止服务器（BaseServer 会自动注销、停止线程池等）
+    central_server.stop();
 }
