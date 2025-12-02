@@ -2,344 +2,203 @@
 #include <chrono>
 #include <iomanip>
 #include <sstream>
+#include <random>
 
-LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_, const std::string address, std::string port):
-    server_type(rpc_server::ServerType::LOGIN),
-    server_address(address),
-    server_port(port),
-    logger_manager(logger_manager_),
-    redis_client(),
-    central_stub(rpc_server::CentralServer::NewStub(grpc::CreateChannel("localhost:50050", grpc::InsecureChannelCredentials()))),
-    db_connection_pool(10)
+// 构造函数 - 继承 BaseServer
+LoginServerImpl::LoginServerImpl(LoggerManager& logger_manager_, const std::string address, std::string port)
+    : BaseServer(rpc_server::ServerType::LOGIN, address, port, logger_manager_, 4),  // 4 个线程
+      db_connection_pool(10)
 {
-    redis_client.get_client()->connect("127.0.0.1", 6379); // 连接Redis服务器
-    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("redis connection successful");
-
-    register_server(); // 注册服务器
-
-    // 启动定时任务，
-    // 定时向中心服务器获取最新的连接池状态
-    std::thread(&LoginServerImpl::Update_connection_pool,this).detach();
-    // 定时向中心服务器发送心跳包
-    std::thread(&LoginServerImpl::Send_heartbeat,this).detach();
+    // Redis 连接将在 on_start() 中初始化
 }
 
+// 析构函数
 LoginServerImpl::~LoginServerImpl()
 {
-    stop_thread_pool(); // 停止并清空线程池
-
-    unregister_server(); // 注销服务器
-
-    // 记录关闭日志
-    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("LoginServer stopped");
-    // 停止并清理日志管理器
-    logger_manager.cleanup();
+    // 停止连接池更新线程
+    pool_update_running_.store(false);
+    if (update_pool_thread_.joinable())
+    {
+        update_pool_thread_.join();
+    }
+    
+    log_shutdown("LoginServer stopped");
 }
 
-/************************************ 线程池函数 ****************************************************/
-// 启动线程池
-void LoginServerImpl::start_thread_pool(int num_threads)
-{// 相关注释请参考 /src/central/src/central/central_server.cpp/start_thread_pool()
-    for(int i = 0; i < num_threads; ++i)
-    {
-        this->thread_pool.emplace_back(&LoginServerImpl::Worker_thread, this);   // 创建线程
-    }
-}
+// ==================== BaseServer 钩子方法 ====================
 
-// 停止线程池
-void LoginServerImpl::stop_thread_pool()
-{// 相关注释请参考 /src/central/src/central/central_server.cpp/stop_thread_pool()
-    {
-        std::lock_guard<std::mutex> lock(this->queue_mutex);
-        this->stop_threads = true;
-    }
-
-    this->queue_cv.notify_all();
-
-    for(auto& thread : this->thread_pool)
-    {
-        if(thread.joinable())
-        {
-            thread.join();
-        }
-    }
-    this->thread_pool.clear();
-    std::queue<std::function<void()>> empty;
-    std::swap(this->task_queue,empty);
-}
-
-// 添加异步任务
-std::future<void> LoginServerImpl::add_async_task(std::function<void()> task)
+bool LoginServerImpl::on_start()
 {
-    auto task_ptr = std::make_shared<std::packaged_task<void()>>(std::move(task));
-    std::future<void> task_future = task_ptr->get_future();
-
-    {
-        std::lock_guard<std::mutex> lock(this->queue_mutex);
-        this->task_queue.push([task_ptr]() {
-            (*task_ptr)();
-        });
-    }
-    this->queue_cv.notify_one();
-    return task_future;
+    log_startup("LoginServer initializing...");
+    
+    // 连接 Redis
+    redis_client.get_client()->connect("127.0.0.1", 6379);
+    log_startup("Redis connection successful");
+    
+    log_startup("LoginServer initialized successfully");
+    return true;
 }
 
-// 线程池工作函数
-void LoginServerImpl::Worker_thread()
-{// 相关注释请参考 /src/central/src/central/central_server.cpp/worker_thread()
-    while(true)
-    {
-        std::function<void()> task;
-        {
-            std::unique_lock<std::mutex> lock(this->queue_mutex);
-
-            this->queue_cv.wait(lock,[this] {
-                return !this->task_queue.empty() || this->stop_threads;
-            });
-
-            if(this->stop_threads && this->task_queue.empty())
-            {
-                return;
-            }
-            task = std::move(this->task_queue.front());
-            this->task_queue.pop();
-        }
-        task();
-    }
-}
-
-/************************************ 连接池管理 ********************************************************/
-// 注册服务器
-void LoginServerImpl::register_server() 
+void LoginServerImpl::on_stop()
 {
-    // 请求
-    rpc_server::RegisterServerReq request;
-    request.set_server_type(this->server_type);
-    request.set_address(this->server_address);
-    request.set_port(this->server_port);
-
-    // 响应
-    rpc_server::RegisterServerRes response;
-
-    // 客户端
-    grpc::ClientContext context;
-
-    grpc::Status status = central_stub->Register_server(&context, request, &response);
-
-    if (status.ok() && response.success())
+    log_shutdown("LoginServer shutting down...");
+    
+    // 停止连接池更新线程
+    pool_update_running_.store(false);
+    if (update_pool_thread_.joinable())
     {
-        logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Login server registered successfully: {} {}", this->server_address, this->server_port);
-        Init_connection_pool(); // 初始化连接池
+        update_pool_thread_.join();
     }
-    else 
-    {
-        logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->error("Login server registration failed: {} {}", this->server_address, this->server_port);
-    }
+    
+    log_shutdown("LoginServer shutdown complete");
 }
 
-// 注销服务器
-void LoginServerImpl::unregister_server() 
+void LoginServerImpl::on_registered(bool success)
 {
-    // 请求
-    rpc_server::UnregisterServerReq request;
-    request.set_server_type(this->server_type);
-    request.set_address(this->server_address);
-    request.set_port(this->server_port);
-
-    // 响应
-    rpc_server::UnregisterServerRes response;
-
-    // 客户端
-    grpc::ClientContext context;
-
-    grpc::Status status = this->central_stub->Unregister_server(&context, request, &response);
-
-    if (status.ok() && response.success())
+    if (success)
     {
-        this->logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Login server unregistered successfully: {} {}", this->server_address, this->server_port);
+        // 注册成功后，初始化连接池
+        Init_connection_pool();
+        
+        // 启动定时更新连接池的线程
+        pool_update_running_.store(true);
+        update_pool_thread_ = std::thread(&LoginServerImpl::Update_connection_pool, this);
+        
+        log_startup("Login connection pools initialized and update thread started");
     }
     else
     {
-        this->logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->error("Login server unregistration failed: {} {}", this->server_address, this->server_port);
+        log_startup("Failed to register, skipping connection pool initialization");
     }
 }
 
-// 初始化连接池
+// ==================== 连接池管理 ====================
+
 void LoginServerImpl::Init_connection_pool()
 {
-    // 客户端
-    grpc::ClientContext context;
-    // 请求
-    rpc_server::MultipleConnectPoorReq req;
-    req.add_server_types(rpc_server::ServerType::DB);
-    // 响应
-    rpc_server::MultipleConnectPoorRes res;
-
-    grpc::Status status = central_stub->Get_connec_poor(&context, req, &res);
-    if(status.ok() && res.success())
+    try
     {
-        for(const rpc_server::ConnectPool& connect_pool : *res.mutable_connect_pools())
+        auto channel = central_connection_pool_->get_connection(rpc_server::ServerType::CENTRAL);
+        auto stub = rpc_server::CentralServer::NewStub(channel);
+        
+        rpc_server::MultipleConnectPoorReq req;
+        req.add_server_types(rpc_server::ServerType::DB);
+        
+        rpc_server::MultipleConnectPoorRes res;
+        grpc::ClientContext context;
+        
+        grpc::Status status = stub->Get_connec_poor(&context, req, &res);
+        
+        central_connection_pool_->release_connection(rpc_server::ServerType::CENTRAL, channel);
+        
+        if (status.ok() && res.success())
         {
-            for(const rpc_server::ConnectInfo& conn_info : connect_pool.connect_info())
+            for (const rpc_server::ConnectPool& connect_pool : res.connect_pools())
             {
-                switch(connect_pool.server_type())
+                for (const rpc_server::ConnectInfo& conn_info : connect_pool.connect_info())
                 {
-                case rpc_server::ServerType::DB:
-                {
-                    db_connection_pool.add_server(rpc_server::ServerType::DB, conn_info.address(), std::to_string(conn_info.port()));
-                    break;
-                }
-                default:
-                break;
+                    if (connect_pool.server_type() == rpc_server::ServerType::DB)
+                    {
+                        db_connection_pool.add_server(
+                            rpc_server::ServerType::DB,
+                            conn_info.address(),
+                            std::to_string(conn_info.port())
+                        );
+                    }
                 }
             }
-        }
-        logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->info("Login server updated connection pools successfully");
-    }
-    else
-    {
-        logger_manager.getLogger(poor::LogCategory::CONNECTION_POOL)->error("Failed to get connection pools information");
-    }
-}
-
-/************************************ 定时任务 ********************************************************/
-// 定时任务：更新连接池
-void LoginServerImpl::Update_connection_pool()
-{
-    while(true)
-    {
-        std::this_thread::sleep_for(std::chrono::minutes(5)); // 每5分钟更新一次连接池
-        this->Init_connection_pool();
-    }
-}
-
-// 定时任务：发送心跳包
-void LoginServerImpl::Send_heartbeat()
-{
-    while(true)
-    {
-        std::this_thread::sleep_for(std::chrono::seconds(10)); // 每10秒发送一次心跳包
-
-        rpc_server::HeartbeatReq request;
-        rpc_server::HeartbeatRes response;
-        grpc::ClientContext context;
-
-        request.set_server_type(this->server_type);
-        request.set_address(this->server_address);
-        request.set_port(this->server_port);
-
-        grpc::Status status = central_stub->Heartbeat(&context,request,&response);
-
-        if(status.ok() && response.success())
-        {
-            this->logger_manager.getLogger(poor::LogCategory::HEARTBEAT)->info("Heartbeat sent successfully.");
+            
+            get_logger(poor::LogCategory::CONNECTION_POOL)->info("Login server updated connection pools successfully");
         }
         else
         {
-            this->logger_manager.getLogger(poor::LogCategory::HEARTBEAT)->error("Failed to send heartbeat.");
+            get_logger(poor::LogCategory::CONNECTION_POOL)->error("Failed to get connection pools information");
+        }
+    }
+    catch (const std::exception& e)
+    {
+        get_logger(poor::LogCategory::CONNECTION_POOL)->error("Exception during connection pool initialization: {}", e.what());
+    }
+}
+
+void LoginServerImpl::Update_connection_pool()
+{
+    while (pool_update_running_.load())
+    {
+        std::this_thread::sleep_for(std::chrono::minutes(5));
+        
+        if (pool_update_running_.load())
+        {
+            Init_connection_pool();
         }
     }
 }
 
-/************************************ gRPC服务接口实现 ******************************************************/
-// 登录服务接口
-grpc::Status LoginServerImpl::Login(grpc::ServerContext* context, const rpc_server::LoginReq* req, rpc_server::LoginRes* res)
+// ==================== gRPC 服务接口 ====================
+
+grpc::Status LoginServerImpl::Login(grpc::ServerContext* context [[maybe_unused]], const rpc_server::LoginReq* req, rpc_server::LoginRes* res)
 {
-    auto task_future = this->add_async_task([this, req, res] {
-        this->Handle_login(req, res); // 查询的数据库名，表名，查询条件
+    auto task_future = submit_task([this, req, res]() {
+        Handle_login(req, res);
     });
-
-    // 等待任务完成
     task_future.get();
-
     return grpc::Status::OK;
 }
 
-// 登出服务接口
-grpc::Status LoginServerImpl::Logout(grpc::ServerContext* context, const rpc_server::LogoutReq* req, rpc_server::LogoutRes* res)
+grpc::Status LoginServerImpl::Logout(grpc::ServerContext* context [[maybe_unused]], const rpc_server::LogoutReq* req, rpc_server::LogoutRes* res)
 {
-    auto task_future = this->add_async_task([this, req, res] {
-        this->Handle_logout(req, res); // 查询的数据库名，表名，查询条件
+    auto task_future = submit_task([this, req, res]() {
+        Handle_logout(req, res);
     });
-
-    // 等待任务完成
     task_future.get();
-
     return grpc::Status::OK;
 }
 
-// 注册服务接口
-grpc::Status LoginServerImpl::Register(grpc::ServerContext* context, const rpc_server::RegisterReq* req, rpc_server::RegisterRes* res)
+grpc::Status LoginServerImpl::Register(grpc::ServerContext* context [[maybe_unused]], const rpc_server::RegisterReq* req, rpc_server::RegisterRes* res)
 {
-    auto task_future = this->add_async_task([this, req, res] {
-        this->Handle_register(req, res); // 查询的数据库名，表名，查询条件
+    auto task_future = submit_task([this, req, res]() {
+        Handle_register(req, res);
     });
-
-    // 等待任务完成
     task_future.get();
-    // 返回gRPC状态
     return grpc::Status::OK;
 }
 
-// 令牌验证服务接口
-grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context, const rpc_server::AuthenticateReq* req, rpc_server::AuthenticateRes* res)
+grpc::Status LoginServerImpl::Authenticate(grpc::ServerContext* context [[maybe_unused]], const rpc_server::AuthenticateReq* req, rpc_server::AuthenticateRes* res)
 {
-    auto task_future = this->add_async_task([this, req, res] {
-        this->Handle_authenticate(req, res); // 查询的数据库名，表名，查询条件
+    auto task_future = submit_task([this, req, res]() {
+        Handle_authenticate(req, res);
     });
-
-    // 等待任务完成
     task_future.get();
-
     return grpc::Status::OK;
 }
 
-// 修改密码服务
-grpc::Status LoginServerImpl::Change_password(grpc::ServerContext* context, const rpc_server::ChangePasswordReq* req, rpc_server::ChangePasswordRes* res)
+grpc::Status LoginServerImpl::Change_password(grpc::ServerContext* context [[maybe_unused]], const rpc_server::ChangePasswordReq* req, rpc_server::ChangePasswordRes* res)
 {
-    auto task_future = this->add_async_task([this, req, res] {
-        this->Handle_change_password(req, res); // 查询的数据库名，表名，查询条件
+    auto task_future = submit_task([this, req, res]() {
+        Handle_change_password(req, res);
     });
-
-    // 等待任务完成
     task_future.get();
-
     return grpc::Status::OK;
 }
 
-// 获取在线用户列表
-grpc::Status LoginServerImpl::Is_user_online(grpc::ServerContext* context, const rpc_server::IsUserOnlineReq* req, rpc_server::IsUserOnlineRes* res)
+grpc::Status LoginServerImpl::Is_user_online(grpc::ServerContext* context [[maybe_unused]], const rpc_server::IsUserOnlineReq* req, rpc_server::IsUserOnlineRes* res)
 {
-    /* 返回在线用户的账号列表
-    */
-    auto task_future = this->add_async_task([this, req, res] {
-        this->Handle_is_user_online(req, res); // 查询的数据库名，表名，查询条件
+    auto task_future = submit_task([this, req, res]() {
+        Handle_is_user_online(req, res);
     });
-
-    // 等待任务完成
     task_future.get();
-
     return grpc::Status::OK;
 }
 
-/************************************ gRPC服务接口工具函数 **************************************************/
-// 登录服务
+// ==================== 业务处理函数 ====================
+
 void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::LoginRes* res)
 {
-    /* 登录服务
-    * 通过查询数据库，验证用户的用户名和密码
-    * 如果验证成功，生成Token
-    * 将账号和Token存储到Redis中，用于验证用户是否在线
-    * 更新数据库中的最后登录时间
-    * 用户退出时，删除Redis中的账号和Token
-    */
-
-    // 获取用户名和密码
     std::string account = req->account();
     std::string password = req->password();
 
     // 从连接池中获取数据库服务器连接
-    auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DB);
+    auto channel = db_connection_pool.get_connection(rpc_server::ServerType::DB);
     auto db_stub = rpc_server::DBServer::NewStub(channel);
 
     // 构造查询条件
@@ -374,19 +233,18 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
         res->set_message("Login successful");
         res->set_account(account);
         res->set_token(token);
-        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Login successful");
+        get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Login successful: {}", account);
     }
     else
     {
         res->set_success(false);
         res->set_message("Login failed");
-        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Login failed");
+        get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Login failed: {}", account);
     }
 
-    this->db_connection_pool.release_connection(rpc_server::ServerType::DB, channel); // 释放数据库服务器连接
+    db_connection_pool.release_connection(rpc_server::ServerType::DB, channel); // 释放数据库服务器连接
 }
 
-// 登出服务
 void LoginServerImpl::Handle_logout(const rpc_server::LogoutReq* req, rpc_server::LogoutRes* res)    // 登出
 {
     /* 登出服务
@@ -411,10 +269,9 @@ void LoginServerImpl::Handle_logout(const rpc_server::LogoutReq* req, rpc_server
     client->sync_commit();
     res->set_success(true);
     res->set_message("Logout successful");
-    this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Logout successful");
+    get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Logout successful: {}", account);
 }
 
-// 注册服务
 void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_server::RegisterRes* res)    // 注册
 {
     /* 注册服务
@@ -434,8 +291,6 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
     // 获取当前时间戳（毫秒）
     auto now = std::chrono::system_clock::now();
     auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now).time_since_epoch().count();
-    std::ostringstream oss;
-    oss << now_ms;
 
     // 创建用户账号
     std::random_device rd;
@@ -487,7 +342,7 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
     grpc::ClientContext client_context;
 
     // 从连接池中获取数据库服务器连接
-    auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DB);
+    auto channel = db_connection_pool.get_connection(rpc_server::ServerType::DB);
     auto db_stub = rpc_server::DBServer::NewStub(channel);
 
     // 调用数据库服务器的添加服务
@@ -509,16 +364,16 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
         res->set_message("Register successful");
         res->set_account(account);  // 设置用户账号
         res->set_token(token);  // 设置用户token
-        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Register successful");
+        get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Register successful: {}", account);
     }
     else
     {
         res->set_success(false);
         res->set_message("Register failed");
-        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Register failed");
+        get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Register failed");
     }
 
-    this->db_connection_pool.release_connection(rpc_server::ServerType::DB, channel); // 释放数据库服务器连接
+    db_connection_pool.release_connection(rpc_server::ServerType::DB, channel); // 释放数据库服务器连接
 }
 
 // 令牌验证服务
@@ -538,7 +393,6 @@ void LoginServerImpl::Handle_authenticate(const rpc_server::AuthenticateReq* req
     {
         res->set_success(false);
         res->set_message("Invalid token");
-        return;
     }
 }
 
@@ -556,12 +410,12 @@ void LoginServerImpl::Handle_change_password(const rpc_server::ChangePasswordReq
     {
         res->set_success(false);
         res->set_message("token error");
-        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Change password error");
+        get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Change password error: invalid token");
         return;
     }
 
     // 从连接池中获取数据库服务器连接
-    auto channel = this->db_connection_pool.get_connection(rpc_server::ServerType::DB);
+    auto channel = db_connection_pool.get_connection(rpc_server::ServerType::DB);
     auto db_stub = rpc_server::DBServer::NewStub(channel);
 
     // 构造数据库更新请求
@@ -571,12 +425,14 @@ void LoginServerImpl::Handle_change_password(const rpc_server::ChangePasswordReq
 
     update_req.set_database("poor_users");
     update_req.set_table("poor_users");
+    
     // 构造更新条件
     std::map<std::string, std::string> query = {{"user_account", account}, {"user_password", old_password}};
     for(auto& it : query)
     {
         (*update_req.mutable_query())[it.first] = it.second;
     }
+    
     // 构造更新数据
     std::map<std::string, std::string> data = {{"user_password", new_password}};
     for(auto& it : data)
@@ -591,19 +447,18 @@ void LoginServerImpl::Handle_change_password(const rpc_server::ChangePasswordReq
     {
         res->set_success(true);
         res->set_message("Change password successful");
-        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Change password successful");
+        get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Change password successful: {}", account);
     }
     else
     {
         res->set_success(false);
         res->set_message("new_password error");
-        this->logger_manager.getLogger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Change password error");
+        get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Change password error");
     }
 
-    this->db_connection_pool.release_connection(rpc_server::ServerType::DB, channel); // 释放数据库服务器连接
+    db_connection_pool.release_connection(rpc_server::ServerType::DB, channel); // 释放数据库服务器连接
 }
 
-// 获取在线用户列表
 void LoginServerImpl::Handle_is_user_online(const rpc_server::IsUserOnlineReq* req, rpc_server::IsUserOnlineRes* res)
 {
     // 获取账号
@@ -613,6 +468,7 @@ void LoginServerImpl::Handle_is_user_online(const rpc_server::IsUserOnlineReq* r
     auto client = redis_client.get_client();
     auto reply = client->exists({account});
     client->sync_commit();
+    
     if(reply.get().as_integer() == 1)
     {
         res->set_success(true);
@@ -627,8 +483,8 @@ void LoginServerImpl::Handle_is_user_online(const rpc_server::IsUserOnlineReq* r
     }
 }
 
-/******************************************** 其他工具函数 ***********************************************/
-// 生成 用户token
+// ==================== 工具函数 ====================
+
 std::string LoginServerImpl::Make_token(const std::string& account)
 {
     auto token = jwt::create()
@@ -636,13 +492,12 @@ std::string LoginServerImpl::Make_token(const std::string& account)
         .set_type("JWS")
         .set_subject(account)
         .set_audience("example.com")
-        .set_issued_at(std::chrono::system_clock::now())    // 不设置过期时间，依靠Redis的过期时间
+        .set_issued_at(std::chrono::system_clock::now())
         .sign(jwt::algorithm::hs256{"secret"});
 
     return token;
 }
 
-// 验证 token
 bool LoginServerImpl::Validate_token(const std::string& account_, const std::string& token_)
 {
     try
@@ -655,16 +510,15 @@ bool LoginServerImpl::Validate_token(const std::string& account_, const std::str
 
         verifier.verify(decoded);
 
-        // 检查用户的在线状态
         auto client = redis_client.get_client();
         auto reply = client->get(account_);
         client->sync_commit();
-        if(reply.get().as_string() != token_)    // 没有找到token（用户不在线）
+        
+        if(reply.get().as_string() != token_)
         {
-            return false;   
+            return false;
         }
 
-        // 延续Token的有效期
         client->expire(account_, 1800);
 
         return true;
@@ -675,8 +529,7 @@ bool LoginServerImpl::Validate_token(const std::string& account_, const std::str
     }
 }
 
-// SHA256哈希加密函数（生成64位16进制数）
-std::string LoginServerImpl::SHA256(const std::string& str_) // SHA256哈希加密函数（生成64位16禁止数）
+std::string LoginServerImpl::SHA256(const std::string& str_)
 {
     unsigned char hash[SHA256_DIGEST_LENGTH];
     SHA256_CTX sha256;
@@ -692,25 +545,21 @@ std::string LoginServerImpl::SHA256(const std::string& str_) // SHA256哈希加�
     return ss.str();
 }
 
-// 为用户创建文件表
 void LoginServerImpl::Create_file_table(const std::string& account)
 {
     try
     {
-        // 构造表名
         std::string table_name = "file_" + account;
 
-        // 构造字段定义
-        std::vector<rpc_server::CreateTableReq::Field> fields;  // 字段容器
-        // 用户ID字段
-        rpc_server::CreateTableReq::Field user_id_field;    // 字段
-        user_id_field.set_name("user_id");  // 字段名
-        user_id_field.set_type("BIGINT");   // 字段类型
-        user_id_field.set_not_null(true);   // 非空
-        user_id_field.set_comment("关联 user_info 表的 id 字段"); // 注释
-        fields.push_back(user_id_field);    // 添加字段
+        std::vector<rpc_server::CreateTableReq::Field> fields;
+        
+        rpc_server::CreateTableReq::Field user_id_field;
+        user_id_field.set_name("user_id");
+        user_id_field.set_type("BIGINT");
+        user_id_field.set_not_null(true);
+        user_id_field.set_comment("关联 user_info 表的 id 字段");
+        fields.push_back(user_id_field);
 
-        // 原始文件名字段
         rpc_server::CreateTableReq::Field original_name_field;
         original_name_field.set_name("original_file_name");
         original_name_field.set_type("VARCHAR(255)");
@@ -718,7 +567,6 @@ void LoginServerImpl::Create_file_table(const std::string& account)
         original_name_field.set_comment("原始文件名");
         fields.push_back(original_name_field);
 
-        // 文件大小字段
         rpc_server::CreateTableReq::Field file_size_field;
         file_size_field.set_name("file_size");
         file_size_field.set_type("BIGINT");
@@ -726,7 +574,6 @@ void LoginServerImpl::Create_file_table(const std::string& account)
         file_size_field.set_comment("文件大小");
         fields.push_back(file_size_field);
 
-        // 文件哈希值字段
         rpc_server::CreateTableReq::Field file_hash_field;
         file_hash_field.set_name("file_hash");
         file_hash_field.set_type("VARCHAR(64)");
@@ -734,7 +581,6 @@ void LoginServerImpl::Create_file_table(const std::string& account)
         file_hash_field.set_comment("文件哈希值");
         fields.push_back(file_hash_field);
 
-        // 服务器保存文件名字段
         rpc_server::CreateTableReq::Field server_file_name_field;
         server_file_name_field.set_name("server_file_name");
         server_file_name_field.set_type("VARCHAR(255)");
@@ -742,7 +588,6 @@ void LoginServerImpl::Create_file_table(const std::string& account)
         server_file_name_field.set_comment("服务器保存的文件名");
         fields.push_back(server_file_name_field);
 
-        // 文件上传时间字段（时间戳）
         rpc_server::CreateTableReq::Field upload_time_field;
         upload_time_field.set_name("upload_time");
         upload_time_field.set_type("VARCHAR(20)");
@@ -750,20 +595,17 @@ void LoginServerImpl::Create_file_table(const std::string& account)
         upload_time_field.set_comment("文件上传时间（毫秒时间戳）");
         fields.push_back(upload_time_field);
 
-        // 文件状态字段（枚举类型：上传中，缺损，正常）
         rpc_server::CreateTableReq::Field status_field;
         status_field.set_name("status");
-        status_field.set_type("ENUM('upload_ing', 'coloboma', 'normal')"); // 定义枚举类型
+        status_field.set_type("ENUM('upload_ing', 'coloboma', 'normal')");
         status_field.set_not_null(true);
         status_field.set_comment("文件状态：上传中，缺损，正常");
         fields.push_back(status_field);
 
-        // 构造主键约束
         rpc_server::CreateTableReq::Constraint primary_key_constraint;
         primary_key_constraint.set_type("PRIMARY_KEY");
         primary_key_constraint.add_fields("user_id");
 
-        // 构造建表请求
         rpc_server::CreateTableReq create_table_req;
         create_table_req.set_database("poor_file_hub");
         create_table_req.set_table(table_name);
@@ -777,31 +619,27 @@ void LoginServerImpl::Create_file_table(const std::string& account)
         create_table_req.set_collation("utf8mb4_general_ci");
         create_table_req.set_table_comment("用户文件表");
 
-        // 构造响应与客户端上下文
         rpc_server::CreateTableRes create_table_res;
         grpc::ClientContext client_context;
 
-        // 从连接池中获取数据库服务器连接
         auto channel = db_connection_pool.get_connection(rpc_server::ServerType::DB);
         auto db_stub = rpc_server::DBServer::NewStub(channel);
 
-        // 调用数据库服务器的建表服务
         grpc::Status status = db_stub->Create_table(&client_context, create_table_req, &create_table_res);
 
         if(status.ok() && create_table_res.success())
         {
-            this->logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->info("Table {} created successfully in poor_file_hub", table_name);
+            get_logger(poor::LogCategory::DATABASE_OPERATIONS)->info("Table {} created successfully in poor_file_hub", table_name);
         }
         else
         {
-            logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("Failed to create table {}: {}", table_name, create_table_res.message());
+            get_logger(poor::LogCategory::DATABASE_OPERATIONS)->error("Failed to create table {}: {}", table_name, create_table_res.message());
         }
 
-        // 释放数据库服务器连接
         db_connection_pool.release_connection(rpc_server::ServerType::DB, channel);
     }
     catch(const std::exception& e)
     {
-        logger_manager.getLogger(poor::LogCategory::DATABASE_OPERATIONS)->error("Exception in Create_file_table: {}", e.what());
+        get_logger(poor::LogCategory::DATABASE_OPERATIONS)->error("Exception in Create_file_table: {}", e.what());
     }
 }
