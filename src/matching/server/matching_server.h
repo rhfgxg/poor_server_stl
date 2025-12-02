@@ -1,85 +1,86 @@
 #ifndef MATCHING_SERVER_H
 #define MATCHING_SERVER_H
 
-#include "common.grpc.pb.h" // 公共模块：包含公共数据类型，枚举
-#include "consts/const_log.h"  // 日志类型
-#include "server_battle.grpc.pb.h"	// 战斗服务器
-#include "server_central.grpc.pb.h"	// 中心服务器
-#include "server_login.grpc.pb.h"   // 登录服务器
-#include "server_matching.grpc.pb.h"	// 匹配服务器
-#include "connection_pool.h"    // 连接池
-#include "logger_manager.h"     // 日志管理器
-#include "redis_client.h"       // Redis客户端
+#include "common.grpc.pb.h"
+#include "server_battle.grpc.pb.h"
+#include "server_matching.grpc.pb.h"
+#include "server_login.grpc.pb.h"
+#include "base_server.h"
+#include "connection_pool.h"
+#include "logger_manager.h"
+#include "redis_client.h"
 
 #include <grpcpp/grpcpp.h>
 #include <map>
 #include <string>
 #include <thread>
-#include <vector>
-#include <queue>
+#include <list>
+#include <unordered_map>
 #include <mutex>
-#include <condition_variable>
-#include <future>
-#include <lua.hpp>
+#include <atomic>
+#include <memory>
 
 // 玩家数据
 struct PlayerInfo
 {
-    std::string player_id;
+    int32_t player_id;  // 修改为 int32_t
     int rank;
     int score;
-    // 其他需要的信息
 };
 
-// 战斗服务器实现类
-class MatchingServerImpl final: public rpc_server::MatchingServer::Service
+/**
+ * @brief 匹配服务器实现类（重构版本）
+ * 
+ * 继承自 BaseServer，自动获得：
+ * - 线程池管理（ThreadManager）
+ * - 服务器注册/注销
+ * - 心跳发送
+ * - 日志管理
+ * 
+ * 只需实现业务逻辑：
+ * - 玩家匹配
+ * - 匹配队列管理
+ * - 取消匹配
+ */
+class MatchingServerImpl final : public BaseServer, public rpc_server::MatchingServer::Service
 {
 public:
-    MatchingServerImpl(LoggerManager& logger_manager_, const std::string address, std::string port);	// 构造函数
-    ~MatchingServerImpl();	// 析构函数
+    MatchingServerImpl(LoggerManager& logger_manager_, const std::string address, std::string port);
+    ~MatchingServerImpl() override;
 
-    void register_server(); // 注册服务器
-    void unregister_server(); // 注销服务器
+    // gRPC 服务接口
+    grpc::Status MatchPlayer(grpc::ServerContext* context, const rpc_server::MatchPlayerReq* req, grpc::ServerWriter<rpc_server::MatchPlayerRes>* writer) override;
+    grpc::Status CancelMatch(grpc::ServerContext* context, const rpc_server::CancelMatchReq* req, rpc_server::CancelMatchRes* res) override;
 
-    void start_thread_pool(int num_threads);    // 启动线程池
-    void stop_thread_pool();    // 停止线程池
-
-// grpc服务接口
-    grpc::Status MatchPlayer(grpc::ServerContext* context, const rpc_server::MatchPlayerReq* req, grpc::ServerWriter<rpc_server::MatchPlayerRes>* writer) override;    // 请求匹配
-    grpc::Status CancelMatch(grpc::ServerContext* context, const rpc_server::CancelMatchReq* req, rpc_server::CancelMatchRes* res) ;    // 取消匹配
+protected:
+    // BaseServer 钩子方法
+    bool on_start() override;
+    void on_stop() override;
+    void on_registered(bool success) override;
 
 private:
-    MatchingServerImpl(MatchingServerImpl const&) = delete; // 禁止拷贝构造
-    MatchingServerImpl& operator=(MatchingServerImpl const&) = delete; // 禁止拷贝赋值
+    // 禁止拷贝
+    MatchingServerImpl(MatchingServerImpl const&) = delete;
+    MatchingServerImpl& operator=(MatchingServerImpl const&) = delete;
 
-    void Init_connection_pool();    // 初始化链接池
+    // 连接池管理
+    void Init_connection_pool();
+    void Update_connection_pool();
 
-    std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
-    void Worker_thread();   // 执行线程的任务
-
-    // 定时任务：
-    void Update_connection_pool();  // 更新连接池
-    void Send_heartbeat();  // 发送心跳包
 private:
-    std::string server_address; // 服务器地址
-    std::string server_port;    // 服务器端口
-    rpc_server::ServerType server_type;  // 服务器类型
-
-    LoggerManager& logger_manager;  // 日志管理器
-    RedisClient redis_client;    // Redis客户端
-
-    std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;	// 中心服务存根
-    ConnectionPool battle_connection_pool;  // 战斗服务器连接池
-    ConnectionPool login_connection_pool;   // 登录服务器连接池
-
-    std::vector<std::thread> thread_pool;   // 线程池
-    std::queue<std::function<void()>> task_queue;    // 任务队列
-    std::mutex queue_mutex; // 任务队列互斥锁
-    std::condition_variable queue_cv;   // 任务队列条件变量
-    bool stop_threads = false;  // 停止线程标志
-
-    std::unordered_map<int, std::list<PlayerInfo>> match_queues;    // 匹配队列，key为段位，value为玩家信息列表
-    std::mutex match_mutex; // 匹配队列互斥锁
+    RedisClient redis_client;
+    
+    // 连接池
+    ConnectionPool battle_connection_pool;
+    ConnectionPool login_connection_pool;
+    
+    // 匹配队列（按段位分组）
+    std::unordered_map<int, std::list<PlayerInfo>> match_queues;
+    std::mutex match_mutex;
+    
+    // 定时更新连接池的线程
+    std::thread update_pool_thread_;
+    std::atomic<bool> pool_update_running_{false};
 };
 
 #endif // MATCHING_SERVER_H
