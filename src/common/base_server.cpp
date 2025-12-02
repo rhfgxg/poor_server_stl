@@ -228,17 +228,14 @@ bool BaseServer::init_thread_pool(size_t thread_count [[maybe_unused]])
 // 初始化 Central Server 连接
 bool BaseServer::init_central_connection()
 {
-    // 读取 Central Server 配置
-    std::string config_file = "config/cfg_central_server.lua";
-    if (!read_central_config(config_file))
+    // 读取 Central Server 配置（自动尝试多个路径）
+    if (!read_central_config(""))
     {
         log_startup("Failed to read Central Server config");
         return false;
     }
 
-    //创建到 Central Server 的连接池（使用简单的 string target，而非 ConnectionPool）
-    // 因为 ConnectionPool 是为管理多个服务器类型设计的
-    // 这里我们只需要一个简单的连接到 Central Server
+    // 创建到 Central Server 的连接池
     try
     {
         std::string central_target = central_server_address_ + ":" + central_server_port_;
@@ -502,8 +499,17 @@ bool BaseServer::send_heartbeat()
 }
 
 // 读取配置文件获取 Central Server 地址
-bool BaseServer::read_central_config(const std::string& config_file)
+bool BaseServer::read_central_config(const std::string& config_file [[maybe_unused]])
 {
+    // 可能的配置文件路径（按优先级排序）
+    const char* possible_paths[] = {
+        "config/cfg_central_server.lua",                          // build/src/xxx/config/ (copy_config.sh 复制后)
+        "config/cpp/cfg_server/cfg_central_server.lua",           // 从项目根目录运行
+        "../config/cpp/cfg_server/cfg_central_server.lua",        // 从 build/ 目录运行
+        "../../config/cpp/cfg_server/cfg_central_server.lua",     // 从 build/src/xxx/ 运行（但没有 config/）
+        "../../../config/cpp/cfg_server/cfg_central_server.lua"  // 备用路径
+    };
+
     lua_State* L = luaL_newstate();
     if (!L)
     {
@@ -513,20 +519,33 @@ bool BaseServer::read_central_config(const std::string& config_file)
 
     luaL_openlibs(L);
 
-    // 加载配置文件
-    if (luaL_dofile(L, config_file.c_str()) != LUA_OK)
+    bool loaded = false;
+    std::string loaded_path;
+
+    // 尝试多个可能的路径
+    for (const char* path : possible_paths)
     {
-        std::string error = lua_tostring(L, -1);
-        log_startup("Failed to load config file: " + error);
+        if (luaL_dofile(L, path) == LUA_OK)
+        {
+            loaded = true;
+            loaded_path = path;
+            break;
+        }
+        // 清除错误信息，继续尝试下一个路径
+        lua_pop(L, 1);
+    }
+
+    if (!loaded)
+    {
+        log_startup("Failed to load Central Server config from any expected location");
         lua_close(L);
         return false;
     }
 
-    // 读取 server 表
-    lua_getglobal(L, "server");
+    // 读取 server 表（兼容旧格式，直接返回表）
     if (!lua_istable(L, -1))
     {
-        log_startup("'server' table not found in config file");
+        log_startup("'server' config is not a table");
         lua_close(L);
         return false;
     }
@@ -539,7 +558,7 @@ bool BaseServer::read_central_config(const std::string& config_file)
     }
     else
     {
-        log_startup("'host' not found in server table");
+        log_startup("'host' not found in config");
         lua_close(L);
         return false;
     }
@@ -557,7 +576,7 @@ bool BaseServer::read_central_config(const std::string& config_file)
     }
     else
     {
-        log_startup("'port' not found in server table");
+        log_startup("'port' not found in config");
         lua_close(L);
         return false;
     }
@@ -565,6 +584,7 @@ bool BaseServer::read_central_config(const std::string& config_file)
 
     lua_close(L);
 
+    log_startup("Central Server config loaded from: " + loaded_path);
     log_startup("Central Server config: " + central_server_address_ + ":" + central_server_port_);
     return true;
 }

@@ -1,87 +1,69 @@
 #ifndef DB_SERVICE_H
 #define DB_SERVICE_H
 
-#include "common.grpc.pb.h" // 公共模块：包含公共数据类型，枚举
-#include "server_db.grpc.pb.h"  // 数据库服务器
-#include "server_central.grpc.pb.h" // 中心服务器
-#include "consts/const_log.h"  // 日志类型
-#include "connection_pool.h"    // 连接池
-#include "db_connection_pool.h" // 数据库连接池
-#include "logger_manager.h"     // 日志管理器
+#include "common.grpc.pb.h"
+#include "server_db.grpc.pb.h"
+#include "base_server.h"
+#include "db_connection_pool.h"
+#include "logger_manager.h"
 
 #include <grpcpp/grpcpp.h>
-#include <thread>
-#include <vector>
-#include <queue>
-#include <mutex>
-#include <condition_variable>
-#include <future>
-#include <lua.hpp>
+#include <memory>
 
-// 数据库服务实现类
-class DBServerImpl final: public rpc_server::DBServer::Service
+// 前向声明 lua_State，避免在头文件中包含 lua.hpp
+struct lua_State;
+
+/**
+ * @brief 数据库服务实现类（重构版本）
+ * 
+ * 继承自 BaseServer，自动获得：
+ * - 线程池管理（ThreadManager）
+ * - 服务器注册/注销
+ * - 心跳发送
+ * - 日志管理
+ * 
+ * 只需实现业务逻辑：
+ * - 数据库操作（CRUD）
+ * - 数据库连接池管理
+ */
+class DBServerImpl final : public BaseServer, public rpc_server::DBServer::Service
 {
 public:
-    DBServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port); // 参数：日志管理器，数据库连接池
-    ~DBServerImpl(); // 添加析构函数声明
+    DBServerImpl(LoggerManager& logger_manager_, const std::string& address, const std::string& port);
+    ~DBServerImpl() override;
 
-    void start_thread_pool(int num_threads);    // 启动线程池
-    void stop_thread_pool();    // 停止线程池
-
-// grpc对外接口
-    // 添加数据
+    // gRPC 对外接口
     grpc::Status Create(grpc::ServerContext* context, const rpc_server::CreateReq* req, rpc_server::CreateRes* res) override;
-    // 查询数据
     grpc::Status Read(grpc::ServerContext* context, const rpc_server::ReadReq* req, rpc_server::ReadRes* res) override;
-    // 更新数据
     grpc::Status Update(grpc::ServerContext* context, const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res) override;
-    // 删除数据
     grpc::Status Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res) override;
-    // 新建表
     grpc::Status Create_table(grpc::ServerContext* context, const rpc_server::CreateTableReq* req, rpc_server::CreateTableRes* res) override;
 
-private:
-    // 初始化
-    std::string Read_db_config(lua_State* L_, const std::string& file_url_, const std::string& db_name_); // 读取 数据库配置配置文件，获得数据库连接字符串
-    void register_server(); // 注册服务器
-    void unregister_server(); // 注销服务器
-
-    std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
-    void Worker_thread();   // 线程池工作函数
-
-    // 处理数据库操作的函数
-    void Handle_create(const rpc_server::CreateReq* req, rpc_server::CreateRes* res);   // 添加数据
-    void Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadRes* res); // 查询数据
-    void Handle_update(const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res);   // 更新数据
-    void Handle_delete(const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res);   // 删除数据
-    void Handle_create_table(const rpc_server::CreateTableReq* req, rpc_server::CreateTableRes* res);   // 新建表
-
-    // 定时任务：
-    void Send_heartbeat();  // 发送心跳包
-
-    // 工具函数
-    std::unique_ptr<mysqlx::Session> Git_connection(const std::string& db_name); // 使用数据库名 获取 指定数据库连接池 中连接
-    void Release_connection(const std::string& db_name, std::unique_ptr<mysqlx::Session> session); // 使用数据库名 释放数据库连接
+protected:
+    // BaseServer 钩子方法
+    bool on_start() override;
+    void on_stop() override;
 
 private:
-    std::string server_address; // 服务器地址
-    std::string server_port;    // 服务器端口
-    rpc_server::ServerType server_type;  // 服务器类型
+    // 数据库操作处理函数
+    void Handle_create(const rpc_server::CreateReq* req, rpc_server::CreateRes* res);
+    void Handle_read(const rpc_server::ReadReq* req, rpc_server::ReadRes* res);
+    void Handle_update(const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res);
+    void Handle_delete(const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res);
+    void Handle_create_table(const rpc_server::CreateTableReq* req, rpc_server::CreateTableRes* res);
 
-    LoggerManager& logger_manager;  // 日志管理器
+    // 数据库连接池工具函数
+    std::unique_ptr<mysqlx::Session> Get_connection(const std::string& db_name);
+    void Release_connection(const std::string& db_name, std::unique_ptr<mysqlx::Session> session);
 
+    // 配置读取
+    bool init_db_pools();
+
+private:
     // 数据库连接池
-    std::unique_ptr<DBConnectionPool> poor_users_pool; // 用户数据库
-    std::unique_ptr<DBConnectionPool> poor_file_pool;  // 网盘数据库
-    std::unique_ptr<DBConnectionPool> hearthstone_pool;   // 炉石传说数据库
-
-    std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;    // 中心服务存根
-
-    std::vector<std::thread> thread_pool;   // 线程池
-    std::queue<std::function<void()>> task_queue;    // 任务队列
-    std::mutex queue_mutex; // 任务队列互斥锁
-    std::condition_variable queue_cv;   // 任务队列条件变量
-    bool stop_threads = false;  // 停止线程标志
+    std::unique_ptr<DBConnectionPool> poor_users_pool_;
+    std::unique_ptr<DBConnectionPool> poor_file_pool_;
+    std::unique_ptr<DBConnectionPool> hearthstone_pool_;
 };
 
 #endif // DB_SERVICE_H
