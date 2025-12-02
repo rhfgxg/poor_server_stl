@@ -9,6 +9,8 @@ set(SOURCES
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
+    ${PROJECT_SOURCE_DIR}/src/common/base_server.cpp
+    ${PROJECT_SOURCE_DIR}/src/common/thread_manager.cpp
     # proto生成的源文件
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/common.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/common.grpc.pb.cc

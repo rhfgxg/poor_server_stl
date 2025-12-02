@@ -1,94 +1,160 @@
 #include "./server/file_server.h"
-#include "logger_manager.h" // 引入日志管理器
+#include "logger_manager.h"
+#include <iostream>
+#include <lua.hpp>
 
-void RunServer(LoggerManager& logger_manager);  // 运行服务器
-void Read_server_config(std::string& address, std::string& port);    // 读取服务器配置文件，初始化服务器地址和端口
+void run_server(LoggerManager& logger_manager);
+void read_server_config(std::string& address, std::string& port);
 
-// 文件服务器main函数
+/**
+ * @brief 文件服务器主函数（重构版本）
+ * 
+ * 重构效果：
+ * - 使用 BaseServer 自动管理所有基础功能 ✅
+ * - 代码大幅简化 ✅
+ * - 统一的代码结构 ✅
+ */
 int main()
-{
-    // 初始化日志管理器，通过引用传递实现单例模式
-    LoggerManager logger_manager;
-    logger_manager.initialize(rpc_server::ServerType::FILE);    // 传入服务器类型，创建日志文件夹
-
-    // 记录启动日志
-    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("File_server started"); // 记录启动日志：日志分类, 日志内容
-
-    RunServer(logger_manager); // 运行服务器
-
-    return 0; // 返回0表示程序正常结束
-}
-
-// 运行服务器
-void RunServer(LoggerManager& logger_manager)
-{
-    std::string address = "127.0.0.1";
-    std::string port = "50055";
-    Read_server_config(address, port);
-
-    FileServerImpl file_server(logger_manager, address, port); // 网关服务器实现
-
-    grpc::ServerBuilder builder; // gRPC服务器构建器
-    std::string server_address(address + ":" + port); // 文件服务器监听50055端口
-    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials()); // 添加监听端口
-    builder.RegisterService(&file_server); // 注册服务
-
-    std::unique_ptr<grpc::Server> server(builder.BuildAndStart()); // 构建并启动服务器
-    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Listening address: {}", server_address);
-
-    file_server.start_thread_pool(4); // 启动4个线程处理请求
-
-    server->Wait(); // 等待服务器终止
-
-    file_server.stop_thread_pool(); // 停止线程池
-}
-
-// 读取服务器配置文件，初始化服务器地址和端口
-void Read_server_config(std::string& address, std::string& port)
 {
     try
     {
-        lua_State* L = luaL_newstate();  // 创建lua虚拟机
-        luaL_openlibs(L);   // 打开lua标准库
+        // 初始化日志管理器
+        LoggerManager logger_manager;
+        logger_manager.initialize(rpc_server::ServerType::FILE);
 
-        std::string file_url = "config/cfg_file_server.lua";  // 配置文件路径
+        logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("File_server starting...");
 
-        if(luaL_dofile(L, file_url.c_str()) != LUA_OK)
-        {
-            lua_close(L);
-            throw std::runtime_error("Failed to load config file");
-        }
+        // 运行服务器
+        run_server(logger_manager);
 
-        // 获取返回值（配置表）
-        if(!lua_istable(L, -1))
-        {
-            lua_close(L);
-            throw std::runtime_error("Invalid config format");
-        }
-
-        lua_getfield(L, -1, "host");
-        if(!lua_isstring(L, -1))
-        {
-            lua_close(L);
-            throw std::runtime_error("Invalid host format");
-        }
-        address = lua_tostring(L, -1);
-        lua_pop(L, 1);
-
-        lua_getfield(L, -1, "port");
-        if(!lua_isinteger(L, -1))
-        {
-            lua_close(L);
-            throw std::runtime_error("Invalid port format");
-        }
-        port = std::to_string(lua_tointeger(L, -1));
-        lua_pop(L, 1);
-
-        lua_close(L);   // 关闭lua虚拟机
+        return EXIT_SUCCESS;
     }
-    catch(const std::exception& e)
+    catch (const std::exception& e)
     {
-        std::cerr << "Error: " << e.what() << std::endl;
-        exit(EXIT_FAILURE);
+        std::cerr << "Fatal error in main: " << e.what() << std::endl;
+        return EXIT_FAILURE;
+    }
+}
+
+void run_server(LoggerManager& logger_manager)
+{
+    // 读取配置文件
+    std::string address = "127.0.0.1";
+    std::string port = "50055";
+    read_server_config(address, port);
+
+    // 创建服务器实例（BaseServer 会自动管理线程池、注册、心跳）
+    FileServerImpl file_server(logger_manager, address, port);
+
+    // 启动服务器（BaseServer 自动处理初始化）
+    if (!file_server.start())
+    {
+        logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->error("Failed to start server");
+        return;
+    }
+
+    // 构建并启动 gRPC 服务器
+    grpc::ServerBuilder builder;
+    std::string server_address = address + ":" + port;
+    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
+    builder.RegisterService(&file_server);
+
+    std::unique_ptr<grpc::Server> grpc_server(builder.BuildAndStart());
+    logger_manager.getLogger(poor::LogCategory::STARTUP_SHUTDOWN)->info("Listening on: {}", server_address);
+
+    // 等待服务器关闭
+    grpc_server->Wait();
+
+    // 停止服务器（BaseServer 自动处理清理）
+    file_server.stop();
+}
+
+/**
+ * @brief 读取服务器配置文件
+ * @param address 服务器地址（输出参数）
+ * @param port 服务器端口（输出参数）
+ * 
+ * 支持多种配置文件路径（按优先级）：
+ * 1. config/cfg_file_server.lua (运行时目录的 config/)
+ * 2. config/cpp/cfg_server/cfg_file_server.lua (项目根目录)
+ * 3. ../config/cpp/cfg_server/cfg_file_server.lua (从 build/ 运行)
+ */
+void read_server_config(std::string& address, std::string& port)
+{
+    // 可能的配置文件路径（按优先级排序）
+    const char* possible_paths[] = {
+        "config/cfg_file_server.lua",                          // build/src/file/config/ (copy_config.sh 复制后)
+        "config/cpp/cfg_server/cfg_file_server.lua",           // 从项目根目录运行
+        "../config/cpp/cfg_server/cfg_file_server.lua",        // 从 build/ 目录运行
+        "../../config/cpp/cfg_server/cfg_file_server.lua",     // 从 build/src/file/ 运行（但没有 config/）
+        "../../../config/cpp/cfg_server/cfg_file_server.lua"  // 备用路径
+    };
+
+    lua_State* L = nullptr;
+    std::string loaded_path;
+    bool loaded = false;
+
+    try
+    {
+        L = luaL_newstate();
+        if (!L)
+        {
+            throw std::runtime_error("Failed to create Lua state");
+        }
+        luaL_openlibs(L);
+
+        // 尝试多个可能的路径
+        for (const char* path : possible_paths)
+        {
+            if (luaL_dofile(L, path) == LUA_OK)
+            {
+                loaded = true;
+                loaded_path = path;
+                break;
+            }
+            // 清除错误信息，继续尝试下一个路径
+            lua_pop(L, 1);
+        }
+
+        if (!loaded)
+        {
+            lua_close(L);
+            throw std::runtime_error("Config file not found in any expected location");
+        }
+
+        if (!lua_istable(L, -1))
+        {
+            lua_close(L);
+            throw std::runtime_error("Config file must return a table");
+        }
+
+        // 读取 host
+        lua_getfield(L, -1, "host");
+        if (lua_isstring(L, -1))
+        {
+            address = lua_tostring(L, -1);
+        }
+        lua_pop(L, 1);
+
+        // 读取 port
+        lua_getfield(L, -1, "port");
+        if (lua_isinteger(L, -1))
+        {
+            port = std::to_string(lua_tointeger(L, -1));
+        }
+        lua_pop(L, 1);
+
+        lua_close(L);
+        
+        std::cout << "Config loaded from: " << loaded_path << std::endl;
+    }
+    catch (const std::exception& e)
+    {
+        if (L)
+        {
+            lua_close(L);
+        }
+        std::cerr << "Warning: " << e.what() << std::endl;
+        std::cerr << "Using defaults: " << address << ":" << port << std::endl;
     }
 }
