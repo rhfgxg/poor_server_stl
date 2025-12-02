@@ -6,10 +6,14 @@ set(MODULE_NAME gateway)
 set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/gateway/main.cpp
     ${PROJECT_SOURCE_DIR}/src/gateway/server/gateway_server.cpp
+    ${PROJECT_SOURCE_DIR}/src/gateway/server/gateway_forward_login.cpp
+    ${PROJECT_SOURCE_DIR}/src/gateway/server/gateway_forward_file.cpp
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
     ${PROJECT_SOURCE_DIR}/src/common/redis_client.cpp
+    ${PROJECT_SOURCE_DIR}/src/common/base_server.cpp
+    ${PROJECT_SOURCE_DIR}/src/common/thread_manager.cpp
     # proto生成的源文件
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/common.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/common.grpc.pb.cc
@@ -32,25 +36,12 @@ add_executable(${MODULE_NAME} ${SOURCES})
 target_include_directories(${MODULE_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 # 链接第三方库lib
-# 注意：库的链接顺序很重要！依赖关系：cpp_redis -> tacopie
 target_link_libraries(${MODULE_NAME} PRIVATE
-# 注释了一些暂时不需要的库
-#    absl::base
-#    absl::flags
-#    Boost::system
-#    c-ares::cares
-#    fmt::fmt
-#    OpenSSL::SSL
-#    OpenSSL::Crypto
-#    protobuf::libprotobuf
-#    re2::re2
-#    ZLIB::ZLIB
-#    upb::upb
     gRPC::grpc++
     spdlog::spdlog
     ${LUA_LIB}
-    ${CPPREDIS_LIB}  # cpp_redis 依赖 tacopie，所以要放在前面
-    ${TACOPIE_LIB}   # tacopie 放在后面
+    ${CPPREDIS_LIB}
+    ${TACOPIE_LIB}
 )
 
 # 第三方库 dll列表
@@ -69,15 +60,13 @@ if(WIN32)
         "${VCPKG_DEBUG_BIN}/spdlogd.dll"
         "${VCPKG_DEBUG_BIN}/lua.dll"
     )
-    # 复制dll文件到可执行文件所在目录
     foreach(DLL_FILE ${DLL_FILES})
         add_custom_command(TARGET ${MODULE_NAME} POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
             "${DLL_FILE}"
-            $<TARGET_FILE_DIR:${MODULE_NAME}>  # 复制到可执行文件生成目录
+            $<TARGET_FILE_DIR:${MODULE_NAME}>
         )
     endforeach()
 endif()
 
-# 安装可执行文件到 bin 目录
 install(TARGETS ${MODULE_NAME} DESTINATION bin)

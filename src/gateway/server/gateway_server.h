@@ -1,90 +1,83 @@
 #ifndef GATEWAY_SERVER_H
 #define GATEWAY_SERVER_H
 
-#include "common.grpc.pb.h" // 公共模块：包含公共数据类型，枚举
-#include "consts/const_log.h"  // 日志类型
+#include "common.grpc.pb.h"
 #include "server_gateway.grpc.pb.h"
-#include "server_central.grpc.pb.h"
 #include "server_login.grpc.pb.h"
 #include "server_file.grpc.pb.h"
-#include "connection_pool.h"    // 连接池
-#include "logger_manager.h"     // 日志管理器
-#include "redis_client.h"       // Redis客户端
+#include "base_server.h"
+#include "connection_pool.h"
+#include "logger_manager.h"
+#include "redis_client.h"
 
 #include <grpcpp/grpcpp.h>
-#include <thread>
-#include <vector>
-#include <queue>
-#include <mutex>
-#include <condition_variable>
-#include <future>
-#include <lua.hpp>
+#include <memory>
+#include <atomic>
 
-// 网关服务器对外接口
-class GatewayServerImpl final: public rpc_server::GatewayServer::Service
+/**
+ * @brief 网关服务器实现类（重构版本）
+ * 
+ * 继承自 BaseServer，自动获得：
+ * - 线程池管理（ThreadManager）
+ * - 服务器注册/注销
+ * - 心跳发送
+ * - 日志管理
+ * 
+ * 只需实现业务逻辑：
+ * - 客户端注册和心跳
+ * - 请求转发到其他服务器
+ * - 连接池管理
+ */
+class GatewayServerImpl final : public BaseServer, public rpc_server::GatewayServer::Service
 {
 public:
     GatewayServerImpl(LoggerManager& logger_manager_, const std::string address, const std::string port);
-    ~GatewayServerImpl();
+    ~GatewayServerImpl() override;
 
-    void start_thread_pool(int num_threads);    // 启动线程池
-    void stop_thread_pool();    // 停止线程池
+    // gRPC 对外接口
+    grpc::Status Client_register(grpc::ServerContext* context, const rpc_server::ClientRegisterReq* req, rpc_server::ClientRegisterRes* res) override;
+    grpc::Status Client_heartbeat(grpc::ServerContext* context, const rpc_server::ClientHeartbeatReq* req, rpc_server::ClientHeartbeatRes* res) override;
+    grpc::Status Get_gateway_pool(grpc::ServerContext* context, const rpc_server::GetGatewayPoolReq* req, rpc_server::GetGatewayPoolRes* res) override;
+    grpc::Status Request_forward(grpc::ServerContext* context, const rpc_server::ForwardReq* req, rpc_server::ForwardRes* res) override;
 
-// grpc对外接口
-    // 客户端注册
-    grpc::Status Client_register(grpc::ServerContext* context, const rpc_server::ClientRegisterReq* req, rpc_server::ClientRegisterRes* res);
-    // 接收客户端心跳
-    grpc::Status Client_heartbeat(grpc::ServerContext* context, const rpc_server::ClientHeartbeatReq* req, rpc_server::ClientHeartbeatRes* res);
-    // 发送网关服务器连接池
-    grpc::Status Get_Gateway_pool(grpc::ServerContext* context, const rpc_server::GetGatewayPoolReq* req, rpc_server::GetGatewayPoolRes* res);
-    // 转发服务请求
-    grpc::Status Request_forward(grpc::ServerContext* context, const rpc_server::ForwardReq* req, rpc_server::ForwardRes* res);
+protected:
+    // BaseServer 钩子方法
+    bool on_start() override;
+    void on_stop() override;
+    void on_registered(bool success) override;
 
 private:
     // 初始化
-    void register_server(); // 注册服务器
-    void unregister_server(); // 注销服务器
-    void Init_connection_pool();    // 初始化链接池
-
-    // 多线程
-    std::future<void> add_async_task(std::function<void()> task); // 添加异步任务
-    void Worker_thread();   // 执行线程的任务
-
-    // 发送网关服务器连接池
+    void Init_connection_pool();
+    
+    // 请求转发处理函数
     grpc::Status Handle_return_gateway_poor(const rpc_server::GetGatewayPoolReq* req, rpc_server::GetGatewayPoolRes* res);
-// 处理转发请求
-    // 登录服务器
-    grpc::Status Forward_to_register_service(const std::string& payload, rpc_server::ForwardRes* res);  // 注册
-    grpc::Status Forward_to_login_service(const std::string& payload, rpc_server::ForwardRes* res); // 登录
-    grpc::Status Forward_to_logout_service(const std::string& payload, rpc_server::ForwardRes* res);    // 登出
-    grpc::Status Forward_to_change_password_service(const std::string& payload, rpc_server::ForwardRes* res);    // 修改密码
-    // 文件服务器
-    grpc::Status Forward_to_file_transmission_ready_service(const std::string& payload, rpc_server::ForwardRes* res); // 文件传输准备
-    grpc::Status Forward_to_file_delete_service(const std::string& payload, rpc_server::ForwardRes* res);   // 文件删除
-    grpc::Status Forward_to_file_list_service(const std::string& payload, rpc_server::ForwardRes* res); // 获取文件列表
-    // 定时任务：
-    void Update_connection_pool();  // 更新连接池
-    void Send_heartbeat();  // 发送心跳包
+    
+    // 登录服务器转发
+    grpc::Status Forward_to_register_service(const std::string& payload, rpc_server::ForwardRes* res);
+    grpc::Status Forward_to_login_service(const std::string& payload, rpc_server::ForwardRes* res);
+    grpc::Status Forward_to_logout_service(const std::string& payload, rpc_server::ForwardRes* res);
+    grpc::Status Forward_to_change_password_service(const std::string& payload, rpc_server::ForwardRes* res);
+    
+    // 文件服务器转发
+    grpc::Status Forward_to_file_transmission_ready_service(const std::string& payload, rpc_server::ForwardRes* res);
+    grpc::Status Forward_to_file_delete_service(const std::string& payload, rpc_server::ForwardRes* res);
+    grpc::Status Forward_to_file_list_service(const std::string& payload, rpc_server::ForwardRes* res);
+    
+    // 定时任务
+    void Update_connection_pool();
 
 private:
-    // 服务器信息
-    std::string server_address; // 服务器地址
-    std::string server_port;    // 服务器端口
-    rpc_server::ServerType server_type;  // 服务器类型
-
-    LoggerManager& logger_manager;  // 日志管理器
-    RedisClient redis_client;    // Redis客户端
-
-    std::unique_ptr<rpc_server::CentralServer::Stub> central_stub;  // 中心服务器的服务存根
-    ConnectionPool login_connection_pool;   // 登录服务器连接池
-    ConnectionPool file_connection_pool;    // 文件服务器连接池
-    ConnectionPool gateway_connection_pool;    // 网关服务器连接池
-
-    std::vector<std::thread> thread_pool;   // 线程池
-    std::queue<std::function<void()>> task_queue;    // 任务队列
-    std::mutex queue_mutex; // 任务队列互斥锁
-    std::condition_variable queue_cv;   // 任务队列条件变量
-    bool stop_threads = false;  // 停止线程标志
+    RedisClient redis_client;
+    
+    // 各服务器连接池
+    ConnectionPool login_connection_pool;
+    ConnectionPool file_connection_pool;
+    ConnectionPool gateway_connection_pool;
+    
+    // 定时更新连接池的线程
+    std::thread update_pool_thread_;
+    std::atomic<bool> pool_update_running_{false};
 };
 
 #endif // GATEWAY_SERVER_H
