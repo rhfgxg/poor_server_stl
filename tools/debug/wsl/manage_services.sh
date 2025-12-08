@@ -10,6 +10,9 @@ PROJECT_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 BUILD_DIR="$PROJECT_ROOT/build"
 # 配置复制脚本
 COPY_CONFIG_SCRIPT="$SCRIPT_DIR/copy_config.sh"
+# Skynet 目录
+SKYNET_DIR="$PROJECT_ROOT/skynet_src/skynet"
+SKYNET_CONFIG="$PROJECT_ROOT/config/skynet/config.lua"
 
 # 颜色定义
 RED='\033[0;31m'
@@ -32,6 +35,109 @@ print_error() {
 
 print_warning() {
     echo -e "${YELLOW}[WARNING]${NC} $1"
+}
+
+# 检查 Skynet 是否已编译
+check_skynet_compiled() {
+    if [ ! -f "$SKYNET_DIR/skynet" ]; then
+        print_error "Skynet 未编译！"
+        print_info "请运行: cd $SKYNET_DIR && make linux"
+        return 1
+    fi
+    return 0
+}
+
+# 启动 Skynet
+start_skynet() {
+    print_info "启动 Skynet 逻辑服务器..."
+    
+    # 检查 Skynet 是否已编译
+    if ! check_skynet_compiled; then
+        return 1
+    fi
+    
+    # 检查配置文件
+    if [ ! -f "$SKYNET_CONFIG" ]; then
+        print_error "Skynet 配置文件不存在: $SKYNET_CONFIG"
+        return 1
+    fi
+    
+    # 检查是否已在运行
+    if pgrep -x "skynet" > /dev/null; then
+        print_warning "Skynet 已在运行"
+        return 0
+    fi
+    
+    # 切换到 Skynet 目录
+    cd "$SKYNET_DIR" || {
+        print_error "无法切换到 Skynet 目录: $SKYNET_DIR"
+        return 1
+    }
+    
+    # 计算相对配置文件路径
+    RELATIVE_CONFIG="../../config/skynet/config.lua"
+    
+    # 检查相对路径是否正确
+    if [ ! -f "$RELATIVE_CONFIG" ]; then
+        print_error "从 Skynet 目录找不到配置文件: $RELATIVE_CONFIG"
+        print_info "当前目录: $(pwd)"
+        print_info "尝试的配置路径: $RELATIVE_CONFIG"
+        cd - > /dev/null
+        return 1
+    fi
+    
+    # 创建日志目录
+    mkdir -p "$PROJECT_ROOT/logs"
+    
+    # 启动 Skynet（输出到日志文件）
+    print_info "启动命令: ./skynet $RELATIVE_CONFIG"
+    ./skynet "$RELATIVE_CONFIG" > "$PROJECT_ROOT/logs/skynet.log" 2>&1 &
+    local pid=$!
+    sleep 2
+    
+    # 检查进程是否还在运行
+    if ps -p $pid > /dev/null 2>&1; then
+        print_success "Skynet 已启动 (PID: $pid)"
+        print_info "日志文件: $PROJECT_ROOT/logs/skynet.log"
+        cd - > /dev/null
+        return 0
+    else
+        print_error "Skynet 启动失败"
+        print_info "请查看日志: tail -20 $PROJECT_ROOT/logs/skynet.log"
+        echo ""
+        print_info "最近的错误信息:"
+        tail -20 "$PROJECT_ROOT/logs/skynet.log"
+        echo ""
+        print_info "诊断建议:"
+        print_info "  1. 检查 Skynet 是否已编译: ls -lh $SKYNET_DIR/skynet"
+        print_info "  2. 检查服务文件是否存在: ls $PROJECT_ROOT/skynet_src/service/main.lua"
+        print_info "  3. 运行诊断脚本: bash $PROJECT_ROOT/tools/skynet/diagnose_skynet.sh"
+        cd - > /dev/null
+        return 1
+    fi
+}
+
+# 停止 Skynet
+stop_skynet() {
+    if pgrep -x "skynet" > /dev/null; then
+        print_info "停止 Skynet 服务器..."
+        pkill -TERM "skynet"
+        sleep 1
+        
+        # 检查是否还在运行
+        if pgrep -x "skynet" > /dev/null; then
+            print_warning "Skynet 未响应，强制停止..."
+            pkill -KILL "skynet"
+            sleep 0.5
+        fi
+        
+        # 最终检查
+        if ! pgrep -x "skynet" > /dev/null; then
+            print_success "Skynet 已停止"
+        else
+            print_error "Skynet 停止失败"
+        fi
+    fi
 }
 
 # 检查 Redis 是否运行
@@ -159,20 +265,6 @@ start_servers() {
         return 1
     fi
     
-    # 检查是否有可执行文件
-    if ! find "$BUILD_DIR/src" -type f -executable 2>/dev/null | grep -q .; then
-        print_error "未找到可执行文件！"
-        print_info "可能的原因："
-        print_info "  1. 项目尚未编译"
-        print_info "  2. 编译失败"
-        print_info "  3. 可执行文件在其他位置"
-        print_info ""
-        print_info "请运行:"
-        print_info "  cd $PROJECT_ROOT"
-        print_info "  bash build.sh Release"
-        return 1
-    fi
-    
     # 复制配置文件
     echo ""
     if ! copy_configs; then
@@ -184,6 +276,10 @@ start_servers() {
         fi
     fi
     echo ""
+    
+    # 先启动 Skynet
+    start_skynet
+    sleep 2
     
     # 启动服务器的通用函数
     start_service() {
@@ -229,13 +325,7 @@ start_servers() {
     start_service "login"
     sleep 1
     
-    start_service "logic"
-    sleep 1
-    
     start_service "gateway"
-    sleep 1
-    
-    start_service "battle"
     sleep 1
     
     start_service "file"
@@ -256,8 +346,11 @@ stop_servers() {
     
     local stopped_count=0
     
+    # 先停止 Skynet
+    stop_skynet
+    
     # 查找并停止所有服务器进程
-    for server in central db login logic gateway battle file matching; do
+    for server in central db login gateway file matching; do
         if pgrep -x "$server" > /dev/null; then
             print_info "停止 $server 服务器..."
             pkill -TERM "$server"
@@ -322,9 +415,18 @@ status_servers() {
     
     echo ""
     
+    # 检查 Skynet
+    echo -n "$(printf '%-10s' "skynet"): "
+    if pgrep -x "skynet" > /dev/null; then
+        pid=$(pgrep -x "skynet")
+        echo -e "${GREEN}运行中${NC} (PID: $pid)"
+    else
+        echo -e "${YELLOW}未运行${NC}"
+    fi
+    
     # 检查各个服务器
     local running_count=0
-    for server in central db login logic gateway battle file matching; do
+    for server in central db login gateway file matching; do
         echo -n "$(printf '%-10s' $server): "
         if pgrep -x "$server" > /dev/null; then
             pid=$(pgrep -x "$server")
@@ -336,7 +438,7 @@ status_servers() {
     done
     
     echo ""
-    print_info "运行中的服务器: $running_count/8"
+    print_info "运行中的服务器: $running_count/6 + Skynet"
 }
 
 # 重启所有服务器
@@ -356,7 +458,9 @@ show_help() {
     echo "命令:"
     echo "  start-db    - 启动数据库服务（Redis 和 MySQL）"
     echo "  stop-db     - 停止数据库服务"
-    echo "  start       - 启动所有项目服务器（包括数据库）"
+    echo "  start-skynet- 仅启动 Skynet 逻辑服务器"
+    echo "  stop-skynet - 仅停止 Skynet 逻辑服务器"
+    echo "  start       - 启动所有项目服务器（包括数据库和 Skynet）"
     echo "  stop        - 停止所有项目服务器"
     echo "  restart     - 重启所有项目服务器"
     echo "  status      - 查看服务器运行状态"
@@ -365,6 +469,7 @@ show_help() {
     echo ""
     echo "示例:"
     echo "  bash $0 start-db      # 启动数据库"
+    echo "  bash $0 start-skynet  # 仅启动 Skynet"
     echo "  bash $0 copy-config   # 复制配置文件"
     echo "  bash $0 start         # 启动所有服务器"
     echo "  bash $0 status        # 查看状态"
@@ -372,12 +477,14 @@ show_help() {
     echo "注意:"
     echo "  - 需要 Redis 服务才能启动项目服务器"
     echo "  - MySQL 服务是可选的（可使用 Windows 的 MySQL）"
+    echo "  - Skynet 会在启动所有服务器时自动启动"
     echo "  - 首次启动或修改配置后，会自动复制配置文件"
-    echo "  - 确保已编译项目: cd $PROJECT_ROOT && bash build.sh Release"
+    echo "  - 确保已编译项目: cd $PROJECT_ROOT && bash tools/debug/wsl/compile_guide.sh"
     echo ""
     echo "路径信息:"
     echo "  项目根目录: $PROJECT_ROOT"
     echo "  构建目录:   $BUILD_DIR"
+    echo "  Skynet 目录: $SKYNET_DIR"
 }
 
 # 主函数
@@ -388,6 +495,12 @@ main() {
             ;;
         stop-db)
             stop_databases
+            ;;
+        start-skynet)
+            start_skynet
+            ;;
+        stop-skynet)
+            stop_skynet
             ;;
         copy-config)
             copy_configs

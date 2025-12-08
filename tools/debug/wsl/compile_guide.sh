@@ -197,7 +197,7 @@ fi
 echo ""
 
 # 步骤 4: 编译 Skynet（可选）
-print_step "4" "编译 Skynet 框架（可选）"
+print_step "4" "编译 Skynet 框架"
 echo ""
 
 SKYNET_DIR="$PROJECT_DIR/skynet_src/skynet"
@@ -205,7 +205,10 @@ if [ -d "$SKYNET_DIR" ]; then
     if [ -f "$SKYNET_DIR/skynet" ]; then
         print_success "Skynet 已编译"
     else
-        read -p "是否编译 Skynet？(y/n): " -n 1 -r
+        print_info "检测到 Skynet 源码，但尚未编译"
+        print_info "Skynet 用于游戏逻辑服务器（使用 Lua 实现）"
+        echo ""
+        read -p "是否编译 Skynet？(y/n，推荐 y): " -n 1 -r
         echo ""
         if [[ $REPLY =~ ^[Yy]$ ]]; then
             print_info "正在编译 Skynet..."
@@ -215,12 +218,17 @@ if [ -d "$SKYNET_DIR" ]; then
                 print_success "Skynet 编译完成"
             else
                 print_error "Skynet 编译失败"
+                print_info "请检查编译错误，或手动编译："
+                print_info "  cd $SKYNET_DIR && make linux"
             fi
             cd "$PROJECT_DIR"
+        else
+            print_warning "跳过 Skynet 编译（游戏逻辑功能将不可用）"
         fi
     fi
 else
     print_info "未找到 Skynet 目录，跳过"
+    print_info "如需使用游戏逻辑服务器，请确保 Skynet 已安装"
 fi
 
 echo ""
@@ -251,7 +259,7 @@ fi
 echo ""
 
 # 步骤 6: 编译项目
-print_step "6" "编译项目"
+print_step "6" "编译 C++ 项目"
 echo ""
 
 BUILD_DIR="$PROJECT_DIR/build"
@@ -291,11 +299,11 @@ echo "可执行文件位置："
 echo ""
 
 EXECUTABLES=(
+    "src/central/central:中央服务器"
     "src/gateway/gateway:网关服务器"
     "src/login/login:登录服务器"
     "src/db/db:数据库服务器"
     "src/file/file:文件服务器"
-    "src/central/central:中央服务器"
     "src/matching/matching:匹配服务器"
 )
 
@@ -309,32 +317,60 @@ for exe in "${EXECUTABLES[@]}"; do
     fi
 done
 
+# Skynet 状态
+echo ""
+if [ -f "$SKYNET_DIR/skynet" ]; then
+    SIZE=$(du -h "$SKYNET_DIR/skynet" | cut -f1)
+    print_success "Skynet 逻辑服务器: $SKYNET_DIR/skynet ($SIZE)"
+else
+    print_warning "Skynet 未编译（游戏逻辑功能将不可用）"
+fi
+
 # 步骤 8: 后续步骤提示
 echo ""
 print_header "下一步操作"
 
-echo "1. 启动数据库服务："
-echo "   ${CYAN}bash $PROJECT_DIR/start_services.sh${NC}"
+echo "1. 启动所有服务（推荐）："
+echo "   ${CYAN}bash $PROJECT_DIR/tools/debug/wsl/manage_services.sh start${NC}"
 echo ""
 
-echo "2. 配置 MySQL（如果使用 Windows MySQL）："
+echo "2. 或分步启动："
+echo "   a) 启动数据库："
+echo "      ${CYAN}bash $PROJECT_DIR/tools/debug/wsl/manage_services.sh start-db${NC}"
+echo ""
+echo "   b) 启动 Skynet（游戏逻辑）："
+echo "      ${CYAN}bash $PROJECT_DIR/tools/debug/wsl/manage_services.sh start-skynet${NC}"
+echo ""
+echo "   c) 启动 C++ 服务器："
+echo "      ${CYAN}cd $BUILD_DIR/src/central && ./central &${NC}"
+echo "      ${CYAN}cd $BUILD_DIR/src/gateway && ./gateway &${NC}"
+echo "      ${CYAN}cd $BUILD_DIR/src/db && ./db &${NC}"
+echo "      ${CYAN}...${NC}"
+echo ""
+
+echo "3. 查看服务状态："
+echo "   ${CYAN}bash $PROJECT_DIR/tools/debug/wsl/manage_services.sh status${NC}"
+echo ""
+
+echo "4. 停止所有服务："
+echo "   ${CYAN}bash $PROJECT_DIR/tools/debug/wsl/manage_services.sh stop${NC}"
+echo ""
+
+echo "5. 配置 MySQL（如果使用 Windows MySQL）："
 echo "   ${CYAN}mysql -h 127.0.0.1 -u root -p${NC}"
+echo "   创建数据库: ${CYAN}CREATE DATABASE poor_hearthstone;${NC}"
 echo ""
 
-echo "3. 创建数据库和数据表："
-echo "   参考: docunment/server/数据库/sql定义文件"
-echo ""
-
-echo "4. 复制配置文件（如果需要）："
-echo "   ${CYAN}cp -r $PROJECT_DIR/config $BUILD_DIR/${NC}"
-echo ""
-
-echo "5. 运行服务器："
-echo "   ${CYAN}cd $BUILD_DIR${NC}"
-echo "   ${CYAN}./src/gateway/gateway &${NC}"
-echo "   ${CYAN}./src/login/login &${NC}"
-echo "   ${CYAN}./src/db/db &${NC}"
+echo "6. 查看文档："
+echo "   - 快速入门: ${CYAN}docunment/skynet/quick_start_skynet.md${NC}"
+echo "   - 架构设计: ${CYAN}docunment/architecture/final_architecture_v2.md${NC}"
+echo "   - 服务管理: ${CYAN}docunment/项目配置与运行/服务器管理.md${NC}"
 echo ""
 
 print_success "编译指南执行完毕！"
+echo ""
+print_info "提示："
+echo "  - 使用 ${CYAN}manage_services.sh${NC} 脚本可以方便地管理所有服务"
+echo "  - Skynet 提供游戏逻辑功能，支持热更新"
+echo "  - Gateway 会自动连接到 Skynet（端口 8888）"
 echo ""
