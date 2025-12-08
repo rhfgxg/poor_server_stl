@@ -12,6 +12,7 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/common/redis_client.cpp
     ${PROJECT_SOURCE_DIR}/src/common/base_server.cpp
     ${PROJECT_SOURCE_DIR}/src/common/thread_manager.cpp
+    ${PROJECT_SOURCE_DIR}/src/common/config_manager.cpp
     # protobuf 生成的源文件
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/common.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/common.grpc.pb.cc

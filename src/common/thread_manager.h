@@ -9,6 +9,7 @@
 #include <functional>
 #include <future>
 #include <type_traits>  // for std::invoke_result
+#include <stdexcept>
 
 // 线程池管理器
 class ThreadManager
@@ -45,6 +46,7 @@ private:
     std::mutex queue_mutex; // 任务队列互斥锁
     std::condition_variable condition;   // 任务队列条件变量
     bool stop_threads;  // 线程停止标志
+    size_t num_threads_; // 线程数
 };
 
 // 模板方法实现（必须在头文件中）
@@ -53,9 +55,9 @@ auto ThreadManager::enqueue(F&& f, Args&&... args) -> std::future<typename std::
 {
     using return_type = typename std::invoke_result<F, Args...>::type;
 
-    auto task = std::make_shared<std::packaged_task<return_type()>>(
-        std::bind(std::forward<F>(f), std::forward<Args>(args)...)
-    );
+    // 使用 bind 生成可调用对象并放入 packaged_task 中
+    auto bound_task = std::bind(std::forward<F>(f), std::forward<Args>(args)...);
+    auto task = std::make_shared<std::packaged_task<return_type()>>(std::move(bound_task));
 
     std::future<return_type> res = task->get_future();
     {

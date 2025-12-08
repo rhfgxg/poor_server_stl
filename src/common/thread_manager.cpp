@@ -1,9 +1,14 @@
 #include "thread_manager.h"
+#include <stdexcept>
 
-ThreadManager::ThreadManager(size_t num_threads):
-    stop_threads(false)
+ThreadManager::ThreadManager(size_t num_threads)
+    : stop_threads(true), num_threads_(num_threads)
 {
-    workers.reserve(num_threads);   // 预留空间
+    if (num_threads_ == 0) {
+        num_threads_ = std::thread::hardware_concurrency();
+        if (num_threads_ == 0) num_threads_ = 4;
+    }
+    workers.reserve(num_threads_);   // 预留空间
 }
 
 ThreadManager::~ThreadManager()
@@ -14,7 +19,10 @@ ThreadManager::~ThreadManager()
 // 启动线程池
 void ThreadManager::start()
 {
-    for(size_t i = 0; i < this->workers.capacity(); ++i)  // 遍历线程池
+    if (!workers.empty()) return; // 已启动
+
+    stop_threads = false;
+    for(size_t i = 0; i < num_threads_; ++i)
     {
         this->workers.emplace_back(&ThreadManager::worker_thread, this);  // 创建线程
     }

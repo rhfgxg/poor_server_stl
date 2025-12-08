@@ -83,18 +83,20 @@ else()
     if(CMAKE_BUILD_TYPE STREQUAL "Debug")   # 根据调试模式选择对应版本
         find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_DEBUG_LIB}")
         find_library(LUA_LIB lua PATHS "${VCPKG_DEBUG_LIB}")
-        # 修复：Linux 下 MySQL 库名为 mysqlcppconn8-static
-        find_library(MYSQLCPPCONN_LIB mysqlcppconn8-static 
-            PATHS "${VCPKG_DEBUG_LIB}" "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-linux/debug/lib"
-            NO_DEFAULT_PATH)
+        # Prefer shared mysql connector to avoid duplicate protobuf symbols; fallback to static
+        find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_DEBUG_LIB}" "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-linux/debug/lib" NO_DEFAULT_PATH)
+        if(NOT MYSQLCPPCONN_LIB)
+            find_library(MYSQLCPPCONN_LIB mysqlcppconn8-static PATHS "${VCPKG_DEBUG_LIB}" "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-linux/debug/lib" NO_DEFAULT_PATH)
+        endif()
         find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_DEBUG_LIB}")
     else()
         find_library(CPPREDIS_LIB cpp_redis PATHS "${VCPKG_LIB}")
         find_library(LUA_LIB lua PATHS "${VCPKG_LIB}")
-        # 修复：Linux 下 MySQL 库名为 mysqlcppconn8-static
-        find_library(MYSQLCPPCONN_LIB mysqlcppconn8-static 
-            PATHS "${VCPKG_LIB}" "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-linux/lib"
-            NO_DEFAULT_PATH)
+        # Prefer shared mysql connector to avoid duplicate protobuf symbols; fallback to static
+        find_library(MYSQLCPPCONN_LIB mysqlcppconn8 PATHS "${VCPKG_LIB}" "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-linux/lib" NO_DEFAULT_PATH)
+        if(NOT MYSQLCPPCONN_LIB)
+            find_library(MYSQLCPPCONN_LIB mysqlcppconn8-static PATHS "${VCPKG_LIB}" "${CMAKE_BINARY_DIR}/vcpkg_installed/x64-linux/lib" NO_DEFAULT_PATH)
+        endif()
         find_library(TACOPIE_LIB tacopie PATHS "${VCPKG_LIB}")
     endif()
 endif()
