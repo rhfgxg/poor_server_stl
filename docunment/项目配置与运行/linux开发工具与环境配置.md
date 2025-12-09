@@ -166,7 +166,7 @@ sudo apt-get install autoconf automake autoconf-archive libtool m4 make pkg-conf
 apt-get install -f
 dpkg --configure -a
 
-# 安装和启动 mysql 服务
+# 安装和启动 mysql 服务（mysql可以直接使用windows系统中的，重复安装好像会安装失败）
 apt-get install mysql-server
 service mysql start
 
@@ -174,12 +174,3 @@ service mysql start
 apt-get install redis-server
 service redis-server start
 ```
-我安装 myslq 时提示mysql服务已经启动，导致安装失败
-而 wsl 中并没有安装和启动 mysql 服务
-所以我决定 远程链接 windwos中的 mysql服务，来解决这个问题
-```
-# 在 wsl 中执行
-mysql -h 127.0.0.1 -u <你的用户名> -p
-即可使用 mysql 功能
-```
-后续会考虑其他方法解决
