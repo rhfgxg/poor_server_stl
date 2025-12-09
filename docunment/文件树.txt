@@ -1,0 +1,85 @@
+/
+│  .editorconfig    VS 配置文件，可以设置文件编码格式为 utf-8（其他ide可忽略）
+|  .gitattributes   git属性文件：设置文本文件自动转换行结束符
+│  .gitignore	git 忽略文件
+│  CMakeLists.txt	项目顶级 CMakeLists
+|  CMakeSettings.json   vs中 CMake 配置文件（貌似2026 弃用了）
+│  README.md	项目描述文件
+│  vcpkg-configuration.json	vcpkg包管理器配置文件
+│  vcpkg.json	            vcpkg包列表文件
+│                         
+├─config	项目配置文件
+│  ├─cpp    c++ 服务器使用的配置文件
+│  ├─hearthstone    炉石传说设计，参数等配置文件
+│  └─skynet skynet 服务器的配置文件
+│
+├─out   VS编译生成文件夹
+│
+├─protobuf
+│  ├─CMakeLists.txt	protobuf模块的 CMakeLists文件
+│  │
+│  ├─cpp
+│  │  ├─src
+│  │  │  ├─*.grpc.pb.*	生成 gRPC 服务类
+│  │  │  └─*.pb.*	生成类文件
+│  │  │
+│  │  └─*.proto 序列化格式文件
+│  │
+│  └─skynet
+│      ├─src
+│      │  └─*.pb	直接生成的 二进制文件
+│      │
+│      └─*.proto 序列化格式文件
+│
+├─src
+│  ├─main.cpp		顶级模块的 main文件
+│  │  
+│  ├─central	中心服务器模块
+│  │  ├─CMakeLists.txt
+│  │  ├─main.cpp
+│  │  └─server
+│  │       ├─central_server.cpp
+│  │       └─central_server.h
+│  │              
+│  ├─common 通用中间件，常量
+│  │          
+│  ├─db		数据库服务器模块
+│  │              
+│  ├─file   文件服务器模块
+│  │              
+│  ├─gateway	网关服务器模块
+│  │              
+│  ├─login		登录服务器模块
+│  │
+│  └─matching   匹配服务器
+│                  
+├─tools		工具
+│  ├─debug   开发时使用的工具
+│  ├─relest  发布版本使用的工具
+│  └─README.md    工具说明文件
+│ 
+└─vcpkg_installed   vcpkg weindows下第三方库安装目录
+   ├─vcpkg
+   └─x64-windows
+        ├─bin                    relest 版本 dll文件
+        │   └─abseil_dll.dll
+        │
+        ├─debug                  debug版本的 dll文件和 lib文件
+        │  ├─bin
+        │  │   └─abseil_dll.dll
+        │  │
+        │  └─lib
+        │      └─abseil_dll.lib
+        │  
+        ├─include       引用的头文件，项目中引用 第三方库头文件 以这个 include为根目录  
+        │     └─ares.h
+        └─lib                    relest 版本 lib文件
+            └─abseil_dll.lib
+
+
+
+
+
+
+
+
