@@ -9,7 +9,7 @@ DBConnectionPool::DBConnectionPool(const std::string& uri, size_t pool_size):
     {
         try
         {
-            pool.push(mysqlx::Session(uri));    // 创建数据库连接，并加入连接池
+            pool.push(std::make_unique<mysqlx::Session>(uri));    // 创建数据库连接，并加入连接池
         }
         catch(const mysqlx::Error &err)
         {
@@ -30,7 +30,10 @@ DBConnectionPool::~DBConnectionPool()
 {
     while(!this->pool.empty())
     {
-        this->pool.front().close();
+        if (this->pool.front())
+        {
+            this->pool.front()->close();
+        }
         this->pool.pop();
     }
 }
@@ -43,7 +46,7 @@ std::unique_ptr<mysqlx::Session> DBConnectionPool::Get_connection()
         return !this->pool.empty();
     });
 
-    auto session = std::make_unique<mysqlx::Session>(std::move(this->pool.front()));
+    auto session = std::move(this->pool.front());
     this->pool.pop();
     return session;
 }
@@ -51,7 +54,12 @@ std::unique_ptr<mysqlx::Session> DBConnectionPool::Get_connection()
 // 释放数据库连接
 void DBConnectionPool::Release_connection(std::unique_ptr<mysqlx::Session> session)
 {
+    if (!session)
+    {
+        return;
+    }
+
     std::lock_guard<std::mutex> lock(this->pool_mutex);
-    this->pool.push(std::move(*session));
+    this->pool.push(std::move(session));
     this->pool_cv.notify_one();
 }

@@ -1,19 +1,18 @@
 #include "connection_pool.h"
 
 ConnectionPool::ConnectionPool(size_t pool_size_):
-    pool_size(pool_size_)   
+    pool_size(pool_size_)
 {
-
 }
 
 ConnectionPool::~ConnectionPool()
 {
-    std::lock_guard<std::mutex> lock(pool_mutex);   // 加锁
-    for(auto& pair : pool_map) // 遍历连接池
+    std::lock_guard<std::mutex> lock(pool_mutex);
+    for(auto& pair : pool_map)
     {
-        while(!pair.second.empty())    // 如果连接池不为空
+        while(!pair.second.empty())
         {
-            pair.second.pop();  // 弹出连接
+            pair.second.pop();
         }
     }
 }
@@ -22,44 +21,63 @@ ConnectionPool::~ConnectionPool()
 // 获取链接
 std::shared_ptr<grpc::Channel> ConnectionPool::get_connection(rpc_server::ServerType server_type)
 {
-    std::unique_lock<std::mutex> lock(pool_mutex);   // 加锁
-    this->pool_cv.wait(lock,[this,server_type] {
-        return !this->pool_map[server_type].empty();
-    }); // 等待直到连接池不为空
+    std::unique_lock<std::mutex> lock(pool_mutex);
 
-    auto connection = this->pool_map[server_type].front();    // 获取连接
-    this->pool_map[server_type].pop();    // 弹出连接
+    pool_cv.wait(lock, [this, server_type] {
+        auto it = this->pool_map.find(server_type);
+        return it != this->pool_map.end() && !it->second.empty();
+    });
+
+    auto it = this->pool_map.find(server_type);
+    if (it == this->pool_map.end() || it->second.empty())
+    {
+        return nullptr;
+    }
+
+    auto connection = it->second.front();
+    it->second.pop();
     return connection;
 }
 
 // 释放链接
 void ConnectionPool::release_connection(rpc_server::ServerType server_type, std::shared_ptr<grpc::Channel> connection)
 {
-    std::lock_guard<std::mutex> lock(this->pool_mutex);   // 加锁
-    this->pool_map[server_type].push(connection);  // 加入连接池
-    this->pool_cv.notify_one(); // 通知等待的线程
+    if (!connection)
+    {
+        return;
+    }
+
+    std::lock_guard<std::mutex> lock(this->pool_mutex);
+    auto it = this->pool_map.find(server_type);
+    if (it == this->pool_map.end())
+    {
+        return;
+    }
+
+    it->second.push(std::move(connection));
+    this->pool_cv.notify_one();
 }
 
 // 更新连接池中的连接
 void ConnectionPool::update_connections(rpc_server::ServerType server_type,const std::string& server_address,const std::string& server_port)
 {
-    std::lock_guard<std::mutex> lock(this->pool_mutex);   // 加锁
+    std::lock_guard<std::mutex> lock(this->pool_mutex);
 
-    // 更新服务器信息
     this->server_info_map[server_type] = {server_address,server_port};
 
-    // 清空当前连接池
-    while(!this->pool_map[server_type].empty())
+    auto& queue = this->pool_map[server_type];
+    while(!queue.empty())
     {
-        this->pool_map[server_type].pop();
+        queue.pop();
     }
 
-    // 添加新连接到连接池
     for(size_t i=0; i<pool_size; ++i)
     {
         auto channel = New_connection(server_address,server_port);
-        this->pool_map[server_type].push(channel);
+        queue.push(channel);
     }
+
+    this->pool_cv.notify_all();
 }
 
 /***************************************** 工具函数 ******************************************************/
@@ -73,39 +91,31 @@ std::shared_ptr<grpc::Channel> ConnectionPool::New_connection(const std::string&
 // 添加链接
 void ConnectionPool::add_server(rpc_server::ServerType server_type,const std::string& server_address,const std::string& server_port)
 {
-    std::lock_guard<std::mutex> lock(pool_mutex);   // 加锁
-    this->server_info_map[server_type] = {server_address,server_port}; // 保存服务器信息
-
-    for(size_t i = 0; i < pool_size; ++i)  // 遍历连接池，添加连接
-    {
-        auto channel = this->New_connection(server_address,server_port); // 创建连接
-        this->pool_map[server_type].push(channel);    // 加入连接池
-    }
+    update_connections(server_type, server_address, server_port);
 }
 
 // 删除指定服务器的链接
 void ConnectionPool::remove_server(rpc_server::ServerType server_type,const std::string& server_address,const std::string& server_port)
 {
-    std::lock_guard<std::mutex> lock(this->pool_mutex);   // 加锁
-    this->server_info_map.erase(server_type); // 删除服务器信息
+    (void)server_address;
+    (void)server_port;
 
-    while(!this->pool_map[server_type].empty())    // 如果连接池不为空
-    {
-        this->pool_map[server_type].pop();    // 弹出连接
-    }
+    std::lock_guard<std::mutex> lock(this->pool_mutex);
+    this->server_info_map.erase(server_type);
+    this->pool_map.erase(server_type);
+    this->pool_cv.notify_all();
 }
 
 // 获取所有连接池的状态
 std::unordered_map<rpc_server::ServerType, std::vector<std::pair<std::string, std::string>>> ConnectionPool::get_all_connections()
 {
-    std::lock_guard<std::mutex> lock(this->pool_mutex);   // 加锁
+    std::lock_guard<std::mutex> lock(this->pool_mutex);
 
-    // 保存所有连接
     std::unordered_map<rpc_server::ServerType, std::vector<std::pair<std::string, std::string>>> all_connections;
 
-    for(const auto& pair : this->server_info_map)   // 遍历服务器信息
+    for(const auto& pair : this->server_info_map)
     {
-        all_connections[pair.first].push_back(pair.second);    // 将服务器信息 加入容器
+        all_connections[pair.first].push_back(pair.second);
     }
 
     return all_connections;

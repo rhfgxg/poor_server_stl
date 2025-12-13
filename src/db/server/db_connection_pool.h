@@ -20,7 +20,7 @@ public:
 private:
     std::string uri;    // 数据库连接地址
     size_t pool_size;   // 连接池大小
-    std::queue<mysqlx::Session> pool;   // 连接池
+    std::queue<std::unique_ptr<mysqlx::Session>> pool;   // 连接池
     std::mutex pool_mutex;  // 连接池互斥锁
     std::condition_variable pool_cv;    // 连接池条件变量
 };

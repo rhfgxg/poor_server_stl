@@ -31,13 +31,7 @@ public:
      * @param logger_manager 日志管理器引用
      * @param thread_count 线程池线程数（默认为硬件并发数）
      */
-    BaseServer(
-        rpc_server::ServerType server_type,
-        const std::string& server_address,
-        const std::string& server_port,
-        LoggerManager& logger_manager,
-        size_t thread_count = 0
-    );
+    BaseServer(rpc_server::ServerType server_type, const std::string& server_address, const std::string& server_port, LoggerManager& logger_manager, size_t thread_count = 0);
 
     /**
      * @brief 虚析构函数

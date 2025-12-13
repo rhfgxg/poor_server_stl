@@ -1,0 +1,24 @@
+[:00000002] LAUNCH snlua bootstrap
+[:00000003] LAUNCH snlua launcher
+[:00000004] LAUNCH snlua cdummy
+[:00000005] LAUNCH harbor 0 4
+[:00000006] LAUNCH snlua datacenterd
+[:00000007] LAUNCH snlua service_mgr
+[:00000008] LAUNCH snlua main
+[:00000008] ============================================
+[:00000008] Skynet Logic Server Starting...
+[:00000008] ============================================
+[:00000009] LAUNCH snlua cpp_gateway
+[:00000009] C++ Gateway listening on 0.0.0.0:8888
+[:00000008] C++ Gateway service started: :00000009
+[:0000000a] LAUNCH snlua player_manager
+[:0000000a] Player Manager started
+[:00000008] Player Manager service started: :0000000a
+[:0000000b] LAUNCH snlua logic/hearthstone_manager
+[:0000000b] Hearthstone Manager started
+[:00000008] Hearthstone Manager service started: :0000000b
+[:00000008] ============================================
+[:00000008] Skynet Logic Server Started Successfully
+[:00000008] ============================================
+[:00000008] KILL self
+[:00000002] KILL self

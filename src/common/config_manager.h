@@ -21,7 +21,12 @@ public:
     std::optional<int> get_int(const std::string& key) const;
 
 private:
+    void reset();
+    bool push_value_by_path(const std::string& key) const;
+
+private:
     lua_State* L_ = nullptr;
+    int table_ref_ = LUA_NOREF;
     std::optional<std::string> table_path_; // 记录加载的文件路径
 };
 
