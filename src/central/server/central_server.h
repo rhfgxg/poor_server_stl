@@ -72,6 +72,9 @@ private:
     // 返回连接池中的连接
     void All_connec_poor(const rpc_server::MultipleConnectPoorReq* req, rpc_server::MultipleConnectPoorRes* res);
 
+    ConnectionPool* get_connection_pool(rpc_server::ServerType server_type);
+    const char* get_pool_label(rpc_server::ServerType server_type) const;
+
     // 心跳检查
     void check_heartbeat_worker();
     void start_heartbeat_checker();

@@ -1,4 +1,5 @@
 #include "central_server.h"
+#include <string>
 
 // 构造函数 - 继承 BaseServer
 CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_, const std::string& address, const std::string& port):
@@ -140,53 +141,16 @@ void CentralServerImpl::Handle_register_server(
     std::string address = req->address();
     std::string port = req->port();
 
-    switch (server_type)
+    auto* pool = get_connection_pool(server_type);
+    if (!pool)
     {
-    case rpc_server::ServerType::BATTLE:
-        battle_connection_pool_.add_server(server_type, address, port);
-        log_activity("Battle_connection_pool: registered " + address + ":" + port);
-        break;
-
-    case rpc_server::ServerType::CENTRAL:
-        central_connection_pool_.add_server(server_type, address, port);
-        log_activity("Central_connection_pool: registered " + address + ":" + port);
-        break;
-
-    case rpc_server::ServerType::DB:
-        db_connection_pool_.add_server(server_type, address, port);
-        log_activity("DB_connection_pool: registered " + address + ":" + port);
-        break;
-
-    case rpc_server::ServerType::GATEWAY:
-        gateway_connection_pool_.add_server(server_type, address, port);
-        log_activity("Gateway_connection_pool: registered " + address + ":" + port);
-        break;
-
-    case rpc_server::ServerType::LOGIC:
-        logic_connection_pool_.add_server(server_type, address, port);
-        log_activity("Logic_connection_pool: registered " + address + ":" + port);
-        break;
-
-    case rpc_server::ServerType::LOGIN:
-        login_connection_pool_.add_server(server_type, address, port);
-        log_activity("Login_connection_pool: registered " + address + ":" + port);
-        break;
-
-    case rpc_server::ServerType::FILE:
-        file_connection_pool_.add_server(server_type, address, port);
-        log_activity("File_connection_pool: registered " + address + ":" + port);
-        break;
-
-    case rpc_server::ServerType::MATCHING:
-        matching_connection_pool_.add_server(server_type, address, port);
-        log_activity("Matching_connection_pool: registered " + address + ":" + port);
-        break;
-
-    default:
         res->set_success(false);
         res->set_message("Invalid server type");
         return;
     }
+
+    pool->add_server(server_type, address, port);
+    log_activity(std::string(get_pool_label(server_type)) + ": registered " + address + ":" + port);
 
     res->set_success(true);
     res->set_message("Server registered successfully");
@@ -197,91 +161,43 @@ void CentralServerImpl::Release_server_connection(
     const std::string& address,
     const std::string& port)
 {
-    switch (server_type)
+    auto* pool = get_connection_pool(server_type);
+    if (!pool)
     {
-    case rpc_server::ServerType::BATTLE:
-        battle_connection_pool_.remove_server(server_type, address, port);
-        get_logger(poor::LogCategory::CONNECTION_POOL)->warn("Battle_connection_pool: unregistered {} {}", address, port);
-        break;
-
-    case rpc_server::ServerType::CENTRAL:
-        central_connection_pool_.remove_server(server_type, address, port);
-        get_logger(poor::LogCategory::CONNECTION_POOL)->warn("Central_connection_pool: unregistered {} {}", address, port);
-        break;
-
-    case rpc_server::ServerType::DB:
-        db_connection_pool_.remove_server(server_type, address, port);
-        get_logger(poor::LogCategory::CONNECTION_POOL)->warn("DB_connection_pool: unregistered {} {}", address, port);
-        break;
-
-    case rpc_server::ServerType::GATEWAY:
-        gateway_connection_pool_.remove_server(server_type, address, port);
-        get_logger(poor::LogCategory::CONNECTION_POOL)->warn("Gateway_connection_pool: unregistered {} {}", address, port);
-        break;
-
-    case rpc_server::ServerType::LOGIC:
-        logic_connection_pool_.remove_server(server_type, address, port);
-        get_logger(poor::LogCategory::CONNECTION_POOL)->warn("Logic_connection_pool: unregistered {} {}", address, port);
-        break;
-
-    case rpc_server::ServerType::LOGIN:
-        login_connection_pool_.remove_server(server_type, address, port);
-        get_logger(poor::LogCategory::CONNECTION_POOL)->warn("Login_connection_pool: unregistered {} {}", address, port);
-        break;
-
-    case rpc_server::ServerType::FILE:
-        file_connection_pool_.remove_server(server_type, address, port);
-        get_logger(poor::LogCategory::CONNECTION_POOL)->warn("File_connection_pool: unregistered {} {}", address, port);
-        break;
-
-    case rpc_server::ServerType::MATCHING:
-        matching_connection_pool_.remove_server(server_type, address, port);
-        get_logger(poor::LogCategory::CONNECTION_POOL)->warn("Matching_connection_pool: unregistered {} {}", address, port);
-        break;
+        return;
     }
+
+    pool->remove_server(server_type, address, port);
+    get_logger(poor::LogCategory::CONNECTION_POOL)->warn("{}: unregistered {} {}",
+        get_pool_label(server_type), address, port);
 }
 
 void CentralServerImpl::All_connec_poor(
     const rpc_server::MultipleConnectPoorReq* req,
     rpc_server::MultipleConnectPoorRes* res)
 {
-    for (const auto& server_type : req->server_types())
+    for (const auto& type_value : req->server_types())
     {
-        rpc_server::ConnectPool* connect_pool = res->add_connect_pools();
-        connect_pool->set_server_type(static_cast<rpc_server::ServerType>(server_type));
-
-        std::unordered_map<rpc_server::ServerType, std::vector<std::pair<std::string, std::string>>> connections;
-
-        switch (server_type)
+        auto server_type = static_cast<rpc_server::ServerType>(type_value);
+        auto* pool = get_connection_pool(server_type);
+        if (!pool)
         {
-        case rpc_server::CENTRAL:
-            connections = central_connection_pool_.get_all_connections();
-            break;
-        case rpc_server::DB:
-            connections = db_connection_pool_.get_all_connections();
-            break;
-        case rpc_server::GATEWAY:
-            connections = gateway_connection_pool_.get_all_connections();
-            break;
-        case rpc_server::LOGIC:
-            connections = logic_connection_pool_.get_all_connections();
-            break;
-        case rpc_server::LOGIN:
-            connections = login_connection_pool_.get_all_connections();
-            break;
-        case rpc_server::FILE:
-            connections = file_connection_pool_.get_all_connections();
-            break;
-        case rpc_server::MATCHING:
-            connections = matching_connection_pool_.get_all_connections();
-            break;
-        default:
             res->set_success(false);
             res->set_message("Invalid server type");
             return;
         }
 
-        for (const auto& connection : connections[static_cast<rpc_server::ServerType>(server_type)])
+        rpc_server::ConnectPool* connect_pool = res->add_connect_pools();
+        connect_pool->set_server_type(server_type);
+
+        auto connections = pool->get_all_connections();
+        auto it = connections.find(server_type);
+        if (it == connections.end())
+        {
+            continue;
+        }
+
+        for (const auto& connection : it->second)
         {
             rpc_server::ConnectInfo* conn_info = connect_pool->add_connect_info();
             conn_info->set_address(connection.first);
@@ -293,7 +209,55 @@ void CentralServerImpl::All_connec_poor(
     res->set_message("Connection pools information retrieved successfully");
 }
 
-// ==================== 心跳检查 ====================
+ConnectionPool* CentralServerImpl::get_connection_pool(rpc_server::ServerType server_type)
+{
+    switch (server_type)
+    {
+    case rpc_server::ServerType::BATTLE:
+        return &battle_connection_pool_;
+    case rpc_server::ServerType::CENTRAL:
+        return &central_connection_pool_;
+    case rpc_server::ServerType::DB:
+        return &db_connection_pool_;
+    case rpc_server::ServerType::FILE:
+        return &file_connection_pool_;
+    case rpc_server::ServerType::GATEWAY:
+        return &gateway_connection_pool_;
+    case rpc_server::ServerType::LOGIC:
+        return &logic_connection_pool_;
+    case rpc_server::ServerType::LOGIN:
+        return &login_connection_pool_;
+    case rpc_server::ServerType::MATCHING:
+        return &matching_connection_pool_;
+    default:
+        return nullptr;
+    }
+}
+
+const char* CentralServerImpl::get_pool_label(rpc_server::ServerType server_type) const
+{
+    switch (server_type)
+    {
+    case rpc_server::ServerType::BATTLE:
+        return "Battle_connection_pool";
+    case rpc_server::ServerType::CENTRAL:
+        return "Central_connection_pool";
+    case rpc_server::ServerType::DB:
+        return "DB_connection_pool";
+    case rpc_server::ServerType::FILE:
+        return "File_connection_pool";
+    case rpc_server::ServerType::GATEWAY:
+        return "Gateway_connection_pool";
+    case rpc_server::ServerType::LOGIC:
+        return "Logic_connection_pool";
+    case rpc_server::ServerType::LOGIN:
+        return "Login_connection_pool";
+    case rpc_server::ServerType::MATCHING:
+        return "Matching_connection_pool";
+    default:
+        return "Unknown_connection_pool";
+    }
+}
 
 void CentralServerImpl::start_heartbeat_checker()
 {
@@ -304,7 +268,7 @@ void CentralServerImpl::start_heartbeat_checker()
 
     heartbeat_checker_running_.store(true);
     heartbeat_checker_thread_ = std::thread(&CentralServerImpl::check_heartbeat_worker, this);
-    
+
     log_activity("Heartbeat checker started");
 }
 
@@ -316,12 +280,12 @@ void CentralServerImpl::stop_heartbeat_checker()
     }
 
     heartbeat_checker_running_.store(false);
-    
+
     if (heartbeat_checker_thread_.joinable())
     {
         heartbeat_checker_thread_.join();
     }
-    
+
     log_activity("Heartbeat checker stopped");
 }
 
@@ -344,14 +308,12 @@ void CentralServerImpl::check_heartbeat_worker()
                 Release_server_connection(
                     record.second.server_type,
                     record.second.address,
-                    record.second.port
-                );
+                    record.second.port);
 
                 get_logger(poor::LogCategory::HEARTBEAT)->warn(
                     "Server lost heartbeat: {} {}",
                     record.second.address,
-                    record.second.port
-                );
+                    record.second.port);
             }
         }
     }
