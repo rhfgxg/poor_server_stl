@@ -4,7 +4,7 @@
 
 local skynet = require "skynet"
 local socket = require "skynet.socket"
-local netpack = require "skynet.netpack"
+local proto_util = require "proto_util"
 
 local CMD = {}
 local connections = {}  -- fd -> connection_info
@@ -33,65 +33,229 @@ local function process_message(fd, msg_type, data)
     
     conn.last_active = skynet.time()
     
+    -- 解码 Protobuf 消息
+    local decoded_data, err = proto_util.decode(msg_type, data)
+    if not decoded_data then
+        skynet.error("Failed to decode message:", err)
+        return pack_error_response(msg_type, "decode_error: " .. tostring(err))
+    end
+    
+    proto_util.print_message(msg_type, decoded_data)
+    
     -- 根据消息类型分发
-    if msg_type == 1 then
-        -- ENTER_GAME
-        local player_id = data  -- 简化：直接使用数据作为 player_id
+    if msg_type == proto_util.MessageType.MSG_ENTER_GAME then
+        -- 进入游戏
+        return handle_enter_game(conn, decoded_data)
         
-        -- 请求 player_manager 创建/获取玩家服务
-        local player_mgr = skynet.queryservice("player_manager")
-        local player_service = skynet.call(player_mgr, "lua", "get_or_create_player", player_id)
+    elseif msg_type == proto_util.MessageType.MSG_LEAVE_GAME then
+        -- 离开游戏
+        return handle_leave_game(conn, decoded_data)
         
-        -- 保存连接信息
-        conn.player_id = player_id
-        conn.service = player_service
-        player_connections[player_id] = fd
+    elseif msg_type == proto_util.MessageType.MSG_PLAYER_ACTION then
+        -- 玩家操作
+        return handle_player_action(conn, decoded_data)
         
-        skynet.error(string.format("Player %s entered game, service: %s", 
-            player_id, skynet.address(player_service)))
-        
-        -- 返回响应
-        local response = player_id .. "_service"  -- 简化：返回服务标识
-        return response
-        
-    elseif msg_type == 2 then
-        -- LEAVE_GAME
-        local player_id = conn.player_id
-        if player_id then
-            -- 通知 player_manager
-            local player_mgr = skynet.queryservice("player_manager")
-            skynet.send(player_mgr, "lua", "player_offline", player_id)
-            
-            -- 清理连接
-            player_connections[player_id] = nil
-            conn.player_id = nil
-            conn.service = nil
-            
-            skynet.error("Player left game:", player_id)
-        end
-        
-    elseif msg_type == 3 then
-        -- PLAYER_ACTION
-        local player_id = conn.player_id
-        if not player_id or not conn.service then
-            skynet.error("Player not logged in")
-            return "error: not logged in"
-        end
-        
-        -- 转发到玩家服务
-        local ok, result = pcall(skynet.call, conn.service, "lua", "action", data)
-        if ok then
-            return result
-        else
-            skynet.error("Action failed:", result)
-            return "error: " .. tostring(result)
-        end
+    elseif msg_type == proto_util.MessageType.MSG_GET_PLAYER_STATUS then
+        -- 获取玩家状态
+        return handle_get_player_status(conn, decoded_data)
         
     else
         skynet.error("Unknown message type:", msg_type)
-        return "error: unknown message type"
+        return pack_error_response(msg_type, "unknown_message_type")
     end
 end
+
+-- ==================== 消息处理函数 ====================
+
+-- 处理进入游戏
+local function handle_enter_game(conn, req_data)
+    local player_id = req_data.player_id
+    local token = req_data.token
+    
+    -- TODO: 验证 token
+    
+    -- 请求 player_manager 创建/获取玩家服务
+    local player_mgr = skynet.queryservice("player_manager")
+    local player_service = skynet.call(player_mgr, "lua", "get_or_create_player", player_id)
+    
+    -- 保存连接信息
+    conn.player_id = player_id
+    conn.service = player_service
+    player_connections[player_id] = conn.fd
+    
+    skynet.error(string.format("Player %s entered game, service: %s", 
+        player_id, skynet.address(player_service)))
+    
+    -- 获取玩家数据
+    local player_data = skynet.call(player_service, "lua", "get_data")
+    
+    -- 构造响应
+    local response = {
+        success = true,
+        message = "Enter game successfully",
+        player_data = {
+            player_id = player_data.player_id,
+            level = player_data.level,
+            exp = player_data.exp,
+            gold = player_data.gold,
+            owned_cards = player_data.cards or {},
+            achievements = {
+                progress = player_data.achievements.progress or {},
+                completed = player_data.achievements.completed or {}
+            },
+            last_login = player_data.last_login
+        }
+    }
+    
+    return pack_response(proto_util.MessageType.MSG_ENTER_GAME_RES, response)
+end
+
+-- 处理离开游戏
+local function handle_leave_game(conn, req_data)
+    local player_id = conn.player_id
+    
+    if not player_id then
+        skynet.error("Player not logged in")
+        return pack_error_response(proto_util.MessageType.MSG_LEAVE_GAME_RES, "not_logged_in")
+    end
+    
+    -- 通知 player_manager
+    local player_mgr = skynet.queryservice("player_manager")
+    skynet.send(player_mgr, "lua", "player_offline", player_id)
+    
+    -- 清理连接
+    player_connections[player_id] = nil
+    conn.player_id = nil
+    conn.service = nil
+    
+    skynet.error(string.format("Player %s left game, reason: %s", player_id, req_data.reason or "unknown"))
+    
+    -- 构造响应
+    local response = {
+        success = true,
+        message = "Leave game successfully"
+    }
+    
+    return pack_response(proto_util.MessageType.MSG_LEAVE_GAME_RES, response)
+end
+
+-- 处理玩家操作
+local function handle_player_action(conn, req_data)
+    local player_id = conn.player_id
+    
+    if not player_id or not conn.service then
+        skynet.error("Player not logged in")
+        return pack_error_response(proto_util.MessageType.MSG_PLAYER_ACTION_RES, "not_logged_in")
+    end
+    
+    skynet.error(string.format("Player %s action: %s", player_id, req_data.action_type))
+    
+    -- 转发到玩家服务
+    local ok, result = pcall(skynet.call, conn.service, "lua", "action", req_data.action_type, req_data.action_data)
+    
+    if not ok then
+        skynet.error("Action failed:", result)
+        return pack_error_response(proto_util.MessageType.MSG_PLAYER_ACTION_RES, "action_failed: " .. tostring(result))
+    end
+    
+    -- 解析结果（假设 result 是字符串格式：action_ok:xxx|achievement:1,2,3）
+    local success = string.find(result, "action_ok") ~= nil
+    local message = result
+    local unlocked_achievements = {}
+    
+    -- 解析成就
+    local ach_start = string.find(result, "achievement:")
+    if ach_start then
+        local ach_str = string.sub(result, ach_start + 12)
+        for ach_id in string.gmatch(ach_str, "([^,]+)") do
+            table.insert(unlocked_achievements, {
+                id = ach_id,
+                name = "Achievement " .. ach_id,
+                description = "Description for achievement " .. ach_id,
+                reward_gold = 100
+            })
+        end
+    end
+    
+    -- 构造响应
+    local response = {
+        success = success,
+        message = message,
+        result_data = "",
+        unlocked_achievements = unlocked_achievements
+    }
+    
+    return pack_response(proto_util.MessageType.MSG_PLAYER_ACTION_RES, response)
+end
+
+-- 处理获取玩家状态
+local function handle_get_player_status(conn, req_data)
+    local player_id = req_data.player_id
+    
+    -- 查找玩家服务
+    local player_mgr = skynet.queryservice("player_manager")
+    local player_service = skynet.call(player_mgr, "lua", "get_player", player_id)
+    
+    if not player_service then
+        return pack_error_response(proto_util.MessageType.MSG_GET_PLAYER_STATUS_RES, "player_not_found")
+    end
+    
+    -- 获取玩家数据
+    local player_data = skynet.call(player_service, "lua", "get_data")
+    
+    -- 构造响应
+    local response = {
+        success = true,
+        player_data = {
+            player_id = player_data.player_id,
+            level = player_data.level,
+            exp = player_data.exp,
+            gold = player_data.gold,
+            owned_cards = player_data.cards or {},
+            achievements = {
+                progress = player_data.achievements.progress or {},
+                completed = player_data.achievements.completed or {}
+            },
+            last_login = player_data.last_login
+        }
+    }
+    
+    return pack_response(proto_util.MessageType.MSG_GET_PLAYER_STATUS_RES, response)
+end
+
+-- ==================== 辅助函数 ====================
+
+-- 打包响应消息
+local function pack_response(msg_type, response_data)
+    local binary, err = proto_util.encode(msg_type, response_data)
+    if not binary then
+        skynet.error("Failed to encode response:", err)
+        return pack_error_response(msg_type, "encode_error")
+    end
+    return binary
+end
+
+-- 打包错误响应
+local function pack_error_response(request_type, error_msg)
+    local response_type = proto_util.get_response_type(request_type)
+    if not response_type then
+        response_type = request_type + 100
+    end
+    
+    local response = {
+        success = false,
+        message = error_msg
+    }
+    
+    local binary, err = proto_util.encode(response_type, response)
+    if not binary then
+        skynet.error("Failed to encode error response:", err)
+        return ""
+    end
+    return binary
+end
+
+-- ==================== 协议处理 ====================
 
 -- 解析消息协议：[length(4)][type(2)][data]
 local function parse_message(data)
@@ -157,12 +321,14 @@ local function handle_connection(fd, addr)
                 break
             end
             
-            -- 处理消息
-            local response = process_message(fd, msg_type, msg_data)
+            -- 处理消息（返回已编码的 Protobuf 二进制数据）
+            local response_binary = process_message(fd, msg_type, msg_data)
             
             -- 发送响应
-            if response then
-                local response_msg = pack_message(msg_type + 100, response)  -- 响应类型 = 请求类型 + 100
+            if response_binary and #response_binary > 0 then
+                -- 获取响应消息类型
+                local response_type = proto_util.get_response_type(msg_type) or (msg_type + 100)
+                local response_msg = pack_message(response_type, response_binary)
                 socket.write(fd, response_msg)
             end
             
@@ -199,7 +365,14 @@ function CMD.send_to_player(player_id, msg_type, data)
         return false, "player not connected"
     end
     
-    local msg = pack_message(msg_type, data)
+    -- 编码推送消息
+    local binary, err = proto_util.encode(msg_type, data)
+    if not binary then
+        skynet.error("Failed to encode push message:", err)
+        return false, "encode_error"
+    end
+    
+    local msg = pack_message(msg_type, binary)
     socket.write(fd, msg)
     return true
 end
@@ -220,6 +393,17 @@ skynet.start(function()
             skynet.error("Unknown command:", cmd)
         end
     end)
+    
+    -- 初始化 Protobuf
+    skynet.error("Initializing Protobuf...")
+    local ok, err = pcall(proto_util.load_proto)
+    if not ok then
+        skynet.error("Failed to load proto:", err)
+        skynet.error("Will try to use embedded proto definitions")
+    end
+    
+    -- 运行测试（可选，用于验证）
+    -- proto_util.test()
     
     -- 自动启动监听
     CMD.start()

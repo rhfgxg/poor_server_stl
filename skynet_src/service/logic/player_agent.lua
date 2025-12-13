@@ -7,8 +7,39 @@ local game_config = require "game_config"
 local player_id = ...  -- 启动参数：玩家ID
 local player_data = {}
 local online = false
+local achievement_service
 
 local CMD = {}
+
+local function get_achievement_service()
+    if not achievement_service then
+        achievement_service = skynet.queryservice("logic/achievement_service")
+    end
+    return achievement_service
+end
+
+local function update_achievements(event_type, delta)
+    local service = get_achievement_service()
+    if not service then
+        return nil
+    end
+
+    local ok, result = pcall(skynet.call, service, "lua", "update_progress", player_id, event_type, delta or 1)
+    if not ok then
+        skynet.error(string.format("Player %s achievement update failed: %s", player_id, result))
+        return nil
+    end
+
+    if result then
+        player_data.achievements.progress = result.state or player_data.achievements.progress
+        player_data.achievements.completed = player_data.achievements.completed or {}
+        for _, entry in ipairs(result.completed or {}) do
+            player_data.achievements.completed[entry.id] = true
+        end
+    end
+
+    return result
+end
 
 -- 初始化玩家数据
 local function init_player_data()
@@ -21,7 +52,10 @@ local function init_player_data()
         gold = 1000,
         cards = {},  -- 拥有的卡牌
         decks = {},  -- 卡组
-        achievements = {},
+        achievements = {
+            progress = {},
+            completed = {}
+        },
         last_login = skynet.time()
     }
     
@@ -38,8 +72,20 @@ end
 function CMD.action(action_data)
     skynet.error(string.format("Player %s action: %s", player_id, action_data))
     
-    -- 简化：直接返回确认
-    return "action_ok:" .. action_data
+    local response = "action_ok:" .. action_data
+
+    if action_data == "complete_match" then
+        local result = update_achievements("complete_match", 1)
+        if result and result.updated and #result.completed > 0 then
+            local unlocked = {}
+            for _, entry in ipairs(result.completed) do
+                table.insert(unlocked, tostring(entry.id))
+            end
+            response = response .. "|achievement:" .. table.concat(unlocked, ",")
+        end
+    end
+    
+    return response
 end
 
 -- 玩家上线
@@ -59,6 +105,10 @@ end
 -- 获取玩家数据
 function CMD.get_data()
     return player_data
+end
+
+function CMD.get_achievements()
+    return player_data.achievements
 end
 
 -- 启动服务

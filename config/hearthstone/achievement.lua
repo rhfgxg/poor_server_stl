@@ -1,4 +1,4 @@
-achievements = {
+local achievement_list = {
     {
         id = 1,
         name = "Spell Master",
@@ -23,5 +23,26 @@ achievements = {
         condition = 1,
         reward = "50 gold"
     }
+}
+
+-- 返回浅拷贝，避免运行时意外修改原始表
+local function clone(tbl)
+    local copy = {}
+    for i, value in ipairs(tbl) do
+        if type(value) == "table" then
+            local entry = {}
+            for k, v in pairs(value) do
+                entry[k] = v
+            end
+            copy[i] = entry
+        else
+            copy[i] = value
+        end
+    end
+    return copy
+end
+
+return {
+    list = clone(achievement_list)
 }
 

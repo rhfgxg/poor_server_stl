@@ -5,20 +5,19 @@
 [:00000006] LAUNCH snlua datacenterd
 [:00000007] LAUNCH snlua service_mgr
 [:00000008] LAUNCH snlua main
-[:00000008] ============================================
-[:00000008] Skynet Logic Server Starting...
-[:00000008] ============================================
-[:00000009] LAUNCH snlua cpp_gateway
-[:00000009] C++ Gateway listening on 0.0.0.0:8888
-[:00000008] C++ Gateway service started: :00000009
-[:0000000a] LAUNCH snlua player_manager
-[:0000000a] Player Manager started
-[:00000008] Player Manager service started: :0000000a
-[:0000000b] LAUNCH snlua logic/hearthstone_manager
-[:0000000b] Hearthstone Manager started
-[:00000008] Hearthstone Manager service started: :0000000b
-[:00000008] ============================================
-[:00000008] Skynet Logic Server Started Successfully
-[:00000008] ============================================
+[:00000008] lua loader error : ./lualib/skynet/require.lua:31: module 'pb' not found:
+	no field package.preload['pb']
+	no file '../../skynet_src/lualib/pb.lua'
+	no file './lualib/pb.lua'
+	no file './lualib/pb/init.lua'
+	no file './luaclib/pb.so'
+stack traceback:
+	[C]: in upvalue 'require'
+	./lualib/skynet/require.lua:31: in function 'skynet.require.require'
+	../../skynet_src/lualib/proto_util.lua:5: in main chunk
+	[C]: in upvalue 'require'
+	./lualib/skynet/require.lua:31: in function 'skynet.require.require'
+	../../skynet_src/service/main.lua:3: in local 'main'
+	./lualib/loader.lua:50: in main chunk
 [:00000008] KILL self
 [:00000002] KILL self
