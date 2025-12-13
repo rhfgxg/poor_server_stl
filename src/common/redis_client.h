@@ -1,8 +1,13 @@
 #ifndef REDIS_CLIENT
 #define REDIS_CLIENT
 
-#include <memory>  // std::shared_ptr
 #include <cpp_redis/cpp_redis>
+#include <chrono>
+#include <memory>
+#include <mutex>
+#include <optional>
+#include <string>
+#include <vector>
 
 // Windows 平台需要这些头文件来处理 WinSock
 #ifdef _WIN32
@@ -10,25 +15,39 @@
     #include <WS2tcpip.h>
 #endif
 
-// 工具类，封装redis链接，防止 windows 下的一个异常
+// Redis 管理器：封装 cpp_redis 客户端，提供配置加载与常用操作
 class RedisClient
 {
-    /* redis 与 WINsock 冲突问题
-     * redis 默认全局初始化了 WINsock，导致 grpc 无法正常工作
-     * 使用该类封装 redis 客户端，避免 redis 初始化 WINsock
-     * 由于 redis 客户端是异步的，所以使用 shared_ptr 管理 redis 客户端
-     * 由于这是windows下的问题，所以只在windows下使用该类
-     * 
-     * 注意: Linux/WSL 环境下不需要手动初始化套接字，可以直接使用
-     */
 public:
     RedisClient();
     ~RedisClient();
 
+    // 直接连接或通过配置文件连接
+    bool connect(const std::string& host, std::size_t port, std::uint32_t db = 0, std::uint32_t timeout_ms = 2000);
+    bool connect_from_config(const std::vector<std::string>& search_paths = {});
+    bool is_connected() const;
+
+    // 常用 Redis 操作（自动 sync_commit）
+    bool set_with_expire(const std::string& key, const std::string& value, std::chrono::seconds ttl);
+    std::optional<std::string> get_string(const std::string& key);
+    bool delete_key(const std::string& key);
+    bool key_exists(const std::string& key);
+    bool refresh_ttl(const std::string& key, std::chrono::seconds ttl);
+
+    // 仍然暴露底层客户端，供特殊场景使用
     std::shared_ptr<cpp_redis::client> get_client() const;
 
 private:
+    bool ensure_connection_locked();
+    bool connect_locked();
+
+private:
+    mutable std::mutex client_mutex_;
     std::shared_ptr<cpp_redis::client> m_client;
+    std::string host_;
+    std::size_t port_{0};
+    std::uint32_t db_index_{0};
+    std::uint32_t timeout_ms_{2000};
 };
 
 #endif // !REDIS_CLIENT

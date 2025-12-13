@@ -32,7 +32,11 @@ bool LoginServerImpl::on_start()
     log_startup("LoginServer initializing...");
     
     // 连接 Redis
-    redis_client.get_client()->connect("127.0.0.1", 6379);
+    if (!redis_client.connect_from_config())
+    {
+        log_startup("Failed to connect to Redis");
+        return false;
+    }
     log_startup("Redis connection successful");
     
     log_startup("LoginServer initialized successfully");
@@ -224,10 +228,10 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
         // 生成Token
         std::string token = Make_token(account);
 
-        // 将用户在线状态和token存储到Redis中
-        auto client = redis_client.get_client();
-        client->set(account, token);   // 保存 key用户账号，value用户token，用于验证用户是否在线
-        client->expire(account, 1800); // 设置30分钟过期时间
+        if (!redis_client.set_with_expire(account, token, std::chrono::seconds(1800)))
+        {
+            get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->warn("Failed to cache token in Redis for {}", account);
+        }
 
         res->set_success(true);
         res->set_message("Login successful");
@@ -264,9 +268,10 @@ void LoginServerImpl::Handle_logout(const rpc_server::LogoutReq* req, rpc_server
     }
 
     // 从Redis中删除用户在线状态和token
-    auto client = redis_client.get_client();
-    client->del({account});
-    client->sync_commit();
+    if (!redis_client.delete_key(account))
+    {
+        get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->warn("Failed to delete Redis token for {}", account);
+    }
     res->set_success(true);
     res->set_message("Logout successful");
     get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Logout successful: {}", account);
@@ -353,10 +358,10 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
         // 生成Token
         std::string token = Make_token(account);
 
-        // 将用户在线状态和token存储到Redis中
-        auto client = redis_client.get_client();
-        client->set(account, token);   // 保存 key用户账号，value用户token，用于验证用户是否在线
-        client->expire(account, 1800); // 设置30分钟过期时间
+        if (!redis_client.set_with_expire(account, token, std::chrono::seconds(1800)))
+        {
+            get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->warn("Failed to cache token in Redis for {}", account);
+        }
 
         Create_file_table(account); // 为用户创建文件表
 
@@ -464,23 +469,10 @@ void LoginServerImpl::Handle_is_user_online(const rpc_server::IsUserOnlineReq* r
     // 获取账号
     std::string account = req->account();
 
-    // 检查用户的在线状态
-    auto client = redis_client.get_client();
-    auto reply = client->exists({account});
-    client->sync_commit();
-    
-    if(reply.get().as_integer() == 1)
-    {
-        res->set_success(true);
-        res->set_message("User is online");
-        res->set_is_online(true);
-    }
-    else
-    {
-        res->set_success(true);
-        res->set_message("User is not online");
-        res->set_is_online(false);
-    }
+    bool online = redis_client.key_exists(account);
+    res->set_success(true);
+    res->set_is_online(online);
+    res->set_message(online ? "User is online" : "User is not online");
 }
 
 // ==================== 工具函数 ====================
@@ -510,21 +502,18 @@ bool LoginServerImpl::Validate_token(const std::string& account_, const std::str
 
         verifier.verify(decoded);
 
-        auto client = redis_client.get_client();
-        auto reply = client->get(account_);
-        client->sync_commit();
-        
-        if(reply.get().as_string() != token_)
+        auto stored_token = redis_client.get_string(account_);
+        if (!stored_token || *stored_token != token_)
         {
             return false;
         }
 
-        client->expire(account_, 1800);
-
+        redis_client.refresh_ttl(account_, std::chrono::seconds(1800));
         return true;
     }
     catch(const std::exception& e)
     {
+        (void)e;
         return false;
     }
 }

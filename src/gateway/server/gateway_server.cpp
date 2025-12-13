@@ -24,6 +24,13 @@ GatewayServerImpl::~GatewayServerImpl()
 bool GatewayServerImpl::on_start()
 {
     log_startup("GatewayServer initializing...");
+
+    if (!redis_client.connect_from_config())
+    {
+        log_startup("Failed to connect to Redis");
+        return false;
+    }
+
     log_startup("GatewayServer initialized successfully");
     return true;
 }
