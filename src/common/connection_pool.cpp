@@ -1,4 +1,5 @@
 #include "connection_pool.h"
+#include <chrono>
 
 ConnectionPool::ConnectionPool(size_t pool_size_):
     pool_size(pool_size_)
@@ -18,15 +19,23 @@ ConnectionPool::~ConnectionPool()
 }
 
 /***************************************** 其他服务器使用连接池 ********************************************/
-// 获取链接
+ // 获取链接
 std::shared_ptr<grpc::Channel> ConnectionPool::get_connection(rpc_server::ServerType server_type)
 {
     std::unique_lock<std::mutex> lock(pool_mutex);
 
-    pool_cv.wait(lock, [this, server_type] {
+    const auto has_connection = [this, server_type]() {
         auto it = this->pool_map.find(server_type);
         return it != this->pool_map.end() && !it->second.empty();
-    });
+    };
+
+    if (!has_connection())
+    {
+        if (!pool_cv.wait_for(lock, std::chrono::seconds(5), has_connection))
+        {
+            return nullptr;
+        }
+    }
 
     auto it = this->pool_map.find(server_type);
     if (it == this->pool_map.end() || it->second.empty())
@@ -74,7 +83,10 @@ void ConnectionPool::update_connections(rpc_server::ServerType server_type,const
     for(size_t i=0; i<pool_size; ++i)
     {
         auto channel = New_connection(server_address,server_port);
-        queue.push(channel);
+        if (channel)
+        {
+            queue.push(channel);
+        }
     }
 
     this->pool_cv.notify_all();
@@ -87,7 +99,7 @@ std::shared_ptr<grpc::Channel> ConnectionPool::New_connection(const std::string&
     return grpc::CreateChannel(server_address + ":" + server_port, grpc::InsecureChannelCredentials());
 }
 
-/**************************************** 中心服务器管理连接池的接口 *****************************************/
+/**************************************** 中心服务器管理连接池的接口 ****************************************
 // 添加链接
 void ConnectionPool::add_server(rpc_server::ServerType server_type,const std::string& server_address,const std::string& server_port)
 {
