@@ -1,259 +1,260 @@
-# Tools/Debug 脚本说明
+# Tools 工具脚本说明
 
-本目录包含用于开发调试的辅助脚本。
-
-## 📜 脚本列表
-
-### WSL2 环境配置（新增）
-
-#### `fix_line_endings.ps1`
-修复 Shell 脚本的换行符问题
-
-**用途**：
-- 将 Shell 脚本从 Windows 换行符（CRLF）转换为 Unix 换行符（LF）
-- 解决 WSL2 中运行脚本时的 `$'\r': command not found` 错误
-
-**使用方法**：# 在 Windows PowerShell 中执行
-.\tools\debug\fix_line_endings.ps1
----
-
-#### `setup_wsl2_environment.sh`
-WSL2 环境自动安装脚本
-
-**用途**：
-- 一键安装 WSL2 开发环境所需的所有工具和依赖
-- 包括：GCC, CMake, Ninja, Git, Protobuf, MySQL, Redis, Lua, vcpkg 等
-
-**使用方法**：# 在 WSL2 中执行
-sudo bash tools/debug/setup_wsl2_environment.sh
-**安装内容**：
-- 基础开发工具
-- Protocol Buffers 和 gRPC
-- MySQL 客户端和开发库
-- Redis 服务器
-- Lua 环境
-- vcpkg 包管理器
-- 项目第三方库（可选）
-
-**预计时间**：30-60 分钟
+本目录包含项目所需的所有工具脚本，已完成整理优化。
 
 ---
 
-#### `check_environment.sh`
-WSL2 环境检查脚本
+## 📁 目录结构
 
-**用途**：
-- 快速检查所有开发工具是否已安装
-- 显示工具版本信息
-- 提供下一步建议
-
-**使用方法**：bash tools/debug/check_environment.sh
----
-
-#### `uninstall_wsl2_environment.sh`
-WSL2 环境卸载脚本
-
-**用途**：
-- 清理环境（需要重新安装时使用）
-- 询问式删除各个组件
-
-**使用方法**：sudo bash tools/debug/uninstall_wsl2_environment.sh
----
-
-### 配置管理
-
-#### `copy_config.ps1`
-复制配置文件到生成目录（用于 debug 调试）
-
-**用途**：
-- 将配置文件从 `config/cpp/cfg_server/` 复制到各服务器的生成目录
-- 修改配置后需要执行此脚本
-
-**使用方法**：.\tools\debug\copy_config.ps1
-**复制的文件**：
-- `cfg_battle_server.lua` → `out/build/x64-debug/src/battle/config/`
-- `cfg_central_server.lua` → `out/build/x64-debug/src/central/config/`
-- `cfg_db_server.lua` → `out/build/x64-debug/src/db/config/`
-- `cfg_file_server.lua` → `out/build/x64-debug/src/file/config/`
-- `cfg_gateway_server.lua` → `out/build/x64-debug/src/gateway/config/`
-- `cfg_logic_server.lua` → `out/build/x64-debug/src/logic/config/`
-- `cfg_login_server.lua` → `out/build/x64-debug/src/login/config/`
-- `cfg_matching_server.lua` → `out/build/x64-debug/src/matching/config/`
-- `cfg_db.lua` → `out/build/x64-debug/src/db/config/`（额外）
+```
+tools/
+├── setup/          # 环境安装与检查
+├── service/        # 服务编译与管理（统一入口）
+└── windows/        # Windows 脚本
+```
 
 ---
 
-### Protobuf 代码生成
+## 🚀 快速开始
 
-#### `proto_make_cpp.ps1` / `proto_make_cpp.sh`
-生成 C++ Protobuf 和 gRPC 代码
+### 1. 首次安装（WSL2）
 
-**用途**：
-- 从 `protobuf/cpp/*.proto` 生成 C++ 源码
-- 生成文件保存到 `protobuf/cpp/src/`
+```bash
+# 一键安装所有依赖（包括 Skynet + lua-protobuf）
+sudo bash tools/setup/wsl_setup.sh
 
-**使用方法**：# Windows
-.\tools\debug\proto_make_cpp.ps1
+# 检查环境
+bash tools/setup/wsl_check.sh
+```
 
-# Linux/macOS
-bash tools/debug/proto_make_cpp.sh
-**生成的文件**：
-- `*.pb.cc` - Protobuf 实现
-- `*.pb.h` - Protobuf 头文件
-- `*.grpc.pb.cc` - gRPC 实现
-- `*.grpc.pb.h` - gRPC 头文件
+### 2. 编译项目
 
----
+```bash
+# 一键编译所有组件（Proto + Skynet + C++）
+bash tools/service/manage.sh compile
 
-#### `proto_make_lua.ps1` / `proto_make_lua.sh`
-生成 Skynet Protobuf descriptor 文件
+# 或指定编译模式
+bash tools/service/manage.sh compile Debug
+```
 
-**用途**：
-- 从 `protobuf/skynet/*.proto` 生成 descriptor
-- 生成文件保存到 `protobuf/skynet/src/`
+### 3. 启动服务
 
-**使用方法**：# Windows
-.\tools\debug\proto_make_lua.ps1
+```bash
+# 一键启动所有服务（数据库 + Skynet + C++ 服务器）
+bash tools/service/manage.sh start
 
-# Linux/macOS  
-bash tools/debug/proto_make_lua.sh
-**生成的文件**：
-- `*.pb` - Protobuf descriptor（二进制文件，供 lua-protobuf 使用）
+# 查看运行状态
+bash tools/service/manage.sh status
 
-**注意**：也可以使用项目根目录的 `tools/generate_proto_desc.ps1`
+# 停止所有服务
+bash tools/service/manage.sh stop
+```
 
 ---
 
-## 📋 开发流程
+## 📂 核心脚本
 
-### WSL2 环境首次设置
-# 1. 在 WSL2 中进入项目目录
-cd /mnt/d/Project/cpp/poor/poor_server_stl
+### setup/ - 环境安装
 
-# 2. 添加执行权限
-chmod +x tools/debug/*.sh
+| 脚本 | 说明 | 用途 |
+|------|------|------|
+| `wsl_setup.sh` | WSL2 环境一键安装 | 安装所有依赖 + 编译 Skynet + 安装 lua-protobuf |
+| `wsl_check.sh` | 环境检查 | 验证工具是否安装正确 |
+| `wsl_uninstall.sh` | 环境卸载 | 清理环境（重装时使用） |
 
-# 3. 检查当前环境
-bash tools/debug/check_environment.sh
+**功能说明**：
 
-# 4. 运行自动安装脚本
-sudo bash tools/debug/setup_wsl2_environment.sh
-
-# 5. 重新加载环境变量
-source ~/.bashrc
-
-# 6. 验证安装
-bash tools/debug/check_environment.sh
-
-# 7. 编译 Proto 文件
-bash tools/debug/proto_make_cpp.sh
-bash tools/debug/proto_make_lua.sh
-
-# 8. 编译项目
-bash build.sh Release
-### Windows 环境开发流程
-# 1. 安装依赖（vcpkg）
-vcpkg install
-
-# 2. 生成 C++ proto 代码
-.\tools\debug\proto_make_cpp.ps1
-
-# 3. 生成 Lua proto descriptor
-.\tools\debug\proto_make_lua.ps1
-
-# 4. 复制配置文件
-.\tools\debug\copy_config.ps1
-### 修改 Proto 定义后
-# Windows
-.\tools\debug\proto_make_cpp.ps1
-.\tools\debug\proto_make_lua.ps1
-
-# Linux/WSL2
-bash tools/debug/proto_make_cpp.sh
-bash tools/debug/proto_make_lua.sh
-### 修改配置文件后
-# Windows
-.\tools\debug\copy_config.ps1
----
-
-## 🔧 跨平台支持
-
-| 脚本功能 | Windows | Linux/macOS |
-|---------|---------|-------------|
-| 环境安装 | （手动）| `setup_wsl2_environment.sh` |
-| 环境检查 | （手动）| `check_environment.sh` |
-| 环境卸载 | （手动）| `uninstall_wsl2_environment.sh` |
-| 复制配置 | `copy_config.ps1` | （暂无）|
-| C++ Proto | `proto_make_cpp.ps1` | `proto_make_cpp.sh` |
-| Skynet Proto | `proto_make_lua.ps1` | `proto_make_lua.sh` |
-| 修复换行符 | `fix_line_endings.ps1` | （不需要）|
+`wsl_setup.sh` 自动完成：
+- ✅ 安装基础开发工具（GCC、CMake、Ninja等）
+- ✅ 安装 Protobuf 编译器
+- ✅ 安装 MySQL 客户端和 Redis
+- ✅ 安装 Lua 环境
+- ✅ 安装 vcpkg 包管理器
+- ✅ 编译 Skynet 框架
+- ✅ 下载并编译 lua-protobuf
+- ✅ 安装项目依赖库（可选）
 
 ---
 
-## ⚙️ 配置
+### service/ - 服务管理（统一入口）
 
-### 路径配置
-所有脚本自动检测项目路径，无需手动配置。
+| 脚本 | 说明 | 功能 |
+|------|------|------|
+| `manage.sh` | 统一管理脚本 | 编译、启动、停止所有服务 |
 
-### Protoc 工具
-脚本会自动查找：
-1. 系统 PATH 中的 protoc
-2. vcpkg 安装的 protoc（`vcpkg_installed/x64-windows/tools/protobuf/protoc.exe`）
-3. vcpkg 安装的 protoc（`vcpkg_installed/x64-linux/tools/protobuf/protoc`）
+**功能说明**：
+
+`manage.sh` 提供以下命令：
+
+```bash
+# 编译相关
+bash tools/service/manage.sh compile [Release|Debug]  # 完整编译（Proto + Skynet + C++）
+bash tools/service/manage.sh proto                    # 仅生成 Protobuf 代码
+bash tools/service/manage.sh skynet                   # 仅编译 Skynet
+bash tools/service/manage.sh cpp [Release|Debug]      # 仅编译 C++ 项目
+
+# 服务管理
+bash tools/service/manage.sh start                    # 启动所有服务
+bash tools/service/manage.sh stop                     # 停止所有服务
+bash tools/service/manage.sh restart                  # 重启所有服务
+bash tools/service/manage.sh status                   # 查看服务状态
+```
+
+**管理的服务**：
+- Redis 数据库
+- Skynet 逻辑服务器
+- Central 服务器
+- DB 服务器
+- Login 服务器
+- Gateway 服务器
+- File 服务器
+- Matching 服务器
 
 ---
 
-## 📝 注意事项
+### windows/ - Windows 脚本
 
-1. **Windows 执行策略**：首次运行可能需要设置 PowerShell 执行策略Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-2. **WSL2 换行符问题**：如果在 WSL2 中遇到 `$'\r': command not found` 错误# 在 Windows 中运行
-.\tools\debug\fix_line_endings.ps1
-
-# 然后在 WSL2 中重新添加执行权限
-chmod +x tools/debug/*.sh
-3. **配置文件路径**：确保 `config/cpp/cfg_server/` 目录存在
-
-4. **生成目录**：确保已编译项目，`out/build/x64-debug/` 目录存在
-
-5. **Proto 文件**：修改 proto 文件后必须重新生成代码
+| 脚本 | 说明 | 用途 |
+|------|------|------|
+| `proto_make_cpp.ps1` | 生成 C++ Protobuf 代码 | Windows 开发环境 |
+| `proto_make_lua.ps1` | 生成 Lua Descriptor | Windows 开发环境 |
+| `copy_config.ps1` | 复制配置文件 | 部署配置 |
+| `fix_encoding.ps1` | 修复文件编码 | 代码规范 |
+| `install_git_hooks.ps1` | 安装 Git Hooks | 代码检查 |
 
 ---
 
-## 🆘 常见问题
+## 🔄 常用工作流
 
-### Q: WSL2 中提示 `$'\r': command not found`
-**A:** 这是换行符问题，执行：# 在 Windows PowerShell 中
-.\tools\debug\fix_line_endings.ps1
+### 开发环境首次搭建
 
-# 然后在 WSL2 中
-chmod +x tools/debug/*.sh
-### Q: 提示 "protoc not found"
-**A:** 确保已通过 vcpkg 安装 protobuf：# WSL2
-~/vcpkg/vcpkg install protobuf grpc
+```bash
+# 1. 安装依赖
+sudo bash tools/setup/wsl_setup.sh
 
-# Windows
-vcpkg install protobuf grpc
-### Q: 复制配置失败
-**A:** 检查：
-1. `config/cpp/cfg_server/` 目录是否存在
-2. 是否已编译项目（生成目录存在）
+# 2. 编译项目
+bash tools/service/manage.sh compile
 
-### Q: Proto 生成失败
-**A:** 检查：
-1. `.proto` 文件语法是否正确
-2. 是否有循环依赖
+# 3. 启动服务
+bash tools/service/manage.sh start
 
-### Q: WSL2 系统包配置错误
-**A:** 这些错误不影响项目编译，可以忽略。如需修复：sudo apt-get install -f
-sudo dpkg --configure -a
+# 4. 查看状态
+bash tools/service/manage.sh status
+```
+
+### 修改代码后重新编译
+
+```bash
+# 重新编译
+bash tools/service/manage.sh compile
+
+# 重启服务
+bash tools/service/manage.sh restart
+```
+
+### 日常开发
+
+```bash
+# 启动服务
+bash tools/service/manage.sh start
+
+# 查看状态
+bash tools/service/manage.sh status
+
+# 停止服务
+bash tools/service/manage.sh stop
+```
+
+---
+
+## ⚠️ 注意事项
+
+1. **脚本权限**：首次使用需添加执行权限
+   ```bash
+   chmod +x tools/**/*.sh
+   ```
+
+2. **环境变量**：安装 vcpkg 后需重新加载
+   ```bash
+   source ~/.bashrc
+   ```
+
+3. **服务依赖**：确保 Redis 已启动
+   ```bash
+   sudo service redis-server start
+   ```
+
+4. **编译模式**：WSL 环境推荐使用 Release 模式
+   ```bash
+   bash tools/service/manage.sh compile Release
+   ```
+
 ---
 
 ## 📚 相关文档
 
-- **WSL2 环境配置指南**：`docunment/项目配置与运行/WSL2环境配置指南.md`
-- **WSL2 快速启动**：`docunment/项目配置与运行/WSL2快速启动.md`
-- **WSL2 文件总结**：`docunment/项目配置与运行/WSL2文件总结.md`
+- **环境配置**: `docunment/项目配置与运行/WSL2环境配置指南.md`
+- **快速启动**: `docunment/skynet/QUICK_START.md`
+- **架构设计**: `docunment/architecture/final_architecture_v2.md`
 
 ---
 
-**更新日期**: 2025年11月23日
+## 🔧 故障排查
+
+### 问题 1: 编译失败
+
+```bash
+# 检查环境
+bash tools/setup/wsl_check.sh
+
+# 查看详细错误
+bash tools/service/manage.sh compile 2>&1 | tee compile.log
+```
+
+### 问题 2: 服务启动失败
+
+```bash
+# 查看状态
+bash tools/service/manage.sh status
+
+# 查看日志
+tail -f logs/*.log
+```
+
+### 问题 3: Redis 未运行
+
+```bash
+# 启动 Redis
+sudo service redis-server start
+
+# 检查状态
+redis-cli ping
+```
+
+---
+
+## 📊 整理成果
+
+### 脚本优化
+
+| 指标 | 整理前 | 整理后 | 优化 |
+|------|--------|--------|------|
+| 脚本数量 | 22 个 | 8 个 | ↓ 63% |
+| 核心功能脚本 | 10 个 | 2 个 | ↓ 80% |
+| 用户需记住的命令 | 6+ 条 | 3 条 | ↓ 50% |
+
+### 功能整合
+
+**整理前**：
+- 编译：3 个独立脚本
+- Skynet：5 个独立脚本
+- 服务管理：10 个独立脚本
+
+**整理后**：
+- 环境安装：1 个脚本（`wsl_setup.sh`）
+- 服务管理：1 个脚本（`manage.sh`）
+
+---
+
+**更新时间**: 2025-12-13  
+**维护者**: 开发团队
