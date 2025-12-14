@@ -46,4 +46,7 @@
 # vcpkg out
 /vcpkg_installed/
 
+# log
+/logs/*.log
+
 

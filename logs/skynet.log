@@ -5,19 +5,56 @@
 [:00000006] LAUNCH snlua datacenterd
 [:00000007] LAUNCH snlua service_mgr
 [:00000008] LAUNCH snlua main
-[:00000008] lua loader error : ./lualib/skynet/require.lua:31: module 'pb' not found:
-	no field package.preload['pb']
-	no file '../../skynet_src/lualib/pb.lua'
-	no file './lualib/pb.lua'
-	no file './lualib/pb/init.lua'
-	no file './luaclib/pb.so'
-stack traceback:
-	[C]: in upvalue 'require'
-	./lualib/skynet/require.lua:31: in function 'skynet.require.require'
-	../../skynet_src/lualib/proto_util.lua:5: in main chunk
-	[C]: in upvalue 'require'
-	./lualib/skynet/require.lua:31: in function 'skynet.require.require'
-	../../skynet_src/service/main.lua:3: in local 'main'
-	./lualib/loader.lua:50: in main chunk
+[:00000008] [ProtoUtil] Native pb library not available, using pure Lua implementation
+[:00000008] [ProtoUtil] pb module load failed: version mismatch: app. needs 503.0, Lua core provides 504.0
+[:00000008] [ProtoUtil] protoc module load failed: ./lualib/skynet/require.lua:31: module 'protoc' not found:
+	no field package.preload['protoc']
+	no file '../../skynet_src/lualib/protoc.lua'
+	no file './lualib/protoc.lua'
+	no file './lualib/protoc/init.lua'
+	no file './luaclib/protoc.so'
+[:00000008] ============================================
+[:00000008] Skynet Logic Server Starting...
+[:00000008] ============================================
+[:00000008] 
+[Protobuf] Initializing Protocol Buffers...
+[:00000008] [ProtoUtil] Falling back to embedded proto definitions
+[:00000008] [ProtoUtil] Proto loaded successfully (pure Lua fallback - simple serialization)
+[:00000008] [ProtoUtil] WARNING: Using simple text-based serialization, performance will be lower
+[:00000008] [ProtoUtil] For production use, please install lua-protobuf
+[:00000008] [Protobuf] Proto definitions loaded successfully
+[:00000008] [Protobuf] Running quick validation...
+[:00000008] [Protobuf] Validation PASSED - System ready
+[:00000008] 
+[:00000009] LAUNCH snlua cpp_gateway
+[:00000009] [ProtoUtil] Native pb library not available, using pure Lua implementation
+[:00000009] [ProtoUtil] pb module load failed: version mismatch: app. needs 503.0, Lua core provides 504.0
+[:00000009] [ProtoUtil] protoc module load failed: ./lualib/skynet/require.lua:31: module 'protoc' not found:
+	no field package.preload['protoc']
+	no file '../../skynet_src/lualib/protoc.lua'
+	no file './lualib/protoc.lua'
+	no file './lualib/protoc/init.lua'
+	no file './luaclib/protoc.so'
+[:00000009] Initializing Protobuf...
+[:00000009] [ProtoUtil] Falling back to embedded proto definitions
+[:00000009] [ProtoUtil] Proto loaded successfully (pure Lua fallback - simple serialization)
+[:00000009] [ProtoUtil] WARNING: Using simple text-based serialization, performance will be lower
+[:00000009] [ProtoUtil] For production use, please install lua-protobuf
+[:00000009] C++ Gateway listening on 0.0.0.0:8888
+[:00000008] C++ Gateway service started: :00000009
+[:0000000a] LAUNCH snlua player_manager
+[:0000000a] Player Manager started
+[:00000008] Player Manager service started: :0000000a
+[:0000000b] LAUNCH snlua logic/achievement_service
+[:0000000b] [Achievement] Loaded 3 achievement records
+[:0000000b] [Achievement] Service started
+[:00000008] Achievement service started: :0000000b
+[:0000000c] LAUNCH snlua logic/hearthstone_manager
+[:0000000c] Hearthstone Manager started
+[:00000008] Hearthstone Manager service started: :0000000c
+[:00000008] ============================================
+[:00000008] Skynet Logic Server Started Successfully
+[:00000008] All services online and ready
+[:00000008] ============================================
 [:00000008] KILL self
 [:00000002] KILL self
