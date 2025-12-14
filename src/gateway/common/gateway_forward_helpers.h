@@ -1,7 +1,7 @@
 #ifndef GATEWAY_FORWARD_HELPERS_H
 #define GATEWAY_FORWARD_HELPERS_H
 
-#include "common.grpc.pb.h"
+#include "common.pb.h"
 #include "server_gateway.grpc.pb.h"
 #include "connection_pool.h"
 #include "logger_manager.h"

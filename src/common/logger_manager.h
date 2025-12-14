@@ -1,7 +1,7 @@
 #ifndef LOGGER_MANAGER_H
 #define LOGGER_MANAGER_H
 
-#include "common.grpc.pb.h" // 公共模块：包含公共数据类型，枚举
+#include "common.pb.h" // 公共模块：包含公共数据类型，枚举
 #include "consts/const_log.h"  // 日志分类，日志等级常量
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>

@@ -1,19 +1,14 @@
 #ifndef CENTRAL_SERVER_H
 #define CENTRAL_SERVER_H
 
-#include "common.grpc.pb.h"
-#include "base_server.h"  // 继承 BaseServer
-#include "consts/const_log.h"
+#include "base_server.h"            // 已包含: common.pb.h, connection_pool.h, logger_manager.h, grpcpp
 #include "server_central.grpc.pb.h"
 #include "server_db.grpc.pb.h"
 #include "server_file.grpc.pb.h"
 #include "server_gateway.grpc.pb.h"
 #include "server_login.grpc.pb.h"
 #include "server_matching.grpc.pb.h"
-#include "connection_pool.h"
-#include "logger_manager.h"
 
-#include <grpcpp/grpcpp.h>
 #include <thread>
 #include <chrono>
 #include <unordered_map>

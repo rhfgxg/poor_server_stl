@@ -1,15 +1,11 @@
 #ifndef MATCHING_SERVER_H
 #define MATCHING_SERVER_H
 
-#include "common.grpc.pb.h"
+#include "base_server.h"            // 已包含: common.pb.h, connection_pool.h, logger_manager.h, grpcpp
 #include "server_matching.grpc.pb.h"
 #include "server_login.grpc.pb.h"
-#include "base_server.h"
-#include "connection_pool.h"
-#include "logger_manager.h"
 #include "redis_client.h"
 
-#include <grpcpp/grpcpp.h>
 #include <map>
 #include <string>
 #include <thread>

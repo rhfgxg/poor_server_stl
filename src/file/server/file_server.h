@@ -1,12 +1,9 @@
 #ifndef FILE_SERVER_H
 #define FILE_SERVER_H
 
-#include "common.grpc.pb.h"
+#include "base_server.h"            // 已包含: common.pb.h, connection_pool.h, logger_manager.h, grpcpp
 #include "server_file.grpc.pb.h"
-#include "base_server.h"
-#include "logger_manager.h"
 
-#include <grpcpp/grpcpp.h>
 #include <memory>
 
 /**

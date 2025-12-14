@@ -1,18 +1,14 @@
 #ifndef LOGIN_SERVER_H
 #define LOGIN_SERVER_H
 
-#include "common.grpc.pb.h"
+#include "base_server.h"            // 已包含: common.pb.h, connection_pool.h, logger_manager.h, grpcpp
 #include "server_login.grpc.pb.h"
 #include "server_db.grpc.pb.h"
-#include "base_server.h"
-#include "connection_pool.h"
-#include "logger_manager.h"
 #include "redis_client.h"
 
 #include <openssl/sha.h>
 #include <iomanip>
 #include <sstream>
-#include <grpcpp/grpcpp.h>
 #include <jwt-cpp/jwt.h>
 #include <chrono>
 #include <memory>

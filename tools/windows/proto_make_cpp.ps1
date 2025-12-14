@@ -41,7 +41,8 @@ function Generate-ProtoModule {
     param (
         [string]$ModuleName,
         [string]$Description,
-        [bool]$IsCommented = $false
+        [bool]$IsCommented = $false,
+        [bool]$HasGrpcService = $true
     )
     
     $ProtoFile = Join-Path $ProtoDir "$ModuleName.proto"
@@ -70,21 +71,25 @@ function Generate-ProtoModule {
         return
     }
     
-    # 生成 gRPC 代码
-    Write-Host "  Generating gRPC code..." -NoNewline
-    $process = Start-Process -FilePath $Protoc `
-                             -ArgumentList "--proto_path=$ProtoDir", "--grpc_out=$MakeOut", `
-                                          "--plugin=protoc-gen-grpc=$GrpcPlugin", $ProtoFile `
-                             -NoNewWindow -Wait -PassThru
-    if ($process.ExitCode -eq 0) {
-        Write-Host " OK" -ForegroundColor Green
+    # 生成 gRPC 代码（仅当包含 service 定义时）
+    if ($HasGrpcService) {
+        Write-Host "  Generating gRPC code..." -NoNewline
+        $process = Start-Process -FilePath $Protoc `
+                                 -ArgumentList "--proto_path=$ProtoDir", "--grpc_out=$MakeOut", `
+                                              "--plugin=protoc-gen-grpc=$GrpcPlugin", $ProtoFile `
+                                 -NoNewWindow -Wait -PassThru
+        if ($process.ExitCode -eq 0) {
+            Write-Host " OK" -ForegroundColor Green
+        } else {
+            Write-Host " FAILED" -ForegroundColor Red
+        }
     } else {
-        Write-Host " FAILED" -ForegroundColor Red
+        Write-Host "  Skipping gRPC (no service definition)" -ForegroundColor Gray
     }
 }
 
 # 生成各模块代码
-Generate-ProtoModule "common" "包含共享数据类型，枚举的定义"
+Generate-ProtoModule "common" "包含共享数据类型，枚举的定义" -HasGrpcService $false
 Generate-ProtoModule "server_chat" "聊天服务器" -IsCommented $true
 Generate-ProtoModule "server_central" "中心服务器"
 Generate-ProtoModule "server_db" "数据库服务器"

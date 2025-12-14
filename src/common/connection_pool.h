@@ -1,7 +1,7 @@
 #ifndef CONNECTION_POOL_H
 #define CONNECTION_POOL_H
 
-#include "common.grpc.pb.h" // 公共模块：包含公共数据类型，枚举
+#include "common.pb.h" // 公共模块：包含公共数据类型，枚举
 
 #include <grpcpp/grpcpp.h>
 #include <vector>

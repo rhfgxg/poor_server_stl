@@ -1,13 +1,10 @@
 #ifndef DB_SERVICE_H
 #define DB_SERVICE_H
 
-#include "common.grpc.pb.h"
+#include "base_server.h"            // 已包含: common.pb.h, connection_pool.h, logger_manager.h, grpcpp
 #include "server_db.grpc.pb.h"
-#include "base_server.h"
 #include "db_connection_pool.h"
-#include "logger_manager.h"
 
-#include <grpcpp/grpcpp.h>
 #include <memory>
 
 // 前向声明 lua_State，避免在头文件中包含 lua.hpp

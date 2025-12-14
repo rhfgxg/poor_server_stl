@@ -1,7 +1,7 @@
 #ifndef BASE_SERVER_H
 #define BASE_SERVER_H
 
-#include "common.grpc.pb.h"         // 公共模块：包含公共数据类型，枚举
+#include "common.pb.h"              // 公共模块：包含公共数据类型，枚举
 #include "server_central.grpc.pb.h" // Central Server 协议
 #include "connection_pool.h"        // 连接池
 #include "logger_manager.h"         // 日志管理器

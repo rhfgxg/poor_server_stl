@@ -16,7 +16,6 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/common/config_manager.cpp
     # protobuf 生成的源文件：调用其他服务器
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/common.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/common.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_central.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_central.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_db.pb.cc
