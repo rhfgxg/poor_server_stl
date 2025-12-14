@@ -31,16 +31,19 @@
 *.out
 *.app
 
-# VisualStudio config
+# ide config
 /.vs/
+/.vscode/
 
-# bliud
+# build
 /out/
 /build/
+## proto build
+/protobuf/cpp/src/*.pb.h
+/protobuf/cpp/src/*.pb.cc
+/protobuf/skynet/src/*.pb
 
 # vcpkg out
 /vcpkg_installed/
 
-# proto out
-/protobuf/cpp/src
-/protobuf/skynet/src
+
