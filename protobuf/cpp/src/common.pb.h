@@ -72,6 +72,7 @@ enum ServerType : int {
   LOGIN = 8,
   MATCHING = 9,
   STORE = 10,
+  REDIS = 11,
   ServerType_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ServerType_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -81,8 +82,8 @@ enum ServerType : int {
 bool ServerType_IsValid(int value);
 extern const uint32_t ServerType_internal_data_[];
 constexpr ServerType ServerType_MIN = static_cast<ServerType>(0);
-constexpr ServerType ServerType_MAX = static_cast<ServerType>(10);
-constexpr int ServerType_ARRAYSIZE = 10 + 1;
+constexpr ServerType ServerType_MAX = static_cast<ServerType>(11);
+constexpr int ServerType_ARRAYSIZE = 11 + 1;
 const ::google::protobuf::EnumDescriptor*
 ServerType_descriptor();
 template <typename T>
@@ -95,7 +96,7 @@ const std::string& ServerType_Name(T value) {
 template <>
 inline const std::string& ServerType_Name(ServerType value) {
   return ::google::protobuf::internal::NameOfDenseEnum<ServerType_descriptor,
-                                                 0, 10>(
+                                                 0, 11>(
       static_cast<int>(value));
 }
 inline bool ServerType_Parse(absl::string_view name, ServerType* value) {

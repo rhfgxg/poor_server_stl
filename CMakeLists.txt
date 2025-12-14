@@ -35,13 +35,12 @@ include_directories(
     ${VCPKG_INCLUDE}
     ${CMAKE_SOURCE_DIR}/src/common
     ${CMAKE_SOURCE_DIR}/src/central
-    ${CMAKE_SOURCE_DIR}/src/chat
     ${CMAKE_SOURCE_DIR}/src/db
     ${CMAKE_SOURCE_DIR}/src/file
     ${CMAKE_SOURCE_DIR}/src/gateway
     ${CMAKE_SOURCE_DIR}/src/login
     ${CMAKE_SOURCE_DIR}/src/matching
-    ${CMAKE_SOURCE_DIR}/src/store
+    ${CMAKE_SOURCE_DIR}/src/redis
     ${CMAKE_SOURCE_DIR}/protobuf/cpp/src
 )
 
@@ -58,6 +57,7 @@ find_package(Boost REQUIRED system)
 find_package(c-ares REQUIRED)
 find_package(fmt REQUIRED)
 find_package(gRPC REQUIRED)
+find_package(nlohmann_json REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(Protobuf REQUIRED)
 find_package(re2 REQUIRED)
@@ -111,3 +111,4 @@ add_subdirectory(src/file)
 add_subdirectory(src/gateway)
 add_subdirectory(src/login)
 add_subdirectory(src/matching)
+add_subdirectory(src/redis)

@@ -2,7 +2,8 @@
 // If you make any local change, they will be lost.
 // source: server_logic.proto
 // Original file comments:
-// 逻辑服务器
+// 逻辑服务器协议（占位符）
+//
 #ifndef GRPC_server_5flogic_2eproto__INCLUDED
 #define GRPC_server_5flogic_2eproto__INCLUDED
 
@@ -26,9 +27,11 @@
 #include <grpcpp/support/status.h>
 #include <grpcpp/support/stub_options.h>
 #include <grpcpp/support/sync_stream.h>
+#include <grpcpp/ports_def.inc>
 
 namespace rpc_server {
 
+// 逻辑服务器服务
 class LogicServer final {
  public:
   static constexpr char const* service_full_name() {
@@ -37,219 +40,43 @@ class LogicServer final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // 获取玩家收藏
-    virtual ::grpc::Status Get_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::rpc_server::GetPlayerCollectionRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerCollectionRes>> AsyncGet_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerCollectionRes>>(AsyncGet_player_collectionRaw(context, request, cq));
+    // 占位符方法
+    virtual ::grpc::Status Ping(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::rpc_server::PingResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PingResponse>> AsyncPing(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PingResponse>>(AsyncPingRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerCollectionRes>> PrepareAsyncGet_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerCollectionRes>>(PrepareAsyncGet_player_collectionRaw(context, request, cq));
-    }
-    // 更新玩家收藏
-    virtual ::grpc::Status Update_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::rpc_server::UpdatePlayerCollectionRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerCollectionRes>> AsyncUpdate_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerCollectionRes>>(AsyncUpdate_player_collectionRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerCollectionRes>> PrepareAsyncUpdate_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerCollectionRes>>(PrepareAsyncUpdate_player_collectionRaw(context, request, cq));
-    }
-    // 获取玩家成就
-    virtual ::grpc::Status Get_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::rpc_server::GetPlayerAchievementsRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerAchievementsRes>> AsyncGet_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerAchievementsRes>>(AsyncGet_player_achievementsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerAchievementsRes>> PrepareAsyncGet_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerAchievementsRes>>(PrepareAsyncGet_player_achievementsRaw(context, request, cq));
-    }
-    // 更新玩家成就
-    virtual ::grpc::Status Update_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::rpc_server::UpdatePlayerAchievementsRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerAchievementsRes>> AsyncUpdate_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerAchievementsRes>>(AsyncUpdate_player_achievementsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerAchievementsRes>> PrepareAsyncUpdate_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerAchievementsRes>>(PrepareAsyncUpdate_player_achievementsRaw(context, request, cq));
-    }
-    // 获取玩家任务
-    virtual ::grpc::Status Get_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::rpc_server::GetPlayerTasksRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerTasksRes>> AsyncGet_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerTasksRes>>(AsyncGet_player_tasksRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerTasksRes>> PrepareAsyncGet_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerTasksRes>>(PrepareAsyncGet_player_tasksRaw(context, request, cq));
-    }
-    // 更新玩家任务
-    virtual ::grpc::Status Update_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::rpc_server::UpdatePlayerTasksRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerTasksRes>> AsyncUpdate_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerTasksRes>>(AsyncUpdate_player_tasksRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerTasksRes>> PrepareAsyncUpdate_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerTasksRes>>(PrepareAsyncUpdate_player_tasksRaw(context, request, cq));
-    }
-    // 添加物品
-    virtual ::grpc::Status Add_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::rpc_server::AddItemRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::AddItemRes>> AsyncAdd_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::AddItemRes>>(AsyncAdd_itemRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::AddItemRes>> PrepareAsyncAdd_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::AddItemRes>>(PrepareAsyncAdd_itemRaw(context, request, cq));
-    }
-    // 使用物品
-    virtual ::grpc::Status Use_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::rpc_server::UseItemRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UseItemRes>> AsyncUse_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UseItemRes>>(AsyncUse_itemRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UseItemRes>> PrepareAsyncUse_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UseItemRes>>(PrepareAsyncUse_itemRaw(context, request, cq));
-    }
-    // 保存对局结果
-    virtual ::grpc::Status Save_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::rpc_server::SaveBattleResultRes* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::SaveBattleResultRes>> AsyncSave_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::SaveBattleResultRes>>(AsyncSave_battle_resultRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::SaveBattleResultRes>> PrepareAsyncSave_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::SaveBattleResultRes>>(PrepareAsyncSave_battle_resultRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PingResponse>> PrepareAsyncPing(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PingResponse>>(PrepareAsyncPingRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // 获取玩家收藏
-      virtual void Get_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq* request, ::rpc_server::GetPlayerCollectionRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Get_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq* request, ::rpc_server::GetPlayerCollectionRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 更新玩家收藏
-      virtual void Update_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq* request, ::rpc_server::UpdatePlayerCollectionRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Update_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq* request, ::rpc_server::UpdatePlayerCollectionRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 获取玩家成就
-      virtual void Get_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq* request, ::rpc_server::GetPlayerAchievementsRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Get_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq* request, ::rpc_server::GetPlayerAchievementsRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 更新玩家成就
-      virtual void Update_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq* request, ::rpc_server::UpdatePlayerAchievementsRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Update_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq* request, ::rpc_server::UpdatePlayerAchievementsRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 获取玩家任务
-      virtual void Get_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq* request, ::rpc_server::GetPlayerTasksRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Get_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq* request, ::rpc_server::GetPlayerTasksRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 更新玩家任务
-      virtual void Update_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq* request, ::rpc_server::UpdatePlayerTasksRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Update_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq* request, ::rpc_server::UpdatePlayerTasksRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 添加物品
-      virtual void Add_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq* request, ::rpc_server::AddItemRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Add_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq* request, ::rpc_server::AddItemRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 使用物品
-      virtual void Use_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq* request, ::rpc_server::UseItemRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Use_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq* request, ::rpc_server::UseItemRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 保存对局结果
-      virtual void Save_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq* request, ::rpc_server::SaveBattleResultRes* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Save_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq* request, ::rpc_server::SaveBattleResultRes* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // 占位符方法
+      virtual void Ping(::grpc::ClientContext* context, const ::rpc_server::PingRequest* request, ::rpc_server::PingResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Ping(::grpc::ClientContext* context, const ::rpc_server::PingRequest* request, ::rpc_server::PingResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerCollectionRes>* AsyncGet_player_collectionRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerCollectionRes>* PrepareAsyncGet_player_collectionRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerCollectionRes>* AsyncUpdate_player_collectionRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerCollectionRes>* PrepareAsyncUpdate_player_collectionRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerAchievementsRes>* AsyncGet_player_achievementsRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerAchievementsRes>* PrepareAsyncGet_player_achievementsRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerAchievementsRes>* AsyncUpdate_player_achievementsRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerAchievementsRes>* PrepareAsyncUpdate_player_achievementsRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerTasksRes>* AsyncGet_player_tasksRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetPlayerTasksRes>* PrepareAsyncGet_player_tasksRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerTasksRes>* AsyncUpdate_player_tasksRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UpdatePlayerTasksRes>* PrepareAsyncUpdate_player_tasksRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::AddItemRes>* AsyncAdd_itemRaw(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::AddItemRes>* PrepareAsyncAdd_itemRaw(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UseItemRes>* AsyncUse_itemRaw(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::UseItemRes>* PrepareAsyncUse_itemRaw(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::SaveBattleResultRes>* AsyncSave_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::SaveBattleResultRes>* PrepareAsyncSave_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PingResponse>* AsyncPingRaw(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PingResponse>* PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status Get_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::rpc_server::GetPlayerCollectionRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerCollectionRes>> AsyncGet_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerCollectionRes>>(AsyncGet_player_collectionRaw(context, request, cq));
+    ::grpc::Status Ping(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::rpc_server::PingResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::PingResponse>> AsyncPing(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::PingResponse>>(AsyncPingRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerCollectionRes>> PrepareAsyncGet_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerCollectionRes>>(PrepareAsyncGet_player_collectionRaw(context, request, cq));
-    }
-    ::grpc::Status Update_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::rpc_server::UpdatePlayerCollectionRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerCollectionRes>> AsyncUpdate_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerCollectionRes>>(AsyncUpdate_player_collectionRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerCollectionRes>> PrepareAsyncUpdate_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerCollectionRes>>(PrepareAsyncUpdate_player_collectionRaw(context, request, cq));
-    }
-    ::grpc::Status Get_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::rpc_server::GetPlayerAchievementsRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerAchievementsRes>> AsyncGet_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerAchievementsRes>>(AsyncGet_player_achievementsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerAchievementsRes>> PrepareAsyncGet_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerAchievementsRes>>(PrepareAsyncGet_player_achievementsRaw(context, request, cq));
-    }
-    ::grpc::Status Update_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::rpc_server::UpdatePlayerAchievementsRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerAchievementsRes>> AsyncUpdate_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerAchievementsRes>>(AsyncUpdate_player_achievementsRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerAchievementsRes>> PrepareAsyncUpdate_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerAchievementsRes>>(PrepareAsyncUpdate_player_achievementsRaw(context, request, cq));
-    }
-    ::grpc::Status Get_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::rpc_server::GetPlayerTasksRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerTasksRes>> AsyncGet_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerTasksRes>>(AsyncGet_player_tasksRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerTasksRes>> PrepareAsyncGet_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerTasksRes>>(PrepareAsyncGet_player_tasksRaw(context, request, cq));
-    }
-    ::grpc::Status Update_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::rpc_server::UpdatePlayerTasksRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerTasksRes>> AsyncUpdate_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerTasksRes>>(AsyncUpdate_player_tasksRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerTasksRes>> PrepareAsyncUpdate_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerTasksRes>>(PrepareAsyncUpdate_player_tasksRaw(context, request, cq));
-    }
-    ::grpc::Status Add_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::rpc_server::AddItemRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::AddItemRes>> AsyncAdd_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::AddItemRes>>(AsyncAdd_itemRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::AddItemRes>> PrepareAsyncAdd_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::AddItemRes>>(PrepareAsyncAdd_itemRaw(context, request, cq));
-    }
-    ::grpc::Status Use_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::rpc_server::UseItemRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UseItemRes>> AsyncUse_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UseItemRes>>(AsyncUse_itemRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UseItemRes>> PrepareAsyncUse_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::UseItemRes>>(PrepareAsyncUse_itemRaw(context, request, cq));
-    }
-    ::grpc::Status Save_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::rpc_server::SaveBattleResultRes* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::SaveBattleResultRes>> AsyncSave_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::SaveBattleResultRes>>(AsyncSave_battle_resultRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::SaveBattleResultRes>> PrepareAsyncSave_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::SaveBattleResultRes>>(PrepareAsyncSave_battle_resultRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::PingResponse>> PrepareAsyncPing(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::PingResponse>>(PrepareAsyncPingRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void Get_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq* request, ::rpc_server::GetPlayerCollectionRes* response, std::function<void(::grpc::Status)>) override;
-      void Get_player_collection(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq* request, ::rpc_server::GetPlayerCollectionRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Update_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq* request, ::rpc_server::UpdatePlayerCollectionRes* response, std::function<void(::grpc::Status)>) override;
-      void Update_player_collection(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq* request, ::rpc_server::UpdatePlayerCollectionRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Get_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq* request, ::rpc_server::GetPlayerAchievementsRes* response, std::function<void(::grpc::Status)>) override;
-      void Get_player_achievements(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq* request, ::rpc_server::GetPlayerAchievementsRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Update_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq* request, ::rpc_server::UpdatePlayerAchievementsRes* response, std::function<void(::grpc::Status)>) override;
-      void Update_player_achievements(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq* request, ::rpc_server::UpdatePlayerAchievementsRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Get_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq* request, ::rpc_server::GetPlayerTasksRes* response, std::function<void(::grpc::Status)>) override;
-      void Get_player_tasks(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq* request, ::rpc_server::GetPlayerTasksRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Update_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq* request, ::rpc_server::UpdatePlayerTasksRes* response, std::function<void(::grpc::Status)>) override;
-      void Update_player_tasks(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq* request, ::rpc_server::UpdatePlayerTasksRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Add_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq* request, ::rpc_server::AddItemRes* response, std::function<void(::grpc::Status)>) override;
-      void Add_item(::grpc::ClientContext* context, const ::rpc_server::AddItemReq* request, ::rpc_server::AddItemRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Use_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq* request, ::rpc_server::UseItemRes* response, std::function<void(::grpc::Status)>) override;
-      void Use_item(::grpc::ClientContext* context, const ::rpc_server::UseItemReq* request, ::rpc_server::UseItemRes* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Save_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq* request, ::rpc_server::SaveBattleResultRes* response, std::function<void(::grpc::Status)>) override;
-      void Save_battle_result(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq* request, ::rpc_server::SaveBattleResultRes* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Ping(::grpc::ClientContext* context, const ::rpc_server::PingRequest* request, ::rpc_server::PingResponse* response, std::function<void(::grpc::Status)>) override;
+      void Ping(::grpc::ClientContext* context, const ::rpc_server::PingRequest* request, ::rpc_server::PingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -261,33 +88,9 @@ class LogicServer final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerCollectionRes>* AsyncGet_player_collectionRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerCollectionRes>* PrepareAsyncGet_player_collectionRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerCollectionReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerCollectionRes>* AsyncUpdate_player_collectionRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerCollectionRes>* PrepareAsyncUpdate_player_collectionRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerCollectionReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerAchievementsRes>* AsyncGet_player_achievementsRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerAchievementsRes>* PrepareAsyncGet_player_achievementsRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerAchievementsRes>* AsyncUpdate_player_achievementsRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerAchievementsRes>* PrepareAsyncUpdate_player_achievementsRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerAchievementsReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerTasksRes>* AsyncGet_player_tasksRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetPlayerTasksRes>* PrepareAsyncGet_player_tasksRaw(::grpc::ClientContext* context, const ::rpc_server::GetPlayerTasksReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerTasksRes>* AsyncUpdate_player_tasksRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::UpdatePlayerTasksRes>* PrepareAsyncUpdate_player_tasksRaw(::grpc::ClientContext* context, const ::rpc_server::UpdatePlayerTasksReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::AddItemRes>* AsyncAdd_itemRaw(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::AddItemRes>* PrepareAsyncAdd_itemRaw(::grpc::ClientContext* context, const ::rpc_server::AddItemReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::UseItemRes>* AsyncUse_itemRaw(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::UseItemRes>* PrepareAsyncUse_itemRaw(::grpc::ClientContext* context, const ::rpc_server::UseItemReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::SaveBattleResultRes>* AsyncSave_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::SaveBattleResultRes>* PrepareAsyncSave_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::SaveBattleResultReq& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_Get_player_collection_;
-    const ::grpc::internal::RpcMethod rpcmethod_Update_player_collection_;
-    const ::grpc::internal::RpcMethod rpcmethod_Get_player_achievements_;
-    const ::grpc::internal::RpcMethod rpcmethod_Update_player_achievements_;
-    const ::grpc::internal::RpcMethod rpcmethod_Get_player_tasks_;
-    const ::grpc::internal::RpcMethod rpcmethod_Update_player_tasks_;
-    const ::grpc::internal::RpcMethod rpcmethod_Add_item_;
-    const ::grpc::internal::RpcMethod rpcmethod_Use_item_;
-    const ::grpc::internal::RpcMethod rpcmethod_Save_battle_result_;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::PingResponse>* AsyncPingRaw(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::PingResponse>* PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Ping_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -295,1231 +98,152 @@ class LogicServer final {
    public:
     Service();
     virtual ~Service();
-    // 获取玩家收藏
-    virtual ::grpc::Status Get_player_collection(::grpc::ServerContext* context, const ::rpc_server::GetPlayerCollectionReq* request, ::rpc_server::GetPlayerCollectionRes* response);
-    // 更新玩家收藏
-    virtual ::grpc::Status Update_player_collection(::grpc::ServerContext* context, const ::rpc_server::UpdatePlayerCollectionReq* request, ::rpc_server::UpdatePlayerCollectionRes* response);
-    // 获取玩家成就
-    virtual ::grpc::Status Get_player_achievements(::grpc::ServerContext* context, const ::rpc_server::GetPlayerAchievementsReq* request, ::rpc_server::GetPlayerAchievementsRes* response);
-    // 更新玩家成就
-    virtual ::grpc::Status Update_player_achievements(::grpc::ServerContext* context, const ::rpc_server::UpdatePlayerAchievementsReq* request, ::rpc_server::UpdatePlayerAchievementsRes* response);
-    // 获取玩家任务
-    virtual ::grpc::Status Get_player_tasks(::grpc::ServerContext* context, const ::rpc_server::GetPlayerTasksReq* request, ::rpc_server::GetPlayerTasksRes* response);
-    // 更新玩家任务
-    virtual ::grpc::Status Update_player_tasks(::grpc::ServerContext* context, const ::rpc_server::UpdatePlayerTasksReq* request, ::rpc_server::UpdatePlayerTasksRes* response);
-    // 添加物品
-    virtual ::grpc::Status Add_item(::grpc::ServerContext* context, const ::rpc_server::AddItemReq* request, ::rpc_server::AddItemRes* response);
-    // 使用物品
-    virtual ::grpc::Status Use_item(::grpc::ServerContext* context, const ::rpc_server::UseItemReq* request, ::rpc_server::UseItemRes* response);
-    // 保存对局结果
-    virtual ::grpc::Status Save_battle_result(::grpc::ServerContext* context, const ::rpc_server::SaveBattleResultReq* request, ::rpc_server::SaveBattleResultRes* response);
+    // 占位符方法
+    virtual ::grpc::Status Ping(::grpc::ServerContext* context, const ::rpc_server::PingRequest* request, ::rpc_server::PingResponse* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_Get_player_collection : public BaseClass {
+  class WithAsyncMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_Get_player_collection() {
+    WithAsyncMethod_Ping() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_Get_player_collection() override {
+    ~WithAsyncMethod_Ping() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_player_collection(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerCollectionReq* /*request*/, ::rpc_server::GetPlayerCollectionRes* /*response*/) override {
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGet_player_collection(::grpc::ServerContext* context, ::rpc_server::GetPlayerCollectionReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::GetPlayerCollectionRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestPing(::grpc::ServerContext* context, ::rpc_server::PingRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::PingResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
+  typedef WithAsyncMethod_Ping<Service > AsyncService;
   template <class BaseClass>
-  class WithAsyncMethod_Update_player_collection : public BaseClass {
+  class WithCallbackMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_Update_player_collection() {
-      ::grpc::Service::MarkMethodAsync(1);
-    }
-    ~WithAsyncMethod_Update_player_collection() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_collection(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerCollectionReq* /*request*/, ::rpc_server::UpdatePlayerCollectionRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestUpdate_player_collection(::grpc::ServerContext* context, ::rpc_server::UpdatePlayerCollectionReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::UpdatePlayerCollectionRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Get_player_achievements : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Get_player_achievements() {
-      ::grpc::Service::MarkMethodAsync(2);
-    }
-    ~WithAsyncMethod_Get_player_achievements() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_player_achievements(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerAchievementsReq* /*request*/, ::rpc_server::GetPlayerAchievementsRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGet_player_achievements(::grpc::ServerContext* context, ::rpc_server::GetPlayerAchievementsReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::GetPlayerAchievementsRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Update_player_achievements : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Update_player_achievements() {
-      ::grpc::Service::MarkMethodAsync(3);
-    }
-    ~WithAsyncMethod_Update_player_achievements() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_achievements(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerAchievementsReq* /*request*/, ::rpc_server::UpdatePlayerAchievementsRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestUpdate_player_achievements(::grpc::ServerContext* context, ::rpc_server::UpdatePlayerAchievementsReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::UpdatePlayerAchievementsRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Get_player_tasks : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Get_player_tasks() {
-      ::grpc::Service::MarkMethodAsync(4);
-    }
-    ~WithAsyncMethod_Get_player_tasks() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_player_tasks(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerTasksReq* /*request*/, ::rpc_server::GetPlayerTasksRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGet_player_tasks(::grpc::ServerContext* context, ::rpc_server::GetPlayerTasksReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::GetPlayerTasksRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Update_player_tasks : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Update_player_tasks() {
-      ::grpc::Service::MarkMethodAsync(5);
-    }
-    ~WithAsyncMethod_Update_player_tasks() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_tasks(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerTasksReq* /*request*/, ::rpc_server::UpdatePlayerTasksRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestUpdate_player_tasks(::grpc::ServerContext* context, ::rpc_server::UpdatePlayerTasksReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::UpdatePlayerTasksRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Add_item : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Add_item() {
-      ::grpc::Service::MarkMethodAsync(6);
-    }
-    ~WithAsyncMethod_Add_item() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Add_item(::grpc::ServerContext* /*context*/, const ::rpc_server::AddItemReq* /*request*/, ::rpc_server::AddItemRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestAdd_item(::grpc::ServerContext* context, ::rpc_server::AddItemReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::AddItemRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Use_item : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Use_item() {
-      ::grpc::Service::MarkMethodAsync(7);
-    }
-    ~WithAsyncMethod_Use_item() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Use_item(::grpc::ServerContext* /*context*/, const ::rpc_server::UseItemReq* /*request*/, ::rpc_server::UseItemRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestUse_item(::grpc::ServerContext* context, ::rpc_server::UseItemReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::UseItemRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Save_battle_result : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Save_battle_result() {
-      ::grpc::Service::MarkMethodAsync(8);
-    }
-    ~WithAsyncMethod_Save_battle_result() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Save_battle_result(::grpc::ServerContext* /*context*/, const ::rpc_server::SaveBattleResultReq* /*request*/, ::rpc_server::SaveBattleResultRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSave_battle_result(::grpc::ServerContext* context, ::rpc_server::SaveBattleResultReq* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::SaveBattleResultRes>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  typedef WithAsyncMethod_Get_player_collection<WithAsyncMethod_Update_player_collection<WithAsyncMethod_Get_player_achievements<WithAsyncMethod_Update_player_achievements<WithAsyncMethod_Get_player_tasks<WithAsyncMethod_Update_player_tasks<WithAsyncMethod_Add_item<WithAsyncMethod_Use_item<WithAsyncMethod_Save_battle_result<Service > > > > > > > > > AsyncService;
-  template <class BaseClass>
-  class WithCallbackMethod_Get_player_collection : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Get_player_collection() {
+    WithCallbackMethod_Ping() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetPlayerCollectionReq, ::rpc_server::GetPlayerCollectionRes>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::PingRequest, ::rpc_server::PingResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::GetPlayerCollectionReq* request, ::rpc_server::GetPlayerCollectionRes* response) { return this->Get_player_collection(context, request, response); }));}
-    void SetMessageAllocatorFor_Get_player_collection(
-        ::grpc::MessageAllocator< ::rpc_server::GetPlayerCollectionReq, ::rpc_server::GetPlayerCollectionRes>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::PingRequest* request, ::rpc_server::PingResponse* response) { return this->Ping(context, request, response); }));}
+    void SetMessageAllocatorFor_Ping(
+        ::grpc::MessageAllocator< ::rpc_server::PingRequest, ::rpc_server::PingResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetPlayerCollectionReq, ::rpc_server::GetPlayerCollectionRes>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::PingRequest, ::rpc_server::PingResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_Get_player_collection() override {
+    ~WithCallbackMethod_Ping() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_player_collection(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerCollectionReq* /*request*/, ::rpc_server::GetPlayerCollectionRes* /*response*/) override {
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* Get_player_collection(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::GetPlayerCollectionReq* /*request*/, ::rpc_server::GetPlayerCollectionRes* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* Ping(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/)  { return nullptr; }
   };
-  template <class BaseClass>
-  class WithCallbackMethod_Update_player_collection : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Update_player_collection() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::UpdatePlayerCollectionReq, ::rpc_server::UpdatePlayerCollectionRes>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::UpdatePlayerCollectionReq* request, ::rpc_server::UpdatePlayerCollectionRes* response) { return this->Update_player_collection(context, request, response); }));}
-    void SetMessageAllocatorFor_Update_player_collection(
-        ::grpc::MessageAllocator< ::rpc_server::UpdatePlayerCollectionReq, ::rpc_server::UpdatePlayerCollectionRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::UpdatePlayerCollectionReq, ::rpc_server::UpdatePlayerCollectionRes>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Update_player_collection() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_collection(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerCollectionReq* /*request*/, ::rpc_server::UpdatePlayerCollectionRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Update_player_collection(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::UpdatePlayerCollectionReq* /*request*/, ::rpc_server::UpdatePlayerCollectionRes* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Get_player_achievements : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Get_player_achievements() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetPlayerAchievementsReq, ::rpc_server::GetPlayerAchievementsRes>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::GetPlayerAchievementsReq* request, ::rpc_server::GetPlayerAchievementsRes* response) { return this->Get_player_achievements(context, request, response); }));}
-    void SetMessageAllocatorFor_Get_player_achievements(
-        ::grpc::MessageAllocator< ::rpc_server::GetPlayerAchievementsReq, ::rpc_server::GetPlayerAchievementsRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetPlayerAchievementsReq, ::rpc_server::GetPlayerAchievementsRes>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Get_player_achievements() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_player_achievements(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerAchievementsReq* /*request*/, ::rpc_server::GetPlayerAchievementsRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Get_player_achievements(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::GetPlayerAchievementsReq* /*request*/, ::rpc_server::GetPlayerAchievementsRes* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Update_player_achievements : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Update_player_achievements() {
-      ::grpc::Service::MarkMethodCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::UpdatePlayerAchievementsReq, ::rpc_server::UpdatePlayerAchievementsRes>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::UpdatePlayerAchievementsReq* request, ::rpc_server::UpdatePlayerAchievementsRes* response) { return this->Update_player_achievements(context, request, response); }));}
-    void SetMessageAllocatorFor_Update_player_achievements(
-        ::grpc::MessageAllocator< ::rpc_server::UpdatePlayerAchievementsReq, ::rpc_server::UpdatePlayerAchievementsRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::UpdatePlayerAchievementsReq, ::rpc_server::UpdatePlayerAchievementsRes>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Update_player_achievements() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_achievements(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerAchievementsReq* /*request*/, ::rpc_server::UpdatePlayerAchievementsRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Update_player_achievements(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::UpdatePlayerAchievementsReq* /*request*/, ::rpc_server::UpdatePlayerAchievementsRes* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Get_player_tasks : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Get_player_tasks() {
-      ::grpc::Service::MarkMethodCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetPlayerTasksReq, ::rpc_server::GetPlayerTasksRes>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::GetPlayerTasksReq* request, ::rpc_server::GetPlayerTasksRes* response) { return this->Get_player_tasks(context, request, response); }));}
-    void SetMessageAllocatorFor_Get_player_tasks(
-        ::grpc::MessageAllocator< ::rpc_server::GetPlayerTasksReq, ::rpc_server::GetPlayerTasksRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetPlayerTasksReq, ::rpc_server::GetPlayerTasksRes>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Get_player_tasks() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_player_tasks(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerTasksReq* /*request*/, ::rpc_server::GetPlayerTasksRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Get_player_tasks(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::GetPlayerTasksReq* /*request*/, ::rpc_server::GetPlayerTasksRes* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Update_player_tasks : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Update_player_tasks() {
-      ::grpc::Service::MarkMethodCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::UpdatePlayerTasksReq, ::rpc_server::UpdatePlayerTasksRes>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::UpdatePlayerTasksReq* request, ::rpc_server::UpdatePlayerTasksRes* response) { return this->Update_player_tasks(context, request, response); }));}
-    void SetMessageAllocatorFor_Update_player_tasks(
-        ::grpc::MessageAllocator< ::rpc_server::UpdatePlayerTasksReq, ::rpc_server::UpdatePlayerTasksRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(5);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::UpdatePlayerTasksReq, ::rpc_server::UpdatePlayerTasksRes>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Update_player_tasks() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_tasks(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerTasksReq* /*request*/, ::rpc_server::UpdatePlayerTasksRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Update_player_tasks(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::UpdatePlayerTasksReq* /*request*/, ::rpc_server::UpdatePlayerTasksRes* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Add_item : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Add_item() {
-      ::grpc::Service::MarkMethodCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::AddItemReq, ::rpc_server::AddItemRes>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::AddItemReq* request, ::rpc_server::AddItemRes* response) { return this->Add_item(context, request, response); }));}
-    void SetMessageAllocatorFor_Add_item(
-        ::grpc::MessageAllocator< ::rpc_server::AddItemReq, ::rpc_server::AddItemRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(6);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::AddItemReq, ::rpc_server::AddItemRes>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Add_item() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Add_item(::grpc::ServerContext* /*context*/, const ::rpc_server::AddItemReq* /*request*/, ::rpc_server::AddItemRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Add_item(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::AddItemReq* /*request*/, ::rpc_server::AddItemRes* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Use_item : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Use_item() {
-      ::grpc::Service::MarkMethodCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::UseItemReq, ::rpc_server::UseItemRes>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::UseItemReq* request, ::rpc_server::UseItemRes* response) { return this->Use_item(context, request, response); }));}
-    void SetMessageAllocatorFor_Use_item(
-        ::grpc::MessageAllocator< ::rpc_server::UseItemReq, ::rpc_server::UseItemRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::UseItemReq, ::rpc_server::UseItemRes>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Use_item() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Use_item(::grpc::ServerContext* /*context*/, const ::rpc_server::UseItemReq* /*request*/, ::rpc_server::UseItemRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Use_item(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::UseItemReq* /*request*/, ::rpc_server::UseItemRes* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Save_battle_result : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Save_battle_result() {
-      ::grpc::Service::MarkMethodCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::SaveBattleResultReq, ::rpc_server::SaveBattleResultRes>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::SaveBattleResultReq* request, ::rpc_server::SaveBattleResultRes* response) { return this->Save_battle_result(context, request, response); }));}
-    void SetMessageAllocatorFor_Save_battle_result(
-        ::grpc::MessageAllocator< ::rpc_server::SaveBattleResultReq, ::rpc_server::SaveBattleResultRes>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(8);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::SaveBattleResultReq, ::rpc_server::SaveBattleResultRes>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Save_battle_result() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Save_battle_result(::grpc::ServerContext* /*context*/, const ::rpc_server::SaveBattleResultReq* /*request*/, ::rpc_server::SaveBattleResultRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Save_battle_result(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::SaveBattleResultReq* /*request*/, ::rpc_server::SaveBattleResultRes* /*response*/)  { return nullptr; }
-  };
-  typedef WithCallbackMethod_Get_player_collection<WithCallbackMethod_Update_player_collection<WithCallbackMethod_Get_player_achievements<WithCallbackMethod_Update_player_achievements<WithCallbackMethod_Get_player_tasks<WithCallbackMethod_Update_player_tasks<WithCallbackMethod_Add_item<WithCallbackMethod_Use_item<WithCallbackMethod_Save_battle_result<Service > > > > > > > > > CallbackService;
+  typedef WithCallbackMethod_Ping<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_Get_player_collection : public BaseClass {
+  class WithGenericMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_Get_player_collection() {
+    WithGenericMethod_Ping() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_Get_player_collection() override {
+    ~WithGenericMethod_Ping() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_player_collection(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerCollectionReq* /*request*/, ::rpc_server::GetPlayerCollectionRes* /*response*/) override {
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_Update_player_collection : public BaseClass {
+  class WithRawMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_Update_player_collection() {
-      ::grpc::Service::MarkMethodGeneric(1);
-    }
-    ~WithGenericMethod_Update_player_collection() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_collection(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerCollectionReq* /*request*/, ::rpc_server::UpdatePlayerCollectionRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Get_player_achievements : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Get_player_achievements() {
-      ::grpc::Service::MarkMethodGeneric(2);
-    }
-    ~WithGenericMethod_Get_player_achievements() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_player_achievements(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerAchievementsReq* /*request*/, ::rpc_server::GetPlayerAchievementsRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Update_player_achievements : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Update_player_achievements() {
-      ::grpc::Service::MarkMethodGeneric(3);
-    }
-    ~WithGenericMethod_Update_player_achievements() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_achievements(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerAchievementsReq* /*request*/, ::rpc_server::UpdatePlayerAchievementsRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Get_player_tasks : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Get_player_tasks() {
-      ::grpc::Service::MarkMethodGeneric(4);
-    }
-    ~WithGenericMethod_Get_player_tasks() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_player_tasks(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerTasksReq* /*request*/, ::rpc_server::GetPlayerTasksRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Update_player_tasks : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Update_player_tasks() {
-      ::grpc::Service::MarkMethodGeneric(5);
-    }
-    ~WithGenericMethod_Update_player_tasks() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_tasks(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerTasksReq* /*request*/, ::rpc_server::UpdatePlayerTasksRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Add_item : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Add_item() {
-      ::grpc::Service::MarkMethodGeneric(6);
-    }
-    ~WithGenericMethod_Add_item() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Add_item(::grpc::ServerContext* /*context*/, const ::rpc_server::AddItemReq* /*request*/, ::rpc_server::AddItemRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Use_item : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Use_item() {
-      ::grpc::Service::MarkMethodGeneric(7);
-    }
-    ~WithGenericMethod_Use_item() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Use_item(::grpc::ServerContext* /*context*/, const ::rpc_server::UseItemReq* /*request*/, ::rpc_server::UseItemRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Save_battle_result : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Save_battle_result() {
-      ::grpc::Service::MarkMethodGeneric(8);
-    }
-    ~WithGenericMethod_Save_battle_result() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Save_battle_result(::grpc::ServerContext* /*context*/, const ::rpc_server::SaveBattleResultReq* /*request*/, ::rpc_server::SaveBattleResultRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Get_player_collection : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Get_player_collection() {
+    WithRawMethod_Ping() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_Get_player_collection() override {
+    ~WithRawMethod_Ping() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_player_collection(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerCollectionReq* /*request*/, ::rpc_server::GetPlayerCollectionRes* /*response*/) override {
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestGet_player_collection(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestPing(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_Update_player_collection : public BaseClass {
+  class WithRawCallbackMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_Update_player_collection() {
-      ::grpc::Service::MarkMethodRaw(1);
-    }
-    ~WithRawMethod_Update_player_collection() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_collection(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerCollectionReq* /*request*/, ::rpc_server::UpdatePlayerCollectionRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestUpdate_player_collection(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Get_player_achievements : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Get_player_achievements() {
-      ::grpc::Service::MarkMethodRaw(2);
-    }
-    ~WithRawMethod_Get_player_achievements() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_player_achievements(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerAchievementsReq* /*request*/, ::rpc_server::GetPlayerAchievementsRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGet_player_achievements(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Update_player_achievements : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Update_player_achievements() {
-      ::grpc::Service::MarkMethodRaw(3);
-    }
-    ~WithRawMethod_Update_player_achievements() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_achievements(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerAchievementsReq* /*request*/, ::rpc_server::UpdatePlayerAchievementsRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestUpdate_player_achievements(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Get_player_tasks : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Get_player_tasks() {
-      ::grpc::Service::MarkMethodRaw(4);
-    }
-    ~WithRawMethod_Get_player_tasks() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_player_tasks(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerTasksReq* /*request*/, ::rpc_server::GetPlayerTasksRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGet_player_tasks(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Update_player_tasks : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Update_player_tasks() {
-      ::grpc::Service::MarkMethodRaw(5);
-    }
-    ~WithRawMethod_Update_player_tasks() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_tasks(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerTasksReq* /*request*/, ::rpc_server::UpdatePlayerTasksRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestUpdate_player_tasks(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(5, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Add_item : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Add_item() {
-      ::grpc::Service::MarkMethodRaw(6);
-    }
-    ~WithRawMethod_Add_item() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Add_item(::grpc::ServerContext* /*context*/, const ::rpc_server::AddItemReq* /*request*/, ::rpc_server::AddItemRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestAdd_item(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Use_item : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Use_item() {
-      ::grpc::Service::MarkMethodRaw(7);
-    }
-    ~WithRawMethod_Use_item() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Use_item(::grpc::ServerContext* /*context*/, const ::rpc_server::UseItemReq* /*request*/, ::rpc_server::UseItemRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestUse_item(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Save_battle_result : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Save_battle_result() {
-      ::grpc::Service::MarkMethodRaw(8);
-    }
-    ~WithRawMethod_Save_battle_result() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Save_battle_result(::grpc::ServerContext* /*context*/, const ::rpc_server::SaveBattleResultReq* /*request*/, ::rpc_server::SaveBattleResultRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSave_battle_result(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(8, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Get_player_collection : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Get_player_collection() {
+    WithRawCallbackMethod_Ping() {
       ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get_player_collection(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Ping(context, request, response); }));
     }
-    ~WithRawCallbackMethod_Get_player_collection() override {
+    ~WithRawCallbackMethod_Ping() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Get_player_collection(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerCollectionReq* /*request*/, ::rpc_server::GetPlayerCollectionRes* /*response*/) override {
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* Get_player_collection(
+    virtual ::grpc::ServerUnaryReactor* Ping(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Update_player_collection : public BaseClass {
+  class WithStreamedUnaryMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_Update_player_collection() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Update_player_collection(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Update_player_collection() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_collection(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerCollectionReq* /*request*/, ::rpc_server::UpdatePlayerCollectionRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Update_player_collection(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Get_player_achievements : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Get_player_achievements() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get_player_achievements(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Get_player_achievements() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_player_achievements(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerAchievementsReq* /*request*/, ::rpc_server::GetPlayerAchievementsRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Get_player_achievements(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Update_player_achievements : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Update_player_achievements() {
-      ::grpc::Service::MarkMethodRawCallback(3,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Update_player_achievements(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Update_player_achievements() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_achievements(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerAchievementsReq* /*request*/, ::rpc_server::UpdatePlayerAchievementsRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Update_player_achievements(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Get_player_tasks : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Get_player_tasks() {
-      ::grpc::Service::MarkMethodRawCallback(4,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get_player_tasks(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Get_player_tasks() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_player_tasks(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerTasksReq* /*request*/, ::rpc_server::GetPlayerTasksRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Get_player_tasks(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Update_player_tasks : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Update_player_tasks() {
-      ::grpc::Service::MarkMethodRawCallback(5,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Update_player_tasks(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Update_player_tasks() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Update_player_tasks(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerTasksReq* /*request*/, ::rpc_server::UpdatePlayerTasksRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Update_player_tasks(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Add_item : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Add_item() {
-      ::grpc::Service::MarkMethodRawCallback(6,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Add_item(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Add_item() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Add_item(::grpc::ServerContext* /*context*/, const ::rpc_server::AddItemReq* /*request*/, ::rpc_server::AddItemRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Add_item(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Use_item : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Use_item() {
-      ::grpc::Service::MarkMethodRawCallback(7,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Use_item(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Use_item() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Use_item(::grpc::ServerContext* /*context*/, const ::rpc_server::UseItemReq* /*request*/, ::rpc_server::UseItemRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Use_item(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Save_battle_result : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Save_battle_result() {
-      ::grpc::Service::MarkMethodRawCallback(8,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Save_battle_result(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Save_battle_result() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Save_battle_result(::grpc::ServerContext* /*context*/, const ::rpc_server::SaveBattleResultReq* /*request*/, ::rpc_server::SaveBattleResultRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Save_battle_result(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Get_player_collection : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Get_player_collection() {
+    WithStreamedUnaryMethod_Ping() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::GetPlayerCollectionReq, ::rpc_server::GetPlayerCollectionRes>(
+          ::rpc_server::PingRequest, ::rpc_server::PingResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::GetPlayerCollectionReq, ::rpc_server::GetPlayerCollectionRes>* streamer) {
-                       return this->StreamedGet_player_collection(context,
+                     ::rpc_server::PingRequest, ::rpc_server::PingResponse>* streamer) {
+                       return this->StreamedPing(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_Get_player_collection() override {
+    ~WithStreamedUnaryMethod_Ping() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Get_player_collection(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerCollectionReq* /*request*/, ::rpc_server::GetPlayerCollectionRes* /*response*/) override {
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGet_player_collection(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::GetPlayerCollectionReq,::rpc_server::GetPlayerCollectionRes>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedPing(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::PingRequest,::rpc_server::PingResponse>* server_unary_streamer) = 0;
   };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Update_player_collection : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Update_player_collection() {
-      ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::UpdatePlayerCollectionReq, ::rpc_server::UpdatePlayerCollectionRes>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::UpdatePlayerCollectionReq, ::rpc_server::UpdatePlayerCollectionRes>* streamer) {
-                       return this->StreamedUpdate_player_collection(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Update_player_collection() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Update_player_collection(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerCollectionReq* /*request*/, ::rpc_server::UpdatePlayerCollectionRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUpdate_player_collection(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::UpdatePlayerCollectionReq,::rpc_server::UpdatePlayerCollectionRes>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Get_player_achievements : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Get_player_achievements() {
-      ::grpc::Service::MarkMethodStreamed(2,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::GetPlayerAchievementsReq, ::rpc_server::GetPlayerAchievementsRes>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::GetPlayerAchievementsReq, ::rpc_server::GetPlayerAchievementsRes>* streamer) {
-                       return this->StreamedGet_player_achievements(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Get_player_achievements() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Get_player_achievements(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerAchievementsReq* /*request*/, ::rpc_server::GetPlayerAchievementsRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGet_player_achievements(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::GetPlayerAchievementsReq,::rpc_server::GetPlayerAchievementsRes>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Update_player_achievements : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Update_player_achievements() {
-      ::grpc::Service::MarkMethodStreamed(3,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::UpdatePlayerAchievementsReq, ::rpc_server::UpdatePlayerAchievementsRes>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::UpdatePlayerAchievementsReq, ::rpc_server::UpdatePlayerAchievementsRes>* streamer) {
-                       return this->StreamedUpdate_player_achievements(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Update_player_achievements() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Update_player_achievements(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerAchievementsReq* /*request*/, ::rpc_server::UpdatePlayerAchievementsRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUpdate_player_achievements(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::UpdatePlayerAchievementsReq,::rpc_server::UpdatePlayerAchievementsRes>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Get_player_tasks : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Get_player_tasks() {
-      ::grpc::Service::MarkMethodStreamed(4,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::GetPlayerTasksReq, ::rpc_server::GetPlayerTasksRes>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::GetPlayerTasksReq, ::rpc_server::GetPlayerTasksRes>* streamer) {
-                       return this->StreamedGet_player_tasks(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Get_player_tasks() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Get_player_tasks(::grpc::ServerContext* /*context*/, const ::rpc_server::GetPlayerTasksReq* /*request*/, ::rpc_server::GetPlayerTasksRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGet_player_tasks(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::GetPlayerTasksReq,::rpc_server::GetPlayerTasksRes>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Update_player_tasks : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Update_player_tasks() {
-      ::grpc::Service::MarkMethodStreamed(5,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::UpdatePlayerTasksReq, ::rpc_server::UpdatePlayerTasksRes>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::UpdatePlayerTasksReq, ::rpc_server::UpdatePlayerTasksRes>* streamer) {
-                       return this->StreamedUpdate_player_tasks(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Update_player_tasks() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Update_player_tasks(::grpc::ServerContext* /*context*/, const ::rpc_server::UpdatePlayerTasksReq* /*request*/, ::rpc_server::UpdatePlayerTasksRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUpdate_player_tasks(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::UpdatePlayerTasksReq,::rpc_server::UpdatePlayerTasksRes>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Add_item : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Add_item() {
-      ::grpc::Service::MarkMethodStreamed(6,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::AddItemReq, ::rpc_server::AddItemRes>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::AddItemReq, ::rpc_server::AddItemRes>* streamer) {
-                       return this->StreamedAdd_item(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Add_item() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Add_item(::grpc::ServerContext* /*context*/, const ::rpc_server::AddItemReq* /*request*/, ::rpc_server::AddItemRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedAdd_item(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::AddItemReq,::rpc_server::AddItemRes>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Use_item : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Use_item() {
-      ::grpc::Service::MarkMethodStreamed(7,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::UseItemReq, ::rpc_server::UseItemRes>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::UseItemReq, ::rpc_server::UseItemRes>* streamer) {
-                       return this->StreamedUse_item(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Use_item() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Use_item(::grpc::ServerContext* /*context*/, const ::rpc_server::UseItemReq* /*request*/, ::rpc_server::UseItemRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedUse_item(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::UseItemReq,::rpc_server::UseItemRes>* server_unary_streamer) = 0;
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Save_battle_result : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Save_battle_result() {
-      ::grpc::Service::MarkMethodStreamed(8,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::SaveBattleResultReq, ::rpc_server::SaveBattleResultRes>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::SaveBattleResultReq, ::rpc_server::SaveBattleResultRes>* streamer) {
-                       return this->StreamedSave_battle_result(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Save_battle_result() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Save_battle_result(::grpc::ServerContext* /*context*/, const ::rpc_server::SaveBattleResultReq* /*request*/, ::rpc_server::SaveBattleResultRes* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSave_battle_result(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::SaveBattleResultReq,::rpc_server::SaveBattleResultRes>* server_unary_streamer) = 0;
-  };
-  typedef WithStreamedUnaryMethod_Get_player_collection<WithStreamedUnaryMethod_Update_player_collection<WithStreamedUnaryMethod_Get_player_achievements<WithStreamedUnaryMethod_Update_player_achievements<WithStreamedUnaryMethod_Get_player_tasks<WithStreamedUnaryMethod_Update_player_tasks<WithStreamedUnaryMethod_Add_item<WithStreamedUnaryMethod_Use_item<WithStreamedUnaryMethod_Save_battle_result<Service > > > > > > > > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Ping<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Get_player_collection<WithStreamedUnaryMethod_Update_player_collection<WithStreamedUnaryMethod_Get_player_achievements<WithStreamedUnaryMethod_Update_player_achievements<WithStreamedUnaryMethod_Get_player_tasks<WithStreamedUnaryMethod_Update_player_tasks<WithStreamedUnaryMethod_Add_item<WithStreamedUnaryMethod_Use_item<WithStreamedUnaryMethod_Save_battle_result<Service > > > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Ping<Service > StreamedService;
 };
 
 }  // namespace rpc_server
 
 
+#include <grpcpp/ports_undef.inc>
 #endif  // GRPC_server_5flogic_2eproto__INCLUDED

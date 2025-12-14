@@ -2,7 +2,8 @@
 // If you make any local change, they will be lost.
 // source: server_battle.proto
 // Original file comments:
-// 战斗服务器
+// 战斗服务器协议（占位符）
+//
 #ifndef GRPC_server_5fbattle_2eproto__INCLUDED
 #define GRPC_server_5fbattle_2eproto__INCLUDED
 
@@ -26,10 +27,11 @@
 #include <grpcpp/support/status.h>
 #include <grpcpp/support/stub_options.h>
 #include <grpcpp/support/sync_stream.h>
+#include <grpcpp/ports_def.inc>
 
 namespace rpc_server {
 
-// 战斗服务
+// 战斗服务器服务
 class BattleServer final {
  public:
   static constexpr char const* service_full_name() {
@@ -38,90 +40,43 @@ class BattleServer final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // 玩家操作
-    virtual ::grpc::Status Player_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::rpc_server::PlayerActionResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PlayerActionResponse>> AsyncPlayer_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PlayerActionResponse>>(AsyncPlayer_actionRaw(context, request, cq));
+    // 占位符方法
+    virtual ::grpc::Status Ping(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::rpc_server::PingResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PingResponse>> AsyncPing(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PingResponse>>(AsyncPingRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PlayerActionResponse>> PrepareAsyncPlayer_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PlayerActionResponse>>(PrepareAsyncPlayer_actionRaw(context, request, cq));
-    }
-    // 获取战斗结果
-    virtual ::grpc::Status Get_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::rpc_server::GetBattleResultResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetBattleResultResponse>> AsyncGet_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetBattleResultResponse>>(AsyncGet_battle_resultRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetBattleResultResponse>> PrepareAsyncGet_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetBattleResultResponse>>(PrepareAsyncGet_battle_resultRaw(context, request, cq));
-    }
-    // 双向流式通信，用于实时同步数据
-    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>> Sync_battle_state(::grpc::ClientContext* context) {
-      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>>(Sync_battle_stateRaw(context));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>> AsyncSync_battle_state(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>>(AsyncSync_battle_stateRaw(context, cq, tag));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>> PrepareAsyncSync_battle_state(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>>(PrepareAsyncSync_battle_stateRaw(context, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PingResponse>> PrepareAsyncPing(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PingResponse>>(PrepareAsyncPingRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // 玩家操作
-      virtual void Player_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest* request, ::rpc_server::PlayerActionResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Player_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest* request, ::rpc_server::PlayerActionResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 获取战斗结果
-      virtual void Get_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest* request, ::rpc_server::GetBattleResultResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Get_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest* request, ::rpc_server::GetBattleResultResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      // 双向流式通信，用于实时同步数据
-      virtual void Sync_battle_state(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::rpc_server::SyncBattleStateRequest,::rpc_server::SyncBattleStateResponse>* reactor) = 0;
+      // 占位符方法
+      virtual void Ping(::grpc::ClientContext* context, const ::rpc_server::PingRequest* request, ::rpc_server::PingResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Ping(::grpc::ClientContext* context, const ::rpc_server::PingRequest* request, ::rpc_server::PingResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PlayerActionResponse>* AsyncPlayer_actionRaw(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PlayerActionResponse>* PrepareAsyncPlayer_actionRaw(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetBattleResultResponse>* AsyncGet_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::GetBattleResultResponse>* PrepareAsyncGet_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientReaderWriterInterface< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* Sync_battle_stateRaw(::grpc::ClientContext* context) = 0;
-    virtual ::grpc::ClientAsyncReaderWriterInterface< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* AsyncSync_battle_stateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
-    virtual ::grpc::ClientAsyncReaderWriterInterface< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* PrepareAsyncSync_battle_stateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PingResponse>* AsyncPingRaw(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::rpc_server::PingResponse>* PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status Player_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::rpc_server::PlayerActionResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::PlayerActionResponse>> AsyncPlayer_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::PlayerActionResponse>>(AsyncPlayer_actionRaw(context, request, cq));
+    ::grpc::Status Ping(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::rpc_server::PingResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::PingResponse>> AsyncPing(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::PingResponse>>(AsyncPingRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::PlayerActionResponse>> PrepareAsyncPlayer_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::PlayerActionResponse>>(PrepareAsyncPlayer_actionRaw(context, request, cq));
-    }
-    ::grpc::Status Get_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::rpc_server::GetBattleResultResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetBattleResultResponse>> AsyncGet_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetBattleResultResponse>>(AsyncGet_battle_resultRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetBattleResultResponse>> PrepareAsyncGet_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::GetBattleResultResponse>>(PrepareAsyncGet_battle_resultRaw(context, request, cq));
-    }
-    std::unique_ptr< ::grpc::ClientReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>> Sync_battle_state(::grpc::ClientContext* context) {
-      return std::unique_ptr< ::grpc::ClientReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>>(Sync_battle_stateRaw(context));
-    }
-    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>> AsyncSync_battle_state(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>>(AsyncSync_battle_stateRaw(context, cq, tag));
-    }
-    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>> PrepareAsyncSync_battle_state(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>>(PrepareAsyncSync_battle_stateRaw(context, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::PingResponse>> PrepareAsyncPing(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::rpc_server::PingResponse>>(PrepareAsyncPingRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void Player_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest* request, ::rpc_server::PlayerActionResponse* response, std::function<void(::grpc::Status)>) override;
-      void Player_action(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest* request, ::rpc_server::PlayerActionResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Get_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest* request, ::rpc_server::GetBattleResultResponse* response, std::function<void(::grpc::Status)>) override;
-      void Get_battle_result(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest* request, ::rpc_server::GetBattleResultResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Sync_battle_state(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::rpc_server::SyncBattleStateRequest,::rpc_server::SyncBattleStateResponse>* reactor) override;
+      void Ping(::grpc::ClientContext* context, const ::rpc_server::PingRequest* request, ::rpc_server::PingResponse* response, std::function<void(::grpc::Status)>) override;
+      void Ping(::grpc::ClientContext* context, const ::rpc_server::PingRequest* request, ::rpc_server::PingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -133,16 +88,9 @@ class BattleServer final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::PlayerActionResponse>* AsyncPlayer_actionRaw(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::PlayerActionResponse>* PrepareAsyncPlayer_actionRaw(::grpc::ClientContext* context, const ::rpc_server::PlayerActionRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetBattleResultResponse>* AsyncGet_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::rpc_server::GetBattleResultResponse>* PrepareAsyncGet_battle_resultRaw(::grpc::ClientContext* context, const ::rpc_server::GetBattleResultRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* Sync_battle_stateRaw(::grpc::ClientContext* context) override;
-    ::grpc::ClientAsyncReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* AsyncSync_battle_stateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
-    ::grpc::ClientAsyncReaderWriter< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* PrepareAsyncSync_battle_stateRaw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_Player_action_;
-    const ::grpc::internal::RpcMethod rpcmethod_Get_battle_result_;
-    const ::grpc::internal::RpcMethod rpcmethod_Sync_battle_state_;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::PingResponse>* AsyncPingRaw(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::rpc_server::PingResponse>* PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::rpc_server::PingRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Ping_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -150,391 +98,152 @@ class BattleServer final {
    public:
     Service();
     virtual ~Service();
-    // 玩家操作
-    virtual ::grpc::Status Player_action(::grpc::ServerContext* context, const ::rpc_server::PlayerActionRequest* request, ::rpc_server::PlayerActionResponse* response);
-    // 获取战斗结果
-    virtual ::grpc::Status Get_battle_result(::grpc::ServerContext* context, const ::rpc_server::GetBattleResultRequest* request, ::rpc_server::GetBattleResultResponse* response);
-    // 双向流式通信，用于实时同步数据
-    virtual ::grpc::Status Sync_battle_state(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::rpc_server::SyncBattleStateResponse, ::rpc_server::SyncBattleStateRequest>* stream);
+    // 占位符方法
+    virtual ::grpc::Status Ping(::grpc::ServerContext* context, const ::rpc_server::PingRequest* request, ::rpc_server::PingResponse* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_Player_action : public BaseClass {
+  class WithAsyncMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_Player_action() {
+    WithAsyncMethod_Ping() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_Player_action() override {
+    ~WithAsyncMethod_Ping() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Player_action(::grpc::ServerContext* /*context*/, const ::rpc_server::PlayerActionRequest* /*request*/, ::rpc_server::PlayerActionResponse* /*response*/) override {
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestPlayer_action(::grpc::ServerContext* context, ::rpc_server::PlayerActionRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::PlayerActionResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestPing(::grpc::ServerContext* context, ::rpc_server::PingRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::PingResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
+  typedef WithAsyncMethod_Ping<Service > AsyncService;
   template <class BaseClass>
-  class WithAsyncMethod_Get_battle_result : public BaseClass {
+  class WithCallbackMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_Get_battle_result() {
-      ::grpc::Service::MarkMethodAsync(1);
-    }
-    ~WithAsyncMethod_Get_battle_result() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_battle_result(::grpc::ServerContext* /*context*/, const ::rpc_server::GetBattleResultRequest* /*request*/, ::rpc_server::GetBattleResultResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGet_battle_result(::grpc::ServerContext* context, ::rpc_server::GetBattleResultRequest* request, ::grpc::ServerAsyncResponseWriter< ::rpc_server::GetBattleResultResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithAsyncMethod_Sync_battle_state : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithAsyncMethod_Sync_battle_state() {
-      ::grpc::Service::MarkMethodAsync(2);
-    }
-    ~WithAsyncMethod_Sync_battle_state() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Sync_battle_state(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::rpc_server::SyncBattleStateResponse, ::rpc_server::SyncBattleStateRequest>* /*stream*/)  override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSync_battle_state(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::rpc_server::SyncBattleStateResponse, ::rpc_server::SyncBattleStateRequest>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncBidiStreaming(2, context, stream, new_call_cq, notification_cq, tag);
-    }
-  };
-  typedef WithAsyncMethod_Player_action<WithAsyncMethod_Get_battle_result<WithAsyncMethod_Sync_battle_state<Service > > > AsyncService;
-  template <class BaseClass>
-  class WithCallbackMethod_Player_action : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Player_action() {
+    WithCallbackMethod_Ping() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::PlayerActionRequest, ::rpc_server::PlayerActionResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::PingRequest, ::rpc_server::PingResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::PlayerActionRequest* request, ::rpc_server::PlayerActionResponse* response) { return this->Player_action(context, request, response); }));}
-    void SetMessageAllocatorFor_Player_action(
-        ::grpc::MessageAllocator< ::rpc_server::PlayerActionRequest, ::rpc_server::PlayerActionResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::rpc_server::PingRequest* request, ::rpc_server::PingResponse* response) { return this->Ping(context, request, response); }));}
+    void SetMessageAllocatorFor_Ping(
+        ::grpc::MessageAllocator< ::rpc_server::PingRequest, ::rpc_server::PingResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::PlayerActionRequest, ::rpc_server::PlayerActionResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::PingRequest, ::rpc_server::PingResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_Player_action() override {
+    ~WithCallbackMethod_Ping() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Player_action(::grpc::ServerContext* /*context*/, const ::rpc_server::PlayerActionRequest* /*request*/, ::rpc_server::PlayerActionResponse* /*response*/) override {
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* Player_action(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::PlayerActionRequest* /*request*/, ::rpc_server::PlayerActionResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* Ping(
+      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/)  { return nullptr; }
   };
-  template <class BaseClass>
-  class WithCallbackMethod_Get_battle_result : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Get_battle_result() {
-      ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetBattleResultRequest, ::rpc_server::GetBattleResultResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::rpc_server::GetBattleResultRequest* request, ::rpc_server::GetBattleResultResponse* response) { return this->Get_battle_result(context, request, response); }));}
-    void SetMessageAllocatorFor_Get_battle_result(
-        ::grpc::MessageAllocator< ::rpc_server::GetBattleResultRequest, ::rpc_server::GetBattleResultResponse>* allocator) {
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::rpc_server::GetBattleResultRequest, ::rpc_server::GetBattleResultResponse>*>(handler)
-              ->SetMessageAllocator(allocator);
-    }
-    ~WithCallbackMethod_Get_battle_result() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_battle_result(::grpc::ServerContext* /*context*/, const ::rpc_server::GetBattleResultRequest* /*request*/, ::rpc_server::GetBattleResultResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Get_battle_result(
-      ::grpc::CallbackServerContext* /*context*/, const ::rpc_server::GetBattleResultRequest* /*request*/, ::rpc_server::GetBattleResultResponse* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithCallbackMethod_Sync_battle_state : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithCallbackMethod_Sync_battle_state() {
-      ::grpc::Service::MarkMethodCallback(2,
-          new ::grpc::internal::CallbackBidiHandler< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>(
-            [this](
-                   ::grpc::CallbackServerContext* context) { return this->Sync_battle_state(context); }));
-    }
-    ~WithCallbackMethod_Sync_battle_state() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Sync_battle_state(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::rpc_server::SyncBattleStateResponse, ::rpc_server::SyncBattleStateRequest>* /*stream*/)  override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerBidiReactor< ::rpc_server::SyncBattleStateRequest, ::rpc_server::SyncBattleStateResponse>* Sync_battle_state(
-      ::grpc::CallbackServerContext* /*context*/)
-      { return nullptr; }
-  };
-  typedef WithCallbackMethod_Player_action<WithCallbackMethod_Get_battle_result<WithCallbackMethod_Sync_battle_state<Service > > > CallbackService;
+  typedef WithCallbackMethod_Ping<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_Player_action : public BaseClass {
+  class WithGenericMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_Player_action() {
+    WithGenericMethod_Ping() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_Player_action() override {
+    ~WithGenericMethod_Ping() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Player_action(::grpc::ServerContext* /*context*/, const ::rpc_server::PlayerActionRequest* /*request*/, ::rpc_server::PlayerActionResponse* /*response*/) override {
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithGenericMethod_Get_battle_result : public BaseClass {
+  class WithRawMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_Get_battle_result() {
-      ::grpc::Service::MarkMethodGeneric(1);
-    }
-    ~WithGenericMethod_Get_battle_result() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_battle_result(::grpc::ServerContext* /*context*/, const ::rpc_server::GetBattleResultRequest* /*request*/, ::rpc_server::GetBattleResultResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithGenericMethod_Sync_battle_state : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithGenericMethod_Sync_battle_state() {
-      ::grpc::Service::MarkMethodGeneric(2);
-    }
-    ~WithGenericMethod_Sync_battle_state() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Sync_battle_state(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::rpc_server::SyncBattleStateResponse, ::rpc_server::SyncBattleStateRequest>* /*stream*/)  override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Player_action : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Player_action() {
+    WithRawMethod_Ping() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_Player_action() override {
+    ~WithRawMethod_Ping() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Player_action(::grpc::ServerContext* /*context*/, const ::rpc_server::PlayerActionRequest* /*request*/, ::rpc_server::PlayerActionResponse* /*response*/) override {
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestPlayer_action(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestPing(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawMethod_Get_battle_result : public BaseClass {
+  class WithRawCallbackMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_Get_battle_result() {
-      ::grpc::Service::MarkMethodRaw(1);
-    }
-    ~WithRawMethod_Get_battle_result() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_battle_result(::grpc::ServerContext* /*context*/, const ::rpc_server::GetBattleResultRequest* /*request*/, ::rpc_server::GetBattleResultResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestGet_battle_result(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawMethod_Sync_battle_state : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawMethod_Sync_battle_state() {
-      ::grpc::Service::MarkMethodRaw(2);
-    }
-    ~WithRawMethod_Sync_battle_state() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Sync_battle_state(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::rpc_server::SyncBattleStateResponse, ::rpc_server::SyncBattleStateRequest>* /*stream*/)  override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    void RequestSync_battle_state(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncBidiStreaming(2, context, stream, new_call_cq, notification_cq, tag);
-    }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Player_action : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Player_action() {
+    WithRawCallbackMethod_Ping() {
       ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Player_action(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Ping(context, request, response); }));
     }
-    ~WithRawCallbackMethod_Player_action() override {
+    ~WithRawCallbackMethod_Ping() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Player_action(::grpc::ServerContext* /*context*/, const ::rpc_server::PlayerActionRequest* /*request*/, ::rpc_server::PlayerActionResponse* /*response*/) override {
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* Player_action(
+    virtual ::grpc::ServerUnaryReactor* Ping(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_Get_battle_result : public BaseClass {
+  class WithStreamedUnaryMethod_Ping : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_Get_battle_result() {
-      ::grpc::Service::MarkMethodRawCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get_battle_result(context, request, response); }));
-    }
-    ~WithRawCallbackMethod_Get_battle_result() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Get_battle_result(::grpc::ServerContext* /*context*/, const ::rpc_server::GetBattleResultRequest* /*request*/, ::rpc_server::GetBattleResultResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerUnaryReactor* Get_battle_result(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithRawCallbackMethod_Sync_battle_state : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithRawCallbackMethod_Sync_battle_state() {
-      ::grpc::Service::MarkMethodRawCallback(2,
-          new ::grpc::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context) { return this->Sync_battle_state(context); }));
-    }
-    ~WithRawCallbackMethod_Sync_battle_state() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable synchronous version of this method
-    ::grpc::Status Sync_battle_state(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::rpc_server::SyncBattleStateResponse, ::rpc_server::SyncBattleStateRequest>* /*stream*/)  override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* Sync_battle_state(
-      ::grpc::CallbackServerContext* /*context*/)
-      { return nullptr; }
-  };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Player_action : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Player_action() {
+    WithStreamedUnaryMethod_Ping() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::PlayerActionRequest, ::rpc_server::PlayerActionResponse>(
+          ::rpc_server::PingRequest, ::rpc_server::PingResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::PlayerActionRequest, ::rpc_server::PlayerActionResponse>* streamer) {
-                       return this->StreamedPlayer_action(context,
+                     ::rpc_server::PingRequest, ::rpc_server::PingResponse>* streamer) {
+                       return this->StreamedPing(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_Player_action() override {
+    ~WithStreamedUnaryMethod_Ping() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Player_action(::grpc::ServerContext* /*context*/, const ::rpc_server::PlayerActionRequest* /*request*/, ::rpc_server::PlayerActionResponse* /*response*/) override {
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::rpc_server::PingRequest* /*request*/, ::rpc_server::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedPlayer_action(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::PlayerActionRequest,::rpc_server::PlayerActionResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedPing(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::PingRequest,::rpc_server::PingResponse>* server_unary_streamer) = 0;
   };
-  template <class BaseClass>
-  class WithStreamedUnaryMethod_Get_battle_result : public BaseClass {
-   private:
-    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
-   public:
-    WithStreamedUnaryMethod_Get_battle_result() {
-      ::grpc::Service::MarkMethodStreamed(1,
-        new ::grpc::internal::StreamedUnaryHandler<
-          ::rpc_server::GetBattleResultRequest, ::rpc_server::GetBattleResultResponse>(
-            [this](::grpc::ServerContext* context,
-                   ::grpc::ServerUnaryStreamer<
-                     ::rpc_server::GetBattleResultRequest, ::rpc_server::GetBattleResultResponse>* streamer) {
-                       return this->StreamedGet_battle_result(context,
-                         streamer);
-                  }));
-    }
-    ~WithStreamedUnaryMethod_Get_battle_result() override {
-      BaseClassMustBeDerivedFromService(this);
-    }
-    // disable regular version of this method
-    ::grpc::Status Get_battle_result(::grpc::ServerContext* /*context*/, const ::rpc_server::GetBattleResultRequest* /*request*/, ::rpc_server::GetBattleResultResponse* /*response*/) override {
-      abort();
-      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
-    }
-    // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedGet_battle_result(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::rpc_server::GetBattleResultRequest,::rpc_server::GetBattleResultResponse>* server_unary_streamer) = 0;
-  };
-  typedef WithStreamedUnaryMethod_Player_action<WithStreamedUnaryMethod_Get_battle_result<Service > > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Ping<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Player_action<WithStreamedUnaryMethod_Get_battle_result<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_Ping<Service > StreamedService;
 };
 
 }  // namespace rpc_server
 
 
+#include <grpcpp/ports_undef.inc>
 #endif  // GRPC_server_5fbattle_2eproto__INCLUDED

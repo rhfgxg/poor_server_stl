@@ -29,28 +29,28 @@ const ::uint32_t TableStruct_common_2eproto::offsets[1] = {};
 static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_common_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-    "\n\014common.proto\022\nrpc_server*\212\001\n\nServerTyp"
+    "\n\014common.proto\022\nrpc_server*\225\001\n\nServerTyp"
     "e\022\013\n\007UNKNOWN\020\000\022\n\n\006BATTLE\020\001\022\013\n\007CENTRAL\020\002\022"
     "\010\n\004CHAT\020\003\022\006\n\002DB\020\004\022\010\n\004FILE\020\005\022\013\n\007GATEWAY\020\006"
     "\022\t\n\005LOGIC\020\007\022\t\n\005LOGIN\020\010\022\014\n\010MATCHING\020\t\022\t\n\005"
-    "STORE\020\n*\261\003\n\013ServiceType\022\020\n\014REQ_REGISTER\020"
-    "\000\022\020\n\014RES_REGISTER\020\001\022\r\n\tREQ_LOGIN\020\002\022\r\n\tRE"
-    "S_LOGIN\020\003\022\016\n\nREQ_LOGOUT\020\004\022\016\n\nRES_LOGOUT\020"
-    "\005\022\027\n\023REQ_CHANGE_PASSWORD\020\006\022\027\n\023RES_CHANGE"
-    "_PASSWORD\020\007\022\021\n\rREQ_HEARTBEAT\020\010\022\021\n\rRES_HE"
-    "ARTBEAT\020\t\022\037\n\033REQ_FILE_TRANSMISSION_READY"
-    "\020\n\022\037\n\033RES_FILE_TRANSMISSION_READY\020\013\022\023\n\017R"
-    "EQ_FILE_UPLOAD\020\014\022\023\n\017RES_FILE_UPLOAD\020\r\022\025\n"
-    "\021REQ_FILE_DOWNLOAD\020\016\022\025\n\021RES_FILE_DOWNLOA"
-    "D\020\017\022\023\n\017REQ_FILE_DELETE\020\020\022\023\n\017RES_FILE_DEL"
-    "ETE\020\021\022\021\n\rREQ_FILE_LIST\020\022\022\021\n\rRES_FILE_LIS"
-    "T\020\023b\006proto3"
+    "STORE\020\n\022\t\n\005REDIS\020\013*\261\003\n\013ServiceType\022\020\n\014RE"
+    "Q_REGISTER\020\000\022\020\n\014RES_REGISTER\020\001\022\r\n\tREQ_LO"
+    "GIN\020\002\022\r\n\tRES_LOGIN\020\003\022\016\n\nREQ_LOGOUT\020\004\022\016\n\n"
+    "RES_LOGOUT\020\005\022\027\n\023REQ_CHANGE_PASSWORD\020\006\022\027\n"
+    "\023RES_CHANGE_PASSWORD\020\007\022\021\n\rREQ_HEARTBEAT\020"
+    "\010\022\021\n\rRES_HEARTBEAT\020\t\022\037\n\033REQ_FILE_TRANSMI"
+    "SSION_READY\020\n\022\037\n\033RES_FILE_TRANSMISSION_R"
+    "EADY\020\013\022\023\n\017REQ_FILE_UPLOAD\020\014\022\023\n\017RES_FILE_"
+    "UPLOAD\020\r\022\025\n\021REQ_FILE_DOWNLOAD\020\016\022\025\n\021RES_F"
+    "ILE_DOWNLOAD\020\017\022\023\n\017REQ_FILE_DELETE\020\020\022\023\n\017R"
+    "ES_FILE_DELETE\020\021\022\021\n\rREQ_FILE_LIST\020\022\022\021\n\rR"
+    "ES_FILE_LIST\020\023b\006proto3"
 };
 static ::absl::once_flag descriptor_table_common_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_common_2eproto = {
     false,
     false,
-    611,
+    622,
     descriptor_table_protodef_common_2eproto,
     "common.proto",
     &descriptor_table_common_2eproto_once,
@@ -88,9 +88,9 @@ const ::google::protobuf::EnumDescriptor* ServerType_descriptor() {
   return file_level_enum_descriptors_common_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t ServerType_internal_data_[] = {
-    720896u, 0u, };
+    786432u, 0u, };
 bool ServerType_IsValid(int value) {
-  return 0 <= value && value <= 10;
+  return 0 <= value && value <= 11;
 }
 const ::google::protobuf::EnumDescriptor* ServiceType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_common_2eproto);
