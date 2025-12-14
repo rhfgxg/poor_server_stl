@@ -40,3 +40,7 @@
 
 # vcpkg out
 /vcpkg_installed/
+
+# proto out
+/protobuf/cpp/src
+/protobuf/skynet/src
