@@ -88,12 +88,10 @@ private:
     std::atomic<bool> heartbeat_checker_running_;
 
     // 连接池（管理其他服务器）
-    ConnectionPool battle_connection_pool_;
     ConnectionPool central_connection_pool_;
     ConnectionPool db_connection_pool_;
     ConnectionPool file_connection_pool_;
     ConnectionPool gateway_connection_pool_;
-    ConnectionPool logic_connection_pool_;
     ConnectionPool login_connection_pool_;
     ConnectionPool matching_connection_pool_;
 };

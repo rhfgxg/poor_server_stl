@@ -5,21 +5,17 @@
 CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_, const std::string& address, const std::string& port):
     BaseServer(rpc_server::ServerType::CENTRAL, address, port, logger_manager_, 4),  // 调用基类构造函数，4个线程
     heartbeat_checker_running_(false),
-    battle_connection_pool_(10),
     central_connection_pool_(10),
     db_connection_pool_(10),
     file_connection_pool_(10),
     gateway_connection_pool_(10),
-    logic_connection_pool_(10),
     login_connection_pool_(10),
     matching_connection_pool_(10)
 {
     // 连接池初始化日志
-    log_activity("Battle_connection_pool: initialized, size: 10");
     log_activity("Central_connection_pool: initialized, size: 10");
     log_activity("DB_connection_pool: initialized, size: 10");
     log_activity("Gateway_connection_pool: initialized, size: 10");
-    log_activity("Logic_connection_pool: initialized, size: 10");
     log_activity("Login_connection_pool: initialized, size: 10");
     log_activity("File_connection_pool: initialized, size: 10");
     log_activity("Matching_connection_pool: initialized, size: 10");
@@ -213,8 +209,6 @@ ConnectionPool* CentralServerImpl::get_connection_pool(rpc_server::ServerType se
 {
     switch (server_type)
     {
-    case rpc_server::ServerType::BATTLE:
-        return &battle_connection_pool_;
     case rpc_server::ServerType::CENTRAL:
         return &central_connection_pool_;
     case rpc_server::ServerType::DB:
@@ -223,8 +217,6 @@ ConnectionPool* CentralServerImpl::get_connection_pool(rpc_server::ServerType se
         return &file_connection_pool_;
     case rpc_server::ServerType::GATEWAY:
         return &gateway_connection_pool_;
-    case rpc_server::ServerType::LOGIC:
-        return &logic_connection_pool_;
     case rpc_server::ServerType::LOGIN:
         return &login_connection_pool_;
     case rpc_server::ServerType::MATCHING:
@@ -238,8 +230,6 @@ const char* CentralServerImpl::get_pool_label(rpc_server::ServerType server_type
 {
     switch (server_type)
     {
-    case rpc_server::ServerType::BATTLE:
-        return "Battle_connection_pool";
     case rpc_server::ServerType::CENTRAL:
         return "Central_connection_pool";
     case rpc_server::ServerType::DB:
@@ -248,8 +238,6 @@ const char* CentralServerImpl::get_pool_label(rpc_server::ServerType server_type
         return "File_connection_pool";
     case rpc_server::ServerType::GATEWAY:
         return "Gateway_connection_pool";
-    case rpc_server::ServerType::LOGIC:
-        return "Logic_connection_pool";
     case rpc_server::ServerType::LOGIN:
         return "Login_connection_pool";
     case rpc_server::ServerType::MATCHING:

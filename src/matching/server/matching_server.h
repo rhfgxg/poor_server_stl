@@ -2,7 +2,6 @@
 #define MATCHING_SERVER_H
 
 #include "common.grpc.pb.h"
-#include "server_battle.grpc.pb.h"
 #include "server_matching.grpc.pb.h"
 #include "server_login.grpc.pb.h"
 #include "base_server.h"
@@ -71,7 +70,6 @@ private:
     RedisClient redis_client;
     
     // 连接池
-    ConnectionPool battle_connection_pool;
     ConnectionPool login_connection_pool;
     
     // 匹配队列（按段位分组）

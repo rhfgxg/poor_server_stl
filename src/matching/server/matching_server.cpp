@@ -3,7 +3,6 @@
 // 构造函数 - 继承 BaseServer
 MatchingServerImpl::MatchingServerImpl(LoggerManager& logger_manager_, const std::string address, std::string port)
     : BaseServer(rpc_server::ServerType::MATCHING, address, port, logger_manager_, 4),  // 4 个线程
-      battle_connection_pool(10),
       login_connection_pool(10)
 {
     // Redis 连接将在 on_start() 中初始化
@@ -110,15 +109,7 @@ void MatchingServerImpl::Init_connection_pool()
                             std::to_string(conn_info.port())
                         );
                         break;
-                        
-                    case rpc_server::ServerType::BATTLE:
-                        battle_connection_pool.add_server(
-                            rpc_server::ServerType::BATTLE,
-                            conn_info.address(),
-                            std::to_string(conn_info.port())
-                        );
-                        break;
-                        
+                         
                     default:
                         break;
                     }
