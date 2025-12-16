@@ -85,6 +85,7 @@ private:
     // 连接池（管理其他服务器）
     ConnectionPool central_connection_pool_;
     ConnectionPool db_connection_pool_;
+    ConnectionPool redis_connection_pool_;      // ✅ 新增：Redis 连接池
     ConnectionPool file_connection_pool_;
     ConnectionPool gateway_connection_pool_;
     ConnectionPool login_connection_pool_;

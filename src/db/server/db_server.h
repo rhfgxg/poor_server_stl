@@ -6,6 +6,20 @@
 #include "db_connection_pool.h"
 
 #include <memory>
+#include <thread>
+#include <atomic>
+
+// Windows 平台需要
+#ifdef _WIN32
+    #include <WinSock2.h>
+    #include <WS2tcpip.h>
+    #pragma comment(lib, "ws2_32.lib")
+#else
+    #include <sys/socket.h>
+    #include <netinet/in.h>
+    #include <arpa/inet.h>
+    #include <unistd.h>
+#endif
 
 // 前向声明 lua_State，避免在头文件中包含 lua.hpp
 struct lua_State;
@@ -22,6 +36,7 @@ struct lua_State;
  * 只需实现业务逻辑：
  * - 数据库操作（CRUD）
  * - 数据库连接池管理
+ * - Socket 服务器（给 Skynet）
  */
 class DBServerImpl final : public BaseServer, public rpc_server::DBServer::Service
 {
@@ -35,6 +50,10 @@ public:
     grpc::Status Update(grpc::ServerContext* context, const rpc_server::UpdateReq* req, rpc_server::UpdateRes* res) override;
     grpc::Status Delete(grpc::ServerContext* context, const rpc_server::DeleteReq* req, rpc_server::DeleteRes* res) override;
     grpc::Status Create_table(grpc::ServerContext* context, const rpc_server::CreateTableReq* req, rpc_server::CreateTableRes* res) override;
+
+    // ✅ 新增：Socket 服务器接口
+    void start_socket_server(int socket_port = 50053);
+    void stop_socket_server();
 
 protected:
     // BaseServer 钩子方法
@@ -56,11 +75,25 @@ private:
     // 配置读取
     bool init_db_pools();
 
+    // ✅ 新增：Socket 服务器相关
+    void socket_server_thread();
+    void handle_socket_client(int client_socket);
+    
+    // JSON 请求/响应处理
+    std::string handle_socket_request(const std::string& json_request);
+    std::string build_json_response(bool success, const std::string& message, const std::vector<std::map<std::string, std::string>>& results = {});
+
 private:
     // 数据库连接池
     std::unique_ptr<DBConnectionPool> poor_users_pool_;
     std::unique_ptr<DBConnectionPool> poor_file_pool_;
     std::unique_ptr<DBConnectionPool> hearthstone_pool_;
+
+    // ✅ 新增：Socket 服务器相关
+    std::atomic<bool> socket_server_running_;
+    std::thread socket_server_thread_;
+    int socket_server_fd_;
+    int socket_port_;
 };
 
 #endif // DB_SERVICE_H
