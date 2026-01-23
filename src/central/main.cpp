@@ -7,12 +7,7 @@ void run_server(LoggerManager& logger_manager);
 void read_server_config(std::string& address, std::string& port);
 
 /**
- * @brief 中心服务器主函数（重构版本）
- * 
- * 重构效果：
- * - 使用 BaseServer 自动管理所有基础功能 ✅
- * - 代码大幅简化 ✅
- * - 统一的代码结构 ✅
+ * @brief 中心服务器
  */
 int main()
 {

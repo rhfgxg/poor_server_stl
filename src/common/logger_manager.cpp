@@ -23,6 +23,7 @@ constexpr std::array<CategoryConfig, 10> kCategoryConfigs = {{
 }};
 }
 
+// 初始化日志器
 void LoggerManager::initialize(rpc_server::ServerType server_type)
 {
     if (!this->loggers.empty())

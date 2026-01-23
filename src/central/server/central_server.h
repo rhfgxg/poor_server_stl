@@ -25,17 +25,7 @@ struct HeartbeatRecord
 };
 
 /**
- * @brief 中心服务器实现类（重构版本）
- * 
- * 继承自 BaseServer，自动获得以下功能：
- * - 线程池管理（使用 ThreadManager）
- * - 日志管理
- * - 配置读取
- * 
- * 只需实现业务逻辑：
- * - gRPC 服务接口
- * - 心跳检查
- * - 连接池管理
+ * @brief 中心服务器实现类
  */
 class CentralServerImpl final : public BaseServer, public rpc_server::CentralServer::Service
 {
@@ -67,29 +57,31 @@ private:
     // 返回连接池中的连接
     void All_connec_poor(const rpc_server::MultipleConnectPoorReq* req, rpc_server::MultipleConnectPoorRes* res);
 
+    // 获取对应类型的连接池
     ConnectionPool* get_connection_pool(rpc_server::ServerType server_type);
+    // 获取连接池标签
     const char* get_pool_label(rpc_server::ServerType server_type) const;
 
     // 心跳检查
-    void check_heartbeat_worker();
-    void start_heartbeat_checker();
-    void stop_heartbeat_checker();
+    void check_heartbeat_worker();  // 心跳检查工作线程
+    void start_heartbeat_checker(); // 启动心跳检查器
+    void stop_heartbeat_checker();  // 停止心跳检查器
 
 private:
     // 心跳记录
-    std::unordered_map<std::string, HeartbeatRecord> heartbeat_records_;
-    std::mutex heartbeat_mutex_;
-    std::thread heartbeat_checker_thread_;
-    std::atomic<bool> heartbeat_checker_running_;
+    std::unordered_map<std::string, HeartbeatRecord> heartbeat_records_;    // 心跳记录映射（key: address）
+    std::mutex heartbeat_mutex_;    // 保护 heartbeat_records_ 的互斥锁
+    std::thread heartbeat_checker_thread_;  // 心跳检查线程
+    std::atomic<bool> heartbeat_checker_running_;   // 心跳检查运行标志
 
     // 连接池（管理其他服务器）
-    ConnectionPool central_connection_pool_;
-    ConnectionPool db_connection_pool_;
-    ConnectionPool redis_connection_pool_;      // ✅ 新增：Redis 连接池
-    ConnectionPool file_connection_pool_;
-    ConnectionPool gateway_connection_pool_;
-    ConnectionPool login_connection_pool_;
-    ConnectionPool matching_connection_pool_;
+    ConnectionPool central_connection_pool_;    // 管理中心服务器连接池
+    ConnectionPool db_connection_pool_;   // 数据库服务器连接池
+    ConnectionPool redis_connection_pool_;  // Redis 服务器连接池
+    ConnectionPool file_connection_pool_;   // 文件服务器连接池
+    ConnectionPool gateway_connection_pool_;    // 网关服务器连接池
+    ConnectionPool login_connection_pool_;  // 登录服务器连接池
+    ConnectionPool matching_connection_pool_;   // 匹配服务器连接池
 };
 
 #endif // CENTRAL_SERVER_H

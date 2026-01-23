@@ -76,6 +76,7 @@ bool BaseServer::start()
     // 3. 初始化到 Central Server 的连接（仅非 Central Server）
     if (server_type_ != rpc_server::ServerType::CENTRAL)
     {
+        // 初始化到中心服务器的连接
         if (!init_central_connection())
         {
             log_startup("Failed to initialize Central Server connection");
@@ -106,7 +107,7 @@ bool BaseServer::start()
         log_startup("Heartbeat started");
     }
 
-    running_.store(true);
+    running_.store(true);   // 标记为运行中
     log_startup("Server started successfully");
     return true;
 }
@@ -114,6 +115,7 @@ bool BaseServer::start()
 // 停止服务器
 void BaseServer::stop()
 {
+    // 检查是否已经停止
     if (!running_.load())
     {
         log_activity("Server already stopped");
@@ -154,7 +156,7 @@ void BaseServer::submit_task_void(std::function<void()> task)
 {
     if (thread_manager_)
     {
-        thread_manager_->enqueue(std::move(task));
+        thread_manager_->enqueue(std::move(task));  // 将任务加入任务队列
     }
 }
 
@@ -243,11 +245,7 @@ bool BaseServer::init_central_connection()
         central_connection_pool_ = std::make_unique<ConnectionPool>(5);  // 5 个连接
         
         // 向连接池添加 Central Server
-        central_connection_pool_->add_server(
-            rpc_server::ServerType::CENTRAL,
-            central_server_address_,
-            central_server_port_
-        );
+        central_connection_pool_->add_server(rpc_server::ServerType::CENTRAL, central_server_address_, central_server_port_);
         
         log_startup("Central Server connection pool created: " + central_target);
         return true;
@@ -308,8 +306,7 @@ bool BaseServer::register_to_central()
         }
         else
         {
-            log_startup("Failed to register to Central Server: " + 
-                       (status.ok() ? response.message() : status.error_message()));
+            log_startup("Failed to register to Central Server: " + (status.ok() ? response.message() : status.error_message()));
             on_registered(false);
             return false;
         }
@@ -370,8 +367,7 @@ bool BaseServer::unregister_from_central()
         }
         else
         {
-            log_shutdown("Failed to unregister from Central Server: " + 
-                        (status.ok() ? response.message() : status.error_message()));
+            log_shutdown("Failed to unregister from Central Server: " + (status.ok() ? response.message() : status.error_message()));
             on_unregistered(false);
             return false;
         }
