@@ -1,4 +1,4 @@
-# Redis 服务器模块，统一管理 Redis 集群访问
+# Redis 服务器模块，统一管理 Redis 访问
 # 模块名
 set(MODULE_NAME redis_server)
 
@@ -10,7 +10,7 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
     ${PROJECT_SOURCE_DIR}/src/common/logger_manager.cpp
     ${PROJECT_SOURCE_DIR}/src/common/redis_client.cpp
-    ${PROJECT_SOURCE_DIR}/src/common/redis_cluster_client.cpp
+    # 注：redis_cluster_client 已移除，使用本地 Redis + MySQL 实现数据存储
     ${PROJECT_SOURCE_DIR}/src/common/base_server.cpp
     ${PROJECT_SOURCE_DIR}/src/common/thread_manager.cpp
     ${PROJECT_SOURCE_DIR}/src/common/config_manager.cpp

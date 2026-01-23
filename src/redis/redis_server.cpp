@@ -79,15 +79,10 @@ void RedisServer::on_stop()
         client_threads_.clear();
     }
     
-    // 3. 断开 Redis 连接（智能指针自动释放，需要检查是否已初始化）
+    // 3. 断开 Redis 连接（智能指针自动释放）
     if (local_redis_)
     {
         local_redis_.reset();
-    }
-    
-    if (cluster_redis_)
-    {
-        cluster_redis_.reset();
     }
     
     log_shutdown("RedisServer shutdown complete");
@@ -132,22 +127,8 @@ bool RedisServer::init_redis_connections()
         
         log_startup("Connected to local Redis: " + local_host + ":" + std::to_string(local_port));
         
-        // 初始化集群 Redis（如果配置了）
-        // 简化配置读取：单机模式使用本地 Redis
-        std::vector<std::string> cluster_nodes;
-        cluster_nodes.push_back("127.0.0.1:6379");  // 默认使用本地 Redis
-        
-        cluster_redis_ = std::make_shared<RedisClusterClient>();
-        if (!cluster_redis_->connect(cluster_nodes))
-        {
-            log_startup("Failed to connect to Redis cluster");
-            // 集群连接失败不影响启动，可以降级为只使用本地 Redis
-            cluster_redis_.reset();
-        }
-        else
-        {
-            log_startup("Connected to Redis cluster (single node mode)");
-        }
+        // 注：集群 Redis 功能已移除，使用本地 Redis + MySQL 实现数据存储
+        // 后续可根据需要添加集群支持
         
         return true;
     }
@@ -162,12 +143,6 @@ std::shared_ptr<RedisClient> RedisServer::get_local_redis()
 {
     std::shared_lock lock(local_redis_mutex_);
     return local_redis_;
-}
-
-std::shared_ptr<RedisClusterClient> RedisServer::get_cluster_redis()
-{
-    std::shared_lock lock(cluster_redis_mutex_);
-    return cluster_redis_;
 }
 
 // ==================== TCP Socket 服务（给 Skynet） ====================
@@ -299,68 +274,32 @@ void RedisServer::handle_socket_message(int client_fd, const std::string& messag
         // 根据方法调用相应的 Redis 操作
         if (method == "set")
         {
-            std::string redis_type = params["redis_type"];
             std::string key = params["key"];
             std::string value = params["value"];
             int ttl = params.value("ttl", 0);
             
-            if (redis_type == "LOCAL")
+            // 使用本地 Redis
+            auto redis = get_local_redis();
+            if (ttl > 0)
             {
-                auto redis = get_local_redis();
-                if (ttl > 0)
-                {
-                    redis->set_with_expire(key, value, std::chrono::seconds(ttl));
-                }
-                else
-                {
-                    // 使用底层客户端进行 set 操作
-                    auto client = redis->get_client();
-                    client->set(key, value);
-                    client->sync_commit();
-                }
+                redis->set_with_expire(key, value, std::chrono::seconds(ttl));
             }
-            else if (redis_type == "CLUSTER")
+            else
             {
-                auto redis = get_cluster_redis();
-                if (redis)
-                {
-                    if (ttl > 0)
-                    {
-                        redis->set_with_expire(key, value, std::chrono::seconds(ttl));
-                    }
-                    else
-                    {
-                        redis->set(key, value);
-                    }
-                }
-                else
-                {
-                    response["success"] = false;
-                    response["error"] = "Cluster Redis not available";
-                }
+                // 使用底层客户端进行 set 操作
+                auto client = redis->get_client();
+                client->set(key, value);
+                client->sync_commit();
             }
             
             response["result"] = "OK";
         }
         else if (method == "get")
         {
-            std::string redis_type = params["redis_type"];
             std::string key = params["key"];
             
-            std::optional<std::string> value;
-            
-            if (redis_type == "LOCAL")
-            {
-                value = get_local_redis()->get_string(key);
-            }
-            else if (redis_type == "CLUSTER")
-            {
-                auto redis = get_cluster_redis();
-                if (redis)
-                {
-                    value = redis->get(key);
-                }
-            }
+            // 使用本地 Redis
+            auto value = get_local_redis()->get_string(key);
             
             if (value)
             {
@@ -373,21 +312,10 @@ void RedisServer::handle_socket_message(int client_fd, const std::string& messag
         }
         else if (method == "del")
         {
-            std::string redis_type = params["redis_type"];
             std::string key = params["key"];
             
-            if (redis_type == "LOCAL")
-            {
-                get_local_redis()->delete_key(key);
-            }
-            else if (redis_type == "CLUSTER")
-            {
-                auto redis = get_cluster_redis();
-                if (redis)
-                {
-                    redis->del(key);
-                }
-            }
+            // 使用本地 Redis
+            get_local_redis()->delete_key(key);
             
             response["result"] = "OK";
         }

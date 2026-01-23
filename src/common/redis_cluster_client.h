@@ -1,6 +1,12 @@
 #ifndef REDIS_CLUSTER_CLIENT_H
 #define REDIS_CLUSTER_CLIENT_H
 
+// ============================================================================
+// 注意：此文件暂未使用
+// 当前架构使用 本地 Redis + MySQL 实现数据存储
+// 后续如需支持 Redis 集群，可重新启用此模块
+// ============================================================================
+
 #include <string>
 #include <vector>
 #include <memory>
@@ -17,6 +23,7 @@ class RedisClusterClient
 public:
     RedisClusterClient();
     ~RedisClusterClient();
+
 
     // 连接到 Redis 集群
     // @param nodes 集群节点列表，格式："host:port"

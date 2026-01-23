@@ -2,7 +2,6 @@
 #define REDIS_SERVER_H
 
 #include "base_server.h"
-#include "redis_cluster_client.h"
 #include <memory>
 #include <string>
 #include <unordered_map>
@@ -14,10 +13,9 @@ class RedisClient;
 
 // Redis 服务器类
 // 职责：
-// 1. 统一管理本地 Redis 和集群 Redis 连接
-// 2. 提供 gRPC 接口给其他 C++ 服务（可选）
-// 3. 提供 TCP Socket 接口给 Skynet 服务
-// 4. 连接池管理和负载均衡
+// 1. 管理本地 Redis 连接
+// 2. 提供 TCP Socket 接口给 Skynet 服务
+// 3. 后续可扩展：gRPC 接口、集群支持等
 class RedisServer : public BaseServer
 {
 public:
@@ -37,11 +35,8 @@ protected:
     // 初始化 Redis 连接
     bool init_redis_connections();
     
-    // 获取本地 Redis 客户端（使用现有的 RedisClient）
+    // 获取本地 Redis 客户端
     std::shared_ptr<RedisClient> get_local_redis();
-    
-    // 获取集群 Redis 客户端
-    std::shared_ptr<RedisClusterClient> get_cluster_redis();
 
     // ==================== TCP Socket 服务（给 Skynet） ====================
     
@@ -57,20 +52,10 @@ protected:
     // 发送 Socket 响应
     void send_socket_response(int client_fd, const nlohmann::json& response);
 
-    // ==================== gRPC 服务（给 C++ 服务） ====================
-    
-    // gRPC 服务实现类（可选，暂不实现）
-    // class RedisServiceImpl;
-    // std::unique_ptr<RedisServiceImpl> grpc_service_;
-
 private:
-    // 本地 Redis 连接（使用现有的 RedisClient）
+    // 本地 Redis 连接
     std::shared_ptr<RedisClient> local_redis_;
     std::shared_mutex local_redis_mutex_;
-    
-    // 集群 Redis 连接（使用新的 RedisClusterClient）
-    std::shared_ptr<RedisClusterClient> cluster_redis_;
-    std::shared_mutex cluster_redis_mutex_;
     
     // Socket 监听器
     int socket_fd_;  // Socket 文件描述符
