@@ -240,7 +240,7 @@ void GatewayServerImpl::handle_internal_client(int client_socket, const std::str
             }
             
             // 4. 发送响应
-            std::string response_data = response.payload();
+            std::string response_data = response.response();  // ForwardRes.response 字段
             uint16_t response_type = msg_type + 1;  // 响应类型 = 请求类型 + 1
             
             uint32_t response_length = htonl(2 + response_data.size());

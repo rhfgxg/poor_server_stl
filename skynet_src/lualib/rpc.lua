@@ -237,55 +237,55 @@ local EMBEDDED_PROTO = [[
         bytes battle_state = 3;
     }
     
-    // 数据库请求/响应
+    // 数据库请求/响应 (与 C++ server_db.proto 保持一致)
     message DBCreateRequest {
-        string database = 1;
-        string table = 2;
-        map<string, string> data = 3;
+        bytes database = 1;
+        bytes table = 2;
+        map<string, bytes> data = 3;
     }
     
     message DBCreateResponse {
         bool success = 1;
-        string message = 2;
+        bytes message = 2;
     }
     
     message DBReadRequest {
-        string database = 1;
-        string table = 2;
-        map<string, string> query = 3;
+        bytes database = 1;
+        bytes table = 2;
+        map<string, bytes> query = 3;
     }
     
     message DBReadResponse {
         bool success = 1;
-        string message = 2;
+        bytes message = 2;
         repeated DBResult results = 3;
     }
     
     message DBResult {
-        map<string, string> fields = 1;
+        map<string, bytes> fields = 1;
     }
     
     message DBUpdateRequest {
-        string database = 1;
-        string table = 2;
-        map<string, string> query = 3;
-        map<string, string> data = 4;
+        bytes database = 1;
+        bytes table = 2;
+        map<string, bytes> query = 3;
+        map<string, bytes> data = 4;
     }
     
     message DBUpdateResponse {
         bool success = 1;
-        string message = 2;
+        bytes message = 2;
     }
     
     message DBDeleteRequest {
-        string database = 1;
-        string table = 2;
-        map<string, string> query = 3;
+        bytes database = 1;
+        bytes table = 2;
+        map<string, bytes> query = 3;
     }
     
     message DBDeleteResponse {
         bool success = 1;
-        string message = 2;
+        bytes message = 2;
     }
 ]]
 
@@ -492,7 +492,12 @@ end
 
 --- 获取请求对应的响应类型
 function M.get_response_type(request_type)
-    if request_type >= 1 and request_type < 100 then
+    -- DB 消息 (20,22,24,26) -> (21,23,25,27)
+    if request_type == 20 or request_type == 22 or request_type == 24 or request_type == 26 then
+        return request_type + 1
+    end
+    -- 普通游戏消息 (1-99) -> (101-199)
+    if request_type >= 1 and request_type < 20 then
         return request_type + 100
     end
     return nil
