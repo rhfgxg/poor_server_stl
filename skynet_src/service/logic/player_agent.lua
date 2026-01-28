@@ -1,24 +1,32 @@
--- Player Agent Service
--- 每个玩家一个实例，处理该玩家的所有游戏逻辑
+--[[
+    Player Agent Service
+    每个玩家一个实例，处理该玩家的所有游戏逻辑
+    
+    使用模块：
+    - redis.lua : 缓存层
+    - db.lua    : 持久化层
+]]
 
 local skynet = require "skynet"
 local game_config = require "game_config"
-local redis_bridge = require "redis_bridge"
-local db_bridge = require "db_bridge"  -- 新增：数据库桥接
+local redis = require "redis"
+local db = require "db"
 
 local player_id = ...
 local player_data = {}
 local online = false
 local achievement_service
 
--- 数据同步相关
+-- 数据同步配置
 local last_redis_sync = 0
 local last_mysql_sync = 0
-local REDIS_SYNC_INTERVAL = 300  -- 5分钟同步一次到 Redis
-local MYSQL_SYNC_INTERVAL = 1800  -- 30分钟同步一次到 MySQL
+local REDIS_SYNC_INTERVAL = 300   -- 5分钟同步到 Redis
+local MYSQL_SYNC_INTERVAL = 1800  -- 30分钟同步到 MySQL
 local data_dirty = false
 
 local CMD = {}
+
+-- ==================== 辅助函数 ====================
 
 local function get_achievement_service()
     if not achievement_service then
@@ -33,9 +41,11 @@ local function update_achievements(event_type, delta)
         return nil
     end
 
-    local ok, result = pcall(skynet.call, service, "lua", "update_progress", player_id, event_type, delta or 1)
+    local ok, result = pcall(skynet.call, service, "lua", "update_progress", 
+        player_id, event_type, delta or 1)
+    
     if not ok then
-        skynet.error(string.format("Player %s achievement update failed: %s", player_id, result))
+        skynet.error(string.format("[Player %s] Achievement update failed: %s", player_id, result))
         return nil
     end
 
@@ -50,115 +60,129 @@ local function update_achievements(event_type, delta)
     return result
 end
 
--- 初始化玩家数据（三级加载）
-local function init_player_data()
-    skynet.error(string.format("Player %s: Loading data...", player_id))
-    
-    -- Level 1: 尝试从 Redis 加载
-    local redis_data = redis_bridge.load_player_basic(player_id)
-    
-    if redis_data then
-        skynet.error(string.format("Player %s: Data loaded from Redis cache", player_id))
-        player_data = {
-            player_id = player_id,
-            level = redis_data.level,
-            exp = redis_data.exp,
-            gold = redis_data.gold,
-            cards = {},
-            decks = {},
-            achievements = {
-                progress = redis_bridge.load_player_achievements(player_id) or {},
-                completed = {}
-            },
-            last_login = redis_data.last_login
-        }
-    else
-        -- Level 2: Redis 没有，从 MySQL 加载
-        skynet.error(string.format("Player %s: No Redis cache, loading from MySQL", player_id))
-        
-        local db_data = db_bridge.load_player_full(player_id)
-        
-        if db_data then
-            skynet.error(string.format("Player %s: Data loaded from MySQL", player_id))
-            player_data = {
-                player_id = player_id,
-                level = db_data.level,
-                exp = db_data.exp,
-                gold = db_data.gold,
-                cards = db_data.cards or {},
-                decks = {},
-                achievements = db_data.achievements or {
-                    progress = {},
-                    completed = {}
-                },
-                last_login = db_data.last_login
-            }
-        else
-            -- Level 3: 创建新玩家
-            skynet.error(string.format("Player %s: New player created", player_id))
-            player_data = {
-                player_id = player_id,
-                level = 1,
-                exp = 0,
-                gold = 1000,
-                cards = {},
-                decks = {},
-                achievements = {
-                    progress = {},
-                    completed = {}
-                },
-                last_login = skynet.time()
-            }
-        end
-        
-        -- 立即缓存到 Redis
-        save_to_redis()
-    end
+-- 标记数据已修改
+local function mark_dirty()
+    data_dirty = true
 end
+
+-- ==================== 数据加载/保存 ====================
 
 -- 保存到 Redis（缓存层）
 local function save_to_redis()
-    local ok = redis_bridge.save_player_basic(player_id, {
-        level = player_data.level,
-        exp = player_data.exp,
+    -- 保存基础数据
+    local ok = redis.player.save_basic(player_id, {
+        player_id = player_data.player_id,
+        nickname = player_data.nickname,
         gold = player_data.gold,
-        last_login = player_data.last_login
+        arcane_dust = player_data.arcane_dust,
+        last_login = player_data.last_login,
     })
     
     if ok then
-        -- 保存成就到 Redis
+        -- 保存成就进度
         for ach_id, progress in pairs(player_data.achievements.progress or {}) do
-            redis_bridge.save_player_achievement(player_id, ach_id, progress)
+            redis.player.save_achievement(player_id, ach_id, progress)
         end
         
-        skynet.error(string.format("Player %s: Data synced to Redis", player_id))
+        skynet.error(string.format("[Player %s] Synced to Redis", player_id))
         last_redis_sync = skynet.time()
         return true
     else
-        skynet.error(string.format("Player %s: Failed to sync to Redis", player_id))
+        skynet.error(string.format("[Player %s] Failed to sync to Redis", player_id))
         return false
     end
 end
 
 -- 保存到 MySQL（持久化层）
 local function save_to_mysql()
-    local ok = db_bridge.save_player_full(player_id, player_data)
+    local ok = db.player.save_full(player_id, player_data)
     
     if ok then
-        skynet.error(string.format("Player %s: Data persisted to MySQL", player_id))
+        skynet.error(string.format("[Player %s] Persisted to MySQL", player_id))
         last_mysql_sync = skynet.time()
         data_dirty = false
         return true
     else
-        skynet.error(string.format("Player %s: Failed to persist to MySQL", player_id))
+        skynet.error(string.format("[Player %s] Failed to persist to MySQL", player_id))
         return false
     end
 end
 
--- 定时同步（Redis 和 MySQL）
+-- 初始化玩家数据（三级加载：Redis -> MySQL -> 新建）
+local function init_player_data()
+    skynet.error(string.format("[Player %s] Loading data...", player_id))
+    
+    -- Level 1: 尝试从 Redis 加载
+    local redis_data = redis.player.load_basic(player_id)
+    
+    if redis_data and redis_data.player_id then
+        skynet.error(string.format("[Player %s] Loaded from Redis cache", player_id))
+        player_data = {
+            player_id = player_id,
+            nickname = redis_data.nickname or ("Player_" .. player_id),
+            gold = redis_data.gold or 0,
+            arcane_dust = redis_data.arcane_dust or 0,
+            cards = {},
+            decks = {},
+            achievements = {
+                progress = redis.player.load_achievements(player_id) or {},
+                completed = {},
+            },
+            last_login = redis_data.last_login or os.time(),
+        }
+        return
+    end
+    
+    -- Level 2: Redis 没有，从 MySQL 加载
+    skynet.error(string.format("[Player %s] No Redis cache, loading from MySQL", player_id))
+    local db_data = db.player.load_full(player_id)
+    
+    if db_data then
+        skynet.error(string.format("[Player %s] Loaded from MySQL", player_id))
+        player_data = {
+            player_id = player_id,
+            nickname = db_data.nickname or ("Player_" .. player_id),
+            gold = db_data.gold or 0,
+            arcane_dust = db_data.arcane_dust or 0,
+            cards = db_data.cards or {},
+            decks = db_data.decks or {},
+            achievements = db_data.achievements or {
+                progress = {},
+                completed = {},
+            },
+            last_login = db_data.last_login or os.time(),
+        }
+        
+        -- 缓存到 Redis
+        save_to_redis()
+        return
+    end
+    
+    -- Level 3: 创建新玩家
+    skynet.error(string.format("[Player %s] New player created", player_id))
+    player_data = {
+        player_id = player_id,
+        nickname = "Player_" .. player_id,
+        gold = 1000,        -- 初始金币
+        arcane_dust = 0,
+        cards = {},
+        decks = {},
+        achievements = {
+            progress = {},
+            completed = {},
+        },
+        last_login = os.time(),
+    }
+    
+    -- 保存到数据库和缓存
+    db.player.create(player_id, player_id, player_data.nickname)
+    save_to_redis()
+end
+
+-- 定时同步协程
 local function auto_sync()
     while online do
-        skynet.sleep(100)  -- 每秒检查一次
+        skynet.sleep(100)  -- 每秒检查
         
         local now = skynet.time()
         
@@ -174,34 +198,51 @@ local function auto_sync()
     end
 end
 
--- 标记数据已修改
-local function mark_dirty()
-    data_dirty = true
-end
+-- ==================== 服务命令 ====================
 
 -- 处理玩家动作
-function CMD.action(action_data)
-    skynet.error(string.format("Player %s action: %s", player_id, action_data))
+function CMD.action(action_type, action_data)
+    skynet.error(string.format("[Player %s] Action: %s", player_id, action_type))
     
-    local response = "action_ok:" .. action_data
+    local response = "action_ok:" .. (action_type or "unknown")
 
-    if action_data == "collect_gold" then
+    if action_type == "collect_gold" then
         player_data.gold = player_data.gold + 100
         mark_dirty()
         response = "action_ok:collect_gold|gold:" .. player_data.gold
-    end
-
-    if action_data == "complete_match" then
-        player_data.exp = player_data.exp + 50
+        
+    elseif action_type == "complete_match" then
+        -- 完成一场对战，获得经验和金币
+        player_data.gold = player_data.gold + 50
         mark_dirty()
         
+        -- 更新成就进度
         local result = update_achievements("complete_match", 1)
-        if result and result.updated and #result.completed > 0 then
+        if result and result.completed and #result.completed > 0 then
             local unlocked = {}
             for _, entry in ipairs(result.completed) do
                 table.insert(unlocked, tostring(entry.id))
             end
             response = response .. "|achievement:" .. table.concat(unlocked, ",")
+        end
+        
+    elseif action_type == "win_match" then
+        -- 赢得对战
+        player_data.gold = player_data.gold + 100
+        mark_dirty()
+        
+        update_achievements("win_match", 1)
+        response = "action_ok:win_match|gold:" .. player_data.gold
+        
+    elseif action_type == "buy_card" then
+        -- 购买卡牌
+        local cost = 100
+        if player_data.gold >= cost then
+            player_data.gold = player_data.gold - cost
+            mark_dirty()
+            response = "action_ok:buy_card|gold:" .. player_data.gold
+        else
+            response = "action_failed:not_enough_gold"
         end
     end
     
@@ -211,10 +252,10 @@ end
 -- 玩家上线
 function CMD.online()
     online = true
-    player_data.last_login = skynet.time()
+    player_data.last_login = os.time()
     mark_dirty()
     
-    skynet.error(string.format("Player %s online", player_id))
+    skynet.error(string.format("[Player %s] Online", player_id))
     
     -- 启动定时同步
     skynet.fork(auto_sync)
@@ -224,16 +265,13 @@ end
 function CMD.offline()
     online = false
     
-    -- 立即保存所有数据（三级同步）
-    skynet.error(string.format("Player %s offline, saving data...", player_id))
+    skynet.error(string.format("[Player %s] Offline, saving data...", player_id))
     
-    -- 1. 保存到 Redis
+    -- 立即保存所有数据
     save_to_redis()
-    
-    -- 2. 保存到 MySQL
     save_to_mysql()
     
-    skynet.error(string.format("Player %s offline complete", player_id))
+    skynet.error(string.format("[Player %s] Offline complete", player_id))
 end
 
 -- 获取玩家数据
@@ -241,11 +279,27 @@ function CMD.get_data()
     return player_data
 end
 
+-- 获取成就数据
 function CMD.get_achievements()
     return player_data.achievements
 end
 
--- 启动服务
+-- 更新金币
+function CMD.add_gold(amount)
+    player_data.gold = player_data.gold + amount
+    mark_dirty()
+    return player_data.gold
+end
+
+-- 更新奥术之尘
+function CMD.add_arcane_dust(amount)
+    player_data.arcane_dust = player_data.arcane_dust + amount
+    mark_dirty()
+    return player_data.arcane_dust
+end
+
+-- ==================== 服务启动 ====================
+
 skynet.start(function()
     skynet.dispatch("lua", function(session, source, cmd, ...)
         local f = CMD[cmd]
@@ -256,17 +310,17 @@ skynet.start(function()
                 skynet.ret(skynet.pack(f(...)))
             end
         else
-            skynet.error("Unknown command:", cmd)
+            skynet.error("[Player " .. player_id .. "] Unknown command:", cmd)
         end
     end)
     
-    -- 初始化数据库连接
-    redis_bridge.init()
-    db_bridge.init()
+    -- 初始化模块（在服务中只需确保已初始化）
+    -- redis.init() 和 db.init() 应该在 main.lua 中调用
+    -- 这里可以跳过，因为 main.lua 已初始化
     
     -- 初始化玩家数据
     init_player_data()
     CMD.online()
     
-    skynet.error(string.format("Player Agent started for: %s", player_id))
+    skynet.error(string.format("[Player %s] Agent started", player_id))
 end)
