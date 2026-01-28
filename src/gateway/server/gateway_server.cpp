@@ -40,6 +40,9 @@ void GatewayServerImpl::on_stop()
 {
     log_shutdown("GatewayServer shutting down...");
     
+    // 停止内部 TCP 服务器
+    stop_internal_tcp_server();
+    
     pool_update_running_.store(false);
     if (update_pool_thread_.joinable())
     {
@@ -55,10 +58,17 @@ void GatewayServerImpl::on_registered(bool success)
     {
         Init_connection_pool();
         
+        // 更新 Skynet IP 白名单
+        update_skynet_whitelist();
+        
+        // 启动内部 TCP 服务器（给 Skynet 用，支持 DB 转发）
+        start_internal_tcp_server(8889);
+        
         pool_update_running_.store(true);
         update_pool_thread_ = std::thread(&GatewayServerImpl::Update_connection_pool, this);
         
         log_startup("Gateway connection pools initialized and update thread started");
+        log_startup("Internal TCP server started on port 8889 for Skynet");
     }
     else
     {
@@ -156,6 +166,9 @@ void GatewayServerImpl::Update_connection_pool()
         if (pool_update_running_.load())
         {
             Init_connection_pool();
+            
+            // 同时更新 Skynet IP 白名单
+            update_skynet_whitelist();
         }
     }
 }
@@ -228,22 +241,9 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context [[m
             Forward_to_file_list_service(req->payload(), res);
             break;
         
-        // 数据库服务转发
-        case rpc_server::ServiceType::REQ_DB_CREATE:
-            Forward_to_db_create_service(req->payload(), res);
-            break;
-            
-        case rpc_server::ServiceType::REQ_DB_READ:
-            Forward_to_db_read_service(req->payload(), res);
-            break;
-            
-        case rpc_server::ServiceType::REQ_DB_UPDATE:
-            Forward_to_db_update_service(req->payload(), res);
-            break;
-            
-        case rpc_server::ServiceType::REQ_DB_DELETE:
-            Forward_to_db_delete_service(req->payload(), res);
-            break;
+        // 注意：DB 转发 (REQ_DB_CREATE/READ/UPDATE/DELETE) 不开放给外部客户端
+        // 只能由内部服务（Skynet）通过内部 TCP 端口调用
+        // 参见 gateway_forward_db.cpp 中的 Internal_forward_* 函数
             
         default:
             res->set_success(false);

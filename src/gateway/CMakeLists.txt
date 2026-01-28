@@ -9,6 +9,7 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/gateway/server/gateway_forward_login.cpp
     ${PROJECT_SOURCE_DIR}/src/gateway/server/gateway_forward_file.cpp
     ${PROJECT_SOURCE_DIR}/src/gateway/server/gateway_forward_db.cpp
+    ${PROJECT_SOURCE_DIR}/src/gateway/server/gateway_internal_tcp.cpp
     ${PROJECT_SOURCE_DIR}/src/gateway/server/skynet_client.cpp
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp

@@ -10,6 +10,21 @@
 
 #include <memory>
 #include <atomic>
+#include <set>
+#include <mutex>
+#include <thread>
+
+// 平台相关的 socket 头文件
+#ifdef _WIN32
+    #include <WinSock2.h>
+    #include <WS2tcpip.h>
+    #pragma comment(lib, "ws2_32.lib")
+#else
+    #include <sys/socket.h>
+    #include <netinet/in.h>
+    #include <arpa/inet.h>
+    #include <unistd.h>
+#endif
 
 /**
  * @brief 网关服务器实现类（重构版本）
@@ -61,7 +76,7 @@ private:
     grpc::Status Forward_to_file_delete_service(const std::string& payload, rpc_server::ForwardRes* res);
     grpc::Status Forward_to_file_list_service(const std::string& payload, rpc_server::ForwardRes* res);
     
-    // 数据库服务器转发
+    // 数据库服务器转发（仅限内部 TCP 调用）
     grpc::Status Forward_to_db_create_service(const std::string& payload, rpc_server::ForwardRes* res);
     grpc::Status Forward_to_db_read_service(const std::string& payload, rpc_server::ForwardRes* res);
     grpc::Status Forward_to_db_update_service(const std::string& payload, rpc_server::ForwardRes* res);
@@ -69,6 +84,17 @@ private:
     
     // 定时任务
     void Update_connection_pool();
+    
+    // ==================== 内部 TCP 服务器（给 Skynet 用）====================
+    void start_internal_tcp_server(int port = 8889);
+    void stop_internal_tcp_server();
+    void internal_tcp_server_thread();
+    void handle_internal_client(int client_socket, const std::string& client_ip);
+    std::string process_internal_request(const std::string& request_data);
+    
+    // Skynet IP 白名单管理
+    void update_skynet_whitelist();
+    bool is_skynet_ip(const std::string& ip);
 
 private:
     RedisClient redis_client;
@@ -82,6 +108,16 @@ private:
     // 定时更新连接池的线程
     std::thread update_pool_thread_;
     std::atomic<bool> pool_update_running_{false};
+    
+    // 内部 TCP 服务器（Skynet 专用）
+    std::atomic<bool> internal_tcp_running_{false};
+    std::thread internal_tcp_thread_;
+    int internal_tcp_fd_{-1};
+    int internal_tcp_port_{8889};
+    
+    // Skynet IP 白名单
+    std::set<std::string> skynet_ip_whitelist_;
+    std::mutex whitelist_mutex_;
 };
 
 #endif // GATEWAY_SERVER_H

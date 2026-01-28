@@ -1,14 +1,13 @@
 --[[
     数据库封装模块
-    通过 cpp_gateway 两层转发访问 C++ DBServer
     
-    架构：
-        Skynet → cpp_gateway (TCP) → C++ Gateway → gRPC → DBServer → MySQL
+    当前模式：Mock（内存模拟）
+    生产模式：待实现内部 DB 代理服务
     
-    设计理由：
-        - DBServer 保持单一职责，只处理 gRPC
-        - 数据库操作本身是异步的，不在意额外的转发延迟
-        - Redis 缓存由 redis.lua 独立管理
+    安全说明：
+        - 数据库操作不应通过公开的 Gateway gRPC 端口暴露
+        - 生产环境应使用专门的内部服务或直连 DBServer
+        - 当前使用 Mock 模式进行开发测试
     
     使用方式：
         local db = require "db"
@@ -35,9 +34,8 @@ M.achievement = {} -- 成就数据接口
 -- ==================== 状态 ====================
 
 local initialized = false
-local using_mock = false
+local using_mock = true  -- 当前默认使用 Mock 模式
 local mock_storage = nil
-local gateway_service = nil  -- cpp_gateway 服务句柄
 
 -- ==================== Mock 数据库 ====================
 
