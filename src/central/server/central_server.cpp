@@ -10,7 +10,7 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_, const std::
     redis_connection_pool_(10),
     file_connection_pool_(10),
     gateway_connection_pool_(10),
-    login_connection_pool_(10),
+    login_connection_pool_(10)
 {
     // 连接池初始化日志
     log_activity("Central_connection_pool: initialized, size: 10");
