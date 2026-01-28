@@ -26,8 +26,6 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_gateway.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_login.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_login.grpc.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_matching.pb.cc
-    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_matching.grpc.pb.cc
 )
 
 # 指定编译生成的可执行文件

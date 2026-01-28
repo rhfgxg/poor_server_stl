@@ -7,7 +7,6 @@
 #include "server_file.grpc.pb.h"
 #include "server_gateway.grpc.pb.h"
 #include "server_login.grpc.pb.h"
-#include "server_matching.grpc.pb.h"
 
 #include <thread>
 #include <chrono>
@@ -81,7 +80,6 @@ private:
     ConnectionPool file_connection_pool_;   // 文件服务器连接池
     ConnectionPool gateway_connection_pool_;    // 网关服务器连接池
     ConnectionPool login_connection_pool_;  // 登录服务器连接池
-    ConnectionPool matching_connection_pool_;   // 匹配服务器连接池
 };
 
 #endif // CENTRAL_SERVER_H

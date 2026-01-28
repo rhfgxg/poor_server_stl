@@ -39,7 +39,6 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src/file
     ${CMAKE_SOURCE_DIR}/src/gateway
     ${CMAKE_SOURCE_DIR}/src/login
-    ${CMAKE_SOURCE_DIR}/src/matching
     ${CMAKE_SOURCE_DIR}/src/redis
     ${CMAKE_SOURCE_DIR}/protobuf/cpp/src
 )
@@ -110,5 +109,4 @@ add_subdirectory(src/db)
 add_subdirectory(src/file)
 add_subdirectory(src/gateway)
 add_subdirectory(src/login)
-add_subdirectory(src/matching)
 add_subdirectory(src/redis)

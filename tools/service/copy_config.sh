@@ -24,8 +24,6 @@ declare -A SERVER_CONFIGS=(
     ["file"]="cfg_file_server.lua"
     ["gateway"]="cfg_gateway_server.lua"
     ["login"]="cfg_login_server.lua"
-    ["matching"]="cfg_matching_server.lua"
-    ["redis"]="cfg_redis.lua"
 )
 
 SUCCESS_COUNT=0

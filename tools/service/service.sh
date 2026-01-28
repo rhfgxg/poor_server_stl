@@ -92,17 +92,12 @@ start_cpp_servers() {
         return 1
     fi
     
-    local servers=("central" "db" "login" "gateway" "file" "matching" "redis_server")
+    local servers=("central" "db" "login" "gateway" "file")
     
     for server in "${servers[@]}"; do
         local exec_name="$server"
         local process_name="$server"
         local service_path="$BUILD_DIR/src/${server}/${exec_name}"
-        
-        # redis_server 路径特殊处理
-        if [ "$server" = "redis_server" ]; then
-            service_path="$BUILD_DIR/src/redis/redis_server"
-        fi
         
         if file_exists "$service_path"; then
             if is_process_running "$process_name"; then
@@ -132,7 +127,7 @@ start_cpp_servers() {
 stop_cpp_servers() {
     print_info "停止 C++ 服务器..."
     
-    local servers=("central" "db" "login" "gateway" "file" "matching" "redis_server")
+    local servers=("central" "db" "login" "gateway" "file")
     
     for server in "${servers[@]}"; do
         if is_process_running "$server"; then
@@ -178,8 +173,8 @@ show_status() {
     echo ""
     echo "C++ 服务器:"
     
-    local servers=("central" "db" "login" "gateway" "file" "matching" "redis_server")
-    local display_names=("central" "db" "login" "gateway" "file" "matching" "redis")
+    local servers=("central" "db" "login" "gateway" "file")
+    local display_names=("central" "db" "login" "gateway" "file")
     
     for i in "${!servers[@]}"; do
         local server="${servers[$i]}"

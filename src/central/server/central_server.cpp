@@ -11,7 +11,6 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_, const std::
     file_connection_pool_(10),
     gateway_connection_pool_(10),
     login_connection_pool_(10),
-    matching_connection_pool_(10)
 {
     // 连接池初始化日志
     log_activity("Central_connection_pool: initialized, size: 10");
@@ -20,7 +19,6 @@ CentralServerImpl::CentralServerImpl(LoggerManager& logger_manager_, const std::
     log_activity("Gateway_connection_pool: initialized, size: 10");
     log_activity("Login_connection_pool: initialized, size: 10");
     log_activity("File_connection_pool: initialized, size: 10");
-    log_activity("Matching_connection_pool: initialized, size: 10");
 
     // 将本服务器加入中心连接池
     central_connection_pool_.add_server(rpc_server::ServerType::CENTRAL, get_server_address(), get_server_port());
@@ -207,8 +205,6 @@ ConnectionPool* CentralServerImpl::get_connection_pool(rpc_server::ServerType se
         return &gateway_connection_pool_;
     case rpc_server::ServerType::LOGIN:
         return &login_connection_pool_;
-    case rpc_server::ServerType::MATCHING:
-        return &matching_connection_pool_;
     default:
         return nullptr;
     }
@@ -231,8 +227,6 @@ const char* CentralServerImpl::get_pool_label(rpc_server::ServerType server_type
         return "Gateway_connection_pool";
     case rpc_server::ServerType::LOGIN:
         return "Login_connection_pool";
-    case rpc_server::ServerType::MATCHING:
-        return "Matching_connection_pool";
     default:
         return "Unknown_connection_pool";
     }
