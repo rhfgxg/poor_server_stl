@@ -79,11 +79,11 @@ skynet.start(function()
     -- end
     
     -- 启动 C++ 双向网关（统一处理 Skynet ↔ C++ 通信）
-    local cpp_gateway = skynet.uniqueservice("cpp_gateway")
+    local cpp_gateway = skynet.uniqueservice("gateway/cpp_gateway")
     skynet.error("[Service] C++ Gateway (bidirectional) started:", skynet.address(cpp_gateway))
     
     -- 启动玩家管理器
-    local player_mgr = skynet.uniqueservice("player_manager")
+    local player_mgr = skynet.uniqueservice("player/player_manager")
     skynet.error("[Service] Player Manager started:", skynet.address(player_mgr))
     
     -- 启动成就服务
