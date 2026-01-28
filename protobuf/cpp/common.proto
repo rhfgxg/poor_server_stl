@@ -46,4 +46,14 @@ enum ServiceType
     RES_FILE_DELETE = 17;    // 文件删除响应
     REQ_FILE_LIST = 18;    // 获取文件列表请求
     RES_FILE_LIST = 19;    // 获取文件列表响应
+    
+    // 数据库服务（Skynet 通过 Gateway 转发）
+    REQ_DB_CREATE = 20;    // 数据库创建请求
+    RES_DB_CREATE = 21;    // 数据库创建响应
+    REQ_DB_READ = 22;      // 数据库读取请求
+    RES_DB_READ = 23;      // 数据库读取响应
+    REQ_DB_UPDATE = 24;    // 数据库更新请求
+    RES_DB_UPDATE = 25;    // 数据库更新响应
+    REQ_DB_DELETE = 26;    // 数据库删除请求
+    RES_DB_DELETE = 27;    // 数据库删除响应
 }

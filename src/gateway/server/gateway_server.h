@@ -5,6 +5,7 @@
 #include "server_gateway.grpc.pb.h"
 #include "server_login.grpc.pb.h"
 #include "server_file.grpc.pb.h"
+#include "server_db.grpc.pb.h"
 #include "redis_client.h"
 
 #include <memory>
@@ -60,6 +61,12 @@ private:
     grpc::Status Forward_to_file_delete_service(const std::string& payload, rpc_server::ForwardRes* res);
     grpc::Status Forward_to_file_list_service(const std::string& payload, rpc_server::ForwardRes* res);
     
+    // 数据库服务器转发
+    grpc::Status Forward_to_db_create_service(const std::string& payload, rpc_server::ForwardRes* res);
+    grpc::Status Forward_to_db_read_service(const std::string& payload, rpc_server::ForwardRes* res);
+    grpc::Status Forward_to_db_update_service(const std::string& payload, rpc_server::ForwardRes* res);
+    grpc::Status Forward_to_db_delete_service(const std::string& payload, rpc_server::ForwardRes* res);
+    
     // 定时任务
     void Update_connection_pool();
 
@@ -70,6 +77,7 @@ private:
     ConnectionPool login_connection_pool;
     ConnectionPool file_connection_pool;
     ConnectionPool gateway_connection_pool;
+    ConnectionPool db_connection_pool;
     
     // 定时更新连接池的线程
     std::thread update_pool_thread_;

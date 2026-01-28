@@ -651,21 +651,47 @@ end
 -- ==================== 快捷方法：数据库 ====================
 
 function CMD.db_load_player(player_id)
-    local result, err = send_to_cpp(rpc.MSG.GET_PLAYER_STATUS, {
-        player_id = tostring(player_id),
+    -- 使用 DB_READ 消息通过 C++ Gateway 转发到 DBServer
+    local result, err = send_to_cpp(rpc.MSG.DB_READ, {
+        database = "poor_hearthstone",
+        table = "player_data",
+        query = {
+            player_id = tostring(player_id),
+        },
     })
     
-    if result and result.success and result.player_data then
-        return result.player_data
+    if result and result.success and result.results and #result.results > 0 then
+        local row = result.results[1]
+        if row and row.fields then
+            return {
+                player_id = row.fields.player_id,
+                user_id = row.fields.user_id,
+                nickname = row.fields.nickname,
+                gold = tonumber(row.fields.gold) or 0,
+                arcane_dust = tonumber(row.fields.arcane_dust) or 0,
+                level = tonumber(row.fields.level) or 1,
+                exp = tonumber(row.fields.exp) or 0,
+                last_login = row.fields.last_login,
+            }
+        end
     end
-    return nil, err or (result and result.message) or "unknown error"
+    return nil, err or (result and result.message) or "player not found"
 end
 
 function CMD.db_save_player(player_id, data)
-    local result, err = send_to_cpp(rpc.MSG.PLAYER_ACTION, {
-        player_id = tostring(player_id),
-        action_type = "save_data",
-        action_data = "",
+    -- 使用 DB_UPDATE 消息
+    local result, err = send_to_cpp(rpc.MSG.DB_UPDATE, {
+        database = "poor_hearthstone",
+        table = "player_data",
+        query = {
+            player_id = tostring(player_id),
+        },
+        data = {
+            nickname = data.nickname or "",
+            gold = tostring(data.gold or 0),
+            arcane_dust = tostring(data.arcane_dust or 0),
+            last_login = os.date("%Y-%m-%d %H:%M:%S"),
+        },
     })
     
     if result then
@@ -675,16 +701,48 @@ function CMD.db_save_player(player_id, data)
 end
 
 function CMD.db_create_player(player_id, nickname)
-    local result, err = send_to_cpp(rpc.MSG.PLAYER_ACTION, {
-        player_id = tostring(player_id),
-        action_type = "create_player",
-        action_data = nickname or "",
+    -- 使用 DB_CREATE 消息
+    local result, err = send_to_cpp(rpc.MSG.DB_CREATE, {
+        database = "poor_hearthstone",
+        table = "player_data",
+        data = {
+            player_id = tostring(player_id),
+            user_id = tostring(player_id),
+            nickname = nickname or ("Player_" .. player_id),
+            gold = "1000",
+            arcane_dust = "0",
+            last_login = os.date("%Y-%m-%d %H:%M:%S"),
+        },
     })
     
     if result then
         return result.success, result.message
     end
     return false, err
+end
+
+-- 通用数据库请求接口
+function CMD.db_request(request)
+    -- request = {action, database, table, query, data}
+    local msg_type
+    if request.action == "create" then
+        msg_type = rpc.MSG.DB_CREATE
+    elseif request.action == "read" then
+        msg_type = rpc.MSG.DB_READ
+    elseif request.action == "update" then
+        msg_type = rpc.MSG.DB_UPDATE
+    elseif request.action == "delete" then
+        msg_type = rpc.MSG.DB_DELETE
+    else
+        return nil, "unknown action: " .. tostring(request.action)
+    end
+    
+    return send_to_cpp(msg_type, {
+        database = request.database or "poor_hearthstone",
+        table = request.table,
+        query = request.query,
+        data = request.data,
+    })
 end
 
 -- ==================== 快捷方法：登录验证 ====================

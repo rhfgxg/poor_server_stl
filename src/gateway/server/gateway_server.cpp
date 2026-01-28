@@ -4,7 +4,8 @@ GatewayServerImpl::GatewayServerImpl(LoggerManager& logger_manager_, const std::
     : BaseServer(rpc_server::ServerType::GATEWAY, address, port, logger_manager_, 4),
       login_connection_pool(10),
       file_connection_pool(10),
-      gateway_connection_pool(10)
+      gateway_connection_pool(10),
+      db_connection_pool(10)
 {
 }
 
@@ -78,6 +79,7 @@ void GatewayServerImpl::Init_connection_pool()
         req.add_server_types(rpc_server::ServerType::LOGIN);
         req.add_server_types(rpc_server::ServerType::FILE);
         req.add_server_types(rpc_server::ServerType::GATEWAY);
+        req.add_server_types(rpc_server::ServerType::DB);
         
         rpc_server::MultipleConnectPoorRes res;
         grpc::ClientContext context;
@@ -113,6 +115,14 @@ void GatewayServerImpl::Init_connection_pool()
                     case rpc_server::ServerType::GATEWAY:
                         gateway_connection_pool.add_server(
                             rpc_server::ServerType::GATEWAY,
+                            conn_info.address(),
+                            std::to_string(conn_info.port())
+                        );
+                        break;
+                    
+                    case rpc_server::ServerType::DB:
+                        db_connection_pool.add_server(
+                            rpc_server::ServerType::DB,
                             conn_info.address(),
                             std::to_string(conn_info.port())
                         );
@@ -216,6 +226,23 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context [[m
             
         case rpc_server::ServiceType::REQ_FILE_LIST:
             Forward_to_file_list_service(req->payload(), res);
+            break;
+        
+        // 数据库服务转发
+        case rpc_server::ServiceType::REQ_DB_CREATE:
+            Forward_to_db_create_service(req->payload(), res);
+            break;
+            
+        case rpc_server::ServiceType::REQ_DB_READ:
+            Forward_to_db_read_service(req->payload(), res);
+            break;
+            
+        case rpc_server::ServiceType::REQ_DB_UPDATE:
+            Forward_to_db_update_service(req->payload(), res);
+            break;
+            
+        case rpc_server::ServiceType::REQ_DB_DELETE:
+            Forward_to_db_delete_service(req->payload(), res);
             break;
             
         default:

@@ -8,6 +8,7 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/gateway/server/gateway_server.cpp
     ${PROJECT_SOURCE_DIR}/src/gateway/server/gateway_forward_login.cpp
     ${PROJECT_SOURCE_DIR}/src/gateway/server/gateway_forward_file.cpp
+    ${PROJECT_SOURCE_DIR}/src/gateway/server/gateway_forward_db.cpp
     ${PROJECT_SOURCE_DIR}/src/gateway/server/skynet_client.cpp
     # 共享工具类
     ${PROJECT_SOURCE_DIR}/src/common/connection_pool.cpp
@@ -26,6 +27,8 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_login.grpc.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_file.pb.cc
     ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_file.grpc.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_db.pb.cc
+    ${PROJECT_SOURCE_DIR}/protobuf/cpp/src/server_db.grpc.pb.cc
 )
 
 # 指定编译生成的可执行文件信息：文件名${MODULE_NAME} ，${SOURCES} 项目所有源文件路径

@@ -63,11 +63,23 @@ M.MSG = {
     PLAYER_ACTION = 3,
     GET_PLAYER_STATUS = 4,
     
+    -- 数据库请求 (20-29)，与 C++ common.proto ServiceType 对应
+    DB_CREATE = 20,
+    DB_READ = 22,
+    DB_UPDATE = 24,
+    DB_DELETE = 26,
+    
     -- 响应消息 (101-199)
     ENTER_GAME_RES = 101,
     LEAVE_GAME_RES = 102,
     PLAYER_ACTION_RES = 103,
     GET_PLAYER_STATUS_RES = 104,
+    
+    -- 数据库响应 (21-27)
+    DB_CREATE_RES = 21,
+    DB_READ_RES = 23,
+    DB_UPDATE_RES = 25,
+    DB_DELETE_RES = 27,
     
     -- 推送消息 (200-299)
     PUSH_GAME_STATE = 200,
@@ -87,6 +99,16 @@ local MSG_TO_PROTO = {
     [2] = "skynet_proto.LeaveGameRequest",
     [3] = "skynet_proto.PlayerActionRequest",
     [4] = "skynet_proto.GetPlayerStatusRequest",
+    
+    -- 数据库消息
+    [20] = "skynet_proto.DBCreateRequest",
+    [22] = "skynet_proto.DBReadRequest",
+    [24] = "skynet_proto.DBUpdateRequest",
+    [26] = "skynet_proto.DBDeleteRequest",
+    [21] = "skynet_proto.DBCreateResponse",
+    [23] = "skynet_proto.DBReadResponse",
+    [25] = "skynet_proto.DBUpdateResponse",
+    [27] = "skynet_proto.DBDeleteResponse",
     
     [101] = "skynet_proto.EnterGameResponse",
     [102] = "skynet_proto.LeaveGameResponse",
@@ -213,6 +235,57 @@ local EMBEDDED_PROTO = [[
         bool success = 1;
         string message = 2;
         bytes battle_state = 3;
+    }
+    
+    // 数据库请求/响应
+    message DBCreateRequest {
+        string database = 1;
+        string table = 2;
+        map<string, string> data = 3;
+    }
+    
+    message DBCreateResponse {
+        bool success = 1;
+        string message = 2;
+    }
+    
+    message DBReadRequest {
+        string database = 1;
+        string table = 2;
+        map<string, string> query = 3;
+    }
+    
+    message DBReadResponse {
+        bool success = 1;
+        string message = 2;
+        repeated DBResult results = 3;
+    }
+    
+    message DBResult {
+        map<string, string> fields = 1;
+    }
+    
+    message DBUpdateRequest {
+        string database = 1;
+        string table = 2;
+        map<string, string> query = 3;
+        map<string, string> data = 4;
+    }
+    
+    message DBUpdateResponse {
+        bool success = 1;
+        string message = 2;
+    }
+    
+    message DBDeleteRequest {
+        string database = 1;
+        string table = 2;
+        map<string, string> query = 3;
+    }
+    
+    message DBDeleteResponse {
+        bool success = 1;
+        string message = 2;
     }
 ]]
 
