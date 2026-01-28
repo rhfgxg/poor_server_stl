@@ -9,7 +9,7 @@
 [:00000008] Skynet Logic Server Starting...
 [:00000008] ============================================
 [:00000008] 
-[1/3] Initializing RPC module...
+[1/2] Initializing RPC module...
 [:00000008] [RPC] Initializing...
 [:00000008] [RPC] pb module not available: version mismatch: app. needs 503.0, Lua core provides 504.0
 [:00000008] [RPC] protoc module not available: ./lualib/skynet/require.lua:36: module 'protoc' not found:
@@ -23,11 +23,77 @@
 [:00000008] [RPC] Initialized successfully
 [:00000008] [RPC] Initialized, method: simple
 [:00000008] 
-[2/3] Initializing Redis module...
+[2/2] Initializing Redis module...
 [:00000008] [Redis] Initializing...
 [:00000008] [Redis] Target: 127.0.0.1:6379
 [:00000008] [Redis] Connected via skynet.db.redis
 [:00000008] [Redis] Initialized, mode: Redis
 [:00000008] 
-[3/3] Initializing Database module...
+[:00000009] LAUNCH snlua gateway/cpp_gateway
+[:00000009] [RPC] Initializing...
+[:00000009] [RPC] pb module not available: version mismatch: app. needs 503.0, Lua core provides 504.0
+[:00000009] [RPC] protoc module not available: ./lualib/skynet/require.lua:36: module 'protoc' not found:
+	no field package.preload['protoc']
+	no file '../../skynet_src/lualib/protoc.lua'
+	no file './lualib/protoc.lua'
+	no file './lualib/protoc/init.lua'
+	no file './luaclib/protoc.so'
+[:00000009] [RPC] Using simple text serialization (fallback)
+[:00000009] [RPC] WARNING: For production, please install lua-protobuf
+[:00000009] [RPC] Initialized successfully
+[:00000009] [Gateway] RPC initialized: simple
+[:00000009] [Gateway] Listening on 0.0.0.0:8888
+[:00000009] [Gateway] Service started (bidirectional)
+[:00000008] [Service] C++ Gateway (bidirectional) started: :00000009
+[:00000008] 
+[DB] Initializing Database module...
 [:00000008] [DB] Initializing...
+[:00000008] [DB] Connected to gateway/cpp_gateway
+[:00000008] [DB] Initialized, gateway: Connected
+[:0000000a] LAUNCH snlua player/player_manager
+[:0000000a] Player Manager started
+[:00000008] [Service] Player Manager started: :0000000a
+[:0000000b] LAUNCH snlua logic/achievement_service
+[:0000000b] [Achievement] Loaded 3 achievement records
+[:0000000b] [Achievement] Service started
+[:00000008] [Service] Achievement Service started: :0000000b
+[:0000000c] LAUNCH snlua logic/hearthstone_manager
+[:0000000c] Hearthstone Manager started
+[:00000008] [Service] Hearthstone Manager started: :0000000c
+[:00000008] ============================================
+[:00000008] Skynet Logic Server Started Successfully
+[:00000008] All services online and ready
+[:00000008] ============================================
+[:00000008] KILL self
+[:00000002] KILL self
+[:00000009] [Gateway] Active connection created: fd=3
+[:00000009] [Gateway] Active connection created: fd=4
+[:00000009] [Gateway] Active connection created: fd=5
+[:00000009] [Gateway] Active pool initialized: 3 connections
+[:00000009] [Gateway] Active connection lost: 5
+[:00000009] lua call [0 to :9 : 0 msgsz = 24] error : [31m./lualib/skynet.lua:988: ./lualib/skynet.lua:452: ../../skynet_src/service/gateway/cpp_gateway.lua:412: attempt to perform arithmetic on a nil value (field 'reconnect_interval')
+stack traceback:
+	../../skynet_src/service/gateway/cpp_gateway.lua:412: in upvalue 'active_receive_loop'
+	../../skynet_src/service/gateway/cpp_gateway.lua:483: in upvalue 'f'
+	./lualib/skynet.lua:402: in function <./lualib/skynet.lua:374>
+stack traceback:
+	[C]: in function 'assert'
+	./lualib/skynet.lua:988: in function 'skynet.dispatch_message'[0m
+[:00000009] [Gateway] Active connection lost: 4
+[:00000009] lua call [0 to :9 : 0 msgsz = 24] error : [31m./lualib/skynet.lua:988: ./lualib/skynet.lua:452: ../../skynet_src/service/gateway/cpp_gateway.lua:412: attempt to perform arithmetic on a nil value (field 'reconnect_interval')
+stack traceback:
+	../../skynet_src/service/gateway/cpp_gateway.lua:412: in upvalue 'active_receive_loop'
+	../../skynet_src/service/gateway/cpp_gateway.lua:483: in upvalue 'f'
+	./lualib/skynet.lua:402: in function <./lualib/skynet.lua:374>
+stack traceback:
+	[C]: in function 'assert'
+	./lualib/skynet.lua:988: in function 'skynet.dispatch_message'[0m
+[:00000009] [Gateway] Active connection lost: 3
+[:00000009] lua call [0 to :9 : 0 msgsz = 24] error : [31m./lualib/skynet.lua:988: ./lualib/skynet.lua:452: ../../skynet_src/service/gateway/cpp_gateway.lua:412: attempt to perform arithmetic on a nil value (field 'reconnect_interval')
+stack traceback:
+	../../skynet_src/service/gateway/cpp_gateway.lua:412: in upvalue 'active_receive_loop'
+	../../skynet_src/service/gateway/cpp_gateway.lua:483: in upvalue 'f'
+	./lualib/skynet.lua:402: in function <./lualib/skynet.lua:374>
+stack traceback:
+	[C]: in function 'assert'
+	./lualib/skynet.lua:988: in function 'skynet.dispatch_message'[0m

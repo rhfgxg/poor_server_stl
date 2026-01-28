@@ -45,6 +45,8 @@ local gateway_service = nil
 
 local function get_gateway()
     if not gateway_service then
+        -- 使用 pcall + queryservice，如果 gateway 还没启动会返回 nil
+        -- 注意：queryservice 会等待服务启动完成，因此必须在 gateway 启动后调用
         local ok, gw = pcall(skynet.queryservice, "gateway/cpp_gateway")
         if ok and gw then
             gateway_service = gw
@@ -56,6 +58,7 @@ end
 -- ==================== 初始化 ====================
 
 --- 初始化数据库模块
+--- 注意：必须在 cpp_gateway 服务启动后调用
 --- @return boolean 是否成功
 function M.init()
     if initialized then
@@ -70,7 +73,9 @@ function M.init()
         initialized = true
         return true
     else
-        skynet.error("[DB] ERROR: gateway/cpp_gateway not available")
+        -- 如果 gateway 不可用，不阻塞，返回 false
+        skynet.error("[DB] WARNING: gateway/cpp_gateway not available yet")
+        skynet.error("[DB] DB operations will try to connect on first use")
         return false
     end
 end
