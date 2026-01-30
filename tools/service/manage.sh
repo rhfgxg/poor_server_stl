@@ -23,23 +23,24 @@ show_help() {
   restart                  - 重启所有服务
   status                   - 查看服务状态
 
+日志命令:
+  logs all [N]             - 查看所有日志最后 N 行
+  logs f <服务>            - 实时追踪日志（gateway/skynet/...）
+  logs fa                  - 实时追踪所有日志
+  logs errors              - 查看错误日志
+  logs search <关键词>     - 搜索日志
+
 分步命令:
   proto                    - 生成 Protobuf 代码
   config                   - 复制配置文件
   build [Release|Debug]    - 编译项目（Skynet + C++）
-  
-独立脚本:
-  generate_proto.sh        - Proto 代码生成
-  copy_config.sh           - 配置文件复制
-  build.sh                 - 项目编译
-  service.sh               - 服务管理
 
 示例:
   bash $0 compile          # 完整编译（Release 模式）
-  bash $0 compile Debug    # 完整编译（Debug 模式）
-  bash $0 proto            # 只生成 proto
   bash $0 start            # 启动所有服务
   bash $0 status           # 查看状态
+  bash $0 logs f gateway   # 实时追踪 gateway 日志
+  bash $0 logs errors      # 查看错误日志
 
 EOF
 }
@@ -84,25 +85,34 @@ case "${1:-help}" in
         ;;
     
     stop)
-        bash "$SCRIPT_DIR/service.sh" stop
-        ;;
+            bash "$SCRIPT_DIR/service.sh" stop
+            ;;
     
-    restart)
-        bash "$SCRIPT_DIR/service.sh" restart
-        ;;
+        restart)
+            bash "$SCRIPT_DIR/service.sh" restart
+            ;;
     
-    status)
-        bash "$SCRIPT_DIR/service.sh" status
-        ;;
+        status)
+            bash "$SCRIPT_DIR/service.sh" status
+            ;;
     
-    help|--help|-h)
-        show_help
-        ;;
+        # 日志命令
+        logs)
+            bash "$SCRIPT_DIR/../logs.sh" "${@:2}"
+            ;;
     
-    *)
-        print_error "未知命令: $1"
-        echo ""
-        show_help
-        exit 1
-        ;;
-esac
+        log)
+            bash "$SCRIPT_DIR/../logs.sh" "${@:2}"
+            ;;
+    
+        help|--help|-h)
+            show_help
+            ;;
+    
+        *)
+            print_error "未知命令: $1"
+            echo ""
+            show_help
+            exit 1
+            ;;
+    esac
