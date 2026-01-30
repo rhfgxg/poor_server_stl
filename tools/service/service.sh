@@ -2,7 +2,7 @@
 # 服务管理脚本
 # 启动、停止、重启、查看状态
 
-set -e
+# 注意：不使用 set -e，因为某些服务可能不存在或启动失败不应阻止其他服务
 
 # 加载公共函数
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -13,28 +13,42 @@ source "$SCRIPT_DIR/common.sh"
 start_database() {
     print_info "启动数据库服务..."
     
-    # Redis
-    if ! redis-cli ping &>/dev/null; then
-        print_info "启动 Redis..."
-        sudo service redis-server start
-        sleep 1
-        if redis-cli ping &>/dev/null; then
-            print_success "Redis 启动成功"
+    # Redis（可选，如果未安装则跳过）
+    if command_exists redis-cli; then
+        # 使用 timeout 防止卡住
+        if ! timeout 2 redis-cli ping &>/dev/null 2>&1; then
+            print_info "启动 Redis..."
+            # 尝试不同的启动方式
+            if command_exists systemctl; then
+                sudo systemctl start redis-server 2>/dev/null || sudo systemctl start redis 2>/dev/null || true
+            else
+                sudo service redis-server start 2>/dev/null || sudo service redis start 2>/dev/null || true
+            fi
+            sleep 1
+            if timeout 2 redis-cli ping &>/dev/null 2>&1; then
+                print_success "Redis 启动成功"
+            else
+                print_warning "Redis 启动失败或连接超时（继续执行）"
+            fi
         else
-            print_error "Redis 启动失败"
-            return 1
+            print_success "Redis 已在运行"
         fi
     else
-        print_success "Redis 已在运行"
+        print_warning "Redis 未安装，跳过"
     fi
+    
+    return 0
 }
 
 stop_database() {
     print_info "停止数据库服务..."
     
-    if sudo service redis-server stop 2>/dev/null; then
-        print_success "Redis 已停止"
+    if command_exists systemctl; then
+        sudo systemctl stop redis-server 2>/dev/null || sudo systemctl stop redis 2>/dev/null || true
+    else
+        sudo service redis-server stop 2>/dev/null || sudo service redis stop 2>/dev/null || true
     fi
+    print_success "Redis 停止命令已发送"
 }
 
 #==================== Skynet 服务 ====================#
@@ -154,7 +168,8 @@ show_status() {
     
     echo "数据库:"
     echo -n "  Redis DB:      "
-    if redis-cli ping &>/dev/null; then
+    # 使用 timeout 防止卡住
+    if timeout 2 redis-cli ping &>/dev/null 2>&1; then
         echo -e "${GREEN}运行中${NC}"
     else
         echo -e "${RED}未运行${NC}"
@@ -195,13 +210,13 @@ show_status() {
 case "${1:-help}" in
     start)
         print_header "启动所有服务"
-        start_database || exit 1
+        start_database
         sleep 1
-        start_skynet || exit 1
+        start_skynet || print_warning "Skynet 启动失败，继续启动其他服务..."
         sleep 2
-        start_cpp_servers || exit 1
+        start_cpp_servers
         print_header "启动完成"
-        print_success "所有服务已启动！"
+        show_status
         ;;
     stop)
         print_header "停止所有服务"
@@ -211,18 +226,19 @@ case "${1:-help}" in
         print_success "所有服务已停止"
         ;;
     restart)
-        print_header "重启所有服务"
-        stop_cpp_servers
-        stop_skynet
-        stop_database
-        sleep 2
-        start_database || exit 1
-        sleep 1
-        start_skynet || exit 1
-        sleep 2
-        start_cpp_servers || exit 1
-        print_success "所有服务已重启"
-        ;;
+    print_header "重启所有服务"
+    stop_cpp_servers
+    stop_skynet
+    stop_database
+    sleep 2
+    start_database
+    sleep 1
+    start_skynet || print_warning "Skynet 启动失败，继续启动其他服务..."
+    sleep 2
+    start_cpp_servers
+    print_header "重启完成"
+    show_status
+    ;;
     status)
         show_status
         ;;
