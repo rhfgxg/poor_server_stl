@@ -48,12 +48,26 @@ enum ServiceType
     RES_FILE_LIST = 19;    // 获取文件列表响应
     
     // 数据库服务（Skynet 通过 Gateway 转发）
-    REQ_DB_CREATE = 20;    // 数据库创建请求
-    RES_DB_CREATE = 21;    // 数据库创建响应
-    REQ_DB_READ = 22;      // 数据库读取请求
-    RES_DB_READ = 23;      // 数据库读取响应
+    REQ_DB_CREATE = 20;    // 数据库添加请求
+    RES_DB_CREATE = 21;    // 数据库添加响应
+    REQ_DB_READ = 22;      // 数据库查询请求
+    RES_DB_READ = 23;      // 数据库查询响应
     REQ_DB_UPDATE = 24;    // 数据库更新请求
     RES_DB_UPDATE = 25;    // 数据库更新响应
     REQ_DB_DELETE = 26;    // 数据库删除请求
     RES_DB_DELETE = 27;    // 数据库删除响应
+    
+    // Skynet 测试服务
+    REQ_ECHO = 50;          // Echo 测试请求
+    RES_ECHO = 51;          // Echo 测试响应
+    
+    // Skynet 游戏服务（客户端通过 Gateway 转发）
+    REQ_ENTER_GAME = 100;       // 进入游戏请求
+    RES_ENTER_GAME = 101;       // 进入游戏响应
+    REQ_LEAVE_GAME = 102;       // 离开游戏请求
+    RES_LEAVE_GAME = 103;       // 离开游戏响应
+    REQ_PLAYER_ACTION = 104;    // 玩家操作请求
+    RES_PLAYER_ACTION = 105;    // 玩家操作响应
+    REQ_GET_PLAYER_STATUS = 106; // 获取玩家状态请求
+    RES_GET_PLAYER_STATUS = 107; // 获取玩家状态响应
 }

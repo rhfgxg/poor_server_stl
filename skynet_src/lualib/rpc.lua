@@ -69,6 +69,10 @@ M.MSG = {
     DB_UPDATE = 24,
     DB_DELETE = 26,
     
+    -- 测试消息
+    ECHO = 50,
+    ECHO_RES = 51,
+    
     -- 响应消息 (101-199)
     ENTER_GAME_RES = 101,
     LEAVE_GAME_RES = 102,
@@ -109,6 +113,10 @@ local MSG_TO_PROTO = {
     [23] = "skynet_proto.DBReadResponse",
     [25] = "skynet_proto.DBUpdateResponse",
     [27] = "skynet_proto.DBDeleteResponse",
+    
+    -- 测试消息（Echo 直接使用字符串，不需要 Proto）
+    [50] = nil,  -- ECHO - 原始字符串
+    [51] = nil,  -- ECHO_RES - 原始字符串
     
     [101] = "skynet_proto.EnterGameResponse",
     [102] = "skynet_proto.LeaveGameResponse",

@@ -9,6 +9,7 @@
 #include <grpcpp/grpcpp.h>
 #include <memory>
 #include <functional>
+#include <chrono>
 
 namespace gateway {
 
@@ -33,23 +34,52 @@ grpc::Status forward_request(
     const std::string& operation_name,
     std::shared_ptr<spdlog::logger> logger)
 {
-    ReqType request;
-    ResType response;
+ReqType request;
+ResType response;
     
-    // 1. 反序列化请求
-    if (!request.ParseFromString(payload))
-    {
-        return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, 
-                          "Failed to parse " + operation_name + "Req");
-    }
+logger->info("Forward starting: {}", operation_name);
     
-    // 2. 获取连接
-    auto channel = connection_pool.get_connection(server_type);
-    auto stub = StubType::NewStub(channel);
+// 1. 反序列化请求
+if (!request.ParseFromString(payload))
+{
+    logger->error("Forward REQ failed: {} - Failed to parse request", operation_name);
+    return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, 
+                      "Failed to parse " + operation_name + "Req");
+}
     
-    // 3. 调用 RPC
-    grpc::ClientContext context;
-    grpc::Status status = rpc_call(stub.get(), &context, request, &response);
+logger->info("Forward {}: request parsed, getting connection...", operation_name);
+    
+// 2. 获取连接
+auto channel = connection_pool.get_connection(server_type);
+if (!channel)
+{
+    logger->error("Forward REQ failed: {} - No available connection in pool (server_type={})", 
+                  operation_name, static_cast<int>(server_type));
+    return grpc::Status(grpc::StatusCode::UNAVAILABLE, 
+                      "No available connection for " + operation_name);
+}
+
+// 检查 channel 状态
+auto state = channel->GetState(false);
+logger->info("Forward {}: connection acquired, channel state={}", 
+             operation_name, static_cast<int>(state));
+    
+auto stub = StubType::NewStub(channel);
+    
+// 3. 调用 RPC（添加超时）
+grpc::ClientContext context;
+auto deadline = std::chrono::system_clock::now() + std::chrono::seconds(10);
+context.set_deadline(deadline);
+
+grpc::Status status = rpc_call(stub.get(), &context, request, &response);
+    
+logger->info("Forward {}: RPC completed, status={}", operation_name, status.ok() ? "OK" : status.error_message());
+    
+if (!status.ok())
+{
+    logger->error("Forward REQ failed: {} - RPC error: {} ({})", 
+                  operation_name, status.error_message(), static_cast<int>(status.error_code()));
+}
     
     if (!status.ok())
     {

@@ -3,7 +3,7 @@
 #include "server_login.grpc.pb.h"
 
 // ==================== 登录服务转发 ====================
-
+// 用户注册
 grpc::Status GatewayServerImpl::Forward_to_register_service(const std::string& payload, rpc_server::ForwardRes* res)
 {
     return gateway::forward_request<rpc_server::RegisterReq, rpc_server::RegisterRes, rpc_server::LoginServer>(
@@ -19,6 +19,7 @@ grpc::Status GatewayServerImpl::Forward_to_register_service(const std::string& p
     );
 }
 
+// 用户登录
 grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payload, rpc_server::ForwardRes* res)
 {
     return gateway::forward_request<rpc_server::LoginReq, rpc_server::LoginRes, rpc_server::LoginServer>(
@@ -34,6 +35,7 @@ grpc::Status GatewayServerImpl::Forward_to_login_service(const std::string& payl
     );
 }
 
+// 用户登出
 grpc::Status GatewayServerImpl::Forward_to_logout_service(const std::string& payload, rpc_server::ForwardRes* res)
 {
     return gateway::forward_request<rpc_server::LogoutReq, rpc_server::LogoutRes, rpc_server::LoginServer>(
@@ -49,6 +51,7 @@ grpc::Status GatewayServerImpl::Forward_to_logout_service(const std::string& pay
     );
 }
 
+// 用户修改密码
 grpc::Status GatewayServerImpl::Forward_to_change_password_service(const std::string& payload, rpc_server::ForwardRes* res)
 {
     return gateway::forward_request<rpc_server::ChangePasswordReq, rpc_server::ChangePasswordRes, rpc_server::LoginServer>(

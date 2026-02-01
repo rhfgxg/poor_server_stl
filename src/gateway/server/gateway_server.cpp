@@ -17,6 +17,13 @@ GatewayServerImpl::~GatewayServerImpl()
         update_pool_thread_.join();
     }
     
+    // 停止 Skynet TCP 管理器
+    if (skynet_tcp_manager_)
+    {
+        skynet_tcp_manager_->stop_server();
+        skynet_tcp_manager_->disconnect();
+    }
+    
     log_shutdown("GatewayServer stopped");
 }
 
@@ -40,8 +47,12 @@ void GatewayServerImpl::on_stop()
 {
     log_shutdown("GatewayServer shutting down...");
     
-    // 停止内部 TCP 服务器
-    stop_internal_tcp_server();
+    // 停止 Skynet TCP 管理器
+    if (skynet_tcp_manager_)
+    {
+        skynet_tcp_manager_->stop_server();
+        skynet_tcp_manager_->disconnect();
+    }
     
     pool_update_running_.store(false);
     if (update_pool_thread_.joinable())
@@ -58,17 +69,28 @@ void GatewayServerImpl::on_registered(bool success)
     {
         Init_connection_pool();
         
-        // 更新 Skynet IP 白名单
-        update_skynet_whitelist();
+        // 初始化 Skynet TCP 管理器（统一服务器和客户端功能）
+        skynet_tcp_manager_ = std::make_unique<SkynetTcpManager>(logger_manager_, central_connection_pool_.get());
         
-        // 启动内部 TCP 服务器（给 Skynet 用，支持 DB 转发）
-        start_internal_tcp_server(8889);
+        // 设置服务器模式回调（接收 Skynet 请求）
+        skynet_tcp_manager_->set_request_handler([this](uint16_t msg_type, const std::string& payload) {
+            return Handle_skynet_request(msg_type, payload);
+        });
+        
+        // 设置推送消息回调（接收 Skynet 主动推送）
+        skynet_tcp_manager_->set_push_callback([this](const SkynetTcpMessage& msg) {
+            Handle_skynet_push(msg);
+        });
+        
+        // 更新白名单并启动服务器模式
+        skynet_tcp_manager_->update_whitelist();
+        skynet_tcp_manager_->start_server(8889);
         
         pool_update_running_.store(true);
         update_pool_thread_ = std::thread(&GatewayServerImpl::Update_connection_pool, this);
         
         log_startup("Gateway connection pools initialized and update thread started");
-        log_startup("Internal TCP server started on port 8889 for Skynet");
+        log_startup("Skynet TCP manager started on port 8889");
     }
     else
     {
@@ -112,6 +134,8 @@ void GatewayServerImpl::Init_connection_pool()
                             conn_info.address(),
                             std::to_string(conn_info.port())
                         );
+                        get_logger(poor::LogCategory::CONNECTION_POOL)->info("Added LOGIN server: {}:{}", 
+                            conn_info.address(), conn_info.port());
                         break;
                         
                     case rpc_server::ServerType::FILE:
@@ -120,6 +144,8 @@ void GatewayServerImpl::Init_connection_pool()
                             conn_info.address(),
                             std::to_string(conn_info.port())
                         );
+                        get_logger(poor::LogCategory::CONNECTION_POOL)->info("Added FILE server: {}:{}", 
+                            conn_info.address(), conn_info.port());
                         break;
                         
                     case rpc_server::ServerType::GATEWAY:
@@ -128,6 +154,8 @@ void GatewayServerImpl::Init_connection_pool()
                             conn_info.address(),
                             std::to_string(conn_info.port())
                         );
+                        get_logger(poor::LogCategory::CONNECTION_POOL)->info("Added GATEWAY server: {}:{}", 
+                            conn_info.address(), conn_info.port());
                         break;
                     
                     case rpc_server::ServerType::DB:
@@ -136,6 +164,8 @@ void GatewayServerImpl::Init_connection_pool()
                             conn_info.address(),
                             std::to_string(conn_info.port())
                         );
+                        get_logger(poor::LogCategory::CONNECTION_POOL)->info("Added DB server: {}:{}", 
+                            conn_info.address(), conn_info.port());
                         break;
                         
                     default:
@@ -168,13 +198,16 @@ void GatewayServerImpl::Update_connection_pool()
             Init_connection_pool();
             
             // 同时更新 Skynet IP 白名单
-            update_skynet_whitelist();
+            if (skynet_tcp_manager_)
+            {
+                skynet_tcp_manager_->update_whitelist();
         }
     }
 }
+}
 
 // ==================== gRPC 服务接口 ====================
-
+// 客户端注册
 grpc::Status GatewayServerImpl::Client_register(grpc::ServerContext* context [[maybe_unused]], const rpc_server::ClientRegisterReq* req, rpc_server::ClientRegisterRes* res)
 {
     auto task_future = submit_task([this, req, res]() {
@@ -197,19 +230,31 @@ grpc::Status GatewayServerImpl::Client_register(grpc::ServerContext* context [[m
         
         get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Client successfully registered: {}", client_address);
         
+            // Redis 操作添加异常处理
+            try
+            {
         auto client = redis_client.get_client();
         client->set(client_address + "_status", "online");
         client->expire(client_address + "_status", 1800);
         client->set(client_address + "_token", client_token);
         client->expire(client_address + "_token", 1800);
+            }
+            catch (const std::exception& redis_err)
+            {
+                get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->error("Redis operation failed: {}", redis_err.what());
+                // Redis 失败不影响注册结果
+            }
     });
     
     task_future.get();
     return grpc::Status::OK;
 }
 
+// 请求转发
 grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context [[maybe_unused]], const rpc_server::ForwardReq* req, rpc_server::ForwardRes* res)
 {
+    get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Request_forward received, service_type={}", static_cast<int>(req->service_type()));
+    
     auto task_future = submit_task([this, req, res]() {
         switch (req->service_type())
         {
@@ -218,6 +263,7 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context [[m
             break;
             
         case rpc_server::ServiceType::REQ_LOGIN:
+            get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->info("Forwarding login request...");
             Forward_to_login_service(req->payload(), res);
             break;
             
@@ -241,6 +287,29 @@ grpc::Status GatewayServerImpl::Request_forward(grpc::ServerContext* context [[m
             Forward_to_file_list_service(req->payload(), res);
             break;
         
+        // Skynet 游戏服务转发
+        case rpc_server::ServiceType::REQ_ENTER_GAME:
+            Forward_to_enter_game_service(req->payload(), res);
+            break;
+            
+        case rpc_server::ServiceType::REQ_LEAVE_GAME:
+            Forward_to_leave_game_service(req->payload(), res);
+                break;
+            
+            // Skynet 玩家服务转发
+            case rpc_server::ServiceType::REQ_PLAYER_ACTION:
+                Forward_to_player_action_service(req->payload(), res);
+                break;
+            
+            case rpc_server::ServiceType::REQ_GET_PLAYER_STATUS:
+                Forward_to_player_status_service(req->payload(), res);
+                break;
+            
+            // Skynet 测试服务
+            case rpc_server::ServiceType::REQ_ECHO:
+                Forward_to_echo_service(req->payload(), res);
+                break;
+        
         // 注意：DB 转发 (REQ_DB_CREATE/READ/UPDATE/DELETE) 不开放给外部客户端
         // 只能由内部服务（Skynet）通过内部 TCP 端口调用
         // 参见 gateway_forward_db.cpp 中的 Internal_forward_* 函数
@@ -261,6 +330,7 @@ grpc::Status GatewayServerImpl::Client_heartbeat(grpc::ServerContext* context [[
     return grpc::Status::OK;
 }
 
+// 获取网关服务器连接池
 grpc::Status GatewayServerImpl::Get_gateway_pool(grpc::ServerContext* context [[maybe_unused]], const rpc_server::GetGatewayPoolReq* req, rpc_server::GetGatewayPoolRes* res)
 {
     auto task_future = submit_task([this, req, res]() {
@@ -272,7 +342,7 @@ grpc::Status GatewayServerImpl::Get_gateway_pool(grpc::ServerContext* context [[
 }
 
 // ==================== 请求转发处理函数 ====================
-
+// 获取网关服务器连接池信息
 grpc::Status GatewayServerImpl::Handle_return_gateway_poor(const rpc_server::GetGatewayPoolReq* req [[maybe_unused]], rpc_server::GetGatewayPoolRes* res)
 {
     auto connections = gateway_connection_pool.get_all_connections();

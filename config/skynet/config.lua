@@ -29,6 +29,8 @@ lualoader = "./lualib/loader.lua"
 
 -- Lua 库路径（相对于 Skynet 运行目录）
 lua_path = root.."skynet_src/lualib/?.lua;"..
+           root.."config/cpp/cfg_server/?.lua;"..
+           root.."config/skynet/?.lua;"..
            "./lualib/?.lua;"..
            "./lualib/?/init.lua"
 
@@ -49,5 +51,9 @@ snax = root.."skynet_src/service/?.lua;"..
 cpp_gateway_host = "0.0.0.0"
 cpp_gateway_port = 8888
 
--- 注意：数据库和 Redis 配置应该在业务服务中配置，而不是在 Skynet 主配置中
--- 可以在 skynet_src/lualib/ 中创建配置文件，然后在服务中 require
+-- 配置文件路径（供 Lua 服务使用）
+config_path = root.."config/"
+cpp_config_path = root.."config/cpp/cfg_server/"
+
+-- 注意：数据库和 Redis 配置应该在业务服务中配置
+-- 可以通过 require "cfg_db" 或 require "cfg_redis" 加载配置

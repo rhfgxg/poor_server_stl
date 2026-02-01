@@ -7,38 +7,15 @@
 #include "server_file.grpc.pb.h"
 #include "server_db.grpc.pb.h"
 #include "redis_client.h"
+#include "skynet_tcp_manager.h"     // Skynet TCP 管理器（统一双向通信）
 
 #include <memory>
 #include <atomic>
-#include <set>
 #include <mutex>
 #include <thread>
 
-// 平台相关的 socket 头文件
-#ifdef _WIN32
-    #include <WinSock2.h>
-    #include <WS2tcpip.h>
-    #pragma comment(lib, "ws2_32.lib")
-#else
-    #include <sys/socket.h>
-    #include <netinet/in.h>
-    #include <arpa/inet.h>
-    #include <unistd.h>
-#endif
-
 /**
- * @brief 网关服务器实现类（重构版本）
- * 
- * 继承自 BaseServer，自动获得：
- * - 线程池管理（ThreadManager）
- * - 服务器注册/注销
- * - 心跳发送
- * - 日志管理
- * 
- * 只需实现业务逻辑：
- * - 客户端注册和心跳
- * - 请求转发到其他服务器
- * - 连接池管理
+ * @brief 网关服务器实现类
  */
 class GatewayServerImpl final : public BaseServer, public rpc_server::GatewayServer::Service
 {
@@ -47,10 +24,10 @@ public:
     ~GatewayServerImpl() override;
 
     // gRPC 对外接口
-    grpc::Status Client_register(grpc::ServerContext* context, const rpc_server::ClientRegisterReq* req, rpc_server::ClientRegisterRes* res) override;
-    grpc::Status Client_heartbeat(grpc::ServerContext* context, const rpc_server::ClientHeartbeatReq* req, rpc_server::ClientHeartbeatRes* res) override;
-    grpc::Status Get_gateway_pool(grpc::ServerContext* context, const rpc_server::GetGatewayPoolReq* req, rpc_server::GetGatewayPoolRes* res) override;
-    grpc::Status Request_forward(grpc::ServerContext* context, const rpc_server::ForwardReq* req, rpc_server::ForwardRes* res) override;
+    grpc::Status Client_register(grpc::ServerContext* context, const rpc_server::ClientRegisterReq* req, rpc_server::ClientRegisterRes* res) override;  // 客户端注册
+    grpc::Status Client_heartbeat(grpc::ServerContext* context, const rpc_server::ClientHeartbeatReq* req, rpc_server::ClientHeartbeatRes* res) override;   // 接收客户端心跳包
+    grpc::Status Get_gateway_pool(grpc::ServerContext* context, const rpc_server::GetGatewayPoolReq* req, rpc_server::GetGatewayPoolRes* res) override; // 获取网关服务器连接池
+    grpc::Status Request_forward(grpc::ServerContext* context, const rpc_server::ForwardReq* req, rpc_server::ForwardRes* res) override;    // 转发请求
 
 protected:
     // BaseServer 钩子方法
@@ -82,42 +59,41 @@ private:
     grpc::Status Forward_to_db_update_service(const std::string& payload, rpc_server::ForwardRes* res);
     grpc::Status Forward_to_db_delete_service(const std::string& payload, rpc_server::ForwardRes* res);
     
+    // Skynet 游戏服务转发（客户端 -> Skynet）
+    grpc::Status Forward_to_enter_game_service(const std::string& payload, rpc_server::ForwardRes* res);
+    grpc::Status Forward_to_leave_game_service(const std::string& payload, rpc_server::ForwardRes* res);
+    
+    // Skynet 玩家服务转发（客户端 -> Skynet）
+    grpc::Status Forward_to_player_action_service(const std::string& payload, rpc_server::ForwardRes* res);
+    grpc::Status Forward_to_player_status_service(const std::string& payload, rpc_server::ForwardRes* res);
+    
+    // Skynet 测试服务转发
+    grpc::Status Forward_to_echo_service(const std::string& payload, rpc_server::ForwardRes* res);
+    
     // 定时任务
     void Update_connection_pool();
     
-    // ==================== 内部 TCP 服务器（给 Skynet 用）====================
-    void start_internal_tcp_server(int port = 8889);
-    void stop_internal_tcp_server();
-    void internal_tcp_server_thread();
-    void handle_internal_client(int client_socket, const std::string& client_ip);
-    std::string process_internal_request(const std::string& request_data);
+    // Skynet 请求处理（由 SkynetTcpManager 回调，Skynet -> Gateway）
+    std::string Handle_skynet_request(uint16_t msg_type, const std::string& payload);
     
-    // Skynet IP 白名单管理
-    void update_skynet_whitelist();
-    bool is_skynet_ip(const std::string& ip);
+        // Skynet 推送消息处理
+        void Handle_skynet_push(const SkynetTcpMessage& msg);
 
-private:
-    RedisClient redis_client;
+    private:
+        RedisClient redis_client;
     
-    // 各服务器连接池
-    ConnectionPool login_connection_pool;
-    ConnectionPool file_connection_pool;
-    ConnectionPool gateway_connection_pool;
-    ConnectionPool db_connection_pool;
+        // 各服务器连接池
+            ConnectionPool login_connection_pool;
+            ConnectionPool file_connection_pool;
+            ConnectionPool gateway_connection_pool;
+            ConnectionPool db_connection_pool;
     
-    // 定时更新连接池的线程
-    std::thread update_pool_thread_;
-    std::atomic<bool> pool_update_running_{false};
+            // 定时更新连接池的线程
+            std::thread update_pool_thread_;
+            std::atomic<bool> pool_update_running_{false};
     
-    // 内部 TCP 服务器（Skynet 专用）
-    std::atomic<bool> internal_tcp_running_{false};
-    std::thread internal_tcp_thread_;
-    int internal_tcp_fd_{-1};
-    int internal_tcp_port_{8889};
-    
-    // Skynet IP 白名单
-    std::set<std::string> skynet_ip_whitelist_;
-    std::mutex whitelist_mutex_;
-};
+            // Skynet TCP 管理器（统一服务器和客户端功能）
+            std::unique_ptr<SkynetTcpManager> skynet_tcp_manager_;
+        };
 
-#endif // GATEWAY_SERVER_H
+        #endif // GATEWAY_SERVER_H
