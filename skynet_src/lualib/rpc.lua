@@ -53,58 +53,122 @@ end
 
 -- ==================== 消息类型定义 ====================
 
--- 消息类型枚举（与 C++ skynet_messages.proto 保持一致）
+-- 消息类型枚举（与 Skynet proto 文件保持一致）
 M.MSG = {
     UNKNOWN = 0,
     
+    -- ============ 会话消息 (Session) ============
     -- 请求消息 (1-99)
     ENTER_GAME = 1,
     LEAVE_GAME = 2,
     PLAYER_ACTION = 3,
     GET_PLAYER_STATUS = 4,
-    
-    -- 数据库请求 (20-29)，与 C++ common.proto ServiceType 对应
-    DB_CREATE = 20,
-    DB_READ = 22,
-    DB_UPDATE = 24,
-    DB_DELETE = 26,
-    
-    -- 测试消息
-    ECHO = 50,
-    ECHO_RES = 51,
+    HEARTBEAT = 5,
     
     -- 响应消息 (101-199)
     ENTER_GAME_RES = 101,
     LEAVE_GAME_RES = 102,
     PLAYER_ACTION_RES = 103,
     GET_PLAYER_STATUS_RES = 104,
+    HEARTBEAT_RES = 105,
     
-    -- 数据库响应 (21-27)
+    -- 会话推送 (200-299)
+    PUSH_GAME_STATE = 200,
+    PUSH_NOTIFICATION = 201,
+    PUSH_ACHIEVEMENT = 202,
+    PUSH_KICK = 203,
+    
+    -- ============ 数据库消息 (DB) ============
+    -- 请求 (20-29)，与 C++ common.proto ServiceType 对应
+    DB_CREATE = 20,
+    DB_READ = 22,
+    DB_UPDATE = 24,
+    DB_DELETE = 26,
+    -- 响应 (21-27)
     DB_CREATE_RES = 21,
     DB_READ_RES = 23,
     DB_UPDATE_RES = 25,
     DB_DELETE_RES = 27,
     
-    -- 推送消息 (200-299)
-    PUSH_GAME_STATE = 200,
-    PUSH_NOTIFICATION = 201,
-    PUSH_ACHIEVEMENT = 202,
+    -- ============ 匹配消息 (Match) ============
+    -- 请求 (300-349)
+    START_MATCH = 300,
+    CANCEL_MATCH = 301,
+    GET_MATCH_STATUS = 302,
+    -- 响应 (400-449)
+    START_MATCH_RES = 400,
+    CANCEL_MATCH_RES = 401,
+    GET_MATCH_STATUS_RES = 402,
+    -- 推送 (450-499)
+    PUSH_MATCH_FOUND = 450,
+    PUSH_MATCH_PROGRESS = 451,
+    PUSH_MATCH_CANCELLED = 452,
     
-    -- 炉石传说 (300-399)
-    HEARTHSTONE_MATCH = 300,
-    HEARTHSTONE_BATTLE = 301,
-    HEARTHSTONE_DECK = 302,
-    HEARTHSTONE_COLLECTION = 303,
+    -- ============ 战斗消息 (Battle) ============
+    -- 请求 (500-549)
+    BATTLE_ACTION = 500,
+    GET_BATTLE_STATE = 501,
+    RECONNECT_BATTLE = 502,
+    -- 响应 (600-649)
+    BATTLE_ACTION_RES = 600,
+    GET_BATTLE_STATE_RES = 601,
+    RECONNECT_BATTLE_RES = 602,
+    -- 推送 (650-699)
+    PUSH_BATTLE_STATE_UPDATE = 650,
+    PUSH_TURN_START = 651,
+    PUSH_BATTLE_END = 652,
+    PUSH_OPPONENT_ACTION = 653,
+    
+    -- ============ 收藏消息 (Collection) ============
+    -- 请求 (700-749)
+    GET_COLLECTION = 700,
+    DISENCHANT_CARD = 701,
+    CRAFT_CARD = 702,
+    -- 响应 (800-849)
+    GET_COLLECTION_RES = 800,
+    DISENCHANT_CARD_RES = 801,
+    CRAFT_CARD_RES = 802,
+    
+    -- ============ 卡组消息 (Deck) ============
+    -- 请求 (750-799)
+    GET_DECKS = 750,
+    CREATE_DECK = 751,
+    UPDATE_DECK = 752,
+    DELETE_DECK = 753,
+    IMPORT_DECK = 754,
+    EXPORT_DECK = 755,
+    -- 响应 (850-899)
+    GET_DECKS_RES = 850,
+    CREATE_DECK_RES = 851,
+    UPDATE_DECK_RES = 852,
+    DELETE_DECK_RES = 853,
+    IMPORT_DECK_RES = 854,
+    EXPORT_DECK_RES = 855,
+    
+    -- ============ 测试消息 ============
+    ECHO = 50,
+    ECHO_RES = 51,
 }
 
 -- 消息类型到 Proto 名称映射
 local MSG_TO_PROTO = {
+    -- ============ 会话消息 ============
     [1] = "skynet_proto.EnterGameRequest",
     [2] = "skynet_proto.LeaveGameRequest",
     [3] = "skynet_proto.PlayerActionRequest",
     [4] = "skynet_proto.GetPlayerStatusRequest",
+    [5] = "skynet_proto.HeartbeatRequest",
+    [101] = "skynet_proto.EnterGameResponse",
+    [102] = "skynet_proto.LeaveGameResponse",
+    [103] = "skynet_proto.PlayerActionResponse",
+    [104] = "skynet_proto.GetPlayerStatusResponse",
+    [105] = "skynet_proto.HeartbeatResponse",
+    [200] = "skynet_proto.PushGameState",
+    [201] = "skynet_proto.PushNotification",
+    [202] = "skynet_proto.PushAchievement",
+    [203] = "skynet_proto.PushKick",
     
-    -- 数据库消息
+    -- ============ 数据库消息 ============
     [20] = "skynet_proto.DBCreateRequest",
     [22] = "skynet_proto.DBReadRequest",
     [24] = "skynet_proto.DBUpdateRequest",
@@ -114,188 +178,66 @@ local MSG_TO_PROTO = {
     [25] = "skynet_proto.DBUpdateResponse",
     [27] = "skynet_proto.DBDeleteResponse",
     
-    -- 测试消息（Echo 直接使用字符串，不需要 Proto）
+    -- ============ 匹配消息 ============
+    [300] = "skynet_proto.StartMatchRequest",
+    [301] = "skynet_proto.CancelMatchRequest",
+    [302] = "skynet_proto.GetMatchStatusRequest",
+    [400] = "skynet_proto.StartMatchResponse",
+    [401] = "skynet_proto.CancelMatchResponse",
+    [402] = "skynet_proto.GetMatchStatusResponse",
+    [450] = "skynet_proto.PushMatchFound",
+    [451] = "skynet_proto.PushMatchProgress",
+    [452] = "skynet_proto.PushMatchCancelled",
+    
+    -- ============ 战斗消息 ============
+    [500] = "skynet_proto.BattleActionRequest",
+    [501] = "skynet_proto.GetBattleStateRequest",
+    [502] = "skynet_proto.ReconnectBattleRequest",
+    [600] = "skynet_proto.BattleActionResponse",
+    [601] = "skynet_proto.GetBattleStateResponse",
+    [602] = "skynet_proto.ReconnectBattleResponse",
+    [650] = "skynet_proto.PushBattleStateUpdate",
+    [651] = "skynet_proto.PushTurnStart",
+    [652] = "skynet_proto.PushBattleEnd",
+    [653] = "skynet_proto.PushOpponentAction",
+    
+    -- ============ 收藏消息 ============
+    [700] = "skynet_proto.GetCollectionRequest",
+    [701] = "skynet_proto.DisenchantCardRequest",
+    [702] = "skynet_proto.CraftCardRequest",
+    [800] = "skynet_proto.GetCollectionResponse",
+    [801] = "skynet_proto.DisenchantCardResponse",
+    [802] = "skynet_proto.CraftCardResponse",
+    
+    -- ============ 卡组消息 ============
+    [750] = "skynet_proto.GetDecksRequest",
+    [751] = "skynet_proto.CreateDeckRequest",
+    [752] = "skynet_proto.UpdateDeckRequest",
+    [753] = "skynet_proto.DeleteDeckRequest",
+    [754] = "skynet_proto.ImportDeckRequest",
+    [755] = "skynet_proto.ExportDeckRequest",
+    [850] = "skynet_proto.GetDecksResponse",
+    [851] = "skynet_proto.CreateDeckResponse",
+    [852] = "skynet_proto.UpdateDeckResponse",
+    [853] = "skynet_proto.DeleteDeckResponse",
+    [854] = "skynet_proto.ImportDeckResponse",
+    [855] = "skynet_proto.ExportDeckResponse",
+    
+    -- ============ 测试消息 ============
     [50] = nil,  -- ECHO - 原始字符串
     [51] = nil,  -- ECHO_RES - 原始字符串
-    
-    [101] = "skynet_proto.EnterGameResponse",
-    [102] = "skynet_proto.LeaveGameResponse",
-    [103] = "skynet_proto.PlayerActionResponse",
-    [104] = "skynet_proto.GetPlayerStatusResponse",
-    
-    [200] = "skynet_proto.PushGameState",
-    [201] = "skynet_proto.PushNotification",
-    [202] = "skynet_proto.PushAchievement",
-    
-    [300] = "skynet_proto.HearthstoneMatchRequest",
-    [301] = "skynet_proto.HearthstoneBattleRequest",
 }
 
--- ==================== 内嵌 Proto 定义 ====================
-
-local EMBEDDED_PROTO = [[
-    syntax = "proto3";
-    package skynet_proto;
-    
-    message EnterGameRequest {
-        string player_id = 1;
-        string token = 2;
-        string client_version = 3;
-    }
-    
-    message EnterGameResponse {
-        bool success = 1;
-        string message = 2;
-        PlayerData player_data = 3;
-    }
-    
-    message LeaveGameRequest {
-        string player_id = 1;
-        string reason = 2;
-    }
-    
-    message LeaveGameResponse {
-        bool success = 1;
-        string message = 2;
-    }
-    
-    message PlayerActionRequest {
-        string player_id = 1;
-        string action_type = 2;
-        bytes action_data = 3;
-    }
-    
-    message PlayerActionResponse {
-        bool success = 1;
-        string message = 2;
-        bytes result_data = 3;
-        repeated Achievement unlocked_achievements = 4;
-    }
-    
-    message GetPlayerStatusRequest {
-        string player_id = 1;
-    }
-    
-    message GetPlayerStatusResponse {
-        bool success = 1;
-        PlayerData player_data = 2;
-    }
-    
-    message PlayerData {
-        string player_id = 1;
-        int32 level = 2;
-        int32 exp = 3;
-        int32 gold = 4;
-        repeated string owned_cards = 5;
-        AchievementData achievements = 6;
-        int64 last_login = 7;
-    }
-    
-    message AchievementData {
-        map<string, int32> progress = 1;
-        map<string, bool> completed = 2;
-    }
-    
-    message Achievement {
-        string id = 1;
-        string name = 2;
-        string description = 3;
-        int32 reward_gold = 4;
-    }
-    
-    message PushGameState {
-        string player_id = 1;
-        string state_type = 2;
-        bytes state_data = 3;
-    }
-    
-    message PushNotification {
-        string player_id = 1;
-        string notification_type = 2;
-        string title = 3;
-        string content = 4;
-    }
-    
-    message PushAchievement {
-        string player_id = 1;
-        Achievement achievement = 2;
-    }
-    
-    message HearthstoneMatchRequest {
-        string player_id = 1;
-        string deck_id = 2;
-    }
-    
-    message HearthstoneMatchResponse {
-        bool success = 1;
-        string message = 2;
-        string match_id = 3;
-    }
-    
-    message HearthstoneBattleRequest {
-        string player_id = 1;
-        string battle_id = 2;
-        string action = 3;
-        bytes action_params = 4;
-    }
-    
-    message HearthstoneBattleResponse {
-        bool success = 1;
-        string message = 2;
-        bytes battle_state = 3;
-    }
-    
-    // 数据库请求/响应 (与 C++ server_db.proto 保持一致)
-    message DBCreateRequest {
-        bytes database = 1;
-        bytes table = 2;
-        map<string, bytes> data = 3;
-    }
-    
-    message DBCreateResponse {
-        bool success = 1;
-        bytes message = 2;
-    }
-    
-    message DBReadRequest {
-        bytes database = 1;
-        bytes table = 2;
-        map<string, bytes> query = 3;
-    }
-    
-    message DBReadResponse {
-        bool success = 1;
-        bytes message = 2;
-        repeated DBResult results = 3;
-    }
-    
-    message DBResult {
-        map<string, bytes> fields = 1;
-    }
-    
-    message DBUpdateRequest {
-        bytes database = 1;
-        bytes table = 2;
-        map<string, bytes> query = 3;
-        map<string, bytes> data = 4;
-    }
-    
-    message DBUpdateResponse {
-        bool success = 1;
-        bytes message = 2;
-    }
-    
-    message DBDeleteRequest {
-        bytes database = 1;
-        bytes table = 2;
-        map<string, bytes> query = 3;
-    }
-    
-    message DBDeleteResponse {
-        bool success = 1;
-        bytes message = 2;
-    }
-]]
+-- Proto 文件路径配置
+local PROTO_DIR = "./protobuf/skynet/"
+local PROTO_FILES = {
+    "skynet_common.proto",
+    "skynet_db.proto",
+    "skynet_session.proto",
+    "skynet_match.proto",
+    "skynet_battle.proto",
+    "skynet_collection.proto",
+}
 
 -- ==================== 简单序列化（降级方案）====================
 
@@ -339,6 +281,49 @@ end
 
 local initialized = false
 
+--- 读取 Proto 文件内容
+local function read_proto_file(filepath)
+    local f = io.open(filepath, "r")
+    if not f then
+        return nil, "cannot open file: " .. filepath
+    end
+    local content = f:read("*a")
+    f:close()
+    return content
+end
+
+--- 加载所有 Proto 文件
+local function load_proto_files()
+    local p = protoc.new()
+    
+    -- 设置 proto 文件搜索路径（用于 import）
+    p:addpath(PROTO_DIR)
+    
+    -- 按顺序加载（common 需要先加载，因为其他文件会 import 它）
+    for _, filename in ipairs(PROTO_FILES) do
+        local filepath = PROTO_DIR .. filename
+        local content, err = read_proto_file(filepath)
+        
+        if not content then
+            skynet.error("[RPC] Failed to read proto file:", err)
+            return false
+        end
+        
+        local ok, load_err = pcall(function()
+            p:load(content, filename)
+        end)
+        
+        if not ok then
+            skynet.error("[RPC] Failed to load proto:", filename, load_err)
+            return false
+        end
+        
+        skynet.error("[RPC] Loaded proto file:", filename)
+    end
+    
+    return true
+end
+
 --- 初始化 RPC 模块
 --- @return boolean 是否成功
 function M.init()
@@ -352,14 +337,9 @@ function M.init()
     if load_pb_library() then
         skynet.error("[RPC] Using native lua-protobuf")
         
-        -- 加载内嵌 Proto 定义
-        local p = protoc.new()
-        local ok, err = pcall(function()
-            p:load(EMBEDDED_PROTO)
-        end)
-        
-        if not ok then
-            skynet.error("[RPC] Failed to load proto:", err)
+        -- 从外部文件加载 Proto 定义
+        if not load_proto_files() then
+            skynet.error("[RPC] Failed to load proto files, falling back to simple serialization")
             use_native_pb = false
         end
     end
@@ -490,12 +470,30 @@ end
 
 --- 判断是否为响应消息
 function M.is_response(msg_type)
-    return msg_type >= 100 and msg_type < 200
+    -- 会话响应 (101-199)
+    if msg_type >= 101 and msg_type < 200 then return true end
+    -- DB 响应 (21,23,25,27)
+    if msg_type == 21 or msg_type == 23 or msg_type == 25 or msg_type == 27 then return true end
+    -- 匹配响应 (400-449)
+    if msg_type >= 400 and msg_type < 450 then return true end
+    -- 战斗响应 (600-649)
+    if msg_type >= 600 and msg_type < 650 then return true end
+    -- 收藏响应 (800-849)
+    if msg_type >= 800 and msg_type < 850 then return true end
+    -- 卡组响应 (850-899)
+    if msg_type >= 850 and msg_type < 900 then return true end
+    return false
 end
 
 --- 判断是否为推送消息
 function M.is_push(msg_type)
-    return msg_type >= 200
+    -- 会话推送 (200-299)
+    if msg_type >= 200 and msg_type < 300 then return true end
+    -- 匹配推送 (450-499)
+    if msg_type >= 450 and msg_type < 500 then return true end
+    -- 战斗推送 (650-699)
+    if msg_type >= 650 and msg_type < 700 then return true end
+    return false
 end
 
 --- 获取请求对应的响应类型
@@ -504,8 +502,24 @@ function M.get_response_type(request_type)
     if request_type == 20 or request_type == 22 or request_type == 24 or request_type == 26 then
         return request_type + 1
     end
-    -- 普通游戏消息 (1-99) -> (101-199)
+    -- 会话消息 (1-99) -> (101-199)
     if request_type >= 1 and request_type < 20 then
+        return request_type + 100
+    end
+    -- 匹配消息 (300-349) -> (400-449)
+    if request_type >= 300 and request_type < 350 then
+        return request_type + 100
+    end
+    -- 战斗消息 (500-549) -> (600-649)
+    if request_type >= 500 and request_type < 550 then
+        return request_type + 100
+    end
+    -- 收藏消息 (700-749) -> (800-849)
+    if request_type >= 700 and request_type < 750 then
+        return request_type + 100
+    end
+    -- 卡组消息 (750-799) -> (850-899)
+    if request_type >= 750 and request_type < 800 then
         return request_type + 100
     end
     return nil

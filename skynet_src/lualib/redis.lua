@@ -1,6 +1,6 @@
 --[[
     Redis 封装模块
-    提供简洁的 Redis 操作接口
+    提供简洁的 Redis 操作接口（纯工具类，不包含业务逻辑）
     
     使用方式：
         local redis = require "redis"
@@ -21,15 +21,15 @@
         local value = redis.hget("hash_key", "field")
         local all = redis.hgetall("hash_key")
         
-        -- 玩家数据快捷接口
-        redis.player.save_basic(player_id, data)
-        local data = redis.player.load_basic(player_id)
+        -- 构造缓存 Key
+        local key = redis.make_key("player", player_id, "basic")
+    
+    注意：玩家相关的业务缓存操作请使用 player_cache.lua
 ]]
 
 local skynet = require "skynet"
 
 local M = {}
-M.player = {}  -- 玩家数据快捷接口
 
 -- ==================== 配置 ====================
 
@@ -531,7 +531,7 @@ end
 
 --- 构造 key（命名空间风格）
 --- @param namespace string 命名空间
---- @param ... 其他部分
+--- @vararg string 其他部分
 --- @return string
 function M.make_key(namespace, ...)
     local parts = {namespace}
@@ -539,121 +539,6 @@ function M.make_key(namespace, ...)
         table.insert(parts, tostring(part))
     end
     return table.concat(parts, ":")
-end
-
--- ==================== 玩家数据快捷接口 ====================
-
-local PLAYER_CACHE_TTL = 1800  -- 30分钟
-
---- 保存玩家基础数据到缓存
-function M.player.save_basic(player_id, data)
-    local key = M.make_key("player", player_id, "basic")
-    
-    -- 简单 JSON 序列化
-    local json = string.format(
-        '{"player_id":"%s","nickname":"%s","gold":%d,"arcane_dust":%d,"last_login":%d}',
-        tostring(data.player_id or player_id),
-        tostring(data.nickname or ""),
-        data.gold or 0,
-        data.arcane_dust or 0,
-        data.last_login or os.time()
-    )
-    
-    return M.setex(key, json, PLAYER_CACHE_TTL)
-end
-
---- 从缓存加载玩家基础数据
-function M.player.load_basic(player_id)
-    local key = M.make_key("player", player_id, "basic")
-    local json = M.get(key)
-    
-    if not json then
-        return nil
-    end
-    
-    -- 简单 JSON 解析
-    local data = {}
-    data.player_id = json:match('"player_id":"([^"]*)"') or player_id
-    data.nickname = json:match('"nickname":"([^"]*)"') or ""
-    data.gold = tonumber(json:match('"gold":(%d+)')) or 0
-    data.arcane_dust = tonumber(json:match('"arcane_dust":(%d+)')) or 0
-    data.last_login = tonumber(json:match('"last_login":(%d+)')) or 0
-    
-    return data
-end
-
---- 删除玩家缓存
-function M.player.clear(player_id)
-    local keys = {
-        M.make_key("player", player_id, "basic"),
-        M.make_key("player", player_id, "achievements"),
-        M.make_key("player", player_id, "session"),
-    }
-    
-    for _, key in ipairs(keys) do
-        M.del(key)
-    end
-    return true
-end
-
---- 保存成就进度
-function M.player.save_achievement(player_id, achievement_id, progress)
-    local key = M.make_key("player", player_id, "achievements")
-    return M.hset(key, achievement_id, progress)
-end
-
---- 加载所有成就进度
-function M.player.load_achievements(player_id)
-    local key = M.make_key("player", player_id, "achievements")
-    local hash = M.hgetall(key)
-    
-    local achievements = {}
-    for id, progress in pairs(hash) do
-        achievements[id] = tonumber(progress) or 0
-    end
-    return achievements
-end
-
---- 增加金币（原子操作）
-function M.player.add_gold(player_id, amount)
-    local key = M.make_key("player", player_id, "gold")
-    return M.incrby(key, amount)
-end
-
---- 设置玩家会话
-function M.player.set_session(player_id, session_data, ttl)
-    local key = M.make_key("session", player_id)
-    
-    local json = string.format(
-        '{"player_id":"%s","login_time":%d,"last_active":%d}',
-        player_id,
-        session_data.login_time or os.time(),
-        session_data.last_active or os.time()
-    )
-    
-    return M.setex(key, json, ttl or 3600)
-end
-
---- 获取玩家会话
-function M.player.get_session(player_id)
-    local key = M.make_key("session", player_id)
-    local json = M.get(key)
-    
-    if not json then
-        return nil
-    end
-    
-    return {
-        player_id = json:match('"player_id":"([^"]*)"'),
-        login_time = tonumber(json:match('"login_time":(%d+)')) or 0,
-        last_active = tonumber(json:match('"last_active":(%d+)')) or 0,
-    }
-end
-
---- 刷新会话活跃时间
-function M.player.refresh_session(player_id, ttl)
-    local key = M.make_key("session", player_id)
-    return M.expire(key, ttl or 3600)
 end
 
 -- ==================== 测试 ====================

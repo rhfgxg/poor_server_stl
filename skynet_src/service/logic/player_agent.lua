@@ -3,13 +3,14 @@
     每个玩家一个实例，处理该玩家的所有游戏逻辑
     
     使用模块：
-    - redis.lua : 缓存层
-    - db.lua    : 持久化层
+    - player_cache.lua : 缓存层
+    - db.lua           : 持久化层（通用 CRUD）
+    - game_config.lua  : 游戏配置
 ]]
 
 local skynet = require "skynet"
 local game_config = require "game_config"
-local redis = require "redis"
+local player_cache = require "player_cache"
 local db = require "db"
 
 local player_id = ...
@@ -70,9 +71,11 @@ end
 -- 保存到 Redis（缓存层）
 local function save_to_redis()
     -- 保存基础数据
-    local ok = redis.player.save_basic(player_id, {
+    local ok = player_cache.save_basic(player_id, {
         player_id = player_data.player_id,
         nickname = player_data.nickname,
+        level = player_data.level,
+        exp = player_data.exp,
         gold = player_data.gold,
         arcane_dust = player_data.arcane_dust,
         last_login = player_data.last_login,
@@ -80,8 +83,8 @@ local function save_to_redis()
     
     if ok then
         -- 保存成就进度
-        for ach_id, progress in pairs(player_data.achievements.progress or {}) do
-            redis.player.save_achievement(player_id, ach_id, progress)
+        if player_data.achievements and player_data.achievements.progress then
+            player_cache.save_achievements(player_id, player_data.achievements.progress)
         end
         
         skynet.error(string.format("[Player %s] Synced to Redis", player_id))
@@ -95,7 +98,17 @@ end
 
 -- 保存到 MySQL（持久化层）
 local function save_to_mysql()
-    local ok = db.player.save_full(player_id, player_data)
+    -- 使用通用 CRUD 接口保存玩家数据
+    local ok, err = db.update("poor_hearthstone", "players", 
+        { player_id = player_id },
+        {
+            nickname = player_data.nickname,
+            level = player_data.level,
+            exp = player_data.exp,
+            gold = player_data.gold,
+            arcane_dust = player_data.arcane_dust,
+            last_login = player_data.last_login,
+        })
     
     if ok then
         skynet.error(string.format("[Player %s] Persisted to MySQL", player_id))
@@ -113,19 +126,21 @@ local function init_player_data()
     skynet.error(string.format("[Player %s] Loading data...", player_id))
     
     -- Level 1: 尝试从 Redis 加载
-    local redis_data = redis.player.load_basic(player_id)
+    local redis_data = player_cache.load_basic(player_id)
     
     if redis_data and redis_data.player_id then
         skynet.error(string.format("[Player %s] Loaded from Redis cache", player_id))
         player_data = {
             player_id = player_id,
             nickname = redis_data.nickname or ("Player_" .. player_id),
+            level = redis_data.level or 1,
+            exp = redis_data.exp or 0,
             gold = redis_data.gold or 0,
             arcane_dust = redis_data.arcane_dust or 0,
             cards = {},
             decks = {},
             achievements = {
-                progress = redis.player.load_achievements(player_id) or {},
+                progress = player_cache.load_achievements(player_id) or {},
                 completed = {},
             },
             last_login = redis_data.last_login or os.time(),
@@ -135,22 +150,25 @@ local function init_player_data()
     
     -- Level 2: Redis 没有，从 MySQL 加载
     skynet.error(string.format("[Player %s] No Redis cache, loading from MySQL", player_id))
-    local db_data = db.player.load_full(player_id)
+    local db_results, err = db.read("poor_hearthstone", "players", { player_id = player_id })
     
-    if db_data then
+    if db_results and #db_results > 0 then
+        local db_data = db_results[1]
         skynet.error(string.format("[Player %s] Loaded from MySQL", player_id))
         player_data = {
             player_id = player_id,
             nickname = db_data.nickname or ("Player_" .. player_id),
-            gold = db_data.gold or 0,
-            arcane_dust = db_data.arcane_dust or 0,
-            cards = db_data.cards or {},
-            decks = db_data.decks or {},
-            achievements = db_data.achievements or {
+            level = tonumber(db_data.level) or 1,
+            exp = tonumber(db_data.exp) or 0,
+            gold = tonumber(db_data.gold) or 0,
+            arcane_dust = tonumber(db_data.arcane_dust) or 0,
+            cards = {},
+            decks = {},
+            achievements = {
                 progress = {},
                 completed = {},
             },
-            last_login = db_data.last_login or os.time(),
+            last_login = tonumber(db_data.last_login) or os.time(),
         }
         
         -- 缓存到 Redis
@@ -163,6 +181,8 @@ local function init_player_data()
     player_data = {
         player_id = player_id,
         nickname = "Player_" .. player_id,
+        level = 1,
+        exp = 0,
         gold = 1000,        -- 初始金币
         arcane_dust = 0,
         cards = {},
@@ -174,8 +194,22 @@ local function init_player_data()
         last_login = os.time(),
     }
     
-    -- 保存到数据库和缓存
-    db.player.create(player_id, player_id, player_data.nickname)
+    -- 保存到数据库
+    local ok, err = db.create("poor_hearthstone", "players", {
+        player_id = player_id,
+        nickname = player_data.nickname,
+        level = player_data.level,
+        exp = player_data.exp,
+        gold = player_data.gold,
+        arcane_dust = player_data.arcane_dust,
+        last_login = player_data.last_login,
+    })
+    
+    if not ok then
+        skynet.error(string.format("[Player %s] Failed to create in MySQL: %s", player_id, err or "unknown"))
+    end
+    
+    -- 缓存到 Redis
     save_to_redis()
 end
 

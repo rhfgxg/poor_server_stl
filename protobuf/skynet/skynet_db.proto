@@ -1,0 +1,66 @@
+// Skynet 数据库服务协议
+// 与 C++ server_db.proto 保持一致，用于 Skynet 与 C++ DB 服务器通信
+
+syntax = "proto3";
+package skynet_proto;
+
+// ==================== 数据库请求/响应 (20-29) ====================
+
+// 创建数据请求 (type = 20)
+message DBCreateRequest {
+    bytes database = 1;
+    bytes table = 2;
+    map<string, bytes> data = 3;
+}
+
+// 创建数据响应 (type = 21)
+message DBCreateResponse {
+    bool success = 1;
+    bytes message = 2;
+}
+
+// 读取数据请求 (type = 22)
+message DBReadRequest {
+    bytes database = 1;
+    bytes table = 2;
+    map<string, bytes> query = 3;
+}
+
+// 读取数据响应 (type = 23)
+message DBReadResponse {
+    bool success = 1;
+    bytes message = 2;
+    repeated DBResult results = 3;
+}
+
+// 数据库查询结果
+message DBResult {
+    map<string, bytes> fields = 1;
+}
+
+// 更新数据请求 (type = 24)
+message DBUpdateRequest {
+    bytes database = 1;
+    bytes table = 2;
+    map<string, bytes> query = 3;
+    map<string, bytes> data = 4;
+}
+
+// 更新数据响应 (type = 25)
+message DBUpdateResponse {
+    bool success = 1;
+    bytes message = 2;
+}
+
+// 删除数据请求 (type = 26)
+message DBDeleteRequest {
+    bytes database = 1;
+    bytes table = 2;
+    map<string, bytes> query = 3;
+}
+
+// 删除数据响应 (type = 27)
+message DBDeleteResponse {
+    bool success = 1;
+    bytes message = 2;
+}
