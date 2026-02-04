@@ -1,0 +1,76 @@
+// 逻辑服务器协议定义 (Skynet)
+// 用于 C++ Gateway 和 Skynet Logic Server 之间的通信
+// 通信协议格式：[4字节长度(网络序)][2字节类型][Protobuf数据]
+// 消息类型使用 common.proto 中的 ServiceType 枚举
+
+syntax = "proto3";
+package rpc_server;
+
+import "common.proto";
+
+// ==================== 游戏会话消息 ====================
+
+// 进入游戏请求 (ServiceType: REQ_ENTER_GAME = 100)
+message EnterGameReq {
+    bytes player_id = 1;    // 玩家ID
+    bytes token = 2;        // 登录令牌
+    bytes client_version = 3; // 客户端版本
+}
+
+// 进入游戏响应 (ServiceType: RES_ENTER_GAME = 101)
+message EnterGameRes {
+    bool success = 1;
+    bytes message = 2;
+    PlayerData player_data = 3;
+    int64 server_time = 4;
+}
+
+// 离开游戏请求 (ServiceType: REQ_LEAVE_GAME = 102)
+message LeaveGameReq {
+    bytes player_id = 1;
+    bytes reason = 2;       // 离开原因：logout, disconnect, timeout
+}
+
+// 离开游戏响应 (ServiceType: RES_LEAVE_GAME = 103)
+message LeaveGameRes {
+    bool success = 1;
+    bytes message = 2;
+}
+
+// 玩家操作请求 (ServiceType: REQ_PLAYER_ACTION = 104)
+message PlayerActionReq {
+    bytes player_id = 1;
+    bytes action_type = 2;  // 操作类型
+    bytes action_data = 3;  // 操作数据（JSON 或其他格式）
+}
+
+// 玩家操作响应 (ServiceType: RES_PLAYER_ACTION = 105)
+message PlayerActionRes {
+    bool success = 1;
+    bytes message = 2;
+    bytes result_data = 3;
+}
+
+// 获取玩家状态请求 (ServiceType: REQ_GET_PLAYER_STATUS = 106)
+message GetPlayerStatusReq {
+    bytes player_id = 1;
+}
+
+// 获取玩家状态响应 (ServiceType: RES_GET_PLAYER_STATUS = 107)
+message GetPlayerStatusRes {
+    bool success = 1;
+    PlayerData player_data = 2;
+}
+
+// ==================== 数据结构 ====================
+
+// 玩家数据（简化版）
+message PlayerData {
+    bytes player_id = 1;
+    bytes nickname = 2;
+    int32 level = 3;
+    int32 exp = 4;
+    int32 gold = 5;
+    int64 last_login = 6;
+    int64 create_time = 7;
+}
