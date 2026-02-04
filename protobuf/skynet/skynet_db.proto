@@ -1,66 +1,68 @@
 // Skynet 数据库服务协议
-// 与 C++ server_db.proto 保持一致，用于 Skynet 与 C++ DB 服务器通信
+// Skynet 内部通过 C++ Gateway 转发到 DB Server
+// 消息类型与 C++ common.proto ServiceType 保持一致
 
 syntax = "proto3";
 package skynet_proto;
 
-// ==================== 数据库请求/响应 (20-29) ====================
+// ==================== 数据库消息 ====================
+// 消息类型编号与 C++ ServiceType 对应
 
-// 创建数据请求 (type = 20)
+// 创建数据请求 (ServiceType: REQ_DB_CREATE = 20)
 message DBCreateRequest {
-    bytes database = 1;
-    bytes table = 2;
-    map<string, bytes> data = 3;
+    string database = 1;
+    string table = 2;
+    map<string, string> data = 3;
 }
 
-// 创建数据响应 (type = 21)
+// 创建数据响应 (ServiceType: RES_DB_CREATE = 21)
 message DBCreateResponse {
     bool success = 1;
-    bytes message = 2;
+    string message = 2;
 }
 
-// 读取数据请求 (type = 22)
+// 读取数据请求 (ServiceType: REQ_DB_READ = 22)
 message DBReadRequest {
-    bytes database = 1;
-    bytes table = 2;
-    map<string, bytes> query = 3;
+    string database = 1;
+    string table = 2;
+    map<string, string> query = 3;
 }
 
-// 读取数据响应 (type = 23)
+// 读取数据响应 (ServiceType: RES_DB_READ = 23)
 message DBReadResponse {
     bool success = 1;
-    bytes message = 2;
+    string message = 2;
     repeated DBResult results = 3;
 }
 
 // 数据库查询结果
 message DBResult {
-    map<string, bytes> fields = 1;
+    map<string, string> fields = 1;
 }
 
-// 更新数据请求 (type = 24)
+// 更新数据请求 (ServiceType: REQ_DB_UPDATE = 24)
 message DBUpdateRequest {
-    bytes database = 1;
-    bytes table = 2;
-    map<string, bytes> query = 3;
-    map<string, bytes> data = 4;
+    string database = 1;
+    string table = 2;
+    map<string, string> query = 3;
+    map<string, string> data = 4;
 }
 
-// 更新数据响应 (type = 25)
+// 更新数据响应 (ServiceType: RES_DB_UPDATE = 25)
 message DBUpdateResponse {
     bool success = 1;
-    bytes message = 2;
+    string message = 2;
 }
 
-// 删除数据请求 (type = 26)
+// 删除数据请求 (ServiceType: REQ_DB_DELETE = 26)
 message DBDeleteRequest {
-    bytes database = 1;
-    bytes table = 2;
-    map<string, bytes> query = 3;
+    string database = 1;
+    string table = 2;
+    map<string, string> query = 3;
 }
 
-// 删除数据响应 (type = 27)
+// 删除数据响应 (ServiceType: RES_DB_DELETE = 27)
 message DBDeleteResponse {
     bool success = 1;
-    bytes message = 2;
+    string message = 2;
 }

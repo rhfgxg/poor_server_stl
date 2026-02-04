@@ -1,0 +1,63 @@
+// Skynet 逻辑服务器协议
+// 处理玩家游戏会话：进入、离开、操作、状态查询
+// 消息类型与 C++ common.proto ServiceType 保持一致
+
+syntax = "proto3";
+package skynet_proto;
+
+import "skynet_common.proto";
+
+// ==================== 游戏会话消息 ====================
+// 消息类型编号与 C++ ServiceType 对应
+
+// 进入游戏请求 (ServiceType: REQ_ENTER_GAME = 100)
+message EnterGameRequest {
+    string player_id = 1;
+    string token = 2;
+    string client_version = 3;
+}
+
+// 进入游戏响应 (ServiceType: RES_ENTER_GAME = 101)
+message EnterGameResponse {
+    bool success = 1;
+    string message = 2;
+    PlayerData player_data = 3;
+    int64 server_time = 4;
+}
+
+// 离开游戏请求 (ServiceType: REQ_LEAVE_GAME = 102)
+message LeaveGameRequest {
+    string player_id = 1;
+    string reason = 2;  // logout, disconnect, timeout
+}
+
+// 离开游戏响应 (ServiceType: RES_LEAVE_GAME = 103)
+message LeaveGameResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// 玩家操作请求 (ServiceType: REQ_PLAYER_ACTION = 104)
+message PlayerActionRequest {
+    string player_id = 1;
+    string action_type = 2;
+    bytes action_data = 3;
+}
+
+// 玩家操作响应 (ServiceType: RES_PLAYER_ACTION = 105)
+message PlayerActionResponse {
+    bool success = 1;
+    string message = 2;
+    bytes result_data = 3;
+}
+
+// 获取玩家状态请求 (ServiceType: REQ_GET_PLAYER_STATUS = 106)
+message GetPlayerStatusRequest {
+    string player_id = 1;
+}
+
+// 获取玩家状态响应 (ServiceType: RES_GET_PLAYER_STATUS = 107)
+message GetPlayerStatusResponse {
+    bool success = 1;
+    PlayerData player_data = 2;
+}

@@ -53,88 +53,72 @@ end
 
 -- ==================== 消息类型定义 ====================
 
--- 消息类型枚举（与 Skynet proto 文件保持一致）
--- 简化版：只保留会话和数据库消息
+-- 消息类型枚举（与 C++ common.proto ServiceType 保持一致）
+-- Skynet 使用简单序列化，不依赖 Proto 文件
 M.MSG = {
     UNKNOWN = 0,
     
-    -- ============ 会话消息 (Session) ============
-    -- 请求消息 (1-99)
-    ENTER_GAME = 1,
-    LEAVE_GAME = 2,
-    PLAYER_ACTION = 3,
-    GET_PLAYER_STATUS = 4,
-    HEARTBEAT = 5,
-    
-    -- 响应消息 (101-199)
-    ENTER_GAME_RES = 101,
-    LEAVE_GAME_RES = 102,
-    PLAYER_ACTION_RES = 103,
-    GET_PLAYER_STATUS_RES = 104,
-    HEARTBEAT_RES = 105,
-    
-    -- 会话推送 (200-299)
-    PUSH_GAME_STATE = 200,
-    PUSH_NOTIFICATION = 201,
-    PUSH_ACHIEVEMENT = 202,
-    PUSH_KICK = 203,
-    
     -- ============ 数据库消息 (DB) ============
-    -- 请求 (20-29)，与 C++ common.proto ServiceType 对应
+    -- 与 C++ common.proto ServiceType 对应
     DB_CREATE = 20,
-    DB_READ = 22,
-    DB_UPDATE = 24,
-    DB_DELETE = 26,
-    -- 响应 (21-27)
     DB_CREATE_RES = 21,
+    DB_READ = 22,
     DB_READ_RES = 23,
+    DB_UPDATE = 24,
     DB_UPDATE_RES = 25,
+    DB_DELETE = 26,
     DB_DELETE_RES = 27,
     
     -- ============ 测试消息 ============
     ECHO = 50,
     ECHO_RES = 51,
+    
+    -- ============ 游戏会话消息 (Logic Server) ============
+    -- 与 C++ common.proto ServiceType 对应
+    ENTER_GAME = 100,
+    ENTER_GAME_RES = 101,
+    LEAVE_GAME = 102,
+    LEAVE_GAME_RES = 103,
+    PLAYER_ACTION = 104,
+    PLAYER_ACTION_RES = 105,
+    GET_PLAYER_STATUS = 106,
+    GET_PLAYER_STATUS_RES = 107,
 }
 
--- 消息类型到 Proto 名称映射（简化版）
+-- 消息类型到 Proto 名称映射
+-- 简化版：使用简单序列化，不依赖 Proto 文件
 local MSG_TO_PROTO = {
-    -- ============ 会话消息 ============
-    [1] = "skynet_proto.EnterGameRequest",
-    [2] = "skynet_proto.LeaveGameRequest",
-    [3] = "skynet_proto.PlayerActionRequest",
-    [4] = "skynet_proto.GetPlayerStatusRequest",
-    [5] = "skynet_proto.HeartbeatRequest",
-    [101] = "skynet_proto.EnterGameResponse",
-    [102] = "skynet_proto.LeaveGameResponse",
-    [103] = "skynet_proto.PlayerActionResponse",
-    [104] = "skynet_proto.GetPlayerStatusResponse",
-    [105] = "skynet_proto.HeartbeatResponse",
-    [200] = "skynet_proto.PushGameState",
-    [201] = "skynet_proto.PushNotification",
-    [202] = "skynet_proto.PushAchievement",
-    [203] = "skynet_proto.PushKick",
+    -- 数据库消息（使用简单序列化）
+    [20] = nil,  -- DB_CREATE
+    [21] = nil,  -- DB_CREATE_RES
+    [22] = nil,  -- DB_READ
+    [23] = nil,  -- DB_READ_RES
+    [24] = nil,  -- DB_UPDATE
+    [25] = nil,  -- DB_UPDATE_RES
+    [26] = nil,  -- DB_DELETE
+    [27] = nil,  -- DB_DELETE_RES
     
-    -- ============ 数据库消息 ============
-    [20] = "skynet_proto.DBCreateRequest",
-    [22] = "skynet_proto.DBReadRequest",
-    [24] = "skynet_proto.DBUpdateRequest",
-    [26] = "skynet_proto.DBDeleteRequest",
-    [21] = "skynet_proto.DBCreateResponse",
-    [23] = "skynet_proto.DBReadResponse",
-    [25] = "skynet_proto.DBUpdateResponse",
-    [27] = "skynet_proto.DBDeleteResponse",
+    -- 测试消息（原始字符串）
+    [50] = nil,  -- ECHO
+    [51] = nil,  -- ECHO_RES
     
-    -- ============ 测试消息 ============
-    [50] = nil,  -- ECHO - 原始字符串
-    [51] = nil,  -- ECHO_RES - 原始字符串
+    -- 游戏会话消息（使用简单序列化）
+    [100] = nil,  -- ENTER_GAME
+    [101] = nil,  -- ENTER_GAME_RES
+    [102] = nil,  -- LEAVE_GAME
+    [103] = nil,  -- LEAVE_GAME_RES
+    [104] = nil,  -- PLAYER_ACTION
+    [105] = nil,  -- PLAYER_ACTION_RES
+    [106] = nil,  -- GET_PLAYER_STATUS
+    [107] = nil,  -- GET_PLAYER_STATUS_RES
 }
 
--- Proto 文件路径配置（简化版）
+-- Proto 文件路径配置
 local PROTO_DIR = "./protobuf/skynet/"
 local PROTO_FILES = {
     "skynet_common.proto",
+    "skynet_logic.proto",
     "skynet_db.proto",
-    "skynet_session.proto",
 }
 
 -- ==================== 简单序列化（降级方案）====================

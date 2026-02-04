@@ -59,15 +59,11 @@ private:
     grpc::Status Forward_to_db_update_service(const std::string& payload, rpc_server::ForwardRes* res);
     grpc::Status Forward_to_db_delete_service(const std::string& payload, rpc_server::ForwardRes* res);
     
-    // Skynet 游戏服务转发（客户端 -> Skynet）
+    // Skynet 逻辑服务器转发（客户端 -> Skynet，透传）
     grpc::Status Forward_to_enter_game_service(const std::string& payload, rpc_server::ForwardRes* res);
     grpc::Status Forward_to_leave_game_service(const std::string& payload, rpc_server::ForwardRes* res);
-    
-    // Skynet 玩家服务转发（客户端 -> Skynet）
     grpc::Status Forward_to_player_action_service(const std::string& payload, rpc_server::ForwardRes* res);
     grpc::Status Forward_to_player_status_service(const std::string& payload, rpc_server::ForwardRes* res);
-    
-    // Skynet 测试服务转发
     grpc::Status Forward_to_echo_service(const std::string& payload, rpc_server::ForwardRes* res);
     
     // 定时任务

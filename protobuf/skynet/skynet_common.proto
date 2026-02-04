@@ -1,12 +1,12 @@
-// Skynet 通用定义 (简化测试版)
+// Skynet 公共定义
 // 被其他 Skynet proto 文件引用
 
 syntax = "proto3";
 package skynet_proto;
 
-// ==================== 通用数据结构 ====================
+// ==================== 玩家数据结构 ====================
 
-// 玩家基础数据（简化版）
+// 玩家基础数据
 message PlayerData {
     string player_id = 1;
     string nickname = 2;
@@ -17,21 +17,8 @@ message PlayerData {
     int64 create_time = 7;
 }
 
-// 成就数据（保留基础结构）
-message AchievementData {
-    map<string, int32> progress = 1;
-    map<string, int64> completed = 2;
-}
+// ==================== 通用响应 ====================
 
-// 成就信息
-message Achievement {
-    string id = 1;
-    string name = 2;
-    string description = 3;
-    int32 reward_gold = 4;
-}
-
-// 通用响应结构
 message CommonResponse {
     bool success = 1;
     string message = 2;
@@ -39,6 +26,7 @@ message CommonResponse {
 }
 
 // ==================== 错误码定义 ====================
+
 enum ErrorCode {
     OK = 0;
     UNKNOWN_ERROR = 1;

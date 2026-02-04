@@ -229,33 +229,16 @@ local function handle_leave_game(conn, req_data)
     end
     
     -- 清理连接
-    player_connections[player_id] = nil
-    conn.player_id = nil
+        player_connections[player_id] = nil
+        conn.player_id = nil
     
-    return encode_response(rpc.MSG.LEAVE_GAME_RES, {
-        success = true,
-        message = "Leave game successfully",
-    })
-end
-
--- 处理心跳
-local function handle_heartbeat(conn, req_data)
-    local player_id = req_data.player_id or conn.player_id
-    
-    -- 转发到 logic_service
-    local srv = get_logic_service()
-    local result = nil
-    if srv then
-        result = skynet.call(srv, "lua", "heartbeat", player_id, req_data.client_time)
+        return encode_response(rpc.MSG.LEAVE_GAME_RES, {
+            success = true,
+            message = "Leave game successfully",
+        })
     end
-    
-    return encode_response(rpc.MSG.HEARTBEAT_RES, {
-        success = true,
-        server_time = (result and result.server_time) or os.time(),
-    })
-end
 
--- 处理获取玩家状态
+    -- 处理获取玩家状态
 local function handle_get_player_status(conn, req_data)
     local player_id = req_data.player_id
     
@@ -272,6 +255,29 @@ local function handle_get_player_status(conn, req_data)
     return encode_response(rpc.MSG.GET_PLAYER_STATUS_RES, {
         success = result and result.success or false,
         player_data = result and result.data and result.data[1] or nil,
+    })
+end
+
+-- 处理玩家操作
+local function handle_player_action(conn, req_data)
+    local player_id = req_data.player_id or conn.player_id
+    local action_type = req_data.action_type
+    local action_data = req_data.action_data
+    
+    skynet.error(string.format("[Gateway] Player action: %s, type: %s", player_id, action_type))
+    
+    local srv = get_logic_service()
+    if not srv then
+        return encode_error(rpc.MSG.PLAYER_ACTION, "service_unavailable")
+    end
+    
+    -- 转发到 logic_service（可扩展处理不同 action_type）
+    local result = skynet.call(srv, "lua", "echo", "action:" .. tostring(action_type))
+    
+    return encode_response(rpc.MSG.PLAYER_ACTION_RES, {
+        success = result and result.success or false,
+        message = result and result.message or "action processed",
+        result_data = "",
     })
 end
 
@@ -296,30 +302,30 @@ local function handle_echo(conn, req_data)
     return "Echo from Skynet: " .. tostring(message)
 end
 
--- 消息处理器映射
+-- 消息处理器映射（与 C++ ServiceType 保持一致）
 local inbound_handlers = {
-    [rpc.MSG.ENTER_GAME] = handle_enter_game,
-    [rpc.MSG.LEAVE_GAME] = handle_leave_game,
-    [rpc.MSG.HEARTBEAT] = handle_heartbeat,
-    [rpc.MSG.GET_PLAYER_STATUS] = handle_get_player_status,
-    [rpc.MSG.ECHO] = handle_echo,
+    [rpc.MSG.ECHO] = handle_echo,                        -- 50
+    [rpc.MSG.ENTER_GAME] = handle_enter_game,            -- 100
+    [rpc.MSG.LEAVE_GAME] = handle_leave_game,            -- 102
+    [rpc.MSG.PLAYER_ACTION] = handle_player_action,      -- 104
+    [rpc.MSG.GET_PLAYER_STATUS] = handle_get_player_status, -- 106
 }
 
-            -- 处理来自 C++ 的消息
-            local function process_inbound_message(fd, msg_type, msg_data)
-                skynet.error(string.format("[Gateway] Inbound: fd=%d, type=%d (%s)", 
-                    fd, msg_type, rpc.get_msg_name(msg_type)))
-    
-                local conn = passive_connections[fd]
-                if not conn then
-                    skynet.error("[Gateway] Connection not found:", fd)
-                    return nil
-                end
-    
-                conn.last_active = skynet.time()
-    
-                -- 查找处理器
-                local handler = inbound_handlers[msg_type]
+-- 处理来自 C++ 的消息
+local function process_inbound_message(fd, msg_type, msg_data)
+    skynet.error(string.format("[Gateway] Inbound: fd=%d, type=%d (%s)", 
+        fd, msg_type, rpc.get_msg_name(msg_type)))
+
+    local conn = passive_connections[fd]
+    if not conn then
+        skynet.error("[Gateway] Connection not found:", fd)
+        return nil
+    end
+
+    conn.last_active = skynet.time()
+
+    -- 查找处理器
+    local handler = inbound_handlers[msg_type]
                 if not handler then
                     skynet.error("[Gateway] Unknown inbound message type:", msg_type)
                     return encode_error(msg_type, "unknown_message_type")
