@@ -1,4 +1,4 @@
-// Skynet 通用定义
+// Skynet 通用定义 (简化测试版)
 // 被其他 Skynet proto 文件引用
 
 syntax = "proto3";
@@ -6,23 +6,21 @@ package skynet_proto;
 
 // ==================== 通用数据结构 ====================
 
-// 玩家基础数据
+// 玩家基础数据（简化版）
 message PlayerData {
     string player_id = 1;
     string nickname = 2;
     int32 level = 3;
     int32 exp = 4;
     int32 gold = 5;
-    int32 arcane_dust = 6;
-    repeated string owned_cards = 7;
-    AchievementData achievements = 8;
-    int64 last_login = 9;
+    int64 last_login = 6;
+    int64 create_time = 7;
 }
 
-// 成就数据
+// 成就数据（保留基础结构）
 message AchievementData {
-    map<string, int32> progress = 1;   // achievement_id -> progress
-    map<string, int64> completed = 2;  // achievement_id -> complete_time
+    map<string, int32> progress = 1;
+    map<string, int64> completed = 2;
 }
 
 // 成就信息
@@ -31,29 +29,6 @@ message Achievement {
     string name = 2;
     string description = 3;
     int32 reward_gold = 4;
-    int32 reward_dust = 5;
-}
-
-// 卡牌信息
-message Card {
-    string card_id = 1;
-    string name = 2;
-    int32 mana_cost = 3;
-    int32 attack = 4;
-    int32 health = 5;
-    string card_type = 6;       // minion, spell, weapon, hero
-    string rarity = 7;          // common, rare, epic, legendary
-    string class_type = 8;      // mage, warrior, paladin, etc.
-    string description = 9;
-}
-
-// 卡组信息
-message Deck {
-    string deck_id = 1;
-    string name = 2;
-    string class_type = 3;
-    repeated string card_ids = 4;
-    bool is_valid = 5;
 }
 
 // 通用响应结构
@@ -77,19 +52,10 @@ enum ErrorCode {
     // 玩家相关 (100-199)
     PLAYER_NOT_FOUND = 100;
     PLAYER_NOT_ONLINE = 101;
-    PLAYER_ALREADY_IN_GAME = 102;
     INVALID_TOKEN = 103;
     
-    // 匹配相关 (200-299)
-    ALREADY_IN_QUEUE = 200;
-    NOT_IN_QUEUE = 201;
-    MATCH_NOT_FOUND = 202;
-    INVALID_DECK = 203;
-    
-    // 战斗相关 (300-399)
-    BATTLE_NOT_FOUND = 300;
-    NOT_YOUR_TURN = 301;
-    INVALID_ACTION = 302;
-    INSUFFICIENT_MANA = 303;
-    INVALID_TARGET = 304;
+    // 数据库相关 (200-299)
+    DB_ERROR = 200;
+    DB_NOT_FOUND = 201;
+    DB_DUPLICATE = 202;
 }

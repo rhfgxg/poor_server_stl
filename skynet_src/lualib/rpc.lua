@@ -54,6 +54,7 @@ end
 -- ==================== 消息类型定义 ====================
 
 -- 消息类型枚举（与 Skynet proto 文件保持一致）
+-- 简化版：只保留会话和数据库消息
 M.MSG = {
     UNKNOWN = 0,
     
@@ -90,67 +91,12 @@ M.MSG = {
     DB_UPDATE_RES = 25,
     DB_DELETE_RES = 27,
     
-    -- ============ 匹配消息 (Match) ============
-    -- 请求 (300-349)
-    START_MATCH = 300,
-    CANCEL_MATCH = 301,
-    GET_MATCH_STATUS = 302,
-    -- 响应 (400-449)
-    START_MATCH_RES = 400,
-    CANCEL_MATCH_RES = 401,
-    GET_MATCH_STATUS_RES = 402,
-    -- 推送 (450-499)
-    PUSH_MATCH_FOUND = 450,
-    PUSH_MATCH_PROGRESS = 451,
-    PUSH_MATCH_CANCELLED = 452,
-    
-    -- ============ 战斗消息 (Battle) ============
-    -- 请求 (500-549)
-    BATTLE_ACTION = 500,
-    GET_BATTLE_STATE = 501,
-    RECONNECT_BATTLE = 502,
-    -- 响应 (600-649)
-    BATTLE_ACTION_RES = 600,
-    GET_BATTLE_STATE_RES = 601,
-    RECONNECT_BATTLE_RES = 602,
-    -- 推送 (650-699)
-    PUSH_BATTLE_STATE_UPDATE = 650,
-    PUSH_TURN_START = 651,
-    PUSH_BATTLE_END = 652,
-    PUSH_OPPONENT_ACTION = 653,
-    
-    -- ============ 收藏消息 (Collection) ============
-    -- 请求 (700-749)
-    GET_COLLECTION = 700,
-    DISENCHANT_CARD = 701,
-    CRAFT_CARD = 702,
-    -- 响应 (800-849)
-    GET_COLLECTION_RES = 800,
-    DISENCHANT_CARD_RES = 801,
-    CRAFT_CARD_RES = 802,
-    
-    -- ============ 卡组消息 (Deck) ============
-    -- 请求 (750-799)
-    GET_DECKS = 750,
-    CREATE_DECK = 751,
-    UPDATE_DECK = 752,
-    DELETE_DECK = 753,
-    IMPORT_DECK = 754,
-    EXPORT_DECK = 755,
-    -- 响应 (850-899)
-    GET_DECKS_RES = 850,
-    CREATE_DECK_RES = 851,
-    UPDATE_DECK_RES = 852,
-    DELETE_DECK_RES = 853,
-    IMPORT_DECK_RES = 854,
-    EXPORT_DECK_RES = 855,
-    
     -- ============ 测试消息 ============
     ECHO = 50,
     ECHO_RES = 51,
 }
 
--- 消息类型到 Proto 名称映射
+-- 消息类型到 Proto 名称映射（简化版）
 local MSG_TO_PROTO = {
     -- ============ 会话消息 ============
     [1] = "skynet_proto.EnterGameRequest",
@@ -178,65 +124,17 @@ local MSG_TO_PROTO = {
     [25] = "skynet_proto.DBUpdateResponse",
     [27] = "skynet_proto.DBDeleteResponse",
     
-    -- ============ 匹配消息 ============
-    [300] = "skynet_proto.StartMatchRequest",
-    [301] = "skynet_proto.CancelMatchRequest",
-    [302] = "skynet_proto.GetMatchStatusRequest",
-    [400] = "skynet_proto.StartMatchResponse",
-    [401] = "skynet_proto.CancelMatchResponse",
-    [402] = "skynet_proto.GetMatchStatusResponse",
-    [450] = "skynet_proto.PushMatchFound",
-    [451] = "skynet_proto.PushMatchProgress",
-    [452] = "skynet_proto.PushMatchCancelled",
-    
-    -- ============ 战斗消息 ============
-    [500] = "skynet_proto.BattleActionRequest",
-    [501] = "skynet_proto.GetBattleStateRequest",
-    [502] = "skynet_proto.ReconnectBattleRequest",
-    [600] = "skynet_proto.BattleActionResponse",
-    [601] = "skynet_proto.GetBattleStateResponse",
-    [602] = "skynet_proto.ReconnectBattleResponse",
-    [650] = "skynet_proto.PushBattleStateUpdate",
-    [651] = "skynet_proto.PushTurnStart",
-    [652] = "skynet_proto.PushBattleEnd",
-    [653] = "skynet_proto.PushOpponentAction",
-    
-    -- ============ 收藏消息 ============
-    [700] = "skynet_proto.GetCollectionRequest",
-    [701] = "skynet_proto.DisenchantCardRequest",
-    [702] = "skynet_proto.CraftCardRequest",
-    [800] = "skynet_proto.GetCollectionResponse",
-    [801] = "skynet_proto.DisenchantCardResponse",
-    [802] = "skynet_proto.CraftCardResponse",
-    
-    -- ============ 卡组消息 ============
-    [750] = "skynet_proto.GetDecksRequest",
-    [751] = "skynet_proto.CreateDeckRequest",
-    [752] = "skynet_proto.UpdateDeckRequest",
-    [753] = "skynet_proto.DeleteDeckRequest",
-    [754] = "skynet_proto.ImportDeckRequest",
-    [755] = "skynet_proto.ExportDeckRequest",
-    [850] = "skynet_proto.GetDecksResponse",
-    [851] = "skynet_proto.CreateDeckResponse",
-    [852] = "skynet_proto.UpdateDeckResponse",
-    [853] = "skynet_proto.DeleteDeckResponse",
-    [854] = "skynet_proto.ImportDeckResponse",
-    [855] = "skynet_proto.ExportDeckResponse",
-    
     -- ============ 测试消息 ============
     [50] = nil,  -- ECHO - 原始字符串
     [51] = nil,  -- ECHO_RES - 原始字符串
 }
 
--- Proto 文件路径配置
+-- Proto 文件路径配置（简化版）
 local PROTO_DIR = "./protobuf/skynet/"
 local PROTO_FILES = {
     "skynet_common.proto",
     "skynet_db.proto",
     "skynet_session.proto",
-    "skynet_match.proto",
-    "skynet_battle.proto",
-    "skynet_collection.proto",
 }
 
 -- ==================== 简单序列化（降级方案）====================

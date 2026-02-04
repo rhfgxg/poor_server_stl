@@ -164,6 +164,18 @@ end
 
 -- ==================== 消息处理器（C++ 到 Skynet）====================
 
+-- 获取 logic_service 服务
+local logic_service = nil
+local function get_logic_service()
+    if not logic_service then
+        local ok, srv = pcall(skynet.queryservice, "logic/logic_service")
+        if ok and srv then
+            logic_service = srv
+        end
+    end
+    return logic_service
+end
+
 -- 处理进入游戏
 local function handle_enter_game(conn, req_data)
     local player_id = req_data.player_id
@@ -171,39 +183,28 @@ local function handle_enter_game(conn, req_data)
     
     skynet.error(string.format("[Gateway] Player entering: %s", player_id))
     
-    -- TODO: 验证 token
+    -- 转发到 logic_service
+    local srv = get_logic_service()
+    if not srv then
+        skynet.error("[Gateway] Logic service not available")
+        return encode_error(rpc.MSG.ENTER_GAME, "service_unavailable")
+    end
     
-    -- 请求 player_manager 创建/获取玩家服务
-    local player_mgr = skynet.queryservice("player/player_manager")
-    local player_service = skynet.call(player_mgr, "lua", "get_or_create_player", player_id)
+    local result = skynet.call(srv, "lua", "enter_game", player_id, token)
     
     -- 保存连接信息
-    conn.player_id = player_id
-    conn.service = player_service
-    player_connections[player_id] = conn.fd
-    
-    skynet.error(string.format("[Gateway] Player %s entered, service: %s", 
-        player_id, skynet.address(player_service)))
-    
-    -- 获取玩家数据
-    local player_data = skynet.call(player_service, "lua", "get_data")
+    if result and result.success then
+        conn.player_id = player_id
+        player_connections[player_id] = conn.fd
+        skynet.error(string.format("[Gateway] Player %s entered", player_id))
+    end
     
     -- 构造响应
     local response = {
-        success = true,
-        message = "Enter game successfully",
-        player_data = {
-            player_id = player_data.player_id,
-            level = player_data.level or 1,
-            exp = player_data.exp or 0,
-            gold = player_data.gold or 0,
-            owned_cards = player_data.cards or {},
-            achievements = {
-                progress = player_data.achievements and player_data.achievements.progress or {},
-                completed = player_data.achievements and player_data.achievements.completed or {},
-            },
-            last_login = player_data.last_login or 0,
-        }
+        success = result and result.success or false,
+        message = result and result.message or "failed",
+        player_data = result and result.player_data or nil,
+        server_time = os.time(),
     }
     
     return encode_response(rpc.MSG.ENTER_GAME_RES, response)
@@ -221,14 +222,15 @@ local function handle_leave_game(conn, req_data)
     skynet.error(string.format("[Gateway] Player leaving: %s, reason: %s", 
         player_id, req_data.reason or "unknown"))
     
-    -- 通知 player_manager
-    local player_mgr = skynet.queryservice("player/player_manager")
-    skynet.send(player_mgr, "lua", "player_offline", player_id)
+    -- 转发到 logic_service
+    local srv = get_logic_service()
+    if srv then
+        skynet.call(srv, "lua", "leave_game", player_id, req_data.reason)
+    end
     
     -- 清理连接
     player_connections[player_id] = nil
     conn.player_id = nil
-    conn.service = nil
     
     return encode_response(rpc.MSG.LEAVE_GAME_RES, {
         success = true,
@@ -236,48 +238,20 @@ local function handle_leave_game(conn, req_data)
     })
 end
 
--- 处理玩家操作
-local function handle_player_action(conn, req_data)
-    local player_id = conn.player_id
+-- 处理心跳
+local function handle_heartbeat(conn, req_data)
+    local player_id = req_data.player_id or conn.player_id
     
-    if not player_id or not conn.service then
-        skynet.error("[Gateway] Action: player not logged in")
-        return encode_error(rpc.MSG.PLAYER_ACTION, "not_logged_in")
+    -- 转发到 logic_service
+    local srv = get_logic_service()
+    local result = nil
+    if srv then
+        result = skynet.call(srv, "lua", "heartbeat", player_id, req_data.client_time)
     end
     
-    skynet.error(string.format("[Gateway] Player %s action: %s", player_id, req_data.action_type))
-    
-    -- 转发到玩家服务
-    local ok, result = pcall(skynet.call, conn.service, "lua", "action", 
-        req_data.action_type, req_data.action_data)
-    
-    if not ok then
-        skynet.error("[Gateway] Action failed:", result)
-        return encode_error(rpc.MSG.PLAYER_ACTION, "action_failed: " .. tostring(result))
-    end
-    
-    -- 解析结果
-    local success = string.find(result or "", "action_ok") ~= nil
-    local unlocked_achievements = {}
-    
-    local ach_start = string.find(result or "", "achievement:")
-    if ach_start then
-        local ach_str = string.sub(result, ach_start + 12)
-        for ach_id in string.gmatch(ach_str, "([^,]+)") do
-            table.insert(unlocked_achievements, {
-                id = ach_id,
-                name = "Achievement " .. ach_id,
-                description = "Description for " .. ach_id,
-                reward_gold = 100,
-            })
-        end
-    end
-    
-    return encode_response(rpc.MSG.PLAYER_ACTION_RES, {
-        success = success,
-        message = result or "",
-        result_data = "",
-        unlocked_achievements = unlocked_achievements,
+    return encode_response(rpc.MSG.HEARTBEAT_RES, {
+        success = true,
+        server_time = (result and result.server_time) or os.time(),
     })
 end
 
@@ -287,54 +261,49 @@ local function handle_get_player_status(conn, req_data)
     
     skynet.error(string.format("[Gateway] Get player status: %s", player_id))
     
-    local player_mgr = skynet.queryservice("player/player_manager")
-    local player_service = skynet.call(player_mgr, "lua", "get_player", player_id)
-    
-    if not player_service then
-        return encode_error(rpc.MSG.GET_PLAYER_STATUS, "player_not_found")
+    -- 从数据库查询玩家数据
+    local srv = get_logic_service()
+    if not srv then
+        return encode_error(rpc.MSG.GET_PLAYER_STATUS, "service_unavailable")
     end
     
-    local player_data = skynet.call(player_service, "lua", "get_data")
+    local result = skynet.call(srv, "lua", "test_db_read", player_id)
     
     return encode_response(rpc.MSG.GET_PLAYER_STATUS_RES, {
-        success = true,
-        player_data = {
-            player_id = player_data.player_id,
-            level = player_data.level or 1,
-            exp = player_data.exp or 0,
-            gold = player_data.gold or 0,
-                        owned_cards = player_data.cards or {},
-                        achievements = {
-                            progress = player_data.achievements and player_data.achievements.progress or {},
-                            completed = player_data.achievements and player_data.achievements.completed or {},
-                        },
-                        last_login = player_data.last_login or 0,
-                    }
-                })
-            end
+        success = result and result.success or false,
+        player_data = result and result.data and result.data[1] or nil,
+    })
+end
 
-            -- 处理 Echo 测试
-            local function handle_echo(conn, req_data)
-                -- req_data 是原始字符串
-                local message = req_data
-    
-                skynet.error("============================================")
-                skynet.error("[Gateway] ECHO TEST RECEIVED!")
-                skynet.error("[Gateway] Message: " .. tostring(message))
-                skynet.error("============================================")
-    
-                -- 直接返回原始字符串，不需要 Proto 编码
-                return "Echo from Skynet: " .. tostring(message)
-            end
+-- 处理 Echo 测试
+local function handle_echo(conn, req_data)
+    -- req_data 是原始字符串
+    local message = req_data
 
-            -- 消息处理器映射
-            local inbound_handlers = {
-                [rpc.MSG.ENTER_GAME] = handle_enter_game,
-                [rpc.MSG.LEAVE_GAME] = handle_leave_game,
-                [rpc.MSG.PLAYER_ACTION] = handle_player_action,
-                [rpc.MSG.GET_PLAYER_STATUS] = handle_get_player_status,
-                [rpc.MSG.ECHO] = handle_echo,
-            }
+    skynet.error("============================================")
+    skynet.error("[Gateway] ECHO TEST RECEIVED!")
+    skynet.error("[Gateway] Message: " .. tostring(message))
+    skynet.error("============================================")
+    
+    -- 转发到 logic_service
+    local srv = get_logic_service()
+    if srv then
+        local result = skynet.call(srv, "lua", "echo", message)
+        return "Echo from Skynet: " .. tostring(result and result.message or message)
+    end
+
+    -- 直接返回原始字符串，不需要 Proto 编码
+    return "Echo from Skynet: " .. tostring(message)
+end
+
+-- 消息处理器映射
+local inbound_handlers = {
+    [rpc.MSG.ENTER_GAME] = handle_enter_game,
+    [rpc.MSG.LEAVE_GAME] = handle_leave_game,
+    [rpc.MSG.HEARTBEAT] = handle_heartbeat,
+    [rpc.MSG.GET_PLAYER_STATUS] = handle_get_player_status,
+    [rpc.MSG.ECHO] = handle_echo,
+}
 
             -- 处理来自 C++ 的消息
             local function process_inbound_message(fd, msg_type, msg_data)
@@ -423,19 +392,20 @@ local function handle_passive_connection(fd, addr)
     end
     
     -- 清理
-    local conn = passive_connections[fd]
-    if conn then
-        if conn.player_id then
-            player_connections[conn.player_id] = nil
-            local player_mgr = skynet.queryservice("player/player_manager")
-            if player_mgr then
-                skynet.send(player_mgr, "lua", "player_offline", conn.player_id)
+        local conn = passive_connections[fd]
+        if conn then
+            if conn.player_id then
+                player_connections[conn.player_id] = nil
+                -- 通知 logic_service 玩家离线
+                local srv = get_logic_service()
+                if srv then
+                    skynet.send(srv, "lua", "leave_game", conn.player_id, "disconnect")
+                end
             end
+            passive_connections[fd] = nil
         end
-        passive_connections[fd] = nil
+        socket.close(fd)
     end
-    socket.close(fd)
-end
 
 -- ============================================================
 -- Part 2: 主动模式 - Skynet 向 C++ 发送请求
