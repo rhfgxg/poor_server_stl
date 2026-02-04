@@ -1,0 +1,70 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 14,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "linux-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build-wsl/${presetName}",
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD": "20",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": ["Linux"]
+        }
+      }
+    },
+    {
+      "name": "wsl-debug",
+      "displayName": "WSL Debug",
+      "description": "Build in WSL with Debug configuration",
+      "inherits": "linux-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_FLAGS": "-g -O0"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": ["Linux"],
+          "wslPath": "${env.LOCALAPPDATA}/Microsoft/WindowsApps/wsl.exe"
+        }
+      }
+    },
+    {
+      "name": "wsl-release",
+      "displayName": "WSL Release",
+      "description": "Build in WSL with Release configuration",
+      "inherits": "linux-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS": "-O3"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "hostOS": ["Linux"],
+          "wslPath": "${env.LOCALAPPDATA}/Microsoft/WindowsApps/wsl.exe"
+        }
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "wsl-debug-build",
+      "displayName": "WSL Debug Build",
+      "configurePreset": "wsl-debug"
+    },
+    {
+      "name": "wsl-release-build",
+      "displayName": "WSL Release Build",
+      "configurePreset": "wsl-release"
+    }
+  ]
+}

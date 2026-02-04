@@ -1,7 +1,7 @@
-# Install Git pre-commit hook
-# Usage: .\tools\debug\windows\install_git_hooks.ps1
+﻿# Install Git pre-commit hook
+# Usage: .\tools\windows\install_git_hooks.ps1
 
-$HookSource = "tools/debug/windows/pre-commit-hook.sh"
+$HookSource = "tools/windows/pre-commit-hook.sh"
 $HookDest = ".git/hooks/pre-commit"
 
 Write-Host "=====================================" -ForegroundColor Cyan

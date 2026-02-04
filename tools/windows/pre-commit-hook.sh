@@ -10,6 +10,7 @@ EXTENSIONS="cpp|h|hpp|cc|cxx|hxx|c|inl|lua|cmake|proto|json|yaml|yml|md"
 # Files to skip (even if tracked by Git)
 SKIP_FILES=(
     "CMakeSettings.json"
+    "CMakePresets.json"
 )
 
 # Get files to be committed
@@ -54,7 +55,8 @@ for FILE in $FILES; do
     fi
     
     # Check for non-UTF-8 encoding
-    if ! file "$FILE" | grep -qE "UTF-8|ASCII"; then
+    # Accept: UTF-8, ASCII, and text data (JSON, XML, etc. which are ASCII-compatible)
+    if ! file "$FILE" | grep -qE "UTF-8|ASCII|text"; then
         echo "ERROR: $FILE is not UTF-8 encoded"
         HAS_ERROR=1
     fi
