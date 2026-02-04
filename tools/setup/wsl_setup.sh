@@ -90,7 +90,7 @@ else
     print_success "protobuf-compiler 安装完成"
 fi
 
-# 5. 安装 MySQL 客户端
+# 5. 安装 MySQL 客户端并配置连接
 print_header "5. 安装 MySQL 客户端"
 if dpkg -l | grep -q "^ii  mysql-client "; then
     print_success "MySQL 客户端已安装"
@@ -98,6 +98,86 @@ else
     print_info "正在安装 MySQL 客户端..."
     apt-get install -y -qq mysql-client libmysqlclient-dev
     print_success "MySQL 客户端安装完成"
+fi
+
+# 配置 MySQL 连接 Windows 主机
+print_info "配置 MySQL 连接到 Windows 主机..."
+
+# 获取 Windows 主机 IP
+WINDOWS_HOST_IP=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
+
+if [ -z "$WINDOWS_HOST_IP" ]; then
+    print_warning "无法自动检测 Windows 主机 IP"
+    WINDOWS_HOST_IP="10.255.255.254"
+    print_info "使用默认 IP: $WINDOWS_HOST_IP"
+else
+    print_success "检测到 Windows 主机 IP: $WINDOWS_HOST_IP"
+fi
+
+# 创建 .my.cnf 配置文件
+MYSQL_CONFIG="$REAL_HOME/.my.cnf"
+
+if [ -f "$MYSQL_CONFIG" ]; then
+    print_warning "MySQL 配置文件已存在: $MYSQL_CONFIG"
+    read -p "是否覆盖现有配置? (y/n): " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        print_info "跳过 MySQL 配置"
+    else
+        sudo -u $REAL_USER bash << EOF
+cat > "$MYSQL_CONFIG" << 'MYSQL_CONF'
+[client]
+protocol=tcp
+host=$WINDOWS_HOST_IP
+port=3306
+user=root
+password=159357
+
+[mysql]
+protocol=tcp
+host=$WINDOWS_HOST_IP
+port=3306
+MYSQL_CONF
+chmod 600 "$MYSQL_CONFIG"
+EOF
+        print_success "已创建/更新 MySQL 配置文件: $MYSQL_CONFIG"
+    fi
+else
+    sudo -u $REAL_USER bash << EOF
+cat > "$MYSQL_CONFIG" << 'MYSQL_CONF'
+[client]
+protocol=tcp
+host=$WINDOWS_HOST_IP
+port=3306
+user=root
+password=159357
+
+[mysql]
+protocol=tcp
+host=$WINDOWS_HOST_IP
+port=3306
+MYSQL_CONF
+chmod 600 "$MYSQL_CONFIG"
+EOF
+    print_success "已创建 MySQL 配置文件: $MYSQL_CONFIG"
+fi
+
+# 测试 MySQL 连接
+print_info "测试 MySQL 连接..."
+if sudo -u $REAL_USER mysql -e "SELECT 1;" &> /dev/null; then
+    print_success "MySQL 连接测试成功！"
+else
+    print_warning "MySQL 连接测试失败"
+    echo ""
+    echo "请确保："
+    echo "  1. Windows 上的 MySQL 服务正在运行"
+    echo "  2. MySQL 配置允许远程连接（bind-address = 0.0.0.0）"
+    echo "  3. 防火墙允许端口 3306"
+    echo "  4. 用户权限正确：GRANT ALL ON *.* TO 'root'@'%';"
+    echo ""
+    echo "手动测试连接："
+    echo "  mysql -h $WINDOWS_HOST_IP -P 3306 -u root -p"
+    echo ""
 fi
 
 # 6. 安装 Redis
@@ -269,6 +349,22 @@ print_header "安装完成总结"
 
 print_success "WSL2 环境配置完成!"
 echo ""
+echo "已完成配置："
+echo "  ✓ 基础开发工具"
+echo "  ✓ Protobuf 编译器"
+echo "  ✓ MySQL 客户端 + WSL→Windows 连接配置"
+echo "  ✓ Redis 服务器（本地）"
+echo "  ✓ Lua 5.3 开发环境"
+echo "  ✓ vcpkg 包管理器"
+echo "  ✓ Skynet 框架"
+echo "  ✓ lua-protobuf 插件"
+echo ""
+echo "MySQL 连接配置："
+echo "  • 配置文件: ~/.my.cnf"
+echo "  • Windows 主机: $WINDOWS_HOST_IP"
+echo "  • 连接方式: TCP/IP (端口 3306)"
+echo "  • 测试连接: mysql -e 'SELECT 1;'"
+echo ""
 echo "下一步操作："
 echo ""
 echo "1. 重新加载环境变量:"
@@ -279,16 +375,17 @@ echo "   cd $PROJECT_ROOT"
 echo "   ~/vcpkg/vcpkg install"
 echo ""
 echo "3. 编译项目:"
-echo "   bash build.sh Release"
+echo "   bash tools/service/manage.sh compile"
 echo ""
 echo "4. 启动所有服务:"
 echo "   bash tools/service/manage.sh start"
 echo ""
 
-print_info "提示:"
-echo "  - Skynet 已编译并集成 lua-protobuf"
-echo "  - Redis 服务已启动"
-echo "  - 使用 tools/service/manage.sh 管理所有服务"
+print_info "重要提示:"
+echo "  • 确保 Windows 上的 MySQL 服务正在运行"
+echo "  • MySQL 需要配置为允许远程连接（my.ini 中设置 bind-address=0.0.0.0）"
+echo "  • Windows 防火墙需要允许端口 3306"
+echo "  • Redis 服务运行在 WSL 本地（127.0.0.1:6379）"
 echo ""
 
 print_success "环境准备完成！祝你开发顺利！"

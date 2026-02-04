@@ -203,6 +203,14 @@ void LoginServerImpl::Handle_login(const rpc_server::LoginReq* req, rpc_server::
 
     // 从连接池中获取数据库服务器连接
     auto channel = db_connection_pool.get_connection(rpc_server::ServerType::DB);
+    if (!channel)
+    {
+        res->set_success(false);
+        res->set_message("Database service unavailable");
+        get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->error("Login failed: no DB connection available for {}", account);
+        return;
+    }
+    
     auto db_stub = rpc_server::DBServer::NewStub(channel);
 
     // 构造查询条件
@@ -348,6 +356,13 @@ void LoginServerImpl::Handle_register(const rpc_server::RegisterReq* req,rpc_ser
 
     // 从连接池中获取数据库服务器连接
     auto channel = db_connection_pool.get_connection(rpc_server::ServerType::DB);
+    if (!channel)
+    {
+        res->set_success(false);
+        res->set_message("Database service unavailable");
+        get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->error("Register failed: no DB connection available");
+        return;
+    }
     auto db_stub = rpc_server::DBServer::NewStub(channel);
 
     // 调用数据库服务器的添加服务
@@ -421,6 +436,13 @@ void LoginServerImpl::Handle_change_password(const rpc_server::ChangePasswordReq
 
     // 从连接池中获取数据库服务器连接
     auto channel = db_connection_pool.get_connection(rpc_server::ServerType::DB);
+    if (!channel)
+    {
+        res->set_success(false);
+        res->set_message("Database service unavailable");
+        get_logger(poor::LogCategory::APPLICATION_ACTIVITY)->error("Change password failed: no DB connection available for {}", account);
+        return;
+    }
     auto db_stub = rpc_server::DBServer::NewStub(channel);
 
     // 构造数据库更新请求
@@ -612,6 +634,11 @@ void LoginServerImpl::Create_file_table(const std::string& account)
         grpc::ClientContext client_context;
 
         auto channel = db_connection_pool.get_connection(rpc_server::ServerType::DB);
+        if (!channel)
+        {
+            get_logger(poor::LogCategory::DATABASE_OPERATIONS)->error("Failed to create table {}: no DB connection available", table_name);
+            return;
+        }
         auto db_stub = rpc_server::DBServer::NewStub(channel);
 
         grpc::Status status = db_stub->Create_table(&client_context, create_table_req, &create_table_res);
