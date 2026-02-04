@@ -114,12 +114,14 @@ void read_server_config(std::string& address, std::string& port)
         if (!loaded)
         {
             lua_close(L);
+           L = nullptr;
             throw std::runtime_error("Config file not found in any expected location");
         }
 
         if (!lua_istable(L, -1))
         {
             lua_close(L);
+           L = nullptr;
             throw std::runtime_error("Config file must return a table");
         }
 
